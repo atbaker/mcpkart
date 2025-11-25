@@ -1,0 +1,65 @@
+version: "3.8"
+
+services:
+  # Temporal Server (development mode with SQLite)
+  temporal:
+    image: temporalio/auto-setup:latest
+    ports:
+      - "7233:7233"  # gRPC frontend
+    environment:
+      - DB=sqlite
+      - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development-sql.yaml
+    volumes:
+      - temporal-data:/var/lib/temporal
+    healthcheck:
+      test: ["CMD", "temporal", "operator", "cluster", "health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Temporal Web UI
+  temporal-ui:
+    image: temporalio/ui:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - TEMPORAL_ADDRESS=temporal:7233
+      - TEMPORAL_CORS_ORIGINS=http://localhost:3000
+    depends_on:
+      temporal:
+        condition: service_healthy
+
+  # MCP Kart Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - TEMPORAL_HOST=temporal:7233
+      - DATABASE_URL=sqlite:///./mcpkart.db
+    depends_on:
+      temporal:
+        condition: service_healthy
+    volumes:
+      - backend-data:/app/data
+
+  # MCP Kart Temporal Worker
+  worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: python -m mcpkart_backend.temporal.worker
+    environment:
+      - TEMPORAL_HOST=temporal:7233
+      - DATABASE_URL=sqlite:///./mcpkart.db
+    depends_on:
+      temporal:
+        condition: service_healthy
+    volumes:
+      - backend-data:/app/data
+
+volumes:
+  temporal-data:
+  backend-data:
