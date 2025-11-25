@@ -9,8 +9,10 @@ This document outlines the technical implementation plan for MCP Kart's backend 
 3. [Temporal Workflow Design](#temporal-workflow-design)
 4. [FastAPI Endpoints](#fastapi-endpoints)
 5. [FastMCP Server Tools](#fastmcp-server-tools)
-6. [Project Structure](#project-structure)
-7. [Implementation Steps](#implementation-steps)
+6. [Database (SQLAlchemy + Alembic)](#database-sqlalchemy--alembic)
+7. [Testing (Temporal Test Framework)](#testing-temporal-test-framework)
+8. [Project Structure](#project-structure)
+9. [Implementation Steps](#implementation-steps)
 
 ---
 
@@ -700,6 +702,313 @@ uv run fastmcp run mcpkart_mcp/server.py
 
 ---
 
+## Database (SQLAlchemy + Alembic)
+
+We use SQLAlchemy for ORM and Alembic for migrations. SQLite for PoC, Postgres for production.
+
+### RaceResult Model
+
+When a race completes, we store the results in the database via a Temporal activity.
+
+```python
+from datetime import datetime
+from typing import Optional
+from sqlalchemy import String, Integer, DateTime, JSON, ForeignKey
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+
+class Base(DeclarativeBase):
+    pass
+
+class RaceResult(Base):
+    """Persisted race results after a race completes."""
+    __tablename__ = "race_results"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    race_id: Mapped[str] = mapped_column(String(32), unique=True, index=True)
+
+    # Race metadata
+    started_at: Mapped[datetime] = mapped_column(DateTime)
+    finished_at: Mapped[datetime] = mapped_column(DateTime)
+    total_ticks: Mapped[int] = mapped_column(Integer)
+
+    # Results
+    standings: Mapped[list[str]] = mapped_column(JSON)  # Ordered list of player_ids
+
+    # Relationship to individual racer results
+    racer_results: Mapped[list["RacerResult"]] = relationship(back_populates="race")
+
+class RacerResult(Base):
+    """Individual racer's performance in a race."""
+    __tablename__ = "racer_results"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    race_id: Mapped[str] = mapped_column(String(32), ForeignKey("race_results.race_id"))
+    player_id: Mapped[str] = mapped_column(String(64), index=True)
+
+    # Performance
+    finish_position: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    finish_tick: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    total_crashes: Mapped[int] = mapped_column(Integer, default=0)
+    items_used: Mapped[int] = mapped_column(Integer, default=0)
+
+    # Relationship
+    race: Mapped["RaceResult"] = relationship(back_populates="racer_results")
+```
+
+### Database Configuration
+
+```python
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+# PoC: SQLite
+DATABASE_URL = "sqlite:///./mcpkart.db"
+
+# Production: Postgres
+# DATABASE_URL = "postgresql://user:pass@localhost/mcpkart"
+
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})  # SQLite only
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+```
+
+### Alembic Setup
+
+Initialize Alembic in the backend directory:
+
+```bash
+cd backend
+uv run alembic init alembic
+```
+
+Configure `alembic.ini`:
+```ini
+sqlalchemy.url = sqlite:///./mcpkart.db
+```
+
+Update `alembic/env.py` to import models:
+```python
+from mcpkart_backend.db.models import Base
+target_metadata = Base.metadata
+```
+
+Create and run migrations:
+```bash
+uv run alembic revision --autogenerate -m "Initial race results tables"
+uv run alembic upgrade head
+```
+
+### Activity to Store Results
+
+```python
+from temporalio import activity
+from sqlalchemy.orm import Session
+from datetime import datetime
+
+@activity.defn
+async def store_race_results(
+    race_id: str,
+    started_at: datetime,
+    finished_at: datetime,
+    total_ticks: int,
+    standings: list[str],
+    racer_stats: dict[str, dict],  # player_id -> stats
+) -> None:
+    """Store race results in the database."""
+    # Note: In practice, you'd inject the DB session via activity context
+    db = SessionLocal()
+    try:
+        race_result = RaceResult(
+            race_id=race_id,
+            started_at=started_at,
+            finished_at=finished_at,
+            total_ticks=total_ticks,
+            standings=standings,
+        )
+        db.add(race_result)
+
+        for player_id, stats in racer_stats.items():
+            racer_result = RacerResult(
+                race_id=race_id,
+                player_id=player_id,
+                finish_position=stats.get("finish_position"),
+                finish_tick=stats.get("finish_tick"),
+                total_crashes=stats.get("total_crashes", 0),
+                items_used=stats.get("items_used", 0),
+            )
+            db.add(racer_result)
+
+        db.commit()
+    finally:
+        db.close()
+```
+
+### Workflow Update for Storing Results
+
+Update the workflow to call the activity when the race ends:
+
+```python
+@run
+async def run(self, race_id: str, player_ids: list[str]) -> GameState:
+    started_at = datetime.utcnow()
+
+    # ... game loop ...
+
+    finished_at = datetime.utcnow()
+
+    # Store results
+    await workflow.execute_activity(
+        store_race_results,
+        args=[
+            race_id,
+            started_at,
+            finished_at,
+            self.game_state.current_tick,
+            self.game_state.standings,
+            self._get_racer_stats(),
+        ],
+        start_to_close_timeout=timedelta(seconds=30),
+    )
+
+    return self.game_state
+```
+
+---
+
+## Testing (Temporal Test Framework)
+
+Temporal provides a testing framework with **automatic time-skipping**, perfect for testing workflows with sleeps.
+
+### Key Features
+
+| Feature | Description |
+|---------|-------------|
+| **Auto time-skip** | `WorkflowEnvironment.start_time_skipping()` fast-forwards through `sleep()` calls |
+| **Manual advance** | `env.sleep(seconds)` to manually jump forward |
+| **Full workflow test** | Start workflow, send updates, query state, verify results |
+| **Activity mocking** | Provide mock implementations to isolate workflow logic |
+
+### Example: Full Race Test
+
+```python
+import pytest
+from temporalio.testing import WorkflowEnvironment
+from temporalio.worker import Worker
+
+from mcpkart_backend.temporal.workflows import RaceWorkflow
+from mcpkart_backend.models import PlayerInput, Steering
+
+@pytest.fixture
+async def workflow_env():
+    """Create a time-skipping test environment."""
+    async with await WorkflowEnvironment.start_time_skipping() as env:
+        yield env
+
+@pytest.mark.asyncio
+async def test_race_completes_three_laps(workflow_env):
+    """Test that a race completes when racer finishes 3 laps."""
+    async with Worker(
+        workflow_env.client,
+        task_queue="test-queue",
+        workflows=[RaceWorkflow],
+    ):
+        # Start race
+        handle = await workflow_env.client.start_workflow(
+            RaceWorkflow.run,
+            args=["test-race", ["player1"]],
+            id="test-race-1",
+            task_queue="test-queue",
+        )
+
+        # Simulate player inputs (accelerate, handle turns)
+        # This runs near-instantly despite 180 sleep(1) calls!
+
+        # Get final result
+        result = await handle.result()
+
+        assert result.is_finished
+        assert "player1" in result.standings
+
+@pytest.mark.asyncio
+async def test_crash_on_turn_at_high_speed(workflow_env):
+    """Test that racer crashes when hitting turn at speed > 1."""
+    async with Worker(
+        workflow_env.client,
+        task_queue="test-queue",
+        workflows=[RaceWorkflow],
+    ):
+        handle = await workflow_env.client.start_workflow(
+            RaceWorkflow.run,
+            args=["test-race", ["player1"]],
+            id="test-crash-1",
+            task_queue="test-queue",
+        )
+
+        # Let racer accelerate (default behavior)
+        # First turn is at tile 4, racer will hit it at speed 3
+        await workflow_env.sleep(10)  # Advance time
+
+        # Query state
+        state = await handle.query(RaceWorkflow.get_state)
+        racer = state.racers["player1"]
+
+        # Should have crashed and be in penalty
+        assert racer.status.value == "crashed" or racer.penalty_ticks_remaining > 0
+
+@pytest.mark.asyncio
+async def test_successful_turn_navigation(workflow_env):
+    """Test that racer can navigate turn at speed 1 with left steering."""
+    async with Worker(
+        workflow_env.client,
+        task_queue="test-queue",
+        workflows=[RaceWorkflow],
+    ):
+        handle = await workflow_env.client.start_workflow(
+            RaceWorkflow.run,
+            args=["test-race", ["player1"]],
+            id="test-turn-1",
+            task_queue="test-queue",
+        )
+
+        # Wait until near the turn (tile 4)
+        await workflow_env.sleep(3)
+
+        # Brake and steer left
+        await handle.execute_update(
+            RaceWorkflow.apply_input,
+            PlayerInput(player_id="player1", braking=True, steering=Steering.LEFT),
+        )
+
+        # Wait for turn navigation
+        await workflow_env.sleep(5)
+
+        state = await handle.query(RaceWorkflow.get_state)
+        racer = state.racers["player1"]
+
+        # Should be past the turn (tile > 4) without crashing
+        assert racer.tile_index > 4
+        assert racer.status.value == "racing"
+```
+
+### Running Tests
+
+```bash
+cd backend
+uv run pytest tests/ -v
+```
+
+### Note on ARM Architecture
+
+The time-skipping test server doesn't work on ARM Linux/Windows. On ARM Mac, it works via Rosetta emulation. For CI, use x64 runners.
+
+---
+
 ## Project Structure
 
 ```
@@ -710,6 +1019,10 @@ mcpkart/
 │
 ├── backend/
 │   ├── pyproject.toml
+│   ├── alembic.ini                      # Alembic config
+│   ├── alembic/                         # Alembic migrations
+│   │   ├── env.py
+│   │   └── versions/
 │   └── src/
 │       └── mcpkart_backend/
 │           ├── __init__.py
@@ -720,14 +1033,23 @@ mcpkart/
 │           ├── temporal/
 │           │   ├── __init__.py
 │           │   ├── workflows.py         # RaceWorkflow
-│           │   ├── activities.py        # Future: store results
+│           │   ├── activities.py        # store_race_results activity
 │           │   └── worker.py            # Worker entrypoint
+│           ├── db/
+│           │   ├── __init__.py
+│           │   ├── models.py            # SQLAlchemy models (RaceResult, RacerResult)
+│           │   └── database.py          # Engine, SessionLocal, get_db
 │           └── models/
 │               ├── __init__.py
-│               ├── track.py             # Track, Tile
-│               ├── racer.py             # RacerState, RacerControls
-│               ├── game_state.py        # GameState
-│               └── inputs.py            # PlayerInput, API models
+│               ├── track.py             # Track, Tile (Pydantic)
+│               ├── racer.py             # RacerState, RacerControls (Pydantic)
+│               ├── game_state.py        # GameState (Pydantic)
+│               └── inputs.py            # PlayerInput, API models (Pydantic)
+│   └── tests/
+│       ├── __init__.py
+│       ├── conftest.py                  # pytest fixtures
+│       ├── test_workflow.py             # Temporal workflow tests
+│       └── test_game_logic.py           # Unit tests for game mechanics
 │
 ├── mcp_server/
 │   ├── pyproject.toml
@@ -752,6 +1074,14 @@ dependencies = [
     "uvicorn>=0.27.0",
     "temporalio>=1.4.0",
     "pydantic>=2.0.0",
+    "sqlalchemy>=2.0.0",
+    "alembic>=1.13.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
 ]
 
 [build-system]
@@ -784,25 +1114,34 @@ build-backend = "hatchling.build"
 1. **Set up backend project structure**
    - Initialize with `uv init`
    - Create directory structure
-   - Add dependencies
+   - Add dependencies (FastAPI, Temporal, SQLAlchemy, Alembic)
 
-2. **Implement data models**
+2. **Implement Pydantic data models**
    - Track and Tile models
    - RacerState and RacerControls
    - GameState
    - API request/response models
 
-3. **Implement Temporal workflow**
+3. **Set up database**
+   - Initialize Alembic: `uv run alembic init alembic`
+   - Create SQLAlchemy models (RaceResult, RacerResult)
+   - Create initial migration
+   - Run migration to create SQLite database
+
+4. **Implement Temporal workflow**
    - RaceWorkflow with game loop
    - Query handler for state
    - Update handler for input
    - Tick processing logic (movement, turns, items)
 
-4. **Implement Temporal worker**
-   - Worker entrypoint script
-   - Register workflow
+5. **Implement Temporal activities**
+   - `store_race_results` activity to persist results after race ends
 
-5. **Implement FastAPI endpoints**
+6. **Implement Temporal worker**
+   - Worker entrypoint script
+   - Register workflow and activities
+
+7. **Implement FastAPI endpoints**
    - POST /races
    - GET /races/{race_id}/state
    - POST /races/{race_id}/input
@@ -810,11 +1149,11 @@ build-backend = "hatchling.build"
 
 ### Phase 2: MCP Server
 
-6. **Set up MCP server project**
+8. **Set up MCP server project**
    - Initialize with `uv init`
    - Add FastMCP dependency
 
-7. **Implement MCP tools**
+9. **Implement MCP tools**
    - join_race tool
    - get_state tool
    - control tool
@@ -822,35 +1161,48 @@ build-backend = "hatchling.build"
 
 ### Phase 3: Testing & Polish
 
-8. **Local testing setup**
-   - Docker compose for Temporal
-   - Test scripts
+10. **Set up testing infrastructure**
+    - Configure pytest and pytest-asyncio
+    - Create fixtures for WorkflowEnvironment
 
-9. **Manual testing**
-   - Test race creation
-   - Test state queries
-   - Test input handling
-   - Test turn mechanics
-   - Test item boxes
+11. **Write workflow tests**
+    - Test full race completion
+    - Test crash mechanics on turns
+    - Test successful turn navigation
+    - Test item box pickup and boost usage
 
-10. **CLI for starting races**
-    - Simple script to create races for local testing
+12. **Local testing setup**
+    - Docker compose for Temporal server
+    - Scripts to start worker, API, and MCP server
+
+13. **Manual end-to-end testing**
+    - Test race creation via API
+    - Test playing a race via MCP tools
+    - Verify results are stored in database
 
 ---
 
-## Open Questions / Future Considerations
+## Resolved Design Decisions
 
-1. **Serialization**: Need to ensure GameState serializes properly for both Temporal (workflow state) and HTTP responses (JSON). May need custom serializers or Pydantic models.
+1. **Serialization**: Use Pydantic models everywhere. Temporal officially supports Pydantic for workflow inputs/outputs.
 
-2. **Error handling**: Current design is "happy path" focused per Temporal philosophy. May need to add validation in update handlers.
+2. **Error handling**: Current "happy path" design is appropriate for single-player PoC. Will revisit for multiplayer.
 
-3. **Race ending**: When/how do we clean up finished race workflows? Let them complete naturally and get garbage collected by Temporal's retention policy?
+3. **Race results persistence**: Store results in database via `store_race_results` activity when race ends. SQLite for PoC, Postgres for production. Let Temporal handle workflow cleanup via retention policy.
 
-4. **Concurrent input**: If multiple inputs arrive in same tick, they're applied in order received. This is probably fine for PoC.
+4. **Concurrent input**: Inputs applied in order received. Fast MCP clients get a slight advantage - this is intentional and becomes more interesting with missiles.
 
-5. **State size**: GameState should stay small (few KB) which is fine for Temporal. But worth monitoring.
+5. **Testing**: Use Temporal's time-skipping test framework with pytest. Enables testing 3-minute races in milliseconds.
 
-6. **Testing workflows**: Consider using Temporal's testing framework for unit testing the workflow logic.
+## Future Considerations
+
+1. **State size**: GameState should stay small (few KB) - worth monitoring as we add features.
+
+2. **NPC players**: Plan to implement via separate processes running Claude Code/Cline/Codex CLI with our MCP server.
+
+3. **OAuth**: Future implementation for player identity, likely GitHub-based.
+
+4. **Multiplayer lobbies**: Race creation will need lobby/matchmaking logic when we support multiple human players.
 
 ---
 
@@ -858,5 +1210,9 @@ build-backend = "hatchling.build"
 
 - [Temporal Python SDK](https://docs.temporal.io/develop/python)
 - [Temporal Workflow Message Passing](https://docs.temporal.io/develop/python/message-passing)
+- [Temporal Python Testing Suite](https://docs.temporal.io/develop/python/testing-suite)
 - [FastMCP Documentation](https://gofastmcp.com/getting-started/welcome)
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [SQLAlchemy 2.0 Documentation](https://docs.sqlalchemy.org/)
+- [Alembic Documentation](https://alembic.sqlalchemy.org/)
+- [Pydantic ORM Mode](https://docs.pydantic.dev/latest/examples/orms/)
