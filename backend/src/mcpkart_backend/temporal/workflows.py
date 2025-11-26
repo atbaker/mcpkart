@@ -32,6 +32,81 @@ class RaceWorkflow:
             tick = self.game_state.current_tick
             self.game_state.events.append(f"[tick {tick}] {message}")
 
+    def _auto_reset_steering(self) -> None:
+        """Auto-reset steering to STRAIGHT after LEFT/RIGHT inputs."""
+        if self.game_state is None:
+            return
+
+        for racer in self.game_state.racers.values():
+            if racer.controls.steering in (Steering.LEFT, Steering.RIGHT):
+                old_steering = racer.controls.steering
+                racer.controls.steering = Steering.STRAIGHT
+                self._log_event(
+                    f"{racer.player_id} steering auto-reset: "
+                    f"{old_steering.value} -> straight"
+                )
+
+    def _apply_scheduled_inputs(self) -> None:
+        """Apply scheduled inputs for current tick."""
+        if self.game_state is None:
+            return
+
+        current_tick = self.game_state.current_tick
+
+        for player_id in list(self.game_state.scheduled_inputs.keys()):
+            player_schedule = self.game_state.scheduled_inputs[player_id]
+
+            # Check if there's an input for this tick
+            if current_tick not in player_schedule:
+                continue
+
+            input_data = player_schedule.pop(current_tick)
+
+            # Clean up empty player schedules
+            if not player_schedule:
+                del self.game_state.scheduled_inputs[player_id]
+
+            # Apply the input
+            racer = self.game_state.racers.get(player_id)
+            if not racer:
+                continue
+
+            changes = []
+            if input_data.target_speed is not None:
+                racer.controls.target_speed = input_data.target_speed
+                changes.append(f"target_speed={input_data.target_speed}")
+            if input_data.steering is not None:
+                racer.controls.steering = input_data.steering
+                changes.append(f"steer {input_data.steering.value}")
+            if input_data.use_item:
+                racer.controls.use_item = True
+                changes.append("use item")
+
+            if changes:
+                self._log_event(
+                    f"{player_id} [SCHEDULED tick {current_tick}]: {', '.join(changes)}"
+                )
+
+    def _crash_racer(
+        self, racer: RacerState, from_tile: int, crash_tile: int, reason: str
+    ) -> None:
+        """Handle racer crash with penalty."""
+        racer.tile_index = from_tile
+        racer.tile_subunit = 0
+        racer.speed = 0
+        racer.controls.target_speed = 0
+        racer.penalty_ticks_remaining = 2
+        racer.status = RacerStatus.CRASHED
+        racer.boost_ticks_remaining = 0
+        racer.total_crashes += 1
+
+        # Clear turn tracking
+        racer.on_turn_tile = False
+        racer.steered_left_during_turn = False
+        racer.turn_entry_tick = None
+
+        self._log_event(f"{racer.player_id} CRASHED at tile {crash_tile} - {reason}")
+
     @workflow.run
     async def run(self, race_id: str, player_ids: list[str]) -> GameState:
         """Main race loop."""
@@ -76,8 +151,15 @@ class RaceWorkflow:
         return self.game_state
 
     @workflow.update
-    async def apply_input(self, input_data: PlayerInput) -> GameState:
-        """Update handler: apply player input and return current state."""
+    async def apply_input(
+        self, input_data: PlayerInput, execute_at_tick: int | None = None
+    ) -> GameState:
+        """Update handler: apply player input immediately or schedule for future tick.
+
+        Args:
+            input_data: The input to apply
+            execute_at_tick: If set, schedule input for this tick. If None, apply immediately.
+        """
         if self.game_state is None:
             raise ValueError("Game state not initialized")
 
@@ -85,19 +167,59 @@ class RaceWorkflow:
             raise ValueError(f"Unknown player: {input_data.player_id}")
 
         racer = self.game_state.racers[input_data.player_id]
-        controls = racer.controls
+        current_tick = self.game_state.current_tick
 
-        # Apply input (None means "don't change") and log changes
+        # Validate target_speed if present
+        if input_data.target_speed is not None:
+            if not (0 <= input_data.target_speed <= 5):  # Allow up to 5 for boost
+                raise ValueError(
+                    f"Invalid target_speed {input_data.target_speed} (must be 0-5)"
+                )
+
+        # If execute_at_tick is set, schedule the input
+        if execute_at_tick is not None:
+            # Validate tick timing
+            if execute_at_tick <= current_tick:
+                raise ValueError(
+                    f"Cannot schedule for past/current tick {execute_at_tick} "
+                    f"(current: {current_tick})"
+                )
+            if execute_at_tick > current_tick + 20:
+                raise ValueError(
+                    f"Cannot schedule more than 20 ticks ahead "
+                    f"(target: {execute_at_tick}, current: {current_tick})"
+                )
+
+            # Store scheduled input
+            if input_data.player_id not in self.game_state.scheduled_inputs:
+                self.game_state.scheduled_inputs[input_data.player_id] = {}
+
+            self.game_state.scheduled_inputs[input_data.player_id][
+                execute_at_tick
+            ] = input_data
+
+            self._log_event(
+                f"{input_data.player_id} scheduled input for tick {execute_at_tick}"
+            )
+            return self.game_state
+
+        # Otherwise apply immediately
+        controls = racer.controls
         changes = []
-        if input_data.accelerating is not None and controls.accelerating != input_data.accelerating:
-            controls.accelerating = input_data.accelerating
-            changes.append("accelerate" if input_data.accelerating else "stop accelerating")
-        if input_data.braking is not None and controls.braking != input_data.braking:
-            controls.braking = input_data.braking
-            changes.append("brake" if input_data.braking else "stop braking")
+
+        if input_data.target_speed is not None:
+            # Also validate against effective_max_speed for immediate application
+            if input_data.target_speed > racer.effective_max_speed:
+                raise ValueError(
+                    f"Invalid target_speed (must be 0-{racer.effective_max_speed})"
+                )
+            controls.target_speed = input_data.target_speed
+            changes.append(f"target_speed={input_data.target_speed}")
+
         if input_data.steering is not None and controls.steering != input_data.steering:
             controls.steering = input_data.steering
             changes.append(f"steer {input_data.steering.value}")
+
         if input_data.use_item:
             controls.use_item = True
             changes.append("use item")
@@ -114,6 +236,20 @@ class RaceWorkflow:
 
         self.game_state.current_tick += 1
 
+        # Process in order: reset old steering, apply new scheduled inputs
+        self._auto_reset_steering()
+        self._apply_scheduled_inputs()
+
+        # Track steering on turn tiles BEFORE movement
+        for racer in self.game_state.racers.values():
+            if racer.on_turn_tile and racer.controls.steering == Steering.LEFT:
+                if not racer.steered_left_during_turn:
+                    racer.steered_left_during_turn = True
+                    self._log_event(
+                        f"{racer.player_id} steering LEFT on turn tile {racer.tile_index}"
+                    )
+
+        # Process each racer
         for racer in self.game_state.racers.values():
             if racer.status == RacerStatus.FINISHED:
                 continue
@@ -151,12 +287,16 @@ class RaceWorkflow:
             self._move_racer(racer)
 
     def _update_speed(self, racer: RacerState) -> None:
-        """Update racer speed based on controls."""
-        if racer.controls.accelerating and not racer.controls.braking:
-            racer.speed = min(racer.speed + 1, racer.effective_max_speed)
-        elif racer.controls.braking and not racer.controls.accelerating:
-            racer.speed = max(racer.speed - 1, 0)
-        # If both or neither: speed unchanged
+        """Update racer speed toward target_speed with asymmetric acceleration/braking."""
+        target = min(racer.controls.target_speed, racer.effective_max_speed)
+
+        if racer.speed < target:
+            # Accelerate: +1 per tick
+            racer.speed = min(racer.speed + 1, target)
+        elif racer.speed > target:
+            # Brake: up to -2 per tick (faster braking for better turn handling)
+            brake_amount = min(2, racer.speed - target)
+            racer.speed = racer.speed - brake_amount
 
     def _move_racer(self, racer: RacerState) -> None:
         """Move racer based on current speed, handle turns and items."""
@@ -191,38 +331,58 @@ class RaceWorkflow:
                         racer.finish_position = self.game_state.next_finish_position
                         racer.finish_tick = self.game_state.current_tick
                         self.game_state.standings.append(racer.player_id)
-                        self._log_event(f"{racer.player_id} FINISHED in position {racer.finish_position}!")
+                        self._log_event(
+                            f"{racer.player_id} FINISHED in position "
+                            f"{racer.finish_position}!"
+                        )
                         return
                     else:
-                        self._log_event(f"{racer.player_id} completed lap {racer.current_lap}/{self.game_state.laps_required}")
+                        self._log_event(
+                            f"{racer.player_id} completed lap "
+                            f"{racer.current_lap}/{self.game_state.laps_required}"
+                        )
 
                 # Get new tile
                 new_tile = self.game_state.track.tiles[racer.tile_index]
 
-                # Check for turn handling
-                if new_tile.tile_type == TileType.TURN_LEFT:
-                    # Must be at speed 1 and steering left
-                    was_too_fast = racer.speed > 1
-                    was_not_steering = racer.controls.steering != Steering.LEFT
-                    if was_too_fast or was_not_steering:
-                        # Crash! Reset to previous tile
-                        crash_tile = racer.tile_index
-                        racer.tile_index = old_tile_index
-                        racer.tile_subunit = 0
-                        racer.speed = 0
-                        racer.penalty_ticks_remaining = 2
-                        racer.status = RacerStatus.CRASHED
-                        racer.boost_ticks_remaining = 0  # Lose boost on crash
-                        racer.controls.accelerating = False  # Stop accelerating after crash
-                        racer.total_crashes += 1
-                        reason = "too fast" if was_too_fast else "not steering left"
-                        self._log_event(f"{racer.player_id} CRASHED at turn (tile {crash_tile}) - {reason}")
+                # Track turn tile entry
+                if new_tile.tile_type == TileType.TURN_LEFT and not racer.on_turn_tile:
+                    racer.on_turn_tile = True
+                    racer.steered_left_during_turn = False
+                    racer.turn_entry_tick = self.game_state.current_tick
+                    self._log_event(
+                        f"{racer.player_id} entered turn at tile {racer.tile_index}"
+                    )
+
+                # Validate speed continuously on turn tiles (crash if speed > 1)
+                if racer.on_turn_tile and racer.speed > 1:
+                    self._crash_racer(
+                        racer, old_tile_index, racer.tile_index, "too fast (speed > 1)"
+                    )
+                    return
+
+                # Check turn exit - validate steering
+                if racer.on_turn_tile and new_tile.tile_type != TileType.TURN_LEFT:
+                    # Exiting turn - check if steered left at any point
+                    if not racer.steered_left_during_turn:
+                        self._crash_racer(
+                            racer,
+                            old_tile_index,
+                            old_tile_index,  # Crash at the turn tile we're leaving
+                            "didn't steer left during turn",
+                        )
                         return
+                    # Success - clear turn tracking
+                    racer.on_turn_tile = False
+                    racer.steered_left_during_turn = False
+                    racer.turn_entry_tick = None
 
                 # Check for item box
                 if new_tile.has_item_box and racer.power_up is None:
                     racer.power_up = PowerUp.SPEED_BOOST  # Only one power-up for now
-                    self._log_event(f"{racer.player_id} picked up SPEED_BOOST (tile {racer.tile_index})")
+                    self._log_event(
+                        f"{racer.player_id} picked up SPEED_BOOST (tile {racer.tile_index})"
+                    )
 
     def _get_racer_stats(self) -> dict[str, dict]:
         """Get stats for all racers for storing in database."""

@@ -31,8 +31,7 @@ class RacerStatus(str, Enum):
 class RacerControls(BaseModel):
     """Current control inputs for a racer (persist between ticks)."""
 
-    accelerating: bool = False  # Default: stationary, AI must choose to accelerate
-    braking: bool = False
+    target_speed: int = 0  # Desired speed 0-3 (or up to 5 with boost)
     steering: Steering = Steering.STRAIGHT
     use_item: bool = False  # One-shot flag, consumed after use
 
@@ -68,6 +67,11 @@ class RacerState(BaseModel):
     # Stats tracking
     total_crashes: int = 0
     items_used: int = 0
+
+    # Turn validation tracking
+    on_turn_tile: bool = False
+    steered_left_during_turn: bool = False
+    turn_entry_tick: Optional[int] = None
 
     @property
     def total_subunits(self) -> int:

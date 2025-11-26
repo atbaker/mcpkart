@@ -2,6 +2,7 @@
 
 from pydantic import BaseModel, Field
 
+from .inputs import PlayerInput
 from .racer import RacerState, RacerStatus
 from .track import Track
 
@@ -22,6 +23,9 @@ class GameState(BaseModel):
 
     # Event log for debugging
     events: list[str] = Field(default_factory=list)
+
+    # Scheduled inputs: dict[player_id][tick] = PlayerInput
+    scheduled_inputs: dict[str, dict[int, PlayerInput]] = Field(default_factory=dict)
 
     @property
     def is_finished(self) -> bool:

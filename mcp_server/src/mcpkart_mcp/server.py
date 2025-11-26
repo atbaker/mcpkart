@@ -19,23 +19,40 @@ GAME RULES:
 - Speed ranges from 0-3 (or 5 with speed boost)
 - Speed = subunits moved per tick (each tile has 3 subunits)
 
-CONTROLS:
-- accelerate: True to speed up (+1 speed per tick), False to coast
-- brake: True to slow down (-1 speed per tick)
+CONTROLS (SIMPLIFIED FOR AI):
+- target_speed: Set desired speed 0-3 directly (no accelerate/brake buttons!)
+  * Your kart automatically accelerates (+1/tick) or brakes (up to -2/tick) toward target
+  * Example: going speed 3, set target_speed=1 → kart brakes to 1 in ONE tick
+  * Example: stopped at 0, set target_speed=3 → kart accelerates over 3 ticks
 - steer: "left", "straight", or "right"
+  * IMPORTANT: Steering auto-resets to "straight" after one tick!
+  * Just send "left" once per turn - no need to reset manually
 - use_item: True to use your held power-up
+- execute_at_tick: Optional - schedule input for a future tick (max 20 ticks ahead)
 
-CRITICAL - TURNS:
+CRITICAL - TURNS (EASIER NOW):
 - Turns are at tiles 2, 7, 12, and 17
-- You MUST be at speed 1 AND steering "left" to make a turn
-- If you hit a turn at speed > 1 or not steering left, you CRASH!
+- You MUST be at speed 1 to navigate turns (speed > 1 = crash)
+- You have 3 ticks to steer "left" while on a turn tile (any tick counts!)
+- At speed 1, it takes 3 ticks to cross a tile - plenty of time to steer
 - Crashing costs you 2 ticks (penalty) and resets your speed to 0
 
 STRATEGY:
-1. On straightaways: accelerate to max speed (3)
-2. Before turns: brake to speed 1 and steer "left"
-3. After completing a turn: steer "straight" and accelerate again
-4. Use speed boosts on long straightaways, not before turns!
+1. On straightaways: set target_speed=3 for max speed
+2. Before turns: set target_speed=1 EARLY (you can brake from 3→1 in one tick!)
+3. On turn tile at speed 1: steer "left" (any of the 3 ticks you're on it works)
+4. After turn: set target_speed=3 to accelerate (steering auto-resets)
+5. Use speed boosts on straightaways ONLY - boost on turn = guaranteed crash!
+
+EXAMPLE TURN SEQUENCE (immediate):
+- Tick 5: control(race_id, target_speed=1)  # Brake for turn at tile 2
+- Tick 7: control(race_id, steer="left")     # Steer on turn
+- Tick 10: control(race_id, target_speed=3)  # Accelerate out of turn
+
+EXAMPLE TURN SEQUENCE (scheduled from tick 5):
+- control(race_id, target_speed=1, execute_at_tick=5)
+- control(race_id, steer="left", execute_at_tick=7)
+- control(race_id, target_speed=3, execute_at_tick=10)
 
 Item boxes are at tiles 5, 10, 15 - you automatically pick up items.
 """,
@@ -72,6 +89,10 @@ def _format_state_for_ai(state: dict[str, Any]) -> dict[str, Any]:
     controls = racer.get("controls", {})
     current_tile_data = tiles[current_tile] if tiles else {}
 
+    # Count scheduled inputs for this player
+    scheduled_inputs = state.get("scheduled_inputs", {}).get("player1", {})
+    scheduled_count = len(scheduled_inputs)
+
     return {
         "race_id": state.get("race_id"),
         "tick": state.get("current_tick", 0),
@@ -83,16 +104,18 @@ def _format_state_for_ai(state: dict[str, Any]) -> dict[str, Any]:
                 "lap": racer.get("current_lap", 0),
             },
             "speed": racer.get("speed", 0),
+            "target_speed": controls.get("target_speed", 0),
             "max_speed": 5 if racer.get("boost_ticks_remaining", 0) > 0 else 3,
             "steering": controls.get("steering", "straight"),
-            "accelerating": controls.get("accelerating", True),
-            "braking": controls.get("braking", False),
+            "on_turn_tile": racer.get("on_turn_tile", False),
+            "steered_left_during_turn": racer.get("steered_left_during_turn", False),
             "power_up": racer.get("power_up"),
             "boost_ticks_remaining": racer.get("boost_ticks_remaining", 0),
             "status": racer.get("status", "racing"),
             "penalty_ticks_remaining": racer.get("penalty_ticks_remaining", 0),
             "finish_position": racer.get("finish_position"),
         },
+        "scheduled_inputs_count": scheduled_count,
         "track": {
             "total_tiles": total_tiles,
             "laps_required": state.get("laps_required", 3),
@@ -129,7 +152,7 @@ async def join_race() -> dict[str, Any]:
 
         return {
             "race_id": data["race_id"],
-            "message": "Race started! You have 3 minutes to complete 3 laps. Remember: slow to speed 1 and steer LEFT for turns!",
+            "message": "Race started! Set target_speed=3 for straightaways, target_speed=1 before turns. Steer 'left' at speed 1 on turn tiles (you have 3 ticks!). Steering auto-resets.",
             "state": formatted,
         }
 
@@ -155,41 +178,47 @@ async def get_state(race_id: str) -> dict[str, Any]:
 @mcp.tool()
 async def control(
     race_id: str,
-    accelerate: Optional[bool] = None,
-    brake: Optional[bool] = None,
+    target_speed: Optional[int] = None,
     steer: Optional[str] = None,
     use_item: bool = False,
+    execute_at_tick: Optional[int] = None,
 ) -> dict[str, Any]:
-    """Send control inputs for your kart. Inputs persist until changed.
+    """Send control inputs for your kart.
 
     Args:
         race_id: The race ID returned from join_race
-        accelerate: Set to True to press gas pedal, False to release.
-                   When accelerating, speed increases by 1 each tick (max 3).
-        brake: Set to True to brake, False to release.
-               When braking, speed decreases by 1 each tick (min 0).
+        target_speed: Set desired speed 0-3. Your kart automatically accelerates
+                     (+1/tick) or brakes (up to -2/tick) toward this speed.
+                     Example: speed 3 → target 1 = brakes to 1 in ONE tick.
+                     Example: speed 0 → target 3 = accelerates over 3 ticks.
         steer: Set steering direction: "left", "straight", or "right".
+               Auto-resets to "straight" after one tick - just send "left" once!
                IMPORTANT: You must steer "left" AND be at speed 1 to make turns!
         use_item: Set to True to use your held item (if any).
+        execute_at_tick: Optional. If set, schedules this input for the specified
+                        future tick instead of applying immediately. Max 20 ticks ahead.
 
     Returns:
         Updated game state after applying your input.
 
     Tips:
-        - On straight tiles, accelerate to max speed (3)
-        - Before turns (tiles 2, 7, 12, 17), brake to speed 1 and set steering to "left"
-        - If you crash (wrong speed/steering on turn), you'll be penalized 2 ticks
-        - Item boxes give you speed boosts - use them on straightaways!
+        - On straightaways: set target_speed=3
+        - Before turns (tiles 2, 7, 12, 17): set target_speed=1 early
+        - Fast braking: can go from speed 3 to 1 in just ONE tick!
+        - On turn tile at speed 1: steer="left" (you have 3 ticks while on the tile)
+        - Steering auto-resets, so just send "left" once per turn
+        - Schedule ahead: control(race_id, target_speed=1, execute_at_tick=10)
+        - Item boxes give you speed boosts - use them on straightaways ONLY!
     """
     async with httpx.AsyncClient(timeout=30.0) as client:
         response = await client.post(
             f"{BACKEND_URL}/races/{race_id}/input",
             json={
                 "player_id": "player1",  # PoC: single player
-                "accelerating": accelerate,
-                "braking": brake,
+                "target_speed": target_speed,
                 "steering": steer,
                 "use_item": use_item,
+                "execute_at_tick": execute_at_tick,
             },
         )
         response.raise_for_status()
