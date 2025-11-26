@@ -31,7 +31,7 @@ class RacerStatus(str, Enum):
 class RacerControls(BaseModel):
     """Current control inputs for a racer (persist between ticks)."""
 
-    accelerating: bool = True  # Default: pedal down
+    accelerating: bool = False  # Default: stationary, AI must choose to accelerate
     braking: bool = False
     steering: Steering = Steering.STRAIGHT
     use_item: bool = False  # One-shot flag, consumed after use

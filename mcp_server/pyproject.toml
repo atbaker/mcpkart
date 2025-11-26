@@ -3,10 +3,10 @@ name = "mcpkart-mcp"
 version = "0.1.0"
 description = "MCP server for MCP Kart racing game"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.14"
 dependencies = [
-    "fastmcp>=2.0.0",
-    "httpx>=0.26.0",
+    "fastmcp>=2.13.1",
+    "httpx>=0.28.1",
 ]
 
 [build-system]

@@ -20,6 +20,9 @@ class GameState(BaseModel):
     # Finish order (player_ids)
     standings: list[str] = Field(default_factory=list)
 
+    # Event log for debugging
+    events: list[str] = Field(default_factory=list)
+
     @property
     def is_finished(self) -> bool:
         """Race ends when all racers finish or max ticks reached."""

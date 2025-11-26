@@ -1,7 +1,7 @@
 """Temporal workflow for MCP Kart races."""
 
 import asyncio
-from datetime import datetime, timedelta, timezone
+from datetime import timedelta
 
 from temporalio import workflow
 
@@ -24,12 +24,18 @@ class RaceWorkflow:
 
     def __init__(self) -> None:
         self.game_state: GameState | None = None
-        self.started_at: datetime | None = None
+        self.started_at = None
+
+    def _log_event(self, message: str) -> None:
+        """Add an event to the game log."""
+        if self.game_state is not None:
+            tick = self.game_state.current_tick
+            self.game_state.events.append(f"[tick {tick}] {message}")
 
     @workflow.run
     async def run(self, race_id: str, player_ids: list[str]) -> GameState:
         """Main race loop."""
-        self.started_at = datetime.now(timezone.utc)
+        self.started_at = workflow.now()
 
         # Initialize game state
         self.game_state = GameState(race_id=race_id, track=Track.create_oval())
@@ -44,7 +50,7 @@ class RaceWorkflow:
             # Wait for next tick (1 second)
             await asyncio.sleep(1)
 
-        finished_at = datetime.now(timezone.utc)
+        finished_at = workflow.now()
 
         # Store results via activity
         await workflow.execute_activity(
@@ -81,15 +87,23 @@ class RaceWorkflow:
         racer = self.game_state.racers[input_data.player_id]
         controls = racer.controls
 
-        # Apply input (None means "don't change")
-        if input_data.accelerating is not None:
+        # Apply input (None means "don't change") and log changes
+        changes = []
+        if input_data.accelerating is not None and controls.accelerating != input_data.accelerating:
             controls.accelerating = input_data.accelerating
-        if input_data.braking is not None:
+            changes.append("accelerate" if input_data.accelerating else "stop accelerating")
+        if input_data.braking is not None and controls.braking != input_data.braking:
             controls.braking = input_data.braking
-        if input_data.steering is not None:
+            changes.append("brake" if input_data.braking else "stop braking")
+        if input_data.steering is not None and controls.steering != input_data.steering:
             controls.steering = input_data.steering
+            changes.append(f"steer {input_data.steering.value}")
         if input_data.use_item:
             controls.use_item = True
+            changes.append("use item")
+
+        if changes:
+            self._log_event(f"{input_data.player_id}: {', '.join(changes)}")
 
         return self.game_state
 
@@ -124,6 +138,7 @@ class RaceWorkflow:
                 racer.power_up = None
                 racer.controls.use_item = False
                 racer.items_used += 1
+                self._log_event(f"{racer.player_id} used SPEED_BOOST")
 
             # Clear use_item flag if no item to use
             if racer.controls.use_item and racer.power_up is None:
@@ -176,7 +191,10 @@ class RaceWorkflow:
                         racer.finish_position = self.game_state.next_finish_position
                         racer.finish_tick = self.game_state.current_tick
                         self.game_state.standings.append(racer.player_id)
+                        self._log_event(f"{racer.player_id} FINISHED in position {racer.finish_position}!")
                         return
+                    else:
+                        self._log_event(f"{racer.player_id} completed lap {racer.current_lap}/{self.game_state.laps_required}")
 
                 # Get new tile
                 new_tile = self.game_state.track.tiles[racer.tile_index]
@@ -184,20 +202,27 @@ class RaceWorkflow:
                 # Check for turn handling
                 if new_tile.tile_type == TileType.TURN_LEFT:
                     # Must be at speed 1 and steering left
-                    if racer.speed > 1 or racer.controls.steering != Steering.LEFT:
+                    was_too_fast = racer.speed > 1
+                    was_not_steering = racer.controls.steering != Steering.LEFT
+                    if was_too_fast or was_not_steering:
                         # Crash! Reset to previous tile
+                        crash_tile = racer.tile_index
                         racer.tile_index = old_tile_index
                         racer.tile_subunit = 0
                         racer.speed = 0
                         racer.penalty_ticks_remaining = 2
                         racer.status = RacerStatus.CRASHED
                         racer.boost_ticks_remaining = 0  # Lose boost on crash
+                        racer.controls.accelerating = False  # Stop accelerating after crash
                         racer.total_crashes += 1
+                        reason = "too fast" if was_too_fast else "not steering left"
+                        self._log_event(f"{racer.player_id} CRASHED at turn (tile {crash_tile}) - {reason}")
                         return
 
                 # Check for item box
                 if new_tile.has_item_box and racer.power_up is None:
                     racer.power_up = PowerUp.SPEED_BOOST  # Only one power-up for now
+                    self._log_event(f"{racer.player_id} picked up SPEED_BOOST (tile {racer.tile_index})")
 
     def _get_racer_stats(self) -> dict[str, dict]:
         """Get stats for all racers for storing in database."""

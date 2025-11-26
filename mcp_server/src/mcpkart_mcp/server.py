@@ -26,7 +26,7 @@ CONTROLS:
 - use_item: True to use your held power-up
 
 CRITICAL - TURNS:
-- Turns are at tiles 4, 9, 14, and 19
+- Turns are at tiles 2, 7, 12, and 17
 - You MUST be at speed 1 AND steering "left" to make a turn
 - If you hit a turn at speed > 1 or not steering left, you CRASH!
 - Crashing costs you 2 ticks (penalty) and resets your speed to 0
@@ -37,7 +37,7 @@ STRATEGY:
 3. After completing a turn: steer "straight" and accelerate again
 4. Use speed boosts on long straightaways, not before turns!
 
-Item boxes are at tiles 0, 5, 10, 15 - you automatically pick up items.
+Item boxes are at tiles 5, 10, 15 - you automatically pick up items.
 """,
 )
 
@@ -177,7 +177,7 @@ async def control(
 
     Tips:
         - On straight tiles, accelerate to max speed (3)
-        - Before turns (tiles 4, 9, 14, 19), brake to speed 1 and set steering to "left"
+        - Before turns (tiles 2, 7, 12, 17), brake to speed 1 and set steering to "left"
         - If you crash (wrong speed/steering on turn), you'll be penalized 2 ticks
         - Item boxes give you speed boosts - use them on straightaways!
     """
@@ -196,3 +196,8 @@ async def control(
         data = response.json()
 
         return _format_state_for_ai(data["state"])
+
+
+if __name__ == "__main__":
+    # Run with streamable HTTP transport for remote MCP clients
+    mcp.run(transport="http", host="0.0.0.0", port=8080)

@@ -31,21 +31,21 @@ class Track(BaseModel):
 
     @classmethod
     def create_oval(cls) -> "Track":
-        """Create the PoC oval track: 20 tiles, 4 turns, 4 item boxes.
+        """Create the PoC oval track: 20 tiles, 4 turns, 3 item boxes.
 
-        Layout:
-        - Tiles 0-3: straight (item box at 0)
-        - Tile 4: turn_left
-        - Tiles 5-8: straight (item box at 5)
-        - Tile 9: turn_left
-        - Tiles 10-13: straight (item box at 10)
-        - Tile 14: turn_left
-        - Tiles 15-18: straight (item box at 15)
-        - Tile 19: turn_left
+        Layout (start at tile 0, centered in straightaway):
+        - Tiles 18, 19, 0, 1: straight (no item at start)
+        - Tile 2: turn_left
+        - Tiles 3, 4, 5, 6: straight (item box at 5)
+        - Tile 7: turn_left
+        - Tiles 8, 9, 10, 11: straight (item box at 10)
+        - Tile 12: turn_left
+        - Tiles 13, 14, 15, 16: straight (item box at 15)
+        - Tile 17: turn_left
         """
         tiles = []
-        turn_indices = {4, 9, 14, 19}
-        item_box_indices = {0, 5, 10, 15}
+        turn_indices = {2, 7, 12, 17}
+        item_box_indices = {5, 10, 15}
 
         for i in range(20):
             tile_type = TileType.TURN_LEFT if i in turn_indices else TileType.STRAIGHT

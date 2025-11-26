@@ -5,6 +5,7 @@ from contextlib import asynccontextmanager
 from typing import Any
 
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
 
 from mcpkart_backend.api.dependencies import get_temporal_client, lifespan_context
 from mcpkart_backend.models import (
@@ -13,6 +14,7 @@ from mcpkart_backend.models import (
     PlayerInput,
     PlayerInputRequest,
     Steering,
+    TileType,
 )
 from mcpkart_backend.temporal import RaceWorkflow
 
@@ -145,3 +147,100 @@ async def send_input(race_id: str, request: PlayerInputRequest) -> dict[str, Any
         raise HTTPException(
             status_code=400, detail=f"Failed to send input: {str(e)}"
         ) from e
+
+
+def _render_ascii_track(state: GameState) -> str:
+    """Render ASCII art representation of the track with racer positions."""
+    # Build track row
+    track_cells = []
+    for tile in state.track.tiles:
+        if tile.tile_type == TileType.TURN_LEFT:
+            prefix = "T"
+        elif tile.has_item_box:
+            prefix = "I"
+        else:
+            prefix = " "
+        track_cells.append(f"[{prefix}{tile.index:2d}]")
+
+    track_line = "".join(track_cells)
+
+    # Build position markers for each racer
+    racer_lines = []
+    for player_id, racer in state.racers.items():
+        # Calculate position in the track string
+        # Each cell is 5 chars wide: [X##]
+        marker_pos = racer.tile_index * 5 + 2  # Center of the cell
+        marker_line = " " * marker_pos + f"^{player_id[:8]}"
+        racer_lines.append(marker_line)
+
+    return track_line + "\n" + "\n".join(racer_lines)
+
+
+def _render_racer_status(state: GameState) -> str:
+    """Render racer status information."""
+    lines = []
+    for player_id, racer in state.racers.items():
+        power_up = racer.power_up.value if racer.power_up else "none"
+        boost = f" BOOSTING({racer.boost_ticks_remaining})" if racer.boost_ticks_remaining > 0 else ""
+        lines.append(
+            f"- {player_id}: tile {racer.tile_index}.{racer.tile_subunit}, "
+            f"speed {racer.speed}, lap {racer.current_lap}/{state.laps_required}, "
+            f"status: {racer.status.value}{boost}, "
+            f"steering: {racer.controls.steering.value}, "
+            f"item: {power_up}, crashes: {racer.total_crashes}"
+        )
+    return "\n".join(lines)
+
+
+@app.get("/debug/{race_id}", response_class=HTMLResponse)
+async def debug_race(race_id: str) -> str:
+    """Debug visualization page for a race.
+
+    Shows ASCII track, racer status, and event log with auto-refresh.
+    """
+    client = await get_temporal_client()
+    workflow_id = f"race-{race_id}"
+
+    try:
+        handle = client.get_workflow_handle(workflow_id)
+        state: GameState = await handle.query(RaceWorkflow.get_state)
+    except Exception as e:
+        return f"<html><body><h1>Race not found: {race_id}</h1><p>{e}</p></body></html>"
+
+    ascii_track = _render_ascii_track(state)
+    racer_status = _render_racer_status(state)
+    events_log = "\n".join(state.events[-50:])  # Last 50 events
+
+    html = f"""<!DOCTYPE html>
+<html>
+<head>
+    <title>MCP Kart Debug - Race {race_id}</title>
+    <style>
+        body {{ font-family: monospace; background: #1a1a1a; color: #00ff00; padding: 20px; }}
+        pre {{ margin: 0; }}
+        h2 {{ color: #ffff00; margin-top: 20px; }}
+        .track {{ font-size: 14px; overflow-x: auto; }}
+        .finished {{ color: #ff00ff; }}
+    </style>
+</head>
+<body>
+    <h1>MCP Kart Debug - Race {race_id}</h1>
+    <p>Tick: {state.current_tick}/{state.max_ticks} | Status: {"FINISHED" if state.is_finished else "RACING"}</p>
+
+    <h2>Track (I=item box, T=turn)</h2>
+    <pre class="track">{ascii_track}</pre>
+
+    <h2>Racers</h2>
+    <pre>{racer_status}</pre>
+
+    <h2>Event Log (last 50)</h2>
+    <pre>{events_log if events_log else "(no events yet)"}</pre>
+
+    <script>
+        // Auto-refresh every 500ms
+        setTimeout(() => location.reload(), 500);
+    </script>
+</body>
+</html>"""
+
+    return html
