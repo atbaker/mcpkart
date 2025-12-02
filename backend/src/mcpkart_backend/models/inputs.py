@@ -4,15 +4,13 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from .racer import Steering
-
 
 class PlayerInput(BaseModel):
     """Input sent by player via MCP/API."""
 
     player_id: str
     target_speed: Optional[int] = None  # None = don't change, 0-3 (or 0-5 with boost)
-    steering: Optional[Steering] = None
+    drift: bool = False  # Enable drift mode (must be in drift zone)
     use_item: bool = False
 
 
@@ -27,6 +25,5 @@ class PlayerInputRequest(BaseModel):
 
     player_id: str
     target_speed: Optional[int] = None  # 0-3 (or 0-5 with boost)
-    steering: Optional[str] = None  # "left", "straight", "right"
+    drift: bool = False  # Enable drift mode (must be in drift zone)
     use_item: bool = False
-    execute_at_tick: Optional[int] = None  # If set, schedule for future tick

@@ -8,7 +8,6 @@ from mcpkart_backend.models import (
     RacerControls,
     RacerState,
     RacerStatus,
-    Steering,
     Tile,
     TileType,
     Track,
@@ -22,20 +21,20 @@ class TestTrack:
         """Test oval track creation."""
         track = Track.create_oval()
 
-        assert track.total_tiles == 20
-        assert len(track.tiles) == 20
+        assert track.total_tiles == 40
+        assert len(track.tiles) == 40
 
-        # Check turns are at correct positions
+        # Check turns are at correct positions (6, 13, 26, 33)
         turn_tiles = [t for t in track.tiles if t.tile_type == TileType.TURN_LEFT]
         assert len(turn_tiles) == 4
         turn_indices = [t.index for t in turn_tiles]
-        assert turn_indices == [4, 9, 14, 19]
+        assert turn_indices == [6, 13, 26, 33]
 
-        # Check item boxes are at correct positions
+        # Check item boxes are at correct positions (3, 10, 20)
         item_tiles = [t for t in track.tiles if t.has_item_box]
-        assert len(item_tiles) == 4
+        assert len(item_tiles) == 3
         item_indices = [t.index for t in item_tiles]
-        assert item_indices == [0, 5, 10, 15]
+        assert item_indices == [3, 10, 20]
 
     def test_tile_properties(self):
         """Test tile creation and properties."""
@@ -91,15 +90,23 @@ class TestRacerState:
         """Test default control values."""
         racer = RacerState(player_id="test")
 
-        assert racer.controls.accelerating is True
-        assert racer.controls.braking is False
-        assert racer.controls.steering == Steering.STRAIGHT
+        assert racer.controls.target_speed == 0
+        assert racer.controls.drift is False
+        assert racer.controls.use_item is False
 
     def test_racer_with_power_up(self):
         """Test racer with power up."""
         racer = RacerState(player_id="test", power_up=PowerUp.SPEED_BOOST)
 
         assert racer.power_up == PowerUp.SPEED_BOOST
+
+    def test_drift_state(self):
+        """Test drift-related state fields."""
+        racer = RacerState(player_id="test")
+
+        assert racer.on_turn_tile is False
+        assert racer.in_drift_zone is False
+        assert racer.drift_enabled is False
 
 
 class TestRacerControls:
@@ -109,9 +116,8 @@ class TestRacerControls:
         """Test default control values."""
         controls = RacerControls()
 
-        assert controls.accelerating is True
-        assert controls.braking is False
-        assert controls.steering == Steering.STRAIGHT
+        assert controls.target_speed == 0
+        assert controls.drift is False
         assert controls.use_item is False
 
 
@@ -124,9 +130,9 @@ class TestGameState:
 
         assert state.race_id == "test-race"
         assert state.current_tick == 0
-        assert state.max_ticks == 180
+        assert state.max_ticks == 600
         assert state.laps_required == 3
-        assert state.track.total_tiles == 20
+        assert state.track.total_tiles == 40
         assert len(state.racers) == 0
         assert len(state.standings) == 0
 
@@ -150,7 +156,7 @@ class TestGameState:
         """Test is_finished when max ticks reached."""
         state = GameState(race_id="test")
         state.racers["player1"] = RacerState(player_id="player1")
-        state.current_tick = 180
+        state.current_tick = 600
 
         assert state.is_finished is True
 
@@ -173,16 +179,6 @@ class TestGameState:
 
         state.standings.append("player2")
         assert state.next_finish_position == 3
-
-
-class TestSteering:
-    """Tests for Steering enum."""
-
-    def test_steering_values(self):
-        """Test steering enum values."""
-        assert Steering.LEFT.value == "left"
-        assert Steering.STRAIGHT.value == "straight"
-        assert Steering.RIGHT.value == "right"
 
 
 class TestPowerUp:

@@ -6,16 +6,21 @@ from datetime import timedelta
 from temporalio import workflow
 
 with workflow.unsafe.imports_passed_through():
+    import pydantic_core.core_schema  # noqa: F401 - Pre-import for Temporal sandbox
+
     from mcpkart_backend.models import (
         GameState,
         PlayerInput,
         PowerUp,
         RacerState,
         RacerStatus,
-        Steering,
         TileType,
         Track,
     )
+
+# Turn tiles and their drift zones (3 tiles before each turn)
+TURN_TILES = {6, 13, 26, 33}
+DRIFT_ZONES = {3, 4, 5, 10, 11, 12, 23, 24, 25, 30, 31, 32}
 
 
 @workflow.defn
@@ -32,60 +37,68 @@ class RaceWorkflow:
             tick = self.game_state.current_tick
             self.game_state.events.append(f"[tick {tick}] {message}")
 
-    def _auto_reset_steering(self) -> None:
-        """Auto-reset steering to STRAIGHT after LEFT/RIGHT inputs."""
-        if self.game_state is None:
-            return
+    def _update_drift_state(self, racer: RacerState) -> None:
+        """Update drift zone and drift enabled state based on position."""
+        current_tile = racer.tile_index
 
-        for racer in self.game_state.racers.values():
-            if racer.controls.steering in (Steering.LEFT, Steering.RIGHT):
-                old_steering = racer.controls.steering
-                racer.controls.steering = Steering.STRAIGHT
+        # Check if in drift zone
+        if current_tile in DRIFT_ZONES:
+            if not racer.in_drift_zone:
+                racer.in_drift_zone = True
                 self._log_event(
-                    f"{racer.player_id} steering auto-reset: "
-                    f"{old_steering.value} -> straight"
+                    f"{racer.player_id} entered drift zone at tile {current_tile}"
                 )
 
-    def _apply_scheduled_inputs(self) -> None:
-        """Apply scheduled inputs for current tick."""
-        if self.game_state is None:
-            return
+            # Enable drift if control is set while in drift zone
+            if racer.controls.drift and not racer.drift_enabled:
+                racer.drift_enabled = True
+                racer.controls.drift = False  # Consume the input
+                self._log_event(f"{racer.player_id} enabled DRIFT in drift zone")
+        else:
+            # Exiting drift zone (but not into a turn)
+            if racer.in_drift_zone and current_tile not in TURN_TILES:
+                racer.in_drift_zone = False
+                # drift_enabled stays true if heading into turn
 
-        current_tick = self.game_state.current_tick
+    def _check_turn_entry(
+        self, racer: RacerState, from_tile: int, to_tile: int
+    ) -> bool:
+        """Check if racer can safely enter/traverse turn. Returns False if crash."""
+        if to_tile not in TURN_TILES:
+            return True  # Not a turn, always safe
 
-        for player_id in list(self.game_state.scheduled_inputs.keys()):
-            player_schedule = self.game_state.scheduled_inputs[player_id]
+        # Entering or on turn tile
+        if not racer.on_turn_tile:
+            racer.on_turn_tile = True
+            racer.in_drift_zone = False  # Clear drift zone flag when entering turn
+            self._log_event(f"{racer.player_id} entering turn at tile {to_tile}")
 
-            # Check if there's an input for this tick
-            if current_tick not in player_schedule:
-                continue
+        # Speed 1 is always safe
+        if racer.speed <= 1:
+            return True
 
-            input_data = player_schedule.pop(current_tick)
+        # Speed 2 with drift is safe
+        if racer.speed == 2 and racer.drift_enabled:
+            return True
 
-            # Clean up empty player schedules
-            if not player_schedule:
-                del self.game_state.scheduled_inputs[player_id]
+        # Speed > 2, or speed 2 without drift = CRASH
+        if racer.drift_enabled:
+            reason = "too fast even with drift (max drift speed is 2)"
+        else:
+            reason = "too fast without drift enabled"
+        self._crash_racer(racer, from_tile, to_tile, reason)
+        return False
 
-            # Apply the input
-            racer = self.game_state.racers.get(player_id)
-            if not racer:
-                continue
+    def _check_turn_exit(self, racer: RacerState, from_tile: int, to_tile: int) -> None:
+        """Handle exiting a turn tile."""
+        if from_tile in TURN_TILES and to_tile not in TURN_TILES:
+            # Successfully exited turn
+            self._log_event(f"{racer.player_id} exited turn at tile {from_tile}")
 
-            changes = []
-            if input_data.target_speed is not None:
-                racer.controls.target_speed = input_data.target_speed
-                changes.append(f"target_speed={input_data.target_speed}")
-            if input_data.steering is not None:
-                racer.controls.steering = input_data.steering
-                changes.append(f"steer {input_data.steering.value}")
-            if input_data.use_item:
-                racer.controls.use_item = True
-                changes.append("use item")
-
-            if changes:
-                self._log_event(
-                    f"{player_id} [SCHEDULED tick {current_tick}]: {', '.join(changes)}"
-                )
+            # Clear turn/drift state
+            racer.on_turn_tile = False
+            racer.in_drift_zone = False
+            racer.drift_enabled = False
 
     def _crash_racer(
         self, racer: RacerState, from_tile: int, crash_tile: int, reason: str
@@ -95,15 +108,16 @@ class RaceWorkflow:
         racer.tile_subunit = 0
         racer.speed = 0
         racer.controls.target_speed = 0
-        racer.penalty_ticks_remaining = 2
+        racer.penalty_ticks_remaining = 5
         racer.status = RacerStatus.CRASHED
         racer.boost_ticks_remaining = 0
         racer.total_crashes += 1
 
-        # Clear turn tracking
+        # Clear turn/drift tracking
         racer.on_turn_tile = False
-        racer.steered_left_during_turn = False
-        racer.turn_entry_tick = None
+        racer.in_drift_zone = False
+        racer.drift_enabled = False
+        racer.controls.drift = False
 
         self._log_event(f"{racer.player_id} CRASHED at tile {crash_tile} - {reason}")
 
@@ -151,14 +165,11 @@ class RaceWorkflow:
         return self.game_state
 
     @workflow.update
-    async def apply_input(
-        self, input_data: PlayerInput, execute_at_tick: int | None = None
-    ) -> GameState:
-        """Update handler: apply player input immediately or schedule for future tick.
+    async def apply_input(self, input_data: PlayerInput) -> GameState:
+        """Update handler: apply player input immediately.
 
         Args:
             input_data: The input to apply
-            execute_at_tick: If set, schedule input for this tick. If None, apply immediately.
         """
         if self.game_state is None:
             raise ValueError("Game state not initialized")
@@ -167,7 +178,6 @@ class RaceWorkflow:
             raise ValueError(f"Unknown player: {input_data.player_id}")
 
         racer = self.game_state.racers[input_data.player_id]
-        current_tick = self.game_state.current_tick
 
         # Validate target_speed if present
         if input_data.target_speed is not None:
@@ -175,50 +185,38 @@ class RaceWorkflow:
                 raise ValueError(
                     f"Invalid target_speed {input_data.target_speed} (must be 0-5)"
                 )
-
-        # If execute_at_tick is set, schedule the input
-        if execute_at_tick is not None:
-            # Validate tick timing
-            if execute_at_tick <= current_tick:
-                raise ValueError(
-                    f"Cannot schedule for past/current tick {execute_at_tick} "
-                    f"(current: {current_tick})"
-                )
-            if execute_at_tick > current_tick + 20:
-                raise ValueError(
-                    f"Cannot schedule more than 20 ticks ahead "
-                    f"(target: {execute_at_tick}, current: {current_tick})"
-                )
-
-            # Store scheduled input
-            if input_data.player_id not in self.game_state.scheduled_inputs:
-                self.game_state.scheduled_inputs[input_data.player_id] = {}
-
-            self.game_state.scheduled_inputs[input_data.player_id][
-                execute_at_tick
-            ] = input_data
-
-            self._log_event(
-                f"{input_data.player_id} scheduled input for tick {execute_at_tick}"
-            )
-            return self.game_state
-
-        # Otherwise apply immediately
-        controls = racer.controls
-        changes = []
-
-        if input_data.target_speed is not None:
-            # Also validate against effective_max_speed for immediate application
+            # Also validate against effective_max_speed
             if input_data.target_speed > racer.effective_max_speed:
                 raise ValueError(
                     f"Invalid target_speed (must be 0-{racer.effective_max_speed})"
                 )
+
+        # Apply input immediately
+        controls = racer.controls
+        changes = []
+
+        if input_data.target_speed is not None:
             controls.target_speed = input_data.target_speed
             changes.append(f"target_speed={input_data.target_speed}")
 
-        if input_data.steering is not None and controls.steering != input_data.steering:
-            controls.steering = input_data.steering
-            changes.append(f"steer {input_data.steering.value}")
+        # Handle drift input - valid in drift zone or on turn tile
+        if input_data.drift:
+            if racer.in_drift_zone or racer.on_turn_tile:
+                # Valid location - enable drift
+                controls.drift = True
+                if racer.on_turn_tile:
+                    changes.append("drift enabled (late, on turn)")
+                else:
+                    changes.append("drift requested")
+            else:
+                # Invalid location - crash for early drift
+                self._crash_racer(
+                    racer,
+                    racer.tile_index,
+                    racer.tile_index,
+                    "early drift (not in drift zone or turn)"
+                )
+                changes.append("CRASHED - early drift")
 
         if input_data.use_item:
             controls.use_item = True
@@ -236,20 +234,11 @@ class RaceWorkflow:
 
         self.game_state.current_tick += 1
 
-        # Process in order: reset old steering, apply new scheduled inputs
-        self._auto_reset_steering()
-        self._apply_scheduled_inputs()
-
-        # Track steering on turn tiles BEFORE movement
-        for racer in self.game_state.racers.values():
-            if racer.on_turn_tile and racer.controls.steering == Steering.LEFT:
-                if not racer.steered_left_during_turn:
-                    racer.steered_left_during_turn = True
-                    self._log_event(
-                        f"{racer.player_id} steering LEFT on turn tile {racer.tile_index}"
-                    )
-
         # Process each racer
+        for racer in self.game_state.racers.values():
+            # Update drift state based on current position (before movement)
+            self._update_drift_state(racer)
+
         for racer in self.game_state.racers.values():
             if racer.status == RacerStatus.FINISHED:
                 continue
@@ -342,46 +331,26 @@ class RaceWorkflow:
                             f"{racer.current_lap}/{self.game_state.laps_required}"
                         )
 
-                # Get new tile
-                new_tile = self.game_state.track.tiles[racer.tile_index]
+                # Update drift state for new tile
+                self._update_drift_state(racer)
 
-                # Track turn tile entry
-                if new_tile.tile_type == TileType.TURN_LEFT and not racer.on_turn_tile:
-                    racer.on_turn_tile = True
-                    racer.steered_left_during_turn = False
-                    racer.turn_entry_tick = self.game_state.current_tick
-                    self._log_event(
-                        f"{racer.player_id} entered turn at tile {racer.tile_index}"
-                    )
+                # Check turn entry/traversal (may cause crash)
+                if not self._check_turn_entry(racer, old_tile_index, racer.tile_index):
+                    return  # Crashed
 
-                # Validate speed continuously on turn tiles (crash if speed > 1)
-                if racer.on_turn_tile and racer.speed > 1:
-                    self._crash_racer(
-                        racer, old_tile_index, racer.tile_index, "too fast (speed > 1)"
-                    )
-                    return
-
-                # Check turn exit - validate steering
-                if racer.on_turn_tile and new_tile.tile_type != TileType.TURN_LEFT:
-                    # Exiting turn - check if steered left at any point
-                    if not racer.steered_left_during_turn:
-                        self._crash_racer(
-                            racer,
-                            old_tile_index,
-                            old_tile_index,  # Crash at the turn tile we're leaving
-                            "didn't steer left during turn",
-                        )
-                        return
-                    # Success - clear turn tracking
-                    racer.on_turn_tile = False
-                    racer.steered_left_during_turn = False
-                    racer.turn_entry_tick = None
+                # Check turn exit
+                self._check_turn_exit(racer, old_tile_index, racer.tile_index)
 
                 # Check for item box
+                new_tile = self.game_state.track.tiles[racer.tile_index]
                 if new_tile.has_item_box and racer.power_up is None:
                     racer.power_up = PowerUp.SPEED_BOOST  # Only one power-up for now
                     self._log_event(
                         f"{racer.player_id} picked up SPEED_BOOST (tile {racer.tile_index})"
+                    )
+                elif new_tile.has_item_box and racer.power_up is not None:
+                    self._log_event(
+                        f"{racer.player_id} passed item box but already has {racer.power_up.value} (tile {racer.tile_index})"
                     )
 
     def _get_racer_stats(self) -> dict[str, dict]:

@@ -3,15 +3,9 @@
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, computed_field
 
-
-class Steering(str, Enum):
-    """Steering direction."""
-
-    LEFT = "left"
-    STRAIGHT = "straight"
-    RIGHT = "right"
+from . import format_race_clock
 
 
 class PowerUp(str, Enum):
@@ -32,7 +26,7 @@ class RacerControls(BaseModel):
     """Current control inputs for a racer (persist between ticks)."""
 
     target_speed: int = 0  # Desired speed 0-3 (or up to 5 with boost)
-    steering: Steering = Steering.STRAIGHT
+    drift: bool = False  # Enable drift mode (must be in drift zone)
     use_item: bool = False  # One-shot flag, consumed after use
 
 
@@ -68,10 +62,10 @@ class RacerState(BaseModel):
     total_crashes: int = 0
     items_used: int = 0
 
-    # Turn validation tracking
+    # Turn/Drift tracking
     on_turn_tile: bool = False
-    steered_left_during_turn: bool = False
-    turn_entry_tick: Optional[int] = None
+    in_drift_zone: bool = False  # Currently in 3 tiles before a turn
+    drift_enabled: bool = False  # Drift was enabled in drift zone
 
     @property
     def total_subunits(self) -> int:
@@ -82,3 +76,23 @@ class RacerState(BaseModel):
     def effective_max_speed(self) -> int:
         """Max speed considering active boosts."""
         return 5 if self.boost_ticks_remaining > 0 else 3
+
+    @computed_field
+    @property
+    def finish_time(self) -> Optional[str]:
+        """Finish time in MM:SS format (None if not finished)."""
+        if self.finish_tick is None:
+            return None
+        return format_race_clock(self.finish_tick)
+
+    @computed_field
+    @property
+    def boost_seconds_remaining(self) -> int:
+        """Boost time remaining in seconds (1 tick = 1 second)."""
+        return self.boost_ticks_remaining
+
+    @computed_field
+    @property
+    def penalty_seconds_remaining(self) -> int:
+        """Penalty time remaining in seconds (1 tick = 1 second)."""
+        return self.penalty_ticks_remaining

@@ -1,10 +1,16 @@
 """MCP server for MCP Kart racing game."""
 
 import os
+from pathlib import Path
 from typing import Any, Optional
 
 import httpx
 from fastmcp import FastMCP
+from jinja2 import Environment, FileSystemLoader
+
+# Template setup
+TEMPLATE_DIR = Path(__file__).parent / "templates"
+jinja_env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
 # Backend URL from environment or default for local development
 BACKEND_URL = os.environ.get("MCPKART_BACKEND_URL", "http://localhost:8000")
@@ -14,90 +20,77 @@ mcp = FastMCP(
     instructions="""You are playing MCP Kart, a turn-based racing game!
 
 GAME RULES:
-- The race has 3 laps around a 20-tile oval track
-- Each tick (1 second), your kart moves based on your controls
+- Race 3 laps around a 40-tile oblong oval track
+- Each tick (1 second), your kart moves based on your speed
 - Speed ranges from 0-3 (or 5 with speed boost)
 - Speed = subunits moved per tick (each tile has 3 subunits)
 
-CONTROLS (SIMPLIFIED FOR AI):
-- target_speed: Set desired speed 0-3 directly (no accelerate/brake buttons!)
-  * Your kart automatically accelerates (+1/tick) or brakes (up to -2/tick) toward target
-  * Example: going speed 3, set target_speed=1 → kart brakes to 1 in ONE tick
-  * Example: stopped at 0, set target_speed=3 → kart accelerates over 3 ticks
-- steer: "left", "straight", or "right"
-  * IMPORTANT: Steering auto-resets to "straight" after one tick!
-  * Just send "left" once per turn - no need to reset manually
-- use_item: True to use your held power-up
-- execute_at_tick: Optional - schedule input for a future tick (max 20 ticks ahead)
+CONTROLS:
+- target_speed: Set desired speed 0-3 (kart accelerates/brakes automatically)
+- drift: Enable drift mode (only works in drift zones)
+- use_item: Activate your power-up
 
-CRITICAL - TURNS (EASIER NOW):
-- Turns are at tiles 2, 7, 12, and 17
-- You MUST be at speed 1 to navigate turns (speed > 1 = crash)
-- You have 3 ticks to steer "left" while on a turn tile (any tick counts!)
-- At speed 1, it takes 3 ticks to cross a tile - plenty of time to steer
-- Crashing costs you 2 ticks (penalty) and resets your speed to 0
+TURN MECHANICS (SIMPLIFIED!):
+- Turns are at tiles 6, 13, 26, and 33
+- Speed 1: Always safe through turns (slow but reliable)
+- Speed 2: Requires DRIFT to be enabled before the turn
+- Speed 3+: Will CRASH on turns (too fast even with drift)
 
-STRATEGY:
-1. On straightaways: set target_speed=3 for max speed
-2. Before turns: set target_speed=1 EARLY (you can brake from 3→1 in one tick!)
-3. On turn tile at speed 1: steer "left" (any of the 3 ticks you're on it works)
-4. After turn: set target_speed=3 to accelerate (steering auto-resets)
-5. Use speed boosts on straightaways ONLY - boost on turn = guaranteed crash!
+DRIFT ZONES (2 tiles before each turn):
+- Turn at tile 6 -> drift zone is tiles 4, 5
+- Turn at tile 13 -> drift zone is tiles 11, 12
+- Turn at tile 26 -> drift zone is tiles 24, 25
+- Turn at tile 33 -> drift zone is tiles 31, 32
 
-EXAMPLE TURN SEQUENCE (immediate):
-- Tick 5: control(race_id, target_speed=1)  # Brake for turn at tile 2
-- Tick 7: control(race_id, steer="left")     # Steer on turn
-- Tick 10: control(race_id, target_speed=3)  # Accelerate out of turn
+DRIFT STRATEGY:
+1. When approaching a turn at speed 2-3, watch for "drift zone" in the status
+2. Send control(race_id, drift=True) while in the drift zone
+3. Drift lets you take the turn at speed 2 without crashing
+4. After exiting the turn, drift resets automatically
 
-EXAMPLE TURN SEQUENCE (scheduled from tick 5):
-- control(race_id, target_speed=1, execute_at_tick=5)
-- control(race_id, steer="left", execute_at_tick=7)
-- control(race_id, target_speed=3, execute_at_tick=10)
+SAFE STRATEGY (slower but guaranteed to work):
+1. Approach turn at any speed
+2. Brake to speed 1 before entering turn
+3. Navigate turn safely at speed 1
+4. Accelerate back to speed 3 after exit
 
-Item boxes are at tiles 5, 10, 15 - you automatically pick up items.
+Item boxes are at tiles 3, 10, 20 - you automatically pick up items.
+Speed boosts give you 3 ticks at speed 5 - use on straightaways only!
 """,
 )
 
 
-def _format_state_for_ai(state: dict[str, Any]) -> dict[str, Any]:
-    """Format game state in a way that's easy for AI assistants to understand.
-
-    Includes helpful derived information like upcoming tiles.
-    """
+def _format_state_as_text(state: dict[str, Any], race_id: str) -> str:
+    """Transform game state JSON to natural language using Jinja2."""
     racer = state.get("racers", {}).get("player1", {})
     track = state.get("track", {})
     tiles = track.get("tiles", [])
 
     if not racer or not tiles:
-        return state
+        return str(state)
 
-    # Calculate upcoming tiles (next 5)
+    # Calculate upcoming tiles (next 10)
     current_tile = racer.get("tile_index", 0)
     total_tiles = len(tiles)
     upcoming = []
-    for i in range(1, 6):
+    for i in range(1, 11):
         tile_idx = (current_tile + i) % total_tiles
         tile = tiles[tile_idx]
-        upcoming.append(
-            {
-                "distance_tiles": i,
-                "type": tile.get("tile_type", "unknown"),
-                "has_item_box": tile.get("has_item_box", False),
-            }
-        )
+        upcoming.append({
+            "distance_tiles": i,
+            "type": tile.get("tile_type", "unknown"),
+            "has_item_box": tile.get("has_item_box", False),
+        })
 
     controls = racer.get("controls", {})
-    current_tile_data = tiles[current_tile] if tiles else {}
 
-    # Count scheduled inputs for this player
-    scheduled_inputs = state.get("scheduled_inputs", {}).get("player1", {})
-    scheduled_count = len(scheduled_inputs)
-
-    return {
-        "race_id": state.get("race_id"),
-        "tick": state.get("current_tick", 0),
-        "max_ticks": state.get("max_ticks", 180),
-        "your_racer": {
+    template = jinja_env.get_template("state.jinja2")
+    return template.render(
+        race_id=race_id,
+        race_clock=state.get("race_clock", "0:00"),
+        max_race_clock=state.get("max_race_clock", "10:00"),
+        race_status="finished" if state.get("is_finished") else "in_progress",
+        racer={
             "position": {
                 "tile": current_tile,
                 "subunit": racer.get("tile_subunit", 0),
@@ -105,36 +98,33 @@ def _format_state_for_ai(state: dict[str, Any]) -> dict[str, Any]:
             },
             "speed": racer.get("speed", 0),
             "target_speed": controls.get("target_speed", 0),
-            "max_speed": 5 if racer.get("boost_ticks_remaining", 0) > 0 else 3,
-            "steering": controls.get("steering", "straight"),
+            "max_speed": 5 if racer.get("boost_seconds_remaining", 0) > 0 else 3,
+            "in_drift_zone": racer.get("in_drift_zone", False),
+            "drift_enabled": racer.get("drift_enabled", False),
             "on_turn_tile": racer.get("on_turn_tile", False),
-            "steered_left_during_turn": racer.get("steered_left_during_turn", False),
             "power_up": racer.get("power_up"),
-            "boost_ticks_remaining": racer.get("boost_ticks_remaining", 0),
+            "boost_seconds_remaining": racer.get("boost_seconds_remaining", 0),
             "status": racer.get("status", "racing"),
-            "penalty_ticks_remaining": racer.get("penalty_ticks_remaining", 0),
+            "penalty_seconds_remaining": racer.get("penalty_seconds_remaining", 0),
             "finish_position": racer.get("finish_position"),
         },
-        "scheduled_inputs_count": scheduled_count,
-        "track": {
+        track={
             "total_tiles": total_tiles,
             "laps_required": state.get("laps_required", 3),
-            "current_tile": current_tile_data,
         },
-        "upcoming_tiles": upcoming,
-        "race_status": "finished" if state.get("is_finished") else "in_progress",
-        "standings": state.get("standings", []),
-    }
+        upcoming_tiles=upcoming,
+        standings=state.get("standings", []),
+    )
 
 
 @mcp.tool()
-async def join_race() -> dict[str, Any]:
+async def join_race() -> str:
     """Join a new race. For the PoC, this creates a solo race.
 
     Returns the race_id and initial game state. You'll need the race_id
     for all subsequent calls.
 
-    The race starts immediately after joining. You have ~3 minutes to complete 3 laps.
+    The race starts immediately after joining. You have ~10 minutes to complete 3 laps.
     """
     async with httpx.AsyncClient(timeout=30.0) as client:
         response = await client.post(
@@ -144,21 +134,20 @@ async def join_race() -> dict[str, Any]:
         response.raise_for_status()
         data = response.json()
 
+        race_id = data["race_id"]
         state = data.get("state")
-        if state:
-            formatted = _format_state_for_ai(state)
-        else:
-            formatted = {"message": "Race started, use get_state to see current status"}
 
-        return {
-            "race_id": data["race_id"],
-            "message": "Race started! Set target_speed=3 for straightaways, target_speed=1 before turns. Steer 'left' at speed 1 on turn tiles (you have 3 ticks!). Steering auto-resets.",
-            "state": formatted,
-        }
+        if state:
+            state_text = _format_state_as_text(state, race_id)
+        else:
+            state_text = "Race started, use get_state to see current status"
+
+        join_template = jinja_env.get_template("join_race.jinja2")
+        return join_template.render(race_id=race_id, state=state_text)
 
 
 @mcp.tool()
-async def get_state(race_id: str) -> dict[str, Any]:
+async def get_state(race_id: str) -> str:
     """Get the current game state for your race.
 
     Args:
@@ -172,42 +161,36 @@ async def get_state(race_id: str) -> dict[str, Any]:
         response.raise_for_status()
         data = response.json()
 
-        return _format_state_for_ai(data["state"])
+        return _format_state_as_text(data["state"], race_id)
 
 
 @mcp.tool()
 async def control(
     race_id: str,
     target_speed: Optional[int] = None,
-    steer: Optional[str] = None,
+    drift: bool = False,
     use_item: bool = False,
-    execute_at_tick: Optional[int] = None,
-) -> dict[str, Any]:
+) -> str:
     """Send control inputs for your kart.
 
     Args:
         race_id: The race ID returned from join_race
         target_speed: Set desired speed 0-3. Your kart automatically accelerates
                      (+1/tick) or brakes (up to -2/tick) toward this speed.
-                     Example: speed 3 → target 1 = brakes to 1 in ONE tick.
-                     Example: speed 0 → target 3 = accelerates over 3 ticks.
-        steer: Set steering direction: "left", "straight", or "right".
-               Auto-resets to "straight" after one tick - just send "left" once!
-               IMPORTANT: You must steer "left" AND be at speed 1 to make turns!
+        drift: Set to True to enable drift mode. Must be in drift zone
+               (2 tiles before a turn). Drift lets you take turns at speed 2.
         use_item: Set to True to use your held item (if any).
-        execute_at_tick: Optional. If set, schedules this input for the specified
-                        future tick instead of applying immediately. Max 20 ticks ahead.
 
     Returns:
         Updated game state after applying your input.
 
     Tips:
         - On straightaways: set target_speed=3
-        - Before turns (tiles 2, 7, 12, 17): set target_speed=1 early
-        - Fast braking: can go from speed 3 to 1 in just ONE tick!
-        - On turn tile at speed 1: steer="left" (you have 3 ticks while on the tile)
-        - Steering auto-resets, so just send "left" once per turn
-        - Schedule ahead: control(race_id, target_speed=1, execute_at_tick=10)
+        - Before turns (tiles 6, 13, 26, 33): either brake to speed 1 OR enable drift
+        - Drift zones are 2 tiles before each turn - watch for the notification!
+        - With drift enabled, you can take turns at speed 2
+        - Without drift, you must be at speed 1 to navigate turns safely
+        - Speed 3+ will crash on turns even with drift enabled
         - Item boxes give you speed boosts - use them on straightaways ONLY!
     """
     async with httpx.AsyncClient(timeout=30.0) as client:
@@ -216,15 +199,14 @@ async def control(
             json={
                 "player_id": "player1",  # PoC: single player
                 "target_speed": target_speed,
-                "steering": steer,
+                "drift": drift,
                 "use_item": use_item,
-                "execute_at_tick": execute_at_tick,
             },
         )
         response.raise_for_status()
         data = response.json()
 
-        return _format_state_for_ai(data["state"])
+        return _format_state_as_text(data["state"], race_id)
 
 
 if __name__ == "__main__":

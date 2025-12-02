@@ -13,7 +13,6 @@ from mcpkart_backend.models import (
     GameState,
     PlayerInput,
     PlayerInputRequest,
-    Steering,
     TileType,
 )
 from mcpkart_backend.temporal import RaceWorkflow
@@ -110,52 +109,39 @@ async def get_race_state(race_id: str) -> dict[str, Any]:
 
 @app.post("/races/{race_id}/input")
 async def send_input(race_id: str, request: PlayerInputRequest) -> dict[str, Any]:
-    """Send player input (immediate or scheduled).
-
-    If execute_at_tick is None, applies input immediately.
-    If execute_at_tick is set, schedules input for that future tick.
+    """Send player input (applied immediately).
 
     Args:
         race_id: The race identifier
-        request: Player input request with target_speed, steering, and optional scheduling
+        request: Player input request with target_speed, drift, and use_item
 
     Returns:
-        Updated game state after applying/scheduling input
+        Updated game state after applying input
     """
     client = await get_temporal_client()
     workflow_id = f"race-{race_id}"
 
     try:
-        print(f"DEBUG: Sending input for race {race_id}: target_speed={request.target_speed}, steer={request.steering}, execute_at_tick={request.execute_at_tick}")
-
         handle = client.get_workflow_handle(workflow_id)
 
         # Convert to domain model
         player_input = PlayerInput(
             player_id=request.player_id,
             target_speed=request.target_speed,
-            steering=Steering(request.steering) if request.steering else None,
+            drift=request.drift,
             use_item=request.use_item,
         )
 
-        print(f"DEBUG: Created PlayerInput: {player_input}")
-
         # Execute update (synchronous, returns state)
-        # Pass arguments via args parameter to Temporal
-        print(f"DEBUG: Calling execute_update with execute_at_tick={request.execute_at_tick}")
         state: GameState = await handle.execute_update(
             RaceWorkflow.apply_input,
-            args=[player_input, request.execute_at_tick],
+            args=[player_input],
         )
 
         return {"state": state.model_dump()}
     except ValueError as e:
-        print(f"DEBUG: ValueError: {e}")
         raise HTTPException(status_code=400, detail=str(e)) from e
     except Exception as e:
-        import traceback
-        tb = traceback.format_exc()
-        print(f"DEBUG: Exception: {e}\n{tb}")
         raise HTTPException(status_code=400, detail=f"Failed to send input: {str(e)}") from e
 
 
@@ -191,15 +177,15 @@ def _render_racer_status(state: GameState) -> str:
     lines = []
     for player_id, racer in state.racers.items():
         power_up = racer.power_up.value if racer.power_up else "none"
-        boost = f" BOOSTING({racer.boost_ticks_remaining})" if racer.boost_ticks_remaining > 0 else ""
+        boost = f" BOOSTING({racer.boost_seconds_remaining}s)" if racer.boost_seconds_remaining > 0 else ""
         turn_status = " [ON TURN]" if racer.on_turn_tile else ""
-        steered = " [STEERED LEFT]" if racer.steered_left_during_turn else ""
+        drift_zone = " [DRIFT ZONE]" if racer.in_drift_zone else ""
+        drift_enabled = " [DRIFTING]" if racer.drift_enabled else ""
         lines.append(
             f"- {player_id}: tile {racer.tile_index}.{racer.tile_subunit}, "
             f"speed {racer.speed} (target: {racer.controls.target_speed}), "
             f"lap {racer.current_lap}/{state.laps_required}, "
-            f"status: {racer.status.value}{boost}{turn_status}{steered}, "
-            f"steering: {racer.controls.steering.value}, "
+            f"status: {racer.status.value}{boost}{turn_status}{drift_zone}{drift_enabled}, "
             f"item: {power_up}, crashes: {racer.total_crashes}"
         )
     return "\n".join(lines)
@@ -222,7 +208,7 @@ async def debug_race(race_id: str) -> str:
 
     ascii_track = _render_ascii_track(state)
     racer_status = _render_racer_status(state)
-    events_log = "\n".join(state.events[-50:])  # Last 50 events
+    events_log = "\n".join(reversed(state.events))  # Newest first
 
     html = f"""<!DOCTYPE html>
 <html>
@@ -238,7 +224,7 @@ async def debug_race(race_id: str) -> str:
 </head>
 <body>
     <h1>MCP Kart Debug - Race {race_id}</h1>
-    <p>Tick: {state.current_tick}/{state.max_ticks} | Status: {"FINISHED" if state.is_finished else "RACING"}</p>
+    <p>Race Clock: {state.race_clock}/{state.max_race_clock} (tick {state.current_tick}/{state.max_ticks}) | Status: {"FINISHED" if state.is_finished else "RACING"}</p>
 
     <h2>Track (I=item box, T=turn)</h2>
     <pre class="track">{ascii_track}</pre>
@@ -246,7 +232,7 @@ async def debug_race(race_id: str) -> str:
     <h2>Racers</h2>
     <pre>{racer_status}</pre>
 
-    <h2>Event Log (last 50)</h2>
+    <h2>Event Log (newest first)</h2>
     <pre>{events_log if events_log else "(no events yet)"}</pre>
 
     <script>

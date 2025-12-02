@@ -5,6 +5,7 @@ from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
 from temporalio.client import Client
+from temporalio.contrib.pydantic import pydantic_data_converter
 
 TEMPORAL_HOST = os.environ.get("TEMPORAL_HOST", "localhost:7233")
 
@@ -24,7 +25,7 @@ async def lifespan_context() -> AsyncGenerator[None, None]:
     """Lifespan context manager for FastAPI."""
     global temporal_client
     print(f"Connecting to Temporal at {TEMPORAL_HOST}...")
-    temporal_client = await Client.connect(TEMPORAL_HOST)
+    temporal_client = await Client.connect(TEMPORAL_HOST, data_converter=pydantic_data_converter)
     print("Connected to Temporal!")
     yield
     print("Shutting down...")

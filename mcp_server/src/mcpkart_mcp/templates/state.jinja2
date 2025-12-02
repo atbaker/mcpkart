@@ -1,0 +1,65 @@
+=== MCP KART RACE STATUS ===
+Race: {{ race_id }} | Race Clock: {{ race_clock }}/{{ max_race_clock }} | Status: {{ race_status|upper }}
+
+--- YOUR KART ---
+Position: Tile {{ racer.position.tile }}.{{ racer.position.subunit }} | Lap {{ racer.position.lap + 1 }}/{{ track.laps_required }}
+Speed: {{ racer.speed }}/{{ racer.max_speed }}{% if racer.boost_seconds_remaining > 0 %} (BOOSTED - {{ racer.boost_seconds_remaining }} seconds remaining){% endif %}
+
+Target Speed: {{ racer.target_speed }}
+{% if racer.power_up %}Item: {{ racer.power_up|upper }}{% else %}Item: None{% endif %}
+
+{% if racer.status == "crashed" %}
+!!! CRASHED - Penalty: {{ racer.penalty_seconds_remaining }} seconds remaining !!!
+{% elif racer.status == "finished" %}
+*** FINISHED - Position: {{ racer.finish_position }} ***
+{% endif %}
+
+--- TRACK AHEAD ---
+{% for tile in upcoming_tiles %}
+{{ tile.distance_tiles }} tile{% if tile.distance_tiles > 1 %}s{% endif %} ahead: {% if tile.type == "turn_left" %}**TURN**{% else %}Straight{% endif %}{% if tile.has_item_box %} [ITEM BOX]{% endif %}
+
+{% endfor %}
+{% if racer.in_drift_zone %}
+>>> YOU ARE IN THE DRIFT ZONE - Enable drift now to take the next turn at speed 2! <<<
+{% endif %}
+{% if racer.drift_enabled %}
+>>> DRIFT ENABLED - You will drift through the upcoming turn at speed 2 <<<
+{% endif %}
+{% if racer.on_turn_tile %}
+>>> ON TURN TILE - {% if racer.speed <= 1 %}Safe at speed {{ racer.speed }}{% elif racer.drift_enabled %}Drifting at speed {{ racer.speed }}{% else %}DANGER! Too fast!{% endif %} <<<
+{% endif %}
+
+--- AVAILABLE ACTIONS ---
+{% if racer.status == "racing" %}
+- control(race_id="{{ race_id }}", target_speed=N) - Set speed 0-{{ racer.max_speed }}
+{% if racer.in_drift_zone and not racer.drift_enabled %}
+- control(race_id="{{ race_id }}", drift=True) - Enable drift for upcoming turn (speed 2)
+{% endif %}
+{% if racer.power_up %}
+- control(race_id="{{ race_id }}", use_item=True) - Use your {{ racer.power_up }}
+{% endif %}
+{% else %}
+No actions available - {{ "race finished" if racer.status == "finished" else "waiting for penalty to clear" }}
+{% endif %}
+
+--- TIPS ---
+{% set next_turn_distance = namespace(value=None) %}
+{% for tile in upcoming_tiles %}
+{% if tile.type == "turn_left" and next_turn_distance.value is none %}
+{% set next_turn_distance.value = tile.distance_tiles %}
+{% endif %}
+{% endfor %}
+{% if next_turn_distance.value is not none %}
+Next turn in {{ next_turn_distance.value }} tile{% if next_turn_distance.value > 1 %}s{% endif %}.
+{% if next_turn_distance.value <= 2 %}
+{% if racer.speed > 1 and not racer.drift_enabled and not racer.in_drift_zone %}
+WARNING: Slow to speed 1 NOW or you will crash!
+{% elif racer.in_drift_zone and not racer.drift_enabled %}
+TIP: Enable drift now to maintain speed 2 through the turn, or brake to speed 1.
+{% endif %}
+{% elif next_turn_distance.value <= 4 %}
+TIP: Prepare for the turn. Drift zone starts 3 tiles before the turn.
+{% endif %}
+{% else %}
+Clear straightaway ahead - full speed recommended!
+{% endif %}

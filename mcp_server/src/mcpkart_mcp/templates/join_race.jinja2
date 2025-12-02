@@ -1,0 +1,33 @@
+=== RACE STARTED ===
+Race ID: {{ race_id }}
+
+Welcome to MCP Kart! You are player1 in a solo race.
+
+GOAL: Complete 3 laps around the 40-tile oval track.
+
+CONTROLS:
+- target_speed: Set your desired speed (0-3, or 0-5 with boost)
+- drift: Enable drift mode in the drift zone before turns
+- use_item: Activate your held power-up
+
+TURN MECHANICS:
+- Turns are at tiles 6, 13, 26, and 33
+- Speed 1: Always safe through turns
+- Speed 2+: Must enable drift in the "drift zone" (3 tiles before turn)
+- Drift lets you take turns at speed 2 without crashing
+- Speed 3+ will crash even with drift!
+
+DRIFT ZONES (3 tiles before each turn):
+- Turn at tile 6 -> drift zone is tiles 3, 4, 5
+- Turn at tile 13 -> drift zone is tiles 10, 11, 12
+- Turn at tile 26 -> drift zone is tiles 23, 24, 25
+- Turn at tile 33 -> drift zone is tiles 30, 31, 32
+
+STRATEGY:
+1. Sprint at speed 3 on straightaways
+2. When approaching a turn, either:
+   a) Brake to speed 1 (safe but slow)
+   b) Enable drift in drift zone, then take turn at speed 2 (faster!)
+3. Pick up item boxes at tiles 3, 10, 20 for speed boosts
+
+{{ state }}

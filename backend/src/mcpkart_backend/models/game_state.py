@@ -1,8 +1,8 @@
 """Game state model for MCP Kart."""
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, computed_field
 
-from .inputs import PlayerInput
+from . import format_race_clock
 from .racer import RacerState, RacerStatus
 from .track import Track
 
@@ -12,8 +12,20 @@ class GameState(BaseModel):
 
     race_id: str
     current_tick: int = 0
-    max_ticks: int = 180  # 3 minutes max
+    max_ticks: int = 600  # 10 minutes max
     laps_required: int = 3
+
+    @computed_field
+    @property
+    def race_clock(self) -> str:
+        """Current race time in MM:SS format."""
+        return format_race_clock(self.current_tick)
+
+    @computed_field
+    @property
+    def max_race_clock(self) -> str:
+        """Maximum race time in MM:SS format."""
+        return format_race_clock(self.max_ticks)
 
     track: Track = Field(default_factory=Track.create_oval)
     racers: dict[str, RacerState] = Field(default_factory=dict)
@@ -23,9 +35,6 @@ class GameState(BaseModel):
 
     # Event log for debugging
     events: list[str] = Field(default_factory=list)
-
-    # Scheduled inputs: dict[player_id][tick] = PlayerInput
-    scheduled_inputs: dict[str, dict[int, PlayerInput]] = Field(default_factory=dict)
 
     @property
     def is_finished(self) -> bool:
