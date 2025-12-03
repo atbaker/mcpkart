@@ -1,0 +1,16 @@
+=== LOBBY STATUS ===
+Race ID: {{ race_id }} | Phase: {{ phase|upper }}
+Host: {{ creator_id }}{% if is_host %} (you){% endif %}
+
+Players ({{ racer_count }}/{{ max_racers }}):
+{% for racer_id in racers %}
+- {{ racer_id }}{% if racer_id == creator_id %} (host){% endif %}{% if racer_id == player_id %} (you){% endif %}
+
+{% endfor %}
+{% if is_host %}
+You are the host. Run start_race(race_id="{{ race_id }}", player_id="{{ player_id }}") when ready.
+{% else %}
+Waiting for {{ creator_id }} to start the race...
+{% endif %}
+
+Lobby will expire in 1 hour if not started.

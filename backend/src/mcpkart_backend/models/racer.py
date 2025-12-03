@@ -22,6 +22,15 @@ class RacerStatus(str, Enum):
     FINISHED = "finished"
 
 
+class RacePhase(str, Enum):
+    """Current phase of the race lifecycle."""
+
+    LOBBY = "lobby"  # Waiting for players to join
+    PLANNING = "planning"  # 60-second countdown before race starts
+    RACING = "racing"  # Active race in progress
+    FINISHED = "finished"  # Race completed
+
+
 class RacerControls(BaseModel):
     """Current control inputs for a racer (persist between ticks)."""
 

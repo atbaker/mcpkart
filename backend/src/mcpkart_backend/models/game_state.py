@@ -1,9 +1,12 @@
 """Game state model for MCP Kart."""
 
+from datetime import datetime
+from typing import Optional
+
 from pydantic import BaseModel, Field, computed_field
 
 from . import format_race_clock
-from .racer import RacerState, RacerStatus
+from .racer import RacePhase, RacerState, RacerStatus
 from .track import Track
 
 
@@ -14,6 +17,17 @@ class GameState(BaseModel):
     current_tick: int = 0
     max_ticks: int = 600  # 10 minutes max
     laps_required: int = 3
+
+    # Lobby/Phase fields
+    phase: RacePhase = RacePhase.LOBBY
+    creator_id: Optional[str] = None  # Player who created the lobby
+    max_racers: int = 8
+
+    # Timing fields
+    created_at: Optional[datetime] = None  # When lobby was created
+    lobby_expires_at: Optional[datetime] = None  # 1 hour after creation
+    planning_ends_at: Optional[datetime] = None  # When PLANNING countdown ends
+    race_started_at: Optional[datetime] = None  # When RACING phase began
 
     @computed_field
     @property
@@ -50,3 +64,8 @@ class GameState(BaseModel):
     def next_finish_position(self) -> int:
         """Position for next racer to finish (1-indexed)."""
         return len(self.standings) + 1
+
+    @property
+    def is_lobby_full(self) -> bool:
+        """Check if lobby has reached max capacity."""
+        return len(self.racers) >= self.max_racers

@@ -5,7 +5,7 @@ from temporalio import activity
 from temporalio.testing import WorkflowEnvironment
 from temporalio.worker import Worker
 
-from mcpkart_backend.models import PlayerInput
+from mcpkart_backend.models import PlayerInput, RacePhase
 from mcpkart_backend.temporal.workflows import RaceWorkflow
 
 
@@ -16,9 +16,17 @@ async def mock_store_race_results(*args, **kwargs) -> None:
     pass
 
 
+async def start_race_for_testing(handle, workflow_env, creator_id: str = "player1"):
+    """Helper to transition from LOBBY -> PLANNING -> RACING for tests."""
+    # Start the race (transitions to PLANNING)
+    await handle.execute_update(RaceWorkflow.start_race, creator_id)
+    # Wait for planning phase to complete (60 seconds)
+    await workflow_env.sleep(61)
+
+
 @pytest.mark.asyncio
 async def test_race_initializes_correctly(workflow_env: WorkflowEnvironment):
-    """Test that a race initializes with correct state."""
+    """Test that a race initializes with correct state in LOBBY phase."""
     async with Worker(
         workflow_env.client,
         task_queue="test-queue",
@@ -27,20 +35,20 @@ async def test_race_initializes_correctly(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", ["player1"]],
+            args=["test-race", "player1"],  # creator_id instead of player_ids
             id="test-init-1",
             task_queue="test-queue",
         )
 
-        # Query state immediately
+        # Query state immediately - should be in LOBBY phase
         state = await handle.query(RaceWorkflow.get_state)
 
         assert state.race_id == "test-race"
+        assert state.phase == RacePhase.LOBBY
+        assert state.creator_id == "player1"
         assert "player1" in state.racers
         assert state.track.total_tiles == 40
         assert state.laps_required == 3
-        # Tick may advance before we query, so just check it started
-        assert state.current_tick >= 0
 
 
 @pytest.mark.asyncio
@@ -54,10 +62,13 @@ async def test_racer_accelerates_with_target_speed(workflow_env: WorkflowEnviron
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", ["player1"]],
+            args=["test-race", "player1"],
             id="test-accel-1",
             task_queue="test-queue",
         )
+
+        # Start the race first
+        await start_race_for_testing(handle, workflow_env)
 
         # Set target speed to max
         await handle.execute_update(
@@ -86,10 +97,13 @@ async def test_crash_on_turn_at_high_speed_without_drift(workflow_env: WorkflowE
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", ["player1"]],
+            args=["test-race", "player1"],
             id="test-crash-1",
             task_queue="test-queue",
         )
+
+        # Start the race first
+        await start_race_for_testing(handle, workflow_env)
 
         # Set target speed to max and let racer hit the first turn (tile 6)
         await handle.execute_update(
@@ -120,10 +134,13 @@ async def test_speed_1_safely_navigates_turn(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", ["player1"]],
+            args=["test-race", "player1"],
             id="test-safe-turn-1",
             task_queue="test-queue",
         )
+
+        # Start the race first
+        await start_race_for_testing(handle, workflow_env)
 
         # Set target speed to 1 (safe for turns)
         await handle.execute_update(
@@ -155,10 +172,13 @@ async def test_drift_enables_in_drift_zone(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", ["player1"]],
+            args=["test-race", "player1"],
             id="test-drift-enable-1",
             task_queue="test-queue",
         )
+
+        # Start the race first
+        await start_race_for_testing(handle, workflow_env)
 
         # First move racer to drift zone (tiles 4-5) before turn at tile 6
         await handle.execute_update(
@@ -195,10 +215,13 @@ async def test_item_pickup(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", ["player1"]],
+            args=["test-race", "player1"],
             id="test-item-1",
             task_queue="test-queue",
         )
+
+        # Start the race first
+        await start_race_for_testing(handle, workflow_env)
 
         # Go at speed 1 to safely navigate to tile 3 (first item box)
         await handle.execute_update(
@@ -227,10 +250,13 @@ async def test_speed_boost_usage(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", ["player1"]],
+            args=["test-race", "player1"],
             id="test-boost-1",
             task_queue="test-queue",
         )
+
+        # Start the race first
+        await start_race_for_testing(handle, workflow_env)
 
         # Send use_item (won't do anything without an item)
         await handle.execute_update(
@@ -247,8 +273,8 @@ async def test_speed_boost_usage(workflow_env: WorkflowEnvironment):
 
 
 @pytest.mark.asyncio
-async def test_input_update_changes_controls(workflow_env: WorkflowEnvironment):
-    """Test that sending input updates racer controls."""
+async def test_input_update_changes_controls_during_planning(workflow_env: WorkflowEnvironment):
+    """Test that sending input updates racer controls during PLANNING phase."""
     async with Worker(
         workflow_env.client,
         task_queue="test-queue",
@@ -257,17 +283,21 @@ async def test_input_update_changes_controls(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", ["player1"]],
+            args=["test-race", "player1"],
             id="test-input-1",
             task_queue="test-queue",
         )
 
+        # Start the race (puts us in PLANNING phase)
+        await handle.execute_update(RaceWorkflow.start_race, "player1")
+
         # Check initial controls
         state = await handle.query(RaceWorkflow.get_state)
+        assert state.phase == RacePhase.PLANNING
         racer = state.racers["player1"]
         assert racer.controls.target_speed == 0
 
-        # Update controls
+        # Update controls during planning
         state = await handle.execute_update(
             RaceWorkflow.apply_input,
             PlayerInput(player_id="player1", target_speed=2),
@@ -288,15 +318,19 @@ async def test_race_completes_when_max_ticks_reached(workflow_env: WorkflowEnvir
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", ["player1"]],
+            args=["test-race", "player1"],
             id="test-complete-1",
             task_queue="test-queue",
         )
 
-        # Wait for max ticks (600 ticks)
+        # Start the race
+        await handle.execute_update(RaceWorkflow.start_race, "player1")
+
+        # Wait for planning (30s) + max ticks (600 ticks)
         result = await handle.result()
 
         assert result.is_finished
+        assert result.phase == RacePhase.FINISHED
         assert result.current_tick <= 600
 
 
@@ -311,10 +345,13 @@ async def test_braking_reduces_speed(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", ["player1"]],
+            args=["test-race", "player1"],
             id="test-brake-1",
             task_queue="test-queue",
         )
+
+        # Start the race first
+        await start_race_for_testing(handle, workflow_env)
 
         # Accelerate first
         await handle.execute_update(
@@ -342,3 +379,68 @@ async def test_braking_reduces_speed(workflow_env: WorkflowEnvironment):
 
         # Speed should have decreased
         assert racer.speed < initial_speed
+
+
+@pytest.mark.asyncio
+async def test_join_lobby(workflow_env: WorkflowEnvironment):
+    """Test that players can join a lobby."""
+    async with Worker(
+        workflow_env.client,
+        task_queue="test-queue",
+        workflows=[RaceWorkflow],
+        activities=[mock_store_race_results],
+    ):
+        handle = await workflow_env.client.start_workflow(
+            RaceWorkflow.run,
+            args=["test-race", "host"],
+            id="test-join-lobby-1",
+            task_queue="test-queue",
+        )
+
+        # Initial state should have host
+        state = await handle.query(RaceWorkflow.get_state)
+        assert state.phase == RacePhase.LOBBY
+        assert len(state.racers) == 1
+        assert "host" in state.racers
+
+        # Join as player2
+        state = await handle.execute_update(RaceWorkflow.join_lobby, "player2")
+        assert len(state.racers) == 2
+        assert "player2" in state.racers
+
+        # Join as player3
+        state = await handle.execute_update(RaceWorkflow.join_lobby, "player3")
+        assert len(state.racers) == 3
+        assert "player3" in state.racers
+
+
+@pytest.mark.asyncio
+async def test_only_creator_can_start_race(workflow_env: WorkflowEnvironment):
+    """Test that only the lobby creator can start the race."""
+    async with Worker(
+        workflow_env.client,
+        task_queue="test-queue",
+        workflows=[RaceWorkflow],
+        activities=[mock_store_race_results],
+    ):
+        handle = await workflow_env.client.start_workflow(
+            RaceWorkflow.run,
+            args=["test-race", "host"],
+            id="test-start-auth-1",
+            task_queue="test-queue",
+        )
+
+        # Join as player2
+        await handle.execute_update(RaceWorkflow.join_lobby, "player2")
+
+        # player2 should not be able to start - test the error
+        try:
+            await handle.execute_update(RaceWorkflow.start_race, "player2")
+            pytest.fail("Expected exception when non-creator tries to start")
+        except Exception as e:
+            # The error message is in the cause chain
+            assert "Only the lobby creator" in str(e.__cause__)
+
+        # host should be able to start
+        state = await handle.execute_update(RaceWorkflow.start_race, "host")
+        assert state.phase == RacePhase.PLANNING

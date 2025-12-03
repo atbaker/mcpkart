@@ -1,6 +1,13 @@
 === MCP KART RACE STATUS ===
-Race: {{ race_id }} | Race Clock: {{ race_clock }}/{{ max_race_clock }} | Status: {{ race_status|upper }}
+Race: {{ race_id }} | Clock: {{ race_clock }}/{{ max_race_clock }} | Status: {{ race_status|upper }}
+{% if racer_count > 1 %}
 
+--- RACE POSITIONS ---
+{% for pos in positions %}
+{{ pos.place }}. {{ pos.player_id }}{% if pos.player_id == player_id %} (you){% endif %} - Tile {{ pos.tile }}, Lap {{ pos.lap + 1 }}{% if pos.status == "finished" %} [FINISHED]{% elif pos.status == "crashed" %} [CRASHED]{% endif %}
+
+{% endfor %}
+{% endif %}
 --- YOUR KART ---
 Position: Tile {{ racer.position.tile }}.{{ racer.position.subunit }} | Lap {{ racer.position.lap + 1 }}/{{ track.laps_required }}
 Speed: {{ racer.speed }}/{{ racer.max_speed }}{% if racer.boost_seconds_remaining > 0 %} (BOOSTED - {{ racer.boost_seconds_remaining }} seconds remaining){% endif %}
@@ -31,12 +38,12 @@ Target Speed: {{ racer.target_speed }}
 
 --- AVAILABLE ACTIONS ---
 {% if racer.status == "racing" %}
-- control(race_id="{{ race_id }}", target_speed=N) - Set speed 0-{{ racer.max_speed }}
+- control(race_id="{{ race_id }}", player_id="{{ player_id }}", target_speed=N) - Set speed 0-{{ racer.max_speed }}
 {% if racer.in_drift_zone and not racer.drift_enabled %}
-- control(race_id="{{ race_id }}", drift=True) - Enable drift for upcoming turn (speed 2)
+- control(race_id="{{ race_id }}", player_id="{{ player_id }}", drift=True) - Enable drift for upcoming turn
 {% endif %}
 {% if racer.power_up %}
-- control(race_id="{{ race_id }}", use_item=True) - Use your {{ racer.power_up }}
+- control(race_id="{{ race_id }}", player_id="{{ player_id }}", use_item=True) - Use your {{ racer.power_up }}
 {% endif %}
 {% else %}
 No actions available - {{ "race finished" if racer.status == "finished" else "waiting for penalty to clear" }}

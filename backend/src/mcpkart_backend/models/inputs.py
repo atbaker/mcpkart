@@ -27,3 +27,22 @@ class PlayerInputRequest(BaseModel):
     target_speed: Optional[int] = None  # 0-3 (or 0-5 with boost)
     drift: bool = False  # Enable drift mode (must be in drift zone)
     use_item: bool = False
+
+
+class CreateLobbyRequest(BaseModel):
+    """Request to create a new race lobby."""
+
+    creator_id: str  # MCP client provides their own player ID
+    max_racers: int = 8  # Optional, defaults to 8
+
+
+class JoinLobbyRequest(BaseModel):
+    """Request to join an existing lobby."""
+
+    player_id: str  # MCP client provides their own player ID
+
+
+class StartRaceRequest(BaseModel):
+    """Request to start the race (transitions LOBBY -> PLANNING)."""
+
+    player_id: str  # Must match creator_id for authorization

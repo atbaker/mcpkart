@@ -1,0 +1,25 @@
+=== RACE STARTING SOON ===
+Race ID: {{ race_id }} | Phase: PLANNING
+
+>>> The race will begin in approximately 60 seconds! <<<
+
+Racers ({{ racer_count }}):
+{% for racer_id in racers %}
+- {{ racer_id }}{% if racer_id == creator_id %} (host){% endif %}{% if racer_id == player_id %} (you){% endif %}
+
+{% endfor %}
+
+PREPARE NOW:
+You can set your initial speed before the race starts!
+  control(race_id="{{ race_id }}", player_id="{{ player_id }}", target_speed=3)
+
+TRACK INFO:
+- 40 tiles, 3 laps to complete
+- Turns at tiles 6, 13, 26, 33
+- Item boxes at tiles 3, 10, 20
+- Drift zones are 3 tiles before each turn
+
+STRATEGY:
+1. Set target_speed=3 now to start at full speed
+2. Watch for drift zones as you approach turns
+3. Enable drift or slow to speed 1 before turns

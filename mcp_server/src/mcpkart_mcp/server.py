@@ -60,12 +60,48 @@ Speed boosts give you 3 ticks at speed 5 - use on straightaways only!
 )
 
 
-def _format_state_as_text(state: dict[str, Any], race_id: str) -> str:
-    """Transform game state JSON to natural language using Jinja2."""
-    racer = state.get("racers", {}).get("player1", {})
+def _format_state_as_text(state: dict[str, Any], race_id: str, player_id: str) -> str:
+    """Transform game state JSON to natural language using Jinja2.
+
+    Args:
+        state: Full game state from API
+        race_id: The race identifier
+        player_id: The player requesting the state (used to show their own data)
+    """
+    phase = state.get("phase", "racing")
+    racers = state.get("racers", {})
+    racer = racers.get(player_id, {})
     track = state.get("track", {})
     tiles = track.get("tiles", [])
 
+    # Handle lobby phase
+    if phase == "lobby":
+        template = jinja_env.get_template("lobby_state.jinja2")
+        return template.render(
+            race_id=race_id,
+            phase=phase,
+            creator_id=state.get("creator_id"),
+            is_host=state.get("creator_id") == player_id,
+            player_id=player_id,
+            racers=list(racers.keys()),
+            racer_count=len(racers),
+            max_racers=state.get("max_racers", 8),
+        )
+
+    # Handle planning phase
+    if phase == "planning":
+        template = jinja_env.get_template("planning_state.jinja2")
+        return template.render(
+            race_id=race_id,
+            phase=phase,
+            creator_id=state.get("creator_id"),
+            player_id=player_id,
+            racers=list(racers.keys()),
+            racer_count=len(racers),
+            planning_ends_at=state.get("planning_ends_at"),
+        )
+
+    # Handle racing/finished phases
     if not racer or not tiles:
         return str(state)
 
@@ -82,7 +118,27 @@ def _format_state_as_text(state: dict[str, Any], race_id: str) -> str:
             "has_item_box": tile.get("has_item_box", False),
         })
 
+    # Get controls for the requesting player only (private info)
     controls = racer.get("controls", {})
+
+    # Build race positions for multi-racer display
+    positions = []
+    sorted_racers = sorted(
+        racers.items(),
+        key=lambda x: (
+            -(x[1].get("current_lap", 0)),  # Higher lap first
+            -(x[1].get("tile_index", 0)),   # Higher tile first
+            -(x[1].get("tile_subunit", 0)), # Higher subunit first
+        ),
+    )
+    for place, (pid, r) in enumerate(sorted_racers, 1):
+        positions.append({
+            "place": place,
+            "player_id": pid,
+            "tile": r.get("tile_index", 0),
+            "lap": r.get("current_lap", 0),
+            "status": r.get("status", "racing"),
+        })
 
     template = jinja_env.get_template("state.jinja2")
     return template.render(
@@ -90,6 +146,10 @@ def _format_state_as_text(state: dict[str, Any], race_id: str) -> str:
         race_clock=state.get("race_clock", "0:00"),
         max_race_clock=state.get("max_race_clock", "10:00"),
         race_status="finished" if state.get("is_finished") else "in_progress",
+        phase=phase,
+        player_id=player_id,
+        racer_count=len(racers),
+        positions=positions,
         racer={
             "position": {
                 "tile": current_tile,
@@ -118,18 +178,20 @@ def _format_state_as_text(state: dict[str, Any], race_id: str) -> str:
 
 
 @mcp.tool()
-async def join_race() -> str:
-    """Join a new race. For the PoC, this creates a solo race.
+async def create_lobby(player_id: str) -> str:
+    """Create a new race lobby and become the host.
 
-    Returns the race_id and initial game state. You'll need the race_id
-    for all subsequent calls.
+    Args:
+        player_id: Your unique player identifier (e.g., "claude-1", "player-abc")
 
-    The race starts immediately after joining. You have ~10 minutes to complete 3 laps.
+    Returns:
+        Lobby information including the race_id to share with other players.
+        As the lobby creator, you can start the race when ready.
     """
     async with httpx.AsyncClient(timeout=30.0) as client:
         response = await client.post(
-            f"{BACKEND_URL}/races",
-            json={"player_ids": ["player1"]},  # PoC: single player
+            f"{BACKEND_URL}/lobbies",
+            json={"creator_id": player_id},
         )
         response.raise_for_status()
         data = response.json()
@@ -138,20 +200,97 @@ async def join_race() -> str:
         state = data.get("state")
 
         if state:
-            state_text = _format_state_as_text(state, race_id)
+            state_text = _format_state_as_text(state, race_id, player_id)
         else:
-            state_text = "Race started, use get_state to see current status"
+            state_text = "Lobby created, use get_state to see current status"
 
-        join_template = jinja_env.get_template("join_race.jinja2")
-        return join_template.render(race_id=race_id, state=state_text)
+        template = jinja_env.get_template("lobby_created.jinja2")
+        return template.render(race_id=race_id, player_id=player_id, state=state_text)
 
 
 @mcp.tool()
-async def get_state(race_id: str) -> str:
+async def join_race(player_id: str, race_id: Optional[str] = None) -> str:
+    """Join a race. Either join an existing lobby or create a new one.
+
+    Args:
+        player_id: Your unique player identifier (e.g., "claude-1", "player-abc")
+        race_id: Optional. If provided, joins that lobby. If not, creates a new lobby.
+
+    Returns:
+        Race information and current state.
+    """
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        if race_id:
+            # Join existing lobby
+            response = await client.post(
+                f"{BACKEND_URL}/lobbies/{race_id}/join",
+                json={"player_id": player_id},
+            )
+            response.raise_for_status()
+            data = response.json()
+            actual_race_id = race_id
+        else:
+            # Create new lobby (becomes the host)
+            response = await client.post(
+                f"{BACKEND_URL}/lobbies",
+                json={"creator_id": player_id},
+            )
+            response.raise_for_status()
+            data = response.json()
+            actual_race_id = data.get("race_id")
+
+        state = data.get("state")
+
+        if state:
+            state_text = _format_state_as_text(state, actual_race_id, player_id)
+        else:
+            state_text = "Joined successfully, use get_state to see current status"
+
+        join_template = jinja_env.get_template("join_race.jinja2")
+        return join_template.render(
+            race_id=actual_race_id,
+            player_id=player_id,
+            is_host=race_id is None,  # Created new lobby = host
+            state=state_text,
+        )
+
+
+@mcp.tool()
+async def start_race(race_id: str, player_id: str) -> str:
+    """Start the race (lobby host only).
+
+    This begins a 60-second planning phase before racing starts.
+    During planning, you can set your initial speed and study the track.
+
+    Args:
+        race_id: The race/lobby ID
+        player_id: Your player ID (must be the lobby creator)
+
+    Returns:
+        Updated state with countdown information.
+    """
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        response = await client.post(
+            f"{BACKEND_URL}/lobbies/{race_id}/start",
+            json={"player_id": player_id},
+        )
+        response.raise_for_status()
+        data = response.json()
+
+        state = data["state"]
+        state_text = _format_state_as_text(state, race_id, player_id)
+
+        template = jinja_env.get_template("race_starting.jinja2")
+        return template.render(race_id=race_id, player_id=player_id, state=state_text)
+
+
+@mcp.tool()
+async def get_state(race_id: str, player_id: str) -> str:
     """Get the current game state for your race.
 
     Args:
         race_id: The race ID returned from join_race
+        player_id: Your player ID
 
     Returns:
         Current game state including your position, speed, upcoming track, etc.
@@ -161,12 +300,13 @@ async def get_state(race_id: str) -> str:
         response.raise_for_status()
         data = response.json()
 
-        return _format_state_as_text(data["state"], race_id)
+        return _format_state_as_text(data["state"], race_id, player_id)
 
 
 @mcp.tool()
 async def control(
     race_id: str,
+    player_id: str,
     target_speed: Optional[int] = None,
     drift: bool = False,
     use_item: bool = False,
@@ -175,6 +315,7 @@ async def control(
 
     Args:
         race_id: The race ID returned from join_race
+        player_id: Your player ID
         target_speed: Set desired speed 0-3. Your kart automatically accelerates
                      (+1/tick) or brakes (up to -2/tick) toward this speed.
         drift: Set to True to enable drift mode. Must be in drift zone
@@ -197,7 +338,7 @@ async def control(
         response = await client.post(
             f"{BACKEND_URL}/races/{race_id}/input",
             json={
-                "player_id": "player1",  # PoC: single player
+                "player_id": player_id,
                 "target_speed": target_speed,
                 "drift": drift,
                 "use_item": use_item,
@@ -206,7 +347,7 @@ async def control(
         response.raise_for_status()
         data = response.json()
 
-        return _format_state_as_text(data["state"], race_id)
+        return _format_state_as_text(data["state"], race_id, player_id)
 
 
 if __name__ == "__main__":

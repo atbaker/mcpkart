@@ -12,11 +12,16 @@ with workflow.unsafe.imports_passed_through():
         GameState,
         PlayerInput,
         PowerUp,
+        RacePhase,
         RacerState,
         RacerStatus,
         TileType,
         Track,
     )
+
+# Lobby and planning phase durations
+LOBBY_TIMEOUT = timedelta(hours=1)
+PLANNING_DURATION = timedelta(seconds=60)
 
 # Turn tiles and their drift zones (3 tiles before each turn)
 TURN_TILES = {6, 13, 26, 33}
@@ -122,16 +127,53 @@ class RaceWorkflow:
         self._log_event(f"{racer.player_id} CRASHED at tile {crash_tile} - {reason}")
 
     @workflow.run
-    async def run(self, race_id: str, player_ids: list[str]) -> GameState:
-        """Main race loop."""
-        self.started_at = workflow.now()
+    async def run(self, race_id: str, creator_id: str) -> GameState:
+        """Main race lifecycle: LOBBY -> PLANNING -> RACING -> FINISHED.
 
-        # Initialize game state
-        self.game_state = GameState(race_id=race_id, track=Track.create_oval())
-        for player_id in player_ids:
-            self.game_state.racers[player_id] = RacerState(player_id=player_id)
+        Args:
+            race_id: Unique race identifier
+            creator_id: Player ID of the lobby creator
+        """
+        now = workflow.now()
 
-        # Main game loop
+        # Initialize in LOBBY phase
+        self.game_state = GameState(
+            race_id=race_id,
+            phase=RacePhase.LOBBY,
+            creator_id=creator_id,
+            track=Track.create_oval(),
+            created_at=now,
+            lobby_expires_at=now + LOBBY_TIMEOUT,
+        )
+
+        # Add creator as first racer
+        self.game_state.racers[creator_id] = RacerState(player_id=creator_id)
+        self._log_event(f"Lobby created by {creator_id}")
+
+        # LOBBY PHASE: Wait for start_race update or timeout
+        try:
+            await workflow.wait_condition(
+                lambda: self.game_state.phase != RacePhase.LOBBY,
+                timeout=LOBBY_TIMEOUT,
+            )
+        except asyncio.TimeoutError:
+            # Lobby expired without starting
+            self._log_event("Lobby expired after 1 hour")
+            self.game_state.phase = RacePhase.FINISHED
+            return self.game_state
+
+        # PLANNING PHASE: 60-second countdown
+        if self.game_state.phase == RacePhase.PLANNING:
+            self._log_event("Planning phase started - 60 second countdown")
+            await asyncio.sleep(PLANNING_DURATION.total_seconds())
+
+            # Transition to RACING
+            self.game_state.phase = RacePhase.RACING
+            self.game_state.race_started_at = workflow.now()
+            self.started_at = workflow.now()
+            self._log_event("Race started!")
+
+        # RACING PHASE: Main game loop
         while not self.game_state.is_finished:
             # Process tick
             self._process_tick()
@@ -139,6 +181,8 @@ class RaceWorkflow:
             # Wait for next tick (1 second)
             await asyncio.sleep(1)
 
+        # FINISHED
+        self.game_state.phase = RacePhase.FINISHED
         finished_at = workflow.now()
 
         # Store results via activity
@@ -146,7 +190,7 @@ class RaceWorkflow:
             "store_race_results",
             args=[
                 race_id,
-                self.started_at.isoformat(),
+                self.started_at.isoformat() if self.started_at else None,
                 finished_at.isoformat(),
                 self.game_state.current_tick,
                 self.game_state.standings,
@@ -165,14 +209,79 @@ class RaceWorkflow:
         return self.game_state
 
     @workflow.update
+    async def join_lobby(self, player_id: str) -> GameState:
+        """Add a player to the lobby.
+
+        Args:
+            player_id: Unique identifier provided by MCP client
+
+        Returns:
+            Updated game state
+        """
+        # Add the racer
+        self.game_state.racers[player_id] = RacerState(player_id=player_id)
+        self._log_event(f"{player_id} joined the lobby")
+
+        return self.game_state
+
+    @join_lobby.validator
+    def _validate_join_lobby(self, player_id: str) -> None:
+        """Validate join_lobby update before processing."""
+        if self.game_state is None:
+            raise ValueError("Game state not initialized")
+        if self.game_state.phase != RacePhase.LOBBY:
+            raise ValueError(
+                f"Cannot join: race is in {self.game_state.phase.value} phase"
+            )
+        if player_id in self.game_state.racers:
+            raise ValueError(f"Player {player_id} already in lobby")
+        if self.game_state.is_lobby_full:
+            raise ValueError(
+                f"Lobby is full (max {self.game_state.max_racers} racers)"
+            )
+
+    @workflow.update
+    async def start_race(self, player_id: str) -> GameState:
+        """Start the race (transition from LOBBY to PLANNING).
+
+        Only the lobby creator can start the race.
+
+        Args:
+            player_id: Must match creator_id
+
+        Returns:
+            Updated game state with PLANNING phase
+        """
+        # Transition to PLANNING
+        self.game_state.phase = RacePhase.PLANNING
+        self.game_state.planning_ends_at = workflow.now() + PLANNING_DURATION
+        self._log_event(f"{player_id} started the race - 60 second countdown")
+
+        return self.game_state
+
+    @start_race.validator
+    def _validate_start_race(self, player_id: str) -> None:
+        """Validate start_race update before processing."""
+        if self.game_state is None:
+            raise ValueError("Game state not initialized")
+        if self.game_state.phase != RacePhase.LOBBY:
+            raise ValueError(
+                f"Cannot start: race is in {self.game_state.phase.value} phase"
+            )
+        if player_id != self.game_state.creator_id:
+            raise ValueError(
+                f"Only the lobby creator ({self.game_state.creator_id}) can start the race"
+            )
+        if len(self.game_state.racers) < 1:
+            raise ValueError("Cannot start race with no racers")
+
+    @workflow.update
     async def apply_input(self, input_data: PlayerInput) -> GameState:
         """Update handler: apply player input immediately.
 
         Args:
             input_data: The input to apply
         """
-        if self.game_state is None:
-            raise ValueError("Game state not initialized")
 
         if input_data.player_id not in self.game_state.racers:
             raise ValueError(f"Unknown player: {input_data.player_id}")
@@ -226,6 +335,16 @@ class RaceWorkflow:
             self._log_event(f"{input_data.player_id}: {', '.join(changes)}")
 
         return self.game_state
+
+    @apply_input.validator
+    def _validate_apply_input(self, input_data: PlayerInput) -> None:
+        """Validate apply_input update before processing."""
+        if self.game_state is None:
+            raise ValueError("Game state not initialized")
+        if self.game_state.phase not in (RacePhase.PLANNING, RacePhase.RACING):
+            raise ValueError(
+                f"Cannot control: race is in {self.game_state.phase.value} phase"
+            )
 
     def _process_tick(self) -> None:
         """Process one game tick: update all racers."""
