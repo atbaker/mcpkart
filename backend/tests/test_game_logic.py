@@ -21,20 +21,20 @@ class TestTrack:
         """Test oval track creation."""
         track = Track.create_oval()
 
-        assert track.total_tiles == 40
-        assert len(track.tiles) == 40
+        assert track.total_tiles == 44
+        assert len(track.tiles) == 44
 
-        # Check turns are at correct positions (6, 13, 26, 33)
+        # Check turns are at correct positions (7, 15, 29, 37)
         turn_tiles = [t for t in track.tiles if t.tile_type == TileType.TURN_LEFT]
         assert len(turn_tiles) == 4
         turn_indices = [t.index for t in turn_tiles]
-        assert turn_indices == [6, 13, 26, 33]
+        assert turn_indices == [7, 15, 29, 37]
 
-        # Check item boxes are at correct positions (3, 10, 20)
+        # Check item boxes are at correct positions (11, 22, 33)
         item_tiles = [t for t in track.tiles if t.has_item_box]
         assert len(item_tiles) == 3
         item_indices = [t.index for t in item_tiles]
-        assert item_indices == [3, 10, 20]
+        assert item_indices == [11, 22, 33]
 
     def test_tile_properties(self):
         """Test tile creation and properties."""
@@ -132,7 +132,7 @@ class TestGameState:
         assert state.current_tick == 0
         assert state.max_ticks == 600
         assert state.laps_required == 3
-        assert state.track.total_tiles == 40
+        assert state.track.total_tiles == 44
         assert len(state.racers) == 0
         assert len(state.standings) == 0
 

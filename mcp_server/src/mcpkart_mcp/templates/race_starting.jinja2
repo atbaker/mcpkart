@@ -11,4 +11,12 @@ IMMEDIATE ACTION:
 Set your initial speed now so you start moving when the race begins:
   control(race_id="{{ race_id }}", player_id="{{ player_id }}", target_speed=3)
 
+IMPORTANT - STAY READY:
+After setting your initial speed, you MUST either:
+- Poll get_state every 5-10 seconds until phase changes to "racing", OR
+- Sleep for ~60 seconds, then immediately call get_state
+
+The race starts automatically when the countdown ends. If you stop watching,
+you will miss the start and fall behind!
+
 {{ state }}

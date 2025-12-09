@@ -41,12 +41,30 @@ uv sync
 uv run fastmcp run mcpkart_mcp/server.py
 ```
 
+### Frontend (from `frontend/` directory)
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Type check
+npm run check
+
+# Build for production
+npm run build
+```
+
 ### Infrastructure
 ```bash
 # Start Temporal server (required for backend)
 docker compose up -d temporal
 
-# View debug UI for a race
+# View spectator UI for a race
+# http://localhost:5173/races/{race_id}
+
+# View debug UI for a race (backend)
 # http://localhost:8000/debug/{race_id}
 ```
 
@@ -54,6 +72,8 @@ docker compose up -d temporal
 
 ```
 MCP Client → FastMCP Server → FastAPI Backend → Temporal Workflow
+                                    ↑
+                              Svelte Frontend (spectator UI)
 ```
 
 ### Data Flow
@@ -62,6 +82,32 @@ MCP Client → FastMCP Server → FastAPI Backend → Temporal Workflow
 2. **FastAPI Backend** (`backend/src/mcpkart_backend/api/main.py`): Thin HTTP layer that starts Temporal workflows and forwards queries/updates. Endpoints: POST `/races`, GET `/races/{id}/state`, POST `/races/{id}/input`.
 
 3. **Temporal Workflow** (`backend/src/mcpkart_backend/temporal/workflows.py`): `RaceWorkflow` contains all game logic. Runs as a durable workflow with 1-second tick rate. Uses `@workflow.query` for state reads and `@workflow.update` for player inputs.
+
+4. **Svelte Frontend** (`frontend/`): SvelteKit 2 spectator UI using Svelte 5 runes. Polls backend for race state and renders an SVG-based track visualization.
+
+### Frontend (`frontend/src/`)
+
+Built with SvelteKit 2 and Svelte 5 (runes syntax: `$state`, `$derived`, `$props`, `$effect`).
+
+**Key Components** (`lib/components/`):
+- `TrackViewSVG.svelte`: SVG-based track visualization with 40-tile rectangular layout
+- `Standings.svelte`: Live race standings with position, lap count, speed, power-ups
+- `EventLog.svelte`: Scrolling list of race events
+
+**Routes** (`routes/`):
+- `/races/[id]`: Race spectator page - polls `/api/races/{id}/spectator-state` every second
+
+**Types** (`lib/types.ts`):
+- `SpectatorState`: Complete race view (track, racers, standings, events)
+- `Racer`, `Track`, `Tile`, `Standing`: Game entity types
+
+**Track Visualization**:
+- Rectangular track with 90-degree corners matching game model
+- Turn tiles: orange diamonds (6, 13, 26, 33)
+- Drift zones: cyan dots (3 tiles before each turn)
+- Item boxes: yellow question marks
+- Start/finish: checkered pattern at tile 0
+- Racers: colored circles with initial, color indicates status (green=racing, yellow=boosting, cyan=drifting, red=crashed, purple=finished)
 
 ### Key Game Logic (in `workflows.py`)
 - **Turn tiles**: 6, 13, 26, 33 (40-tile oval track)
@@ -77,8 +123,12 @@ MCP Client → FastMCP Server → FastAPI Backend → Temporal Workflow
 
 ## Testing
 
+### Backend
 Tests use pytest with `asyncio_mode = "auto"`. The test suite includes:
 - `test_game_logic.py`: Unit tests for models (Track, RacerState, GameState)
 - `test_workflow.py`: Temporal workflow tests
 
 Run tests with `uv run pytest tests/ -v` from the `backend/` directory. Test dependencies are in the `[project.optional-dependencies]` section - install with `uv sync --all-extras`.
+
+### Frontend
+Run `npm run check` from the `frontend/` directory for TypeScript type checking.

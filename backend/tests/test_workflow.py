@@ -47,7 +47,7 @@ async def test_race_initializes_correctly(workflow_env: WorkflowEnvironment):
         assert state.phase == RacePhase.LOBBY
         assert state.creator_id == "player1"
         assert "player1" in state.racers
-        assert state.track.total_tiles == 40
+        assert state.track.total_tiles == 44
         assert state.laps_required == 3
 
 
@@ -105,16 +105,16 @@ async def test_crash_on_turn_at_high_speed_without_drift(workflow_env: WorkflowE
         # Start the race first
         await start_race_for_testing(handle, workflow_env)
 
-        # Set target speed to max and let racer hit the first turn (tile 6)
+        # Set target speed to max and let racer hit the first turn (tile 7)
         await handle.execute_update(
             RaceWorkflow.apply_input,
             PlayerInput(player_id="player1", target_speed=3),
         )
 
         # At speed 3, racer moves 3 subunits per tick
-        # Tile 6 is the first turn. Tiles 0-5 are straight (6 tiles * 3 subunits = 18 subunits)
-        # At speed 3: need ~7 ticks to reach tile 6
-        await workflow_env.sleep(10)
+        # Tile 7 is the first turn. Tiles 0-6 are straight (7 tiles * 3 subunits = 21 subunits)
+        # At speed 3: need ~8 ticks to reach tile 7
+        await workflow_env.sleep(11)
 
         state = await handle.query(RaceWorkflow.get_state)
         racer = state.racers["player1"]
@@ -148,16 +148,16 @@ async def test_speed_1_safely_navigates_turn(workflow_env: WorkflowEnvironment):
             PlayerInput(player_id="player1", target_speed=1),
         )
 
-        # Wait long enough to pass the first turn (tile 6)
-        # At speed 1: need to cross 7 tiles * 3 subunits = 21 subunits
-        # At 1 subunit/tick: need ~22 ticks
-        await workflow_env.sleep(25)
+        # Wait long enough to pass the first turn (tile 7)
+        # At speed 1: need to cross 8 tiles * 3 subunits = 24 subunits
+        # At 1 subunit/tick: need ~25 ticks
+        await workflow_env.sleep(28)
 
         state = await handle.query(RaceWorkflow.get_state)
         racer = state.racers["player1"]
 
         # Should have passed the turn without crashing
-        assert racer.tile_index >= 7  # Past the first turn
+        assert racer.tile_index >= 8  # Past the first turn
         assert racer.total_crashes == 0
 
 
@@ -180,7 +180,7 @@ async def test_drift_enables_in_drift_zone(workflow_env: WorkflowEnvironment):
         # Start the race first
         await start_race_for_testing(handle, workflow_env)
 
-        # First move racer to drift zone (tiles 4-5) before turn at tile 6
+        # First move racer to drift zone (tiles 4-6) before turn at tile 7
         await handle.execute_update(
             RaceWorkflow.apply_input,
             PlayerInput(player_id="player1", target_speed=2),
@@ -200,7 +200,7 @@ async def test_drift_enables_in_drift_zone(workflow_env: WorkflowEnvironment):
         state = await handle.query(RaceWorkflow.get_state)
         racer = state.racers["player1"]
 
-        # Drift should be enabled (we're in drift zone for tile 6)
+        # Drift should be enabled (we're in drift zone for tile 7)
         assert racer.drift_enabled is True
 
 
@@ -223,14 +223,14 @@ async def test_item_pickup(workflow_env: WorkflowEnvironment):
         # Start the race first
         await start_race_for_testing(handle, workflow_env)
 
-        # Go at speed 1 to safely navigate to tile 3 (first item box)
+        # Go at speed 1 to safely navigate to tile 11 (first item box)
         await handle.execute_update(
             RaceWorkflow.apply_input,
             PlayerInput(player_id="player1", target_speed=1),
         )
 
-        # Wait to reach tile 3 (need to cross ~4 tiles * 3 subunits = 12+ ticks at speed 1)
-        await workflow_env.sleep(15)
+        # Wait to reach tile 11 (need to cross ~12 tiles * 3 subunits = 36+ ticks at speed 1)
+        await workflow_env.sleep(38)
 
         state = await handle.query(RaceWorkflow.get_state)
         racer = state.racers["player1"]

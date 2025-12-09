@@ -24,8 +24,8 @@ LOBBY_TIMEOUT = timedelta(hours=1)
 PLANNING_DURATION = timedelta(seconds=60)
 
 # Turn tiles and their drift zones (3 tiles before each turn)
-TURN_TILES = {6, 13, 26, 33}
-DRIFT_ZONES = {3, 4, 5, 10, 11, 12, 23, 24, 25, 30, 31, 32}
+TURN_TILES = {7, 15, 29, 37}
+DRIFT_ZONES = {4, 5, 6, 12, 13, 14, 26, 27, 28, 34, 35, 36}
 
 
 @workflow.defn

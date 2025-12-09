@@ -31,23 +31,23 @@ class Track(BaseModel):
 
     @classmethod
     def create_oval(cls) -> "Track":
-        """Create the oblong oval track: 40 tiles, 4 turns, 3 item boxes.
+        """Create the oblong oval track: 44 tiles, 4 turns, 3 item boxes.
 
         Layout (start at tile 0, centered in first long straightaway):
-        - Tiles 34-39, 0-5: long straight (12 tiles, item box at 3)
-        - Tile 6: turn_left
-        - Tiles 7-12: short straight (6 tiles, item box at 10)
-        - Tile 13: turn_left
-        - Tiles 14-25: long straight (12 tiles, item box at 20)
-        - Tile 26: turn_left
-        - Tiles 27-32: short straight (6 tiles)
-        - Tile 33: turn_left
+        - Tiles 38-43, 0-6: long straight (13 tiles, start/finish at 0)
+        - Tile 7: turn_left
+        - Tiles 8-14: short straight (7 tiles, item box at 11)
+        - Tile 15: turn_left
+        - Tiles 16-28: long straight (13 tiles, item box at 22)
+        - Tile 29: turn_left
+        - Tiles 30-36: short straight (7 tiles, item box at 33)
+        - Tile 37: turn_left
         """
         tiles = []
-        turn_indices = {6, 13, 26, 33}
-        item_box_indices = {3, 10, 20}
+        turn_indices = {7, 15, 29, 37}
+        item_box_indices = {11, 22, 33}
 
-        for i in range(40):
+        for i in range(44):
             tile_type = TileType.TURN_LEFT if i in turn_indices else TileType.STRAIGHT
             has_item_box = i in item_box_indices
             tiles.append(Tile(index=i, tile_type=tile_type, has_item_box=has_item_box))

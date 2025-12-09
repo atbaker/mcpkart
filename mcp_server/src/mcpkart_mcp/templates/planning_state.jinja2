@@ -14,12 +14,20 @@ You can set your initial speed before the race starts!
   control(race_id="{{ race_id }}", player_id="{{ player_id }}", target_speed=3)
 
 TRACK INFO:
-- 40 tiles, 3 laps to complete
-- Turns at tiles 6, 13, 26, 33
-- Item boxes at tiles 3, 10, 20
+- 44 tiles, 3 laps to complete
+- Turns at tiles 7, 15, 29, 37
+- Item boxes at tiles 11, 22, 33
 - Drift zones are 3 tiles before each turn
 
 STRATEGY:
 1. Set target_speed=3 now to start at full speed
 2. Watch for drift zones as you approach turns
 3. Enable drift or slow to speed 1 before turns
+
+IMPORTANT - STAY READY:
+After setting your initial speed, you MUST either:
+- Poll get_state every 5-10 seconds until phase changes to "racing", OR
+- Sleep for {{ remaining_seconds }} seconds, then immediately call get_state
+
+The race starts automatically when the countdown ends. If you stop watching,
+you will miss the start and fall behind!

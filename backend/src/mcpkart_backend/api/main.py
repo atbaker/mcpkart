@@ -2,6 +2,7 @@
 
 import asyncio
 import secrets
+import time
 import uuid
 from contextlib import asynccontextmanager
 from typing import Any
@@ -17,12 +18,18 @@ from mcpkart_backend.models import (
     JoinLobbyRequest,
     PlayerInput,
     PlayerInputRequest,
+    RacerStatus,
     StartRaceRequest,
     TileType,
 )
 from mcpkart_backend.temporal import RaceWorkflow
 
 TASK_QUEUE = "mcpkart-task-queue"
+
+# --- Spectator State Cache ---
+# Simple in-memory TTL cache to decouple viewer count from Temporal query load
+_spectator_cache: dict[str, tuple[dict[str, Any], float]] = {}
+CACHE_TTL = 0.8  # seconds - slightly less than tick rate
 
 # Human-friendly race ID character set (excludes confusable chars: 0/O, 1/I/l)
 RACE_ID_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
@@ -249,6 +256,115 @@ async def get_race_state(race_id: str) -> dict[str, Any]:
         raise HTTPException(status_code=404, detail=f"Race not found: {race_id}") from e
 
 
+def _transform_to_spectator_state(state: GameState) -> dict[str, Any]:
+    """Transform GameState to frontend-friendly spectator format."""
+    # Convert racers dict to array with computed standings
+    racers_list = []
+    for player_id, racer in state.racers.items():
+        racers_list.append({
+            "id": player_id,
+            "name": player_id,  # Use player_id as name for now
+            "tile_index": racer.tile_index,
+            "tile_subunit": racer.tile_subunit,
+            "speed": racer.speed,
+            "current_lap": racer.current_lap,
+            "power_up": racer.power_up.value if racer.power_up else None,
+            "boost_ticks_remaining": racer.boost_ticks_remaining,
+            "status": racer.status.value,
+            "penalty_ticks_remaining": racer.penalty_ticks_remaining,
+            "finish_position": racer.finish_position,
+            "finish_time": racer.finish_time,
+            "total_crashes": racer.total_crashes,
+            "on_turn_tile": racer.on_turn_tile,
+            "in_drift_zone": racer.in_drift_zone,
+            "drift_enabled": racer.drift_enabled,
+        })
+
+    # Sort racers by position for standings
+    # Finished racers first (by finish_position), then by lap desc, then tile_index desc
+    def racer_sort_key(r: dict) -> tuple:
+        if r["status"] == "finished" and r["finish_position"] is not None:
+            return (0, r["finish_position"], 0, 0)
+        return (1, 0, -r["current_lap"], -r["tile_index"])
+
+    sorted_racers = sorted(racers_list, key=racer_sort_key)
+
+    standings = []
+    for i, r in enumerate(sorted_racers):
+        standings.append({
+            "position": i + 1,
+            "racer_id": r["id"],
+            "name": r["name"],
+            "lap": r["current_lap"],
+            "tile_index": r["tile_index"],
+            "status": r["status"],
+            "finish_time": r["finish_time"],
+        })
+
+    # Transform track tiles
+    track_tiles = []
+    for tile in state.track.tiles:
+        track_tiles.append({
+            "index": tile.index,
+            "tile_type": tile.tile_type.value,
+            "has_item_box": tile.has_item_box,
+        })
+
+    return {
+        "race_id": state.race_id,
+        "current_tick": state.current_tick,
+        "max_ticks": state.max_ticks,
+        "laps_required": state.laps_required,
+        "status": state.phase.value,  # Rename phase -> status for frontend
+        "race_clock": state.race_clock,
+        "max_race_clock": state.max_race_clock,
+        "planning_ends_at": state.planning_ends_at.isoformat() if state.planning_ends_at else None,
+        "track": {"tiles": track_tiles},
+        "racers": racers_list,
+        "standings": standings,
+        "events": state.events[-20:],  # Last 20 events
+    }
+
+
+@app.get("/api/races/{race_id}/spectator-state")
+async def get_spectator_state(race_id: str) -> dict[str, Any]:
+    """Get race state optimized for spectator frontend.
+
+    This endpoint:
+    - Uses a short-TTL cache to handle many viewers efficiently
+    - Returns a transformed format with racers as array and computed standings
+    - Renames 'phase' to 'status' for frontend consistency
+
+    Args:
+        race_id: The race identifier
+
+    Returns:
+        Spectator-optimized race state
+    """
+    now = time.time()
+
+    # Check cache first
+    cached = _spectator_cache.get(race_id)
+    if cached and (now - cached[1]) < CACHE_TTL:
+        return cached[0]
+
+    # Cache miss - query Temporal and transform
+    client = await get_temporal_client()
+    workflow_id = f"race-{race_id}"
+
+    try:
+        handle = client.get_workflow_handle(workflow_id)
+        state: GameState = await handle.query(RaceWorkflow.get_state)
+    except Exception as e:
+        raise HTTPException(status_code=404, detail=f"Race not found: {race_id}") from e
+
+    # Transform and cache
+    spectator_state = _transform_to_spectator_state(state)
+    _spectator_cache[race_id] = (spectator_state, now)
+
+    return spectator_state
+
+
 @app.post("/races/{race_id}/input")
 async def send_input(race_id: str, request: PlayerInputRequest) -> dict[str, Any]:
     """Send player input (applied immediately).
@@ -457,10 +573,7 @@ async def debug_race(race_id: str) -> str:
     </div>
     <p>{status_line}</p>
     {phase_content}
-    <script>
-        // Auto-refresh every 500ms
-        setTimeout(() => location.reload(), 500);
-    </script>
+    {f'<script>setTimeout(() => location.reload(), 500);</script>' if state.phase != RacePhase.FINISHED else '<!-- Race finished, no auto-refresh -->'}
 </body>
 </html>"""
 
