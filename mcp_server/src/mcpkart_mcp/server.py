@@ -1,6 +1,7 @@
 """MCP server for MCP Kart racing game."""
 
 import os
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
@@ -90,6 +91,18 @@ def _format_state_as_text(state: dict[str, Any], race_id: str, player_id: str) -
 
     # Handle planning phase
     if phase == "planning":
+        # Calculate remaining seconds until race starts
+        remaining_seconds = 60  # Default fallback
+        planning_ends_at = state.get("planning_ends_at")
+        if planning_ends_at:
+            try:
+                # Parse ISO format datetime string
+                ends_at = datetime.fromisoformat(planning_ends_at.replace("Z", "+00:00"))
+                now = datetime.now(timezone.utc)
+                remaining_seconds = max(0, int((ends_at - now).total_seconds()))
+            except (ValueError, TypeError):
+                pass  # Use default if parsing fails
+
         template = jinja_env.get_template("planning_state.jinja2")
         return template.render(
             race_id=race_id,
@@ -98,7 +111,7 @@ def _format_state_as_text(state: dict[str, Any], race_id: str, player_id: str) -
             player_id=player_id,
             racers=list(racers.keys()),
             racer_count=len(racers),
-            planning_ends_at=state.get("planning_ends_at"),
+            remaining_seconds=remaining_seconds,
         )
 
     # Handle racing/finished phases
