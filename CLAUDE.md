@@ -63,9 +63,6 @@ docker compose up -d temporal
 
 # View spectator UI for a race
 # http://localhost:5173/races/{race_id}
-
-# View debug UI for a race (backend)
-# http://localhost:8000/debug/{race_id}
 ```
 
 ## Architecture
@@ -90,7 +87,7 @@ MCP Client → FastMCP Server → FastAPI Backend → Temporal Workflow
 Built with SvelteKit 2 and Svelte 5 (runes syntax: `$state`, `$derived`, `$props`, `$effect`).
 
 **Key Components** (`lib/components/`):
-- `TrackViewSVG.svelte`: SVG-based track visualization with 40-tile rectangular layout
+- `TrackViewSVG.svelte`: SVG-based track visualization with 44-tile rectangular layout
 - `Standings.svelte`: Live race standings with position, lap count, speed, power-ups
 - `EventLog.svelte`: Scrolling list of race events
 
@@ -103,22 +100,23 @@ Built with SvelteKit 2 and Svelte 5 (runes syntax: `$state`, `$derived`, `$props
 
 **Track Visualization**:
 - Rectangular track with 90-degree corners matching game model
-- Turn tiles: orange diamonds (6, 13, 26, 33)
+- Turn tiles: orange dots (7, 15, 29, 37)
 - Drift zones: cyan dots (3 tiles before each turn)
 - Item boxes: yellow question marks
 - Start/finish: checkered pattern at tile 0
 - Racers: colored circles with initial, color indicates status (green=racing, yellow=boosting, cyan=drifting, red=crashed, purple=finished)
 
 ### Key Game Logic (in `workflows.py`)
-- **Turn tiles**: 6, 13, 26, 33 (40-tile oval track)
-- **Drift zones**: 3 tiles before each turn (e.g., 3-5 for turn at tile 6)
+- **Turn tiles**: 7, 15, 29, 37 (44-tile oval track)
+- **Item boxes**: 11, 22, 33
+- **Drift zones**: 3 tiles before each turn (e.g., 4-6 for turn at tile 7)
 - **Speed mechanics**: 0-3 normally, up to 5 with boost. Accelerates +1/tick, brakes up to -2/tick.
 - **Turn safety**: Speed 1 always safe, speed 2 requires drift, speed 3+ crashes
 
 ### Models (`backend/src/mcpkart_backend/models/`)
 - `GameState`: Complete race state including track, racers, standings, events
 - `RacerState`: Position (tile + subunit), speed, lap, power-ups, controls, drift state
-- `Track`/`Tile`: 40-tile oval with turns and item boxes
+- `Track`/`Tile`: 44-tile oval with turns and item boxes
 - `PlayerInput`: Control inputs (target_speed, drift, use_item)
 
 ## Testing
