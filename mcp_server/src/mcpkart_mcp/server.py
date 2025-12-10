@@ -1,4 +1,9 @@
-"""MCP server for MCP Kart racing game."""
+"""MCP server for MCP Kart racing game with GitHub OAuth."""
+
+from dotenv import load_dotenv
+
+# Load .env from current working directory (mcp_server/)
+load_dotenv()
 
 import os
 from datetime import datetime, timezone
@@ -6,22 +11,68 @@ from pathlib import Path
 from typing import Any, Optional
 
 import httpx
+from cryptography.fernet import Fernet
 from fastmcp import FastMCP
+from fastmcp.server.auth.providers.github import GitHubProvider
+from fastmcp.server.dependencies import get_access_token
 from jinja2 import Environment, FileSystemLoader
+from key_value.aio.stores.redis import RedisStore
 
 # Template setup
 TEMPLATE_DIR = Path(__file__).parent / "templates"
 jinja_env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
-# Backend URL from environment or default for local development
+# Configuration from environment
 BACKEND_URL = os.environ.get("MCPKART_BACKEND_URL", "http://localhost:8000")
+REDIS_HOST = os.environ.get("REDIS_HOST", "localhost")
+REDIS_PORT = int(os.environ.get("REDIS_PORT", "6379"))
+
+# OAuth configuration
+GITHUB_CLIENT_ID = os.environ.get("GITHUB_CLIENT_ID")
+GITHUB_CLIENT_SECRET = os.environ.get("GITHUB_CLIENT_SECRET")
+MCP_BASE_URL = os.environ.get("MCP_BASE_URL", "http://localhost:8080")
+JWT_SIGNING_KEY = os.environ.get("JWT_SIGNING_KEY")
+STORAGE_ENCRYPTION_KEY = os.environ.get("STORAGE_ENCRYPTION_KEY")
+
+
+def create_auth_provider() -> Optional[GitHubProvider]:
+    """Create GitHubProvider if credentials are configured."""
+    if not GITHUB_CLIENT_ID or not GITHUB_CLIENT_SECRET:
+        print("WARNING: GitHub OAuth not configured - running without auth")
+        return None
+
+    # Configure client storage with optional encryption
+    client_storage = None
+    if STORAGE_ENCRYPTION_KEY:
+        from key_value.aio.wrappers.encryption import FernetEncryptionWrapper
+
+        client_storage = FernetEncryptionWrapper(
+            key_value=RedisStore(host=REDIS_HOST, port=REDIS_PORT),
+            fernet=Fernet(STORAGE_ENCRYPTION_KEY.encode()),
+        )
+    elif REDIS_HOST:
+        # Use Redis without encryption (dev mode)
+        client_storage = RedisStore(host=REDIS_HOST, port=REDIS_PORT)
+
+    return GitHubProvider(
+        client_id=GITHUB_CLIENT_ID,
+        client_secret=GITHUB_CLIENT_SECRET,
+        base_url=MCP_BASE_URL,
+        jwt_signing_key=JWT_SIGNING_KEY,
+        client_storage=client_storage,
+        required_scopes=["user", "read:org"],
+    )
+
+
+auth_provider = create_auth_provider()
 
 mcp = FastMCP(
     "MCP Kart",
+    auth=auth_provider,
     instructions="""You are playing MCP Kart, a turn-based racing game!
 
 GAME RULES:
-- Race 3 laps around a 40-tile oblong oval track
+- Race 3 laps around a 44-tile oblong oval track
 - Each tick (1 second), your kart moves based on your speed
 - Speed ranges from 0-3 (or 5 with speed boost)
 - Speed = subunits moved per tick (each tile has 3 subunits)
@@ -32,16 +83,16 @@ CONTROLS:
 - use_item: Activate your power-up
 
 TURN MECHANICS (SIMPLIFIED!):
-- Turns are at tiles 6, 13, 26, and 33
+- Turns are at tiles 7, 15, 29, and 37
 - Speed 1: Always safe through turns (slow but reliable)
 - Speed 2: Requires DRIFT to be enabled before the turn
 - Speed 3+: Will CRASH on turns (too fast even with drift)
 
-DRIFT ZONES (2 tiles before each turn):
-- Turn at tile 6 -> drift zone is tiles 4, 5
-- Turn at tile 13 -> drift zone is tiles 11, 12
-- Turn at tile 26 -> drift zone is tiles 24, 25
-- Turn at tile 33 -> drift zone is tiles 31, 32
+DRIFT ZONES (3 tiles before each turn):
+- Turn at tile 7 -> drift zone is tiles 4, 5, 6
+- Turn at tile 15 -> drift zone is tiles 12, 13, 14
+- Turn at tile 29 -> drift zone is tiles 26, 27, 28
+- Turn at tile 37 -> drift zone is tiles 34, 35, 36
 
 DRIFT STRATEGY:
 1. When approaching a turn at speed 2-3, watch for "drift zone" in the status
@@ -55,10 +106,74 @@ SAFE STRATEGY (slower but guaranteed to work):
 3. Navigate turn safely at speed 1
 4. Accelerate back to speed 3 after exit
 
-Item boxes are at tiles 3, 10, 20 - you automatically pick up items.
+Item boxes are at tiles 11, 22, 33 - you automatically pick up items.
 Speed boosts give you 3 ticks at speed 5 - use on straightaways only!
 """,
 )
+
+
+def _get_player_id() -> str:
+    """Get the authenticated GitHub username as player ID.
+
+    Returns the GitHub username from the OAuth token, or a default
+    if authentication is not configured.
+    """
+    token = get_access_token()
+    if token is None:
+        return "anonymous"
+
+    # The GitHubProvider includes user info in JWT claims
+    # Try to get the GitHub username from claims
+    claims = token.claims or {}
+
+    # GitHubProvider should include 'login' or 'sub' with the username
+    username = claims.get("login") or claims.get("sub") or claims.get("preferred_username")
+    if username:
+        return username
+
+    # Fallback to client_id if no username in claims
+    return token.client_id or "anonymous"
+
+
+def _get_auth_headers() -> dict[str, str]:
+    """Get authorization headers for backend requests.
+
+    Returns headers with the access token for backend authentication.
+    """
+    token = get_access_token()
+    if token is None or not token.token:
+        return {}
+
+    # Pass the token to the backend for validation
+    return {"Authorization": f"Bearer {token.token}"}
+
+
+async def _backend_request(
+    method: str,
+    path: str,
+    json: Optional[dict] = None,
+) -> dict:
+    """Make authenticated request to backend.
+
+    Args:
+        method: HTTP method (GET, POST, etc.)
+        path: URL path (e.g., "/lobbies")
+        json: Optional JSON body
+
+    Returns:
+        Response JSON as dict
+    """
+    headers = _get_auth_headers()
+
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        response = await client.request(
+            method,
+            f"{BACKEND_URL}{path}",
+            json=json,
+            headers=headers,
+        )
+        response.raise_for_status()
+        return response.json()
 
 
 def _format_state_as_text(state: dict[str, Any], race_id: str, player_id: str) -> str:
@@ -191,85 +306,82 @@ def _format_state_as_text(state: dict[str, Any], race_id: str, player_id: str) -
 
 
 @mcp.tool()
-async def create_lobby(player_id: str) -> str:
+async def create_lobby() -> str:
     """Create a new race lobby and become the host.
-
-    Args:
-        player_id: Your unique player identifier (e.g., "claude-1", "player-abc")
 
     Returns:
         Lobby information including the race_id to share with other players.
         As the lobby creator, you can start the race when ready.
     """
-    async with httpx.AsyncClient(timeout=30.0) as client:
-        response = await client.post(
-            f"{BACKEND_URL}/lobbies",
-            json={"creator_id": player_id},
-        )
-        response.raise_for_status()
-        data = response.json()
+    player_id = _get_player_id()
 
-        race_id = data["race_id"]
-        state = data.get("state")
+    data = await _backend_request(
+        "POST",
+        "/lobbies",
+        json={"creator_id": player_id},
+    )
 
-        if state:
-            state_text = _format_state_as_text(state, race_id, player_id)
-        else:
-            state_text = "Lobby created, use get_state to see current status"
+    race_id = data["race_id"]
+    state = data.get("state")
 
-        template = jinja_env.get_template("lobby_created.jinja2")
-        return template.render(race_id=race_id, player_id=player_id, state=state_text)
+    if state:
+        state_text = _format_state_as_text(state, race_id, player_id)
+    else:
+        state_text = "Lobby created, use get_state to see current status"
+
+    template = jinja_env.get_template("lobby_created.jinja2")
+    return template.render(race_id=race_id, player_id=player_id, state=state_text)
 
 
 @mcp.tool()
-async def join_race(player_id: str, race_id: Optional[str] = None) -> str:
+async def join_race(race_id: Optional[str] = None) -> str:
     """Join a race. Either join an existing lobby or create a new one.
 
     Args:
-        player_id: Your unique player identifier (e.g., "claude-1", "player-abc")
         race_id: Optional. If provided, joins that lobby. If not, creates a new lobby.
 
     Returns:
         Race information and current state.
     """
-    async with httpx.AsyncClient(timeout=30.0) as client:
-        if race_id:
-            # Join existing lobby
-            response = await client.post(
-                f"{BACKEND_URL}/lobbies/{race_id}/join",
-                json={"player_id": player_id},
-            )
-            response.raise_for_status()
-            data = response.json()
-            actual_race_id = race_id
-        else:
-            # Create new lobby (becomes the host)
-            response = await client.post(
-                f"{BACKEND_URL}/lobbies",
-                json={"creator_id": player_id},
-            )
-            response.raise_for_status()
-            data = response.json()
-            actual_race_id = data.get("race_id")
+    player_id = _get_player_id()
 
-        state = data.get("state")
-
-        if state:
-            state_text = _format_state_as_text(state, actual_race_id, player_id)
-        else:
-            state_text = "Joined successfully, use get_state to see current status"
-
-        join_template = jinja_env.get_template("join_race.jinja2")
-        return join_template.render(
-            race_id=actual_race_id,
-            player_id=player_id,
-            is_host=race_id is None,  # Created new lobby = host
-            state=state_text,
+    if race_id:
+        # Join existing lobby
+        data = await _backend_request(
+            "POST",
+            f"/lobbies/{race_id}/join",
+            json={"player_id": player_id},
         )
+        actual_race_id = race_id
+        is_host = False
+    else:
+        # Create new lobby (becomes the host)
+        data = await _backend_request(
+            "POST",
+            "/lobbies",
+            json={"creator_id": player_id},
+        )
+        actual_race_id = data.get("race_id")
+        is_host = True
+
+    state = data.get("state")
+
+    if state:
+        state_text = _format_state_as_text(state, actual_race_id, player_id)
+    else:
+        state_text = "Joined successfully, use get_state to see current status"
+
+    join_template = jinja_env.get_template("join_race.jinja2")
+    return join_template.render(
+        race_id=actual_race_id,
+        player_id=player_id,
+        is_host=is_host,
+        state=state_text,
+    )
 
 
 @mcp.tool()
-async def start_race(race_id: str, player_id: str) -> str:
+async def start_race(race_id: str) -> str:
     """Start the race (lobby host only).
 
     This begins a 60-second planning phase before racing starts.
@@ -277,49 +389,45 @@ async def start_race(race_id: str, player_id: str) -> str:
 
     Args:
         race_id: The race/lobby ID
-        player_id: Your player ID (must be the lobby creator)
 
     Returns:
         Updated state with countdown information.
     """
-    async with httpx.AsyncClient(timeout=30.0) as client:
-        response = await client.post(
-            f"{BACKEND_URL}/lobbies/{race_id}/start",
-            json={"player_id": player_id},
-        )
-        response.raise_for_status()
-        data = response.json()
+    player_id = _get_player_id()
 
-        state = data["state"]
-        state_text = _format_state_as_text(state, race_id, player_id)
+    data = await _backend_request(
+        "POST",
+        f"/lobbies/{race_id}/start",
+        json={"player_id": player_id},
+    )
 
-        template = jinja_env.get_template("race_starting.jinja2")
-        return template.render(race_id=race_id, player_id=player_id, state=state_text)
+    state = data["state"]
+    state_text = _format_state_as_text(state, race_id, player_id)
+
+    template = jinja_env.get_template("race_starting.jinja2")
+    return template.render(race_id=race_id, player_id=player_id, state=state_text)
 
 
 @mcp.tool()
-async def get_state(race_id: str, player_id: str) -> str:
+async def get_state(race_id: str) -> str:
     """Get the current game state for your race.
 
     Args:
         race_id: The race ID returned from join_race
-        player_id: Your player ID
 
     Returns:
         Current game state including your position, speed, upcoming track, etc.
     """
-    async with httpx.AsyncClient(timeout=30.0) as client:
-        response = await client.get(f"{BACKEND_URL}/races/{race_id}/state")
-        response.raise_for_status()
-        data = response.json()
+    player_id = _get_player_id()
 
-        return _format_state_as_text(data["state"], race_id, player_id)
+    data = await _backend_request("GET", f"/races/{race_id}/state")
+
+    return _format_state_as_text(data["state"], race_id, player_id)
 
 
 @mcp.tool()
 async def control(
     race_id: str,
-    player_id: str,
     target_speed: Optional[int] = None,
     drift: bool = False,
     use_item: bool = False,
@@ -328,7 +436,6 @@ async def control(
 
     Args:
         race_id: The race ID returned from join_race
-        player_id: Your player ID
         target_speed: Set desired speed 0-3. Your kart automatically accelerates
                      (+1/tick) or brakes (up to -2/tick) toward this speed.
         drift: Set to True to enable drift mode. Must be in drift zone
@@ -340,27 +447,27 @@ async def control(
 
     Tips:
         - On straightaways: set target_speed=3
-        - Before turns (tiles 6, 13, 26, 33): either brake to speed 1 OR enable drift
-        - Drift zones are 2 tiles before each turn - watch for the notification!
+        - Before turns (tiles 7, 15, 29, 37): either brake to speed 1 OR enable drift
+        - Drift zones are 3 tiles before each turn - watch for the notification!
         - With drift enabled, you can take turns at speed 2
         - Without drift, you must be at speed 1 to navigate turns safely
         - Speed 3+ will crash on turns even with drift enabled
         - Item boxes give you speed boosts - use them on straightaways ONLY!
     """
-    async with httpx.AsyncClient(timeout=30.0) as client:
-        response = await client.post(
-            f"{BACKEND_URL}/races/{race_id}/input",
-            json={
-                "player_id": player_id,
-                "target_speed": target_speed,
-                "drift": drift,
-                "use_item": use_item,
-            },
-        )
-        response.raise_for_status()
-        data = response.json()
+    player_id = _get_player_id()
 
-        return _format_state_as_text(data["state"], race_id, player_id)
+    data = await _backend_request(
+        "POST",
+        f"/races/{race_id}/input",
+        json={
+            "player_id": player_id,
+            "target_speed": target_speed,
+            "drift": drift,
+            "use_item": use_item,
+        },
+    )
+
+    return _format_state_as_text(data["state"], race_id, player_id)
 
 
 if __name__ == "__main__":

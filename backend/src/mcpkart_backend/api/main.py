@@ -1,14 +1,24 @@
 """FastAPI application for MCP Kart backend."""
 
+from dotenv import load_dotenv
+
+# Load .env from current working directory (backend/)
+load_dotenv()
+
 import asyncio
 import secrets
-import time
-import uuid
 from contextlib import asynccontextmanager
-from typing import Any
+from typing import Any, Optional
 
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException
 
+from mcpkart_backend.api.auth import AuthenticatedUser, get_current_user
+from mcpkart_backend.api.cache import (
+    calculate_ttl_until_next_tick,
+    close_redis,
+    get_cached_spectator_state,
+    set_cached_spectator_state,
+)
 from mcpkart_backend.api.dependencies import get_temporal_client, lifespan_context
 from mcpkart_backend.models import (
     CreateLobbyRequest,
@@ -23,11 +33,6 @@ from mcpkart_backend.models import (
 from mcpkart_backend.temporal import RaceWorkflow
 
 TASK_QUEUE = "mcpkart-task-queue"
-
-# --- Spectator State Cache ---
-# Simple in-memory TTL cache to decouple viewer count from Temporal query load
-_spectator_cache: dict[str, tuple[dict[str, Any], float]] = {}
-CACHE_TTL = 0.8  # seconds - slightly less than tick rate
 
 # Human-friendly race ID character set (excludes confusable chars: 0/O, 1/I/l)
 RACE_ID_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
@@ -46,6 +51,8 @@ async def lifespan(app: FastAPI):
     """Application lifespan handler."""
     async with lifespan_context():
         yield
+    # Clean up Redis connection on shutdown
+    await close_redis()
 
 
 app = FastAPI(
@@ -66,11 +73,15 @@ async def health_check() -> dict[str, str]:
 
 
 @app.post("/lobbies")
-async def create_lobby(request: CreateLobbyRequest) -> dict[str, Any]:
+async def create_lobby(
+    request: CreateLobbyRequest,
+    user: Optional[AuthenticatedUser] = Depends(get_current_user),
+) -> dict[str, Any]:
     """Create a new race lobby.
 
     Args:
         request: Contains creator_id (and optional max_racers)
+        user: Authenticated user from GitHub OAuth
 
     Returns:
         race_id, workflow_id, and initial lobby state
@@ -80,10 +91,13 @@ async def create_lobby(request: CreateLobbyRequest) -> dict[str, Any]:
     race_id = generate_race_id()
     workflow_id = f"race-{race_id}"
 
+    # Use authenticated username as creator_id (overrides request)
+    creator_id = user.github_username if user else request.creator_id
+
     # Start workflow with creator_id
     handle = await client.start_workflow(
         RaceWorkflow.run,
-        args=[race_id, request.creator_id],
+        args=[race_id, creator_id],
         id=workflow_id,
         task_queue=TASK_QUEUE,
     )
@@ -107,12 +121,17 @@ async def create_lobby(request: CreateLobbyRequest) -> dict[str, Any]:
 
 
 @app.post("/lobbies/{race_id}/join")
-async def join_lobby(race_id: str, request: JoinLobbyRequest) -> dict[str, Any]:
+async def join_lobby(
+    race_id: str,
+    request: JoinLobbyRequest,
+    user: Optional[AuthenticatedUser] = Depends(get_current_user),
+) -> dict[str, Any]:
     """Join an existing race lobby.
 
     Args:
         race_id: The race/lobby identifier
         request: Contains player_id
+        user: Authenticated user from GitHub OAuth
 
     Returns:
         Updated lobby state
@@ -120,11 +139,14 @@ async def join_lobby(race_id: str, request: JoinLobbyRequest) -> dict[str, Any]:
     client = await get_temporal_client()
     workflow_id = f"race-{race_id}"
 
+    # Use authenticated username as player_id (overrides request)
+    player_id = user.github_username if user else request.player_id
+
     try:
         handle = client.get_workflow_handle(workflow_id)
         state: GameState = await handle.execute_update(
             RaceWorkflow.join_lobby,
-            args=[request.player_id],
+            args=[player_id],
         )
         return {"state": state.model_dump()}
     except ValueError as e:
@@ -134,7 +156,11 @@ async def join_lobby(race_id: str, request: JoinLobbyRequest) -> dict[str, Any]:
 
 
 @app.post("/lobbies/{race_id}/start")
-async def start_race_endpoint(race_id: str, request: StartRaceRequest) -> dict[str, Any]:
+async def start_race_endpoint(
+    race_id: str,
+    request: StartRaceRequest,
+    user: Optional[AuthenticatedUser] = Depends(get_current_user),
+) -> dict[str, Any]:
     """Start the race (lobby creator only).
 
     Transitions from LOBBY to PLANNING phase (60-second countdown).
@@ -142,6 +168,7 @@ async def start_race_endpoint(race_id: str, request: StartRaceRequest) -> dict[s
     Args:
         race_id: The race/lobby identifier
         request: Contains player_id (must be creator)
+        user: Authenticated user from GitHub OAuth
 
     Returns:
         Updated state with PLANNING phase
@@ -149,11 +176,14 @@ async def start_race_endpoint(race_id: str, request: StartRaceRequest) -> dict[s
     client = await get_temporal_client()
     workflow_id = f"race-{race_id}"
 
+    # Use authenticated username as player_id (overrides request)
+    player_id = user.github_username if user else request.player_id
+
     try:
         handle = client.get_workflow_handle(workflow_id)
         state: GameState = await handle.execute_update(
             RaceWorkflow.start_race,
-            args=[request.player_id],
+            args=[player_id],
         )
         return {"state": state.model_dump()}
     except ValueError as e:
@@ -329,9 +359,10 @@ async def get_spectator_state(race_id: str) -> dict[str, Any]:
     """Get race state optimized for spectator frontend.
 
     This endpoint:
-    - Uses a short-TTL cache to handle many viewers efficiently
+    - Uses Redis cache to handle many viewers efficiently
     - Returns a transformed format with racers as array and computed standings
     - Renames 'phase' to 'status' for frontend consistency
+    - No authentication required (public spectator view)
 
     Args:
         race_id: The race identifier
@@ -339,12 +370,10 @@ async def get_spectator_state(race_id: str) -> dict[str, Any]:
     Returns:
         Spectator-optimized race state
     """
-    now = time.time()
-
-    # Check cache first
-    cached = _spectator_cache.get(race_id)
-    if cached and (now - cached[1]) < CACHE_TTL:
-        return cached[0]
+    # Check Redis cache first
+    cached = await get_cached_spectator_state(race_id)
+    if cached:
+        return cached
 
     # Cache miss - query Temporal and transform
     client = await get_temporal_client()
@@ -356,20 +385,28 @@ async def get_spectator_state(race_id: str) -> dict[str, Any]:
     except Exception as e:
         raise HTTPException(status_code=404, detail=f"Race not found: {race_id}") from e
 
-    # Transform and cache
+    # Transform and cache in Redis with dynamic TTL
     spectator_state = _transform_to_spectator_state(state)
-    _spectator_cache[race_id] = (spectator_state, now)
+
+    # Calculate TTL based on when next tick occurs (aligns cache expiration with tick boundaries)
+    ttl = calculate_ttl_until_next_tick(state.race_started_at, state.current_tick)
+    await set_cached_spectator_state(race_id, spectator_state, ttl=ttl)
 
     return spectator_state
 
 
 @app.post("/races/{race_id}/input")
-async def send_input(race_id: str, request: PlayerInputRequest) -> dict[str, Any]:
+async def send_input(
+    race_id: str,
+    request: PlayerInputRequest,
+    user: Optional[AuthenticatedUser] = Depends(get_current_user),
+) -> dict[str, Any]:
     """Send player input (applied immediately).
 
     Args:
         race_id: The race identifier
         request: Player input request with target_speed, drift, and use_item
+        user: Authenticated user from GitHub OAuth
 
     Returns:
         Updated game state after applying input
@@ -377,12 +414,15 @@ async def send_input(race_id: str, request: PlayerInputRequest) -> dict[str, Any
     client = await get_temporal_client()
     workflow_id = f"race-{race_id}"
 
+    # Use authenticated username as player_id (overrides request)
+    player_id = user.github_username if user else request.player_id
+
     try:
         handle = client.get_workflow_handle(workflow_id)
 
         # Convert to domain model
         player_input = PlayerInput(
-            player_id=request.player_id,
+            player_id=player_id,
             target_speed=request.target_speed,
             drift=request.drift,
             use_item=request.use_item,

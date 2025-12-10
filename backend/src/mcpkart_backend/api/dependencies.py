@@ -1,11 +1,14 @@
 """FastAPI dependencies for MCP Kart."""
 
+import logging
 import os
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
 from temporalio.client import Client
 from temporalio.contrib.pydantic import pydantic_data_converter
+
+logger = logging.getLogger(__name__)
 
 TEMPORAL_HOST = os.environ.get("TEMPORAL_HOST", "localhost:7233")
 
@@ -24,8 +27,8 @@ async def get_temporal_client() -> Client:
 async def lifespan_context() -> AsyncGenerator[None, None]:
     """Lifespan context manager for FastAPI."""
     global temporal_client
-    print(f"Connecting to Temporal at {TEMPORAL_HOST}...")
+    logger.info("Connecting to Temporal at %s...", TEMPORAL_HOST)
     temporal_client = await Client.connect(TEMPORAL_HOST, data_converter=pydantic_data_converter)
-    print("Connected to Temporal!")
+    logger.info("Connected to Temporal!")
     yield
-    print("Shutting down...")
+    logger.info("Shutting down...")

@@ -6,10 +6,13 @@ from collections.abc import Generator
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, sessionmaker
 
-# Database URL from environment or default to SQLite for PoC
-DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///./mcpkart.db")
+# Database URL from environment or default to PostgreSQL
+# Use postgresql+psycopg for psycopg3 driver
+DATABASE_URL = os.environ.get(
+    "DATABASE_URL", "postgresql+psycopg://mcpkart:mcpkart_dev@localhost:5432/mcpkart"
+)
 
-# SQLite-specific settings
+# SQLite-specific settings (for backwards compatibility)
 connect_args = {}
 if DATABASE_URL.startswith("sqlite"):
     connect_args["check_same_thread"] = False

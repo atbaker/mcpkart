@@ -58,17 +58,24 @@ npm run build
 
 ### Infrastructure
 ```bash
-# Start Temporal server (required for backend)
-docker compose up -d temporal
+# Start all infrastructure (Temporal, PostgreSQL, Redis)
+docker compose up -d temporal postgres redis
 
 # View spectator UI for a race
 # http://localhost:5173/races/{race_id}
+
+# For GitHub OAuth testing locally, use ngrok:
+ngrok start --config ~/.ngrok2/ngrok.yml,ngrok.yml --all
 ```
 
 ## Architecture
 
 ```
 MCP Client → FastMCP Server → FastAPI Backend → Temporal Workflow
+     ↓            ↓                 ↓                  ↓
+  GitHub      Redis            PostgreSQL         Game State
+   OAuth     (tokens,          (users,
+             cache)           race results)
                                     ↑
                               Svelte Frontend (spectator UI)
 ```
@@ -118,6 +125,35 @@ Built with SvelteKit 2 and Svelte 5 (runes syntax: `$state`, `$derived`, `$props
 - `RacerState`: Position (tile + subunit), speed, lap, power-ups, controls, drift state
 - `Track`/`Tile`: 44-tile oval with turns and item boxes
 - `PlayerInput`: Control inputs (target_speed, drift, use_item)
+
+### Authentication
+
+MCP Kart uses GitHub OAuth via FastMCP's GitHubProvider:
+
+**Flow:**
+1. MCP client connects to MCP server
+2. FastMCP redirects to GitHub OAuth for authentication
+3. User authorizes and GitHub returns token
+4. FastMCP stores encrypted token in Redis, issues JWT to client
+5. MCP server extracts GitHub username from JWT claims
+6. GitHub username becomes the player_id in races
+
+**Key Files:**
+- `mcp_server/src/mcpkart_mcp/server.py`: GitHubProvider configuration, `_get_player_id()` extracts username
+- `backend/src/mcpkart_backend/api/auth.py`: GitHub token validation (for future use)
+- `backend/src/mcpkart_backend/db/models.py`: User model with github_user_id, github_username, organizations
+
+**Environment Variables (for OAuth):**
+- `GITHUB_CLIENT_ID`: OAuth app client ID
+- `GITHUB_CLIENT_SECRET`: OAuth app client secret
+- `MCP_BASE_URL`: Public URL for OAuth callback (use ngrok locally)
+- `JWT_SIGNING_KEY`: Secret for signing FastMCP JWTs
+- `STORAGE_ENCRYPTION_KEY`: Fernet key for encrypting stored tokens
+
+**Database:**
+- PostgreSQL (postgresql+psycopg://) replaces SQLite
+- Redis for OAuth token storage and spectator state cache
+- See `.env.example` for connection strings
 
 ## Testing
 

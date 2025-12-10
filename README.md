@@ -23,32 +23,37 @@ mcpkart/
 
 ### Prerequisites
 
-- Python 3.11+
+- Python 3.14+
 - [uv](https://github.com/astral-sh/uv) (Python package manager)
-- Docker (for Temporal server)
+- Docker (for Temporal, PostgreSQL, and Redis)
+- [ngrok](https://ngrok.com/) (for local GitHub OAuth testing)
 
-### 1. Start Temporal Server
+### 1. Start Infrastructure Services
 
 ```bash
-# Using Docker Compose (recommended)
-docker compose up -d temporal temporal-ui
+# Start Temporal, PostgreSQL, and Redis
+docker compose up -d temporal postgres redis
 
-# Or using the helper script
-./scripts/start-temporal.sh
+# Or start all services including backend
+docker compose up -d
 ```
 
-Temporal UI will be available at http://localhost:8080
+- Temporal UI: http://localhost:8233
+- PostgreSQL: localhost:5432
+- Redis: localhost:6379
 
-### 2. Start the Backend
+### 2. Run Database Migrations
 
 ```bash
 cd backend
-
-# Install dependencies
 uv sync
-
-# Run database migrations
 uv run alembic upgrade head
+```
+
+### 3. Start the Backend
+
+```bash
+cd backend
 
 # Start the worker (in one terminal)
 uv run python -m mcpkart_backend.temporal.worker
@@ -57,28 +62,84 @@ uv run python -m mcpkart_backend.temporal.worker
 uv run uvicorn mcpkart_backend.api.main:app --reload --port 8000
 ```
 
-API docs will be available at http://localhost:8000/docs
+API docs: http://localhost:8000/docs
 
-### 3. Start the MCP Server
+### 4. Start the MCP Server
 
 ```bash
 cd mcp_server
-
-# Install dependencies
 uv sync
 
-# Run the MCP server
-uv run fastmcp run mcpkart_mcp/server.py
+# Without authentication (dev mode)
+uv run python -m mcpkart_mcp.server
+
+# With GitHub OAuth (see Authentication Setup below)
+GITHUB_CLIENT_ID=xxx GITHUB_CLIENT_SECRET=xxx MCP_BASE_URL=https://your-ngrok-url.ngrok.io \
+  uv run python -m mcpkart_mcp.server
+```
+
+## Authentication Setup
+
+MCP Kart uses GitHub OAuth for player authentication. Your GitHub username becomes your player identity in races.
+
+### Local Development with ngrok
+
+GitHub OAuth requires a public callback URL. Use ngrok for local development:
+
+1. **Install ngrok**: `brew install ngrok` or download from [ngrok.com](https://ngrok.com)
+
+2. **Start ngrok**:
+   ```bash
+   # Using the included config (update domains in ngrok.yml first)
+   ngrok start --config ~/.ngrok2/ngrok.yml,ngrok.yml --all
+
+   # Or for a quick single tunnel
+   ngrok http 8080
+   ```
+   Copy the HTTPS URL for the MCP server (e.g., `https://mcpkart.ngrok.io`)
+
+3. **Create a GitHub OAuth App**:
+   - Go to [GitHub Developer Settings](https://github.com/settings/developers)
+   - Click "New OAuth App"
+   - **Application name**: MCP Kart (Dev)
+   - **Homepage URL**: Your ngrok URL
+   - **Authorization callback URL**: `{ngrok-url}/auth/callback`
+   - Click "Register application"
+   - Generate a client secret
+
+4. **Configure environment**:
+   ```bash
+   cp .env.example .env
+   # Edit .env with your values:
+   # - GITHUB_CLIENT_ID
+   # - GITHUB_CLIENT_SECRET
+   # - MCP_BASE_URL (your ngrok URL)
+   # - JWT_SIGNING_KEY (generate with: openssl rand -base64 32)
+   ```
+
+5. **Start the MCP server** with the environment variables set
+
+### Security Keys
+
+Generate required keys:
+
+```bash
+# JWT signing key
+openssl rand -base64 32
+
+# Fernet encryption key (for production token storage)
+python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
 ```
 
 ## Game Rules
 
-- **Track**: 20-tile oval with 4 turns (tiles 4, 9, 14, 19)
+- **Track**: 44-tile oval with 4 turns (tiles 7, 15, 29, 37)
 - **Laps**: 3 laps to finish
 - **Speed**: 0-3 (or 5 with speed boost)
-- **Turns**: Must be at speed 1 AND steering "left" to navigate turns
-- **Item boxes**: At tiles 0, 5, 10, 15 - give speed boosts
-- **Tick rate**: 1 second per tick, ~180 ticks max
+- **Turns**: Speed 1 always safe, speed 2 requires drift, speed 3+ crashes
+- **Drift zones**: 3 tiles before each turn (4-6, 12-14, 26-28, 34-36)
+- **Item boxes**: At tiles 11, 22, 33 - give speed boosts
+- **Tick rate**: 1 second per tick
 
 ## MCP Tools
 

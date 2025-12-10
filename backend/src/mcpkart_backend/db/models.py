@@ -3,9 +3,10 @@
 from datetime import datetime
 from typing import Optional
 
-from sqlalchemy import DateTime, ForeignKey, Integer, String
-from sqlalchemy.dialects.sqlite import JSON
+from sqlalchemy import BigInteger, DateTime, ForeignKey, Integer, String
+from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+from sqlalchemy.sql import func
 
 
 class Base(DeclarativeBase):
@@ -55,3 +56,27 @@ class RacerResult(Base):
 
     # Relationship
     race: Mapped["RaceResult"] = relationship(back_populates="racer_results")
+
+
+class User(Base):
+    """GitHub authenticated user."""
+
+    __tablename__ = "users"
+
+    # GitHub user ID is numeric and stable (username can change)
+    github_user_id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+
+    # Display name (GitHub login/username)
+    github_username: Mapped[str] = mapped_column(String(39), unique=True, index=True)
+
+    # Email (may be null if user has private email)
+    email: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
+
+    # Organizations the user belongs to (for future leaderboard features)
+    organizations: Mapped[list[str]] = mapped_column(JSON, default=list)
+
+    # Timestamps
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime, server_default=func.now(), onupdate=func.now()
+    )

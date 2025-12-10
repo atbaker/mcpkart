@@ -1,2 +1,6 @@
 # Claude Code
 .claude/settings.local.json
+
+# Environment files (allow .env.example)
+**/.env
+!**/.env.example
