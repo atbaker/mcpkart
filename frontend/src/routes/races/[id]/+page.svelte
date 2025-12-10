@@ -20,6 +20,23 @@
 		return remaining;
 	});
 
+	// Compute matchmaking countdown
+	const matchmakingCountdown = $derived(() => {
+		if (!raceState?.matchmaking_ends_at) return null;
+		const endsAt = new Date(raceState.matchmaking_ends_at).getTime();
+		const remaining = Math.max(0, Math.ceil((endsAt - now) / 1000));
+		return remaining;
+	});
+
+	// Compute ready count for matchmaking
+	const readyCount = $derived(() => {
+		if (!raceState) return { ready: 0, total: 0 };
+		return {
+			ready: raceState.ready_players?.length || 0,
+			total: raceState.racers?.length || 0
+		};
+	});
+
 	// Update `now` every second for countdown
 	$effect(() => {
 		const interval = setInterval(() => {
@@ -77,6 +94,8 @@
 		switch (status) {
 			case 'lobby':
 				return 'bg-blue-500';
+			case 'matchmaking':
+				return 'bg-yellow-500';
 			case 'planning':
 				return 'bg-orange-500';
 			case 'racing':
@@ -103,7 +122,11 @@
 				<span class="px-3 py-1 rounded text-sm font-bold uppercase {getStatusColor(raceState.status)}">
 					{raceState.status}
 				</span>
-				{#if raceState.status === 'planning' && planningCountdown() !== null}
+				{#if raceState.status === 'matchmaking' && matchmakingCountdown() !== null}
+					<span class="text-yellow-400 font-mono">
+						{readyCount().ready}/{readyCount().total} ready · Auto-start in {matchmakingCountdown()}s
+					</span>
+				{:else if raceState.status === 'planning' && planningCountdown() !== null}
 					<span class="text-orange-400 font-mono">
 						Race starts in {planningCountdown()}s
 					</span>
@@ -138,6 +161,8 @@
 					standings={raceState.standings}
 					racers={raceState.racers}
 					lapsRequired={raceState.laps_required}
+					raceStatus={raceState.status}
+					readyPlayers={raceState.ready_players}
 				/>
 				<EventLog events={raceState.events} />
 			</div>

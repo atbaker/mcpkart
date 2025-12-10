@@ -5,9 +5,10 @@ from typing import Optional
 
 import httpx
 from fastapi import Depends, Header, HTTPException
-from sqlalchemy.orm import Session
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from mcpkart_backend.db.database import get_db
+from mcpkart_backend.db.database import get_async_db
 from mcpkart_backend.db.models import User
 
 
@@ -75,25 +76,28 @@ async def validate_github_token(token: str) -> dict:
         }
 
 
-def get_or_create_user(db: Session, github_data: dict) -> User:
+async def get_or_create_user(db: AsyncSession, github_data: dict) -> User:
     """Get existing user or create new one from GitHub data.
 
     Args:
-        db: Database session
+        db: Async database session
         github_data: Dict from validate_github_token with id, login, email, organizations
 
     Returns:
         User record (created or updated)
     """
-    user = db.query(User).filter(User.github_user_id == github_data["id"]).first()
+    result = await db.execute(
+        select(User).filter(User.github_user_id == github_data["id"])
+    )
+    user = result.scalar_one_or_none()
 
     if user:
         # Update username/email/orgs in case they changed
         user.github_username = github_data["login"]
         user.email = github_data["email"]
         user.organizations = github_data["organizations"]
-        db.commit()
-        db.refresh(user)
+        await db.commit()
+        await db.refresh(user)
     else:
         # Create new user
         user = User(
@@ -103,15 +107,15 @@ def get_or_create_user(db: Session, github_data: dict) -> User:
             organizations=github_data["organizations"],
         )
         db.add(user)
-        db.commit()
-        db.refresh(user)
+        await db.commit()
+        await db.refresh(user)
 
     return user
 
 
 async def get_current_user(
     authorization: str = Header(..., description="Bearer token from MCP server"),
-    db: Session = Depends(get_db),
+    db: AsyncSession = Depends(get_async_db),
 ) -> AuthenticatedUser:
     """FastAPI dependency to get authenticated user from GitHub token.
 
@@ -119,7 +123,7 @@ async def get_current_user(
 
     Args:
         authorization: Authorization header value
-        db: Database session from dependency injection
+        db: Async database session from dependency injection
 
     Returns:
         AuthenticatedUser with user details
@@ -138,7 +142,7 @@ async def get_current_user(
     github_data = await validate_github_token(token)
 
     # Get or create user in database
-    user = get_or_create_user(db, github_data)
+    user = await get_or_create_user(db, github_data)
 
     return AuthenticatedUser(
         github_user_id=user.github_user_id,

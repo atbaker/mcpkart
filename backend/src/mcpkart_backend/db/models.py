@@ -3,7 +3,7 @@
 from datetime import datetime
 from typing import Optional
 
-from sqlalchemy import BigInteger, DateTime, ForeignKey, Integer, String
+from sqlalchemy import BigInteger, Boolean, DateTime, ForeignKey, Integer, String
 from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
@@ -27,6 +27,12 @@ class RaceResult(Base):
     started_at: Mapped[datetime] = mapped_column(DateTime)
     finished_at: Mapped[datetime] = mapped_column(DateTime)
     total_ticks: Mapped[int] = mapped_column(Integer)
+
+    # New fields for full spectator state reconstruction
+    laps_required: Mapped[int] = mapped_column(Integer, default=3)
+    is_public: Mapped[bool] = mapped_column(Boolean, default=False)
+    max_ticks: Mapped[int] = mapped_column(Integer, default=600)
+    events: Mapped[list[str]] = mapped_column(JSON, default=list)
 
     # Results - JSON array of player_ids in finish order
     standings: Mapped[list[str]] = mapped_column(JSON)
@@ -53,6 +59,13 @@ class RacerResult(Base):
     finish_tick: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
     total_crashes: Mapped[int] = mapped_column(Integer, default=0)
     items_used: Mapped[int] = mapped_column(Integer, default=0)
+
+    # Final state for spectator view reconstruction
+    tile_index: Mapped[int] = mapped_column(Integer, default=0)
+    tile_subunit: Mapped[int] = mapped_column(Integer, default=0)
+    speed: Mapped[int] = mapped_column(Integer, default=0)
+    current_lap: Mapped[int] = mapped_column(Integer, default=0)
+    finish_time: Mapped[Optional[str]] = mapped_column(String(10), nullable=True)
 
     # Relationship
     race: Mapped["RaceResult"] = relationship(back_populates="racer_results")

@@ -98,6 +98,11 @@
 		return '#4ade80'; // green-400
 	}
 
+	// Get GitHub avatar URL for a racer
+	function getAvatarUrl(username: string): string {
+		return `https://avatars.githubusercontent.com/${username}`;
+	}
+
 	// Turn tiles for reference
 	const TURN_TILES = new Set([7, 15, 29, 37]);
 
@@ -187,6 +192,22 @@
 				<rect y="4" width="4" height="4" fill="black" />
 				<rect x="4" y="4" width="4" height="4" fill="white" />
 			</pattern>
+			<!-- Clip paths for racer avatars -->
+			{#each racers as racer (racer.id)}
+				{@const racersInSlice = racers
+					.filter((r) => r.tile_index === racer.tile_index && r.tile_subunit === racer.tile_subunit)
+					.sort((a, b) => a.name.localeCompare(b.name))}
+				{@const indexInSlice = racersInSlice.findIndex((r) => r.id === racer.id)}
+				{@const pos = getRacerSlicePosition(
+					racer.tile_index,
+					racer.tile_subunit,
+					indexInSlice,
+					racersInSlice.length
+				)}
+				<clipPath id="avatar-clip-{racer.id}">
+					<circle cx={pos.x} cy={pos.y} r={pos.radius - 1} />
+				</clipPath>
+			{/each}
 		</defs>
 
 		<!-- Track outline (rectangular with slightly rounded corners) -->
@@ -277,27 +298,25 @@
 				racersInSlice.length
 			)}
 			<g>
-				<!-- Racer circle -->
+				<!-- Status ring (colored border) -->
 				<circle
 					cx={pos.x}
 					cy={pos.y}
 					r={pos.radius}
-					fill={getRacerColor(racer)}
-					stroke="white"
-					stroke-width="1"
+					fill="none"
+					stroke={getRacerColor(racer)}
+					stroke-width="2"
 				/>
-				<!-- Racer initial -->
-				<text
-					x={pos.x}
-					y={pos.y}
-					text-anchor="middle"
-					dominant-baseline="central"
-					fill="white"
-					font-size={pos.fontSize}
-					font-weight="bold"
-				>
-					{racer.name.charAt(0).toUpperCase()}
-				</text>
+				<!-- Avatar image (clipped to circle) -->
+				<image
+					href={getAvatarUrl(racer.name)}
+					x={pos.x - pos.radius + 1}
+					y={pos.y - pos.radius + 1}
+					width={(pos.radius - 1) * 2}
+					height={(pos.radius - 1) * 2}
+					clip-path="url(#avatar-clip-{racer.id})"
+					preserveAspectRatio="xMidYMid slice"
+				/>
 			</g>
 		{/each}
 	</svg>

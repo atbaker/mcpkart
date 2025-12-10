@@ -22,10 +22,15 @@ class GameState(BaseModel):
     phase: RacePhase = RacePhase.LOBBY
     creator_id: Optional[str] = None  # Player who created the lobby
     max_racers: int = 8
+    is_public: bool = False  # True for public matchmaking, False for private lobbies
+
+    # Ready-up tracking for public matchmaking
+    ready_players: set[str] = Field(default_factory=set)
 
     # Timing fields
     created_at: Optional[datetime] = None  # When lobby was created
     lobby_expires_at: Optional[datetime] = None  # 1 hour after creation
+    matchmaking_ends_at: Optional[datetime] = None  # When matchmaking auto-starts
     planning_ends_at: Optional[datetime] = None  # When PLANNING countdown ends
     race_started_at: Optional[datetime] = None  # When RACING phase began
 

@@ -1,0 +1,22 @@
+=== PUBLIC MATCHMAKING ===
+Race ID: {{ race_id }} | Phase: {{ phase|upper }}
+
+Players ({{ racer_count }}/{{ max_racers }}):
+{% for racer_id in racers %}
+- {{ racer_id }}{% if racer_id in ready_players %} [READY]{% endif %}{% if racer_id == player_id %} (you){% endif %}
+
+{% endfor %}
+Ready: {{ ready_players|length }}/{{ racer_count }}
+Auto-start in: {{ remaining_seconds }}s
+
+{% if is_ready %}
+You are READY! Waiting for other players...
+{% else %}
+IMPORTANT: Do NOT ready up unless your user explicitly asks.
+Tell your user they can ask you to "ready up" if they want to start sooner.
+{% endif %}
+
+Race starts when:
+- All players are ready, OR
+- Lobby fills up (8 players), OR
+- Timer runs out

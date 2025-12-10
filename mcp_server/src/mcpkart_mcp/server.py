@@ -190,7 +190,7 @@ def _format_state_as_text(state: dict[str, Any], race_id: str, player_id: str) -
     track = state.get("track", {})
     tiles = track.get("tiles", [])
 
-    # Handle lobby phase
+    # Handle lobby phase (private races)
     if phase == "lobby":
         template = jinja_env.get_template("lobby_state.jinja2")
         return template.render(
@@ -202,6 +202,34 @@ def _format_state_as_text(state: dict[str, Any], race_id: str, player_id: str) -
             racers=list(racers.keys()),
             racer_count=len(racers),
             max_racers=state.get("max_racers", 8),
+        )
+
+    # Handle matchmaking phase (public races)
+    if phase == "matchmaking":
+        # Calculate remaining seconds until auto-start
+        remaining_seconds = 300  # Default 5 minutes
+        matchmaking_ends_at = state.get("matchmaking_ends_at")
+        if matchmaking_ends_at:
+            try:
+                ends_at = datetime.fromisoformat(matchmaking_ends_at.replace("Z", "+00:00"))
+                now = datetime.now(timezone.utc)
+                remaining_seconds = max(0, int((ends_at - now).total_seconds()))
+            except (ValueError, TypeError):
+                pass
+
+        ready_players = state.get("ready_players", [])
+
+        template = jinja_env.get_template("matchmaking_state.jinja2")
+        return template.render(
+            race_id=race_id,
+            phase=phase,
+            player_id=player_id,
+            racers=list(racers.keys()),
+            racer_count=len(racers),
+            max_racers=state.get("max_racers", 8),
+            ready_players=ready_players,
+            remaining_seconds=remaining_seconds,
+            is_ready=player_id in ready_players,
         )
 
     # Handle planning phase
@@ -426,21 +454,68 @@ async def get_state(race_id: str) -> str:
 
 
 @mcp.tool()
+async def find_race() -> str:
+    """Join public matchmaking to race against other players.
+
+    This finds an open public lobby or creates a new one. You'll be matched
+    with other players looking for a race.
+
+    The race starts when EITHER:
+    - All players send ready=True (via the control tool), OR
+    - The lobby fills up (8 players), OR
+    - 5 minutes pass (auto-start)
+
+    After joining, use control(race_id, ready=True) to signal you're ready!
+
+    Returns:
+        Your assigned race_id and current matchmaking state.
+    """
+    player_id = _get_player_id()
+
+    data = await _backend_request(
+        "POST",
+        "/matchmaking/join",
+        json={"player_id": player_id},
+    )
+
+    race_id = data["race_id"]
+    state = data.get("state")
+    created = data.get("created", False)
+
+    if state:
+        state_text = _format_state_as_text(state, race_id, player_id)
+    else:
+        state_text = "Joined matchmaking, use get_state to see current status"
+
+    template = jinja_env.get_template("find_race.jinja2")
+    return template.render(
+        race_id=race_id,
+        player_id=player_id,
+        created=created,
+        state=state_text,
+    )
+
+
+@mcp.tool()
 async def control(
     race_id: str,
     target_speed: Optional[int] = None,
     drift: bool = False,
     use_item: bool = False,
+    ready: bool = False,
 ) -> str:
     """Send control inputs for your kart.
 
     Args:
-        race_id: The race ID returned from join_race
+        race_id: The race ID returned from join_race or find_race
         target_speed: Set desired speed 0-3. Your kart automatically accelerates
                      (+1/tick) or brakes (up to -2/tick) toward this speed.
         drift: Set to True to enable drift mode. Must be in drift zone
                (2 tiles before a turn). Drift lets you take turns at speed 2.
         use_item: Set to True to use your held item (if any).
+        ready: Set to True during MATCHMAKING phase to signal you're ready to start.
+               IMPORTANT: Only use ready=True if your user EXPLICITLY asks you to
+               ready up. Do NOT send this proactively - let users decide when to start.
 
     Returns:
         Updated game state after applying your input.
@@ -464,6 +539,7 @@ async def control(
             "target_speed": target_speed,
             "drift": drift,
             "use_item": use_item,
+            "ready": ready,
         },
     )
 

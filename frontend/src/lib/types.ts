@@ -1,7 +1,7 @@
 // Race state types for the spectator frontend
 // Aligned with backend models
 
-export type RaceStatus = 'lobby' | 'planning' | 'racing' | 'finished';
+export type RaceStatus = 'lobby' | 'matchmaking' | 'planning' | 'racing' | 'finished';
 export type RacerStatus = 'racing' | 'crashed' | 'finished';
 export type TileType = 'straight' | 'turn_left';
 export type PowerUp = 'mushroom' | 'banana' | 'shell';
@@ -51,9 +51,12 @@ export interface SpectatorState {
 	max_ticks: number;
 	laps_required: number;
 	status: RaceStatus;
+	is_public: boolean;
 	race_clock: string;
 	max_race_clock: string;
+	matchmaking_ends_at: string | null;
 	planning_ends_at: string | null;
+	ready_players: string[];
 	track: Track;
 	racers: Racer[];
 	standings: Standing[];

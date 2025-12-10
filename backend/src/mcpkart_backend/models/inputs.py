@@ -12,6 +12,7 @@ class PlayerInput(BaseModel):
     target_speed: Optional[int] = None  # None = don't change, 0-3 (or 0-5 with boost)
     drift: bool = False  # Enable drift mode (must be in drift zone)
     use_item: bool = False
+    ready: bool = False  # Signal ready to start (public matchmaking only)
 
 
 class CreateRaceRequest(BaseModel):
@@ -27,6 +28,7 @@ class PlayerInputRequest(BaseModel):
     target_speed: Optional[int] = None  # 0-3 (or 0-5 with boost)
     drift: bool = False  # Enable drift mode (must be in drift zone)
     use_item: bool = False
+    ready: bool = False  # Signal ready to start (public matchmaking only)
 
 
 class CreateLobbyRequest(BaseModel):
@@ -34,6 +36,7 @@ class CreateLobbyRequest(BaseModel):
 
     creator_id: str  # MCP client provides their own player ID
     max_racers: int = 8  # Optional, defaults to 8
+    is_public: bool = False  # True for public matchmaking, False for private lobbies
 
 
 class JoinLobbyRequest(BaseModel):
@@ -46,3 +49,9 @@ class StartRaceRequest(BaseModel):
     """Request to start the race (transitions LOBBY -> PLANNING)."""
 
     player_id: str  # Must match creator_id for authorization
+
+
+class JoinMatchmakingRequest(BaseModel):
+    """Request to join public matchmaking."""
+
+    player_id: str  # MCP client provides their own player ID

@@ -25,7 +25,8 @@ class RacerStatus(str, Enum):
 class RacePhase(str, Enum):
     """Current phase of the race lifecycle."""
 
-    LOBBY = "lobby"  # Waiting for players to join
+    LOBBY = "lobby"  # Waiting for players to join (private races)
+    MATCHMAKING = "matchmaking"  # Public matchmaking - waiting for players/ready-up
     PLANNING = "planning"  # 60-second countdown before race starts
     RACING = "racing"  # Active race in progress
     FINISHED = "finished"  # Race completed

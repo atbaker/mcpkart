@@ -35,7 +35,7 @@ async def test_race_initializes_correctly(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1"],  # creator_id instead of player_ids
+            args=["test-race", "player1", False, False],  # race_id, creator_id, is_public, enable_search_attrs
             id="test-init-1",
             task_queue="test-queue",
         )
@@ -62,7 +62,7 @@ async def test_racer_accelerates_with_target_speed(workflow_env: WorkflowEnviron
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1"],
+            args=["test-race", "player1", False, False],
             id="test-accel-1",
             task_queue="test-queue",
         )
@@ -97,7 +97,7 @@ async def test_crash_on_turn_at_high_speed_without_drift(workflow_env: WorkflowE
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1"],
+            args=["test-race", "player1", False, False],
             id="test-crash-1",
             task_queue="test-queue",
         )
@@ -134,7 +134,7 @@ async def test_speed_1_safely_navigates_turn(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1"],
+            args=["test-race", "player1", False, False],
             id="test-safe-turn-1",
             task_queue="test-queue",
         )
@@ -172,7 +172,7 @@ async def test_drift_enables_in_drift_zone(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1"],
+            args=["test-race", "player1", False, False],
             id="test-drift-enable-1",
             task_queue="test-queue",
         )
@@ -215,7 +215,7 @@ async def test_item_pickup(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1"],
+            args=["test-race", "player1", False, False],
             id="test-item-1",
             task_queue="test-queue",
         )
@@ -250,7 +250,7 @@ async def test_speed_boost_usage(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1"],
+            args=["test-race", "player1", False, False],
             id="test-boost-1",
             task_queue="test-queue",
         )
@@ -283,7 +283,7 @@ async def test_input_update_changes_controls_during_planning(workflow_env: Workf
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1"],
+            args=["test-race", "player1", False, False],
             id="test-input-1",
             task_queue="test-queue",
         )
@@ -318,7 +318,7 @@ async def test_race_completes_when_max_ticks_reached(workflow_env: WorkflowEnvir
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1"],
+            args=["test-race", "player1", False, False],
             id="test-complete-1",
             task_queue="test-queue",
         )
@@ -345,7 +345,7 @@ async def test_braking_reduces_speed(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1"],
+            args=["test-race", "player1", False, False],
             id="test-brake-1",
             task_queue="test-queue",
         )
@@ -392,7 +392,7 @@ async def test_join_lobby(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "host"],
+            args=["test-race", "host", False, False],
             id="test-join-lobby-1",
             task_queue="test-queue",
         )
@@ -425,7 +425,7 @@ async def test_only_creator_can_start_race(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "host"],
+            args=["test-race", "host", False, False],
             id="test-start-auth-1",
             task_queue="test-queue",
         )

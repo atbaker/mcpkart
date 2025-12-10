@@ -18,9 +18,15 @@ with workflow.unsafe.imports_passed_through():
         TileType,
         Track,
     )
+    from mcpkart_backend.temporal.search_attributes import (
+        IS_PUBLIC,
+        PHASE,
+        RACER_COUNT,
+    )
 
 # Lobby and planning phase durations
 LOBBY_TIMEOUT = timedelta(hours=1)
+MATCHMAKING_TIMEOUT = timedelta(minutes=5)
 PLANNING_DURATION = timedelta(seconds=60)
 
 # Turn tiles and their drift zones (3 tiles before each turn)
@@ -35,6 +41,7 @@ class RaceWorkflow:
     def __init__(self) -> None:
         self.game_state: GameState | None = None
         self.started_at = None
+        self.enable_search_attrs = True
 
     def _log_event(self, message: str) -> None:
         """Add an event to the game log."""
@@ -109,7 +116,7 @@ class RaceWorkflow:
         self, racer: RacerState, from_tile: int, crash_tile: int, reason: str
     ) -> None:
         """Handle racer crash with penalty."""
-        racer.tile_index = from_tile
+        racer.tile_index = crash_tile
         racer.tile_subunit = 0
         racer.speed = 0
         racer.controls.target_speed = 0
@@ -126,41 +133,131 @@ class RaceWorkflow:
 
         self._log_event(f"{racer.player_id} CRASHED at tile {crash_tile} - {reason}")
 
+    def _upsert_search_attributes(self) -> None:
+        """Update Temporal search attributes to reflect current state.
+
+        Skipped when enable_search_attrs is False (for time-skipping tests).
+        """
+        if self.game_state is None or not self.enable_search_attrs:
+            return
+
+        workflow.upsert_search_attributes([
+            IS_PUBLIC.value_set(self.game_state.is_public),
+            PHASE.value_set(self.game_state.phase.value.upper()),
+            RACER_COUNT.value_set(len(self.game_state.racers)),
+        ])
+
+    def _should_start_matchmaking_race(self) -> bool:
+        """Check if matchmaking race should transition to PLANNING.
+
+        Returns True if any of:
+        - All players are ready
+        - Lobby is full (8 players)
+        - Matchmaking timeout expired
+        """
+        if self.game_state is None:
+            return False
+
+        # All players ready (and at least 1 player)
+        all_ready = (
+            len(self.game_state.ready_players) == len(self.game_state.racers)
+            and len(self.game_state.racers) >= 1
+        )
+        if all_ready:
+            return True
+
+        # Lobby is full
+        if self.game_state.is_lobby_full:
+            return True
+
+        # Timeout expired (handled by wait_condition timeout, but check anyway)
+        if self.game_state.matchmaking_ends_at:
+            if workflow.now() >= self.game_state.matchmaking_ends_at:
+                return True
+
+        return False
+
     @workflow.run
-    async def run(self, race_id: str, creator_id: str) -> GameState:
-        """Main race lifecycle: LOBBY -> PLANNING -> RACING -> FINISHED.
+    async def run(
+        self,
+        race_id: str,
+        creator_id: str,
+        is_public: bool = False,
+        enable_search_attrs: bool = True,
+    ) -> GameState:
+        """Main race lifecycle.
+
+        Private races: LOBBY -> PLANNING -> RACING -> FINISHED
+        Public races:  MATCHMAKING -> PLANNING -> RACING -> FINISHED
 
         Args:
             race_id: Unique race identifier
-            creator_id: Player ID of the lobby creator
+            creator_id: Player ID of the first player (host for private, just first joiner for public)
+            is_public: True for public matchmaking, False for private lobbies
+            enable_search_attrs: Whether to update Temporal search attributes (disable for time-skipping tests)
         """
+        self.enable_search_attrs = enable_search_attrs
         now = workflow.now()
 
-        # Initialize in LOBBY phase
+        # Initialize based on public/private
+        initial_phase = RacePhase.MATCHMAKING if is_public else RacePhase.LOBBY
+
         self.game_state = GameState(
             race_id=race_id,
-            phase=RacePhase.LOBBY,
-            creator_id=creator_id,
+            phase=initial_phase,
+            creator_id=creator_id if not is_public else None,  # No "host" for public races
+            is_public=is_public,
             track=Track.create_oval(),
             created_at=now,
-            lobby_expires_at=now + LOBBY_TIMEOUT,
+            lobby_expires_at=now + LOBBY_TIMEOUT if not is_public else None,
+            matchmaking_ends_at=now + MATCHMAKING_TIMEOUT if is_public else None,
         )
 
         # Add creator as first racer
         self.game_state.racers[creator_id] = RacerState(player_id=creator_id)
-        self._log_event(f"Lobby created by {creator_id}")
 
-        # LOBBY PHASE: Wait for start_race update or timeout
-        try:
-            await workflow.wait_condition(
-                lambda: self.game_state.phase != RacePhase.LOBBY,
-                timeout=LOBBY_TIMEOUT,
-            )
-        except asyncio.TimeoutError:
-            # Lobby expired without starting
-            self._log_event("Lobby expired after 1 hour")
-            self.game_state.phase = RacePhase.FINISHED
-            return self.game_state
+        if is_public:
+            self._log_event(f"Public matchmaking started by {creator_id}")
+        else:
+            self._log_event(f"Lobby created by {creator_id}")
+
+        # Set initial search attributes
+        self._upsert_search_attributes()
+
+        if is_public:
+            # MATCHMAKING PHASE: Wait for all ready, lobby full, or timeout
+            try:
+                await workflow.wait_condition(
+                    self._should_start_matchmaking_race,
+                    timeout=MATCHMAKING_TIMEOUT,
+                )
+            except asyncio.TimeoutError:
+                # Timeout - start with whoever is here
+                self._log_event("Matchmaking timeout - starting race")
+
+            # Transition to PLANNING
+            self.game_state.phase = RacePhase.PLANNING
+            self.game_state.planning_ends_at = workflow.now() + PLANNING_DURATION
+            self._upsert_search_attributes()
+
+            if self.game_state.is_lobby_full:
+                self._log_event("Lobby full - starting race")
+            elif len(self.game_state.ready_players) == len(self.game_state.racers):
+                self._log_event("All players ready - starting race")
+
+        else:
+            # LOBBY PHASE: Wait for start_race update or timeout
+            try:
+                await workflow.wait_condition(
+                    lambda: self.game_state.phase != RacePhase.LOBBY,
+                    timeout=LOBBY_TIMEOUT,
+                )
+            except asyncio.TimeoutError:
+                # Lobby expired without starting
+                self._log_event("Lobby expired after 1 hour")
+                self.game_state.phase = RacePhase.FINISHED
+                self._upsert_search_attributes()
+                return self.game_state
 
         # PLANNING PHASE: 60-second countdown
         if self.game_state.phase == RacePhase.PLANNING:
@@ -183,6 +280,7 @@ class RaceWorkflow:
 
         # FINISHED
         self.game_state.phase = RacePhase.FINISHED
+        self._upsert_search_attributes()
         finished_at = workflow.now()
 
         # Store results via activity
@@ -190,11 +288,15 @@ class RaceWorkflow:
             "store_race_results",
             args=[
                 race_id,
-                self.started_at.isoformat() if self.started_at else None,
+                self.started_at.isoformat() if self.started_at else finished_at.isoformat(),
                 finished_at.isoformat(),
                 self.game_state.current_tick,
+                self.game_state.max_ticks,
+                self.game_state.laps_required,
+                self.game_state.is_public,
                 self.game_state.standings,
-                self._get_racer_stats(),
+                self._get_racer_states(),
+                self.game_state.events,
             ],
             start_to_close_timeout=timedelta(seconds=30),
         )
@@ -210,7 +312,7 @@ class RaceWorkflow:
 
     @workflow.update
     async def join_lobby(self, player_id: str) -> GameState:
-        """Add a player to the lobby.
+        """Add a player to the lobby or matchmaking.
 
         Args:
             player_id: Unique identifier provided by MCP client
@@ -220,7 +322,14 @@ class RaceWorkflow:
         """
         # Add the racer
         self.game_state.racers[player_id] = RacerState(player_id=player_id)
-        self._log_event(f"{player_id} joined the lobby")
+
+        if self.game_state.phase == RacePhase.MATCHMAKING:
+            self._log_event(f"{player_id} joined matchmaking")
+        else:
+            self._log_event(f"{player_id} joined the lobby")
+
+        # Update search attributes with new racer count
+        self._upsert_search_attributes()
 
         return self.game_state
 
@@ -229,7 +338,8 @@ class RaceWorkflow:
         """Validate join_lobby update before processing."""
         if self.game_state is None:
             raise ValueError("Game state not initialized")
-        if self.game_state.phase != RacePhase.LOBBY:
+        # Allow joining during LOBBY (private) or MATCHMAKING (public) phases
+        if self.game_state.phase not in (RacePhase.LOBBY, RacePhase.MATCHMAKING):
             raise ValueError(
                 f"Cannot join: race is in {self.game_state.phase.value} phase"
             )
@@ -244,7 +354,7 @@ class RaceWorkflow:
     async def start_race(self, player_id: str) -> GameState:
         """Start the race (transition from LOBBY to PLANNING).
 
-        Only the lobby creator can start the race.
+        Only the lobby creator can start the race (private lobbies only).
 
         Args:
             player_id: Must match creator_id
@@ -256,6 +366,9 @@ class RaceWorkflow:
         self.game_state.phase = RacePhase.PLANNING
         self.game_state.planning_ends_at = workflow.now() + PLANNING_DURATION
         self._log_event(f"{player_id} started the race - 60 second countdown")
+
+        # Update search attributes
+        self._upsert_search_attributes()
 
         return self.game_state
 
@@ -287,49 +400,57 @@ class RaceWorkflow:
             raise ValueError(f"Unknown player: {input_data.player_id}")
 
         racer = self.game_state.racers[input_data.player_id]
-
-        # Validate target_speed if present
-        if input_data.target_speed is not None:
-            if not (0 <= input_data.target_speed <= 5):  # Allow up to 5 for boost
-                raise ValueError(
-                    f"Invalid target_speed {input_data.target_speed} (must be 0-5)"
-                )
-            # Also validate against effective_max_speed
-            if input_data.target_speed > racer.effective_max_speed:
-                raise ValueError(
-                    f"Invalid target_speed (must be 0-{racer.effective_max_speed})"
-                )
-
-        # Apply input immediately
-        controls = racer.controls
         changes = []
 
-        if input_data.target_speed is not None:
-            controls.target_speed = input_data.target_speed
-            changes.append(f"target_speed={input_data.target_speed}")
+        # Handle ready input (only during MATCHMAKING phase)
+        if input_data.ready and self.game_state.phase == RacePhase.MATCHMAKING:
+            if input_data.player_id not in self.game_state.ready_players:
+                self.game_state.ready_players.add(input_data.player_id)
+                changes.append("READY")
 
-        # Handle drift input - valid in drift zone or on turn tile
-        if input_data.drift:
-            if racer.in_drift_zone or racer.on_turn_tile:
-                # Valid location - enable drift
-                controls.drift = True
-                if racer.on_turn_tile:
-                    changes.append("drift enabled (late, on turn)")
+        # Handle race controls (only during PLANNING or RACING)
+        if self.game_state.phase in (RacePhase.PLANNING, RacePhase.RACING):
+            # Validate target_speed if present
+            if input_data.target_speed is not None:
+                if not (0 <= input_data.target_speed <= 5):  # Allow up to 5 for boost
+                    raise ValueError(
+                        f"Invalid target_speed {input_data.target_speed} (must be 0-5)"
+                    )
+                # Also validate against effective_max_speed
+                if input_data.target_speed > racer.effective_max_speed:
+                    raise ValueError(
+                        f"Invalid target_speed (must be 0-{racer.effective_max_speed})"
+                    )
+
+            # Apply input immediately
+            controls = racer.controls
+
+            if input_data.target_speed is not None:
+                controls.target_speed = input_data.target_speed
+                changes.append(f"target_speed={input_data.target_speed}")
+
+            # Handle drift input - valid in drift zone or on turn tile
+            if input_data.drift:
+                if racer.in_drift_zone or racer.on_turn_tile:
+                    # Valid location - enable drift
+                    controls.drift = True
+                    if racer.on_turn_tile:
+                        changes.append("drift enabled (late, on turn)")
+                    else:
+                        changes.append("drift requested")
                 else:
-                    changes.append("drift requested")
-            else:
-                # Invalid location - crash for early drift
-                self._crash_racer(
-                    racer,
-                    racer.tile_index,
-                    racer.tile_index,
-                    "early drift (not in drift zone or turn)"
-                )
-                changes.append("CRASHED - early drift")
+                    # Invalid location - crash for early drift
+                    self._crash_racer(
+                        racer,
+                        racer.tile_index,
+                        racer.tile_index,
+                        "early drift (not in drift zone or turn)"
+                    )
+                    changes.append("CRASHED - early drift")
 
-        if input_data.use_item:
-            controls.use_item = True
-            changes.append("use item")
+            if input_data.use_item:
+                controls.use_item = True
+                changes.append("use item")
 
         if changes:
             self._log_event(f"{input_data.player_id}: {', '.join(changes)}")
@@ -341,7 +462,12 @@ class RaceWorkflow:
         """Validate apply_input update before processing."""
         if self.game_state is None:
             raise ValueError("Game state not initialized")
-        if self.game_state.phase not in (RacePhase.PLANNING, RacePhase.RACING):
+        # Allow input during MATCHMAKING (for ready), PLANNING, or RACING
+        if self.game_state.phase not in (
+            RacePhase.MATCHMAKING,
+            RacePhase.PLANNING,
+            RacePhase.RACING,
+        ):
             raise ValueError(
                 f"Cannot control: race is in {self.game_state.phase.value} phase"
             )
@@ -472,17 +598,23 @@ class RaceWorkflow:
                         f"{racer.player_id} passed item box but already has {racer.power_up.value} (tile {racer.tile_index})"
                     )
 
-    def _get_racer_stats(self) -> dict[str, dict]:
-        """Get stats for all racers for storing in database."""
+    def _get_racer_states(self) -> list[dict]:
+        """Get full state for all racers for storing in database."""
         if self.game_state is None:
-            return {}
+            return []
 
-        stats = {}
+        states = []
         for player_id, racer in self.game_state.racers.items():
-            stats[player_id] = {
+            states.append({
+                "player_id": player_id,
+                "tile_index": racer.tile_index,
+                "tile_subunit": racer.tile_subunit,
+                "speed": racer.speed,
+                "current_lap": racer.current_lap,
                 "finish_position": racer.finish_position,
                 "finish_tick": racer.finish_tick,
+                "finish_time": racer.finish_time,
                 "total_crashes": racer.total_crashes,
                 "items_used": racer.items_used,
-            }
-        return stats
+            })
+        return states

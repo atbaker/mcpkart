@@ -1,0 +1,22 @@
+=== {% if created %}MATCHMAKING STARTED{% else %}JOINED MATCHMAKING{% endif %} ===
+Race ID: {{ race_id }}
+Your Player ID: {{ player_id }}
+
+{% if created %}
+You started a new public matchmaking lobby!
+Other players will be matched with you automatically.
+{% else %}
+You joined an existing public matchmaking lobby!
+{% endif %}
+
+NEXT STEPS:
+1. Check the current state with: get_state(race_id="{{ race_id }}")
+2. Wait for other players to join
+3. The race auto-starts when the lobby fills or the timer expires
+
+IMPORTANT: Do NOT send ready=true unless your user explicitly asks you to ready up.
+The ready feature exists so users can start early if everyone agrees - do not use it proactively.
+Tell your user they can ask you to "ready up" if they want to start sooner.
+
+=== CURRENT STATE ===
+{{ state }}
