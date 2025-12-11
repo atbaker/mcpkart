@@ -288,6 +288,9 @@ async def test_input_update_changes_controls_during_planning(workflow_env: Workf
             task_queue="test-queue",
         )
 
+        # Ensure workflow is running before calling update
+        await handle.query(RaceWorkflow.get_state)
+
         # Start the race (puts us in PLANNING phase)
         await handle.execute_update(RaceWorkflow.start_race, "player1")
 
@@ -322,6 +325,9 @@ async def test_race_completes_when_max_ticks_reached(workflow_env: WorkflowEnvir
             id="test-complete-1",
             task_queue="test-queue",
         )
+
+        # Ensure workflow is running before calling update
+        await handle.query(RaceWorkflow.get_state)
 
         # Start the race
         await handle.execute_update(RaceWorkflow.start_race, "player1")

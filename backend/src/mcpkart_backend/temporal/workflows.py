@@ -245,6 +245,19 @@ class RaceWorkflow:
             elif len(self.game_state.ready_players) == len(self.game_state.racers):
                 self._log_event("All players ready - starting race")
 
+            # Spawn NPCs if needed (fire-and-forget)
+            human_count = len(self.game_state.racers)
+            npcs_needed = self.game_state.max_racers - human_count
+
+            if npcs_needed > 0:
+                self._log_event(f"Spawning {npcs_needed} NPC racers...")
+                # Use start_activity for fire-and-forget (returns handle, doesn't await)
+                workflow.start_activity(
+                    "spawn_npcs",
+                    args=[race_id, npcs_needed],
+                    start_to_close_timeout=timedelta(seconds=60),
+                )
+
         else:
             # LOBBY PHASE: Wait for start_race update or timeout
             try:
@@ -301,6 +314,14 @@ class RaceWorkflow:
             start_to_close_timeout=timedelta(seconds=30),
         )
 
+        # Clean up NPCs if public race
+        if is_public:
+            await workflow.execute_activity(
+                "cleanup_npcs",
+                args=[race_id],
+                start_to_close_timeout=timedelta(seconds=30),
+            )
+
         return self.game_state
 
     @workflow.query
@@ -338,8 +359,9 @@ class RaceWorkflow:
         """Validate join_lobby update before processing."""
         if self.game_state is None:
             raise ValueError("Game state not initialized")
-        # Allow joining during LOBBY (private) or MATCHMAKING (public) phases
-        if self.game_state.phase not in (RacePhase.LOBBY, RacePhase.MATCHMAKING):
+        # Allow joining during LOBBY, MATCHMAKING, or PLANNING phases
+        # PLANNING is included to allow NPCs (spawned at start of planning) time to join
+        if self.game_state.phase not in (RacePhase.LOBBY, RacePhase.MATCHMAKING, RacePhase.PLANNING):
             raise ValueError(
                 f"Cannot join: race is in {self.game_state.phase.value} phase"
             )
@@ -435,6 +457,7 @@ class RaceWorkflow:
                     # Valid location - enable drift
                     controls.drift = True
                     if racer.on_turn_tile:
+                        racer.drift_enabled = True  # Immediately enable drift on turn
                         changes.append("drift enabled (late, on turn)")
                     else:
                         changes.append("drift requested")

@@ -10,11 +10,15 @@ mcpkart/
 │   ├── src/mcpkart_backend/
 │   │   ├── api/       # FastAPI endpoints
 │   │   ├── temporal/  # Temporal workflows & activities
+│   │   ├── npc/       # NPC bot spawning
 │   │   ├── db/        # SQLAlchemy models
 │   │   └── models/    # Pydantic models
 │   └── tests/         # pytest tests
 ├── mcp_server/        # FastMCP server
 │   └── src/mcpkart_mcp/
+├── npcs/              # NPC bot Docker images
+│   └── vibe/          # Vibe CLI (Mistral) NPC
+├── frontend/          # SvelteKit spectator UI
 ├── research/          # Design documents
 └── scripts/           # Helper scripts
 ```

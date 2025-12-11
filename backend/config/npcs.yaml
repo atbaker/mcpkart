@@ -1,0 +1,53 @@
+# NPC Racer Configuration
+# Each NPC needs a unique name, token_username, and cli_tool
+
+npcs:
+  - name: "SpeedDemon"
+    token_username: "bot-racer-1"
+    cli_tool: "vibe"
+  - name: "SlowPoke"
+    token_username: "bot-racer-2"
+    cli_tool: "vibe"
+  - name: "DriftKing"
+    token_username: "bot-racer-3"
+    cli_tool: "vibe"
+  - name: "ItemHoarder"
+    token_username: "bot-racer-4"
+    cli_tool: "vibe"
+  - name: "Crasher"
+    token_username: "bot-racer-5"
+    cli_tool: "vibe"
+  - name: "Balanced"
+    token_username: "bot-racer-6"
+    cli_tool: "vibe"
+  - name: "TurboTurtle"
+    token_username: "bot-racer-7"
+    cli_tool: "vibe"
+
+# Spawner configuration
+spawner:
+  # MCP server URL - supports ${VAR:-default} syntax for env var expansion
+  mcp_server_url: "${MCP_SERVER_URL:-http://localhost:8080}"
+
+  # CLI tool configurations
+  # Each NPC's cli_tool field references a key here
+  cli_configs:
+    vibe:
+      command: "vibe"
+      args: ["--auto-approve"]
+    # Future CLI tools:
+    # codex:
+    #   command: "codex"
+    #   args: ["--auto-approve", "--quiet"]
+    # claude-code:
+    #   command: "claude"
+    #   args: ["--auto-approve", "-p"]
+
+  # Prompt template - {race_id} will be replaced
+  prompt_template: "Join MCP Kart race {race_id} and race immediately. Play to win!"
+
+  # Delay between spawning NPCs (milliseconds) to avoid thundering herd
+  spawn_delay_ms: 500
+
+  # Hard timeout for NPC processes (minutes) - race max is 10 minutes
+  process_timeout_minutes: 15

@@ -126,6 +126,27 @@ Built with SvelteKit 2 and Svelte 5 (runes syntax: `$state`, `$derived`, `$props
 - `Track`/`Tile`: 44-tile oval with turns and item boxes
 - `PlayerInput`: Control inputs (target_speed, drift, use_item)
 
+### NPC Bots (`backend/src/mcpkart_backend/npc/`, `npcs/`)
+
+NPC bots fill empty race slots with AI opponents during public matchmaking.
+
+**How it works:**
+1. When a race enters PLANNING phase, Temporal workflow calculates `npcs_needed = max_racers - human_count`
+2. `spawn_npcs` activity spawns Docker containers running the Vibe CLI (Mistral)
+3. Each NPC gets a unique token stored in Redis for authentication
+4. NPCs join via MCP server and race autonomously
+5. When race ends, `cleanup_npcs` activity stops the containers
+
+**Configuration:**
+- `MAX_RACERS` env var: Total racers per race (humans + NPCs). Default 8 for prod, use 4 for dev.
+- `MCP_SERVER_URL` env var: URL NPCs use to reach MCP server (use Docker service name: `http://mcp-server:8080/mcp`)
+- `MISTRAL_API_KEY` env var: API key for Vibe CLI
+- NPC definitions: `backend/config/npcs.toml`
+
+**Docker image:**
+- Built from `npcs/vibe/Dockerfile`
+- Build with: `docker build -t mcpkart-vibe:latest ./npcs/vibe/`
+
 ### Authentication
 
 MCP Kart uses GitHub OAuth via FastMCP's GitHubProvider:

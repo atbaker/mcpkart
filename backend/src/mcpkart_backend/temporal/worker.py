@@ -1,13 +1,27 @@
 """Temporal worker for MCP Kart."""
 
 import asyncio
+import logging
 import os
+import sys
+
+# Configure logging to stdout BEFORE any other imports
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s [%(name)s] %(message)s",
+    stream=sys.stdout,
+    force=True,  # Override any existing config
+)
+
+logger = logging.getLogger(__name__)
+logger.info("Worker module loading - logging configured")
 
 from temporalio.client import Client
 from temporalio.contrib.pydantic import pydantic_data_converter
 from temporalio.worker import Worker
 
 from mcpkart_backend.temporal.activities import store_race_results
+from mcpkart_backend.temporal.npc_activities import cleanup_npcs, spawn_npcs
 from mcpkart_backend.temporal.workflows import RaceWorkflow
 
 TEMPORAL_HOST = os.environ.get("TEMPORAL_HOST", "localhost:7233")
@@ -24,7 +38,7 @@ async def run_worker() -> None:
         client,
         task_queue=TASK_QUEUE,
         workflows=[RaceWorkflow],
-        activities=[store_race_results],
+        activities=[store_race_results, spawn_npcs, cleanup_npcs],
     )
 
     print("Worker started. Press Ctrl+C to stop.")

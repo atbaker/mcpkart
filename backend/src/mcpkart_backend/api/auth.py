@@ -1,5 +1,6 @@
 """GitHub token validation and user management, with NPC token support."""
 
+import json
 from dataclasses import dataclass
 from typing import Optional
 
@@ -8,12 +9,16 @@ from fastapi import Depends, Header, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from mcpkart_backend.api.cache import get_redis
 from mcpkart_backend.db.database import get_async_db
 from mcpkart_backend.db.models import User
 
+# Redis key prefix for NPC tokens (must match spawner.py)
+NPC_TOKEN_KEY_PREFIX = "npc:token"
+
 
 def is_npc_token(token: str) -> bool:
-    """Check if token is an NPC static token.
+    """Check if token is an NPC dynamic token.
 
     NPC tokens start with the prefix 'npc-'.
 
@@ -26,27 +31,69 @@ def is_npc_token(token: str) -> bool:
     return token.startswith("npc-")
 
 
-def extract_npc_username(token: str) -> Optional[str]:
-    """Extract username from NPC token.
+def parse_npc_token(token: str) -> Optional[tuple[str, str, str]]:
+    """Parse NPC token into components.
 
-    Token format: "npc-{username}:{secret}"
-    Example: "npc-bot-racer-1:abc123xyz789"
+    Token format: "npc-{username}:{race_id}:{secret}"
+    Example: "npc-bot-racer-1:race-abc123:xYz789..."
 
     Args:
         token: NPC token string
 
     Returns:
-        Username if token is valid NPC format, None otherwise
+        Tuple of (username, race_id, secret) if valid, None otherwise
     """
     if not is_npc_token(token):
         return None
 
     try:
         token_body = token[4:]  # Remove "npc-" prefix
-        if ":" not in token_body:
+        parts = token_body.split(":", 2)
+        if len(parts) != 3:
             return None
-        username, _ = token_body.split(":", 1)
-        return username if username else None
+        username, race_id, secret = parts
+        if not username or not race_id or not secret:
+            return None
+        return (username, race_id, secret)
+    except Exception:
+        return None
+
+
+async def validate_npc_token(token: str) -> Optional[tuple[str, str]]:
+    """Validate NPC token secret against Redis.
+
+    Token format: "npc-{username}:{race_id}:{secret}"
+
+    Args:
+        token: Full NPC token string
+
+    Returns:
+        Tuple of (username, race_id) if valid, None otherwise
+    """
+    parsed = parse_npc_token(token)
+    if parsed is None:
+        return None
+
+    username, race_id, secret = parsed
+
+    try:
+        # Lookup token in Redis
+        redis_client = await get_redis()
+        if redis_client is None:
+            # Redis not available - can't validate
+            return None
+
+        token_key = f"{NPC_TOKEN_KEY_PREFIX}:{username}:{race_id}"
+        token_data = await redis_client.get(token_key)
+
+        if not token_data:
+            return None
+
+        data = json.loads(token_data)
+        if data.get("secret") != secret:
+            return None
+
+        return (username, race_id)
     except Exception:
         return None
 
@@ -160,7 +207,7 @@ async def get_current_user(
 
     Supports:
     - GitHub OAuth tokens: Validated via GitHub API, stored in database
-    - NPC static tokens: Extracted directly, not stored in database
+    - NPC dynamic tokens: Validated against Redis, not stored in database
 
     Expects header: Authorization: Bearer <token>
 
@@ -181,11 +228,12 @@ async def get_current_user(
 
     token = authorization[7:]  # Remove "Bearer " prefix
 
-    # Handle NPC tokens (no GitHub API call, no database storage)
+    # Handle NPC tokens (validate against Redis)
     if is_npc_token(token):
-        username = extract_npc_username(token)
-        if not username:
-            raise HTTPException(status_code=401, detail="Invalid NPC token format")
+        result = await validate_npc_token(token)
+        if result is None:
+            raise HTTPException(status_code=401, detail="Invalid NPC token")
+        username, race_id = result
 
         return AuthenticatedUser(
             github_user_id=0,  # Sentinel value for NPCs (GitHub IDs start at 1)

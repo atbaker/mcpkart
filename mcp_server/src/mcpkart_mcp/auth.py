@@ -1,4 +1,4 @@
-"""Hybrid authentication for MCP Kart with GitHub OAuth and NPC static tokens."""
+"""Hybrid authentication for MCP Kart with GitHub OAuth and NPC dynamic tokens."""
 
 from fastmcp.server.auth.auth import AccessToken
 from fastmcp.server.auth.providers.github import GitHubProvider
@@ -10,27 +10,26 @@ NPC_TOKEN_PREFIX = "npc-"
 
 
 class HybridGitHubProvider(GitHubProvider):
-    """GitHub OAuth provider with NPC static token support.
+    """GitHub OAuth provider with NPC dynamic token support.
 
-    Extends GitHubProvider to add static token validation for NPCs
-    while preserving full OAuth functionality for human players.
+    Extends GitHubProvider to handle NPC tokens alongside OAuth.
+    NPC tokens are passed through to the backend for validation.
 
     Token types:
     - GitHub OAuth tokens: Standard opaque tokens from GitHub
-    - NPC tokens: Static format "npc-{username}:{secret}"
+    - NPC tokens: Dynamic format "npc-{username}:{race_id}:{secret}"
 
     The "npc-" prefix enables fast detection without parsing overhead.
+    Secret validation is delegated to the backend (which generates the tokens).
     """
 
-    def __init__(self, npc_tokens: dict[str, str] | None = None, **github_kwargs):
-        """Initialize with NPC tokens + GitHub OAuth config.
+    def __init__(self, **github_kwargs):
+        """Initialize with GitHub OAuth config.
 
         Args:
-            npc_tokens: Dict mapping NPC usernames to secrets
             **github_kwargs: All GitHubProvider initialization args
         """
         super().__init__(**github_kwargs)
-        self._npc_tokens = npc_tokens or {}
 
     async def verify_token(self, token: str) -> AccessToken | None:
         """Verify token - check NPC tokens first, then GitHub.
@@ -49,52 +48,53 @@ class HybridGitHubProvider(GitHubProvider):
         return await super().verify_token(token)
 
     async def _verify_npc_token(self, token: str) -> AccessToken | None:
-        """Validate static NPC token.
+        """Parse NPC token and pass through to backend for validation.
 
-        Token format: "npc-{username}:{secret}"
-        Example: "npc-bot-racer-1:abc123xyz789"
+        Token format: "npc-{username}:{race_id}:{secret}"
+        Example: "npc-bot-racer-1:race-abc123:xYz789..."
+
+        Secret validation is NOT done here - the backend validates
+        against Redis when it receives the request.
 
         Args:
             token: NPC token string
 
         Returns:
-            AccessToken if valid, None otherwise
+            AccessToken if format is valid, None otherwise
         """
         try:
             # Remove prefix
-            token_body = token[len(NPC_TOKEN_PREFIX) :]
+            token_body = token[len(NPC_TOKEN_PREFIX):]
 
-            # Parse username and secret
-            if ":" not in token_body:
-                logger.debug("Invalid NPC token format (missing colon)")
+            # Parse username, race_id, and secret
+            parts = token_body.split(":", 2)
+            if len(parts) < 2:
+                logger.debug("Invalid NPC token format (need at least username:race_id)")
                 return None
 
-            username, secret = token_body.split(":", 1)
+            username = parts[0]
+            race_id = parts[1] if len(parts) >= 2 else None
+            # Note: secret in parts[2] is NOT validated here - backend does that
 
-            # Validate against configured tokens
-            expected_secret = self._npc_tokens.get(username)
-            if expected_secret is None:
-                logger.debug("Unknown NPC username: %s", username)
+            if not username:
+                logger.debug("Invalid NPC token: empty username")
                 return None
 
-            if secret != expected_secret:
-                logger.debug("Invalid NPC secret for username: %s", username)
-                return None
-
-            # Return AccessToken with NPC-specific claims
+            # Return AccessToken - backend will validate the secret
             return AccessToken(
-                token=token,
+                token=token,  # Pass full token to backend
                 client_id=f"npc-{username}",
                 scopes=self.required_scopes or [],
-                expires_at=None,  # NPC tokens don't expire
+                expires_at=None,  # NPC tokens expire via Redis TTL
                 claims={
                     "sub": username,  # Subject (standard JWT claim)
                     "login": username,  # GitHub-style username claim
                     "npc": True,  # Flag to identify NPCs
-                    "token_type": "npc_static",
+                    "race_id": race_id,  # Race this token is scoped to
+                    "token_type": "npc_dynamic",
                 },
             )
 
         except Exception as e:
-            logger.debug("NPC token validation error: %s", e)
+            logger.debug("NPC token parsing error: %s", e)
             return None
