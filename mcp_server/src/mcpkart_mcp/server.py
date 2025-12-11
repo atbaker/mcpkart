@@ -8,10 +8,11 @@ from typing import Any, Optional
 import httpx
 from cryptography.fernet import Fernet
 from fastmcp import FastMCP
-from fastmcp.server.auth.providers.github import GitHubProvider
 from fastmcp.server.dependencies import get_access_token
 from jinja2 import Environment, FileSystemLoader
 from key_value.aio.stores.redis import RedisStore
+
+from mcpkart_mcp.auth import HybridGitHubProvider
 
 # Template setup
 TEMPLATE_DIR = Path(__file__).parent / "templates"
@@ -29,12 +30,48 @@ MCP_BASE_URL = os.environ.get("MCP_BASE_URL", "http://localhost:8080")
 JWT_SIGNING_KEY = os.environ.get("JWT_SIGNING_KEY")
 STORAGE_ENCRYPTION_KEY = os.environ.get("STORAGE_ENCRYPTION_KEY")
 
+# NPC authentication configuration
+NPC_TOKENS_ENV = os.environ.get("NPC_TOKENS", "")
 
-def create_auth_provider() -> Optional[GitHubProvider]:
-    """Create GitHubProvider if credentials are configured."""
-    if not GITHUB_CLIENT_ID or not GITHUB_CLIENT_SECRET:
-        print("WARNING: GitHub OAuth not configured - running without auth")
+
+def parse_npc_tokens(tokens_str: str) -> dict[str, str]:
+    """Parse NPC_TOKENS environment variable.
+
+    Format: "username1:secret1,username2:secret2"
+    Returns: {username: secret}
+    """
+    if not tokens_str:
+        return {}
+
+    tokens = {}
+    for pair in tokens_str.split(","):
+        pair = pair.strip()
+        if not pair:
+            continue
+        if ":" not in pair:
+            print(f"WARNING: Invalid NPC token format (skipping): {pair}")
+            continue
+        username, secret = pair.split(":", 1)
+        tokens[username.strip()] = secret.strip()
+
+    return tokens
+
+
+NPC_TOKENS = parse_npc_tokens(NPC_TOKENS_ENV)
+
+
+def create_auth_provider() -> Optional[HybridGitHubProvider]:
+    """Create HybridGitHubProvider with GitHub OAuth and NPC static tokens."""
+    # Check if we have any authentication configured
+    has_github = GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET
+    has_npc = bool(NPC_TOKENS)
+
+    if not has_github and not has_npc:
+        print("WARNING: No authentication configured (no GitHub OAuth or NPC tokens)")
         return None
+
+    if not has_github:
+        print("WARNING: GitHub OAuth not configured - NPC tokens only")
 
     # Configure client storage with optional encryption
     client_storage = None
@@ -49,14 +86,23 @@ def create_auth_provider() -> Optional[GitHubProvider]:
         # Use Redis without encryption (dev mode)
         client_storage = RedisStore(host=REDIS_HOST, port=REDIS_PORT)
 
-    return GitHubProvider(
-        client_id=GITHUB_CLIENT_ID,
-        client_secret=GITHUB_CLIENT_SECRET,
+    provider = HybridGitHubProvider(
+        npc_tokens=NPC_TOKENS,
+        client_id=GITHUB_CLIENT_ID or "npc-only-server",
+        client_secret=GITHUB_CLIENT_SECRET or "npc-only-server-secret",
         base_url=MCP_BASE_URL,
         jwt_signing_key=JWT_SIGNING_KEY,
         client_storage=client_storage,
-        required_scopes=["user", "read:org"],
+        required_scopes=["user", "read:org"] if has_github else [],
     )
+
+    if NPC_TOKENS:
+        npc_users = ", ".join(NPC_TOKENS.keys())
+        print(f"NPC authentication configured for: {npc_users}")
+    if has_github:
+        print("GitHub OAuth configured for human players")
+
+    return provider
 
 
 auth_provider = create_auth_provider()

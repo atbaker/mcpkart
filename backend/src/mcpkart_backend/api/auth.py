@@ -1,4 +1,4 @@
-"""GitHub token validation and user management."""
+"""GitHub token validation and user management, with NPC token support."""
 
 from dataclasses import dataclass
 from typing import Optional
@@ -10,6 +10,45 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from mcpkart_backend.db.database import get_async_db
 from mcpkart_backend.db.models import User
+
+
+def is_npc_token(token: str) -> bool:
+    """Check if token is an NPC static token.
+
+    NPC tokens start with the prefix 'npc-'.
+
+    Args:
+        token: Token string to check
+
+    Returns:
+        True if token is an NPC token, False otherwise
+    """
+    return token.startswith("npc-")
+
+
+def extract_npc_username(token: str) -> Optional[str]:
+    """Extract username from NPC token.
+
+    Token format: "npc-{username}:{secret}"
+    Example: "npc-bot-racer-1:abc123xyz789"
+
+    Args:
+        token: NPC token string
+
+    Returns:
+        Username if token is valid NPC format, None otherwise
+    """
+    if not is_npc_token(token):
+        return None
+
+    try:
+        token_body = token[4:]  # Remove "npc-" prefix
+        if ":" not in token_body:
+            return None
+        username, _ = token_body.split(":", 1)
+        return username if username else None
+    except Exception:
+        return None
 
 
 @dataclass
@@ -117,9 +156,13 @@ async def get_current_user(
     authorization: str = Header(..., description="Bearer token from MCP server"),
     db: AsyncSession = Depends(get_async_db),
 ) -> AuthenticatedUser:
-    """FastAPI dependency to get authenticated user from GitHub token.
+    """FastAPI dependency to get authenticated user from GitHub token or NPC token.
 
-    Expects header: Authorization: Bearer <github_access_token>
+    Supports:
+    - GitHub OAuth tokens: Validated via GitHub API, stored in database
+    - NPC static tokens: Extracted directly, not stored in database
+
+    Expects header: Authorization: Bearer <token>
 
     Args:
         authorization: Authorization header value
@@ -138,7 +181,20 @@ async def get_current_user(
 
     token = authorization[7:]  # Remove "Bearer " prefix
 
-    # Validate with GitHub API
+    # Handle NPC tokens (no GitHub API call, no database storage)
+    if is_npc_token(token):
+        username = extract_npc_username(token)
+        if not username:
+            raise HTTPException(status_code=401, detail="Invalid NPC token format")
+
+        return AuthenticatedUser(
+            github_user_id=0,  # Sentinel value for NPCs (GitHub IDs start at 1)
+            github_username=username,
+            email=None,
+            organizations=[],
+        )
+
+    # Handle GitHub OAuth tokens (existing flow)
     github_data = await validate_github_token(token)
 
     # Get or create user in database
