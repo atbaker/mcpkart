@@ -1,5 +1,4 @@
 services:
-  # Redis for OAuth token storage and caching
   redis:
     image: redis:7-alpine
     ports:
@@ -12,7 +11,6 @@ services:
       timeout: 3s
       retries: 5
 
-  # PostgreSQL database
   postgres:
     image: postgres:17-alpine
     environment:
@@ -29,13 +27,12 @@ services:
       timeout: 3s
       retries: 5
 
-  # Temporal Server (dev mode with built-in UI)
   temporal:
     image: temporalio/temporal:latest
     command: server start-dev --ip 0.0.0.0
     ports:
-      - "7233:7233"  # Temporal server
-      - "8233:8233"  # Temporal UI
+      - "7233:7233"
+      - "8233:8233"
     volumes:
       - temporal-data:/root/.config/temporalio
     healthcheck:
@@ -44,46 +41,81 @@ services:
       timeout: 5s
       retries: 10
 
-  # MCP Kart Backend API
+  temporal-init:
+    image: temporalio/temporal:latest
+    depends_on:
+      temporal:
+        condition: service_healthy
+    restart: "no"
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        temporal operator search-attribute create --address temporal:7233 --namespace default --name IsPublic --type Bool || true
+        temporal operator search-attribute create --address temporal:7233 --namespace default --name Phase --type Keyword || true
+        temporal operator search-attribute create --address temporal:7233 --namespace default --name RacerCount --type Int || true
+        echo "Search attributes registered"
+
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    environment:
-      - TEMPORAL_HOST=temporal:7233
-      - DATABASE_URL=postgresql+psycopg://mcpkart:mcpkart_dev@postgres:5432/mcpkart
-      - REDIS_URL=redis://redis:6379
+    env_file: ./backend/.env
     depends_on:
-      temporal:
-        condition: service_healthy
+      temporal-init:
+        condition: service_completed_successfully
       postgres:
         condition: service_healthy
       redis:
         condition: service_healthy
     volumes:
-      - backend-data:/app/data
+      - ./backend/src:/app/src:ro
 
-  # MCP Kart Temporal Worker
   worker:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    command: python -m mcpkart_backend.temporal.worker
-    environment:
-      - TEMPORAL_HOST=temporal:7233
-      - DATABASE_URL=postgresql+psycopg://mcpkart:mcpkart_dev@postgres:5432/mcpkart
+    command: uv run python -m mcpkart_backend.temporal.worker
+    env_file: ./backend/.env
     depends_on:
-      temporal:
-        condition: service_healthy
+      temporal-init:
+        condition: service_completed_successfully
       postgres:
         condition: service_healthy
     volumes:
-      - backend-data:/app/data
+      - ./backend/src:/app/src:ro
+
+  mcp-server:
+    build:
+      context: ./mcp_server
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    env_file: ./mcp_server/.env
+    depends_on:
+      backend:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./mcp_server/src:/app/src:ro
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    env_file: ./frontend/.env
+    depends_on:
+      backend:
+        condition: service_started
+    volumes:
+      - ./frontend/src:/app/src:ro
+      - ./frontend/static:/app/static:ro
 
 volumes:
   temporal-data:
-  backend-data:
   redis-data:
   postgres-data:

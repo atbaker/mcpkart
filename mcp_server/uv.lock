@@ -551,7 +551,6 @@ dependencies = [
     { name = "httpx" },
     { name = "jinja2" },
     { name = "py-key-value-aio", extra = ["redis"] },
-    { name = "python-dotenv" },
 ]
 
 [package.metadata]
@@ -561,7 +560,6 @@ requires-dist = [
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "jinja2", specifier = ">=3.1.0" },
     { name = "py-key-value-aio", extras = ["redis"], specifier = ">=0.2.8" },
-    { name = "python-dotenv", specifier = ">=1.2.1" },
 ]
 
 [[package]]

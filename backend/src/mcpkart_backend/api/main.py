@@ -1,10 +1,5 @@
 """FastAPI application for MCP Kart backend."""
 
-from dotenv import load_dotenv
-
-# Load .env from current working directory (backend/)
-load_dotenv()
-
 import asyncio
 import secrets
 from contextlib import asynccontextmanager

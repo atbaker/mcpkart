@@ -11,9 +11,8 @@ dependencies = [
     "httpx>=0.28.1",
     "psycopg[binary]>=3.3.2",
     "pydantic>=2.12.4",
-    "python-dotenv>=1.2.1",
     "redis>=7.1.0",
-    "sqlalchemy>=2.0.44",
+    "sqlalchemy[asyncio]>=2.0.44",
     "temporalio>=1.20.0",
     "uvicorn>=0.38.0",
 ]

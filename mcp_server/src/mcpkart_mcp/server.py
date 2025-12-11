@@ -1,10 +1,5 @@
 """MCP server for MCP Kart racing game with GitHub OAuth."""
 
-from dotenv import load_dotenv
-
-# Load .env from current working directory (mcp_server/)
-load_dotenv()
-
 import os
 from datetime import datetime, timezone
 from pathlib import Path
