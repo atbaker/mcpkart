@@ -53,6 +53,7 @@ async def store_race_results(
                 racer_result = RacerResult(
                     race_id=race_id,
                     player_id=racer["player_id"],
+                    mcp_client=racer.get("mcp_client", "unknown"),
                     finish_position=racer.get("finish_position"),
                     finish_tick=racer.get("finish_tick"),
                     total_crashes=racer.get("total_crashes", 0),

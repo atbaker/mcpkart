@@ -183,6 +183,7 @@ class RaceWorkflow:
         race_id: str,
         creator_id: str,
         is_public: bool = False,
+        mcp_client: str = "unknown",
         enable_search_attrs: bool = True,
     ) -> GameState:
         """Main race lifecycle.
@@ -194,6 +195,7 @@ class RaceWorkflow:
             race_id: Unique race identifier
             creator_id: Player ID of the first player (host for private, just first joiner for public)
             is_public: True for public matchmaking, False for private lobbies
+            mcp_client: MCP client name of the creator (e.g., "claude-code", "cursor")
             enable_search_attrs: Whether to update Temporal search attributes (disable for time-skipping tests)
         """
         self.enable_search_attrs = enable_search_attrs
@@ -214,7 +216,9 @@ class RaceWorkflow:
         )
 
         # Add creator as first racer
-        self.game_state.racers[creator_id] = RacerState(player_id=creator_id)
+        self.game_state.racers[creator_id] = RacerState(
+            player_id=creator_id, mcp_client=mcp_client
+        )
 
         if is_public:
             self._log_event(f"Public matchmaking started by {creator_id}")
@@ -332,17 +336,20 @@ class RaceWorkflow:
         return self.game_state
 
     @workflow.update
-    async def join_lobby(self, player_id: str) -> GameState:
+    async def join_lobby(self, player_id: str, mcp_client: str = "unknown") -> GameState:
         """Add a player to the lobby or matchmaking.
 
         Args:
             player_id: Unique identifier provided by MCP client
+            mcp_client: MCP client name (e.g., "claude-code", "cursor")
 
         Returns:
             Updated game state
         """
         # Add the racer
-        self.game_state.racers[player_id] = RacerState(player_id=player_id)
+        self.game_state.racers[player_id] = RacerState(
+            player_id=player_id, mcp_client=mcp_client
+        )
 
         if self.game_state.phase == RacePhase.MATCHMAKING:
             self._log_event(f"{player_id} joined matchmaking")
@@ -355,7 +362,7 @@ class RaceWorkflow:
         return self.game_state
 
     @join_lobby.validator
-    def _validate_join_lobby(self, player_id: str) -> None:
+    def _validate_join_lobby(self, player_id: str, mcp_client: str = "unknown") -> None:
         """Validate join_lobby update before processing."""
         if self.game_state is None:
             raise ValueError("Game state not initialized")
@@ -630,6 +637,7 @@ class RaceWorkflow:
         for player_id, racer in self.game_state.racers.items():
             states.append({
                 "player_id": player_id,
+                "mcp_client": racer.mcp_client,
                 "tile_index": racer.tile_index,
                 "tile_subunit": racer.tile_subunit,
                 "speed": racer.speed,

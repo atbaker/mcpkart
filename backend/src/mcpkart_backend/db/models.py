@@ -53,6 +53,7 @@ class RacerResult(Base):
         String(32), ForeignKey("race_results.race_id"), index=True
     )
     player_id: Mapped[str] = mapped_column(String(64), index=True)
+    mcp_client: Mapped[str] = mapped_column(String(64), default="unknown")
 
     # Performance
     finish_position: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)

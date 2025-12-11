@@ -7,7 +7,7 @@ from typing import Any, Optional
 
 import httpx
 from cryptography.fernet import Fernet
-from fastmcp import FastMCP
+from fastmcp import Context, FastMCP
 from fastmcp.server.dependencies import get_access_token
 from jinja2 import Environment, FileSystemLoader
 from key_value.aio.stores.redis import RedisStore
@@ -140,6 +140,24 @@ def _get_player_id() -> str:
 
     # Fallback to client_id if no username in claims
     return token.client_id or "anonymous"
+
+
+def _get_mcp_client(ctx: Context) -> str:
+    """Get the MCP client name from the session initialization params.
+
+    Returns the client name (e.g., "claude-code", "cursor") from the MCP
+    initialize handshake, or "unknown" if not available.
+    """
+    try:
+        if (
+            ctx.request_context
+            and ctx.request_context.session.client_params
+            and ctx.request_context.session.client_params.clientInfo
+        ):
+            return ctx.request_context.session.client_params.clientInfo.name
+    except Exception:
+        pass
+    return "unknown"
 
 
 def _get_auth_headers() -> dict[str, str]:
@@ -341,7 +359,7 @@ def _format_state_as_text(state: dict[str, Any], race_id: str, player_id: str) -
 
 
 @mcp.tool()
-async def create_lobby() -> str:
+async def create_lobby(ctx: Context) -> str:
     """Create a new race lobby and become the host.
 
     Returns:
@@ -349,11 +367,12 @@ async def create_lobby() -> str:
         As the lobby creator, you can start the race when ready.
     """
     player_id = _get_player_id()
+    mcp_client = _get_mcp_client(ctx)
 
     data = await _backend_request(
         "POST",
         "/lobbies",
-        json={"creator_id": player_id},
+        json={"creator_id": player_id, "mcp_client": mcp_client},
     )
 
     race_id = data["race_id"]
@@ -369,7 +388,7 @@ async def create_lobby() -> str:
 
 
 @mcp.tool()
-async def join_race(race_id: Optional[str] = None) -> str:
+async def join_race(ctx: Context, race_id: Optional[str] = None) -> str:
     """Join a race. Either join an existing lobby or create a new one.
 
     Args:
@@ -379,13 +398,14 @@ async def join_race(race_id: Optional[str] = None) -> str:
         Race information and current state.
     """
     player_id = _get_player_id()
+    mcp_client = _get_mcp_client(ctx)
 
     if race_id:
         # Join existing lobby
         data = await _backend_request(
             "POST",
             f"/lobbies/{race_id}/join",
-            json={"player_id": player_id},
+            json={"player_id": player_id, "mcp_client": mcp_client},
         )
         actual_race_id = race_id
         is_host = False
@@ -394,7 +414,7 @@ async def join_race(race_id: Optional[str] = None) -> str:
         data = await _backend_request(
             "POST",
             "/lobbies",
-            json={"creator_id": player_id},
+            json={"creator_id": player_id, "mcp_client": mcp_client},
         )
         actual_race_id = data.get("race_id")
         is_host = True
@@ -461,7 +481,7 @@ async def get_state(race_id: str) -> str:
 
 
 @mcp.tool()
-async def find_race() -> str:
+async def find_race(ctx: Context) -> str:
     """Join public matchmaking to race against other players.
 
     This finds an open public lobby or creates a new one. You'll be matched
@@ -478,11 +498,12 @@ async def find_race() -> str:
         Your assigned race_id and current matchmaking state.
     """
     player_id = _get_player_id()
+    mcp_client = _get_mcp_client(ctx)
 
     data = await _backend_request(
         "POST",
         "/matchmaking/join",
-        json={"player_id": player_id},
+        json={"player_id": player_id, "mcp_client": mcp_client},
     )
 
     race_id = data["race_id"]

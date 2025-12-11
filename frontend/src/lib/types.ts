@@ -9,6 +9,7 @@ export type PowerUp = 'mushroom' | 'banana' | 'shell';
 export interface Racer {
 	id: string;
 	name: string;
+	mcp_client: string;
 	tile_index: number;
 	tile_subunit: number;
 	speed: number;
@@ -39,6 +40,7 @@ export interface Standing {
 	position: number;
 	racer_id: string;
 	name: string;
+	mcp_client: string;
 	lap: number;
 	tile_index: number;
 	status: RacerStatus;

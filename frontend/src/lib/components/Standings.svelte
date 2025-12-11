@@ -97,9 +97,14 @@
 						class="w-6 h-6 rounded-full object-cover flex-shrink-0"
 						onerror={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
 					/>
-					<span class="text-white font-medium truncate">
-						{standing.name}
-					</span>
+					<div class="flex flex-col min-w-0">
+						<span class="text-white font-medium truncate">
+							{standing.name}
+						</span>
+						<span class="text-gray-500 text-xs truncate">
+							{standing.mcp_client}
+						</span>
+					</div>
 				</div>
 
 				{#if !isMatchmaking}

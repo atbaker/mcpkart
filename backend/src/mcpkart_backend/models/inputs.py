@@ -37,12 +37,14 @@ class CreateLobbyRequest(BaseModel):
     creator_id: str  # MCP client provides their own player ID
     max_racers: int = 8  # Optional, defaults to 8
     is_public: bool = False  # True for public matchmaking, False for private lobbies
+    mcp_client: str = "unknown"  # MCP client name (e.g., "claude-code", "cursor")
 
 
 class JoinLobbyRequest(BaseModel):
     """Request to join an existing lobby."""
 
     player_id: str  # MCP client provides their own player ID
+    mcp_client: str = "unknown"  # MCP client name (e.g., "claude-code", "cursor")
 
 
 class StartRaceRequest(BaseModel):
@@ -55,3 +57,4 @@ class JoinMatchmakingRequest(BaseModel):
     """Request to join public matchmaking."""
 
     player_id: str  # MCP client provides their own player ID
+    mcp_client: str = "unknown"  # MCP client name (e.g., "claude-code", "cursor")

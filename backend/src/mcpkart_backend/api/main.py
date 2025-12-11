@@ -99,10 +99,10 @@ async def create_lobby(
     # Determine initial phase based on public/private
     initial_phase = "MATCHMAKING" if request.is_public else "LOBBY"
 
-    # Start workflow with creator_id and is_public flag
+    # Start workflow with creator_id, is_public flag, and mcp_client
     handle = await client.start_workflow(
         RaceWorkflow.run,
-        args=[race_id, creator_id, request.is_public],
+        args=[race_id, creator_id, request.is_public, request.mcp_client],
         id=workflow_id,
         task_queue=TASK_QUEUE,
         search_attributes=TypedSearchAttributes([
@@ -140,7 +140,7 @@ async def join_lobby(
 
     Args:
         race_id: The race/lobby identifier
-        request: Contains player_id
+        request: Contains player_id and mcp_client
         user: Authenticated user from GitHub OAuth
 
     Returns:
@@ -156,7 +156,7 @@ async def join_lobby(
         handle = client.get_workflow_handle(workflow_id)
         state: GameState = await handle.execute_update(
             RaceWorkflow.join_lobby,
-            args=[player_id],
+            args=[player_id, request.mcp_client],
         )
         return {"state": state.model_dump()}
     except ValueError as e:
@@ -218,7 +218,7 @@ async def join_matchmaking(
     3. If not found, creates a new public lobby
 
     Args:
-        request: Contains player_id
+        request: Contains player_id and mcp_client
         user: Authenticated user from GitHub OAuth
 
     Returns:
@@ -241,7 +241,7 @@ async def join_matchmaking(
             try:
                 state: GameState = await handle.execute_update(
                     RaceWorkflow.join_lobby,
-                    args=[player_id],
+                    args=[player_id, request.mcp_client],
                 )
                 return {
                     "race_id": race_id,
@@ -273,7 +273,7 @@ async def join_matchmaking(
 
     handle = await client.start_workflow(
         RaceWorkflow.run,
-        args=[race_id, player_id, True],  # is_public=True
+        args=[race_id, player_id, True, request.mcp_client],  # is_public=True, mcp_client
         id=workflow_id,
         task_queue=TASK_QUEUE,
         search_attributes=TypedSearchAttributes([
@@ -402,6 +402,7 @@ def _transform_to_spectator_state(state: GameState) -> dict[str, Any]:
         racers_list.append({
             "id": player_id,
             "name": player_id,  # Use player_id as name for now
+            "mcp_client": racer.mcp_client,
             "tile_index": racer.tile_index,
             "tile_subunit": racer.tile_subunit,
             "speed": racer.speed,
@@ -433,6 +434,7 @@ def _transform_to_spectator_state(state: GameState) -> dict[str, Any]:
             "position": i + 1,
             "racer_id": r["id"],
             "name": r["name"],
+            "mcp_client": r["mcp_client"],
             "lap": r["current_lap"],
             "tile_index": r["tile_index"],
             "status": r["status"],
@@ -494,6 +496,7 @@ def _reconstruct_from_db(race_result: RaceResult, db) -> dict[str, Any]:
         racers_list.append({
             "id": rr.player_id,
             "name": rr.player_id,
+            "mcp_client": getattr(rr, "mcp_client", "unknown"),
             "tile_index": rr.tile_index,
             "tile_subunit": rr.tile_subunit,
             "speed": rr.speed,
@@ -519,6 +522,7 @@ def _reconstruct_from_db(race_result: RaceResult, db) -> dict[str, Any]:
                 "position": i + 1,
                 "racer_id": player_id,
                 "name": player_id,
+                "mcp_client": racer["mcp_client"],
                 "lap": racer["current_lap"],
                 "tile_index": racer["tile_index"],
                 "status": "finished",

@@ -44,6 +44,7 @@ class RacerState(BaseModel):
     """Complete state for a single racer."""
 
     player_id: str
+    mcp_client: str = "unknown"  # MCP client name (e.g., "claude-code", "cursor")
 
     # Position (each tile has 3 subunits)
     tile_index: int = 0
