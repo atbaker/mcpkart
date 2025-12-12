@@ -228,6 +228,35 @@ class TestNPCSpawner:
         assert "created_at" in data
 
     @pytest.mark.asyncio
+    async def test_spawn_stores_mcp_client_name_in_redis(self, mock_redis, mock_docker_client):
+        """Test that mcp_client_name from NPC config is stored in Redis token data."""
+        config = NPCConfig(
+            npcs=[
+                NPCDefinition(
+                    name="MistralBot",
+                    token_username="mistral-bot",
+                    cli_tool="vibe",
+                    mcp_client_name="Mistral Vibe",
+                ),
+            ],
+            spawner=SpawnerConfig(spawn_delay_ms=0),
+        )
+        with patch("docker.from_env", return_value=mock_docker_client):
+            spawner = NPCSpawner(config=config, redis_client=mock_redis)
+
+        await spawner.spawn_npcs("race-1", count=1)
+
+        # Find the token storage call
+        token_calls = [
+            call for call in mock_redis.set.call_args_list
+            if call[0][0].startswith(NPC_TOKEN_KEY_PREFIX)
+        ]
+        assert len(token_calls) == 1
+
+        data = json.loads(token_calls[0][0][1])
+        assert data["mcp_client_name"] == "Mistral Vibe"
+
+    @pytest.mark.asyncio
     async def test_spawn_uses_docker_network(self, spawner, mock_docker_client):
         """Test that containers are spawned on the mcpkart_default network."""
         await spawner.spawn_npcs("race-1", count=1)

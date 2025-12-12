@@ -83,7 +83,11 @@ MCP Client → FastMCP Server → FastAPI Backend → Temporal Workflow
 ### Data Flow
 1. **MCP Server** (`mcp_server/src/mcpkart_mcp/server.py`): Exposes three tools (`join_race`, `get_state`, `control`) to AI assistants via FastMCP. Transforms JSON game state to natural language using Jinja2 templates.
 
-2. **FastAPI Backend** (`backend/src/mcpkart_backend/api/main.py`): Thin HTTP layer that starts Temporal workflows and forwards queries/updates. Endpoints: POST `/races`, GET `/races/{id}/state`, POST `/races/{id}/input`.
+2. **FastAPI Backend** (`backend/src/mcpkart_backend/api/main.py`): Thin HTTP layer that starts Temporal workflows and forwards queries/updates. Key endpoints:
+   - POST `/races`: Create new race
+   - GET `/races/{id}/state`: Get current game state
+   - POST `/races/{id}/input`: Send player input
+   - GET `/races/{id}/replay`: Get tick-by-tick replay data for finished races
 
 3. **Temporal Workflow** (`backend/src/mcpkart_backend/temporal/workflows.py`): `RaceWorkflow` contains all game logic. Runs as a durable workflow with 1-second tick rate. Uses `@workflow.query` for state reads and `@workflow.update` for player inputs.
 
@@ -97,6 +101,7 @@ Built with SvelteKit 2 and Svelte 5 (runes syntax: `$state`, `$derived`, `$props
 - `TrackViewSVG.svelte`: SVG-based track visualization with 44-tile rectangular layout
 - `Standings.svelte`: Live race standings with position, lap count, speed, power-ups
 - `EventLog.svelte`: Scrolling list of race events
+- `ReplayControls.svelte`: Playback controls for rewatching finished races (play/pause, scrubber, speed)
 
 **Routes** (`routes/`):
 - `/races/[id]`: Race spectator page - polls `/api/races/{id}/spectator-state` every second
@@ -104,6 +109,7 @@ Built with SvelteKit 2 and Svelte 5 (runes syntax: `$state`, `$derived`, `$props
 **Types** (`lib/types.ts`):
 - `SpectatorState`: Complete race view (track, racers, standings, events)
 - `Racer`, `Track`, `Tile`, `Standing`: Game entity types
+- `ReplayData`, `RacerHistory`, `TickSnapshot`: Replay system types
 
 **Track Visualization**:
 - Rectangular track with 90-degree corners matching game model
@@ -146,6 +152,17 @@ NPC bots fill empty race slots with AI opponents during public matchmaking.
 **Docker image:**
 - Built from `npcs/vibe/Dockerfile`
 - Build with: `docker build -t mcpkart-vibe:latest ./npcs/vibe/`
+
+### CLI Utilities (`backend/src/mcpkart_backend/cli.py`)
+
+Database management commands:
+```bash
+# Reset race data (keeps user accounts)
+uv run python -m mcpkart_backend.cli reset-db
+
+# Reset all data including users
+uv run python -m mcpkart_backend.cli reset-db --include-users
+```
 
 ### Authentication
 

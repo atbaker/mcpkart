@@ -1,6 +1,7 @@
 """FastAPI application for MCP Kart backend."""
 
 import asyncio
+import os
 import secrets
 from contextlib import asynccontextmanager
 from typing import Any, Optional
@@ -35,6 +36,9 @@ from mcpkart_backend.temporal import RaceWorkflow
 from mcpkart_backend.temporal.search_attributes import IS_PUBLIC, PHASE, RACER_COUNT
 
 TASK_QUEUE = "mcpkart-task-queue"
+
+# Read MAX_RACERS once at startup (deterministic for all workflows)
+DEFAULT_MAX_RACERS = int(os.environ.get("MAX_RACERS", "8"))
 
 # Human-friendly race ID character set (excludes confusable chars: 0/O, 1/I/l)
 RACE_ID_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
@@ -99,10 +103,10 @@ async def create_lobby(
     # Determine initial phase based on public/private
     initial_phase = "MATCHMAKING" if request.is_public else "LOBBY"
 
-    # Start workflow with creator_id, is_public flag, and mcp_client
+    # Start workflow with creator_id, is_public flag, mcp_client, and max_racers
     handle = await client.start_workflow(
         RaceWorkflow.run,
-        args=[race_id, creator_id, request.is_public, request.mcp_client],
+        args=[race_id, creator_id, request.is_public, request.mcp_client, DEFAULT_MAX_RACERS],
         id=workflow_id,
         task_queue=TASK_QUEUE,
         search_attributes=TypedSearchAttributes([
@@ -602,6 +606,67 @@ async def get_spectator_state(race_id: str) -> dict[str, Any]:
         # Cache with long TTL for finished races (1 hour)
         await set_cached_spectator_state(race_id, spectator_state, ttl=3600)
         return spectator_state
+    finally:
+        db.close()
+
+
+@app.get("/api/races/{race_id}/replay")
+async def get_race_replay(race_id: str) -> dict[str, Any]:
+    """Get full race replay data for finished races.
+
+    Returns the tick-by-tick racer history along with events and metadata
+    needed to replay the race in the frontend.
+
+    Args:
+        race_id: The race identifier
+
+    Returns:
+        Replay data including racer_history, events, and race metadata
+    """
+    db = SessionLocal()
+    try:
+        race_result = db.query(RaceResult).filter(
+            RaceResult.race_id == race_id
+        ).first()
+
+        if not race_result:
+            raise HTTPException(status_code=404, detail=f"Race not found: {race_id}")
+
+        if not race_result.racer_history:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Replay data not available for race: {race_id}"
+            )
+
+        # Get racer info for display names and MCP clients
+        racer_results = db.query(RacerResult).filter(
+            RacerResult.race_id == race_id
+        ).all()
+
+        racers_info = {}
+        for rr in racer_results:
+            racers_info[rr.player_id] = {
+                "player_id": rr.player_id,
+                "mcp_client": getattr(rr, "mcp_client", "unknown"),
+                "finish_position": rr.finish_position,
+                "finish_time": rr.finish_time,
+                "total_crashes": rr.total_crashes,
+            }
+
+        return {
+            "race_id": race_result.race_id,
+            "total_ticks": race_result.total_ticks,
+            "max_ticks": race_result.max_ticks,
+            "laps_required": race_result.laps_required,
+            "is_public": race_result.is_public,
+            "started_at": race_result.started_at.isoformat() if race_result.started_at else None,
+            "finished_at": race_result.finished_at.isoformat() if race_result.finished_at else None,
+            "standings": race_result.standings,
+            "events": race_result.events or [],
+            "racers_info": racers_info,
+            "racer_history": race_result.racer_history,
+            "track": {"tiles": _get_standard_track_tiles()},
+        }
     finally:
         db.close()
 

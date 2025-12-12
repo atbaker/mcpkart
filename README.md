@@ -170,6 +170,7 @@ uv run pytest tests/ -v
 | POST | /races | Create a new race |
 | GET | /races/{race_id}/state | Get current game state |
 | POST | /races/{race_id}/input | Send player input |
+| GET | /races/{race_id}/replay | Get tick-by-tick replay data |
 
 ## Architecture
 

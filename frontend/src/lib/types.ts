@@ -64,3 +64,46 @@ export interface SpectatorState {
 	standings: Standing[];
 	events: string[];
 }
+
+// Replay types for viewing historical races
+
+export interface TickRacerSnapshot {
+	tile: number;
+	subunit: number;
+	speed: number;
+	lap: number;
+	status: RacerStatus;
+}
+
+export interface TickSnapshot {
+	tick: number;
+	racers: Record<string, TickRacerSnapshot>;
+}
+
+export interface RacerInfo {
+	player_id: string;
+	mcp_client: string;
+	finish_position: number | null;
+	finish_time: string | null;
+	total_crashes: number;
+}
+
+export interface RacerHistory {
+	tick_count: number;
+	ticks: TickSnapshot[];
+}
+
+export interface ReplayData {
+	race_id: string;
+	total_ticks: number;
+	max_ticks: number;
+	laps_required: number;
+	is_public: boolean;
+	started_at: string | null;
+	finished_at: string | null;
+	standings: string[];
+	events: string[];
+	racers_info: Record<string, RacerInfo>;
+	racer_history: RacerHistory;
+	track: Track;
+}

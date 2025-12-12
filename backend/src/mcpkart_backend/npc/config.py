@@ -15,6 +15,7 @@ class NPCDefinition(BaseModel):
     name: str
     token_username: str
     cli_tool: str = "vibe"  # Which CLI tool to use: vibe, codex, claude-code
+    mcp_client_name: Optional[str] = None  # Override MCP client name (e.g., "Mistral Vibe")
 
 
 class CLIConfig(BaseModel):

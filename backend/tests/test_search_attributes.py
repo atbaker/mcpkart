@@ -34,7 +34,7 @@ async def test_search_attributes_set_on_init(workflow_env_integration: WorkflowE
         # Start a private lobby with search attrs enabled
         handle = await workflow_env_integration.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-search-race", "player1", False, True],  # is_public=False, enable_search_attrs=True
+            args=["test-search-race", "player1", False, "test-client", 8, True],  # is_public=False, enable_search_attrs=True
             id="test-search-init-1",
             task_queue="test-queue",
         )
@@ -61,7 +61,7 @@ async def test_public_race_search_attributes(workflow_env_integration: WorkflowE
         # Start a public matchmaking race with search attrs enabled
         handle = await workflow_env_integration.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-public-race", "player1", True, True],  # is_public=True, enable_search_attrs=True
+            args=["test-public-race", "player1", True, "test-client", 8, True],  # is_public=True, enable_search_attrs=True
             id="test-search-public-1",
             task_queue="test-queue",
         )

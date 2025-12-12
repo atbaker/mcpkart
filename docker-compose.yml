@@ -73,6 +73,8 @@ services:
         condition: service_healthy
     volumes:
       - ./backend/src:/app/src:ro
+      - ./backend/alembic:/app/alembic:ro
+      - ./backend/config:/app/config:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
   worker:
@@ -91,6 +93,7 @@ services:
         condition: service_healthy
     volumes:
       - ./backend/src:/app/src:ro
+      - ./backend/config:/app/config:ro
       - /var/run/docker.sock:/var/run/docker.sock
 
   mcp-server:

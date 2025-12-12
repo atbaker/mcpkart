@@ -1,6 +1,5 @@
 """Game state model for MCP Kart."""
 
-import os
 from datetime import datetime
 from typing import Optional
 
@@ -22,7 +21,7 @@ class GameState(BaseModel):
     # Lobby/Phase fields
     phase: RacePhase = RacePhase.LOBBY
     creator_id: Optional[str] = None  # Player who created the lobby
-    max_racers: int = int(os.environ.get("MAX_RACERS", "8"))
+    max_racers: int = 8  # Default, overridden at workflow creation
     is_public: bool = False  # True for public matchmaking, False for private lobbies
 
     # Ready-up tracking for public matchmaking

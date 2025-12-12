@@ -89,6 +89,7 @@ class NPCSpawner:
         race_id: str,
         npc_name: str,
         cli_tool: str,
+        mcp_client_name: Optional[str] = None,
     ) -> str:
         """Generate and store a dynamic NPC token in Redis.
 
@@ -97,6 +98,7 @@ class NPCSpawner:
             race_id: Race this token is for
             npc_name: Display name of the NPC
             cli_tool: CLI tool being used (vibe, codex, claude-code)
+            mcp_client_name: Override for MCP client name (e.g., "Mistral Vibe")
 
         Returns:
             Full token string: npc-{username}:{race_id}:{secret}
@@ -112,6 +114,7 @@ class NPCSpawner:
             "race_id": race_id,
             "npc_name": npc_name,
             "cli_tool": cli_tool,
+            "mcp_client_name": mcp_client_name,
             "created_at": datetime.now(timezone.utc).isoformat(),
         }
 
@@ -216,6 +219,7 @@ class NPCSpawner:
             race_id=race_id,
             npc_name=npc_def.name,
             cli_tool=npc_def.cli_tool,
+            mcp_client_name=npc_def.mcp_client_name,
         )
 
         container_name = f"npc-{race_id[:8]}-{npc_def.name.lower()}"

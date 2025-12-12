@@ -1,11 +1,14 @@
 """MCP server for MCP Kart racing game with GitHub OAuth."""
 
+import json
+import logging
 import os
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
 import httpx
+import redis.asyncio as aioredis
 from cryptography.fernet import Fernet
 from fastmcp import Context, FastMCP
 from fastmcp.server.dependencies import get_access_token
@@ -13,6 +16,8 @@ from jinja2 import Environment, FileSystemLoader
 from key_value.aio.stores.redis import RedisStore
 
 from mcpkart_mcp.auth import HybridGitHubProvider
+
+logger = logging.getLogger(__name__)
 
 # Template setup
 TEMPLATE_DIR = Path(__file__).parent / "templates"
@@ -142,12 +147,80 @@ def _get_player_id() -> str:
     return token.client_id or "anonymous"
 
 
-def _get_mcp_client(ctx: Context) -> str:
-    """Get the MCP client name from the session initialization params.
+async def _get_npc_mcp_client() -> Optional[str]:
+    """Get custom MCP client name for NPC tokens from Redis.
 
-    Returns the client name (e.g., "claude-code", "cursor") from the MCP
-    initialize handshake, or "unknown" if not available.
+    Checks if the current token is an NPC token and looks up the
+    custom mcp_client_name stored in Redis during token generation.
+
+    Returns:
+        Custom MCP client name if NPC with override, None otherwise.
     """
+    token = get_access_token()
+    if token is None:
+        logger.debug("_get_npc_mcp_client: no access token")
+        return None
+
+    claims = token.claims or {}
+
+    # Check if this is an NPC token
+    if not claims.get("npc"):
+        logger.debug("_get_npc_mcp_client: not an NPC token (npc claim missing)")
+        return None
+
+    # Get username and race_id from claims to build Redis key
+    username = claims.get("login") or claims.get("sub")
+    race_id = claims.get("race_id")
+    logger.debug(f"_get_npc_mcp_client: NPC token - username={username}, race_id={race_id}")
+
+    if not username or not race_id:
+        logger.warning(
+            f"_get_npc_mcp_client: missing username or race_id in NPC claims: {claims}"
+        )
+        return None
+
+    # Look up token data in Redis
+    try:
+        redis_client = aioredis.Redis(host=REDIS_HOST, port=REDIS_PORT)
+        try:
+            token_key = f"npc:token:{username}:{race_id}"
+            logger.debug(f"_get_npc_mcp_client: looking up Redis key {token_key}")
+            token_data_raw = await redis_client.get(token_key)
+
+            if token_data_raw:
+                token_data = json.loads(token_data_raw)
+                mcp_client_name = token_data.get("mcp_client_name")
+                logger.info(
+                    f"_get_npc_mcp_client: found custom name '{mcp_client_name}' for {username}"
+                )
+                return mcp_client_name
+            else:
+                logger.warning(
+                    f"_get_npc_mcp_client: Redis key {token_key} not found"
+                )
+        finally:
+            await redis_client.aclose()
+    except Exception as e:
+        logger.error(f"_get_npc_mcp_client: Redis error: {e}")
+
+    return None
+
+
+async def _get_mcp_client(ctx: Context) -> str:
+    """Get the MCP client name from NPC token data or session params.
+
+    For NPC tokens, looks up custom mcp_client_name from Redis.
+    For regular users, returns the client name from MCP initialize handshake.
+
+    Returns:
+        Client name (e.g., "Mistral Vibe", "claude-code", "cursor") or "unknown".
+    """
+    # Check for NPC custom client name first
+    npc_client = await _get_npc_mcp_client()
+    if npc_client:
+        return npc_client
+
+    # Fall back to session client info for regular users
     try:
         if (
             ctx.request_context
@@ -367,7 +440,7 @@ async def create_lobby(ctx: Context) -> str:
         As the lobby creator, you can start the race when ready.
     """
     player_id = _get_player_id()
-    mcp_client = _get_mcp_client(ctx)
+    mcp_client = await _get_mcp_client(ctx)
 
     data = await _backend_request(
         "POST",
@@ -398,7 +471,7 @@ async def join_race(ctx: Context, race_id: Optional[str] = None) -> str:
         Race information and current state.
     """
     player_id = _get_player_id()
-    mcp_client = _get_mcp_client(ctx)
+    mcp_client = await _get_mcp_client(ctx)
 
     if race_id:
         # Join existing lobby
@@ -498,7 +571,7 @@ async def find_race(ctx: Context) -> str:
         Your assigned race_id and current matchmaking state.
     """
     player_id = _get_player_id()
-    mcp_client = _get_mcp_client(ctx)
+    mcp_client = await _get_mcp_client(ctx)
 
     data = await _backend_request(
         "POST",

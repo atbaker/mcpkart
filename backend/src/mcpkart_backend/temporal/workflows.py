@@ -6,8 +6,6 @@ from datetime import timedelta
 from temporalio import workflow
 
 with workflow.unsafe.imports_passed_through():
-    import pydantic_core.core_schema  # noqa: F401 - Pre-import for Temporal sandbox
-
     from mcpkart_backend.models import (
         GameState,
         PlayerInput,
@@ -42,12 +40,33 @@ class RaceWorkflow:
         self.game_state: GameState | None = None
         self.started_at = None
         self.enable_search_attrs = True
+        self.racer_history: list[dict] = []  # Tick-by-tick snapshots for replay
 
     def _log_event(self, message: str) -> None:
         """Add an event to the game log."""
         if self.game_state is not None:
             tick = self.game_state.current_tick
             self.game_state.events.append(f"[tick {tick}] {message}")
+
+    def _capture_tick_snapshot(self) -> None:
+        """Capture current racer positions for replay history."""
+        if self.game_state is None:
+            return
+
+        racers_snapshot = {}
+        for player_id, racer in self.game_state.racers.items():
+            racers_snapshot[player_id] = {
+                "tile": racer.tile_index,
+                "subunit": racer.tile_subunit,
+                "speed": racer.speed,
+                "lap": racer.current_lap,
+                "status": racer.status.value,
+            }
+
+        self.racer_history.append({
+            "tick": self.game_state.current_tick,
+            "racers": racers_snapshot,
+        })
 
     def _update_drift_state(self, racer: RacerState) -> None:
         """Update drift zone and drift enabled state based on position."""
@@ -184,6 +203,7 @@ class RaceWorkflow:
         creator_id: str,
         is_public: bool = False,
         mcp_client: str = "unknown",
+        max_racers: int = 8,
         enable_search_attrs: bool = True,
     ) -> GameState:
         """Main race lifecycle.
@@ -196,6 +216,7 @@ class RaceWorkflow:
             creator_id: Player ID of the first player (host for private, just first joiner for public)
             is_public: True for public matchmaking, False for private lobbies
             mcp_client: MCP client name of the creator (e.g., "claude-code", "cursor")
+            max_racers: Maximum number of racers allowed in the race
             enable_search_attrs: Whether to update Temporal search attributes (disable for time-skipping tests)
         """
         self.enable_search_attrs = enable_search_attrs
@@ -209,6 +230,7 @@ class RaceWorkflow:
             phase=initial_phase,
             creator_id=creator_id if not is_public else None,  # No "host" for public races
             is_public=is_public,
+            max_racers=max_racers,
             track=Track.create_oval(),
             created_at=now,
             lobby_expires_at=now + LOBBY_TIMEOUT if not is_public else None,
@@ -287,10 +309,16 @@ class RaceWorkflow:
             self.started_at = workflow.now()
             self._log_event("Race started!")
 
+            # Capture initial state (tick 0) before any movement
+            self._capture_tick_snapshot()
+
         # RACING PHASE: Main game loop
         while not self.game_state.is_finished:
             # Process tick
             self._process_tick()
+
+            # Capture snapshot after tick for replay
+            self._capture_tick_snapshot()
 
             # Wait for next tick (1 second)
             await asyncio.sleep(1)
@@ -299,6 +327,9 @@ class RaceWorkflow:
         self.game_state.phase = RacePhase.FINISHED
         self._upsert_search_attributes()
         finished_at = workflow.now()
+
+        # Build racer history payload for replay
+        racer_history_payload = {"tick_count": len(self.racer_history), "ticks": self.racer_history}
 
         # Store results via activity
         await workflow.execute_activity(
@@ -314,6 +345,7 @@ class RaceWorkflow:
                 self.game_state.standings,
                 self._get_racer_states(),
                 self.game_state.events,
+                racer_history_payload,
             ],
             start_to_close_timeout=timedelta(seconds=30),
         )

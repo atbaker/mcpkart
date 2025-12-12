@@ -19,6 +19,10 @@ logger.info("Worker module loading - logging configured")
 from temporalio.client import Client
 from temporalio.contrib.pydantic import pydantic_data_converter
 from temporalio.worker import Worker
+from temporalio.worker.workflow_sandbox import (
+    SandboxedWorkflowRunner,
+    SandboxRestrictions,
+)
 
 from mcpkart_backend.temporal.activities import store_race_results
 from mcpkart_backend.temporal.npc_activities import cleanup_npcs, spawn_npcs
@@ -34,11 +38,23 @@ async def run_worker() -> None:
     client = await Client.connect(TEMPORAL_HOST, data_converter=pydantic_data_converter)
 
     print(f"Starting worker on task queue: {TASK_QUEUE}")
+
+    # Configure sandbox with minimal module passthroughs
+    # These modules have native extensions that don't work well with sandbox re-import
+    sandbox = SandboxedWorkflowRunner(
+        restrictions=SandboxRestrictions.default.with_passthrough_modules(
+            "pydantic",
+            "pydantic_core",
+            "mcpkart_backend",
+        )
+    )
+
     worker = Worker(
         client,
         task_queue=TASK_QUEUE,
         workflows=[RaceWorkflow],
         activities=[store_race_results, spawn_npcs, cleanup_npcs],
+        workflow_runner=sandbox,
     )
 
     print("Worker started. Press Ctrl+C to stop.")

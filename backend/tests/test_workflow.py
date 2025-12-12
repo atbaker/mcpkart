@@ -35,7 +35,7 @@ async def test_race_initializes_correctly(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1", False, False],  # race_id, creator_id, is_public, enable_search_attrs
+            args=["test-race", "player1", False, "test-client", 8, False],  # race_id, creator_id, is_public, enable_search_attrs
             id="test-init-1",
             task_queue="test-queue",
         )
@@ -62,7 +62,7 @@ async def test_racer_accelerates_with_target_speed(workflow_env: WorkflowEnviron
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1", False, False],
+            args=["test-race", "player1", False, "test-client", 8, False],
             id="test-accel-1",
             task_queue="test-queue",
         )
@@ -97,7 +97,7 @@ async def test_crash_on_turn_at_high_speed_without_drift(workflow_env: WorkflowE
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1", False, False],
+            args=["test-race", "player1", False, "test-client", 8, False],
             id="test-crash-1",
             task_queue="test-queue",
         )
@@ -134,7 +134,7 @@ async def test_speed_1_safely_navigates_turn(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1", False, False],
+            args=["test-race", "player1", False, "test-client", 8, False],
             id="test-safe-turn-1",
             task_queue="test-queue",
         )
@@ -172,7 +172,7 @@ async def test_drift_enables_in_drift_zone(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1", False, False],
+            args=["test-race", "player1", False, "test-client", 8, False],
             id="test-drift-enable-1",
             task_queue="test-queue",
         )
@@ -215,7 +215,7 @@ async def test_item_pickup(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1", False, False],
+            args=["test-race", "player1", False, "test-client", 8, False],
             id="test-item-1",
             task_queue="test-queue",
         )
@@ -250,7 +250,7 @@ async def test_speed_boost_usage(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1", False, False],
+            args=["test-race", "player1", False, "test-client", 8, False],
             id="test-boost-1",
             task_queue="test-queue",
         )
@@ -283,7 +283,7 @@ async def test_input_update_changes_controls_during_planning(workflow_env: Workf
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1", False, False],
+            args=["test-race", "player1", False, "test-client", 8, False],
             id="test-input-1",
             task_queue="test-queue",
         )
@@ -321,7 +321,7 @@ async def test_race_completes_when_max_ticks_reached(workflow_env: WorkflowEnvir
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1", False, False],
+            args=["test-race", "player1", False, "test-client", 8, False],
             id="test-complete-1",
             task_queue="test-queue",
         )
@@ -351,7 +351,7 @@ async def test_braking_reduces_speed(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "player1", False, False],
+            args=["test-race", "player1", False, "test-client", 8, False],
             id="test-brake-1",
             task_queue="test-queue",
         )
@@ -398,7 +398,7 @@ async def test_join_lobby(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "host", False, False],
+            args=["test-race", "host", False, "test-client", 8, False],
             id="test-join-lobby-1",
             task_queue="test-queue",
         )
@@ -431,7 +431,7 @@ async def test_only_creator_can_start_race(workflow_env: WorkflowEnvironment):
     ):
         handle = await workflow_env.client.start_workflow(
             RaceWorkflow.run,
-            args=["test-race", "host", False, False],
+            args=["test-race", "host", False, "test-client", 8, False],
             id="test-start-auth-1",
             task_queue="test-queue",
         )
@@ -450,3 +450,138 @@ async def test_only_creator_can_start_race(workflow_env: WorkflowEnvironment):
         # host should be able to start
         state = await handle.execute_update(RaceWorkflow.start_race, "host")
         assert state.phase == RacePhase.PLANNING
+
+
+# Storage for captured activity data in replay tests
+_captured_data: dict = {}
+
+
+def make_capturing_activity():
+    """Create a fresh capturing activity for each test."""
+    @activity.defn(name="store_race_results")
+    async def mock_store_race_results_capturing(*args, **kwargs) -> None:
+        """Mock activity that captures racer_history for testing.
+
+        Activity args: race_id, started_at, finished_at, current_tick, max_ticks,
+        laps_required, is_public, standings, racer_states, events, racer_history
+        """
+        # racer_history is the 11th positional argument (index 10)
+        if len(args) >= 11:
+            _captured_data["racer_history"] = args[10]
+    return mock_store_race_results_capturing
+
+
+@pytest.mark.asyncio
+async def test_racer_history_captured_during_race(workflow_env: WorkflowEnvironment):
+    """Test that racer_history is populated with tick snapshots after race completes."""
+    _captured_data.clear()
+
+    async with Worker(
+        workflow_env.client,
+        task_queue="test-queue",
+        workflows=[RaceWorkflow],
+        activities=[make_capturing_activity()],
+    ):
+        handle = await workflow_env.client.start_workflow(
+            RaceWorkflow.run,
+            args=["test-race", "player1", False, "test-client", 8, False],
+            id="test-replay-history-1",
+            task_queue="test-queue",
+        )
+
+        # Start the race (transitions to PLANNING, then RACING)
+        await handle.execute_update(RaceWorkflow.start_race, "player1")
+
+        # Wait for race to complete (time-skipping handles the 600+ seconds)
+        result = await handle.result()
+
+        # Verify race completed
+        assert result.phase == RacePhase.FINISHED
+
+        # Verify racer_history was captured
+        racer_history = _captured_data.get("racer_history")
+        assert racer_history is not None
+        assert "tick_count" in racer_history
+        assert "ticks" in racer_history
+        assert racer_history["tick_count"] > 0
+        assert len(racer_history["ticks"]) == racer_history["tick_count"]
+
+
+@pytest.mark.asyncio
+async def test_racer_history_contains_all_racers(workflow_env: WorkflowEnvironment):
+    """Test that each tick snapshot contains entries for all racers."""
+    _captured_data.clear()
+
+    async with Worker(
+        workflow_env.client,
+        task_queue="test-queue",
+        workflows=[RaceWorkflow],
+        activities=[make_capturing_activity()],
+    ):
+        handle = await workflow_env.client.start_workflow(
+            RaceWorkflow.run,
+            args=["test-race", "player1", False, "test-client", 8, False],
+            id="test-replay-racers-1",
+            task_queue="test-queue",
+        )
+
+        # Add a second player
+        await handle.execute_update(RaceWorkflow.join_lobby, "player2")
+
+        # Start the race and wait for completion
+        await handle.execute_update(RaceWorkflow.start_race, "player1")
+        result = await handle.result()
+
+        assert result.phase == RacePhase.FINISHED
+
+        # Verify each tick snapshot has both racers
+        racer_history = _captured_data.get("racer_history")
+        assert racer_history is not None
+        for tick_snapshot in racer_history["ticks"]:
+            assert "tick" in tick_snapshot
+            assert "racers" in tick_snapshot
+            assert "player1" in tick_snapshot["racers"]
+            assert "player2" in tick_snapshot["racers"]
+
+            # Verify racer snapshot structure
+            for player_id, racer_data in tick_snapshot["racers"].items():
+                assert "tile" in racer_data
+                assert "subunit" in racer_data
+                assert "speed" in racer_data
+                assert "lap" in racer_data
+                assert "status" in racer_data
+
+
+@pytest.mark.asyncio
+async def test_racer_history_tick_order(workflow_env: WorkflowEnvironment):
+    """Test that ticks are sequential starting from 0."""
+    _captured_data.clear()
+
+    async with Worker(
+        workflow_env.client,
+        task_queue="test-queue",
+        workflows=[RaceWorkflow],
+        activities=[make_capturing_activity()],
+    ):
+        handle = await workflow_env.client.start_workflow(
+            RaceWorkflow.run,
+            args=["test-race", "player1", False, "test-client", 8, False],
+            id="test-replay-order-1",
+            task_queue="test-queue",
+        )
+
+        # Start the race and wait for completion
+        await handle.execute_update(RaceWorkflow.start_race, "player1")
+        result = await handle.result()
+
+        assert result.phase == RacePhase.FINISHED
+
+        # Verify ticks are sequential starting from 0
+        racer_history = _captured_data.get("racer_history")
+        assert racer_history is not None
+        ticks = racer_history["ticks"]
+        assert ticks[0]["tick"] == 0  # First snapshot is tick 0 (initial state)
+
+        # Verify sequential ordering
+        for i, tick_snapshot in enumerate(ticks):
+            assert tick_snapshot["tick"] == i

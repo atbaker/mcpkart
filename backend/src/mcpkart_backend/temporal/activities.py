@@ -19,6 +19,7 @@ async def store_race_results(
     standings: list[str],
     racer_states: list[dict],
     events: list[str],
+    racer_history: dict | None = None,
 ) -> None:
     """Store race results in the database.
 
@@ -33,6 +34,7 @@ async def store_race_results(
         standings: Ordered list of player_ids by finish position
         racer_states: List of racer state dicts with final positions
         events: Event log for the race
+        racer_history: Tick-by-tick racer positions for replay support
     """
     async with AsyncSessionLocal() as db:
         try:
@@ -46,6 +48,7 @@ async def store_race_results(
                 is_public=is_public,
                 standings=standings,
                 events=events,
+                racer_history=racer_history,
             )
             db.add(race_result)
 

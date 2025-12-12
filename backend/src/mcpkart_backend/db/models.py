@@ -24,8 +24,8 @@ class RaceResult(Base):
     race_id: Mapped[str] = mapped_column(String(32), unique=True, index=True)
 
     # Race metadata
-    started_at: Mapped[datetime] = mapped_column(DateTime)
-    finished_at: Mapped[datetime] = mapped_column(DateTime)
+    started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    finished_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
     total_ticks: Mapped[int] = mapped_column(Integer)
 
     # New fields for full spectator state reconstruction
@@ -36,6 +36,10 @@ class RaceResult(Base):
 
     # Results - JSON array of player_ids in finish order
     standings: Mapped[list[str]] = mapped_column(JSON)
+
+    # Tick-by-tick racer history for replay support
+    # Structure: {"tick_count": N, "ticks": [{"tick": 0, "racers": {...}}, ...]}
+    racer_history: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
 
     # Relationship to individual racer results
     racer_results: Mapped[list["RacerResult"]] = relationship(
@@ -90,7 +94,7 @@ class User(Base):
     organizations: Mapped[list[str]] = mapped_column(JSON, default=list)
 
     # Timestamps
-    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(
-        DateTime, server_default=func.now(), onupdate=func.now()
+        DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
