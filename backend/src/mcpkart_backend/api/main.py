@@ -38,7 +38,7 @@ from mcpkart_backend.temporal.search_attributes import IS_PUBLIC, PHASE, RACER_C
 TASK_QUEUE = "mcpkart-task-queue"
 
 # Read MAX_RACERS once at startup (deterministic for all workflows)
-DEFAULT_MAX_RACERS = int(os.environ.get("MAX_RACERS", "8"))
+MAX_RACERS = int(os.environ.get("MAX_RACERS", "8"))
 
 # Human-friendly race ID character set (excludes confusable chars: 0/O, 1/I/l)
 RACE_ID_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
@@ -86,7 +86,7 @@ async def create_lobby(
     """Create a new race lobby.
 
     Args:
-        request: Contains creator_id, optional max_racers, and is_public flag
+        request: Contains creator_id, is_public flag, and mcp_client
         user: Authenticated user from GitHub OAuth
 
     Returns:
@@ -106,7 +106,7 @@ async def create_lobby(
     # Start workflow with creator_id, is_public flag, mcp_client, and max_racers
     handle = await client.start_workflow(
         RaceWorkflow.run,
-        args=[race_id, creator_id, request.is_public, request.mcp_client, DEFAULT_MAX_RACERS],
+        args=[race_id, creator_id, request.is_public, request.mcp_client, MAX_RACERS],
         id=workflow_id,
         task_queue=TASK_QUEUE,
         search_attributes=TypedSearchAttributes([
@@ -277,7 +277,7 @@ async def join_matchmaking(
 
     handle = await client.start_workflow(
         RaceWorkflow.run,
-        args=[race_id, player_id, True, request.mcp_client],  # is_public=True, mcp_client
+        args=[race_id, player_id, True, request.mcp_client, MAX_RACERS],
         id=workflow_id,
         task_queue=TASK_QUEUE,
         search_attributes=TypedSearchAttributes([
