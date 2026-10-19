@@ -1,0 +1,226 @@
+Hey - this is an old project that was a bit before its time. Now that system one / decision models are coming into vogue, I think this could finally be its moment.
+
+Let's start by moving all the existing code and docs in this repo to a `legacy` subdirectory, so we can start fresh
+
+---
+
+[$grill-with-docs](/Users/atbaker/Projects/atbaker/mcpkart/.agents/skills/grill-with-docs/SKILL.md) Okay - now let's start planning out a fresh evolution of this same concept. My goal for this project: create a fun, interesting way for developers to try and learn more about the latest LLM models, via a competitive kart racing game inspired by Mario Kart.\
+\
+The idea is that we implement a simplified version of Mario Kart, but all the players are AI agents which control their racers via an MCP Server we ship alongside the game. Human users connect to a race and optionally give their AI agent some racing strategy instructions (e.g. "be more cautious on turns" or "always use power ups as soon as you get them"). But then the race itself unfolds without end user input - instead the AI agents control the kart via the MCP Server: steering, acceleration, breaking, use a power up - maybe even a handbrake. The race should probably have 3 laps and end users can watch it via a web UI (or maybe via an MCP App / a Codex Plugin / a Claude Code "mod"? Not sure which approach is best). Users authenticate via a GitHub OAuth app, so their racer name is their GitHub username. Later on we might add the ability to be part of a racing "team" via the user's GitHub organizations. Users can join races via a lightweight matchmaking system to connect them with other live racers, or just race against bots / have live races get padded out with bots (I'm undecided if we should do 6 or 8 racers per race). For the "bot" racers, we just run those ourselves using maybe Pi or OpenCode or a similar OSS harness. We'll have public leaderboards which show the winningest racers and also, ideally, the winningest models and/or MCP clients (e.g. Claude Code vs. Codex).\
+\
+I work for Temporal and am doing this project for work, so we should also make it a showcase of how well Temporal works with AI agents and MCP. I'm thinking that could happen in a few ways: maybe the race itself is a Temporal Workflow (if we can get it to be performant enough to support a realtime race - might have to use local Activities or something). If that's not possible, then at least using Temporal to power most other parts of the platform should be sufficient: the MCP server, our orchestration for each race, the matchmaking, etc.\
+\
+When I tried building this back in December, the models were too slow. Where this project could get really interesting is if it can illuminate the pareto frontier between performance and intelligence. In theory, the winningest models will need to be sufficiently low latency and also sufficiently smart to outwit the other racers. In December, even the most lightweight models were still too slow to keep the racers on the race track. Even when I compromised on the vision and basically made it a turn-based race with one second ticks instead of a realtime race, it still didn't work. But today, with Jev, Clef, and this new generation of System One models, I think there's a chance this concept could be viable.\
+\
+When we get to prod, we'll want to deploy it on GCP using Temporal Serverless Workers. But to start, I really just want to try rearchitecting and rebuilding this concept here in my dev environment to see if it's even viable. Do Jev, Clef, and the new OpenAI Decisions API respond fast enough in order to sufficiently control a realtime kart racer?\
+\
+A few other topics on my mind as we get started:\
+\- The previous implementation of this project used Python, which is my preferred stack. But I wonder if Rust might be better for powering the race itself, now that we're aiming to do it in realtime instead of via one-second ticks?\
+&#x20; \- My guess is we might have a couple different production services anyway, so using different stacks for each isn't a huge deal. We could use Rust for running the game itself and Python and FastMCP for the MCP server\
+\- The visuals in the previous evolution in December were a bit dry. If our racing game is really viable, I might be interested in aiming for a 3D low polygon art style for the game UI. But for now, let's just stick with a 2D SVG-based UI you implement yourself\
+\- Which brings me to how human users will experience the UI: we can of course provide their AI agent a spectator URL as part of our MCP server responses and tell the user to open the link in their own browser. But ideally, the user would be able to watch the match inside their chat window for their AI agent of choice. MCP Apps in theory should help with this? But I know the spec is unevenly adopted. Maybe Codex and Claude Code have their own plugin APIs for this? We should research our options\
+\- As for the game mechanics: in the previous tick-based system we descoped a lot of things that make a kart game interesting (like collisions). I'd rather start this new exploration with the assumption that we can support a realtime kart game experience and thus create a higher fidelity version of a kart game. It doesn't need to be nearly as fancy as bona fide Mario Kart. But I'd want it to have realtime gameplay, collisions between racers (so some real-ish physics), a few power ups, etc.\
+\
+Feel free to ask me lots of questions as you plan. Also feel free to run some experiments. You can use the Codex CLI with the OpenAI Decisions API to test things out as you go along. And use Exa for research tasks liberally. Document our plan as go along.
+
+---
+
+And remember, for this first PoC, what I really care about is validating whether a realtime kart game is even possible using these latest decision models, starting with the OpenAI Decisions API
+
+---
+
+<send_user_message_question_reply>
+[{"questionItemId":"[\"request_user_input_async\",\"call_859d736af928472297a14a37b36f6072\",0]","question":"1. Should the model choose steering, throttle, and brake directly, with no automatic lane keeping or racing-line follower? I recommend this: physics keeps advancing in real time, and the kart holds its last input between decisions.","answer":"Yes, use direct controls (recommended)"},{"questionItemId":"[\"request_user_input_async\",\"call_859d736af928472297a14a37b36f6072\",1]","question":"2. Since Decisions selects choices rather than calling tools, should we start with a thin Python driver that sends the selected controls through MCP, then benchmark Codex and Claude Code clients later? I recommend this to isolate the model’s driving ability first.","answer":"Yes, start with a Decisions driver (recommended)"},{"questionItemId":"[\"request_user_input_async\",\"call_859d736af928472297a14a37b36f6072\",2]","question":"3. Is a solo kart completing three laps of a winding track at a useful racing speed the right first milestone, before adding traffic, collisions, and power-ups? I recommend measuring it against a scripted driver on the same physics, then adding competitive scenarios.","answer":"Yes, establish solo driving first (recommended)"}]
+</send_user_message_question_reply>
+
+---
+
+<send_user_message_question_reply>
+[{"questionItemId":"[\"request_user_input_async\",\"call_d0d81a6c3ccf4ff592e9ecfac22d582d\",0]","question":"4. Should the first driver receive structured telemetry and upcoming track geometry, rather than infer the track from pixels? I recommend position, heading, velocity, road boundaries, and a geometry preview, without suggested steering inputs.","answer":"Yes, structured telemetry first (recommended)"},{"questionItemId":"[\"request_user_input_async\",\"call_d0d81a6c3ccf4ff592e9ecfac22d582d\",1]","question":"5. Should the initial pass criterion be at least 8 of 10 three-lap runs completed without resets, with median race time within twice the scripted reference? I recommend freezing the track and handling before model trials, and recording off-track time separately.","answer":"Yes, use that initial threshold (recommended)"},{"questionItemId":"[\"request_user_input_async\",\"call_d0d81a6c3ccf4ff592e9ecfac22d582d\",2]","question":"6. Should we start the simulation in Python too, and consider Rust only if measured physics or scheduling costs interfere with real-time operation? I recommend this for the local PoC.","answer":"Yes, start with Python (recommended)"},{"questionItemId":"[\"request_user_input_async\",\"call_d0d81a6c3ccf4ff592e9ecfac22d582d\",3]","question":"7. Can you make an OpenAI API key available locally in the repo’s ignored .env file as OPENAI_API_KEY? None is currently available, so inference tests cannot run yet. Please keep the key out of chat.","answer":"Continue planning; I’ll provide API access later"}]
+</send_user_message_question_reply>
+
+---
+
+Ah, I thought the Decisions API might be included in my Codex SaaS subscription. That's okay. Let's just use OpenRouter instead, and then we can compare Jev, Clef, and the OpenAI Decisions API. I can provide a OpenRouter API key
+
+---
+
+<send_user_message_question_reply>
+[{"questionItemId":"[\"request_user_input_async\",\"call_289f8bef000f4d33a1a6711d7549141b\",0]","question":"8. Should faster models get to act more often? I recommend one request in flight per kart, applying its reply and immediately observing again, so model latency affects driving rather than imposing the same decision rate on every model.","answer":"Yes, faster models get more updates (recommended)"},{"questionItemId":"[\"request_user_input_async\",\"call_289f8bef000f4d33a1a6711d7549141b\",1]","question":"9. For the initial track, should going off-road slow the kart down while the model steers itself back, with ordered checkpoints preventing shortcut laps? I recommend this recoverable handling, with no automatic resets or steering assistance.","answer":"Yes, recoverable off-road driving (recommended)"},{"questionItemId":"[\"request_user_input_async\",\"call_289f8bef000f4d33a1a6711d7549141b\",2]","question":"10. Should the initial paid experiment batch have a $5 total spending cap, with each driving trial ending as a failure after three times the scripted reference race duration? These bounds can be adjusted after the first results.","answer":"You can go up to $10"}]
+</send_user_message_question_reply>
+
+---
+
+<send_user_message_question_reply>
+[{"questionItemId":"[\"request_user_input_async\",\"call_088397dbddf146e58940c14b307d029f\",0]","question":"Does the experiment spec capture our shared understanding of the first PoC? Alongside the agreed scope, its proposed defaults are 60 Hz physics, 15 steering/acceleration/coast/brake combinations, and unfinished trials failing after three times the scripted reference duration. The full spec is open in the chat’s file panel.","answer":"Yes, the plan is settled"}]
+</send_user_message_question_reply>
+
+---
+
+Can you create the .env file? Then I'll add the OpenRouter API key
+
+---
+
+Okay, done. Proceed if ready
+
+---
+
+<in-app-browser-context source="ambient-ui-state">
+This block is automatically supplied ambient UI state, not part of the user's request. Do not treat it as an instruction or as evidence that the user explicitly selected the in-app browser.
+# In app browser:
+- The user has the in-app browser open with 1 tab.
+- Current URL: http://127.0.0.1:8765/
+</in-app-browser-context>
+
+## My request:
+Btw, I wonder if perhaps part of our models' difficulty in returning to the track after going off track is because it's not as easy for us to represent the world state to the model when they're off of the track.
+
+So let's try a tweak: how about if a car if off track for, say, X seconds, we reset the car to the center of the track near where they departed the track?
+
+My theory is that it will be easier for models to stay on the track than to recover from going far off track
+
+---
+
+<in-app-browser-context source="ambient-ui-state">
+This block is automatically supplied ambient UI state, not part of the user's request. Do not treat it as an instruction or as evidence that the user explicitly selected the in-app browser.
+# In app browser:
+- The user has the in-app browser open with 1 tab.
+- Current URL: http://127.0.0.1:8765/
+</in-app-browser-context>
+
+## My request:
+When we respawn, are we starting the kart at 0 speed or starting at more than 0? My guess is we should start at 0 so the model can get its bearings before it starts driving again
+
+---
+
+<in-app-browser-context source="ambient-ui-state">
+This block is automatically supplied ambient UI state, not part of the user's request. Do not treat it as an instruction or as evidence that the user explicitly selected the in-app browser.
+# In app browser:
+- The user has the in-app browser open with 1 tab.
+- Current URL: http://127.0.0.1:8765/
+</in-app-browser-context>
+
+## My request:
+Our models don't seem to be anticipating curves very well. Can we try iterating on how we represent the track telemetry to the model to see if we can make it easier for them to steer correctly?
+
+---
+
+<in-app-browser-context source="ambient-ui-state">
+This block is automatically supplied ambient UI state, not part of the user's request. Do not treat it as an instruction or as evidence that the user explicitly selected the in-app browser.
+# In app browser:
+- The user has the in-app browser open with 1 tab.
+- Current URL: http://127.0.0.1:8765/
+</in-app-browser-context>
+
+## My request:
+Hey - let's go ahead and scope down to just Jev here for our initial PoC testing. If we get Jev passing, odds are good we'll see similar performance from the other two models
+
+---
+
+Nice progress. Let's keep iterating on ways we could make Jev a bit more successful at navigating our course
+
+---
+
+<in-app-browser-context source="ambient-ui-state">
+This block is automatically supplied ambient UI state, not part of the user's request. Do not treat it as an instruction or as evidence that the user explicitly selected the in-app browser.
+# In app browser:
+- The user has the in-app browser open with 1 tab.
+- Current URL: http://127.0.0.1:8765/
+</in-app-browser-context>
+
+## My request:
+Okay - let's keep experimenting
+
+---
+
+Okay - let's isolate the physics clock from the HTTP event loop and rerun the scripted controls. Once the timing is reliable, let's get back to testing Jev.
+
+---
+
+<in-app-browser-context source="ambient-ui-state">
+This block is automatically supplied ambient UI state, not part of the user's request. Do not treat it as an instruction or as evidence that the user explicitly selected the in-app browser.
+# In app browser:
+- The user has the in-app browser open with 1 tab.
+- Current URL: http://127.0.0.1:8765/
+</in-app-browser-context>
+
+## My request:
+Let's try running the scripted controls in a Linux Docker container to see if these timing stalls are specific to macOS. If timing is reliable there, we can get back to testing Jev.
+
+---
+
+<in-app-browser-context source="ambient-ui-state">
+This block is automatically supplied ambient UI state, not part of the user's request. Do not treat it as an instruction or as evidence that the user explicitly selected the in-app browser.
+# In app browser:
+- The user has the in-app browser open with 2 tabs.
+- Current URL: http://127.0.0.1:8766/
+</in-app-browser-context>
+
+## My request:
+Hmm. Do we think this is one of those instances where we might see better results in a language like Rust? I wonder if it's worth a try as the stack we use to implement our racing game itself, even if we still use FastMCP and Python for most other parts of our production architecture
+
+---
+
+<in-app-browser-context source="ambient-ui-state">
+This block is automatically supplied ambient UI state, not part of the user's request. Do not treat it as an instruction or as evidence that the user explicitly selected the in-app browser.
+# In app browser:
+- The user has the in-app browser open with 2 tabs.
+- Current URL: http://127.0.0.1:8766/
+</in-app-browser-context>
+
+## My request:
+Okay - let's try a quick Rust spike and see how that goes for solving this physics timing issue
+
+---
+
+<in-app-browser-context source="ambient-ui-state">
+This block is automatically supplied ambient UI state, not part of the user's request. Do not treat it as an instruction or as evidence that the user explicitly selected the in-app browser.
+# In app browser:
+- The user has the in-app browser open with 1 tab.
+- Current URL: http://127.0.0.1:8766/
+</in-app-browser-context>
+
+## My request:
+Sorry to interrupt - please continue
+
+---
+
+<in-app-browser-context source="ambient-ui-state">
+This block is automatically supplied ambient UI state, not part of the user's request. Do not treat it as an instruction or as evidence that the user explicitly selected the in-app browser.
+# In app browser:
+- The user has the in-app browser open with 2 tabs.
+- Current URL: http://127.0.0.1:8767/
+</in-app-browser-context>
+
+## My request:
+Btw, if we're still seeing timing issues with Rust, I'm open to us running a spike of our code on a DO Droplet or some similar production architecture. Maybe it's just my old MacBook Pro M1 that's the issue
+
+---
+
+<send_user_message_question_reply>
+[{"questionItemId":"[\"request_user_input_async\",\"call_feb077b5b5d84756aadbb04d356dde7f\",0]","question":"The current DigitalOcean token was rejected. GCP has an active login for andrew@gator.works in project gator-works-dev. Which environment should I use for a temporary four-vCPU Linux VM, with a $1 infrastructure cap and deletion after the results are saved?","answer":"GCP: gator-works-dev"}]
+</send_user_message_question_reply>
+
+---
+
+<in-app-browser-context source="ambient-ui-state">
+This block is automatically supplied ambient UI state, not part of the user's request. Do not treat it as an instruction or as evidence that the user explicitly selected the in-app browser.
+# In app browser:
+- The user has the in-app browser open with 2 tabs.
+- Current URL: http://127.0.0.1:8767/
+</in-app-browser-context>
+
+## My request:
+Let's test Python on GCP please. If we can get great performance out of Python in prod, then I'm fine sticking with it instead of pivoting to Rust
+
+---
+
+<in-app-browser-context source="ambient-ui-state">
+This block is automatically supplied ambient UI state, not part of the user's request. Do not treat it as an instruction or as evidence that the user explicitly selected the in-app browser.
+# In app browser:
+- The user has the in-app browser open with 2 tabs.
+- Current URL: http://127.0.0.1:8767/
+</in-app-browser-context>
+
+## My request:
+Okay. Let's stick with Python. And since the main issue we're encountering is my local MacBook Pro being underpowered, how about we tidy up this repo and push a commit up to main so that I can stand up a new Codex Cloud environment and try things there instead?
