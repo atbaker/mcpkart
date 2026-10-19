@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "cap_usd": 10.0,
+  "max_requests": 25000,
+  "max_tokens": 250000000,
+  "requests": 9333,
+  "charged_usd": 0.9142456720000042,
+  "charged_tokens": 76037595,
+  "reported_cost_usd": 0.8652247440000016,
+  "uncertain_requests": 61,
+  "pending": {}
+}

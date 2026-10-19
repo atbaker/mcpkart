@@ -3,4 +3,23 @@
 
 # Environment files (allow .env.example)
 **/.env
+**/.env.*
 !**/.env.example
+
+# Local Python tooling and experiment recordings
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+artifacts/
+rust-race/target/
+
+# Local editor/tool installations and obsolete planning workspace
+.agents/
+.humanlayer/
+skills-lock.json
+.DS_Store
+*.egg-info/
+build/
+dist/

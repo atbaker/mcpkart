@@ -1,0 +1,30 @@
+{
+  "purpose": "Versioned inputs for credential-free clock validation; historical artifacts remain unmodified.",
+  "helpers": {
+    "run_controls.py.in": {
+      "historical_source": "artifacts/rust-clock-v1/run_controls.py",
+      "sha256": "74f95ddca241873be7e5ffc4abb7764f39e4b7172afa3a834d7c5eeb4e6cd699",
+      "promotion": "byte-for-byte copy"
+    },
+    "long_clock.py.in": {
+      "historical_source": "artifacts/rust-clock-v1/long_clock.py",
+      "sha256": "30ab79df60fac570c276a797a49174a361d98e0f9bb2dad95fc713bfb5c10dc6",
+      "promotion": "byte-for-byte copy"
+    },
+    "environment.py.in": {
+      "historical_source": "artifacts/rust-clock-v1/environment.py",
+      "sha256": "5c20fcf557c085323d499bc74a376097162b1c43c16c79d72b3aaf47e9d192b8",
+      "promotion": "byte-for-byte copy"
+    }
+  },
+  "reference": {
+    "historical_source": "artifacts/rescue-reference.json",
+    "historical_sha256": "64e6986030223733c8538b4cbc639313f001f2fd93a782dcbefcad9138cb67b7",
+    "sha256": "1ea8be1d7efeeb920a89d0f08a6a2fcf366e8dc2a2a0afc0e904506b6d0dbaa1",
+    "selection": {
+      "seed": 0,
+      "delay_s": 0
+    },
+    "promotion": "Retain original metadata and exactly one unchanged seed-zero zero-delay trial; discard other trials."
+  }
+}

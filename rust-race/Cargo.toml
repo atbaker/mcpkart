@@ -1,0 +1,17 @@
+[package]
+name = "mcpkart-race"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[[bin]]
+name = "mcpkart-race"
+path = "src/main.rs"
+
+[dependencies]
+serde = { version = "=1.0.228", features = ["derive"] }
+serde_json = { version = "=1.0.150", features = ["float_roundtrip"] }
+libc = "=0.2.186"
+
+[profile.release]
+codegen-units = 1

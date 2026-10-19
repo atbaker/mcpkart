@@ -1,0 +1,37 @@
+"""Record selected nonsecret Linux environment facts before timed trials."""
+import asyncio
+import importlib.metadata
+import json
+import os
+import platform
+import sys
+import time
+import urllib.request
+from pathlib import Path
+
+from mcpkart.bench import fingerprint
+
+directory = Path(__file__).parent
+with urllib.request.urlopen('http://127.0.0.1:8765/api/state') as response:
+    info = json.load(response)['runtime_info']
+assert platform.system() == 'Linux'
+assert info['process_pid'] > 1 and info['clock_mode'] == 'rust_fixed_step_wall_clock'
+assert not info['watchdog_enabled'] and not os.environ.get('OPENROUTER_API_KEY')
+assert not Path('/app/.env').exists()
+loop = asyncio.new_event_loop()
+try:
+    selector = type(loop._selector).__name__
+finally:
+    loop.close()
+report = {'platform':platform.platform(), 'python':sys.version, 'machine':platform.machine(),
+    'libc':platform.libc_ver(), 'cpu_count':os.cpu_count(),
+    'cpu_affinity':sorted(os.sched_getaffinity(0)), 'selector':selector,
+    'clock_info':{name:vars(time.get_clock_info(name)) for name in ('monotonic','process_time')},
+    'runtime_info':info, 'fingerprint':fingerprint(), 'cwd':os.getcwd(), 'python_executable':sys.executable,
+    'pid_namespace':os.readlink('/proc/self/ns/pid'), 'api_key_present':False,
+    'packages':{d.metadata['Name']:d.version for d in importlib.metadata.distributions()},
+    'cgroup':{name:Path('/sys/fs/cgroup',name).read_text() for name in
+        ('cpu.max','cpu.stat','memory.max','memory.current','memory.events','cpuset.cpus.effective')
+        if Path('/sys/fs/cgroup',name).exists()}}
+(directory/'linux-environment.json').write_text(json.dumps(report,indent=2)+'\n')
+print({k:report[k] for k in ('python','selector','cpu_count','runtime_info','fingerprint','api_key_present')})

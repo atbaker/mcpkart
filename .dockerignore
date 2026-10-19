@@ -1,0 +1,39 @@
+# Allowlist the build inputs. Secrets, recordings, history, and host tooling
+# never enter the build context, even when new root-level files are added.
+**
+!Dockerfile
+!.dockerignore
+!pyproject.toml
+!uv.lock
+!src/
+!src/**
+!scripts/
+!scripts/**
+!tests/
+!tests/**
+!rust-race/
+!rust-race/Cargo.toml
+!rust-race/Cargo.lock
+!rust-race/src/
+!rust-race/src/**
+
+# Keep local/generated files out of the otherwise allowed source trees too.
+**/.env
+**/.env.*
+**/.git
+**/.git/**
+**/.venv
+**/.venv/**
+**/artifacts
+**/artifacts/**
+**/legacy
+**/legacy/**
+**/__pycache__
+**/__pycache__/**
+**/*.py[cod]
+**/.pytest_cache
+**/.pytest_cache/**
+**/.ruff_cache
+**/.ruff_cache/**
+**/target
+**/target/**

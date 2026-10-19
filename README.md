@@ -1,187 +1,104 @@
 # MCP Kart
 
-A turn-based kart racing game played via MCP (Model Context Protocol), inspired by Mario Kart. AI assistants drive "racers" using MCP tools, following high-level directions from their human users.
+A Python experiment in autonomous kart racing: can low-latency decision models drive a kart in real time through MCP?
 
-## Project Structure
+Python physics runs continuously at 60 Hz in a separate worker process, independent of the HTTP/MCP event loop. Models select one of 15 steering/throttle/brake combinations through OpenRouter's Decisions API, and a driver submits those controls to a real MCP server. A browser spectator shows the live race and saved replays. After three continuous seconds off-road, a rescue returns the kart near its departure point, stopped and facing along the road. Rescues are counted; the race clock keeps running.
 
-```
-mcpkart/
-├── backend/           # FastAPI + Temporal backend
-│   ├── src/mcpkart_backend/
-│   │   ├── api/       # FastAPI endpoints
-│   │   ├── temporal/  # Temporal workflows & activities
-│   │   ├── npc/       # NPC bot spawning
-│   │   ├── db/        # SQLAlchemy models
-│   │   └── models/    # Pydantic models
-│   └── tests/         # pytest tests
-├── mcp_server/        # FastMCP server
-│   └── src/mcpkart_mcp/
-├── npcs/              # NPC bot Docker images
-│   └── vibe/          # Vibe CLI (Mistral) NPC
-├── frontend/          # SvelteKit spectator UI
-├── research/          # Design documents
-└── scripts/           # Helper scripts
+## Run locally
+
+Install [uv](https://docs.astral.sh/uv/), then:
+
+```sh
+uv sync --locked --dev
+.venv/bin/mcpkart-web
 ```
 
-## Quick Start
+Open [the spectator](http://127.0.0.1:8765/). The MCP endpoint is `http://127.0.0.1:8765/mcp`. Put your own `OPENROUTER_API_KEY` in the ignored `.env` file when running paid model experiments; see `.env.example`. The server and scripted reference do not require an API key.
 
-### Prerequisites
+In a second terminal, establish the offline reference and drive it through MCP:
 
-- Python 3.14+
-- [uv](https://github.com/astral-sh/uv) (Python package manager)
-- Docker (for Temporal, PostgreSQL, and Redis)
-- [ngrok](https://ngrok.com/) (for local GitHub OAuth testing)
-
-### 1. Start Infrastructure Services
-
-```bash
-# Start Temporal, PostgreSQL, and Redis
-docker compose up -d temporal postgres redis
-
-# Or start all services including backend
-docker compose up -d
+```sh
+uv run mcpkart-bench reference
+uv run mcpkart-bench live-reference --output artifacts/live-reference
 ```
 
-- Temporal UI: http://localhost:8233
-- PostgreSQL: localhost:5432
-- Redis: localhost:6379
+The viewer's archive selector and replay controls can play saved trials without changing a live race. Replay recordings, request evidence, routes, and the budget ledger live under the ignored `artifacts/` directory.
 
-### 2. Run Database Migrations
+## Codex Cloud
 
-```bash
-cd backend
-uv sync
-uv run alembic upgrade head
+Use `bash scripts/setup_cloud.sh` as the environment's install/setup command.
+It installs pinned Python tooling and locked dependencies, carries forward the
+dated budget snapshot only when no ledger exists, and starts no model calls.
+The [Cloud development guide](docs/cloud-development.md) covers setup, port
+forwarding, secrets, the free timing gate, and transferring the latest budget.
+Raw recordings and the local `.env` are not included in Git.
+
+## Model experiments
+
+```sh
+uv run mcpkart-bench latency --samples 20 --output artifacts/latency
+uv run mcpkart-bench screen --output artifacts/comparison
+uv run mcpkart-bench compare --trials 10 --output artifacts/comparison
+uv run python -m mcpkart.probe --output artifacts/telemetry-probes
+uv run mcpkart-bench screen --telemetry road_physics --output artifacts/road-physics-screen
 ```
 
-### 3. Start the Backend
+The initial PoC now focuses on **TypeSafe Jev 1.14**, and benchmark/probe commands default to Jev. Paid driving commands default to the `road_physics` observation profile; the scripted reference uses raw telemetry. Earlier OpenAI GPT-6 Luna Decisions and Cloudflare Clef recordings are preserved; those routes can be selected explicitly later with `--models`. A Jev pass will not count as validation of other models. Provider routes are saved before trials; automatic retries and fallbacks are disabled. Requests include coordinate conventions, handling limits, the selected kart/track telemetry, rescue state, and the next required checkpoint's geometry. No recommended controls or computed racing line are sent to a model.
 
-```bash
-cd backend
+`--telemetry` selects an observation profile. Original road/physics profiles and the newer compact and road-compass variants remain available; see `mcpkart-bench screen --help`. Physics profiles report cornering grip demand; compact profiles separate current pose from future bends. The [telemetry experiment](docs/experiments/0002-track-telemetry.md) and [Jev navigation iteration](docs/experiments/0003-jev-navigation.md) record comparisons and limits. Saved trial labels identify the profile; older recordings show that it was not recorded.
 
-# Start the worker (in one terminal)
-uv run python -m mcpkart_backend.temporal.worker
+Probes accept `--repeats` and `--fixtures` for repeated focused comparisons. `--control-language explicit` names the same physical wheel/pedal inputs in words. `--instruction-style` can test a next-input question or general driving guide separately; the default preserves the original instructions. These options affect model evidence and instructions, without adding a steering controller.
 
-# Start the API (in another terminal)
-uv run uvicorn mcpkart_backend.api.main:app --reload --port 8000
-```
+The [gate and history experiment](docs/experiments/0004-gates-and-observation-history.md) adds opt-in `road_navigation`, `compact_navigation` and `road_history` profiles. Navigation profiles distinguish the bearing toward a gate from its crossing-plane orientation and explain finite forward gate credit. History uses at most three actual preceding driver observations within one second, clearing motion samples after rescue while retaining the observed checkpoint-progress clock. Use `--navigation-record` with the probe command to reconstruct valid off-axis and missed-gate cases from a saved trial.
 
-API docs: http://localhost:8000/docs
+Use `--reset-after-seconds X` on reference and model commands to change the rescue timeout; `0` disables it. Keep the same setting for paired references and model runs, and use a new output directory when changing experiment configuration. Commands based on observations captured before a rescue are discarded, then the driver gets a fresh observation.
 
-### 4. Start the MCP Server
+The persistent `artifacts/budget.json` ledger enforces a $10 total cap and conservative reservations across reruns. Keep the ledger: deleting it would discard the spending history. A saved comparison refuses to resume if the implementation, simulation/rescue settings, paired baseline, pinned route or prompt configuration changes. Live reports retain the exact instructions and control descriptions. A comparison also verifies that the reference uses the same track and handling.
 
-```bash
-cd mcp_server
-uv sync
+When switching environments, transfer the latest ledger before paid work. The Cloud setup seeds a missing ledger from the dated spending snapshot, but it cannot synchronize balances across hosts. Run only one paid experiment at a time.
 
-# Without authentication (dev mode)
-uv run python -m mcpkart_mcp.server
+The current assisted experiment targets at least eight of ten three-lap runs, with median completed-run duration within twice the paired scripted reference. Reports distinguish total completions, completions without rescue, and rescue counts. Assisted completion does not establish the original unassisted-driving goal. Incomplete batches never count as passes. This experiment compares complete model/provider routes and driver observations; it does not isolate model compute latency or establish general model rankings.
 
-# With GitHub OAuth (see Authentication Setup below)
-GITHUB_CLIENT_ID=xxx GITHUB_CLIENT_SECRET=xxx MCP_BASE_URL=https://your-ngrok-url.ngrok.io \
-  uv run python -m mcpkart_mcp.server
-```
+Saved replay bodies are prepared before the race clock starts and remain playable during a live trial. Newly saved recordings appear between races. Downloading the current trial is available after it ends, keeping large JSON work outside the physics clock.
 
-## Authentication Setup
-
-MCP Kart uses GitHub OAuth for player authentication. Your GitHub username becomes your player identity in races.
-
-### Local Development with ngrok
-
-GitHub OAuth requires a public callback URL. Use ngrok for local development:
-
-1. **Install ngrok**: `brew install ngrok` or download from [ngrok.com](https://ngrok.com)
-
-2. **Start ngrok**:
-   ```bash
-   # Using the included config (update domains in ngrok.yml first)
-   ngrok start --config ~/.ngrok2/ngrok.yml,ngrok.yml --all
-
-   # Or for a quick single tunnel
-   ngrok http 8080
-   ```
-   Copy the HTTPS URL for the MCP server (e.g., `https://mcpkart.ngrok.io`)
-
-3. **Create a GitHub OAuth App**:
-   - Go to [GitHub Developer Settings](https://github.com/settings/developers)
-   - Click "New OAuth App"
-   - **Application name**: MCP Kart (Dev)
-   - **Homepage URL**: Your ngrok URL
-   - **Authorization callback URL**: `{ngrok-url}/auth/callback`
-   - Click "Register application"
-   - Generate a client secret
-
-4. **Configure environment**:
-   ```bash
-   cp .env.example .env
-   # Edit .env with your values:
-   # - GITHUB_CLIENT_ID
-   # - GITHUB_CLIENT_SECRET
-   # - MCP_BASE_URL (your ngrok URL)
-   # - JWT_SIGNING_KEY (generate with: openssl rand -base64 32)
-   ```
-
-5. **Start the MCP server** with the environment variables set
-
-### Security Keys
-
-Generate required keys:
-
-```bash
-# JWT signing key
-openssl rand -base64 32
-
-# Fernet encryption key (for production token storage)
-python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
-```
-
-## Game Rules
-
-- **Track**: 44-tile oval with 4 turns (tiles 7, 15, 29, 37)
-- **Laps**: 3 laps to finish
-- **Speed**: 0-3 (or 5 with speed boost)
-- **Turns**: Speed 1 always safe, speed 2 requires drift, speed 3+ crashes
-- **Drift zones**: 3 tiles before each turn (4-6, 12-14, 26-28, 34-36)
-- **Item boxes**: At tiles 11, 22, 33 - give speed boosts
-- **Tick rate**: 1 second per tick
-
-## MCP Tools
-
-The MCP server exposes three tools:
-
-1. **join_race()** - Join/create a new race
-2. **get_state(race_id)** - Get current game state
-3. **control(race_id, accelerate?, brake?, steer?, use_item?)** - Send input
+Trial timing includes bounded GC, slow-span and late-wake CPU diagnostics. `uv run mcpkart-web --watchdog` additionally enables a small diagnostic thread in the physics worker that records source-only event-loop stacks during long physics gaps; locals are never captured. Full bounded evidence is saved in recordings, while the live viewer receives summaries. Instrumentation does not change physics, timing limits or GC policy. The [gate/history experiment](docs/experiments/0004-gates-and-observation-history.md) records earlier timing failures. All three initial controls in the [process isolation experiment](docs/experiments/0005-isolated-physics-clock.md) passed, including an HTTP-parent pause. A Jev screen also had valid timing but reached only 63/120 gates. Later model-free diagnostics and a native sleeper control reproduced intermittent failures, so local paid testing is held again. Process-isolated asyncio pacing remains the default; `--clock-pacing native` retains the unqualified native sleeper experiment, and `--clock-backend event_loop` selects the earlier combined runtime. Reports retain runtime identity and worker provenance; interrupted collection preserves request evidence as an incomplete trial.
 
 ## Development
 
-### Running Tests
+For Linux, the [Docker/container guide](docs/linux-container.md) builds the same
+locked Python environment and publishes a separate spectator on port 8766.
+The first [Linux timing control](docs/experiments/0006-linux-docker-clock.md)
+completed three laps but exceeded the 100 ms maximum-lateness limit at
+104.26 ms. Jev remained held; Docker on this Mac has not established reliable timing.
 
-```bash
-cd backend
-uv sync --all-extras
-uv run pytest tests/ -v
+An optional [Rust race-worker spike](docs/experiments/0007-rust-race-engine.md)
+keeps Python/FastMCP and the existing physics contract. Build it with
+`cargo build --release --locked --manifest-path rust-race/Cargo.toml`, then
+start `uv run mcpkart-web --race-engine rust --port 8767`. The optional Docker
+target `rust` includes the release binary; the default image only builds Python.
+Parity passes, but control two exceeded the
+timing limit at 117.09 ms; Rust is experimental and local paid tests remain held.
+
+The [GCP follow-up](docs/experiments/0008-remote-linux-clock.md) passed all three
+Rust controls and the 170.1 s check, with at most 0.86 ms lateness. A subsequent
+Jev screen had valid timing (1.20 ms maximum), but reached only 50/120 gates
+with 24 rescues. The temporary VM was deleted after collection. Local timing
+remains unqualified.
+
+The [Python-on-GCP comparison](docs/experiments/0009-python-on-gcp.md) then passed
+the same three races and 170.1 s check using the existing isolated Python
+worker with asyncio pacing. Worst race lateness was 2.22 ms; the long check
+peaked at 3.28 ms with 1.30 ms p95. All races finished without rescues, and
+independent replay passed. **Keep Python for the current solo PoC**; Rust's
+lower jitter is not required for this workload. The temporary VM and boot disk
+were deleted. Further Jev experiments can use the qualified GCP environment;
+multiplayer capacity and Temporal integration remain to be measured.
+
+```sh
+uv run pytest
+uv run ruff check src tests scripts
 ```
 
-### API Endpoints
+The [approved experiment](docs/experiments/0001-realtime-driving.md), [broader project plan](docs/plan.md), [API research](docs/research/decision-models.md), and [glossary](GLOSSARY.md) record the design. Temporal orchestration, multiplayer collisions, items, authentication, and matchmaking follow the solo-driving evidence.
 
-| Method | Path | Description |
-|--------|------|-------------|
-| POST | /races | Create a new race |
-| GET | /races/{race_id}/state | Get current game state |
-| POST | /races/{race_id}/input | Send player input |
-
-## Architecture
-
-```
-MCP Client → FastMCP Server → FastAPI Backend → Temporal Workflow
-     ↑              ↓               ↓                  ↓
-     └──────────────┴───────────────┴──────────────────┘
-                    Game State (returned on every call)
-```
-
-The race workflow runs in Temporal, maintaining all game state. The FastAPI backend is a thin layer that starts workflows and forwards queries/updates. The MCP server wraps the HTTP API as MCP tools for AI assistants.
-
-## License
-
-MIT
+The previous implementation and documentation are preserved in [`legacy/`](legacy/README.md). Run that project's documented commands from `legacy/`.

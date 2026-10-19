@@ -1,0 +1,18 @@
+{
+  "name": "MCP Kart Python clock lab",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": "..",
+    "target": "python"
+  },
+  "workspaceFolder": "/app",
+  "workspaceMount": "source=${localWorkspaceFolder}/src,target=/app/src,type=bind,readonly",
+  "mounts": [
+    "source=${localWorkspaceFolder}/tests,target=/app/tests,type=bind,readonly",
+    "source=${localWorkspaceFolder}/artifacts,target=/app/artifacts,type=bind"
+  ],
+  "init": true,
+  "runArgs": ["--publish", "127.0.0.1:8766:8765"],
+  "overrideCommand": true,
+  "shutdownAction": "stopContainer"
+}

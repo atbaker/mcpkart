@@ -1,0 +1,22 @@
+"""Same-namespace bounded controller; always resume its verified HTTP parent."""
+import json
+import os
+import signal
+import subprocess
+import sys
+import urllib.request
+
+with urllib.request.urlopen('http://127.0.0.1:8765/api/state',timeout=3) as response:
+    info=json.load(response)['runtime_info']
+pid=info['process_pid']
+assert pid > 1 and pid != os.getpid()
+assert info['backend']=='process' and info['clock_mode']=='rust_fixed_step_wall_clock'
+assert not info['watchdog_enabled']
+try:
+    result=subprocess.run(['timeout','--signal=INT','--kill-after=15s','600s',sys.executable,
+        'scripts/validate_clock.py','--parent-pid',str(pid),'--clock-mode','rust_fixed_step_wall_clock',
+        '--reference','artifacts/rust-clock-v1/reference.json',
+        '--output','artifacts/rust-clock-v1/controls'])
+finally:
+    os.kill(pid,signal.SIGCONT)
+raise SystemExit(result.returncode)
