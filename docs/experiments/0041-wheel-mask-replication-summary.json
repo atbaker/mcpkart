@@ -1,0 +1,1951 @@
+{
+  "schema_version": 1,
+  "kind": "static_broader_wheel_factual_mask_replication",
+  "experiment": "0041",
+  "status": "complete_diagnostic_audit_and_provenance_passed_accuracy_advantage_not_replicated",
+  "scope": "Sixty fresh states, thirty natural and thirty synthetic, across two inherited wheel-only contexts: 120 strict raw-wheel diagnostic calls, with no accuracy/native/live gate.",
+  "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+  "provenance_files": [
+    {
+      "path": "artifacts/jev-wheel-mask-replication-v1/protocol.json",
+      "sha256": "9a63250d0f71cfdbfa2553ec2ca4bea5c46c976cad60faf99feac2665335ed1f"
+    },
+    {
+      "path": "docs/experiments/0041-wheel-mask-replication-prompts.json",
+      "sha256": "8505a23421cf2ddcca0504eb967214f57e07c1bb2bf06166b870f2ca0a9b5437"
+    },
+    {
+      "path": "artifacts/jev-wheel-mask-replication-v1/preflight-before-collection.json",
+      "sha256": "5a15e60bb58d1180b13877e0d2c3cbeb1fce7a40b5697039bb2ff8b55bdc9faf"
+    },
+    {
+      "path": "artifacts/jev-wheel-mask-replication-v1/preflight.json",
+      "sha256": "37420ada8b5edd98d8396801df4cda947d93e89008095eceb9a8eaf7fad4ff37"
+    },
+    {
+      "path": "artifacts/jev-wheel-mask-replication-v1/root-authorization.json",
+      "sha256": "bac93ea7b37789e0a8ced0291556fedfa8d83446a50a160d474b08b8da67633c"
+    },
+    {
+      "path": "artifacts/jev-wheel-mask-replication-v1/source-inheritance.json",
+      "sha256": "4ece91acc3b9e553931ee70db8f9e1d06169bf72d7fb28cf140565aceddee8dd"
+    },
+    {
+      "path": "artifacts/jev-wheel-mask-replication-v1/origin-manifest.json",
+      "sha256": "7e174c539b4617213c163127e8f246b56d9a2ddd92e291c6c31bd89d486190a3"
+    },
+    {
+      "path": "artifacts/jev-wheel-mask-replication-v1/prospective-design.md",
+      "sha256": "a668a4b9f41c18ee20038ed25a48da8f16a87009d4cb642c718b5496f2586870"
+    },
+    {
+      "path": "artifacts/jev-wheel-mask-replication-v1/case-design.json",
+      "sha256": "6adda812349e8582b62faceb4a542075180816bd65eb4531b3f04b977b614279"
+    },
+    {
+      "path": "artifacts/jev-wheel-mask-replication-v1/free-source-provenance-supplement.json",
+      "sha256": "0a40a2e845c3b82120cf77ed2a6a1e4d693248a3323b0dfa02e6311c7cf5a120"
+    },
+    {
+      "path": "artifacts/jev-wheel-mask-replication-v1/final-audit.json",
+      "sha256": "0dc3277a5fa83135834d9b6187c93dbbc4b1767cd660a225a11fcd3ac841b6ee"
+    },
+    {
+      "path": "artifacts/jev-wheel-mask-replication-v1/report/summary.json",
+      "sha256": "acf8963e1783f8ecfeb10765600151c47e38e2b1842ab48fd0cb39d3ae15f5aa"
+    },
+    {
+      "path": "artifacts/jev-wheel-mask-replication-v1/root-execution-confirmation.json",
+      "sha256": "581ac69cd6ac173c2a194a756cb93cf40e13f79caabb87880dc279b9ebfe3ac2"
+    },
+    {
+      "path": "artifacts/jev-wheel-mask-replication-v1/collection-provenance-verification.json",
+      "sha256": "591c622af473c7ab4a43a9faa3cd629df179c1cbdd4648af6321262f791219ec"
+    },
+    {
+      "path": "artifacts/jev-six-hour-v1/new-boot-clock-v1/qualification.json",
+      "sha256": "c2cf73dcd7b8fa3a7e5244666d4ae1db298eac423c5a563edf4dfdfa366f7ba5"
+    }
+  ],
+  "frozen_protocol": {
+    "schema_version": 1,
+    "kind": "static_wheel_mask_broader_replication",
+    "frozen": true,
+    "created_utc": "2026-10-20T04:50:15.900384+00:00",
+    "planned_calls": 120,
+    "cases": 60,
+    "repetitions": 1,
+    "contexts": [
+      "wheel_full",
+      "wheel_facts"
+    ],
+    "families": {
+      "natural": 30,
+      "synthetic": 30
+    },
+    "order_seed": 2026102041,
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "input_token_ceiling": 16384,
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61621,
+      "charged_usd": 7.589198865999872,
+      "charged_tokens": 245093612,
+      "reported_cost_usd": 7.531920401999857,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "shared_ledger": "artifacts/budget.json",
+    "limits": {
+      "max_requests": 75000,
+      "cap_usd": 10.0,
+      "max_tokens": 250000000
+    },
+    "route": {
+      "model": "typesafe/jev-1.14",
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "typesafe",
+      "provider_name": "TypeSafe",
+      "endpoint_name": "TypeSafe | typesafe/jev-1.14-20261014",
+      "price_input_per_token": 4.2e-08,
+      "price_output_per_token": 0.0,
+      "price_per_request": 0.0,
+      "context_length": 262144,
+      "max_prompt_tokens": 262144,
+      "max_completion_tokens": 235929
+    },
+    "automatic_retries": 0,
+    "provider_fallbacks": false,
+    "no_controls_applied": true,
+    "format_gate": null,
+    "accuracy_gate": null,
+    "stop_on_first_diagnostic_technical_error": true,
+    "stop_on_uncertain_accounting": true,
+    "collect_all_valid_answers": true,
+    "native_or_live_qualification": false,
+    "order_policy": "Familyfirstcontext/menu(full-normal,full-reverse,facts-normal,facts-reverse)countsnatural8,7,7,8;synthetic7,8,8,7.IndependentRandom(seed+101/+102/+201/+202)shufflefamilycases/cells;thenRandom(seed+301)shuffleall60units.Matchedmenus.Onepresentationpercase/context.",
+    "task_contract": "Bothwheel-onlyquestionsEXACT0040neutralized0034wheelquestion;physical-plus-eligibility/COMMON/DRIVING/IDs/menusunchanged.Fullandwheel-onlyfactmasksexact0040.Nocombinedheadarm.Natural30actualqueriesfromread-onlypre-registeredseed21/22stadium/CWfreeevidence;30freshwidesynthetic.Nohostflags/advice/labels.",
+    "client_contract": "Productiondecide/Budget/transport/decoderinheritedunchanged.OriginalALL120recordsremainokfalse/actionNone/errorinvalid_action/component_errorspedal:missing_answer/component_choiceswheel:rawchoice,pedal:None/alluncertaintyNone.NOpedal/nativeverdictsubstitution.",
+    "diagnostic_acceptance": "EXACTUNCHANGED0040strictvalidatorandFULLreportedledgerguard:exactrawwheel-onlyheadset/typedchoice/norefusal,HTTP200/raw-recorddatedidentity/ID/usageparity,full252313reservation,onePOSTandENTIREexpectedafterledgerdictcomparisonbeforeadoption.Noledgerrepair.Validwrongchoicesretained.",
+    "architecture_limitations": [
+      "COMMON retains unused pedal definitions absent from wheel_facts; context mismatch remains deliberate.",
+      "ALL120 expected production missing-pedal native rejections are separate from API/diagnostic technical failures.",
+      "Raw wheel probabilities are descriptive only, with no joint uncertainty/calibration claim.",
+      "Natural observations are related samples from four host-policy trajectories; no Jev race or native success occurs."
+    ],
+    "report_contract": "Wheelaccuracybycontext/family/magnitude/sign,pairedmaskgains/losses,latency,chargedtokens/cost,rawprobabilities/confidenceifreturned;120expectednativerejectionsSEPARATEfromtechnicalfailures.NOpedalaccuracy/native/livegateorpromotion.",
+    "followup_policy": "Purebroaderdiagnosticreplicationonly.Noresultadmitsnative/livequalificationorchangesDAMPEDbaseline/applicationdefaults.",
+    "session_deadline_utc": "2026-10-20T06:17:26+00:00",
+    "helper_sha256": {
+      "policy.py": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+      "case_bank.py": "f476ae6469cc69a37c9f7ff06504b0e0a510be13c51c050906a8318638ca0a23",
+      "cases.json": "d2f7ff4593346fac48b4c371ee5dc3ff4938cd12dcc8e120b8663e976f8d6f02",
+      "case-design.json": "6adda812349e8582b62faceb4a542075180816bd65eb4531b3f04b977b614279",
+      "policy_client.py": "898786cb0f9ffb9e0bbe83eaf1192b86ea4eece8bcbbd89f8c232403d9988d05",
+      "source-inheritance.json": "4ece91acc3b9e553931ee70db8f9e1d06169bf72d7fb28cf140565aceddee8dd",
+      "payloads.py": "6b84e4b30b99efb130e5fee1bb8148efdd8cddcc2498cd579359497aa0f42a26",
+      "prepare.py": "9c9c4167b7f43dc46ab9448cab43bf1b3f48a5a2f10c95ceaf78a21c52baaf2a",
+      "runner.py": "6abc54c8d1f6aac2929b5735b72a0a92be9e6c8ce6900c066850aebf25e100e3",
+      "audit.py": "88138ed799ff9763a318d806001f2ede5a57890ef33258feac0b7048ed0810ca",
+      "preflight.py": "0b37a30ba6be56bbcb6540a3b0c3f317ddf1f3b8fdc00257e5c01ffca6752d7f",
+      "preflight.json": "37420ada8b5edd98d8396801df4cda947d93e89008095eceb9a8eaf7fad4ff37",
+      "order.json": "9a5cfc2c75554d2e3674017612c73cff9bd455b7b16eb2cc2973a2688a514721",
+      "routes.json": "91ea685b76ffa546e84ce472556896972ca7f09912d00ec27e6d1cc7399a880f",
+      "DESIGN.md": "f593ca7df86c5bd77bd106626814e196980f581b59a7eef0b1802a872c21c34c",
+      "origin-manifest.json": "7e174c539b4617213c163127e8f246b56d9a2ddd92e291c6c31bd89d486190a3",
+      "free-source-provenance-supplement.json": "0a40a2e845c3b82120cf77ed2a6a1e4d693248a3323b0dfa02e6311c7cf5a120",
+      "prospective-design.md": "a668a4b9f41c18ee20038ed25a48da8f16a87009d4cb642c718b5496f2586870",
+      "protocol.draft.json": "1e9b6aeb8274bd606096ae7cd198574bec7a4dafcf5a357b330efee21372eeb1"
+    },
+    "frozen_utc": "2026-10-20T04:53:08.849144+00:00",
+    "prompt_archive": {
+      "path": "docs/experiments/0041-wheel-mask-replication-prompts.json",
+      "sha256": "8505a23421cf2ddcca0504eb967214f57e07c1bb2bf06166b870f2ca0a9b5437"
+    }
+  },
+  "root_authorization": {
+    "root_thread_id": "01a151b8-43d6-733b-a890-7368ae08c015",
+    "root_host_id": "durable",
+    "authorization_id": "41c0772e834b40e8a0d1cfb02d03dc87",
+    "authorized_utc": "2026-10-20T04:54:20.831708+00:00",
+    "protocol_sha256": "9a63250d0f71cfdbfa2553ec2ca4bea5c46c976cad60faf99feac2665335ed1f",
+    "independent_preflight_sha256": "5a15e60bb58d1180b13877e0d2c3cbeb1fce7a40b5697039bb2ff8b55bdc9faf",
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61621,
+      "charged_usd": 7.589198865999872,
+      "charged_tokens": 245093612,
+      "reported_cost_usd": 7.531920401999857,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "scope": "Only frozen 0041 120-call static wheel fact-mask replication on fresh60states. Preserve original missing-pedal native rejections; strict raw-wheel scoring only. No controls, retries, qualification or cap/deadline changes."
+  },
+  "independent_prospective_preflight": {
+    "passed": true,
+    "mode": "independent_wheel_mask_replication_preflight",
+    "checked_at_utc": "2026-10-20T04:53:15.327524+00:00",
+    "protocol_sha256": "9a63250d0f71cfdbfa2553ec2ca4bea5c46c976cad60faf99feac2665335ed1f",
+    "errors": [],
+    "independent_policy_cases": 60,
+    "static_policy_labels_checked": 60,
+    "exact_payloads_checked": 120,
+    "policy_client_source_review": {
+      "passed": true,
+      "subclass_own_attributes": [
+        "questions"
+      ],
+      "method_identity": {
+        "__init__": true,
+        "decide": true,
+        "_decode_components": true,
+        "_record_component_uncertainty": true,
+        "__aenter__": true,
+        "__aexit__": true,
+        "_safe_detail": true,
+        "_error_detail": true
+      },
+      "production_decide_source_sha256": "118e79f7d6107f6bd467967760fd1c2bd9ae0a8f828df9a1473cf621ccc82020",
+      "no_response_rewriting_or_host_selection": true
+    },
+    "free_policy_evidence_review": {
+      "passed": true,
+      "report_sha256": "8bced2364fd8e7d22f6b4043570d1bc1aa92572544030b360d564d2c5c188867",
+      "independent_review_sha256": "550c1597e49a3883aa26ec66a98dfdb113d7eb5d621aa147d3f27a8f71d816b2",
+      "audit_replay_counts": {
+        "physics_samples": 18878,
+        "request_observations": 1260,
+        "commands": 1256,
+        "candidate_grid_queries": 284,
+        "stationary_queries": 8
+      },
+      "recorded_free_ledger_requests": 61495,
+      "old_review_actual_ledger_requests": 61531,
+      "historical_review_field_caveat": "The old review_ledger_before object was shadowed by the final query observation; its immutable byte hash matches the recorded61531 ledger and is checked separately. Original files preserved.",
+      "limitation": "All saved free pedal guards are false; these host trajectories support nominal tracking only and confer no model/native/live qualification.",
+      "origin_manifest_review": {
+        "passed": true,
+        "manifest_sha256": "7e174c539b4617213c163127e8f246b56d9a2ddd92e291c6c31bd89d486190a3",
+        "origin_files_checked": 58,
+        "policy_copy_exact": true,
+        "old_frozen_cli_executed_by_audit": false
+      },
+      "provenance_supplement": {
+        "path": "artifacts/jev-wheel-mask-replication-v1/free-source-provenance-supplement.json",
+        "sha256": "0a40a2e845c3b82120cf77ed2a6a1e4d693248a3323b0dfa02e6311c7cf5a120",
+        "original_reporting_field_issue_disclosed": true
+      }
+    },
+    "model_requests": 0,
+    "no_controls_applied": true,
+    "shared_ledger_unchanged": true
+  },
+  "collection_writer": {
+    "session_id": "43b60ca4e3084712a62360a72ab159b2",
+    "pid": 7957,
+    "process_start_ticks": 464618,
+    "parent_pid": 7954,
+    "parent_start_ticks": 464618,
+    "boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+    "started_utc": "2026-10-20T04:54:25.356645+00:00",
+    "script_path": "/workspace/mcpkart/artifacts/jev-wheel-mask-replication-v1/runner.py",
+    "executable": "/workspace/mcpkart/.venv/bin/python",
+    "explicit_collect_flag": true
+  },
+  "planned_contexts": [
+    "wheel_full",
+    "wheel_facts"
+  ],
+  "planned_single_head_calls": 120,
+  "natural_geometry_coverage": {
+    "cases": 30,
+    "within2deg_of_wheel_threshold": 10,
+    "margin_cull_applied": false
+  },
+  "source_provenance_supplement": {
+    "schema_version": 1,
+    "kind": "independent_free_source_provenance_supplement",
+    "passed": true,
+    "checked_at_utc": "2026-10-20T04:49:31.859248+00:00",
+    "errors": [],
+    "original_evidence_unchanged": true,
+    "original_evidence_sha256": {
+      "artifacts/jev-native-recheck-v1/free-plan.json": "9df632821a4275bafb61061be7955494e4e404deeab291f689425d3895d5571f",
+      "artifacts/jev-native-recheck-v1/execution-start.json": "730758ba2bd0a1f5c104d7d7e819d4ae19d6cb6c5ce62e554a33cbb172f5e259",
+      "artifacts/jev-native-recheck-v1/rollout-report.json": "8bced2364fd8e7d22f6b4043570d1bc1aa92572544030b360d564d2c5c188867",
+      "artifacts/jev-native-recheck-v1/independent_rollout_review.py": "cd427412b274e26ac3a0455433d78637bcddf3f527340f54c0116caea81aecdb",
+      "artifacts/jev-native-recheck-v1/independent-rollout-review.json": "550c1597e49a3883aa26ec66a98dfdb113d7eb5d621aa147d3f27a8f71d816b2",
+      "artifacts/jev-literal-conditions-v1/root-execution-confirmation.json": "214d4a7b2543c8984049a2be03bf2dbf35e806598916ca0dd78a36bccfad4703"
+    },
+    "reporting_issue": {
+      "original_field": "review_ledger_before",
+      "cause": "The local variable current first held the review ledger and was later reused for each query observation; the output therefore contains the final query observation.",
+      "correct_immutable_evidence": "ledger_before bytes, review_ledger_before_sha256 and shared_ledger_unchanged were retained independently.",
+      "original_mislabeled_field_is_query_observation": true
+    },
+    "recorded_free_boundary": {
+      "budget_before": {
+        "schema_version": 1,
+        "cap_usd": 10.0,
+        "max_requests": 75000,
+        "max_tokens": 250000000,
+        "requests": 61495,
+        "charged_usd": 7.579654281999889,
+        "charged_tokens": 244855779,
+        "reported_cost_usd": 7.522375817999873,
+        "uncertain_requests": 69,
+        "pending": {}
+      },
+      "requests_before_after": 61495,
+      "ledger_before_after_sha256": "e999daf02580297cc162dfd9e6bcab5957cef2e96279c17f78eed430e0e0783c",
+      "bound_by": "free-plan, execution-start, rollout-report and prior independent proof"
+    },
+    "old_independent_review_boundary": {
+      "reconstructed_budget": {
+        "schema_version": 1,
+        "cap_usd": 10.0,
+        "max_requests": 75000,
+        "max_tokens": 250000000,
+        "requests": 61531,
+        "charged_usd": 7.582676265999883,
+        "charged_tokens": 244931180,
+        "reported_cost_usd": 7.525397801999867,
+        "uncertain_requests": 69,
+        "pending": {}
+      },
+      "requests": 61531,
+      "ledger_sha256": "25745888f42eeaecad9b6539b03ce37f825c8be34d1cb6e682235e732ea4a291",
+      "source_path": "artifacts/jev-literal-conditions-v1/root-execution-confirmation.json",
+      "source_sha256": "214d4a7b2543c8984049a2be03bf2dbf35e806598916ca0dd78a36bccfad4703",
+      "prior_review_unchanged_bytes": true
+    },
+    "current0041_review_boundary": {
+      "budget_before": {
+        "schema_version": 1,
+        "cap_usd": 10.0,
+        "max_requests": 75000,
+        "max_tokens": 250000000,
+        "requests": 61621,
+        "charged_usd": 7.589198865999872,
+        "charged_tokens": 245093612,
+        "reported_cost_usd": 7.531920401999857,
+        "uncertain_requests": 69,
+        "pending": {}
+      },
+      "requests": 61621,
+      "ledger_before_sha256": "789450f2951f3cfa83092d730b22e5b210bde7f312117079fb170ffbc97046bb",
+      "ledger_after_sha256": "789450f2951f3cfa83092d730b22e5b210bde7f312117079fb170ffbc97046bb",
+      "shared_ledger_unchanged": true
+    },
+    "new0041_independent_replay": {
+      "passed": true,
+      "report_sha256": "8bced2364fd8e7d22f6b4043570d1bc1aa92572544030b360d564d2c5c188867",
+      "independent_review_sha256": "550c1597e49a3883aa26ec66a98dfdb113d7eb5d621aa147d3f27a8f71d816b2",
+      "audit_replay_counts": {
+        "physics_samples": 18878,
+        "request_observations": 1260,
+        "commands": 1256,
+        "candidate_grid_queries": 284,
+        "stationary_queries": 8
+      },
+      "recorded_free_ledger_requests": 61495,
+      "old_review_actual_ledger_requests": 61531,
+      "historical_review_field_caveat": "The old review_ledger_before object was shadowed by the final query observation; its immutable byte hash matches the recorded61531 ledger and is checked separately. Original files preserved.",
+      "limitation": "All saved free pedal guards are false; these host trajectories support nominal tracking only and confer no model/native/live qualification."
+    },
+    "replay_function_source_sha256": "db2a3a2400609034a635e7cc2949ce0f63f79c7b62c4253d44d7bbc6fd506233",
+    "old_frozen_cli_executed": false,
+    "model_requests": 0,
+    "ledger_writes": 0,
+    "native_or_live_qualification": false
+  },
+  "final_audit": {
+    "passed": true,
+    "complete": true,
+    "checked_at_utc": "2026-10-20T04:55:31.471129+00:00",
+    "errors": [],
+    "warnings": [],
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "helper_checks": {
+      "policy.py": {
+        "expected": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+        "actual": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+        "matches": true
+      },
+      "case_bank.py": {
+        "expected": "f476ae6469cc69a37c9f7ff06504b0e0a510be13c51c050906a8318638ca0a23",
+        "actual": "f476ae6469cc69a37c9f7ff06504b0e0a510be13c51c050906a8318638ca0a23",
+        "matches": true
+      },
+      "cases.json": {
+        "expected": "d2f7ff4593346fac48b4c371ee5dc3ff4938cd12dcc8e120b8663e976f8d6f02",
+        "actual": "d2f7ff4593346fac48b4c371ee5dc3ff4938cd12dcc8e120b8663e976f8d6f02",
+        "matches": true
+      },
+      "case-design.json": {
+        "expected": "6adda812349e8582b62faceb4a542075180816bd65eb4531b3f04b977b614279",
+        "actual": "6adda812349e8582b62faceb4a542075180816bd65eb4531b3f04b977b614279",
+        "matches": true
+      },
+      "policy_client.py": {
+        "expected": "898786cb0f9ffb9e0bbe83eaf1192b86ea4eece8bcbbd89f8c232403d9988d05",
+        "actual": "898786cb0f9ffb9e0bbe83eaf1192b86ea4eece8bcbbd89f8c232403d9988d05",
+        "matches": true
+      },
+      "source-inheritance.json": {
+        "expected": "4ece91acc3b9e553931ee70db8f9e1d06169bf72d7fb28cf140565aceddee8dd",
+        "actual": "4ece91acc3b9e553931ee70db8f9e1d06169bf72d7fb28cf140565aceddee8dd",
+        "matches": true
+      },
+      "payloads.py": {
+        "expected": "6b84e4b30b99efb130e5fee1bb8148efdd8cddcc2498cd579359497aa0f42a26",
+        "actual": "6b84e4b30b99efb130e5fee1bb8148efdd8cddcc2498cd579359497aa0f42a26",
+        "matches": true
+      },
+      "prepare.py": {
+        "expected": "9c9c4167b7f43dc46ab9448cab43bf1b3f48a5a2f10c95ceaf78a21c52baaf2a",
+        "actual": "9c9c4167b7f43dc46ab9448cab43bf1b3f48a5a2f10c95ceaf78a21c52baaf2a",
+        "matches": true
+      },
+      "runner.py": {
+        "expected": "6abc54c8d1f6aac2929b5735b72a0a92be9e6c8ce6900c066850aebf25e100e3",
+        "actual": "6abc54c8d1f6aac2929b5735b72a0a92be9e6c8ce6900c066850aebf25e100e3",
+        "matches": true
+      },
+      "audit.py": {
+        "expected": "88138ed799ff9763a318d806001f2ede5a57890ef33258feac0b7048ed0810ca",
+        "actual": "88138ed799ff9763a318d806001f2ede5a57890ef33258feac0b7048ed0810ca",
+        "matches": true
+      },
+      "preflight.py": {
+        "expected": "0b37a30ba6be56bbcb6540a3b0c3f317ddf1f3b8fdc00257e5c01ffca6752d7f",
+        "actual": "0b37a30ba6be56bbcb6540a3b0c3f317ddf1f3b8fdc00257e5c01ffca6752d7f",
+        "matches": true
+      },
+      "preflight.json": {
+        "expected": "37420ada8b5edd98d8396801df4cda947d93e89008095eceb9a8eaf7fad4ff37",
+        "actual": "37420ada8b5edd98d8396801df4cda947d93e89008095eceb9a8eaf7fad4ff37",
+        "matches": true
+      },
+      "order.json": {
+        "expected": "9a5cfc2c75554d2e3674017612c73cff9bd455b7b16eb2cc2973a2688a514721",
+        "actual": "9a5cfc2c75554d2e3674017612c73cff9bd455b7b16eb2cc2973a2688a514721",
+        "matches": true
+      },
+      "routes.json": {
+        "expected": "91ea685b76ffa546e84ce472556896972ca7f09912d00ec27e6d1cc7399a880f",
+        "actual": "91ea685b76ffa546e84ce472556896972ca7f09912d00ec27e6d1cc7399a880f",
+        "matches": true
+      },
+      "DESIGN.md": {
+        "expected": "f593ca7df86c5bd77bd106626814e196980f581b59a7eef0b1802a872c21c34c",
+        "actual": "f593ca7df86c5bd77bd106626814e196980f581b59a7eef0b1802a872c21c34c",
+        "matches": true
+      },
+      "origin-manifest.json": {
+        "expected": "7e174c539b4617213c163127e8f246b56d9a2ddd92e291c6c31bd89d486190a3",
+        "actual": "7e174c539b4617213c163127e8f246b56d9a2ddd92e291c6c31bd89d486190a3",
+        "matches": true
+      },
+      "free-source-provenance-supplement.json": {
+        "expected": "0a40a2e845c3b82120cf77ed2a6a1e4d693248a3323b0dfa02e6311c7cf5a120",
+        "actual": "0a40a2e845c3b82120cf77ed2a6a1e4d693248a3323b0dfa02e6311c7cf5a120",
+        "matches": true
+      },
+      "prospective-design.md": {
+        "expected": "a668a4b9f41c18ee20038ed25a48da8f16a87009d4cb642c718b5496f2586870",
+        "actual": "a668a4b9f41c18ee20038ed25a48da8f16a87009d4cb642c718b5496f2586870",
+        "matches": true
+      },
+      "protocol.draft.json": {
+        "expected": "1e9b6aeb8274bd606096ae7cd198574bec7a4dafcf5a357b330efee21372eeb1",
+        "actual": "1e9b6aeb8274bd606096ae7cd198574bec7a4dafcf5a357b330efee21372eeb1",
+        "matches": true
+      }
+    },
+    "independent_policy_cases_checked": 60,
+    "policy_client_source_review": {
+      "passed": true,
+      "subclass_own_attributes": [
+        "questions"
+      ],
+      "method_identity": {
+        "__init__": true,
+        "decide": true,
+        "_decode_components": true,
+        "_record_component_uncertainty": true,
+        "__aenter__": true,
+        "__aexit__": true,
+        "_safe_detail": true,
+        "_error_detail": true
+      },
+      "production_decide_source_sha256": "118e79f7d6107f6bd467967760fd1c2bd9ae0a8f828df9a1473cf621ccc82020",
+      "no_response_rewriting_or_host_selection": true
+    },
+    "free_policy_evidence_review": {
+      "passed": true,
+      "report_sha256": "8bced2364fd8e7d22f6b4043570d1bc1aa92572544030b360d564d2c5c188867",
+      "independent_review_sha256": "550c1597e49a3883aa26ec66a98dfdb113d7eb5d621aa147d3f27a8f71d816b2",
+      "audit_replay_counts": {
+        "physics_samples": 18878,
+        "request_observations": 1260,
+        "commands": 1256,
+        "candidate_grid_queries": 284,
+        "stationary_queries": 8
+      },
+      "recorded_free_ledger_requests": 61495,
+      "old_review_actual_ledger_requests": 61531,
+      "historical_review_field_caveat": "The old review_ledger_before object was shadowed by the final query observation; its immutable byte hash matches the recorded61531 ledger and is checked separately. Original files preserved.",
+      "limitation": "All saved free pedal guards are false; these host trajectories support nominal tracking only and confer no model/native/live qualification.",
+      "origin_manifest_review": {
+        "passed": true,
+        "manifest_sha256": "7e174c539b4617213c163127e8f246b56d9a2ddd92e291c6c31bd89d486190a3",
+        "origin_files_checked": 58,
+        "policy_copy_exact": true,
+        "old_frozen_cli_executed_by_audit": false
+      },
+      "provenance_supplement": {
+        "path": "artifacts/jev-wheel-mask-replication-v1/free-source-provenance-supplement.json",
+        "sha256": "0a40a2e845c3b82120cf77ed2a6a1e4d693248a3323b0dfa02e6311c7cf5a120",
+        "original_reporting_field_issue_disclosed": true
+      }
+    },
+    "static_policy_labels_checked": 60,
+    "planned_requests": 120,
+    "saved_requests": 120,
+    "failures": [],
+    "unrun": [],
+    "writer": {
+      "session_id": "43b60ca4e3084712a62360a72ab159b2",
+      "pid": 7957,
+      "process_start_ticks": 464618,
+      "parent_pid": 7954,
+      "parent_start_ticks": 464618,
+      "boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+      "started_utc": "2026-10-20T04:54:25.356645+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-wheel-mask-replication-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61621,
+      "charged_usd": 7.589198865999872,
+      "charged_tokens": 245093612,
+      "reported_cost_usd": 7.531920401999857,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61741,
+      "charged_usd": 7.595243421999866,
+      "charged_tokens": 245244034,
+      "reported_cost_usd": 7.537964957999851,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 120,
+      "charged_usd": 0.0060445559999937615,
+      "reported_cost_usd": 0.0060445559999937615,
+      "charged_tokens": 150422,
+      "uncertain_requests": 0
+    },
+    "automatic_followup_or_promotion": false,
+    "model_requests_by_audit": 0,
+    "ledger_written_by_audit": false,
+    "no_controls_applied": true
+  },
+  "audited_report": {
+    "complete": true,
+    "audit_passed": true,
+    "overall": {
+      "wheel_full": {
+        "planned": 60,
+        "attempted": 60,
+        "unrun": 0,
+        "diagnostic_valid": 60,
+        "diagnostic_technical_failures": 0,
+        "raw_response_failures": 0,
+        "full_ledger_accounting_failures": 0,
+        "wheel_correct": 60,
+        "wheel_incorrect_or_technical_failure": 0,
+        "attempted_wheel_accuracy": 1.0,
+        "valid_response_wheel_accuracy": 1.0,
+        "planned_wheel_correct_fraction": 1.0,
+        "expected_production_missing_pedal_rejections": 60,
+        "production_native_successes": 0,
+        "charged_usd": 0.003214134,
+        "charged_tokens": 79779,
+        "median_latency_ms": 232.28742549999998,
+        "mean_latency_ms": 241.29350275,
+        "minimum_latency_ms": 187.976005,
+        "maximum_latency_ms": 389.603223
+      },
+      "wheel_facts": {
+        "planned": 60,
+        "attempted": 60,
+        "unrun": 0,
+        "diagnostic_valid": 60,
+        "diagnostic_technical_failures": 0,
+        "raw_response_failures": 0,
+        "full_ledger_accounting_failures": 0,
+        "wheel_correct": 60,
+        "wheel_incorrect_or_technical_failure": 0,
+        "attempted_wheel_accuracy": 1.0,
+        "valid_response_wheel_accuracy": 1.0,
+        "planned_wheel_correct_fraction": 1.0,
+        "expected_production_missing_pedal_rejections": 60,
+        "production_native_successes": 0,
+        "charged_usd": 0.002830422,
+        "charged_tokens": 70643,
+        "median_latency_ms": 237.9968975,
+        "mean_latency_ms": 248.83071813333333,
+        "minimum_latency_ms": 197.304301,
+        "maximum_latency_ms": 409.818566
+      }
+    },
+    "components": {
+      "wheel_full": {
+        "wheel_correct": 60,
+        "wheel_by_magnitude": {
+          "straight": {
+            "correct": 16,
+            "responses": 16
+          },
+          "half": {
+            "correct": 32,
+            "responses": 32
+          },
+          "full": {
+            "correct": 12,
+            "responses": 12
+          }
+        },
+        "wheel_by_signed_direction": {
+          "hard_right": {
+            "correct": 6,
+            "responses": 6
+          },
+          "right": {
+            "correct": 16,
+            "responses": 16
+          },
+          "straight": {
+            "correct": 16,
+            "responses": 16
+          },
+          "left": {
+            "correct": 16,
+            "responses": 16
+          },
+          "hard_left": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "small_straight_by_bearing_sign": {
+          "positive": {
+            "correct": 10,
+            "responses": 10
+          },
+          "negative": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "raw_answer_key_sets": {
+          "wheel": 60
+        },
+        "unsolicited_head_responses": 0,
+        "chosen_wheel_counts": {
+          "hard_right": 6,
+          "right": 16,
+          "hard_left": 6,
+          "left": 16,
+          "straight": 16
+        },
+        "pedal_correct": null,
+        "native_pair_correct": null,
+        "pedal_by_class": null,
+        "brake_choices_below_2mps": null,
+        "production_action_counts": {
+          "null": 60
+        },
+        "raw_wheel_probability_fields_present": 60,
+        "raw_wheel_confidence_fields_present": 60
+      },
+      "wheel_facts": {
+        "wheel_correct": 60,
+        "wheel_by_magnitude": {
+          "straight": {
+            "correct": 16,
+            "responses": 16
+          },
+          "half": {
+            "correct": 32,
+            "responses": 32
+          },
+          "full": {
+            "correct": 12,
+            "responses": 12
+          }
+        },
+        "wheel_by_signed_direction": {
+          "hard_right": {
+            "correct": 6,
+            "responses": 6
+          },
+          "right": {
+            "correct": 16,
+            "responses": 16
+          },
+          "straight": {
+            "correct": 16,
+            "responses": 16
+          },
+          "left": {
+            "correct": 16,
+            "responses": 16
+          },
+          "hard_left": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "small_straight_by_bearing_sign": {
+          "positive": {
+            "correct": 10,
+            "responses": 10
+          },
+          "negative": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "raw_answer_key_sets": {
+          "wheel": 60
+        },
+        "unsolicited_head_responses": 0,
+        "chosen_wheel_counts": {
+          "hard_right": 6,
+          "right": 16,
+          "hard_left": 6,
+          "left": 16,
+          "straight": 16
+        },
+        "pedal_correct": null,
+        "native_pair_correct": null,
+        "pedal_by_class": null,
+        "brake_choices_below_2mps": null,
+        "production_action_counts": {
+          "null": 60
+        },
+        "raw_wheel_probability_fields_present": 60,
+        "raw_wheel_confidence_fields_present": 60
+      }
+    },
+    "paired_wheel_contrasts": {
+      "wheel_facts_minus_wheel_full": {
+        "paired_cases": 60,
+        "gains": 0,
+        "losses": 0,
+        "net_gain": 0,
+        "both_correct": 60,
+        "both_incorrect_or_invalid": 0
+      }
+    },
+    "expected_production_missing_pedal_rejections": 120,
+    "planned_expected_production_missing_pedal_rejections": 120,
+    "diagnostic_technical_failures": 0,
+    "by_family": {
+      "natural": {
+        "wheel_full": {
+          "planned": 30,
+          "attempted": 30,
+          "unrun": 0,
+          "diagnostic_valid": 30,
+          "diagnostic_technical_failures": 0,
+          "raw_response_failures": 0,
+          "full_ledger_accounting_failures": 0,
+          "wheel_correct": 30,
+          "wheel_incorrect_or_technical_failure": 0,
+          "attempted_wheel_accuracy": 1.0,
+          "valid_response_wheel_accuracy": 1.0,
+          "planned_wheel_correct_fraction": 1.0,
+          "expected_production_missing_pedal_rejections": 30,
+          "production_native_successes": 0,
+          "charged_usd": 0.001604064,
+          "charged_tokens": 39812,
+          "median_latency_ms": 233.5218185,
+          "mean_latency_ms": 240.05763583333334,
+          "minimum_latency_ms": 187.976005,
+          "maximum_latency_ms": 389.603223
+        },
+        "wheel_facts": {
+          "planned": 30,
+          "attempted": 30,
+          "unrun": 0,
+          "diagnostic_valid": 30,
+          "diagnostic_technical_failures": 0,
+          "raw_response_failures": 0,
+          "full_ledger_accounting_failures": 0,
+          "wheel_correct": 30,
+          "wheel_incorrect_or_technical_failure": 0,
+          "attempted_wheel_accuracy": 1.0,
+          "valid_response_wheel_accuracy": 1.0,
+          "planned_wheel_correct_fraction": 1.0,
+          "expected_production_missing_pedal_rejections": 30,
+          "production_native_successes": 0,
+          "charged_usd": 0.001414518,
+          "charged_tokens": 35299,
+          "median_latency_ms": 242.464019,
+          "mean_latency_ms": 244.88506116666667,
+          "minimum_latency_ms": 210.196242,
+          "maximum_latency_ms": 304.021468
+        }
+      },
+      "synthetic": {
+        "wheel_full": {
+          "planned": 30,
+          "attempted": 30,
+          "unrun": 0,
+          "diagnostic_valid": 30,
+          "diagnostic_technical_failures": 0,
+          "raw_response_failures": 0,
+          "full_ledger_accounting_failures": 0,
+          "wheel_correct": 30,
+          "wheel_incorrect_or_technical_failure": 0,
+          "attempted_wheel_accuracy": 1.0,
+          "valid_response_wheel_accuracy": 1.0,
+          "planned_wheel_correct_fraction": 1.0,
+          "expected_production_missing_pedal_rejections": 30,
+          "production_native_successes": 0,
+          "charged_usd": 0.0016100700000000001,
+          "charged_tokens": 39967,
+          "median_latency_ms": 232.0692075,
+          "mean_latency_ms": 242.52936966666667,
+          "minimum_latency_ms": 204.081803,
+          "maximum_latency_ms": 339.644599
+        },
+        "wheel_facts": {
+          "planned": 30,
+          "attempted": 30,
+          "unrun": 0,
+          "diagnostic_valid": 30,
+          "diagnostic_technical_failures": 0,
+          "raw_response_failures": 0,
+          "full_ledger_accounting_failures": 0,
+          "wheel_correct": 30,
+          "wheel_incorrect_or_technical_failure": 0,
+          "attempted_wheel_accuracy": 1.0,
+          "valid_response_wheel_accuracy": 1.0,
+          "planned_wheel_correct_fraction": 1.0,
+          "expected_production_missing_pedal_rejections": 30,
+          "production_native_successes": 0,
+          "charged_usd": 0.001415904,
+          "charged_tokens": 35344,
+          "median_latency_ms": 235.375809,
+          "mean_latency_ms": 252.7763751,
+          "minimum_latency_ms": 197.304301,
+          "maximum_latency_ms": 409.818566
+        }
+      }
+    },
+    "paired_wheel_contrasts_by_family": {
+      "natural": {
+        "paired_cases": 30,
+        "gains": 0,
+        "losses": 0,
+        "net_gain": 0
+      },
+      "synthetic": {
+        "paired_cases": 30,
+        "gains": 0,
+        "losses": 0,
+        "net_gain": 0
+      }
+    },
+    "accuracy_gate": null,
+    "gate": null,
+    "native_or_live_qualification": false,
+    "source_case_coverage": {
+      "cases": 60,
+      "synthetic_mirror_pairs": 15,
+      "family_counts": {
+        "natural": 30,
+        "synthetic": 30
+      },
+      "straight_bearings_deg": [
+        5.8027,
+        2.9241,
+        5.6214,
+        4.2072,
+        2.4467,
+        -4.6869,
+        0.147,
+        3.1897,
+        -6.1804,
+        -5.4639,
+        4.2974,
+        -4.2974,
+        2.9867,
+        -2.9867,
+        2.7405,
+        -2.7405
+      ],
+      "target_counts": {
+        "left_accelerate": 12,
+        "straight_accelerate": 12,
+        "right_accelerate": 12,
+        "straight_coast": 2,
+        "straight_brake": 2,
+        "left_coast": 2,
+        "right_coast": 2,
+        "left_brake": 2,
+        "right_brake": 2,
+        "hard_left_accelerate": 2,
+        "hard_right_accelerate": 2,
+        "hard_left_coast": 2,
+        "hard_right_coast": 2,
+        "hard_left_brake": 2,
+        "hard_right_brake": 2
+      }
+    },
+    "score_scope": "Strict raw wheel diagnostic; single-head original native verdicts remain rejected for the missing pedal.",
+    "interpretation_limits": [
+      "COMMON retains unused pedal definitions in wheel_facts; the masked contrast identifies the factual-deletion package under those instructions.",
+      "Raw probabilities and confidence are descriptive only; no joint uncertainty or calibration claim.",
+      "All contrasts are descriptive and cannot admit native or live driving.",
+      "The preserved old free-source review mislabeled review_ledger_before through variable shadowing; the separate provenance supplement reconstructs its actual byte-hashed61531 ledger. Original evidence remains unchanged."
+    ],
+    "automatic_followup_or_promotion": false,
+    "free_policy_evidence_review": {
+      "passed": true,
+      "report_sha256": "8bced2364fd8e7d22f6b4043570d1bc1aa92572544030b360d564d2c5c188867",
+      "independent_review_sha256": "550c1597e49a3883aa26ec66a98dfdb113d7eb5d621aa147d3f27a8f71d816b2",
+      "audit_replay_counts": {
+        "physics_samples": 18878,
+        "request_observations": 1260,
+        "commands": 1256,
+        "candidate_grid_queries": 284,
+        "stationary_queries": 8
+      },
+      "recorded_free_ledger_requests": 61495,
+      "old_review_actual_ledger_requests": 61531,
+      "historical_review_field_caveat": "The old review_ledger_before object was shadowed by the final query observation; its immutable byte hash matches the recorded61531 ledger and is checked separately. Original files preserved.",
+      "limitation": "All saved free pedal guards are false; these host trajectories support nominal tracking only and confer no model/native/live qualification.",
+      "origin_manifest_review": {
+        "passed": true,
+        "manifest_sha256": "7e174c539b4617213c163127e8f246b56d9a2ddd92e291c6c31bd89d486190a3",
+        "origin_files_checked": 58,
+        "policy_copy_exact": true,
+        "old_frozen_cli_executed_by_audit": false
+      },
+      "provenance_supplement": {
+        "path": "artifacts/jev-wheel-mask-replication-v1/free-source-provenance-supplement.json",
+        "sha256": "0a40a2e845c3b82120cf77ed2a6a1e4d693248a3323b0dfa02e6311c7cf5a120",
+        "original_reporting_field_issue_disclosed": true
+      }
+    }
+  },
+  "independent_collection_provenance": {
+    "passed": true,
+    "checked_at_utc": "2026-10-20T05:00:20.386911+00:00",
+    "check_count": 64,
+    "checks": [
+      {
+        "check": "root_frozen_protocol_identity",
+        "passed": true
+      },
+      {
+        "check": "frozen_60_case_120_call_scope",
+        "passed": true
+      },
+      {
+        "check": "all_frozen_helper_hashes",
+        "passed": true
+      },
+      {
+        "check": "exact_frozen_archive",
+        "passed": true
+      },
+      {
+        "check": "full_bench_11_file_and_rust_source_fingerprint",
+        "passed": true
+      },
+      {
+        "check": "all_read_only_origin_hashes_retained",
+        "passed": true
+      },
+      {
+        "check": "byte_exact_fixed_policy",
+        "passed": true
+      },
+      {
+        "check": "immutable_pre_generation_plan_hash_bound",
+        "passed": true
+      },
+      {
+        "check": "all_frozen_free_source_plan_hashes_retained",
+        "passed": true
+      },
+      {
+        "check": "frozen_free_provenance_supplement_hash_and_original_evidence_bound",
+        "passed": true
+      },
+      {
+        "check": "supplement_preserves_and_explains_historical_review_field_error",
+        "passed": true
+      },
+      {
+        "check": "30_natural_30_synthetic",
+        "passed": true
+      },
+      {
+        "check": "24_prior_materialized_bank_and_demo_hashes",
+        "passed": true
+      },
+      {
+        "check": "30_exact_natural_source_queries_and_endpoint_quantile_selection",
+        "passed": true
+      },
+      {
+        "check": "60_unique_XY_fresh_against_only_registered_banks_and_demos",
+        "passed": true
+      },
+      {
+        "check": "synthetic_bearing_margins_independently_at_least_two_degrees",
+        "passed": true
+      },
+      {
+        "check": "synthetic_all_native_targets_held_coverage_derangement",
+        "passed": true
+      },
+      {
+        "check": "independent_unchanged_native_and_wheel_labels",
+        "passed": true
+      },
+      {
+        "check": "exact_family_stratified_five_substream_order",
+        "passed": true
+      },
+      {
+        "check": "frozen_plan_and_bank_order_stream_metadata_exact",
+        "passed": true
+      },
+      {
+        "check": "global_four_first_context_menu_cells_fifteen_each",
+        "passed": true
+      },
+      {
+        "check": "within_family_first_context_and_menu_balanced",
+        "passed": true
+      },
+      {
+        "check": "immutable_passing_independent_preflight",
+        "passed": true
+      },
+      {
+        "check": "protocol_hash_bound_to_admission_and_markers",
+        "passed": true
+      },
+      {
+        "check": "root_authorization_identity",
+        "passed": true
+      },
+      {
+        "check": "explicit_root_execution_completed",
+        "passed": true
+      },
+      {
+        "check": "prospective_timestamp_chain_within_session",
+        "passed": true
+      },
+      {
+        "check": "one_writer_identity_every_record",
+        "passed": true
+      },
+      {
+        "check": "writer_script_executable_current_boot",
+        "passed": true
+      },
+      {
+        "check": "no_retries_fallbacks_or_commands",
+        "passed": true
+      },
+      {
+        "check": "no_stop_markers",
+        "passed": true
+      },
+      {
+        "check": "no_quality_native_or_live_gate",
+        "passed": true
+      },
+      {
+        "check": "original0034_archive_hash_retained",
+        "passed": true
+      },
+      {
+        "check": "exact_neutral_wheel_task_archive",
+        "passed": true
+      },
+      {
+        "check": "all_120_exact_frozen_wire_bytes_and_hashes",
+        "passed": true
+      },
+      {
+        "check": "all_120_exact_order_entries",
+        "passed": true
+      },
+      {
+        "check": "all_120_exact_treatment_masks_and_independent_wheel_truth",
+        "passed": true
+      },
+      {
+        "check": "all_120_exact_question_treatments_from0034_neutralized_task",
+        "passed": true
+      },
+      {
+        "check": "all_120_independent_pinned_http_identity",
+        "passed": true
+      },
+      {
+        "check": "all_120_exact_requested_typed_raw_heads",
+        "passed": true
+      },
+      {
+        "check": "all_original_production_success_and_missing_pedal_verdicts_preserved",
+        "passed": true
+      },
+      {
+        "check": "zero_native_successes_120_expected_missing_pedal_rejections",
+        "passed": true
+      },
+      {
+        "check": "saved_diagnostic_and_accounting_validations_independently_match",
+        "passed": true
+      },
+      {
+        "check": "all_120_complete_budget_transitions_and_conservative_admission",
+        "passed": true
+      },
+      {
+        "check": "all_120_requests_strictly_sequential",
+        "passed": true
+      },
+      {
+        "check": "all_120_result_rows_reconstructed_from_raw",
+        "passed": true
+      },
+      {
+        "check": "all_120_raw_wheel_probability_and_confidence_fields_preserved",
+        "passed": true
+      },
+      {
+        "check": "120_unique_reservations_and_response_ids",
+        "passed": true
+      },
+      {
+        "check": "all_60_matched_policy_facts_and_masked_state_contrasts",
+        "passed": true
+      },
+      {
+        "check": "all_60_wheel_questions_byte_identical_across_two_treatments",
+        "passed": true
+      },
+      {
+        "check": "budget_boundaries_exact_root_start_completion_and_actual_ledger",
+        "passed": true
+      },
+      {
+        "check": "budget_delta_exact_raw_usage",
+        "passed": true
+      },
+      {
+        "check": "retained_caps_and_no_pending",
+        "passed": true
+      },
+      {
+        "check": "wheel_score_summaries_exact",
+        "passed": true
+      },
+      {
+        "check": "per_family_wheel_scores_exact",
+        "passed": true
+      },
+      {
+        "check": "per_magnitude_scores_and_counts_exact",
+        "passed": true
+      },
+      {
+        "check": "per_signed_direction_scores_and_counts_exact",
+        "passed": true
+      },
+      {
+        "check": "straight_positive_negative_scores_and_counts_exact",
+        "passed": true
+      },
+      {
+        "check": "paired_raw_wheel_mask_contrast_exact",
+        "passed": true
+      },
+      {
+        "check": "per_family_paired_mask_contrasts_exact",
+        "passed": true
+      },
+      {
+        "check": "expected_rejections_separate_from_technical_failures",
+        "passed": true
+      },
+      {
+        "check": "no_quality_gate_native_qualification_or_promotion_in_results",
+        "passed": true
+      },
+      {
+        "check": "final_independent_audit_complete_and_error_free",
+        "passed": true
+      },
+      {
+        "check": "verifier_ledger_bytes_unchanged",
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "protocol_sha256": "9a63250d0f71cfdbfa2553ec2ca4bea5c46c976cad60faf99feac2665335ed1f",
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "writer": {
+      "session_id": "43b60ca4e3084712a62360a72ab159b2",
+      "pid": 7957,
+      "process_start_ticks": 464618,
+      "parent_pid": 7954,
+      "parent_start_ticks": 464618,
+      "boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+      "started_utc": "2026-10-20T04:54:25.356645+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-wheel-mask-replication-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61621,
+      "charged_usd": 7.589198865999872,
+      "charged_tokens": 245093612,
+      "reported_cost_usd": 7.531920401999857,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61741,
+      "charged_usd": 7.595243421999866,
+      "charged_tokens": 245244034,
+      "reported_cost_usd": 7.537964957999851,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 120,
+      "charged_tokens": 150422,
+      "charged_usd": 0.006044556000000003
+    },
+    "wheel_scores": {
+      "wheel_facts": 60,
+      "wheel_full": 60
+    },
+    "family_wheel_scores": {
+      "natural|wheel_full": {
+        "correct": 30,
+        "responses": 30
+      },
+      "natural|wheel_facts": {
+        "correct": 30,
+        "responses": 30
+      },
+      "synthetic|wheel_full": {
+        "correct": 30,
+        "responses": 30
+      },
+      "synthetic|wheel_facts": {
+        "correct": 30,
+        "responses": 30
+      }
+    },
+    "magnitude_wheel_scores": {
+      "wheel_facts|full": {
+        "correct": 12,
+        "responses": 12
+      },
+      "wheel_full|full": {
+        "correct": 12,
+        "responses": 12
+      },
+      "wheel_full|half": {
+        "correct": 32,
+        "responses": 32
+      },
+      "wheel_facts|half": {
+        "correct": 32,
+        "responses": 32
+      },
+      "wheel_full|straight": {
+        "correct": 16,
+        "responses": 16
+      },
+      "wheel_facts|straight": {
+        "correct": 16,
+        "responses": 16
+      }
+    },
+    "family_magnitude_wheel_scores": {
+      "natural|wheel_full|straight": {
+        "correct": 10,
+        "responses": 10
+      },
+      "natural|wheel_full|half": {
+        "correct": 20,
+        "responses": 20
+      },
+      "natural|wheel_full|full": {
+        "correct": 0,
+        "responses": 0
+      },
+      "natural|wheel_facts|straight": {
+        "correct": 10,
+        "responses": 10
+      },
+      "natural|wheel_facts|half": {
+        "correct": 20,
+        "responses": 20
+      },
+      "natural|wheel_facts|full": {
+        "correct": 0,
+        "responses": 0
+      },
+      "synthetic|wheel_full|straight": {
+        "correct": 6,
+        "responses": 6
+      },
+      "synthetic|wheel_full|half": {
+        "correct": 12,
+        "responses": 12
+      },
+      "synthetic|wheel_full|full": {
+        "correct": 12,
+        "responses": 12
+      },
+      "synthetic|wheel_facts|straight": {
+        "correct": 6,
+        "responses": 6
+      },
+      "synthetic|wheel_facts|half": {
+        "correct": 12,
+        "responses": 12
+      },
+      "synthetic|wheel_facts|full": {
+        "correct": 12,
+        "responses": 12
+      }
+    },
+    "signed_wheel_scores": {
+      "wheel_facts|hard_right": {
+        "correct": 6,
+        "responses": 6
+      },
+      "wheel_full|hard_right": {
+        "correct": 6,
+        "responses": 6
+      },
+      "wheel_full|right": {
+        "correct": 16,
+        "responses": 16
+      },
+      "wheel_facts|right": {
+        "correct": 16,
+        "responses": 16
+      },
+      "wheel_facts|hard_left": {
+        "correct": 6,
+        "responses": 6
+      },
+      "wheel_full|hard_left": {
+        "correct": 6,
+        "responses": 6
+      },
+      "wheel_facts|left": {
+        "correct": 16,
+        "responses": 16
+      },
+      "wheel_full|left": {
+        "correct": 16,
+        "responses": 16
+      },
+      "wheel_full|straight": {
+        "correct": 16,
+        "responses": 16
+      },
+      "wheel_facts|straight": {
+        "correct": 16,
+        "responses": 16
+      }
+    },
+    "straight_bearing_sign_scores": {
+      "wheel_full|positive": {
+        "correct": 10,
+        "responses": 10
+      },
+      "wheel_facts|positive": {
+        "correct": 10,
+        "responses": 10
+      },
+      "wheel_facts|negative": {
+        "correct": 6,
+        "responses": 6
+      },
+      "wheel_full|negative": {
+        "correct": 6,
+        "responses": 6
+      }
+    },
+    "independently_reconstructed_natural_selection": [
+      {
+        "course": "stadium",
+        "seed": 21,
+        "quotas": [
+          {
+            "wheel": "left",
+            "eligible_ticks": [
+              180,
+              240,
+              300,
+              480,
+              600,
+              960,
+              1020,
+              1080,
+              1140,
+              1200,
+              1260,
+              1320,
+              1380,
+              1680,
+              1740,
+              1920,
+              2040,
+              2100,
+              2280,
+              2460,
+              2520,
+              2700,
+              2880,
+              3000,
+              3180,
+              3420,
+              3540,
+              3720,
+              3780,
+              3960,
+              4140,
+              4200,
+              4320
+            ],
+            "selected_indices": [
+              0,
+              8,
+              16,
+              24,
+              32
+            ],
+            "selected_ticks": [
+              180,
+              1140,
+              2040,
+              3180,
+              4320
+            ]
+          },
+          {
+            "wheel": "straight",
+            "eligible_ticks": [
+              420,
+              660,
+              720,
+              780,
+              840,
+              900,
+              1440,
+              1500,
+              1560,
+              1800,
+              1980,
+              2160,
+              2220,
+              2340,
+              2580,
+              2760,
+              2940,
+              3120,
+              3240,
+              3300,
+              3480,
+              3660,
+              4020,
+              4080,
+              4260
+            ],
+            "selected_indices": [
+              0,
+              12,
+              24
+            ],
+            "selected_ticks": [
+              420,
+              2220,
+              4260
+            ]
+          }
+        ]
+      },
+      {
+        "course": "stadium",
+        "seed": 22,
+        "quotas": [
+          {
+            "wheel": "left",
+            "eligible_ticks": [
+              180,
+              300,
+              420,
+              480,
+              600,
+              660,
+              840,
+              900,
+              1020,
+              1140,
+              1320,
+              1440,
+              1620,
+              1860,
+              1980,
+              2160,
+              2220,
+              2400,
+              2520,
+              2640,
+              2820,
+              2940,
+              3000,
+              3180,
+              3360,
+              3540,
+              3720,
+              3780,
+              3960,
+              4200,
+              4320,
+              4380
+            ],
+            "selected_indices": [
+              0,
+              8,
+              16,
+              23,
+              31
+            ],
+            "selected_ticks": [
+              180,
+              1020,
+              2220,
+              3180,
+              4380
+            ]
+          },
+          {
+            "wheel": "straight",
+            "eligible_ticks": [
+              360,
+              540,
+              720,
+              960,
+              1200,
+              1380,
+              1500,
+              1680,
+              1740,
+              1920,
+              2100,
+              2340,
+              2700,
+              2880,
+              3240,
+              3300,
+              3480,
+              3660,
+              3900,
+              4020,
+              4080,
+              4260
+            ],
+            "selected_indices": [
+              0,
+              21
+            ],
+            "selected_ticks": [
+              360,
+              4260
+            ]
+          }
+        ]
+      },
+      {
+        "course": "stadium_clockwise",
+        "seed": 21,
+        "quotas": [
+          {
+            "wheel": "right",
+            "eligible_ticks": [
+              180,
+              240,
+              300,
+              420,
+              480,
+              600,
+              660,
+              840,
+              900,
+              1200,
+              1320,
+              1380,
+              1440,
+              1620,
+              1860,
+              1980,
+              2040,
+              2160,
+              2220,
+              2400,
+              2640,
+              2820,
+              2940,
+              3000,
+              3180,
+              3420,
+              3540,
+              3720,
+              3780,
+              3960,
+              4140,
+              4260,
+              4320
+            ],
+            "selected_indices": [
+              0,
+              8,
+              16,
+              24,
+              32
+            ],
+            "selected_ticks": [
+              180,
+              900,
+              2040,
+              3180,
+              4320
+            ]
+          },
+          {
+            "wheel": "straight",
+            "eligible_ticks": [
+              360,
+              540,
+              720,
+              1140,
+              1500,
+              1680,
+              1740,
+              1920,
+              2100,
+              2280,
+              2460,
+              2520,
+              2700,
+              2880,
+              3120,
+              3240,
+              3300,
+              3480,
+              3660,
+              3840,
+              4020,
+              4080
+            ],
+            "selected_indices": [
+              0,
+              11,
+              21
+            ],
+            "selected_ticks": [
+              360,
+              2520,
+              4080
+            ]
+          }
+        ]
+      },
+      {
+        "course": "stadium_clockwise",
+        "seed": 22,
+        "quotas": [
+          {
+            "wheel": "right",
+            "eligible_ticks": [
+              180,
+              240,
+              300,
+              360,
+              420,
+              480,
+              540,
+              600,
+              840,
+              1080,
+              1200,
+              1380,
+              1440,
+              1620,
+              1860,
+              1980,
+              2160,
+              2220,
+              2400,
+              2640,
+              2820,
+              2940,
+              3000,
+              3180,
+              3420,
+              3600,
+              3900,
+              4080,
+              4140,
+              4200,
+              4380
+            ],
+            "selected_indices": [
+              0,
+              8,
+              15,
+              23,
+              30
+            ],
+            "selected_ticks": [
+              180,
+              840,
+              1980,
+              3180,
+              4380
+            ]
+          },
+          {
+            "wheel": "straight",
+            "eligible_ticks": [
+              660,
+              720,
+              900,
+              960,
+              1140,
+              1320,
+              1680,
+              1920,
+              2100,
+              2340,
+              2460,
+              2520,
+              2700,
+              2880,
+              3120,
+              3300,
+              3480,
+              3660,
+              3780,
+              3960,
+              4320
+            ],
+            "selected_indices": [
+              0,
+              20
+            ],
+            "selected_ticks": [
+              660,
+              4320
+            ]
+          }
+        ]
+      }
+    ],
+    "production_native_successes": 0,
+    "expected_production_missing_pedal_rejections": 120,
+    "paired_wheel_contrasts": {
+      "wheel_facts_minus_wheel_full": {
+        "paired_cases": 60,
+        "gains": 0,
+        "losses": 0,
+        "net_gain": 0,
+        "both_correct": 60,
+        "both_incorrect_or_invalid": 0
+      }
+    },
+    "wrong_wheel_choices": [],
+    "paired_wheel_contrasts_by_family": {
+      "natural": {
+        "paired_cases": 30,
+        "gains": 0,
+        "losses": 0,
+        "net_gain": 0
+      },
+      "synthetic": {
+        "paired_cases": 30,
+        "gains": 0,
+        "losses": 0,
+        "net_gain": 0
+      }
+    },
+    "free_source_reporting_caveat": {
+      "original_field": "review_ledger_before",
+      "cause": "The local variable current first held the review ledger and was later reused for each query observation; the output therefore contains the final query observation.",
+      "correct_immutable_evidence": "ledger_before bytes, review_ledger_before_sha256 and shared_ledger_unchanged were retained independently.",
+      "original_mislabeled_field_is_query_observation": true
+    },
+    "paired_raw_wheel_choice_changes": {
+      "wheel_facts_minus_wheel_full": []
+    },
+    "accuracy_gate": null,
+    "native_or_live_qualification": false,
+    "model_calls_by_verifier": 0,
+    "ledger_written": false,
+    "script_sha256": "70322d0f00bc8349c11fd96c326eda2f04091b5f98a15daac4908641f3954eb2",
+    "interpretation": "Raw wheel diagnostic only. All 120 single-head native rejections remain intact; no pedal or native success is synthesized. Unused pedal definitions remain in the common wheel instructions. Root execution IDs bind preserved confirmation, not an independently queried tool service."
+  },
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61621,
+    "charged_usd": 7.589198865999872,
+    "charged_tokens": 245093612,
+    "reported_cost_usd": 7.531920401999857,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61741,
+    "charged_usd": 7.595243421999866,
+    "charged_tokens": 245244034,
+    "reported_cost_usd": 7.537964957999851,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 120,
+    "charged_usd": 0.0060445559999937615,
+    "reported_cost_usd": 0.0060445559999937615,
+    "charged_tokens": 150422,
+    "uncertain_requests": 0
+  },
+  "decision": {
+    "accuracy_gate": null,
+    "any_outcome_qualifies_native": false,
+    "any_outcome_qualifies_live": false,
+    "live_resource_blocked": true,
+    "live_followup_triggered": false,
+    "preset_promoted": false,
+    "baseline": "joint damped",
+    "application_default": "original",
+    "application_defaults_changed": false
+  },
+  "interpretation_limits": [
+    "The exact 0040 wheel question is held fixed; wheel_facts deletes copied factual paths only.",
+    "All 120 original production missing-pedal rejections remain untouched; a strict valid raw wheel is not a native command.",
+    "Ten natural states were within two degrees of a wheel threshold, with no natural margin cull.",
+    "The old free review review_ledger_before object remains a mislabeled query observation, not a usable snapshot; immutable evidence and a separate passed supplement bind actual ledger boundaries and independent replay.",
+    "The original 0040 accuracy advantage was not observed on this broader distribution; the perfect scores do not establish that masking never matters or that instructions have an identical internal effect.",
+    "One presentation per state provides no within-arm repeatability estimate; natural trajectories and synthetic reflections remain related observations.",
+    "The wheel_facts COMMON instructions retain unused pedal definitions; only factual availability/length change.",
+    "Natural cases have no full-wheel targets; unavailable categories are not zero-percent accuracy.",
+    "No pedal answers were requested, so there is no pedal or native-pair accuracy observation.",
+    "Masked requests used fewer charged tokens and cost less, but the sampled median and mean latency were slightly higher; no speed improvement or timing qualification follows.",
+    "Raw probability/confidence values remain descriptive, without normalization, joint distributions or calibration claims.",
+    "There is no accuracy gate and no result qualifies native or live use.",
+    "No paid command was applied and no race advanced.",
+    "Live remains blocked by the unchanged five-million-token admission guard; authorized static work continues within caps/deadline.",
+    "Root tool chunk/session IDs are checked against preserved execution confirmation rather than independently queried from tool infrastructure; actual writer and ledger records are independently verified."
+  ],
+  "report_generation": {
+    "saved_completed_evidence_only": true,
+    "audits_rerun": false,
+    "model_calls": 0,
+    "ledger_read_or_written": false,
+    "frozen_archives_modified": false
+  },
+  "collection_completed_utc": "2026-10-20T04:54:55.400174+00:00",
+  "interpretation": {
+    "strict_raw_wheel_valid": 120,
+    "calls": 120,
+    "wheel_correct": {
+      "wheel_full": 60,
+      "wheel_facts": 60
+    },
+    "responses_each_context": 60,
+    "natural_each_context_correct": 30,
+    "synthetic_each_context_correct": 30,
+    "paired_gains": 0,
+    "paired_losses": 0,
+    "paired_gains_losses_each_family": {
+      "natural": [
+        0,
+        0
+      ],
+      "synthetic": [
+        0,
+        0
+      ]
+    },
+    "expected_production_missing_pedal_rejections": 120,
+    "production_native_successes": 0,
+    "technical_or_accounting_failures": 0,
+    "unsolicited_head_responses": 0,
+    "earlier_mask_accuracy_advantage_replicated": false,
+    "conclusion": "Both contexts selected every requested wheel correctly on this broader bank. The earlier three-case accuracy advantage was not observed; both overall and family contrasts were zero. No native/live qualification follows."
+  },
+  "live_resource_boundary": {
+    "remaining_tokens": 4755966,
+    "unchanged_minimum_tokens_before_race": 5000000,
+    "live_admission_resource_blocked": true,
+    "authorized_static_work_may_continue_within_caps": true
+  }
+}

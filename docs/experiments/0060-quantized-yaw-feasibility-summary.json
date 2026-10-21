@@ -1,0 +1,411 @@
+{
+  "result": {
+    "complete": true,
+    "model_requests": 0,
+    "is_jev": false,
+    "rows": [
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/57-fixed250-float025.json",
+        "sha256": "862ca1a4687fc6f5f29b48c19b958ffe12cc42452c266411925682438ee3f8c5",
+        "entry": {
+          "seed": 57,
+          "course": "stadium"
+        },
+        "profile": "float025",
+        "delay_profile": "fixed250",
+        "elapsed_s": 79.44999999999678,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/57-fixed250-quantized.json",
+        "sha256": "3e112bd4eb1e595eb0ef58e450afa7f9810adaead04a450b6ef502ff5c62f48c",
+        "entry": {
+          "seed": 57,
+          "course": "stadium"
+        },
+        "profile": "quantized",
+        "delay_profile": "fixed250",
+        "elapsed_s": 79.89999999999675,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/57-fixed500-float025.json",
+        "sha256": "37e22c256b5fa36c3c7b54c5f5cc4eba8124fcb34509154e20650b2382fcdefa",
+        "entry": {
+          "seed": 57,
+          "course": "stadium"
+        },
+        "profile": "float025",
+        "delay_profile": "fixed500",
+        "elapsed_s": 84.54999999999649,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/57-fixed500-quantized.json",
+        "sha256": "feaf8b31f0c685bb46599207ee87df5ccf1bc43070f8e6be5cfabd56189d188e",
+        "entry": {
+          "seed": 57,
+          "course": "stadium"
+        },
+        "profile": "quantized",
+        "delay_profile": "fixed500",
+        "elapsed_s": 84.54999999999649,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/58-fixed250-float025.json",
+        "sha256": "19940fbfb767123a84e1303a3a86a130c1cd3b2d99c02b2710f9ccd01a9790ce",
+        "entry": {
+          "seed": 58,
+          "course": "stadium_clockwise"
+        },
+        "profile": "float025",
+        "delay_profile": "fixed250",
+        "elapsed_s": 79.6833333333301,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/58-fixed250-quantized.json",
+        "sha256": "04e81b978765cf17e0c055f080dda2af840ee02d1f78a2dc82e9012461459691",
+        "entry": {
+          "seed": 58,
+          "course": "stadium_clockwise"
+        },
+        "profile": "quantized",
+        "delay_profile": "fixed250",
+        "elapsed_s": 80.34999999999673,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/58-fixed500-float025.json",
+        "sha256": "3a24337c67fbc5f2f45951731a71187077482e195ca2b388a668970594def405",
+        "entry": {
+          "seed": 58,
+          "course": "stadium_clockwise"
+        },
+        "profile": "float025",
+        "delay_profile": "fixed500",
+        "elapsed_s": 84.48333333332982,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/58-fixed500-quantized.json",
+        "sha256": "cd2afc0da90d49dbe8c524092c36116187932884638450beeec2cc30d4643a00",
+        "entry": {
+          "seed": 58,
+          "course": "stadium_clockwise"
+        },
+        "profile": "quantized",
+        "delay_profile": "fixed500",
+        "elapsed_s": 84.48333333332982,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/59-fixed250-float025.json",
+        "sha256": "396b95f41177e1ce20159b97d68885b82c675ea9ca8f19d537eff9aaefa38fdf",
+        "entry": {
+          "seed": 59,
+          "course": "stadium"
+        },
+        "profile": "float025",
+        "delay_profile": "fixed250",
+        "elapsed_s": 79.93333333333008,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/59-fixed250-quantized.json",
+        "sha256": "337c080b465f943db42740f8ffbce88c1606f9c03b5b1f3bd6c3fc5b3a5e4b77",
+        "entry": {
+          "seed": 59,
+          "course": "stadium"
+        },
+        "profile": "quantized",
+        "delay_profile": "fixed250",
+        "elapsed_s": 79.84999999999675,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/59-fixed500-float025.json",
+        "sha256": "561b7faaa46ac986472ec083a17223f1c36a43d030a73a6d7f6d042e3632ac6d",
+        "entry": {
+          "seed": 59,
+          "course": "stadium"
+        },
+        "profile": "float025",
+        "delay_profile": "fixed500",
+        "elapsed_s": 84.3499999999965,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/59-fixed500-quantized.json",
+        "sha256": "fd45a9f2c8c265c9449b3f5bbe6ce86e33c748739cad7d091fa3ae0fd333fc35",
+        "entry": {
+          "seed": 59,
+          "course": "stadium"
+        },
+        "profile": "quantized",
+        "delay_profile": "fixed500",
+        "elapsed_s": 88.18333333332961,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/60-fixed250-float025.json",
+        "sha256": "e1bef7117d5669afd12db5a5161338db1f264a7cdf451f854b92971f3093434e",
+        "entry": {
+          "seed": 60,
+          "course": "stadium_clockwise"
+        },
+        "profile": "float025",
+        "delay_profile": "fixed250",
+        "elapsed_s": 79.84999999999675,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/60-fixed250-quantized.json",
+        "sha256": "029dbcc78aecfe19b9c9e61b0428ae25e0404536bb928fbf72e46cb110c761d9",
+        "entry": {
+          "seed": 60,
+          "course": "stadium_clockwise"
+        },
+        "profile": "quantized",
+        "delay_profile": "fixed250",
+        "elapsed_s": 79.91666666666342,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/60-fixed500-float025.json",
+        "sha256": "f241661dd9e9db4127036d6be80e3db350e702e8e534c5a2ac67e0bc2e5b3335",
+        "entry": {
+          "seed": 60,
+          "course": "stadium_clockwise"
+        },
+        "profile": "float025",
+        "delay_profile": "fixed500",
+        "elapsed_s": 85.81666666666308,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/60-fixed500-quantized.json",
+        "sha256": "2f9d95e1d1d04b0514332949479e51d4b7a15bfe73ac1b798ba75e9e7d85b02b",
+        "entry": {
+          "seed": 60,
+          "course": "stadium_clockwise"
+        },
+        "profile": "quantized",
+        "delay_profile": "fixed500",
+        "elapsed_s": 86.76666666666303,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/61-fixed250-float025.json",
+        "sha256": "f443a604116fc36a80eb652095f98efaa013f65c2b884259108cb1119aec3c42",
+        "entry": {
+          "seed": 61,
+          "course": "stadium"
+        },
+        "profile": "float025",
+        "delay_profile": "fixed250",
+        "elapsed_s": 79.94999999999675,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/61-fixed250-quantized.json",
+        "sha256": "fe9e6b24684f377192c0c7ca1465fbd9685e311ddd32973057cd3faff08ce62a",
+        "entry": {
+          "seed": 61,
+          "course": "stadium"
+        },
+        "profile": "quantized",
+        "delay_profile": "fixed250",
+        "elapsed_s": 79.71666666666343,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/61-fixed500-float025.json",
+        "sha256": "b030f7d9af8cbbedfad2f8b853617bb2200027f456d1cf1f041bda29c2677c64",
+        "entry": {
+          "seed": 61,
+          "course": "stadium"
+        },
+        "profile": "float025",
+        "delay_profile": "fixed500",
+        "elapsed_s": 86.29999999999639,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/61-fixed500-quantized.json",
+        "sha256": "4b79d76a56e094f5a72b8ca8fc606a463a58f25f6d2457cbe434bcb95b2d5f07",
+        "entry": {
+          "seed": 61,
+          "course": "stadium"
+        },
+        "profile": "quantized",
+        "delay_profile": "fixed500",
+        "elapsed_s": 83.73333333332987,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/62-fixed250-float025.json",
+        "sha256": "d6a090d0588764355d8defb1de7df471987b9f9bc2d94fc4dda909bf8b9e3438",
+        "entry": {
+          "seed": 62,
+          "course": "stadium_clockwise"
+        },
+        "profile": "float025",
+        "delay_profile": "fixed250",
+        "elapsed_s": 80.1166666666634,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/62-fixed250-quantized.json",
+        "sha256": "cc43a693e78f7c4ac9609d8bfbfdfebd8ac7d85745b1c2330d60ab9ee5aee17b",
+        "entry": {
+          "seed": 62,
+          "course": "stadium_clockwise"
+        },
+        "profile": "quantized",
+        "delay_profile": "fixed250",
+        "elapsed_s": 80.09999999999674,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/62-fixed500-float025.json",
+        "sha256": "e97cc75372d6bbb5b8f519ad6250e7c986b7b75bd996be80eb85f4f08f017c9d",
+        "entry": {
+          "seed": 62,
+          "course": "stadium_clockwise"
+        },
+        "profile": "float025",
+        "delay_profile": "fixed500",
+        "elapsed_s": 83.48333333332988,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-quantized-yaw-v1/62-fixed500-quantized.json",
+        "sha256": "52e0a0beb294423e6e6318ae8719f3f11d5a3569ca1352b31cedea0cad0d446b",
+        "entry": {
+          "seed": 62,
+          "course": "stadium_clockwise"
+        },
+        "profile": "quantized",
+        "delay_profile": "fixed500",
+        "elapsed_s": 84.08333333332985,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      }
+    ],
+    "physical_selection_gate_passed": true,
+    "selected": "quantized",
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "plan_sha256": "8b0f5c74ec0c9c4992102a4e4292cc13c344e12d65d045f98d9c341159543258",
+    "shared_ledger_unchanged": true,
+    "created_utc": "2026-10-20T10:21:24.521999+00:00"
+  },
+  "audit": {
+    "passed": true,
+    "cells": 24,
+    "physics_steps_exact": 118776,
+    "query_actions_exact": 5582,
+    "gate_reconstructed": true,
+    "model_requests": 0,
+    "is_jev": false,
+    "shared_ledger_unchanged": true,
+    "result_sha256": "a561b2456a9282a46ece438ad64f6caa6b6a2f39f225221203d8ea3bb9f09ffd",
+    "root_only_not_second_agent_review": true
+  }
+}

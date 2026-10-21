@@ -16,9 +16,9 @@ from typing import Any
 
 from fastmcp import Client
 
-from .decisions import CONTROL_LANGUAGES, INSTRUCTION_STYLES
+from .decisions import CONTROL_LANGUAGES, DECISION_LAYOUTS, INSTRUCTION_STYLES
 from .observations import ObservationHistory
-from .sim import ACTIONS, DT, Simulation, scripted_action
+from .sim import ACTIONS, COURSES, DT, Simulation, scripted_action
 from .telemetry import VARIANTS, represent
 
 RESET_AFTER_S: float | None = 3.0
@@ -65,6 +65,7 @@ def fingerprint() -> str:
         "bench.py",
         "telemetry.py",
         "observations.py",
+        "scene.py",
     ):
         path = source / name
         digest.update(name.encode())
@@ -83,7 +84,8 @@ def simulation_contract() -> dict:
     return Simulation(reset_after_s=RESET_AFTER_S).config()
 
 
-def driving_evidence(observation: dict, variant: str = "raw", *, context: dict | None = None) -> dict:
+def driving_evidence(observation: dict, variant: str = "raw", *, context: dict | None = None,
+                     config: dict | None = None) -> dict:
     """Same factual control/geometry contract for every compared model."""
     evidence = {
         k: v for k, v in observation.items() if k not in {"race_id", "observed_ns", "captured_ns", "status"}
@@ -94,7 +96,7 @@ def driving_evidence(observation: dict, variant: str = "raw", *, context: dict |
         "Curvature is radians/metre. Offset is positive left of road centre; road half-width=width/2. "
         "Heading_error=road heading minus kart heading, positive means road faces left of kart."
     )
-    contract = simulation_contract()
+    contract = config if config is not None else simulation_contract()
     evidence["handling"] = contract["handling"]
     gate = contract["track"]["checkpoints"][observation["progress"]["checkpoint"]]
     kart = observation["kart"]
@@ -110,8 +112,9 @@ def driving_evidence(observation: dict, variant: str = "raw", *, context: dict |
     return represent(evidence, contract, variant, context=context)
 
 
-def reference_trial(seed: int, delay: float = 0, deadline: float = 180) -> dict:
-    sim = Simulation(seed=seed, laps=3, reset_after_s=RESET_AFTER_S)
+def reference_trial(seed: int, delay: float = 0, deadline: float = 180,
+                    race_setup: dict | None = None) -> dict:
+    sim = Simulation(seed=seed, laps=3, reset_after_s=RESET_AFTER_S, **(race_setup or {}))
     pending: tuple[float, str, int] | None = None
     ages: list[float] = []
     intervals: list[float] = []
@@ -120,7 +123,9 @@ def reference_trial(seed: int, delay: float = 0, deadline: float = 180) -> dict:
     last_observation = sim.observation()
     while not sim.finished and sim.elapsed < deadline:
         if pending is None:
-            pending = (sim.elapsed + delay, scripted_action(last_observation), last_observation["tick"])
+            pending = (sim.elapsed + delay,
+                       scripted_action(last_observation, max_steering_angle=sim.handling.max_steering_angle),
+                       last_observation["tick"])
         if sim.elapsed + 1e-9 >= pending[0]:
             if sim.last_reset_tick is not None and pending[2] < sim.last_reset_tick:
                 discarded += 1
@@ -150,11 +155,12 @@ def reference_trial(seed: int, delay: float = 0, deadline: float = 180) -> dict:
     }
 
 
-def make_reference(seeds: int, delays: list[float], output: Path) -> dict:
+def make_reference(seeds: int, delays: list[float], output: Path,
+                   race_setup: dict | None = None) -> dict:
     rows = []
     for delay in delays:
         for seed in range(seeds):
-            result = reference_trial(seed, delay)
+            result = reference_trial(seed, delay, deadline=600, race_setup=race_setup)
             rows.append(result)
             print(json.dumps({k: result[k] for k in ("seed", "delay_s", "finished", "elapsed")}), flush=True)
     reference = {
@@ -286,9 +292,9 @@ def incomplete_metrics(requests: list[dict], baseline: float, runtime_info: dict
     }
 
 
-def reference_durations(path: Path) -> dict[int, float]:
+def reference_durations(path: Path, race_setup: dict | None = None) -> dict[int, float]:
     reference = json.loads(path.read_text())
-    current_config = Simulation(reset_after_s=RESET_AFTER_S).config()
+    current_config = Simulation(reset_after_s=RESET_AFTER_S, **(race_setup or {})).config()
     if any(row["config"] != current_config for row in reference["trials"]):
         raise ValueError(
             "Reference track/handling differs from current physics; recalibrate before comparing"
@@ -341,7 +347,11 @@ def validate_resume(
     instruction_style: str,
     instructions: str | None = None,
     action_criteria: dict | None = None,
+    decision_layout: str = "joint",
+    questions: dict | None = None,
+    stop_on_first_error: bool = False,
     runtime_info: dict | None = None,
+    race_setup: dict | None = None,
 ) -> None:
     """Require the saved trial to belong to this exact experiment configuration.
 
@@ -367,8 +377,21 @@ def validate_resume(
         raise ValueError("Cannot mix control descriptions in one result directory")
     if report.get("instruction_style", "original") != instruction_style:
         raise ValueError("Cannot mix question wording in one result directory")
+    if decision_layout not in DECISION_LAYOUTS:
+        raise ValueError(f"Unknown decision layout: {decision_layout}")
+    if report.get("decision_layout", "joint") != decision_layout:
+        raise ValueError("Cannot mix decision layouts in one result directory")
+    if report.get("stop_on_first_error", False) != stop_on_first_error:
+        raise ValueError("Cannot mix endpoint error stopping policies in one result directory")
+    saved_questions = report.get("questions")
+    if decision_layout == "factored" and (saved_questions is None or questions is None):
+        raise ValueError("Cannot resume factored results without exact question definitions")
+    if saved_questions is not None and questions is None:
+        raise ValueError("Cannot resume results without current exact question definitions")
+    if saved_questions is not None and saved_questions != questions:
+        raise ValueError("Cannot resume results with different exact question definitions")
     race = report.get("race", {})
-    if race.get("config") != Simulation(reset_after_s=RESET_AFTER_S).config():
+    if race.get("config") != Simulation(reset_after_s=RESET_AFTER_S, **(race_setup or {})).config():
         raise ValueError("Cannot resume results with different simulation or rescue configuration")
     if report.get("metrics", {}).get("reference_s") != baseline:
         raise ValueError("Cannot resume results with a different paired reference duration")
@@ -417,13 +440,22 @@ async def run_trial(
     instruction_style: str = "original",
     *,
     runtime_info: dict | None = None,
+    race_setup: dict | None = None,
+    stop_on_first_error: bool = False,
 ) -> dict:
     model = route["model"]
     source_fingerprint = fingerprint()
     instructions = getattr(decisions, "instructions", None)
     action_criteria = copy.deepcopy(getattr(decisions, "criteria", None))
+    decision_layout = getattr(decisions, "decision_layout", "joint")
+    questions = copy.deepcopy(getattr(decisions, "questions", None))
+    if decision_layout not in DECISION_LAYOUTS:
+        raise ValueError(f"Unknown decision layout: {decision_layout}")
+    if decision_layout == "factored" and questions is None:
+        raise ValueError("Factored trials require exact client question definitions")
     runtime_info = copy.deepcopy(runtime_info) if runtime_info is not None else await read_runtime_info(mcp)
     runtime_identity(runtime_info)
+    contract = Simulation(seed=seed, reset_after_s=RESET_AFTER_S, **(race_setup or {})).config()
     observation = await tool(
         mcp,
         "start_race",
@@ -435,6 +467,7 @@ async def run_trial(
             + (f" / {instruction_style}" if instruction_style != "original" else "")
             + f" [telemetry={telemetry}]",
             "reset_after_s": RESET_AFTER_S,
+            **({"race_setup": race_setup} if race_setup else {}),
         },
     )
     requests: list[dict] = []
@@ -447,7 +480,7 @@ async def run_trial(
         while observation.get("status", "running") == "running" and not observation.get("finished"):
             # The model sees racing evidence rather than local RPC identity/timestamps.
             context = history.observe(observation) if history is not None else None
-            evidence = driving_evidence(observation, telemetry, context=context)
+            evidence = driving_evidence(observation, telemetry, context=context, config=contract)
             record = await decisions.decide(route, evidence)
             record["observation"] = evidence
             record["observation_tick"] = observation["tick"]
@@ -475,6 +508,9 @@ async def run_trial(
                     record["observation_age_ms"] = (ack["applied_ns"] - record["observed_ns"]) / 1e6
                 observation = ack["observation"]
             else:
+                if stop_on_first_error:
+                    reason = "first_endpoint_error"
+                    break
                 observation = await tool(mcp, "observe")
             if time.monotonic() - last_progress >= 5:
                 print(
@@ -510,6 +546,8 @@ async def run_trial(
             metrics = incomplete_metrics(requests, baseline, runtime_info)
         else:
             mismatches = runtime_mismatches(result, runtime_info)
+            if race_setup and result.get("config") != contract:
+                mismatches.append("race.config differs from the declared race setup")
             metrics = summarize_trial(result, requests, baseline)
             actual_info, actual_timing = result.get("runtime_info"), result.get("timing")
             metrics["runtime_backend"] = (
@@ -530,6 +568,10 @@ async def run_trial(
             "telemetry": telemetry,
             "control_language": control_language,
             "instruction_style": instruction_style,
+            "decision_layout": decision_layout,
+            "questions": questions,
+            "stop_on_first_error": stop_on_first_error,
+            "race_setup": race_setup or {},
             "instructions": instructions,
             "action_criteria": action_criteria,
             "requests": requests,
@@ -598,12 +640,15 @@ async def remote_command(args: argparse.Namespace) -> None:
 
     output = Path(args.output)
     output.mkdir(parents=True, exist_ok=True)
+    race_setup = {key: getattr(args, key) for key in
+                  ("course", "road_width", "max_speed", "max_steering_angle")
+                  if getattr(args, key, None) is not None}
     if args.command == "live-reference":
 
         class ScriptedDriver:
             async def decide(self, route: dict, observation: dict) -> dict:
                 started = time.monotonic_ns()
-                action = scripted_action(observation)
+                action = scripted_action(observation, max_steering_angle=race_setup.get("max_steering_angle", .32))
                 ended = time.monotonic_ns()
                 return {
                     "ok": True,
@@ -617,7 +662,7 @@ async def remote_command(args: argparse.Namespace) -> None:
                     "error": None,
                 }
 
-        baselines = reference_durations(Path(args.reference))
+        baselines = reference_durations(Path(args.reference), race_setup=race_setup)
         async with Client(args.url, timeout=30) as mcp:
             runtime_info = await read_runtime_info(mcp)
             await run_trial(
@@ -628,6 +673,7 @@ async def remote_command(args: argparse.Namespace) -> None:
                 baselines[0],
                 output / "scripted-live.json",
                 runtime_info=runtime_info,
+                race_setup=race_setup,
             )
         return
     routes_path = output / "routes.json"
@@ -661,17 +707,24 @@ async def remote_command(args: argparse.Namespace) -> None:
         actions=ACTIONS,
         control_language=args.control_language,
         instruction_style=args.instruction_style,
+        decision_layout=getattr(args, "decision_layout", "joint"),
+        handling=Simulation(**race_setup).config()["handling"],
+        max_input_tokens=(min(int(r.get("max_prompt_tokens") or r["context_length"]) for r in routes)
+                          if args.telemetry == "scene_image" else 16384
+                          if (args.telemetry == "scene_svg" or args.control_language == "geometry"
+                              or getattr(args, "decision_layout", "joint") == "factored") else 8192),
     ) as decisions:
         if args.command == "latency":
             measurements = []
             try:
                 for sample in range(args.samples):
-                    sim = Simulation(seed=sample, reset_after_s=RESET_AFTER_S)
+                    sim = Simulation(seed=sample, reset_after_s=RESET_AFTER_S, **race_setup)
                     for _ in range(round((0.5 + sample * 0.67) / DT)):
-                        sim.set_control(scripted_action(sim.observation()))
+                        sim.set_control(scripted_action(sim.observation(),
+                                                        max_steering_angle=sim.handling.max_steering_angle))
                         sim.step()
                     for route in routes:
-                        evidence = driving_evidence(sim.observation(), args.telemetry)
+                        evidence = driving_evidence(sim.observation(), args.telemetry, config=sim.config())
                         record = await decisions.decide(route, evidence)
                         record["observation"] = evidence
                         record["fingerprint"] = fingerprint()
@@ -693,14 +746,16 @@ async def remote_command(args: argparse.Namespace) -> None:
                             ),
                             flush=True,
                         )
-                        if not record["ok"] and sample == 0:
+                        if not record["ok"] and (
+                            sample == 0 or getattr(args, "stop_on_first_error", False)
+                        ):
                             raise RuntimeError(
                                 f"Endpoint smoke test failed for {route['model']}: {record['error']}"
                             )
             finally:
                 write_json(output / "latency.json", measurements)
         else:
-            baselines = reference_durations(Path(args.reference))
+            baselines = reference_durations(Path(args.reference), race_setup=race_setup)
             reports = []
             active_path = None
             active_attempt = False
@@ -734,7 +789,11 @@ async def remote_command(args: argparse.Namespace) -> None:
                                     instruction_style=args.instruction_style,
                                     instructions=decisions.instructions,
                                     action_criteria=decisions.criteria,
+                                    decision_layout=getattr(decisions, "decision_layout", "joint"),
+                                    questions=copy.deepcopy(getattr(decisions, "questions", None)),
+                                    stop_on_first_error=getattr(args, "stop_on_first_error", False),
                                     runtime_info=runtime_info,
+                                    race_setup=race_setup,
                                 )
                             else:
                                 active_path = path
@@ -749,7 +808,9 @@ async def remote_command(args: argparse.Namespace) -> None:
                                     telemetry=args.telemetry,
                                     control_language=args.control_language,
                                     instruction_style=args.instruction_style,
+                                    stop_on_first_error=getattr(args, "stop_on_first_error", False),
                                     runtime_info=runtime_info,
+                                    race_setup=race_setup,
                                 )
                             reports.append(report)
                             active_attempt = False
@@ -757,6 +818,10 @@ async def remote_command(args: argparse.Namespace) -> None:
                                 output / "summary.json",
                                 {**summarize_batch(reports), "budget": budget.summary()},
                             )
+                            if getattr(args, "stop_on_first_error", False) and any(
+                                not record["ok"] for record in report["requests"]
+                            ):
+                                raise RuntimeError("Comparison stopped after the first endpoint error")
             except BudgetExceeded:
                 print("Budget exhausted; comparison is incomplete.", flush=True)
             finally:
@@ -780,8 +845,10 @@ def main() -> None:
     reference.add_argument(
         "--reset-after-seconds", type=float, default=3, help="Continuous off-road timeout; 0 disables rescue"
     )
+    scenario_parsers = [reference]
     for command in ("routes", "latency", "screen", "compare", "live-reference"):
         child = sub.add_parser(command)
+        scenario_parsers.append(child)
         child.add_argument("--output", default="artifacts/pilot")
         child.add_argument(
             "--models",
@@ -801,6 +868,12 @@ def main() -> None:
             help="Descriptions of the same physical actions; numeric preserves the original wording",
         )
         child.add_argument(
+            "--decision-layout",
+            choices=DECISION_LAYOUTS,
+            default="joint",
+            help="Select one native action jointly or select wheel and pedal in one request",
+        )
+        child.add_argument(
             "--instruction-style",
             choices=INSTRUCTION_STYLES,
             default="original",
@@ -810,6 +883,11 @@ def main() -> None:
         child.add_argument("--reference", default="artifacts/reference.json")
         child.add_argument("--samples", type=int, default=20)
         child.add_argument("--trials", type=int, default=10)
+        child.add_argument(
+            "--stop-on-first-error",
+            action="store_true",
+            help="Preserve the failed decision and stop immediately without applying a command",
+        )
         child.add_argument(
             "--stop-when-target-impossible",
             action="store_true",
@@ -821,6 +899,12 @@ def main() -> None:
             default=3,
             help="Continuous off-road timeout; 0 disables rescue",
         )
+    for child in scenario_parsers:
+        child.add_argument("--course", choices=COURSES, default=None)
+        child.add_argument("--road-width", type=float, default=None, help="Full road and gate width, metres")
+        child.add_argument("--max-speed", type=float, default=None, help="Physical speed ceiling, m/s")
+        child.add_argument("--max-steering-angle", type=float, default=None,
+                           help="Maximum absolute wheel angle, radians")
     args = parser.parse_args()
     if not math.isfinite(args.reset_after_seconds) or args.reset_after_seconds < 0:
         parser.error("--reset-after-seconds must be finite and nonnegative")
@@ -828,7 +912,10 @@ def main() -> None:
     RESET_AFTER_S = args.reset_after_seconds or None
     simulation_contract.cache_clear()
     if args.command == "reference":
-        make_reference(args.seeds, [float(x) for x in args.delays.split(",")], Path(args.output))
+        race_setup = {key: getattr(args, key) for key in
+                      ("course", "road_width", "max_speed", "max_steering_angle")
+                      if getattr(args, key) is not None}
+        make_reference(args.seeds, [float(x) for x in args.delays.split(",")], Path(args.output), race_setup)
     else:
         try:
             asyncio.run(remote_command(args))

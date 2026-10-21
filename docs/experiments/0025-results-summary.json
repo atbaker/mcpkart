@@ -1,0 +1,809 @@
+{
+  "schema_version": 1,
+  "kind": "paired_joint_factored_live_results",
+  "experiment": "0025",
+  "status": "complete_with_amended_recording_validation_and_provenance_limitations",
+  "scope": "Two paired starts; no reliability qualification or automatic preset promotion.",
+  "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+  "provenance_files": [
+    {
+      "path": "artifacts/jev-factored-live-v1/protocol.json",
+      "sha256": "996c1741e841189d75cbb1f0a428354034865095f5b88529591f1843a9c12e91"
+    },
+    {
+      "path": "artifacts/jev-factored-live-v1/amendment.json",
+      "sha256": "ba50d1def0a4d577aadb4230b7178b619e33813ec578b6f30ef21c4965a2bebf"
+    },
+    {
+      "path": "artifacts/jev-factored-live-v1/final-audit-amended.json",
+      "sha256": "a56259e060e423e21dddd01e6e88abb11cc737d05341277669eb4e0deb06d8de"
+    },
+    {
+      "path": "artifacts/jev-factored-live-v1/report-amended/summary.json",
+      "sha256": "68b8085d1933605af8aee87294a5ce467a0c400982b846b67bbbda5a2b3d561e"
+    },
+    {
+      "path": "artifacts/jev-factored-live-v1/resume-amended-preflight.json",
+      "sha256": "fd398baefa1b12bf9b4757e5fe7da24e7d0b8b547082926b26a643adb01572e1"
+    },
+    {
+      "path": "artifacts/jev-factored-live-v1/diagnostics/final-audit-recovery-context.json",
+      "sha256": "3b76b3c22f4b6e629ba911544ed948b4e968ecfb478bda28eeb9d021afdf0fd5"
+    },
+    {
+      "path": "artifacts/jev-factored-live-v1/diagnostics/postcollection-preflight-invocation.json",
+      "sha256": "0d50bb795036dd8d9ac4aff9b6bf04f03d764ad6c2d8baaa8f8d72340dbe1f98"
+    },
+    {
+      "path": "docs/experiments/0025-factored-prompts.json",
+      "sha256": "d052add990b45361ac6c4e21467b40fb7f81ab2f589a01226511aa14c61ba2c0"
+    },
+    {
+      "path": "docs/experiments/0025-validation-amendment.json",
+      "sha256": "ba50d1def0a4d577aadb4230b7178b619e33813ec578b6f30ef21c4965a2bebf"
+    }
+  ],
+  "frozen_protocol": {
+    "schema_version": 1,
+    "kind": "paired_joint_factored_live_screen",
+    "frozen": true,
+    "created_utc": "2026-10-20T00:50:23.903675+00:00",
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 59224,
+      "charged_usd": 7.311023835999883,
+      "charged_tokens": 238213875,
+      "reported_cost_usd": 7.253745371999868,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_boundary_status": "frozen after passing0024 and all free gates",
+    "limits": {
+      "max_requests": 75000,
+      "cap_usd": 10.0,
+      "max_tokens": 250000000
+    },
+    "shared_ledger": "artifacts/budget.json",
+    "initial_token_floor": 10000000,
+    "per_trial_admission": {
+      "remaining_requests_min": 1000,
+      "remaining_tokens_min": 5000000
+    },
+    "session_deadline_utc": "2026-10-20T06:17:26+00:00",
+    "minimum_seconds_before_deadline_to_start_trial": 900,
+    "race_setup": {
+      "course": "stadium",
+      "road_width": 24,
+      "max_speed": 12,
+      "max_steering_angle": 0.12
+    },
+    "laps": 3,
+    "rescue_after_s": 3,
+    "physics_hz": 60,
+    "engine": "python",
+    "clock_backend": "process",
+    "clock_pacing": "asyncio",
+    "watchdog": false,
+    "mcp_url": "http://127.0.0.1:8765/mcp",
+    "telemetry": "road_navigation",
+    "control_language": "geometry",
+    "instruction_style": "damped",
+    "instructions": "Avoid overcorrection: select the gentlest wheel angle that can keep the near road corridor reachable. The wheel setting is absolute, so repeating moderate LEFT holds that turn continuously; it is not a small incremental nudge. Use STRAIGHT to unwind when the required heading is nearly reached. Existing yaw persists briefly after a new wheel command; allow for that response lag and the next inference interval. When the nose is already turning quickly LEFT toward alignment, unwind before it rotates too far LEFT; when already turning quickly RIGHT toward alignment, unwind before it rotates too far RIGHT. If the road is already being lost, slow down rather than holding full steering and full throttle indefinitely. Choose the single wheel-and-pedal input to hold NEXT in this fictional kart game. The kart keeps moving during inference (usually about 0.25 seconds). Complete all 120 ordered gates quickly; keep the kart on the road. Each choice sets an ABSOLUTE wheel angle, not a change to the previous input. LEFT wheels rotate the nose left; RIGHT wheels rotate it right; straight wheels do not auto-align. First judge the nearby road corridor from the CURRENT nose and motion. road.road_vs_kart_deg is ROAD tangent minus NOSE: negative means the road faces RIGHT of the nose; positive means LEFT. A left bend describes the road, not necessarily the steering correction needed now. Check road.preview ego_x_m/ego_y_m at 3, 6 and 10 metres, edge clearance, actual wheel angle and yaw. Avoid steering farther toward an edge when the nose and motion already point out across it. Use future bends for speed planning; do not replace current alignment with the distant bend label. Use the physical wheel angles/radii in the choices, allowing for grip and response lag. Braking lowers speed and allows tighter turns; do not remain stopped once forward progress is safe. For next_gate, credit requires crossing its plane from negative to positive within its width. If its plane is already positive without credit, recover to its approach side before crossing forward. After rescue continue from the stopped kart. All controls remain your choice.",
+    "questions": {
+      "joint": {
+        "control": {
+          "type": "choice",
+          "instructions": "Avoid overcorrection: select the gentlest wheel angle that can keep the near road corridor reachable. The wheel setting is absolute, so repeating moderate LEFT holds that turn continuously; it is not a small incremental nudge. Use STRAIGHT to unwind when the required heading is nearly reached. Existing yaw persists briefly after a new wheel command; allow for that response lag and the next inference interval. When the nose is already turning quickly LEFT toward alignment, unwind before it rotates too far LEFT; when already turning quickly RIGHT toward alignment, unwind before it rotates too far RIGHT. If the road is already being lost, slow down rather than holding full steering and full throttle indefinitely. Choose the single wheel-and-pedal input to hold NEXT in this fictional kart game. The kart keeps moving during inference (usually about 0.25 seconds). Complete all 120 ordered gates quickly; keep the kart on the road. Each choice sets an ABSOLUTE wheel angle, not a change to the previous input. LEFT wheels rotate the nose left; RIGHT wheels rotate it right; straight wheels do not auto-align. First judge the nearby road corridor from the CURRENT nose and motion. road.road_vs_kart_deg is ROAD tangent minus NOSE: negative means the road faces RIGHT of the nose; positive means LEFT. A left bend describes the road, not necessarily the steering correction needed now. Check road.preview ego_x_m/ego_y_m at 3, 6 and 10 metres, edge clearance, actual wheel angle and yaw. Avoid steering farther toward an edge when the nose and motion already point out across it. Use future bends for speed planning; do not replace current alignment with the distant bend label. Use the physical wheel angles/radii in the choices, allowing for grip and response lag. Braking lowers speed and allows tighter turns; do not remain stopped once forward progress is safe. For next_gate, credit requires crossing its plane from negative to positive within its width. If its plane is already positive without credit, recover to its approach side before crossing forward. After rescue continue from the stopped kart. All controls remain your choice.",
+          "criteria": {
+            "hard_right_accelerate": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients. ACCELERATE.",
+            "hard_right_coast": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients. COAST.",
+            "hard_right_brake": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients. BRAKE.",
+            "right_accelerate": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients. ACCELERATE.",
+            "right_coast": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients. COAST.",
+            "right_brake": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients. BRAKE.",
+            "straight_accelerate": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients. ACCELERATE.",
+            "straight_coast": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients. COAST.",
+            "straight_brake": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients. BRAKE.",
+            "left_accelerate": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients. ACCELERATE.",
+            "left_coast": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients. COAST.",
+            "left_brake": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients. BRAKE.",
+            "hard_left_accelerate": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients. ACCELERATE.",
+            "hard_left_coast": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients. COAST.",
+            "hard_left_brake": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients. BRAKE."
+          }
+        }
+      },
+      "factored": {
+        "wheel": {
+          "type": "choice",
+          "instructions": "Avoid overcorrection: select the gentlest wheel angle that can keep the near road corridor reachable. The wheel setting is absolute, so repeating moderate LEFT holds that turn continuously; it is not a small incremental nudge. Use STRAIGHT to unwind when the required heading is nearly reached. Existing yaw persists briefly after a new wheel command; allow for that response lag and the next inference interval. When the nose is already turning quickly LEFT toward alignment, unwind before it rotates too far LEFT; when already turning quickly RIGHT toward alignment, unwind before it rotates too far RIGHT. If the road is already being lost, slow down rather than holding full steering and full throttle indefinitely. Choose the single wheel-and-pedal input to hold NEXT in this fictional kart game. The kart keeps moving during inference (usually about 0.25 seconds). Complete all 120 ordered gates quickly; keep the kart on the road. Each choice sets an ABSOLUTE wheel angle, not a change to the previous input. LEFT wheels rotate the nose left; RIGHT wheels rotate it right; straight wheels do not auto-align. First judge the nearby road corridor from the CURRENT nose and motion. road.road_vs_kart_deg is ROAD tangent minus NOSE: negative means the road faces RIGHT of the nose; positive means LEFT. A left bend describes the road, not necessarily the steering correction needed now. Check road.preview ego_x_m/ego_y_m at 3, 6 and 10 metres, edge clearance, actual wheel angle and yaw. Avoid steering farther toward an edge when the nose and motion already point out across it. Use future bends for speed planning; do not replace current alignment with the distant bend label. Use the physical wheel angles/radii in the choices, allowing for grip and response lag. Braking lowers speed and allows tighter turns; do not remain stopped once forward progress is safe. For next_gate, credit requires crossing its plane from negative to positive within its width. If its plane is already positive without credit, recover to its approach side before crossing forward. After rescue continue from the stopped kart. All controls remain your choice. For this wheel question, choose only the ABSOLUTE wheel setting to hold NEXT. The pedal is selected in the separate pedal question in this same request. Both selected settings form one direct input.",
+          "criteria": {
+            "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+            "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+            "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+          }
+        },
+        "pedal": {
+          "type": "choice",
+          "instructions": "Avoid overcorrection: select the gentlest wheel angle that can keep the near road corridor reachable. The wheel setting is absolute, so repeating moderate LEFT holds that turn continuously; it is not a small incremental nudge. Use STRAIGHT to unwind when the required heading is nearly reached. Existing yaw persists briefly after a new wheel command; allow for that response lag and the next inference interval. When the nose is already turning quickly LEFT toward alignment, unwind before it rotates too far LEFT; when already turning quickly RIGHT toward alignment, unwind before it rotates too far RIGHT. If the road is already being lost, slow down rather than holding full steering and full throttle indefinitely. Choose the single wheel-and-pedal input to hold NEXT in this fictional kart game. The kart keeps moving during inference (usually about 0.25 seconds). Complete all 120 ordered gates quickly; keep the kart on the road. Each choice sets an ABSOLUTE wheel angle, not a change to the previous input. LEFT wheels rotate the nose left; RIGHT wheels rotate it right; straight wheels do not auto-align. First judge the nearby road corridor from the CURRENT nose and motion. road.road_vs_kart_deg is ROAD tangent minus NOSE: negative means the road faces RIGHT of the nose; positive means LEFT. A left bend describes the road, not necessarily the steering correction needed now. Check road.preview ego_x_m/ego_y_m at 3, 6 and 10 metres, edge clearance, actual wheel angle and yaw. Avoid steering farther toward an edge when the nose and motion already point out across it. Use future bends for speed planning; do not replace current alignment with the distant bend label. Use the physical wheel angles/radii in the choices, allowing for grip and response lag. Braking lowers speed and allows tighter turns; do not remain stopped once forward progress is safe. For next_gate, credit requires crossing its plane from negative to positive within its width. If its plane is already positive without credit, recover to its approach side before crossing forward. After rescue continue from the stopped kart. All controls remain your choice. For this pedal question, choose only ACCELERATE, COAST, or BRAKE to hold NEXT. The wheel is selected in the separate wheel question in this same request. Both selected settings form one direct input.",
+          "criteria": {
+            "accelerate": "ACCELERATE: throttle 1, brake 0.",
+            "coast": "COAST: throttle 0, brake 0.",
+            "brake": "BRAKE: throttle 0, brake 1."
+          }
+        }
+      }
+    },
+    "native_criteria": {
+      "hard_right_accelerate": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients. ACCELERATE.",
+      "hard_right_coast": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients. COAST.",
+      "hard_right_brake": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients. BRAKE.",
+      "right_accelerate": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients. ACCELERATE.",
+      "right_coast": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients. COAST.",
+      "right_brake": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients. BRAKE.",
+      "straight_accelerate": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients. ACCELERATE.",
+      "straight_coast": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients. COAST.",
+      "straight_brake": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients. BRAKE.",
+      "left_accelerate": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients. ACCELERATE.",
+      "left_coast": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients. COAST.",
+      "left_brake": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients. BRAKE.",
+      "hard_left_accelerate": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients. ACCELERATE.",
+      "hard_left_coast": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients. COAST.",
+      "hard_left_brake": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients. BRAKE."
+    },
+    "input_token_ceiling": 16384,
+    "request_timeout_s": 5,
+    "stop_on_first_error": true,
+    "stop_on_uncertain_accounting": true,
+    "automatic_retries": 0,
+    "provider_fallbacks": false,
+    "paid_writer_count": 1,
+    "route": {
+      "model": "typesafe/jev-1.14",
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "typesafe",
+      "provider_name": "TypeSafe",
+      "endpoint_name": "TypeSafe | typesafe/jev-1.14-20261014",
+      "price_input_per_token": 4.2e-08,
+      "price_output_per_token": 0.0,
+      "price_per_request": 0.0,
+      "context_length": 262144,
+      "max_prompt_tokens": 262144,
+      "max_completion_tokens": 235929
+    },
+    "routes_file": "routes.json",
+    "reference_file": "reference.json",
+    "order": [
+      {
+        "index": 0,
+        "seed": 11,
+        "layout": "joint"
+      },
+      {
+        "index": 1,
+        "seed": 11,
+        "layout": "factored"
+      },
+      {
+        "index": 2,
+        "seed": 12,
+        "layout": "factored"
+      },
+      {
+        "index": 3,
+        "seed": 12,
+        "layout": "joint"
+      }
+    ],
+    "planned_paid_attempts": 4,
+    "deadline_policy": "3x exact seed-matched reference",
+    "required_evidence": {
+      "command_audit": {
+        "path": "../jev-factored-commands-v1/final-audit.json",
+        "sha256": "2276e7f5081174ba21664dcf923aa1641c348e50d938ce0acccb63f885e7ebbe"
+      },
+      "clock_verification": {
+        "path": "clock-gate-v1/verification.json",
+        "sha256": "9ee68a7a9a5087e3cd458671219b5d5bb9370515d0a37f026ea21426a2ed6ad9"
+      },
+      "clock_context": {
+        "path": "clock-gate-v1/session-context.json",
+        "sha256": "0052cbb367a6c8882f1b0cf297ece60f050888176ca832dc90924742b174f0ed"
+      },
+      "clock_controls": {
+        "path": "clock-gate-v1/controls/validation.json",
+        "sha256": "44290733fd42e3a795b05614c5bf6702e5ed912ae9bf6f6bc84b64778e3d730d"
+      },
+      "exact_free_trial": {
+        "path": "free-seed-11/trial.json",
+        "sha256": "ed12acacfc73a6d422094d53a0083a0f498fcfc4e2d18cadf3e7c4b5b22c2699"
+      },
+      "reference_check": {
+        "path": "reference-check.json",
+        "sha256": "6e637217fbb7e8d168c4e8e4c0c5ef0355a0f1c30789a4339cf0304dba27beb7"
+      },
+      "clock_trial_1": {
+        "path": "clock-gate-v1/controls/run-01/scripted-live.json",
+        "sha256": "5849d2c9987d6c71eee79ece48fad80bb04891d54a3d939487f1576832ce1650"
+      },
+      "clock_trial_2": {
+        "path": "clock-gate-v1/controls/run-02/scripted-live.json",
+        "sha256": "fed8a6095075a6aa5c56959cf8ada4a9e234dd64f1ab9aa48e56a1c9be7007eb"
+      },
+      "clock_trial_3": {
+        "path": "clock-gate-v1/controls/run-03/scripted-live.json",
+        "sha256": "a54e6c3fbfcd2af30b0e22c60c3286caaf424e144150accb834ecb3fafc6043b"
+      },
+      "clock_long": {
+        "path": "clock-gate-v1/long-clock.json",
+        "sha256": "d30e17d8d4e8d0ecc95110f5a15f2bcbc85170f2f81ad7da796aa786b195e473"
+      },
+      "clock_manifest": {
+        "path": "clock-gate-v1/HELPER-MANIFEST.json",
+        "sha256": "0ab257adf55a0dbdb161ab3334af14bbd1bb2418556cd5f378c836b574a71ba2"
+      },
+      "clock_host_spectator": {
+        "path": "clock-gate-v1/host-spectator.json",
+        "sha256": "58c4bca5ce15eb073afcdc19d9b03c96b09ff858759beead7149cd641a02b732"
+      },
+      "free_result": {
+        "path": "free-seed-11/result.json",
+        "sha256": "5e6ff5a2dc61cd1ad2c341f916b0034f586dd1b3e3c48fb6d2e5423339af25e8"
+      }
+    },
+    "local_preflight_file": "preflight.json",
+    "helper_sha256": {
+      "common.py": "13072abf1d7907ec752891f859f4a584a6294eb386f16c25241e79b3723e346e",
+      "runner.py": "9378c3a98c325c1ae254c29f8135f3335e485d8d67ceea9fe54be7136ab415f2",
+      "phase.py": "32504fc5a81327e26543a84e72b323bbe5a27fe43262a129ee65e33ab394fd83",
+      "replay.py": "891be036c1f6c81e10596a41bde795ea2c0b3f7a6fa220d1077368a83ea42542",
+      "preflight.py": "82c72c5b4c256b26e540b42108ffecb0901b15a24610d9202dac6232fe7b85ef",
+      "preflight.json": "a95298b09c6a5190548202892371413d054f182ae2de8e9345060d28519d85a0",
+      "stage.py": "e623c968494cc67fc050f182b4c1a37898e4c70ebd58bdb7831d988e38fe59b4",
+      "free_control.py": "1d52eba4f0904793e0f3f72b3d6c18ec58f6306c581fa82e629527c7a7cf7695",
+      "audit.py": "3c194a5aaa1ebbb8e07abe62fad1a122f38d2dd0fa0dbc39453ac67145b77404",
+      "routes.json": "1cf933a322f8f2f69081270c745fcefb4212e2ab3c9c2906abd67dce7b902311",
+      "reference.json": "bd3be0f60119844e9f94b17f838b6beb1c76999402670c06e87c14193582a887",
+      "reference-check.json": "6e637217fbb7e8d168c4e8e4c0c5ef0355a0f1c30789a4339cf0304dba27beb7",
+      "DESIGN.md": "80576be2f20448ed9e297c3b2edb93e5204c9453cef115009e01c83cc66cf33b"
+    },
+    "prerequisites": "0024 audit complete and gatepassed; fresh complete Python clock gate; fresh exact24m free control; helpers, route, current budget and evidence hashes frozen before first paid race",
+    "comparison": "Two paired fresh initial poses; reverse layout order on second pose. Full factual state and physical controls fixed. Factored choices decode bijectively to native actions; no computed policy or action ranking.",
+    "clean_finish_definition": "Finished120orderedgates,zerooffroad_time,zerorescues,<=2xseedmatchedreference,validtiming,exactreplay,zeroendpoint/accountingimpairment.",
+    "selection": "Require all4races complete120gates at usefulpace<=2x reference, valid timing/exactreplay and zero endpoint/accounting impairment. Report clean finishes (zerooffroad_time andzerorescues) then paired rescues and pace. Prefer no worse candidate rescues on either seed and strict improvement on at leastone. No production promotion from two starts.",
+    "failures_and_resume": "Retain everyattempt, failure, censoring and unrun entry. Stop first endpoint, identity, timing or uncertain accounting failure. Resume skips only complete clean-accounting prefix with exact source/route/questions/ledger; never rerun an attempted directory.",
+    "followup": "No automatic followup. Only2/2candidate clean useful-pace finishes (zerooffroad_time,zerorescues,120gates,validtiming/exactreplay/noendpoint/accountingimpairment) andpairedimprovement may motivate separatelyfrozen atmost2fresh candidate-only heldout starts13/14, subject to remainingtime/caps; stop firstnonclean/slow. No ten-startqualification or presetpromotion claim.",
+    "audit": "Only after collectionstops: exact deterministic replay/timing, command-to-native-reply and componentmapping attribution, exact wirebody/state/questions, one reservation perrequest, aggregateusageand full ledgerchain; failures/unrun explicit. Rootupdates versioned budget snapshot onlyafterpassing independent audit.",
+    "frozen_utc": "2026-10-20T00:54:24.941651+00:00"
+  },
+  "frozen_validation_amendment": {
+    "schema_version": 1,
+    "kind": "verification_only_continuation",
+    "frozen": true,
+    "created_utc": "2026-10-20T01:02:37.338834+00:00",
+    "parent_protocol_path": "protocol.json",
+    "parent_protocol_sha256": "996c1741e841189d75cbb1f0a428354034865095f5b88529591f1843a9c12e91",
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "known_first_trial": {
+      "index": 0,
+      "protocol_path": "paid/00-joint-seed-11/protocol.json",
+      "protocol_sha256": "cd671a44a4fa6385b346693833c68fc8025852e2b86fd06ae58a68c0e1d022f9",
+      "trial_path": "paid/00-joint-seed-11/trial.json",
+      "trial_sha256": "34e2c188f7747810675aaf960e36367e2b98472ba766f3bf0337ab8354ad3752",
+      "result_path": "paid/00-joint-seed-11/result.json",
+      "result_sha256": "a259f95392f7b70008da730d1a5fa5438f0ee04d509020cc34f797f9c49612c8",
+      "diagnostic_path": "diagnostics/runtime-finished-field.json",
+      "diagnostic_sha256": "e3703e66c230c352b2e300dc9c3a34a6e059315b44c77c5d523a9b74cec0b07f",
+      "corrected_replay_path": "diagnostics/corrected-replay-00.json",
+      "corrected_replay_sha256": "91b585507af38782bde4c0893fa835a49f4d84853d96d75050503ed078ec93c5"
+    },
+    "budget_at_amendment": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 59616,
+      "charged_usd": 7.358979393999878,
+      "charged_tokens": 239420644,
+      "reported_cost_usd": 7.301700929999862,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "permitted_correction": "finished=sim.finished",
+    "permitted_unrun_indices": [
+      1,
+      2,
+      3
+    ],
+    "order": [
+      {
+        "index": 0,
+        "seed": 11,
+        "layout": "joint"
+      },
+      {
+        "index": 1,
+        "seed": 11,
+        "layout": "factored"
+      },
+      {
+        "index": 2,
+        "seed": 12,
+        "layout": "factored"
+      },
+      {
+        "index": 3,
+        "seed": 12,
+        "layout": "joint"
+      }
+    ],
+    "comparison_unchanged": true,
+    "limits": {
+      "max_requests": 75000,
+      "cap_usd": 10.0,
+      "max_tokens": 250000000
+    },
+    "session_deadline_utc": "2026-10-20T06:17:26+00:00",
+    "original_stop_path": "phase-stop-00.json",
+    "original_stop_sha256": "49fe5fe3458d631bd95e3601df3827195d9670223b7b9463afdf1018081ae0b2",
+    "original_failed_audit_path": "final-audit.json",
+    "original_failed_audit_sha256": "4384b4d99a52a3fe11426f52c8681315acf9b7cecef4f9f69976306264294348",
+    "helper_sha256": {
+      "resume_amended.py": "7f3338ae718e9def82e9fc1b5bdc210f34960df5ab200f4adb3dd54ad299ce01",
+      "audit_amended.py": "67e0aa544f197cf5a7fde328651314b995c6b5da0c6795cc6b90aefc7420a545",
+      "resume-amended-preflight.json": "fd398baefa1b12bf9b4757e5fe7da24e7d0b8b547082926b26a643adb01572e1",
+      "diagnostics/runtime-finished-field.py": "f436037adc5b2beee828957b9ebf309d57aa003e2efdda114af8ac7ee1ed08b5",
+      "diagnostics/request-state-check.py": "2e764838ee7370f1bb17c234c219350681b91d9b0dad4588577311124a33eda8",
+      "diagnostics/request-state-check.json": "3db0919ed2b442c527344a018774d7903377eb9d144dbc4c8d3abf164f7652ac"
+    },
+    "policy": "Retain original index0 and allfailedverificationoutputs; run onlyunattemptedindices1\u20133. No source/client/payload/physics/timing/action/menu/route/cap/order/performancegate change. Originalresult00 remainscontinuefalse; only itscertifiedverificationomission isexcepted inresume admission.",
+    "frozen_utc": "2026-10-20T01:03:38.854055+00:00"
+  },
+  "final_recording_audit": {
+    "passed": true,
+    "complete": true,
+    "checked_at_utc": "2026-10-20T01:13:10.351193+00:00",
+    "errors": [],
+    "warnings": [],
+    "helper_checks": {
+      "amended/resume_amended.py": {
+        "expected": "7f3338ae718e9def82e9fc1b5bdc210f34960df5ab200f4adb3dd54ad299ce01",
+        "actual": "7f3338ae718e9def82e9fc1b5bdc210f34960df5ab200f4adb3dd54ad299ce01",
+        "matches": true
+      },
+      "amended/audit_amended.py": {
+        "expected": "67e0aa544f197cf5a7fde328651314b995c6b5da0c6795cc6b90aefc7420a545",
+        "actual": "67e0aa544f197cf5a7fde328651314b995c6b5da0c6795cc6b90aefc7420a545",
+        "matches": true
+      },
+      "amended/resume-amended-preflight.json": {
+        "expected": "fd398baefa1b12bf9b4757e5fe7da24e7d0b8b547082926b26a643adb01572e1",
+        "actual": "fd398baefa1b12bf9b4757e5fe7da24e7d0b8b547082926b26a643adb01572e1",
+        "matches": true
+      },
+      "amended/diagnostics/runtime-finished-field.py": {
+        "expected": "f436037adc5b2beee828957b9ebf309d57aa003e2efdda114af8ac7ee1ed08b5",
+        "actual": "f436037adc5b2beee828957b9ebf309d57aa003e2efdda114af8ac7ee1ed08b5",
+        "matches": true
+      },
+      "amended/diagnostics/request-state-check.py": {
+        "expected": "2e764838ee7370f1bb17c234c219350681b91d9b0dad4588577311124a33eda8",
+        "actual": "2e764838ee7370f1bb17c234c219350681b91d9b0dad4588577311124a33eda8",
+        "matches": true
+      },
+      "amended/diagnostics/request-state-check.json": {
+        "expected": "3db0919ed2b442c527344a018774d7903377eb9d144dbc4c8d3abf164f7652ac",
+        "actual": "3db0919ed2b442c527344a018774d7903377eb9d144dbc4c8d3abf164f7652ac",
+        "matches": true
+      },
+      "common.py": {
+        "expected": "13072abf1d7907ec752891f859f4a584a6294eb386f16c25241e79b3723e346e",
+        "actual": "13072abf1d7907ec752891f859f4a584a6294eb386f16c25241e79b3723e346e",
+        "matches": true
+      },
+      "runner.py": {
+        "expected": "9378c3a98c325c1ae254c29f8135f3335e485d8d67ceea9fe54be7136ab415f2",
+        "actual": "9378c3a98c325c1ae254c29f8135f3335e485d8d67ceea9fe54be7136ab415f2",
+        "matches": true
+      },
+      "phase.py": {
+        "expected": "32504fc5a81327e26543a84e72b323bbe5a27fe43262a129ee65e33ab394fd83",
+        "actual": "32504fc5a81327e26543a84e72b323bbe5a27fe43262a129ee65e33ab394fd83",
+        "matches": true
+      },
+      "replay.py": {
+        "expected": "891be036c1f6c81e10596a41bde795ea2c0b3f7a6fa220d1077368a83ea42542",
+        "actual": "891be036c1f6c81e10596a41bde795ea2c0b3f7a6fa220d1077368a83ea42542",
+        "matches": true
+      },
+      "preflight.py": {
+        "expected": "82c72c5b4c256b26e540b42108ffecb0901b15a24610d9202dac6232fe7b85ef",
+        "actual": "82c72c5b4c256b26e540b42108ffecb0901b15a24610d9202dac6232fe7b85ef",
+        "matches": true
+      },
+      "preflight.json": {
+        "expected": "a95298b09c6a5190548202892371413d054f182ae2de8e9345060d28519d85a0",
+        "actual": "a95298b09c6a5190548202892371413d054f182ae2de8e9345060d28519d85a0",
+        "matches": true
+      },
+      "stage.py": {
+        "expected": "e623c968494cc67fc050f182b4c1a37898e4c70ebd58bdb7831d988e38fe59b4",
+        "actual": "e623c968494cc67fc050f182b4c1a37898e4c70ebd58bdb7831d988e38fe59b4",
+        "matches": true
+      },
+      "free_control.py": {
+        "expected": "1d52eba4f0904793e0f3f72b3d6c18ec58f6306c581fa82e629527c7a7cf7695",
+        "actual": "1d52eba4f0904793e0f3f72b3d6c18ec58f6306c581fa82e629527c7a7cf7695",
+        "matches": true
+      },
+      "audit.py": {
+        "expected": "3c194a5aaa1ebbb8e07abe62fad1a122f38d2dd0fa0dbc39453ac67145b77404",
+        "actual": "3c194a5aaa1ebbb8e07abe62fad1a122f38d2dd0fa0dbc39453ac67145b77404",
+        "matches": true
+      },
+      "routes.json": {
+        "expected": "1cf933a322f8f2f69081270c745fcefb4212e2ab3c9c2906abd67dce7b902311",
+        "actual": "1cf933a322f8f2f69081270c745fcefb4212e2ab3c9c2906abd67dce7b902311",
+        "matches": true
+      },
+      "reference.json": {
+        "expected": "bd3be0f60119844e9f94b17f838b6beb1c76999402670c06e87c14193582a887",
+        "actual": "bd3be0f60119844e9f94b17f838b6beb1c76999402670c06e87c14193582a887",
+        "matches": true
+      },
+      "reference-check.json": {
+        "expected": "6e637217fbb7e8d168c4e8e4c0c5ef0355a0f1c30789a4339cf0304dba27beb7",
+        "actual": "6e637217fbb7e8d168c4e8e4c0c5ef0355a0f1c30789a4339cf0304dba27beb7",
+        "matches": true
+      },
+      "DESIGN.md": {
+        "expected": "80576be2f20448ed9e297c3b2edb93e5204c9453cef115009e01c83cc66cf33b",
+        "actual": "80576be2f20448ed9e297c3b2edb93e5204c9453cef115009e01c83cc66cf33b",
+        "matches": true
+      }
+    },
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "attempted_trials": [
+      {
+        "index": 0,
+        "seed": 11,
+        "layout": "joint"
+      },
+      {
+        "index": 1,
+        "seed": 11,
+        "layout": "factored"
+      },
+      {
+        "index": 2,
+        "seed": 12,
+        "layout": "factored"
+      },
+      {
+        "index": 3,
+        "seed": 12,
+        "layout": "joint"
+      }
+    ],
+    "unrun": [],
+    "requests": 1499,
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 59224,
+      "charged_usd": 7.311023835999883,
+      "charged_tokens": 238213875,
+      "reported_cost_usd": 7.253745371999868,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 60723,
+      "charged_usd": 7.49766511599989,
+      "charged_tokens": 242850694,
+      "reported_cost_usd": 7.440386651999875,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 1499,
+      "charged_usd": 0.18664128000000701,
+      "reported_cost_usd": 0.18664128000000701,
+      "charged_tokens": 4636819,
+      "uncertain_requests": 0
+    },
+    "paired_screen_positive": false,
+    "both_candidate_fully_clean_useful_pace": false,
+    "separate_holdout_freeze_eligible": false,
+    "amendment_sha256": "ba50d1def0a4d577aadb4230b7178b619e33813ec578b6f30ef21c4965a2bebf",
+    "parent_protocol_sha256": "996c1741e841189d75cbb1f0a428354034865095f5b88529591f1843a9c12e91",
+    "known_original_verifier_stop_certified": true,
+    "original_failed_audit_and_stop_preserved": true,
+    "no_automatic_followup_or_preset_promotion": true,
+    "model_requests_by_audit": 0,
+    "ledger_written_by_audit": false
+  },
+  "audited_report": {
+    "scope": "Two paired starts; no reliability qualification or automatic preset promotion.",
+    "complete": true,
+    "trials": [
+      {
+        "index": 0,
+        "seed": 11,
+        "layout": "joint",
+        "attempted": true,
+        "finished": true,
+        "useful_pace": true,
+        "timing_valid": true,
+        "rescues": 2,
+        "offroad_s": 5.999999999999984,
+        "elapsed": 102.19999999999548,
+        "time_ratio": 1.3224067284882413,
+        "requests": 392,
+        "endpoint_errors": 0,
+        "continue_eligible": true,
+        "historical_continue_eligible": false,
+        "known_verifier_stop_certified_by_amendment": true,
+        "trial_error": {
+          "type": "ValueError",
+          "message": "Model state was not the factual observation at its request tick"
+        },
+        "replay": {
+          "samples": 6133,
+          "requests": 392,
+          "native_commands": 389,
+          "timing": {
+            "max_lateness_ms": 14.986808,
+            "p95_lateness_ms": 1.476715,
+            "drift_ms": 0.8580610045214598
+          },
+          "timing_valid": true
+        }
+      },
+      {
+        "index": 1,
+        "seed": 11,
+        "layout": "factored",
+        "attempted": true,
+        "finished": true,
+        "useful_pace": true,
+        "timing_valid": true,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "elapsed": 87.53333333332965,
+        "time_ratio": 1.1326288548630559,
+        "requests": 336,
+        "endpoint_errors": 0,
+        "continue_eligible": true,
+        "historical_continue_eligible": true,
+        "known_verifier_stop_certified_by_amendment": false,
+        "trial_error": null,
+        "replay": {
+          "samples": 5253,
+          "requests": 336,
+          "native_commands": 335,
+          "timing": {
+            "max_lateness_ms": 3.862014,
+            "p95_lateness_ms": 1.400493,
+            "drift_ms": 1.1525936703549178
+          },
+          "timing_valid": true
+        }
+      },
+      {
+        "index": 2,
+        "seed": 12,
+        "layout": "factored",
+        "attempted": true,
+        "finished": true,
+        "useful_pace": true,
+        "timing_valid": true,
+        "rescues": 2,
+        "offroad_s": 6.583333333333315,
+        "elapsed": 120.6166666666611,
+        "time_ratio": 1.5620548240880545,
+        "requests": 460,
+        "endpoint_errors": 0,
+        "continue_eligible": true,
+        "historical_continue_eligible": true,
+        "known_verifier_stop_certified_by_amendment": false,
+        "trial_error": null,
+        "replay": {
+          "samples": 7238,
+          "requests": 460,
+          "native_commands": 457,
+          "timing": {
+            "max_lateness_ms": 87.316605,
+            "p95_lateness_ms": 1.485211,
+            "drift_ms": 0.8353963388998409
+          },
+          "timing_valid": true
+        }
+      },
+      {
+        "index": 3,
+        "seed": 12,
+        "layout": "joint",
+        "attempted": true,
+        "finished": true,
+        "useful_pace": true,
+        "timing_valid": true,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "elapsed": 81.61666666666332,
+        "time_ratio": 1.0569825167278213,
+        "requests": 311,
+        "endpoint_errors": 0,
+        "continue_eligible": true,
+        "historical_continue_eligible": true,
+        "known_verifier_stop_certified_by_amendment": false,
+        "trial_error": null,
+        "replay": {
+          "samples": 4898,
+          "requests": 311,
+          "native_commands": 309,
+          "timing": {
+            "max_lateness_ms": 9.619519,
+            "p95_lateness_ms": 1.454005,
+            "drift_ms": 0.5039203366834499
+          },
+          "timing_valid": true
+        }
+      }
+    ],
+    "paired_seeds": [
+      {
+        "seed": 11,
+        "both_useful_pace": true,
+        "joint_rescues": 2,
+        "factored_rescues": 1,
+        "factored_no_worse_rescues": true,
+        "factored_strictly_fewer_rescues": true
+      },
+      {
+        "seed": 12,
+        "both_useful_pace": true,
+        "joint_rescues": 1,
+        "factored_rescues": 2,
+        "factored_no_worse_rescues": false,
+        "factored_strictly_fewer_rescues": false
+      }
+    ],
+    "paired_screen_positive": false,
+    "both_candidate_fully_clean_useful_pace": false,
+    "latency_by_layout": {
+      "joint": {
+        "calls": 703,
+        "median_ms": 232.731595
+      },
+      "factored": {
+        "calls": 796,
+        "median_ms": 235.46304450000002
+      }
+    },
+    "limitations": [
+      "Only two distinct paired initial poses; API replies are not independent driving trials.",
+      "Factored layout changes request structure and per-head scope text; effects are not isolated by clause.",
+      "Finishing, rescue-free and fully grass-free driving are separate outcomes.",
+      "Any failed or unrun attempt remains in coverage; no replayed attempt is replaced."
+    ]
+  },
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 59224,
+    "charged_usd": 7.311023835999883,
+    "charged_tokens": 238213875,
+    "reported_cost_usd": 7.253745371999868,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 60723,
+    "charged_usd": 7.49766511599989,
+    "charged_tokens": 242850694,
+    "reported_cost_usd": 7.440386651999875,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 1499,
+    "charged_usd": 0.18664128000000701,
+    "reported_cost_usd": 0.18664128000000701,
+    "charged_tokens": 4636819,
+    "uncertain_requests": 0
+  },
+  "verification_history": {
+    "original_first_trial_verifier_error": {
+      "type": "ValueError",
+      "message": "Model state was not the factual observation at its request tick"
+    },
+    "original_first_trial_continue_eligible": false,
+    "correction": "Include finished=sim.finished in the replayed expected factual observation; retain strict exact comparison of every field.",
+    "validation_only": true,
+    "original_failed_outputs_preserved": true,
+    "wrapper_negative_case_preflight": {
+      "passed": true,
+      "real_model_calls": 0,
+      "new_races": 0,
+      "shared_ledger_unchanged": true,
+      "parent_protocol_sha256": "996c1741e841189d75cbb1f0a428354034865095f5b88529591f1843a9c12e91",
+      "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+      "corrected_first_trial_certified": true,
+      "certificate_rejections_checked": [
+        "message",
+        "continue_flag",
+        "endpoint",
+        "source",
+        "diagnostic",
+        "certificate"
+      ],
+      "production_telemetry_binding_unchanged": true,
+      "permitted_indices": [
+        1,
+        2,
+        3
+      ],
+      "resume_wrapper_sha256": "7f3338ae718e9def82e9fc1b5bdc210f34960df5ab200f4adb3dd54ad299ce01"
+    },
+    "postcollection_recovery_context": {
+      "kind": "postcollection_recovery_context",
+      "recorded_at_utc": "2026-10-20T01:13:44.085264+00:00",
+      "final_audit": {
+        "path": "final-audit-amended.json",
+        "sha256": "a56259e060e423e21dddd01e6e88abb11cc737d05341277669eb4e0deb06d8de",
+        "passed": true,
+        "complete": true,
+        "requests": 1499
+      },
+      "preserved_postcollection_preflight": "diagnostics/postcollection-preflight-invocation.json",
+      "current_amended_preflight_passed": false,
+      "current_amended_preflight_errors": [
+        "Amended preflight did not precede the three unrun paid entries"
+      ],
+      "limitation": "The currently retained independent amended-preflight output was generated by an accidental invocation after collection completed. It cannot establish that the independent amended preflight passed prospectively. The separately retained wrapper preflight is distinct evidence. Root reported execution ownership could not be attributed from available visible tool history; final verification establishes actual frozen data/accounting/physics, not execution ownership.",
+      "no_prospective_independent_preflight_pass_claim": true,
+      "final_audit_made_no_model_calls": true,
+      "no_ledger_or_frozen_helpers_written": true
+    },
+    "prospective_independent_amended_preflight_pass_established": false,
+    "execution_ownership_of_remaining_three_trials_established": false,
+    "final_recording_validation_does_not_establish_full_prospective_execution_provenance": true
+  },
+  "decision": {
+    "all_four_finished_useful_pace": true,
+    "all_four_timing_and_exact_replay_valid": true,
+    "endpoint_errors": 0,
+    "paired_screen_positive": false,
+    "both_candidate_fully_clean_useful_pace": false,
+    "separate_holdout_freeze_eligible": false,
+    "holdouts_collected": false,
+    "preset_promoted": false,
+    "reason": "Factored reduced rescues on seed 11 (2 to 1) but increased them on seed 12 (1 to 2); neither factored race was rescue-free or grass-free."
+  },
+  "report_generation": {
+    "saved_completed_evidence_only": true,
+    "audits_rerun": false,
+    "source_or_helpers_modified": false,
+    "ledger_read_or_written": false,
+    "model_calls": 0
+  }
+}

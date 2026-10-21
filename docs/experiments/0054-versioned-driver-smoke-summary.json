@@ -1,0 +1,607 @@
+{
+  "complete": true,
+  "technical_audit_passed": true,
+  "protocol_sha256": "6b2f7ce6fddf9d74bd8097606fab97ef171df66797c5ac7e625e0171ea692c32",
+  "gate_passed": true,
+  "results": [
+    {
+      "index": 0,
+      "entry": {
+        "seed": 43,
+        "course": "stadium"
+      },
+      "metrics": {
+        "finished": true,
+        "realtime_valid": true,
+        "elapsed": 80.24999999999673,
+        "reference_s": 77.21666666666357,
+        "time_ratio": 1.0392834016835737,
+        "offtrack_time": 0.0,
+        "rescues": 0,
+        "rescue_after_s": 3.0,
+        "discarded_commands": 1,
+        "request_count": 315,
+        "request_errors": 0,
+        "api_latency_ms": {
+          "n": 315,
+          "p50": 216.899964,
+          "p95": 286.4335406,
+          "p99": null,
+          "max": 1512.019165
+        },
+        "observation_age_ms": {
+          "n": 314,
+          "p50": 234.1227675,
+          "p95": 317.05687639999996,
+          "p99": null,
+          "max": 1532.137696
+        },
+        "cost_usd": 0.0271992,
+        "timing": {
+          "wall_elapsed": 80.250412717,
+          "simulation_elapsed": 80.24999999999673,
+          "drift_ms": 0.4127170032717231,
+          "max_lateness_ms": 3.988298,
+          "p95_lateness_ms": 1.411041,
+          "physics_hz": 60,
+          "physics_steps": 4815,
+          "clock_mode": "fixed_step_wall_clock",
+          "pacing": {
+            "native_sleeper_ready_ns": null,
+            "native_sleeper_thread_alive": false
+          },
+          "diagnostics": {
+            "active": false,
+            "event_limit": 64,
+            "slow_span_threshold_ms": 5.0,
+            "late_wake_threshold_ms": 25,
+            "gc_count": 17,
+            "gc_max_ms": 2.807421,
+            "slow_span_count": 1,
+            "late_wake_count": 0,
+            "spans": {
+              "physics_sample": {
+                "count": 4816,
+                "total_ms": 204.10288000000074,
+                "max_ms": 0.805561,
+                "max_process_cpu_ms": 0.807566
+              },
+              "runtime_state": {
+                "count": 1552,
+                "total_ms": 1311.2108620000006,
+                "max_ms": 3.439966,
+                "max_process_cpu_ms": 3.438913
+              },
+              "physics_step": {
+                "count": 4815,
+                "total_ms": 462.4548219999997,
+                "max_ms": 5.076105,
+                "max_process_cpu_ms": 5.07793
+              }
+            },
+            "largest_late_wake": null,
+            "watchdog": {
+              "enabled": false,
+              "sample_interval_ms": 16,
+              "stall_threshold_ms": 50,
+              "sample_count": 0,
+              "stall_sample_count": 0,
+              "max_sample_gap_ms": 0.0,
+              "largest_sample_gap": null,
+              "last_sample_ns": null,
+              "note": "Thread samples require the GIL; missing samples can reflect process scheduling or GIL blockage.",
+              "stall_samples": []
+            },
+            "cpu_note": "Process CPU covers all server threads; compare with wall gap, not model API latency.",
+            "gc_events": [
+              {
+                "generation": 0,
+                "started_ns": 21069460860342,
+                "ended_ns": 21069461031174,
+                "duration_ms": 0.170832,
+                "process_cpu_ms": 0.170192,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21074291478040,
+                "ended_ns": 21074291733698,
+                "duration_ms": 0.255658,
+                "process_cpu_ms": 0.255579,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21078921086967,
+                "ended_ns": 21078921322466,
+                "duration_ms": 0.235499,
+                "process_cpu_ms": 0.235138,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21083599815630,
+                "ended_ns": 21083600063977,
+                "duration_ms": 0.248347,
+                "process_cpu_ms": 0.248097,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21088241152378,
+                "ended_ns": 21088241544047,
+                "duration_ms": 0.391669,
+                "process_cpu_ms": 0.429817,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 1,
+                "started_ns": 21092881441693,
+                "ended_ns": 21092884249114,
+                "duration_ms": 2.807421,
+                "process_cpu_ms": 2.807687,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21097532159964,
+                "ended_ns": 21097532406608,
+                "duration_ms": 0.246644,
+                "process_cpu_ms": 0.246404,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21102282763535,
+                "ended_ns": 21102282995358,
+                "duration_ms": 0.231823,
+                "process_cpu_ms": 0.231442,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21106992635095,
+                "ended_ns": 21106992880688,
+                "duration_ms": 0.245593,
+                "process_cpu_ms": 0.245524,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21111755624382,
+                "ended_ns": 21111755901392,
+                "duration_ms": 0.27701,
+                "process_cpu_ms": 0.27671,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21116785134622,
+                "ended_ns": 21116785419814,
+                "duration_ms": 0.285192,
+                "process_cpu_ms": 0.28397,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21121550541064,
+                "ended_ns": 21121550876780,
+                "duration_ms": 0.335716,
+                "process_cpu_ms": 0.335627,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21126229112871,
+                "ended_ns": 21126229361839,
+                "duration_ms": 0.248968,
+                "process_cpu_ms": 0.264141,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21130799430173,
+                "ended_ns": 21130799771047,
+                "duration_ms": 0.340874,
+                "process_cpu_ms": 0.340494,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21135434284274,
+                "ended_ns": 21135434512301,
+                "duration_ms": 0.228027,
+                "process_cpu_ms": 0.226966,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21140025202558,
+                "ended_ns": 21140025740824,
+                "duration_ms": 0.538266,
+                "process_cpu_ms": 0.539269,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21144720890623,
+                "ended_ns": 21144721158969,
+                "duration_ms": 0.268346,
+                "process_cpu_ms": 0.286975,
+                "collected": 0,
+                "uncollectable": 0
+              }
+            ],
+            "slow_spans": [
+              {
+                "name": "physics_step",
+                "started_ns": 21094042544053,
+                "ended_ns": 21094047620158,
+                "duration_ms": 5.076105,
+                "process_cpu_ms": 5.07793
+              }
+            ],
+            "late_wakes": []
+          },
+          "infrastructure_valid": true,
+          "validity_limits_ms": {
+            "max_lateness": 100,
+            "p95_lateness": 25,
+            "absolute_drift": 100
+          },
+          "backend": "process",
+          "process_provenance": {
+            "child_pid": 17031,
+            "parent_pid": 1751,
+            "session_id": "e5d26e2334c944bdb019761dc0a6d76e",
+            "start_method": "subprocess_exec",
+            "worker_module": "mcpkart.physics_worker",
+            "child_clock_mode": "fixed_step_wall_clock",
+            "child_web_modules_loaded": [],
+            "worker_created_ns": 21065245952727,
+            "worker_ready_ns": 21065303849294,
+            "clock_started_ns": 21065308104835
+          },
+          "parent_http_spans": {}
+        },
+        "runtime_backend": "process",
+        "runtime_consistent": true
+      },
+      "clean_finish": true,
+      "useful_finish": true,
+      "audit_sha256": "c4aafcb4526e2725f3073a0c2db6ea24e7b28cb0aada9e69338ac47ccfeecfb4"
+    },
+    {
+      "index": 1,
+      "entry": {
+        "seed": 44,
+        "course": "stadium_clockwise"
+      },
+      "metrics": {
+        "finished": true,
+        "realtime_valid": true,
+        "elapsed": 78.91666666666347,
+        "reference_s": 77.28333333333023,
+        "time_ratio": 1.0211343541082594,
+        "offtrack_time": 0.0,
+        "rescues": 0,
+        "rescue_after_s": 3.0,
+        "discarded_commands": 1,
+        "request_count": 319,
+        "request_errors": 0,
+        "api_latency_ms": {
+          "n": 319,
+          "p50": 214.424559,
+          "p95": 269.98693909999974,
+          "p99": null,
+          "max": 1993.102597
+        },
+        "observation_age_ms": {
+          "n": 318,
+          "p50": 233.3987975,
+          "p95": 299.7617886,
+          "p99": null,
+          "max": 2016.820123
+        },
+        "cost_usd": 0.02755809,
+        "timing": {
+          "wall_elapsed": 78.916887154,
+          "simulation_elapsed": 78.91666666666347,
+          "drift_ms": 0.22048733652013652,
+          "max_lateness_ms": 7.405705,
+          "p95_lateness_ms": 1.402735,
+          "physics_hz": 60,
+          "physics_steps": 4735,
+          "clock_mode": "fixed_step_wall_clock",
+          "pacing": {
+            "native_sleeper_ready_ns": null,
+            "native_sleeper_thread_alive": false
+          },
+          "diagnostics": {
+            "active": false,
+            "event_limit": 64,
+            "slow_span_threshold_ms": 5.0,
+            "late_wake_threshold_ms": 25,
+            "gc_count": 16,
+            "gc_max_ms": 2.562519,
+            "slow_span_count": 1,
+            "late_wake_count": 0,
+            "spans": {
+              "physics_sample": {
+                "count": 4736,
+                "total_ms": 197.2396969999997,
+                "max_ms": 1.329496,
+                "max_process_cpu_ms": 1.330139
+              },
+              "runtime_state": {
+                "count": 1527,
+                "total_ms": 1250.5199120000002,
+                "max_ms": 4.241834,
+                "max_process_cpu_ms": 4.242612
+              },
+              "physics_step": {
+                "count": 4735,
+                "total_ms": 461.2880359999988,
+                "max_ms": 15.081345,
+                "max_process_cpu_ms": 15.082834
+              }
+            },
+            "largest_late_wake": null,
+            "watchdog": {
+              "enabled": false,
+              "sample_interval_ms": 16,
+              "stall_threshold_ms": 50,
+              "sample_count": 0,
+              "stall_sample_count": 0,
+              "max_sample_gap_ms": 0.0,
+              "largest_sample_gap": null,
+              "last_sample_ns": null,
+              "note": "Thread samples require the GIL; missing samples can reflect process scheduling or GIL blockage.",
+              "stall_samples": []
+            },
+            "cpu_note": "Process CPU covers all server threads; compare with wall gap, not model API latency.",
+            "gc_events": [
+              {
+                "generation": 0,
+                "started_ns": 21239624280869,
+                "ended_ns": 21239624468426,
+                "duration_ms": 0.187557,
+                "process_cpu_ms": 0.187498,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21244607704804,
+                "ended_ns": 21244607970617,
+                "duration_ms": 0.265813,
+                "process_cpu_ms": 0.265784,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21249481176518,
+                "ended_ns": 21249481419277,
+                "duration_ms": 0.242759,
+                "process_cpu_ms": 0.242469,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21254216684287,
+                "ended_ns": 21254217092161,
+                "duration_ms": 0.407874,
+                "process_cpu_ms": 0.407644,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21258757360750,
+                "ended_ns": 21258757604711,
+                "duration_ms": 0.243961,
+                "process_cpu_ms": 0.244101,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 1,
+                "started_ns": 21263349287995,
+                "ended_ns": 21263351850514,
+                "duration_ms": 2.562519,
+                "process_cpu_ms": 2.563065,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21268044217625,
+                "ended_ns": 21268044454466,
+                "duration_ms": 0.236841,
+                "process_cpu_ms": 0.23654,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21273937129182,
+                "ended_ns": 21273937411770,
+                "duration_ms": 0.282588,
+                "process_cpu_ms": 0.282018,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21278898956648,
+                "ended_ns": 21278899199046,
+                "duration_ms": 0.242398,
+                "process_cpu_ms": 0.242229,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21283613113168,
+                "ended_ns": 21283613363868,
+                "duration_ms": 0.2507,
+                "process_cpu_ms": 0.2501,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21288327401428,
+                "ended_ns": 21288327643666,
+                "duration_ms": 0.242238,
+                "process_cpu_ms": 0.263629,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21292950434007,
+                "ended_ns": 21292950705769,
+                "duration_ms": 0.271762,
+                "process_cpu_ms": 0.291162,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21297621280206,
+                "ended_ns": 21297621637395,
+                "duration_ms": 0.357189,
+                "process_cpu_ms": 0.356768,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21302252416415,
+                "ended_ns": 21302252703369,
+                "duration_ms": 0.286954,
+                "process_cpu_ms": 0.307796,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21306841687389,
+                "ended_ns": 21306841927635,
+                "duration_ms": 0.240246,
+                "process_cpu_ms": 0.240216,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 21311430929940,
+                "ended_ns": 21311431180821,
+                "duration_ms": 0.250881,
+                "process_cpu_ms": 0.250451,
+                "collected": 0,
+                "uncollectable": 0
+              }
+            ],
+            "slow_spans": [
+              {
+                "name": "physics_step",
+                "started_ns": 21304857554159,
+                "ended_ns": 21304872635504,
+                "duration_ms": 15.081345,
+                "process_cpu_ms": 15.082834
+              }
+            ],
+            "late_wakes": []
+          },
+          "infrastructure_valid": true,
+          "validity_limits_ms": {
+            "max_lateness": 100,
+            "p95_lateness": 25,
+            "absolute_drift": 100
+          },
+          "backend": "process",
+          "process_provenance": {
+            "child_pid": 17111,
+            "parent_pid": 1751,
+            "session_id": "41a16fad60144dd88b54e31fefc120c9",
+            "start_method": "subprocess_exec",
+            "worker_module": "mcpkart.physics_worker",
+            "child_clock_mode": "fixed_step_wall_clock",
+            "child_web_modules_loaded": [],
+            "worker_created_ns": 21235475486249,
+            "worker_ready_ns": 21235536066134,
+            "clock_started_ns": 21235540510335
+          },
+          "parent_http_spans": {}
+        },
+        "runtime_backend": "process",
+        "runtime_consistent": true
+      },
+      "clean_finish": true,
+      "useful_finish": true,
+      "audit_sha256": "3277c846321580ef4dc49d954807bc618f1a04ba51b234d3020f48b7bb2700db"
+    }
+  ],
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 68450,
+    "charged_usd": 8.251713964000544,
+    "charged_tokens": 261631856,
+    "reported_cost_usd": 8.194435500000502,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 69084,
+    "charged_usd": 8.3064712540007,
+    "charged_tokens": 262996550,
+    "reported_cost_usd": 8.249192790000658,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 634,
+    "charged_tokens": 1364694,
+    "charged_usd": 0.054757290000155834,
+    "reported_cost_usd": 0.054757290000155834,
+    "uncertain_requests": 0
+  },
+  "new_native_probes": 0,
+  "controller_sources_sha256": {
+    "/workspace/mcpkart/src/mcpkart/question_context.py": "d6d6481ea0c28801a20f89c785617bfa95d764c5578b22d02378d72d663514ac",
+    "/workspace/mcpkart/src/mcpkart/question_context_driver.py": "543a41fd5e3971085712bf97cacaf59ec402425ab56d377b3f0f700546546229",
+    "/workspace/mcpkart/src/mcpkart/question_context_run.py": "eb9de8c56557ce8f3567aed694f79d679aa49e74d916fde7c6a4bbf013daeafc"
+  },
+  "application_default_unchanged": true,
+  "baseline_unchanged": true,
+  "experimental_opt_in_only": true,
+  "root_only_not_second_agent_review": true,
+  "created_utc": "2026-10-20T09:33:10.637472+00:00"
+}

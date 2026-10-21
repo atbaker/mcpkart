@@ -1,0 +1,1109 @@
+{
+  "schema_version": 1,
+  "kind": "static_deadband_first_wording_results",
+  "experiment": "0036",
+  "status": "complete_audit_and_provenance_passed_candidate_gate_failed",
+  "scope": "Fresh paired supplied-policy wording comparison; only wheel instruction differs, with unchanged policy/facts/menus/pedalquestion.",
+  "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+  "provenance_files": [
+    {
+      "path": "artifacts/jev-deadband-first-v1/protocol.json",
+      "sha256": "7b1c863006de759bf764e3b1d6525008a2b4d02b85c287094f843ac2a5598cef"
+    },
+    {
+      "path": "docs/experiments/0036-deadband-first-prompts.json",
+      "sha256": "c7b4e7f801dee666807e54c1808dc9ab24587680d73180b1d9e6992c53b976a7"
+    },
+    {
+      "path": "artifacts/jev-deadband-first-v1/final-audit.json",
+      "sha256": "be0a59e705d3387dd06590839357e884ab4e135b9aee9a335654dd5862caaa4a"
+    },
+    {
+      "path": "artifacts/jev-deadband-first-v1/report/summary.json",
+      "sha256": "98282d2607d2b328b7844954655348470d8151b0adf551b62a4f15f872371af7"
+    },
+    {
+      "path": "artifacts/jev-deadband-first-v1/preflight-before-collection.json",
+      "sha256": "ee2cf91411714aa1cd52e0a02a57e2f7bf4b9d1064b76e980f95d5fe26917496"
+    },
+    {
+      "path": "artifacts/jev-deadband-first-v1/preflight.json",
+      "sha256": "378e560adac12d3e637e6985f3ebdaaa2c65bc9ab207bbd4e654a58403c61095"
+    },
+    {
+      "path": "artifacts/jev-deadband-first-v1/root-authorization.json",
+      "sha256": "c9c1d40871d098c844775ef911bcc4222426f9c9ec66b67bd26d74cc9ec85301"
+    },
+    {
+      "path": "artifacts/jev-deadband-first-v1/root-execution-confirmation.json",
+      "sha256": "a7b1224ea2cc0a25e39728d35b81d4c0b9a79e8c017ba26cb8b594d8ecfa3737"
+    },
+    {
+      "path": "artifacts/jev-deadband-first-v1/source-inheritance.json",
+      "sha256": "9cd0a6caee0e6bc0e88cd3daa4c8814242768fc092c12c32172cda407a076abd"
+    },
+    {
+      "path": "artifacts/jev-deadband-first-v1/origin-manifest.json",
+      "sha256": "fe67693b2858418f29a96cf90fbef9da1f0b061a4e5668a16d2fb314865eb6c4"
+    },
+    {
+      "path": "artifacts/jev-deadband-first-v1/prospective-design.md",
+      "sha256": "9973c00537273fcf9437c0ce8bb411f3820111c6fcfbd50959f49fdff0b7175c"
+    },
+    {
+      "path": "artifacts/jev-deadband-first-v1/collection-provenance-verification.json",
+      "sha256": "433e01e35f09070b81f6b88ab24ccb6c76fd1b136a942321b7e4c7a8ed5c1dfa"
+    }
+  ],
+  "frozen_protocol": {
+    "schema_version": 1,
+    "kind": "static_deadband_first_policy",
+    "frozen": true,
+    "created_utc": "2026-10-20T03:52:20.804114+00:00",
+    "client_date": "2026-10-20",
+    "planned_calls": 60,
+    "cases": 30,
+    "repetitions": 1,
+    "contexts": [
+      "baseline",
+      "deadband"
+    ],
+    "order_seed": 2026102036,
+    "order_cells": {
+      "baseline|reverse=0": 8,
+      "baseline|reverse=1": 7,
+      "deadband|reverse=0": 8,
+      "deadband|reverse=1": 7
+    },
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "input_token_ceiling": 16384,
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61399,
+      "charged_usd": 7.572323853999888,
+      "charged_tokens": 244672055,
+      "reported_cost_usd": 7.515045389999872,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "shared_ledger": "artifacts/budget.json",
+    "limits": {
+      "max_requests": 75000,
+      "cap_usd": 10.0,
+      "max_tokens": 250000000
+    },
+    "route": {
+      "model": "typesafe/jev-1.14",
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "typesafe",
+      "provider_name": "TypeSafe",
+      "endpoint_name": "TypeSafe | typesafe/jev-1.14-20261014",
+      "price_input_per_token": 4.2e-08,
+      "price_output_per_token": 0.0,
+      "price_per_request": 0.0,
+      "context_length": 262144,
+      "max_prompt_tokens": 262144,
+      "max_completion_tokens": 235929
+    },
+    "automatic_retries": 0,
+    "provider_fallbacks": false,
+    "no_controls_applied": true,
+    "stop_on_first_endpoint_error": true,
+    "stop_on_uncertain_accounting": true,
+    "collect_all_valid_answers": true,
+    "format_gate": null,
+    "order_policy": "Shuffle30caseunitsseed2026102036;firstcontextj%2,reversebothwheelandpedalmenuordersj//2%2;4cellsexactcountsrecordedinorder_cells(each7or8),eachcontexteachposition15times.Onepresentationpercase/context.",
+    "task_contract": "Applysameexactfrozen0032policyand0034factsprojection.BaselinequestionsBYTEEXACT0035facts.DeadbandonlyappendsexactfrozenDEADBAND_FIRSTconstanttowheelinstructionsafterexistingWHEEL_TASK.Entirepedalquestion/commondefinitions/criteria/physicalmenus/IDs/nativeinverse/stateunchanged.Nohostcontrolselection,rewordedpolicy,examplesorstateflags.",
+    "client_contract": "IgnoredsubclassoverridesONLYquestionsproperty;productiondecide/componentdecode/uncertainty/accountinginheritedunchanged.Completephysical5x3inverse,noremappingresponseorhostpolicyselection;oneatomicnativepaironly.Staticnocommandsapplied.",
+    "policy_scope": "Ahead15mlookaheadandnonmissedgateonly;unsupportedbehind15m/missedgaterecoveryexcludedwithoutinventedlabels.Physicalbraking/coastingeffectivenessunprovenbyfreeupperboundracesbecausenevertriggeredthere.",
+    "candidate_gate": {
+      "exact_pairs_correct_min": 29,
+      "responses": 30,
+      "straight_wheel_correct_required": 6,
+      "straight_responses": 6,
+      "half_wheel_correct_min": 11,
+      "half_responses": 12,
+      "full_wheel_correct_min": 11,
+      "full_responses": 12,
+      "pedal_correct_required": 30,
+      "pedal_responses": 30,
+      "brake_choices_below_2m_s_max": 0,
+      "audit_pass_required": true,
+      "endpoint_or_accounting_errors_max": 0
+    },
+    "score_interpretation": "Policyexecutiononly,notoptimalcontrolorraceperformance;allvalidresponsescollectedregardlesscorrectness.",
+    "followup_policy": "PassingonlymotivatesseparatelyfrozenFRESHbroadernativevalidation;NEVERdirectlive.Noautomaticqualificationorpromotion.Pairedgainsdescriptiveonly,notagate.",
+    "session_deadline_utc": "2026-10-20T06:17:26+00:00",
+    "helper_sha256": {
+      "policy.py": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+      "case_bank.py": "d4f2ae650ad8fc97083a216f5d42549fe0bc3ab84bd634b4c59511b341d2fe7c",
+      "cases.json": "9d7f1573ffb9048b0079a917f5d88946c61144034707f1cd532509d95a644c5e",
+      "policy_client.py": "0f52ec4f7927f9992818f789cfa53baa5e4af47df1442fbec7c9a11a4af04a93",
+      "source-inheritance.json": "9cd0a6caee0e6bc0e88cd3daa4c8814242768fc092c12c32172cda407a076abd",
+      "payloads.py": "1fa61f96bee9c0ac6d0b7bc0a4b287660a92572f4c73e3db761e38361775a7f5",
+      "prepare.py": "a9bff492b574818004c06733d9a5ab1b7f2a24dc6c1b546002ab6242ec663a0f",
+      "runner.py": "11e6dfcf507688fe9a1e59a39d4554ab71264d14978e775472cb92842b0e3e05",
+      "audit.py": "669e699ec35003660a8e3bd98135233c402764d1af96b0baa9132f61dd9d3caf",
+      "preflight.py": "c48831b6512a62d4c130fbf6b93ac1e727683757a2b6700977f0654867a238ee",
+      "preflight.json": "378e560adac12d3e637e6985f3ebdaaa2c65bc9ab207bbd4e654a58403c61095",
+      "order.json": "d85c44048334adc9c0f2b23414cd671ebde56e72c6d1cdbec8ee0ef75be5b11b",
+      "routes.json": "21e515a89d31abbb121939e123d873d8276709c19c62f70eb89c047623f922a4",
+      "DESIGN.md": "c0c77ce45bde8f4bf4cc7a5afd1809707456ef392c098c721325a6688f98accb",
+      "CASE_DESIGN.md": "1395cc7474fe3f29179b90c6f472badc8d525c39304f9da8bebab0f9080a6cd2",
+      "origin-manifest.json": "fe67693b2858418f29a96cf90fbef9da1f0b061a4e5668a16d2fb314865eb6c4",
+      "prospective-design.md": "9973c00537273fcf9437c0ce8bb411f3820111c6fcfbd50959f49fdff0b7175c",
+      "protocol.draft.json": "28711d08f700d6e00fac8cdd3abd24535373b3b43f6411daccffb4d3631eea29"
+    },
+    "prompt_archive": {
+      "path": "docs/experiments/0036-deadband-first-prompts.json",
+      "sha256": "c7b4e7f801dee666807e54c1808dc9ab24587680d73180b1d9e6992c53b976a7"
+    },
+    "frozen_utc": "2026-10-20T03:53:55.830002+00:00"
+  },
+  "final_audit": {
+    "passed": true,
+    "complete": true,
+    "checked_at_utc": "2026-10-20T03:54:54.732065+00:00",
+    "errors": [],
+    "warnings": [],
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "helper_checks": {
+      "policy.py": {
+        "expected": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+        "actual": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+        "matches": true
+      },
+      "case_bank.py": {
+        "expected": "d4f2ae650ad8fc97083a216f5d42549fe0bc3ab84bd634b4c59511b341d2fe7c",
+        "actual": "d4f2ae650ad8fc97083a216f5d42549fe0bc3ab84bd634b4c59511b341d2fe7c",
+        "matches": true
+      },
+      "cases.json": {
+        "expected": "9d7f1573ffb9048b0079a917f5d88946c61144034707f1cd532509d95a644c5e",
+        "actual": "9d7f1573ffb9048b0079a917f5d88946c61144034707f1cd532509d95a644c5e",
+        "matches": true
+      },
+      "policy_client.py": {
+        "expected": "0f52ec4f7927f9992818f789cfa53baa5e4af47df1442fbec7c9a11a4af04a93",
+        "actual": "0f52ec4f7927f9992818f789cfa53baa5e4af47df1442fbec7c9a11a4af04a93",
+        "matches": true
+      },
+      "source-inheritance.json": {
+        "expected": "9cd0a6caee0e6bc0e88cd3daa4c8814242768fc092c12c32172cda407a076abd",
+        "actual": "9cd0a6caee0e6bc0e88cd3daa4c8814242768fc092c12c32172cda407a076abd",
+        "matches": true
+      },
+      "payloads.py": {
+        "expected": "1fa61f96bee9c0ac6d0b7bc0a4b287660a92572f4c73e3db761e38361775a7f5",
+        "actual": "1fa61f96bee9c0ac6d0b7bc0a4b287660a92572f4c73e3db761e38361775a7f5",
+        "matches": true
+      },
+      "prepare.py": {
+        "expected": "a9bff492b574818004c06733d9a5ab1b7f2a24dc6c1b546002ab6242ec663a0f",
+        "actual": "a9bff492b574818004c06733d9a5ab1b7f2a24dc6c1b546002ab6242ec663a0f",
+        "matches": true
+      },
+      "runner.py": {
+        "expected": "11e6dfcf507688fe9a1e59a39d4554ab71264d14978e775472cb92842b0e3e05",
+        "actual": "11e6dfcf507688fe9a1e59a39d4554ab71264d14978e775472cb92842b0e3e05",
+        "matches": true
+      },
+      "audit.py": {
+        "expected": "669e699ec35003660a8e3bd98135233c402764d1af96b0baa9132f61dd9d3caf",
+        "actual": "669e699ec35003660a8e3bd98135233c402764d1af96b0baa9132f61dd9d3caf",
+        "matches": true
+      },
+      "preflight.py": {
+        "expected": "c48831b6512a62d4c130fbf6b93ac1e727683757a2b6700977f0654867a238ee",
+        "actual": "c48831b6512a62d4c130fbf6b93ac1e727683757a2b6700977f0654867a238ee",
+        "matches": true
+      },
+      "preflight.json": {
+        "expected": "378e560adac12d3e637e6985f3ebdaaa2c65bc9ab207bbd4e654a58403c61095",
+        "actual": "378e560adac12d3e637e6985f3ebdaaa2c65bc9ab207bbd4e654a58403c61095",
+        "matches": true
+      },
+      "order.json": {
+        "expected": "d85c44048334adc9c0f2b23414cd671ebde56e72c6d1cdbec8ee0ef75be5b11b",
+        "actual": "d85c44048334adc9c0f2b23414cd671ebde56e72c6d1cdbec8ee0ef75be5b11b",
+        "matches": true
+      },
+      "routes.json": {
+        "expected": "21e515a89d31abbb121939e123d873d8276709c19c62f70eb89c047623f922a4",
+        "actual": "21e515a89d31abbb121939e123d873d8276709c19c62f70eb89c047623f922a4",
+        "matches": true
+      },
+      "DESIGN.md": {
+        "expected": "c0c77ce45bde8f4bf4cc7a5afd1809707456ef392c098c721325a6688f98accb",
+        "actual": "c0c77ce45bde8f4bf4cc7a5afd1809707456ef392c098c721325a6688f98accb",
+        "matches": true
+      },
+      "CASE_DESIGN.md": {
+        "expected": "1395cc7474fe3f29179b90c6f472badc8d525c39304f9da8bebab0f9080a6cd2",
+        "actual": "1395cc7474fe3f29179b90c6f472badc8d525c39304f9da8bebab0f9080a6cd2",
+        "matches": true
+      },
+      "origin-manifest.json": {
+        "expected": "fe67693b2858418f29a96cf90fbef9da1f0b061a4e5668a16d2fb314865eb6c4",
+        "actual": "fe67693b2858418f29a96cf90fbef9da1f0b061a4e5668a16d2fb314865eb6c4",
+        "matches": true
+      },
+      "prospective-design.md": {
+        "expected": "9973c00537273fcf9437c0ce8bb411f3820111c6fcfbd50959f49fdff0b7175c",
+        "actual": "9973c00537273fcf9437c0ce8bb411f3820111c6fcfbd50959f49fdff0b7175c",
+        "matches": true
+      },
+      "protocol.draft.json": {
+        "expected": "28711d08f700d6e00fac8cdd3abd24535373b3b43f6411daccffb4d3631eea29",
+        "actual": "28711d08f700d6e00fac8cdd3abd24535373b3b43f6411daccffb4d3631eea29",
+        "matches": true
+      }
+    },
+    "independent_policy_cases_checked": 30,
+    "policy_client_source_review": {
+      "passed": true,
+      "subclass_own_attributes": [
+        "questions"
+      ],
+      "method_identity": {
+        "__init__": true,
+        "decide": true,
+        "_decode_components": true,
+        "_record_component_uncertainty": true,
+        "__aenter__": true,
+        "__aexit__": true,
+        "_safe_detail": true,
+        "_error_detail": true
+      },
+      "production_decide_source_sha256": "118e79f7d6107f6bd467967760fd1c2bd9ae0a8f828df9a1473cf621ccc82020",
+      "no_response_rewriting_or_host_selection": true
+    },
+    "free_policy_evidence_review": {
+      "passed": true,
+      "report_sha256": "368d1805d90ffc06cd4c4c5dbb3cd35999a4e5ea367cacad44d06ee4226eb254",
+      "independent_review_sha256": "9c4e82654b6629d8336c5787be57118f3c7e8a73ed35604477f61318f2343589",
+      "audit_replay_counts": {
+        "physics_samples": 18872,
+        "request_observations": 1259,
+        "commands": 1255,
+        "candidate_grid_queries": 284
+      },
+      "limitation": "No free rollout triggered pedal guard; host tracking supports nominal policy execution only.",
+      "origin_manifest_review": {
+        "passed": true,
+        "manifest_sha256": "fe67693b2858418f29a96cf90fbef9da1f0b061a4e5668a16d2fb314865eb6c4",
+        "origin_files_checked": 53,
+        "policy_copy_exact": true,
+        "old_frozen_cli_executed_by_audit": false
+      }
+    },
+    "static_policy_labels_checked": 30,
+    "planned_requests": 60,
+    "saved_requests": 60,
+    "failures": [],
+    "unrun": [],
+    "writer": {
+      "session_id": "3407c5f6851946ad98fe84b9428720eb",
+      "pid": 2023,
+      "process_start_ticks": 104329,
+      "parent_pid": 2022,
+      "parent_start_ticks": 104328,
+      "boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+      "started_utc": "2026-10-20T03:54:22.445680+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-deadband-first-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61399,
+      "charged_usd": 7.572323853999888,
+      "charged_tokens": 244672055,
+      "reported_cost_usd": 7.515045389999872,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61459,
+      "charged_usd": 7.576862877999888,
+      "charged_tokens": 244785871,
+      "reported_cost_usd": 7.519584413999873,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 60,
+      "charged_usd": 0.004539024000000502,
+      "reported_cost_usd": 0.004539024000000502,
+      "charged_tokens": 113816,
+      "uncertain_requests": 0
+    },
+    "automatic_followup_or_promotion": false,
+    "model_requests_by_audit": 0,
+    "ledger_written_by_audit": false,
+    "no_controls_applied": true
+  },
+  "audited_report": {
+    "complete": true,
+    "overall": {
+      "baseline": {
+        "planned": 30,
+        "attempted": 30,
+        "unrun": 0,
+        "endpoint_ok": 30,
+        "endpoint_errors": 0,
+        "correct": 27,
+        "incorrect_or_endpoint_error": 3,
+        "attempted_accuracy": 0.9,
+        "planned_correct_fraction": 0.9,
+        "endpoint_success_accuracy": 0.9,
+        "charged_usd": 0.002236122,
+        "charged_tokens": 56113,
+        "median_latency_ms": 254.14324349999998
+      },
+      "deadband": {
+        "planned": 30,
+        "attempted": 30,
+        "unrun": 0,
+        "endpoint_ok": 30,
+        "endpoint_errors": 0,
+        "correct": 28,
+        "incorrect_or_endpoint_error": 2,
+        "attempted_accuracy": 0.9333333333333333,
+        "planned_correct_fraction": 0.9333333333333333,
+        "endpoint_success_accuracy": 0.9333333333333333,
+        "charged_usd": 0.002302902,
+        "charged_tokens": 57703,
+        "median_latency_ms": 246.8924045
+      }
+    },
+    "components": {
+      "baseline": {
+        "wheel_correct": 28,
+        "pedal_correct": 29,
+        "wheel_by_magnitude": {
+          "straight": {
+            "correct": 4,
+            "responses": 6
+          },
+          "half": {
+            "correct": 12,
+            "responses": 12
+          },
+          "full": {
+            "correct": 12,
+            "responses": 12
+          }
+        },
+        "pedal_by_class": {
+          "accelerate": {
+            "correct": 9,
+            "responses": 10
+          },
+          "coast": {
+            "correct": 10,
+            "responses": 10
+          },
+          "brake": {
+            "correct": 10,
+            "responses": 10
+          }
+        },
+        "wheel_by_signed_direction": {
+          "hard_right": {
+            "correct": 6,
+            "responses": 6
+          },
+          "right": {
+            "correct": 6,
+            "responses": 6
+          },
+          "straight": {
+            "correct": 4,
+            "responses": 6
+          },
+          "left": {
+            "correct": 6,
+            "responses": 6
+          },
+          "hard_left": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "speed_below2_responses": 6,
+        "brake_choices_below_2mps": 0,
+        "chosen_native_counts": {
+          "left_coast": 3,
+          "hard_left_coast": 2,
+          "right_coast": 2,
+          "left_brake": 3,
+          "hard_left_accelerate": 2,
+          "hard_left_brake": 3,
+          "left_accelerate": 1,
+          "right_accelerate": 2,
+          "right_brake": 2,
+          "straight_coast": 1,
+          "hard_right_accelerate": 2,
+          "hard_right_coast": 2,
+          "straight_accelerate": 2,
+          "hard_right_brake": 2,
+          "straight_brake": 1
+        },
+        "chosen_wheel_counts": {
+          "left": 7,
+          "hard_left": 7,
+          "right": 6,
+          "straight": 4,
+          "hard_right": 6
+        },
+        "chosen_pedal_counts": {
+          "coast": 10,
+          "brake": 11,
+          "accelerate": 9
+        }
+      },
+      "deadband": {
+        "wheel_correct": 29,
+        "pedal_correct": 29,
+        "wheel_by_magnitude": {
+          "straight": {
+            "correct": 5,
+            "responses": 6
+          },
+          "half": {
+            "correct": 12,
+            "responses": 12
+          },
+          "full": {
+            "correct": 12,
+            "responses": 12
+          }
+        },
+        "pedal_by_class": {
+          "accelerate": {
+            "correct": 9,
+            "responses": 10
+          },
+          "coast": {
+            "correct": 10,
+            "responses": 10
+          },
+          "brake": {
+            "correct": 10,
+            "responses": 10
+          }
+        },
+        "wheel_by_signed_direction": {
+          "hard_right": {
+            "correct": 6,
+            "responses": 6
+          },
+          "right": {
+            "correct": 6,
+            "responses": 6
+          },
+          "straight": {
+            "correct": 5,
+            "responses": 6
+          },
+          "left": {
+            "correct": 6,
+            "responses": 6
+          },
+          "hard_left": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "speed_below2_responses": 6,
+        "brake_choices_below_2mps": 0,
+        "chosen_native_counts": {
+          "straight_coast": 2,
+          "hard_left_coast": 2,
+          "right_coast": 2,
+          "left_brake": 3,
+          "hard_left_accelerate": 3,
+          "hard_left_brake": 2,
+          "left_accelerate": 1,
+          "right_accelerate": 2,
+          "right_brake": 2,
+          "hard_right_accelerate": 2,
+          "hard_right_coast": 2,
+          "left_coast": 2,
+          "hard_right_brake": 2,
+          "straight_brake": 2,
+          "straight_accelerate": 1
+        },
+        "chosen_wheel_counts": {
+          "straight": 5,
+          "hard_left": 7,
+          "right": 6,
+          "left": 6,
+          "hard_right": 6
+        },
+        "chosen_pedal_counts": {
+          "coast": 10,
+          "brake": 11,
+          "accelerate": 9
+        }
+      }
+    },
+    "paired": {
+      "complete_pairs": 30,
+      "gains": 2,
+      "losses": 1,
+      "net_gain": 1,
+      "both_correct": 26,
+      "both_incorrect": 1
+    },
+    "gate": {
+      "passed": false,
+      "predicates": {
+        "complete_and_audited": true,
+        "zero_endpoint_or_accounting_errors": true,
+        "exact_pairs_29_of30": false,
+        "straight_wheel_6_of6": false,
+        "half_wheel_11_of12": true,
+        "full_wheel_11_of12": true,
+        "pedals_30_of30": false,
+        "zero_low_speed_brakes": true
+      },
+      "paired_gain_required": false
+    },
+    "source_case_coverage": {
+      "cases": 30,
+      "synthetic_mirror_pairs": 15,
+      "straight_bearings_deg": [
+        1.3084,
+        -1.3084,
+        0.1285,
+        -0.1285,
+        0.5367,
+        -0.5367
+      ],
+      "target_counts": {
+        "straight_accelerate": 2,
+        "straight_coast": 2,
+        "straight_brake": 2,
+        "left_accelerate": 2,
+        "right_accelerate": 2,
+        "left_coast": 2,
+        "right_coast": 2,
+        "left_brake": 2,
+        "right_brake": 2,
+        "hard_left_accelerate": 2,
+        "hard_right_accelerate": 2,
+        "hard_left_coast": 2,
+        "hard_right_coast": 2,
+        "hard_left_brake": 2,
+        "hard_right_brake": 2
+      }
+    },
+    "score_scope": "Fresh synthetic policy-compliance wording comparison; paired gains descriptive, no live qualification",
+    "automatic_followup_or_promotion": false,
+    "free_policy_evidence_review": {
+      "passed": true,
+      "report_sha256": "368d1805d90ffc06cd4c4c5dbb3cd35999a4e5ea367cacad44d06ee4226eb254",
+      "independent_review_sha256": "9c4e82654b6629d8336c5787be57118f3c7e8a73ed35604477f61318f2343589",
+      "audit_replay_counts": {
+        "physics_samples": 18872,
+        "request_observations": 1259,
+        "commands": 1255,
+        "candidate_grid_queries": 284
+      },
+      "limitation": "No free rollout triggered pedal guard; host tracking supports nominal policy execution only.",
+      "origin_manifest_review": {
+        "passed": true,
+        "manifest_sha256": "fe67693b2858418f29a96cf90fbef9da1f0b061a4e5668a16d2fb314865eb6c4",
+        "origin_files_checked": 53,
+        "policy_copy_exact": true,
+        "old_frozen_cli_executed_by_audit": false
+      }
+    },
+    "audit_passed": true
+  },
+  "root_authorization": {
+    "root_thread_id": "01a151b8-43d6-733b-a890-7368ae08c015",
+    "root_host_id": "durable",
+    "authorization_id": "069044bafd144e19a38777fdb05f4e64",
+    "authorized_utc": "2026-10-20T03:54:17.510192+00:00",
+    "protocol_sha256": "7b1c863006de759bf764e3b1d6525008a2b4d02b85c287094f843ac2a5598cef",
+    "independent_preflight_sha256": "ee2cf91411714aa1cd52e0a02a57e2f7bf4b9d1064b76e980f95d5fe26917496",
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61399,
+      "charged_usd": 7.572323853999888,
+      "charged_tokens": 244672055,
+      "reported_cost_usd": 7.515045389999872,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "scope": "Exactly frozen60pairedstaticdeadband-firstcalls; one writer; all valid answers retained; no retries, actuation or source changes."
+  },
+  "collection_writer": {
+    "session_id": "3407c5f6851946ad98fe84b9428720eb",
+    "pid": 2023,
+    "process_start_ticks": 104329,
+    "parent_pid": 2022,
+    "parent_start_ticks": 104328,
+    "boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+    "started_utc": "2026-10-20T03:54:22.445680+00:00",
+    "script_path": "/workspace/mcpkart/artifacts/jev-deadband-first-v1/runner.py",
+    "executable": "/workspace/mcpkart/.venv/bin/python",
+    "explicit_collect_flag": true
+  },
+  "collection_completed_utc": "2026-10-20T03:54:38.260281+00:00",
+  "independent_collection_provenance": {
+    "passed": true,
+    "checked_at_utc": "2026-10-20T03:58:35.423782+00:00",
+    "errors": [],
+    "check_count": 51,
+    "checks": [
+      {
+        "check": "complete_frozen_60_call_scope",
+        "passed": true
+      },
+      {
+        "check": "all_frozen_helper_hashes_unchanged",
+        "passed": true
+      },
+      {
+        "check": "archive_frozen_hash",
+        "passed": true
+      },
+      {
+        "check": "full_11_file_and_rust_bench_fingerprint",
+        "passed": true
+      },
+      {
+        "check": "archive_binds_case_bank",
+        "passed": true
+      },
+      {
+        "check": "all_frozen_origin_hashes_retained_without_running_old_audits",
+        "passed": true
+      },
+      {
+        "check": "fixed_policy_byte_exact_0032_copy",
+        "passed": true
+      },
+      {
+        "check": "0035_prompt_archive_origin_hash",
+        "passed": true
+      },
+      {
+        "check": "all_15_targets_twice_and_held_twice",
+        "passed": true
+      },
+      {
+        "check": "native_inverse_preserves_all_15_inputs",
+        "passed": true
+      },
+      {
+        "check": "independent_labels_match_bank",
+        "passed": true
+      },
+      {
+        "check": "registered_shuffle_and_counterbalance",
+        "passed": true
+      },
+      {
+        "check": "preflight_immutable_passing_zero_paid",
+        "passed": true
+      },
+      {
+        "check": "protocol_bound_preflight_auth_start_complete",
+        "passed": true
+      },
+      {
+        "check": "root_authorization_identity",
+        "passed": true
+      },
+      {
+        "check": "root_explicit_execution_completed",
+        "passed": true
+      },
+      {
+        "check": "prospective_timestamp_chain_before_deadline",
+        "passed": true
+      },
+      {
+        "check": "one_writer_identity_everywhere",
+        "passed": true
+      },
+      {
+        "check": "writer_script_executable_boot_identity",
+        "passed": true
+      },
+      {
+        "check": "no_stop_or_failure_artifacts",
+        "passed": true
+      },
+      {
+        "check": "no_retry_fallback_control_application",
+        "passed": true
+      },
+      {
+        "check": "all_60_exact_archive_payload_bytes_and_hashes",
+        "passed": true
+      },
+      {
+        "check": "all_60_exact_registered_order_entries",
+        "passed": true
+      },
+      {
+        "check": "all_60_factual_states_no_oracle_keys",
+        "passed": true
+      },
+      {
+        "check": "all_60_single_successful_identity_pinned_responses",
+        "passed": true
+      },
+      {
+        "check": "all_60_raw_typed_components_atomic_native_pair",
+        "passed": true
+      },
+      {
+        "check": "all_60_exact_ledger_transitions_and_conservative_admission",
+        "passed": true
+      },
+      {
+        "check": "all_60_requests_strictly_sequential_no_overlap",
+        "passed": true
+      },
+      {
+        "check": "all_60_result_rows_independently_reconstructed",
+        "passed": true
+      },
+      {
+        "check": "frozen_suffix_exact_registered_text",
+        "passed": true
+      },
+      {
+        "check": "all_30_pairs_exact_fixed_factual_leaf_table_projection",
+        "passed": true
+      },
+      {
+        "check": "all_30_pairs_policy_labels_identical_after_projection",
+        "passed": true
+      },
+      {
+        "check": "all_30_pairs_only_registered_wheel_suffix_changes",
+        "passed": true
+      },
+      {
+        "check": "all_30_pairs_pedal_questions_byte_identical",
+        "passed": true
+      },
+      {
+        "check": "all_30_baseline_questions_byte_exact_0035_facts_origin",
+        "passed": true
+      },
+      {
+        "check": "unique_60_reservations_and_response_ids",
+        "passed": true
+      },
+      {
+        "check": "budget_before_bound_everywhere",
+        "passed": true
+      },
+      {
+        "check": "budget_after_bound_everywhere",
+        "passed": true
+      },
+      {
+        "check": "retained_caps_and_no_pending",
+        "passed": true
+      },
+      {
+        "check": "exact_expected_end_boundary",
+        "passed": true
+      },
+      {
+        "check": "budget_delta_reconciles_all_60_usage",
+        "passed": true
+      },
+      {
+        "check": "independent_scores_expected",
+        "passed": true
+      },
+      {
+        "check": "summary_scores_match_raw_choices",
+        "passed": true
+      },
+      {
+        "check": "paired_gains_losses_reconstructed",
+        "passed": true
+      },
+      {
+        "check": "candidate_gate_independently_failed",
+        "passed": true
+      },
+      {
+        "check": "prespecified_failed_gate_predicates_match",
+        "passed": true
+      },
+      {
+        "check": "shared_pedal_error_is_fast_near_edge_inward_accelerate_to_brake",
+        "passed": true
+      },
+      {
+        "check": "candidate_wheel_error_is_stationary_offroad_small_positive_straight_to_hard_left",
+        "passed": true
+      },
+      {
+        "check": "final_audit_complete_pass_zero_errors",
+        "passed": true
+      },
+      {
+        "check": "no_automatic_followup_or_promotion",
+        "passed": true
+      },
+      {
+        "check": "read_only_ledger_byte_unchanged",
+        "passed": true
+      }
+    ],
+    "protocol_sha256": "7b1c863006de759bf764e3b1d6525008a2b4d02b85c287094f843ac2a5598cef",
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "writer": {
+      "session_id": "3407c5f6851946ad98fe84b9428720eb",
+      "pid": 2023,
+      "process_start_ticks": 104329,
+      "parent_pid": 2022,
+      "parent_start_ticks": 104328,
+      "boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+      "started_utc": "2026-10-20T03:54:22.445680+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-deadband-first-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61399,
+      "charged_usd": 7.572323853999888,
+      "charged_tokens": 244672055,
+      "reported_cost_usd": 7.515045389999872,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61459,
+      "charged_usd": 7.576862877999888,
+      "charged_tokens": 244785871,
+      "reported_cost_usd": 7.519584413999873,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 60,
+      "charged_tokens": 113816,
+      "charged_usd": 0.004539024000000003
+    },
+    "scores": {
+      "baseline": {
+        "pairs": 27,
+        "wheel": 28,
+        "pedal": 29,
+        "low_speed_brake": 0
+      },
+      "deadband": {
+        "pairs": 28,
+        "wheel": 29,
+        "pedal": 29,
+        "low_speed_brake": 0
+      }
+    },
+    "pedal_mistakes": [
+      {
+        "case_id": "deadband-first-04-a",
+        "context": "deadband",
+        "expected": "accelerate",
+        "chosen": "brake"
+      },
+      {
+        "case_id": "deadband-first-04-a",
+        "context": "baseline",
+        "expected": "accelerate",
+        "chosen": "brake"
+      }
+    ],
+    "candidate_wheel_mistakes": [
+      {
+        "case_id": "deadband-first-00-a",
+        "theta_deg": 1.3084,
+        "expected": "straight",
+        "chosen": "hard_left"
+      }
+    ],
+    "wheel_correct_by_magnitude": {
+      "baseline": {
+        "straight": 4,
+        "full": 12,
+        "half": 12
+      },
+      "deadband": {
+        "straight": 5,
+        "full": 12,
+        "half": 12
+      }
+    },
+    "candidate_gate_passed": false,
+    "model_calls_by_verifier": 0,
+    "ledger_written": false,
+    "script_sha256": "792481f25c7fee4907dcbfbe3547659530dfa74eccffc5201ec5451c620a6dbe",
+    "interpretation": "Supplied-policy static compliance only; no model driving or promotion. Root execution IDs are checked against preserved confirmation, not independently queried from tool infrastructure."
+  },
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61399,
+    "charged_usd": 7.572323853999888,
+    "charged_tokens": 244672055,
+    "reported_cost_usd": 7.515045389999872,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61459,
+    "charged_usd": 7.576862877999888,
+    "charged_tokens": 244785871,
+    "reported_cost_usd": 7.519584413999873,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 60,
+    "charged_usd": 0.004539024000000502,
+    "reported_cost_usd": 0.004539024000000502,
+    "charged_tokens": 113816,
+    "uncertain_requests": 0
+  },
+  "decision": {
+    "deadband_gate_passed": false,
+    "new_broader_native_validation_admitted": false,
+    "live_followup_triggered": false,
+    "preset_promoted": false,
+    "baseline": "joint damped",
+    "application_defaults_changed": false
+  },
+  "interpretation": {
+    "baseline_pair_correct": 27,
+    "deadband_pair_correct": 28,
+    "responses_each_arm": 30,
+    "deadband_paired_gains": 2,
+    "deadband_paired_losses": 1,
+    "deadband_net_pair_gain": 1,
+    "baseline_wheel_correct": 28,
+    "deadband_wheel_correct": 29,
+    "pedal_correct_each_arm": 29,
+    "brake_choices_below_2mps_each_arm": 0,
+    "errors": [
+      {
+        "case_id": "deadband-first-01-a",
+        "context": "baseline",
+        "index": 0,
+        "expected": "straight_coast",
+        "chosen": "left_coast",
+        "bearing_deg": 0.1285
+      },
+      {
+        "case_id": "deadband-first-04-a",
+        "context": "deadband",
+        "index": 6,
+        "expected": "left_accelerate",
+        "chosen": "left_brake",
+        "bearing_deg": 15.1753
+      },
+      {
+        "case_id": "deadband-first-04-a",
+        "context": "baseline",
+        "index": 7,
+        "expected": "left_accelerate",
+        "chosen": "left_brake",
+        "bearing_deg": 15.1753
+      },
+      {
+        "case_id": "deadband-first-00-a",
+        "context": "deadband",
+        "index": 37,
+        "expected": "straight_accelerate",
+        "chosen": "hard_left_accelerate",
+        "bearing_deg": 1.3084
+      },
+      {
+        "case_id": "deadband-first-02-a",
+        "context": "baseline",
+        "index": 48,
+        "expected": "straight_brake",
+        "chosen": "hard_left_brake",
+        "bearing_deg": 0.5367
+      }
+    ],
+    "failed_candidate_gate_predicates": [
+      "exact_pairs_29_of30",
+      "straight_wheel_6_of6",
+      "pedals_30_of30"
+    ],
+    "paired_gain_was_required": false,
+    "conclusion": "The candidate improved exact pairs byone and wheels byone, but still failed overall, straight and perfect-pedal requirements. The same fast inward-moving near-edge state had a pedal error in both arms; this does not identify a wheel-text cause. No further validation or live race is admitted."
+  },
+  "timing_limitation": {
+    "boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+    "old_boot_clock_qualifies_current_boot": false,
+    "new_boot_clock_measurement_completed": false,
+    "new_server_prepared_pid": 1751,
+    "new_server_start_ticks": 85454,
+    "full_new_boot_gate_required_before_paid_actuation": true,
+    "as_of_collection_completed_utc": "2026-10-20T03:54:38.260281+00:00"
+  },
+  "interpretation_limits": [
+    "The same fixed bearing policy and factual projection are used in both arms; only one wheel instruction differs.",
+    "The pedal question is byte-identical in both contexts; shared pedal errors cannot establish a wheel-text cause.",
+    "Paired net gain is descriptive; no gain requirement was part of this gate.",
+    "The instruction comparison does not alter thresholds or control policy.",
+    "Fresh synthetic states include fifteen reflected pairs and one presentation per state; observations are related and repeatability is unmeasured.",
+    "Labels measure supplied-policy compliance, not optimal actions or general driving competence.",
+    "Both contexts use the same factored native menus and atomic inverse; all paid choices remain model outputs.",
+    "All valid planned responses were retained, with no retries, replacements or gate relaxation.",
+    "Inherited free host-policy evidence supports nominal tracking only; no complete free rollout triggered the guard or validated recovery.",
+    "No paid controls were applied and no physics advanced.",
+    "Current boot differs from the old timing qualification; a prepared server and helpers are not timing evidence.",
+    "The failed candidate gate admits no new broader validation, live race or preset promotion.",
+    "Root tool chunk/session IDs are checked against preserved execution confirmation rather than independently queried from tool infrastructure; actual writer and ledger records are independently verified."
+  ],
+  "report_generation": {
+    "saved_completed_evidence_only": true,
+    "audits_rerun": false,
+    "model_calls": 0,
+    "ledger_read_or_written": false,
+    "frozen_archives_modified": false
+  }
+}

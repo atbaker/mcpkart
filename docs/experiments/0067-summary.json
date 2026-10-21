@@ -1,0 +1,667 @@
+{
+  "complete": true,
+  "gate_passed": true,
+  "model_requests": 0,
+  "is_jev": false,
+  "controls": [
+    {
+      "entry": {
+        "index": 0,
+        "profile": "focused22",
+        "seed": 97,
+        "course": "stadium"
+      },
+      "clean": true,
+      "metrics": {
+        "finished": true,
+        "realtime_valid": true,
+        "elapsed": 80.34999999999673,
+        "reference_s": 77.21666666666357,
+        "time_ratio": 1.0405784588819333,
+        "offtrack_time": 0.0,
+        "rescues": 0,
+        "rescue_after_s": 3.0,
+        "discarded_commands": 1,
+        "request_count": 155,
+        "request_errors": 0,
+        "api_latency_ms": {
+          "n": 155,
+          "p50": 200.843071,
+          "p95": 201.1240746,
+          "p99": null,
+          "max": 204.328319
+        },
+        "observation_age_ms": {
+          "n": 154,
+          "p50": 516.680155,
+          "p95": 518.54420295,
+          "p99": null,
+          "max": 700.926635
+        },
+        "cost_usd": 0,
+        "timing": {
+          "wall_elapsed": 80.350759478,
+          "simulation_elapsed": 80.34999999999673,
+          "drift_ms": 0.759478003274694,
+          "max_lateness_ms": 7.754723,
+          "p95_lateness_ms": 1.548372,
+          "physics_hz": 60,
+          "physics_steps": 4821,
+          "clock_mode": "fixed_step_wall_clock",
+          "pacing": {
+            "native_sleeper_ready_ns": null,
+            "native_sleeper_thread_alive": false
+          },
+          "diagnostics": {
+            "active": false,
+            "event_limit": 64,
+            "slow_span_threshold_ms": 5.0,
+            "late_wake_threshold_ms": 25,
+            "gc_count": 17,
+            "gc_max_ms": 2.591019,
+            "slow_span_count": 3,
+            "late_wake_count": 0,
+            "spans": {
+              "physics_sample": {
+                "count": 4822,
+                "total_ms": 237.88661699999943,
+                "max_ms": 12.967603,
+                "max_process_cpu_ms": 12.972318
+              },
+              "runtime_state": {
+                "count": 1554,
+                "total_ms": 1394.9001610000025,
+                "max_ms": 6.176023,
+                "max_process_cpu_ms": 6.176324
+              },
+              "physics_step": {
+                "count": 4821,
+                "total_ms": 515.2499350000013,
+                "max_ms": 6.368489,
+                "max_process_cpu_ms": 6.370843
+              }
+            },
+            "largest_late_wake": null,
+            "watchdog": {
+              "enabled": false,
+              "sample_interval_ms": 16,
+              "stall_threshold_ms": 50,
+              "sample_count": 0,
+              "stall_sample_count": 0,
+              "max_sample_gap_ms": 0.0,
+              "largest_sample_gap": null,
+              "last_sample_ns": null,
+              "note": "Thread samples require the GIL; missing samples can reflect process scheduling or GIL blockage.",
+              "stall_samples": []
+            },
+            "cpu_note": "Process CPU covers all server threads; compare with wall gap, not model API latency.",
+            "gc_events": [
+              {
+                "generation": 0,
+                "started_ns": 778007679503,
+                "ended_ns": 778007911840,
+                "duration_ms": 0.232337,
+                "process_cpu_ms": 0.231744,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 783151742551,
+                "ended_ns": 783152055762,
+                "duration_ms": 0.313211,
+                "process_cpu_ms": 0.329158,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 787881924792,
+                "ended_ns": 787882348027,
+                "duration_ms": 0.423235,
+                "process_cpu_ms": 0.442086,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 793016686657,
+                "ended_ns": 793016985416,
+                "duration_ms": 0.298759,
+                "process_cpu_ms": 0.298914,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 797696834265,
+                "ended_ns": 797697090279,
+                "duration_ms": 0.256014,
+                "process_cpu_ms": 0.279485,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 1,
+                "started_ns": 802348730757,
+                "ended_ns": 802351321776,
+                "duration_ms": 2.591019,
+                "process_cpu_ms": 2.611949,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 807000352455,
+                "ended_ns": 807000705185,
+                "duration_ms": 0.35273,
+                "process_cpu_ms": 0.353055,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 811698988377,
+                "ended_ns": 811699236706,
+                "duration_ms": 0.248329,
+                "process_cpu_ms": 0.247918,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 816505876572,
+                "ended_ns": 816506114399,
+                "duration_ms": 0.237827,
+                "process_cpu_ms": 0.237262,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 821219162900,
+                "ended_ns": 821220155138,
+                "duration_ms": 0.992238,
+                "process_cpu_ms": 0.990952,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 825895636487,
+                "ended_ns": 825895897327,
+                "duration_ms": 0.26084,
+                "process_cpu_ms": 0.260758,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 830526179781,
+                "ended_ns": 830526431739,
+                "duration_ms": 0.251958,
+                "process_cpu_ms": 0.251373,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 835217022892,
+                "ended_ns": 835217325834,
+                "duration_ms": 0.302942,
+                "process_cpu_ms": 0.302679,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 839839236122,
+                "ended_ns": 839839479817,
+                "duration_ms": 0.243695,
+                "process_cpu_ms": 0.243271,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 844515859665,
+                "ended_ns": 844516201105,
+                "duration_ms": 0.34144,
+                "process_cpu_ms": 0.341226,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 849159298935,
+                "ended_ns": 849159535409,
+                "duration_ms": 0.236474,
+                "process_cpu_ms": 0.2356,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 853795552994,
+                "ended_ns": 853795801826,
+                "duration_ms": 0.248832,
+                "process_cpu_ms": 0.265114,
+                "collected": 0,
+                "uncollectable": 0
+              }
+            ],
+            "slow_spans": [
+              {
+                "name": "runtime_state",
+                "started_ns": 820795340607,
+                "ended_ns": 820801516630,
+                "duration_ms": 6.176023,
+                "process_cpu_ms": 6.176324
+              },
+              {
+                "name": "physics_sample",
+                "started_ns": 830349942196,
+                "ended_ns": 830362909799,
+                "duration_ms": 12.967603,
+                "process_cpu_ms": 12.972318
+              },
+              {
+                "name": "physics_step",
+                "started_ns": 830467069578,
+                "ended_ns": 830473438067,
+                "duration_ms": 6.368489,
+                "process_cpu_ms": 6.370843
+              }
+            ],
+            "late_wakes": []
+          },
+          "infrastructure_valid": true,
+          "validity_limits_ms": {
+            "max_lateness": 100,
+            "p95_lateness": 25,
+            "absolute_drift": 100
+          },
+          "backend": "process",
+          "process_provenance": {
+            "child_pid": 1216,
+            "parent_pid": 558,
+            "session_id": "cd29988b602b42d6af0ba54b71f947c9",
+            "start_method": "subprocess_exec",
+            "worker_module": "mcpkart.physics_worker",
+            "child_clock_mode": "fixed_step_wall_clock",
+            "child_web_modules_loaded": [],
+            "worker_created_ns": 773752137781,
+            "worker_ready_ns": 773811651437,
+            "clock_started_ns": 773815995182
+          },
+          "parent_http_spans": {}
+        },
+        "runtime_backend": "process",
+        "runtime_consistent": true
+      },
+      "proof": {
+        "passed": true,
+        "trial_sha256": "7563a796f6b3551d892942622e357f0f9d7dc74f4d5f52229d695ee0af5d649d",
+        "queries_exact": 155,
+        "physics_frames_exact": 4822,
+        "budget_before": {
+          "schema_version": 1,
+          "cap_usd": 10.0,
+          "max_requests": 75000,
+          "max_tokens": 500000000,
+          "requests": 0,
+          "charged_usd": 0.0,
+          "charged_tokens": 0,
+          "reported_cost_usd": 0.0,
+          "uncertain_requests": 0,
+          "pending": {}
+        },
+        "budget_after": {
+          "schema_version": 1,
+          "cap_usd": 10.0,
+          "max_requests": 75000,
+          "max_tokens": 500000000,
+          "requests": 155,
+          "charged_usd": 0.0,
+          "charged_tokens": 0,
+          "reported_cost_usd": 0.0,
+          "uncertain_requests": 0,
+          "pending": {}
+        },
+        "domain_stop": null,
+        "model_requests": 0,
+        "shared_ledger_unchanged": true
+      }
+    },
+    {
+      "entry": {
+        "index": 1,
+        "profile": "focused22",
+        "seed": 98,
+        "course": "stadium_clockwise"
+      },
+      "clean": true,
+      "metrics": {
+        "finished": true,
+        "realtime_valid": true,
+        "elapsed": 80.04999999999674,
+        "reference_s": 77.1999999999969,
+        "time_ratio": 1.0369170984455953,
+        "offtrack_time": 0.0,
+        "rescues": 0,
+        "rescue_after_s": 3.0,
+        "discarded_commands": 1,
+        "request_count": 154,
+        "request_errors": 0,
+        "api_latency_ms": {
+          "n": 154,
+          "p50": 200.856503,
+          "p95": 201.2640025,
+          "p99": null,
+          "max": 202.863482
+        },
+        "observation_age_ms": {
+          "n": 153,
+          "p50": 516.59179,
+          "p95": 518.43799,
+          "p99": null,
+          "max": 701.004769
+        },
+        "cost_usd": 0,
+        "timing": {
+          "wall_elapsed": 80.050921113,
+          "simulation_elapsed": 80.04999999999674,
+          "drift_ms": 0.921113003258256,
+          "max_lateness_ms": 10.154359,
+          "p95_lateness_ms": 1.446474,
+          "physics_hz": 60,
+          "physics_steps": 4803,
+          "clock_mode": "fixed_step_wall_clock",
+          "pacing": {
+            "native_sleeper_ready_ns": null,
+            "native_sleeper_thread_alive": false
+          },
+          "diagnostics": {
+            "active": false,
+            "event_limit": 64,
+            "slow_span_threshold_ms": 5.0,
+            "late_wake_threshold_ms": 25,
+            "gc_count": 17,
+            "gc_max_ms": 3.390199,
+            "slow_span_count": 3,
+            "late_wake_count": 0,
+            "spans": {
+              "physics_sample": {
+                "count": 4804,
+                "total_ms": 227.64911299999991,
+                "max_ms": 3.149438,
+                "max_process_cpu_ms": 3.150339
+              },
+              "runtime_state": {
+                "count": 1547,
+                "total_ms": 1382.5006879999971,
+                "max_ms": 5.438518,
+                "max_process_cpu_ms": 5.438148
+              },
+              "physics_step": {
+                "count": 4803,
+                "total_ms": 483.8233209999999,
+                "max_ms": 1.672821,
+                "max_process_cpu_ms": 1.674047
+              }
+            },
+            "largest_late_wake": null,
+            "watchdog": {
+              "enabled": false,
+              "sample_interval_ms": 16,
+              "stall_threshold_ms": 50,
+              "sample_count": 0,
+              "stall_sample_count": 0,
+              "max_sample_gap_ms": 0.0,
+              "largest_sample_gap": null,
+              "last_sample_ns": null,
+              "note": "Thread samples require the GIL; missing samples can reflect process scheduling or GIL blockage.",
+              "stall_samples": []
+            },
+            "cpu_note": "Process CPU covers all server threads; compare with wall gap, not model API latency.",
+            "gc_events": [
+              {
+                "generation": 0,
+                "started_ns": 861577069241,
+                "ended_ns": 861577232516,
+                "duration_ms": 0.163275,
+                "process_cpu_ms": 0.163162,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 866460981467,
+                "ended_ns": 866461186674,
+                "duration_ms": 0.205207,
+                "process_cpu_ms": 0.204764,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 871098863265,
+                "ended_ns": 871099088341,
+                "duration_ms": 0.225076,
+                "process_cpu_ms": 0.224524,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 875742619239,
+                "ended_ns": 875742871967,
+                "duration_ms": 0.252728,
+                "process_cpu_ms": 0.270372,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 880437076283,
+                "ended_ns": 880437360067,
+                "duration_ms": 0.283784,
+                "process_cpu_ms": 0.284372,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 1,
+                "started_ns": 885237471572,
+                "ended_ns": 885240861771,
+                "duration_ms": 3.390199,
+                "process_cpu_ms": 3.391517,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 889906211763,
+                "ended_ns": 889906548114,
+                "duration_ms": 0.336351,
+                "process_cpu_ms": 0.335459,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 894555196702,
+                "ended_ns": 894555449349,
+                "duration_ms": 0.252647,
+                "process_cpu_ms": 0.252064,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 899158117623,
+                "ended_ns": 899158362027,
+                "duration_ms": 0.244404,
+                "process_cpu_ms": 0.266816,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 903821281560,
+                "ended_ns": 903821581388,
+                "duration_ms": 0.299828,
+                "process_cpu_ms": 0.320144,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 908488471229,
+                "ended_ns": 908488697376,
+                "duration_ms": 0.226147,
+                "process_cpu_ms": 0.225875,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 913229419248,
+                "ended_ns": 913229683302,
+                "duration_ms": 0.264054,
+                "process_cpu_ms": 0.263442,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 917897550504,
+                "ended_ns": 917897861468,
+                "duration_ms": 0.310964,
+                "process_cpu_ms": 0.310611,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 922578784223,
+                "ended_ns": 922579035058,
+                "duration_ms": 0.250835,
+                "process_cpu_ms": 0.250572,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 927203585486,
+                "ended_ns": 927203862760,
+                "duration_ms": 0.277274,
+                "process_cpu_ms": 0.292395,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 931900289514,
+                "ended_ns": 931900566117,
+                "duration_ms": 0.276603,
+                "process_cpu_ms": 0.27557,
+                "collected": 0,
+                "uncollectable": 0
+              },
+              {
+                "generation": 0,
+                "started_ns": 936540664307,
+                "ended_ns": 936541056934,
+                "duration_ms": 0.392627,
+                "process_cpu_ms": 0.392413,
+                "collected": 0,
+                "uncollectable": 0
+              }
+            ],
+            "slow_spans": [
+              {
+                "name": "runtime_state",
+                "started_ns": 895276383075,
+                "ended_ns": 895281452014,
+                "duration_ms": 5.068939,
+                "process_cpu_ms": 5.069251
+              },
+              {
+                "name": "runtime_state",
+                "started_ns": 904338356058,
+                "ended_ns": 904343794576,
+                "duration_ms": 5.438518,
+                "process_cpu_ms": 5.438148
+              },
+              {
+                "name": "runtime_state",
+                "started_ns": 904549694820,
+                "ended_ns": 904554866189,
+                "duration_ms": 5.171369,
+                "process_cpu_ms": 5.173685
+              }
+            ],
+            "late_wakes": []
+          },
+          "infrastructure_valid": true,
+          "validity_limits_ms": {
+            "max_lateness": 100,
+            "p95_lateness": 25,
+            "absolute_drift": 100
+          },
+          "backend": "process",
+          "process_provenance": {
+            "child_pid": 1262,
+            "parent_pid": 558,
+            "session_id": "b923a8fe0cbb496ebc96334c192ca47c",
+            "start_method": "subprocess_exec",
+            "worker_module": "mcpkart.physics_worker",
+            "child_clock_mode": "fixed_step_wall_clock",
+            "child_web_modules_loaded": [],
+            "worker_created_ns": 857314498738,
+            "worker_ready_ns": 857377492417,
+            "clock_started_ns": 857381558795
+          },
+          "parent_http_spans": {}
+        },
+        "runtime_backend": "process",
+        "runtime_consistent": true
+      },
+      "proof": {
+        "passed": true,
+        "trial_sha256": "a677d25743a5bd203d5681645f731a597cee9ec597138ecc6f287d099dd1feb1",
+        "queries_exact": 154,
+        "physics_frames_exact": 4804,
+        "budget_before": {
+          "schema_version": 1,
+          "cap_usd": 10.0,
+          "max_requests": 75000,
+          "max_tokens": 500000000,
+          "requests": 0,
+          "charged_usd": 0.0,
+          "charged_tokens": 0,
+          "reported_cost_usd": 0.0,
+          "uncertain_requests": 0,
+          "pending": {}
+        },
+        "budget_after": {
+          "schema_version": 1,
+          "cap_usd": 10.0,
+          "max_requests": 75000,
+          "max_tokens": 500000000,
+          "requests": 154,
+          "charged_usd": 0.0,
+          "charged_tokens": 0,
+          "reported_cost_usd": 0.0,
+          "uncertain_requests": 0,
+          "pending": {}
+        },
+        "domain_stop": null,
+        "model_requests": 0,
+        "shared_ledger_unchanged": true
+      }
+    }
+  ],
+  "budget_unchanged": true
+}

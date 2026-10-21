@@ -1,0 +1,201 @@
+{
+  "experiment": "0069",
+  "study_closed": true,
+  "saved_data_integrity_passed": true,
+  "strict_zero_error_gate_passed": false,
+  "native_endpoint_gate_passed": false,
+  "billing_certain": false,
+  "new_paid_admission_halted": true,
+  "failure": "third request timed out at unchanged five-second limit; no response or generation ID captured",
+  "successful_responses": 2,
+  "successful_response_latency_ms": [
+    646.774873,
+    842.448757
+  ],
+  "timeout_latency_ms": 5007.934578,
+  "cache_fields_present": [],
+  "cache_effect_identified": false,
+  "clock_valid": true,
+  "physics_frames_exact": 394,
+  "factual_queries_exact": 3,
+  "metrics": {
+    "finished": false,
+    "realtime_valid": true,
+    "elapsed": 6.549999999999982,
+    "reference_s": 77.1999999999969,
+    "time_ratio": null,
+    "offtrack_time": 0.5166666666666666,
+    "rescues": 0,
+    "rescue_after_s": 3.0,
+    "discarded_commands": 0,
+    "request_count": 3,
+    "request_errors": 1,
+    "api_latency_ms": {
+      "n": 3,
+      "p50": 842.448757,
+      "p95": 4591.3859959,
+      "p99": null,
+      "max": 5007.934578
+    },
+    "observation_age_ms": {
+      "n": 2,
+      "p50": 766.866544,
+      "p95": 856.6522549,
+      "p99": null,
+      "max": 866.628445
+    },
+    "cost_usd": 0.0047683199999999995,
+    "timing": {
+      "wall_elapsed": 6.560623356,
+      "simulation_elapsed": 6.549999999999982,
+      "drift_ms": 10.623356000017736,
+      "max_lateness_ms": 3.780392,
+      "p95_lateness_ms": 1.755491,
+      "physics_hz": 60,
+      "physics_steps": 393,
+      "clock_mode": "fixed_step_wall_clock",
+      "pacing": {
+        "native_sleeper_ready_ns": null,
+        "native_sleeper_thread_alive": false
+      },
+      "diagnostics": {
+        "active": false,
+        "event_limit": 64,
+        "slow_span_threshold_ms": 5.0,
+        "late_wake_threshold_ms": 25,
+        "gc_count": 1,
+        "gc_max_ms": 0.22642,
+        "slow_span_count": 1,
+        "late_wake_count": 0,
+        "spans": {
+          "physics_sample": {
+            "count": 394,
+            "total_ms": 27.425256000000005,
+            "max_ms": 1.991236,
+            "max_process_cpu_ms": 1.992059
+          },
+          "runtime_state": {
+            "count": 128,
+            "total_ms": 59.414284,
+            "max_ms": 3.257662,
+            "max_process_cpu_ms": 3.255526
+          },
+          "physics_step": {
+            "count": 393,
+            "total_ms": 60.21810800000001,
+            "max_ms": 5.455741,
+            "max_process_cpu_ms": 5.45973
+          }
+        },
+        "largest_late_wake": null,
+        "watchdog": {
+          "enabled": false,
+          "sample_interval_ms": 16,
+          "stall_threshold_ms": 50,
+          "sample_count": 0,
+          "stall_sample_count": 0,
+          "max_sample_gap_ms": 0.0,
+          "largest_sample_gap": null,
+          "last_sample_ns": null,
+          "note": "Thread samples require the GIL; missing samples can reflect process scheduling or GIL blockage.",
+          "stall_samples": []
+        },
+        "cpu_note": "Process CPU covers all server threads; compare with wall gap, not model API latency.",
+        "gc_events": [
+          {
+            "generation": 0,
+            "started_ns": 62943346696837,
+            "ended_ns": 62943346923257,
+            "duration_ms": 0.22642,
+            "process_cpu_ms": 0.226687,
+            "collected": 0,
+            "uncollectable": 0
+          }
+        ],
+        "slow_spans": [
+          {
+            "name": "physics_step",
+            "started_ns": 62940580715121,
+            "ended_ns": 62940586170862,
+            "duration_ms": 5.455741,
+            "process_cpu_ms": 5.45973
+          }
+        ],
+        "late_wakes": []
+      },
+      "infrastructure_valid": true,
+      "validity_limits_ms": {
+        "max_lateness": 100,
+        "p95_lateness": 25,
+        "absolute_drift": 100
+      },
+      "backend": "process",
+      "process_provenance": {
+        "child_pid": 4402,
+        "parent_pid": 558,
+        "session_id": "5955a9cf5d8343fbad5e5668f5354563",
+        "start_method": "subprocess_exec",
+        "worker_module": "mcpkart.physics_worker",
+        "child_clock_mode": "fixed_step_wall_clock",
+        "child_web_modules_loaded": [],
+        "worker_created_ns": 62939058046140,
+        "worker_ready_ns": 62939142874199,
+        "clock_started_ns": 62939146965204
+      },
+      "parent_http_spans": {}
+    },
+    "runtime_backend": "process",
+    "runtime_consistent": true
+  },
+  "gates": 6,
+  "second_predeclared_race": "unrun after uncertain timeout",
+  "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+  "controller_sources_sha256": {
+    "/workspace/mcpkart/src/mcpkart/question_context.py": "d6d6481ea0c28801a20f89c785617bfa95d764c5578b22d02378d72d663514ac",
+    "/workspace/mcpkart/src/mcpkart/question_context_driver.py": "543a41fd5e3971085712bf97cacaf59ec402425ab56d377b3f0f700546546229",
+    "/workspace/mcpkart/src/mcpkart/question_context_run.py": "eb9de8c56557ce8f3567aed694f79d679aa49e74d916fde7c6a4bbf013daeafc"
+  },
+  "protocol_sha256": "5478d56ac26a306b07b08e09ae9d06570ac8c6325a808d39834e5ced104e5cdd",
+  "trial_sha256": "c8d4c9f4302f47d4a58f75d7c7524c4eb9e6bef64c0d8386dddbba6b64ae774f",
+  "auditor_sha256": "fd061f40f411f021f6a406d4977679673f783bb3639440eb104f950f8a6f3344",
+  "root_process_exit_confirmed": true,
+  "root_only_review": true,
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 71157,
+    "charged_usd": 8.55872745200061,
+    "charged_tokens": 267345099,
+    "reported_cost_usd": 8.501448988000568,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 71160,
+    "charged_usd": 8.563495772000609,
+    "charged_tokens": 267423949,
+    "reported_cost_usd": 8.502285148000567,
+    "uncertain_requests": 70,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 3,
+    "charged_tokens": 78850,
+    "charged_usd": 0.004768319999998383,
+    "reported_cost_usd": 0.0008361599999986424,
+    "uncertain_requests": 1
+  },
+  "uncertain_reservation": {
+    "tokens": 75366,
+    "cost_usd": 0.00393216,
+    "retained": true
+  },
+  "model_requests_by_auditor": 0,
+  "created_utc": "2026-10-21T04:49:19.428080+00:00"
+}

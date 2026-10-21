@@ -1,0 +1,103 @@
+{
+  "six_hour_session_start": "2026-10-20T05:38:01+00:00",
+  "six_hour_session_deadline": "2026-10-20T11:38:01+00:00",
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 61837,
+    "charged_usd": 7.600079637999871,
+    "charged_tokens": 245364387,
+    "reported_cost_usd": 7.542801173999855,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 69960,
+    "charged_usd": 8.389473334000606,
+    "charged_tokens": 265041176,
+    "reported_cost_usd": 8.332194870000563,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 8123,
+    "charged_tokens": 19676789,
+    "charged_usd": 0.7893936960007348,
+    "uncertain_requests": 0
+  },
+  "best_actual_model_driver": {
+    "useful": 12,
+    "clean": 11,
+    "races": 12,
+    "consecutive_fresh_clean": 10,
+    "fresh_three_lap_time_range_s": [
+      78.23333333333017,
+      80.66666666666337
+    ],
+    "scope": "solo stadium and clockwise mirror, small initial-pose variations"
+  },
+  "latest_native_screen": {
+    "fresh_cases": 84,
+    "control_correct": 81,
+    "focused_correct": 84,
+    "paired_gains": 3,
+    "paired_losses": 0
+  },
+  "actual500ms_model_races": 0,
+  "recovery_free_controls": {
+    "clean": 2,
+    "n": 2,
+    "not_jev": true
+  },
+  "new_boot_clock_qualification": {
+    "passed": true,
+    "verified_utc": "2026-10-20T11:30:59.318815+00:00",
+    "boot_id": "4b247f0d-313e-4038-ac10-acff9274db8e",
+    "http_parent_pid": 558,
+    "http_parent_start_ticks": 8475,
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "controls": 3,
+    "parent_pause_physics_samples": 21,
+    "long_clock_s": 170.1000000000275,
+    "verification_command_exit": 0,
+    "model_requests": 0,
+    "budget_unchanged": true,
+    "exact_replayed_frames": 20414,
+    "prior_failed_cold_start_gate_preserved": "artifacts/jev-six-hour-v2/restart-clock-v1",
+    "explicit_idle_prewarm_required": true,
+    "evidence_sha256": {
+      "run_controls.py": "dafc716a15ddfa7591eecc7da284ec97fb5adba9b9d4a622e9e20a1c1a00d279",
+      "reference.json": "1ea8be1d7efeeb920a89d0f08a6a2fcf366e8dc2a2a0afc0e904506b6d0dbaa1",
+      "long_clock.py": "aca1f037608c1fc771b8699529f30cab0303aaca0471f3cddb4ef8d43ac804e2",
+      "session-context.json": "18ee05be0c716f86487a2cba1c21ce50cef3a95e8163628b14fdb7c39fdf67ae",
+      "environment.py": "c77022a93264af0e219ad8b68cc3517fa09fe0f3e22951def3fd608ae2383b7f",
+      "linux-environment.json": "e50585cdf66cddf9d00abcbaf335c3b3a42d166ddb489b4aaaaebe50cb3c444e",
+      "prewarm-amendment.json": "472bd157c975bae592e3d039c7287a960e9e893fff84b31b770f7e2d0b03cd02",
+      "spectator.py": "b2ffa32120fd86033f3ee7b75df9015b07fdce2c1deab7cd65303c31866fee7e",
+      "host-spectator.json": "d2fcfc6901009d2bbced77c5c6b4151c1ee443acb5f7f1815e333c994c988393",
+      "long-clock.json": "e5a1b631fb62aa66ff29d6a534bf4760e90d37b69b39c7062e47df86de57cd09",
+      "controls/validation.json": "d5f414d326cab2b3e2d91821d0538250089c78048f4d4b6307e35c3ff7947100",
+      "root-tool-exits.json": "69d09beefafdff33ca81bbd1a66f6f2761314bd27efe1ba53416e62f92071498",
+      "verify_gate.py": "798ff3aacf7dfb8d1515ded012541e1beb14d39748253244ac9b7e88918e72d3",
+      "controls/run-01/scripted-live.json": "9971b80ff2d6a338dc080d31a0a437cce7a1f418e04ed195f56d9eb26996af9b",
+      "controls/run-02/scripted-live.json": "54d936c69127072a0821906b8574c9ca4e9112a61a3a05b7c3adea2a56cc016e",
+      "controls/run-03/scripted-live.json": "0b651ae1e721e07631583f25b5556373319b3c081cadd9a73d2bfb7c32d276a3"
+    }
+  },
+  "new_uncertain_requests": 0,
+  "software_checks": {
+    "passed": 474,
+    "optional_rust_skips": 3,
+    "ruff_passed": true
+  },
+  "root_only_review": true,
+  "created_utc": "2026-10-20T11:35:00.688416+00:00",
+  "session_status": "completed_at_six_hour_deadline",
+  "closed_utc": "2026-10-20T11:38:01.000471+00:00"
+}

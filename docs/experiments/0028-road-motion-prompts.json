@@ -1,0 +1,4949 @@
+{
+  "schema_version": 1,
+  "protocol": {
+    "schema_version": 1,
+    "kind": "static_road_representation_motion_diagnostic",
+    "frozen": true,
+    "created_utc": "2026-10-20T01:50:19.786243+00:00",
+    "client_date": "2026-10-20",
+    "planned_calls": 96,
+    "forecast_calls": 64,
+    "motion_calls": 32,
+    "cases": 16,
+    "repetitions": 1,
+    "contexts": [
+      "road",
+      "road_frame",
+      "road_no_badges",
+      "road_frame_no_badges"
+    ],
+    "motion_contexts": [
+      "road",
+      "road_frame"
+    ],
+    "context_letters": {
+      "A": "road",
+      "B": "road_frame",
+      "C": "road_no_badges",
+      "D": "road_frame_no_badges"
+    },
+    "order_seed": 2026102028,
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "input_token_ceiling": 16384,
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 60963,
+      "charged_usd": 7.523178561999893,
+      "charged_tokens": 243467657,
+      "reported_cost_usd": 7.465900097999878,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "shared_ledger": "artifacts/budget.json",
+    "limits": {
+      "max_requests": 75000,
+      "cap_usd": 10.0,
+      "max_tokens": 250000000
+    },
+    "route": {
+      "model": "typesafe/jev-1.14",
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "typesafe",
+      "provider_name": "TypeSafe",
+      "endpoint_name": "TypeSafe | typesafe/jev-1.14-20261014",
+      "price_input_per_token": 4.2e-08,
+      "price_output_per_token": 0.0,
+      "price_per_request": 0.0,
+      "context_length": 262144,
+      "max_prompt_tokens": 262144,
+      "max_completion_tokens": 235929
+    },
+    "automatic_retries": 0,
+    "provider_fallbacks": false,
+    "no_controls_applied": true,
+    "stop_on_first_endpoint_error": true,
+    "stop_on_uncertain_accounting": true,
+    "collect_all_valid_answers": true,
+    "format_gate": null,
+    "forecast_thresholds": {
+      "per_context_correct_min": 15,
+      "per_context_responses": 16,
+      "each_risk_correct_min": 7,
+      "each_region_correct_min": 7,
+      "subgroup_responses": 8
+    },
+    "motion_thresholds": {
+      "per_context_correct_min": 15,
+      "per_context_responses": 16,
+      "each_direction_correct_min": 7,
+      "subgroup_responses": 8
+    },
+    "order_policy": "Forecast64first:shuffle16caseunitsseed2026102028;4profileLatinrotationj%4,physicalorderj//4%2;8firstprofilexordercells2unitseach,eachprofileeachposition4times.Motion32last:sameshuffledunits;2profilefirstalternatesj%2,physicalorderj//2%2;4cells4unitseach,eachprofileeachposition8times.Onepresentationpercase/context/block,noformatgate.",
+    "task_contract": "Forecastsameexact0027semanticquestion/criteria/quotedDAMPEDacrossall4contexts.A=fullroad_navigation;B=Aplusfourfactualcurrentroadframevaluesandfixedunits;C=AremovingONLYroad.on_roadandphysics.current_surface;D=Bremovingsametwofields.Originalbodyframefactsretained.Futuretrace,labelsandproofmetadataexcluded.",
+    "current_road_frame_contract": "nose_vs_road_deg/velocity_vs_road_deg3dpfromexistingkart_physics;velocity_left_m_s4dpfromcompact;velocity_forward_m_s4dpfromcurrentruntime-roundedvx/vydotcurrentroadtangent.Onlycurrentfactsandfixedunits,noprediction,edgeclosing,risk,time-to-edgeoractionadvice.",
+    "motion_contract": "Currentvelocityleft/rightrelativetocurrentroadtangent;A/Bonlywithbadgesretained;labels8eachinproofmetadata;nofuture,outwardorabsoluteoffsetquestion.Motionanswersneverfedtoforecastpayloads.",
+    "forecast_contract": {
+      "steps": 30,
+      "dt_s": 0.016666666666666666,
+      "horizon_s": 0.5,
+      "held_control": "currentstate.controlheldfixed",
+      "risk": "kartCENTREoffroadatANYstep1..30"
+    },
+    "contrasts": [
+      "B-A",
+      "D-C",
+      "C-A",
+      "D-B",
+      "D-A",
+      "(D-C)-(B-A)"
+    ],
+    "selection_policy": "Reportall4forecastconditions,2motionconditions,andprespecifiedcontrasts/interaction;mirrorsrelated,noposthoclivecandidatechoice.",
+    "followup_policy": "Forecastnetgain>=4/16forB-AorD-Ctogetherwithcandidateforecastbenchmarkmaymotivateseparetelyfrozenfreshreplicationonly.Noautomaticnativevalidation,liveuse,qualificationorpresetpromotion.Motionchecksareexplanatoryonly.",
+    "session_deadline_utc": "2026-10-20T06:17:26+00:00",
+    "helper_sha256": {
+      "case_bank.py": "69f524b6d3b3a0b5a834400441ff6919591ce80d531b8be77a4a8a6e3531402e",
+      "cases.json": "2b8ca8b3d00d118334a3ae09ec8bd5453ade405cbcaabb9ab31e9e572d202972",
+      "CASE_DESIGN.md": "09faa562e5dd30e612a560ec6ca8d57c2ef2a1953953c0ec4a77f9d2ed8f5fc8",
+      "payloads.py": "fb28bcda108a57267a1852fe71549cb3ab6be6d5feec7e3764fcc29a86d3b087",
+      "prepare.py": "b14bc4802d7bd2a9b711c7ef73ba7859762fc22b310e5971e291df6272fae97c",
+      "runner.py": "8dd29d44c01f55d5286a4f99e28393f26557e3c3528876fed44a70f4d1795421",
+      "audit.py": "8f62dc2c0184454d40073ebe036a4e7825e7582458de0e4e39b23b20869cdd68",
+      "preflight.py": "6aa5b1d36181ea4a481f1364a3e099a121fdf3a7ddd09e6e479e67204bc26e8b",
+      "preflight.json": "6bb58e7e70037f15b9b881d94ee0776e07148ac5983bedfe4811ed9581a0c88d",
+      "order.json": "953ece5b73de09f22cc45dae31ffa86ad23cfcda908e24996916c90ffbb66f27",
+      "routes.json": "176b2c547a08eb226e31f0acff4d6fcd2a2150394326a747cccc26520f669eec",
+      "DESIGN.md": "c8ae18380006c4bc62e79170906a0fd56abe71d7db89ac904963a24061a2be78",
+      "no-collect-smoke.json": "ac4bcf1a4471315983accd5736d8599e895f54105273e3060fdb96e4b2987383"
+    },
+    "frozen_utc": "2026-10-20T01:51:58.829375+00:00"
+  },
+  "protocol_sha256": "cab051e6cc0373f195adda776de0c24eb902c45e56dd0616701dba12fa96af6d",
+  "payload_builder_source": "\"\"\"Pure current-road representation contrasts; no control or forecast labels.\"\"\"\n\nimport copy\n\nfrom mcpkart.decisions import DAMPED_DRIVING_INSTRUCTIONS\n\nCRITERIA = {\n    \"leaves_road\": \"YES: with the current native input held fixed, the kart CENTRE is outside the road at one or more of the next 30 physics frames.\",\n    \"stays_on_road\": \"NO: with the current native input held fixed, the kart CENTRE remains on the road at every one of the next 30 physics frames.\",\n}\n\nTASK_PREFIX = (\n    \"STATIC MOTION-RISK CHECK. No control will be applied. The guide below is REFERENCE material only. \"\n    \"The REQUIRED TASK after it takes priority over all driving advice, including advice to choose or change controls.\\n\"\n    \"BEGIN REFERENCE DRIVING GUIDE\\n\"\n)\n\nREQUIRED_TASK = (\n    \"\\nEND REFERENCE DRIVING GUIDE\\n\"\n    \"REQUIRED TASK: Predict the consequence of CONTINUING the CURRENT native input in state.control. \"\n    \"Hold that input fixed for exactly the next 30 physics steps, each DT=1/60 second, a total of 0.5 seconds. \"\n    \"No new command is issued during this interval. Preserve the current actual wheel, yaw and velocity \"\n    \"as the starting state; physical steering/yaw response lag and grip still evolve normally. \"\n    \"state.control is the held input, not the current actual wheel angle. The fixed native wheel targets \"\n    \"are hard_right=-0.12 radians, right=-0.06 radians, straight=0 radians, left=+0.06 radians and \"\n    \"hard_left=+0.12 radians. The suffix accelerate means throttle 1/brake 0, coast means throttle 0/brake 0, \"\n    \"and brake means throttle 0/brake 1. These are definitions of all native inputs, not a recommendation. \"\n    \"Will the KART CENTRE be outside the road at ANY of those 30 future frames? Outside means the absolute \"\n    \"centre offset from the road centreline is strictly greater than half the road width. The centre exactly \"\n    \"on an edge is still on-road. Judge the centre, not the kart\u2019s outer body. \"\n    \"Answer YES/leaves_road or NO/stays_on_road using the criteria. Do not choose an optimal input, replace \"\n    \"the held input, or judge whether rescue will eventually occur. Return only the requested binary choice.\"\n)\n\n# The single prospective wording change from 0026 applies identically to every\n# profile; menu identifiers are no longer embedded in the physical task.\nREQUIRED_TASK = REQUIRED_TASK.replace(\n    \"Answer YES/leaves_road or NO/stays_on_road using the criteria.\",\n    \"Answer YES or NO using the criteria.\",\n)\nCONTEXTS = (\"road\", \"road_frame\", \"road_no_badges\", \"road_frame_no_badges\")\nMOTION_CONTEXTS = CONTEXTS[:2]\nCATEGORIES = (\"leaves_road\", \"stays_on_road\")\nMOTION_CATEGORIES = (\"leftward\", \"rightward\")\nROAD_FRAME_UNITS = (\n    \"Angles are degrees and velocities are m/s in the CURRENT ROAD frame. \"\n    \"Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. \"\n    \"Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent.\"\n)\nMOTION_CRITERIA = {\n    \"leftward\": \"LEFT: the current velocity vector points to the LEFT of the current road tangent (positive road-relative lateral velocity).\",\n    \"rightward\": \"RIGHT: the current velocity vector points to the RIGHT of the current road tangent (negative road-relative lateral velocity).\",\n}\nMOTION_PREFIX = (\n    \"STATIC CURRENT-MOTION CHECK. No control will be applied. The guide below is REFERENCE material only. \"\n    \"The REQUIRED TASK after it takes priority over all driving advice, including advice to choose or change controls.\\n\"\n    \"BEGIN REFERENCE DRIVING GUIDE\\n\"\n)\nMOTION_TASK = (\n    \"\\nEND REFERENCE DRIVING GUIDE\\n\"\n    \"REQUIRED TASK: Read only the CURRENT velocity direction relative to the CURRENT road tangent. \"\n    \"Does the velocity vector point LEFTWARD or RIGHTWARD relative to that tangent? \"\n    \"Use the direction of motion, not the kart's nose direction or body-frame lateral velocity. \"\n    \"Positive road-relative lateral velocity means LEFTWARD and negative means RIGHTWARD. \"\n    \"Do not predict future motion, road departure, which edge is closer, or whether motion is outward from the centreline. \"\n    \"Do not choose or change a native input. Return only the requested current-motion binary choice.\"\n)\n\n\ndef build_state(case, context):\n    if context not in CONTEXTS:\n        raise ValueError(\"Unknown road representation context\")\n    state = copy.deepcopy(case[\"observation\"])\n    if context in (\"road_frame\", \"road_frame_no_badges\"):\n        fields = (\"nose_vs_road_deg\", \"velocity_vs_road_deg\", \"velocity_left_m_s\", \"velocity_forward_m_s\")\n        if set(case[\"road_frame_motion\"]) != set(fields):\n            raise ValueError(\"Current road frame must contain exactly four factual fields\")\n        state[\"current_road_frame\"] = {key: case[\"road_frame_motion\"][key] for key in fields}\n        state[\"current_road_frame\"][\"units\"] = ROAD_FRAME_UNITS\n    if context in (\"road_no_badges\", \"road_frame_no_badges\"):\n        del state[\"road\"][\"on_road\"]\n        del state[\"physics\"][\"current_surface\"]\n    return state\n\n\ndef expected_choice(case, entry):\n    if entry[\"block\"] == \"forecast\":\n        return case[\"expected\"]\n    if entry[\"block\"] == \"motion\":\n        return case[\"instantaneous_motion\"][\"expected\"]\n    raise ValueError(\"Unknown static block\")\n\n\ndef build_instructions(case, entry):\n    del case\n    if entry[\"context\"] not in CONTEXTS:\n        raise ValueError(\"Unknown road representation context\")\n    if entry[\"block\"] == \"forecast\":\n        return TASK_PREFIX + DAMPED_DRIVING_INSTRUCTIONS + REQUIRED_TASK\n    if entry[\"block\"] == \"motion\" and entry[\"context\"] in MOTION_CONTEXTS:\n        return MOTION_PREFIX + DAMPED_DRIVING_INSTRUCTIONS + MOTION_TASK\n    raise ValueError(\"Unknown static block or disallowed motion context\")\n\n\ndef build_payload(case, entry, route):\n    descriptions = CRITERIA if entry[\"block\"] == \"forecast\" else MOTION_CRITERIA\n    physical_order = entry[\"physical_order\"]\n    if len(physical_order) != 2 or set(physical_order) != set(descriptions):\n        raise ValueError(\"Physical answer order must include both categories\")\n    return {\"model\": route[\"model\"], \"state\": build_state(case, entry[\"context\"]),\n            \"questions\": {\"control\": {\"type\": \"choice\", \"instructions\": build_instructions(case, entry),\n                                      \"criteria\": {category: descriptions[category] for category in physical_order}}},\n            \"provider\": {\"only\": [route[\"provider\"]], \"allow_fallbacks\": False}}\n",
+  "case_generator_source": "\"\"\"Fresh physical-risk and current road-frame motion diagnostics.\n\nOnly factual current runtime observations are eligible for model submission.\nThirty exact offline physics frames label whether the centre leaves the road;\nall future quantities stay in proof metadata. No model, network or budget calls\nare made, and no control is selected from an observation.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport copy\nimport hashlib\nimport json\nimport math\nfrom collections import Counter\nfrom pathlib import Path\n\nfrom mcpkart.bench import driving_evidence\nfrom mcpkart.sim import ACTIONS, DT, Simulation, wrap\n\nROOT = Path(__file__).parent\nSETUP = {\n    \"laps\": 3,\n    \"reset_after_s\": 3.0,\n    \"road_width\": 24.0,\n    \"max_speed\": 12.0,\n    \"max_steering_angle\": 0.12,\n}\nFORECAST_STEPS = 30\nMINIMUM_MARGIN_M = 0.5\nPRIOR_BANKS = (\n    \"jev-skills-v1\", \"jev-wheel-target-v1\", \"jev-coordinate-v1\",\n    \"jev-literal-v1\", \"jev-examples-v1\", \"jev-menu-v1\",\n    \"jev-context-v1\", \"jev-crossmul-v1\", \"jev-factored-commands-v1\",\n    \"jev-motion-risk-v1\",\n    \"jev-risk-context-v1\",\n)\nDEMONSTRATION_XY_M = ((15.0, 1.0), (15.0, -1.0), (15.0, 4.0),\n                      (15.0, -4.0), (10.0, 5.0), (10.0, -5.0))\n\n# Eight base snapshots, each reflected to form one mirrored pair. Adjacent\n# safe/hazard bases share native held input, speed, yaw and actual wheel. Their\n# nose angles differ by 0.25deg so straight-region preview pairs remain fresh.\n# Three contrast groups share initial edge clearance and change velocity; one\n# share motion and change edge clearance. These are synthetic transient states,\n# not trajectories claimed to have arisen from the saved initial race setup.\n# Fields: road m, region, class, initial nominal clearance, nose/road degrees,\n# velocity/road degrees, speed, yaw degrees/s, actual wheel rad, held control.\nSLOTS = (\n    (0.96875, \"straight\", \"safe\", 1.25, 15.21875, -20.0, 10.0, 16.0, .06, \"straight_accelerate\"),\n    (2.96875, \"straight\", \"hazard\", 1.25, 15.46875, 55.0, 10.0, 16.0, .06, \"straight_accelerate\"),\n    (4.96875, \"straight\", \"safe\", .75, 30.21875, -30.0, 12.0, 20.0, .06, \"hard_left_brake\"),\n    (6.96875, \"straight\", \"hazard\", .75, 30.46875, 70.0, 12.0, 20.0, .06, \"hard_left_brake\"),\n    (54.96875, \"curve\", \"safe\", 1.25, -9.78125, -30.0, 12.0, -24.0, -.12, \"left_accelerate\"),\n    (64.96875, \"curve\", \"hazard\", 1.25, -9.53125, 60.0, 12.0, -24.0, -.12, \"left_accelerate\"),\n    (74.96875, \"curve\", \"safe\", 4.0, 30.21875, 50.0, 12.0, 24.0, .12, \"hard_right_coast\"),\n    (84.96875, \"curve\", \"hazard\", 1.0, 30.46875, 50.0, 12.0, 24.0, .12, \"hard_right_coast\"),\n)\n\n\ndef _prior_geometry():\n    \"\"\"Read fixture geometry only, never model answers or paid request files.\"\"\"\n    used_xy, used_positions = set(DEMONSTRATION_XY_M), set()\n    sources = []\n    for bank_name in PRIOR_BANKS:\n        path = ROOT.parent / bank_name / \"cases.json\"\n        raw = path.read_bytes()\n        bank = json.loads(raw)\n        local_xy, local_positions = set(), set()\n        for case in bank[\"cases\"]:\n            state = case[\"observation\"]\n            columns = state[\"road\"][\"preview_columns\"]\n            ahead = columns.index(\"ahead_m\")\n            row = next(row for row in state[\"road\"][\"preview\"] if row[ahead] == 15)\n            local_xy.add((row[columns.index(\"ego_x_m\")], row[columns.index(\"ego_y_m\")]))\n            local_positions.add(case[\"proof\"][\"requested_road_m\"])\n        used_xy.update(local_xy)\n        used_positions.update(local_positions)\n        sources.append({\n            \"case_bank\": f\"artifacts/{bank_name}/cases.json\",\n            \"sha256\": hashlib.sha256(raw).hexdigest(),\n            \"unique_15m_xy_pairs\": len(local_xy),\n            \"unique_requested_positions\": len(local_positions),\n        })\n    return used_xy, used_positions, sources\n\n\ndef _reflect_control(action_id: str) -> str:\n    source = ACTIONS[action_id]\n    candidates = [key for key, action in ACTIONS.items()\n                  if action[\"steer\"] == -source[\"steer\"]\n                  and action[\"throttle\"] == source[\"throttle\"]\n                  and action[\"brake\"] == source[\"brake\"]]\n    assert len(candidates) == 1\n    return candidates[0]\n\n\ndef pose_sim(slot, reflection_sign: int) -> Simulation:\n    \"\"\"Build a valid bounded current state, independent of any model response.\"\"\"\n    road_m, _, _, clearance, nose, velocity, speed, yaw, actual_wheel, held = slot\n    course = \"stadium\" if reflection_sign == 1 else \"stadium_clockwise\"\n    sim = Simulation(seed=0, course=course, **SETUP)\n    x, y, road_heading, _ = sim.track.at(road_m)\n    offset = reflection_sign * (SETUP[\"road_width\"] / 2 - clearance)\n    sim.x, sim.y = x - math.sin(road_heading) * offset, y + math.cos(road_heading) * offset\n    sim.heading = wrap(road_heading + math.radians(reflection_sign * nose))\n    velocity_heading = road_heading + math.radians(reflection_sign * velocity)\n    sim.vx, sim.vy = speed * math.cos(velocity_heading), speed * math.sin(velocity_heading)\n    sim.steering = reflection_sign * actual_wheel\n    sim.yaw_rate = math.radians(reflection_sign * yaw)\n    sim.set_control(held if reflection_sign == 1 else _reflect_control(held))\n    sim.s, sim.offset, _ = sim.track.project(sim.x, sim.y)\n    sim.tick, sim.elapsed = 120, 2.0\n    sim.next_checkpoint = math.floor(sim.s / sim.track.length * 40) + 1\n    sim.checkpoints_passed = sim.next_checkpoint - 1\n    sim.departure_s = sim.s\n    sim.max_speed_seen = sim.speed\n    assert sim.speed <= SETUP[\"max_speed\"] + 1e-12\n    assert abs(sim.steering) <= SETUP[\"max_steering_angle\"]\n    assert sim.offroad_elapsed == 0 and not sim.reset_events\n    return sim\n\n\ndef current_observation(sim: Simulation) -> dict:\n    \"\"\"Match the runtime's top-level finished decoration before representation.\"\"\"\n    raw = sim.observation()\n    raw[\"finished\"] = sim.finished\n    return driving_evidence(raw, \"road_navigation\", config=sim.config())\n\n\ndef current_road_motion(sim: Simulation) -> dict:\n    \"\"\"Express measured current motion in the current road frame, not ego frame.\n\n    Derive from the same rounded raw pose as existing factual telemetry. This\n    intentionally matches kart_physics angle precision and compact lateral\n    velocity precision rather than adding hidden extra pose precision.\n    \"\"\"\n    raw = sim.observation()\n    raw[\"finished\"] = sim.finished\n    kart, track = raw[\"kart\"], raw[\"track\"]\n    road_heading = float(kart[\"heading\"]) + float(track[\"heading_error\"])\n    nose = math.degrees(wrap(-float(track[\"heading_error\"])))\n    velocity = math.degrees(wrap(math.atan2(kart[\"vy\"], kart[\"vx\"]) - road_heading))\n    left = -kart[\"vx\"] * math.sin(road_heading) + kart[\"vy\"] * math.cos(road_heading)\n    forward = kart[\"vx\"] * math.cos(road_heading) + kart[\"vy\"] * math.sin(road_heading)\n    motion = {\n        \"nose_vs_road_deg\": round(nose, 3),\n        \"velocity_vs_road_deg\": round(velocity, 3),\n        \"velocity_left_m_s\": round(left, 4),\n        \"velocity_forward_m_s\": round(forward, 4),\n    }\n    rich = driving_evidence(raw, \"kart_physics\", config=sim.config())\n    compact = driving_evidence(raw, \"compact\", config=sim.config())\n    assert motion[\"nose_vs_road_deg\"] == rich[\"current_alignment\"][\"nose_vs_road_deg\"]\n    assert motion[\"velocity_vs_road_deg\"] == rich[\"current_alignment\"][\"velocity_vs_road_deg\"]\n    assert motion[\"velocity_left_m_s\"] == compact[\"present\"][\"road_lateral_m_s\"]\n    assert abs(left) >= 1.0\n    return motion\n\n\ndef forecast(sim: Simulation) -> dict:\n    \"\"\"Advance a private offline copy with its existing input held unchanged.\"\"\"\n    held = sim.action_id\n    initial_clearance = sim.track.width / 2 - abs(sim.offset)\n    trace = []\n    for step in range(1, FORECAST_STEPS + 1):\n        sim.step(DT)\n        assert sim.action_id == held and not sim.reset_events and not sim.finished\n        clearance = sim.track.width / 2 - abs(sim.offset)\n        trace.append({\n            \"step\": step, \"tick\": sim.tick, \"time\": sim.elapsed,\n            \"x\": sim.x, \"y\": sim.y, \"heading\": sim.heading,\n            \"vx\": sim.vx, \"vy\": sim.vy, \"steering\": sim.steering,\n            \"yaw_rate\": sim.yaw_rate, \"s\": sim.s, \"offset\": sim.offset,\n            \"center_clearance_m\": clearance, \"on_road\": clearance >= 0,\n            \"rescue_count\": len(sim.reset_events),\n        })\n    return {\n        \"steps\": FORECAST_STEPS, \"dt\": DT, \"horizon_s\": FORECAST_STEPS * DT,\n        \"held_control\": held, \"initial_center_clearance_m\": initial_clearance,\n        \"minimum_future_center_clearance_m\": min(row[\"center_clearance_m\"] for row in trace),\n        \"first_offroad_step\": next((row[\"step\"] for row in trace if not row[\"on_road\"]), None),\n        \"trace\": trace,\n    }\n\n\ndef make_cases() -> list[dict]:\n    prior_xy, prior_positions, _ = _prior_geometry()\n    used_xy = set(prior_xy)\n    cases = []\n    for index, slot in enumerate(SLOTS):\n        road_m, region, risk, clearance, nose, velocity, speed, yaw, actual_wheel, _ = slot\n        assert road_m not in prior_positions\n        for sign in (1, -1):\n            sim = pose_sim(slot, sign)\n            state = current_observation(sim)\n            road_motion = current_road_motion(sim)\n            initial = {key: copy.deepcopy(value) for key, value in vars(sim).items()\n                       if key not in {\"track\", \"handling\"}}\n            future = forecast(copy.deepcopy(sim))\n            assert future[\"initial_center_clearance_m\"] >= MINIMUM_MARGIN_M\n            minimum = future[\"minimum_future_center_clearance_m\"]\n            assert minimum >= MINIMUM_MARGIN_M if risk == \"safe\" else minimum <= -MINIMUM_MARGIN_M, (\n                index, sign, risk, minimum,\n            )\n            assert (future[\"first_offroad_step\"] is None) == (risk == \"safe\")\n            row = next(row for row in state[\"road\"][\"preview\"] if row[0] == 15)\n            xy = tuple(row[1:3])\n            assert xy not in used_xy, (index, sign, \"repeated 15m coordinates\", xy)\n            used_xy.add(xy)\n            suffix, mirror_suffix = (\"a\", \"b\") if sign == 1 else (\"b\", \"a\")\n            cases.append({\n                \"id\": f\"road-motion-{index:02d}-{suffix}\",\n                \"mirror_id\": f\"road-motion-{index:02d}-{mirror_suffix}\",\n                \"pair_index\": index, \"reflection_sign\": sign,\n                \"region\": region, \"risk_class\": risk,\n                \"expected\": \"stays_on_road\" if risk == \"safe\" else \"leaves_road\",\n                \"observation\": state,\n                \"road_frame_motion\": road_motion,\n                \"instantaneous_motion\": {\n                    \"expected\": \"leftward\" if road_motion[\"velocity_left_m_s\"] > 0 else \"rightward\",\n                    \"road_lateral_velocity_m_s\": road_motion[\"velocity_left_m_s\"],\n                    \"scope\": \"current_road_relative_motion_not_future_risk\",\n                },\n                \"proof\": {\n                    \"setup\": copy.deepcopy(SETUP), \"course\": sim.track.course,\n                    \"reflection_sign\": sign, \"requested_road_m\": road_m,\n                    \"requested_offset_m\": sign * (SETUP[\"road_width\"] / 2 - clearance),\n                    \"requested_nominal_initial_clearance_m\": clearance,\n                    \"requested_nose_vs_road_deg\": sign * nose,\n                    \"requested_velocity_vs_road_deg\": sign * velocity,\n                    \"requested_speed_m_s\": speed, \"requested_yaw_deg_s\": sign * yaw,\n                    \"requested_actual_wheel_rad\": sign * actual_wheel,\n                    \"held_control\": sim.action_id,\n                    \"world_pose\": {key: getattr(sim, key) for key in\n                                   (\"x\", \"y\", \"heading\", \"vx\", \"vy\", \"steering\", \"yaw_rate\")},\n                    \"projected_road_m\": sim.s, \"projected_offset_m\": sim.offset,\n                    \"initial_internal_state\": initial,\n                    \"preview_15m_xy_m\": list(xy),\n                    \"forecast\": future,\n                },\n            })\n    return cases\n\n\ndef validate(cases: list[dict]) -> dict:\n    \"\"\"Cheap reproducibility and coverage checks, without paid data or clocks.\"\"\"\n    assert len(cases) == 16 and len({case[\"id\"] for case in cases}) == 16\n    by_id = {case[\"id\"]: case for case in cases}\n    risk_region = Counter((case[\"region\"], case[\"risk_class\"]) for case in cases)\n    assert all(risk_region[(region, risk)] == 4\n               for region in (\"straight\", \"curve\") for risk in (\"safe\", \"hazard\"))\n    wheels, pedals, held_controls = {}, {}, {}\n    for risk in (\"safe\", \"hazard\"):\n        subset = [case for case in cases if case[\"risk_class\"] == risk]\n        wheels[risk] = Counter(ACTIONS[case[\"proof\"][\"held_control\"]][\"steer\"] for case in subset)\n        pedals[risk] = Counter(case[\"proof\"][\"held_control\"].rsplit(\"_\", 1)[-1] for case in subset)\n        held_controls[risk] = Counter(case[\"proof\"][\"held_control\"] for case in subset)\n    assert wheels[\"safe\"] == wheels[\"hazard\"] and len(wheels[\"safe\"]) == 5\n    assert pedals[\"safe\"] == pedals[\"hazard\"] == Counter(accelerate=4, coast=2, brake=2)\n    assert held_controls[\"safe\"] == held_controls[\"hazard\"]\n    for case in cases:\n        mirror = by_id[case[\"mirror_id\"]]\n        assert mirror[\"mirror_id\"] == case[\"id\"] and mirror[\"expected\"] == case[\"expected\"]\n        proof, other = case[\"proof\"], mirror[\"proof\"]\n        for field in (\"x\", \"vx\", \"steering\", \"yaw_rate\"):\n            assert math.isclose(proof[\"world_pose\"][field], -other[\"world_pose\"][field], abs_tol=1e-10)\n        for field in (\"y\", \"vy\"):\n            assert math.isclose(proof[\"world_pose\"][field], other[\"world_pose\"][field], abs_tol=1e-10)\n        assert abs(wrap(proof[\"world_pose\"][\"heading\"] + other[\"world_pose\"][\"heading\"] - math.pi)) < 1e-10\n        assert math.isclose(proof[\"forecast\"][\"minimum_future_center_clearance_m\"],\n                            other[\"forecast\"][\"minimum_future_center_clearance_m\"], abs_tol=1e-8)\n        assert case[\"observation\"][\"finished\"] is False and case[\"observation\"][\"road\"][\"on_road\"]\n        assert case[\"observation\"][\"rescue\"][\"offroad_elapsed\"] == 0\n        rebuilt = Simulation(seed=0, course=proof[\"course\"], **SETUP)\n        for key, value in proof[\"initial_internal_state\"].items():\n            setattr(rebuilt, key, copy.deepcopy(value))\n        assert current_observation(rebuilt) == case[\"observation\"]\n        assert current_road_motion(rebuilt) == case[\"road_frame_motion\"]\n        for key in (\"nose_vs_road_deg\", \"velocity_vs_road_deg\", \"velocity_left_m_s\"):\n            assert math.isclose(case[\"road_frame_motion\"][key], -mirror[\"road_frame_motion\"][key], abs_tol=.001)\n        assert math.isclose(case[\"road_frame_motion\"][\"velocity_forward_m_s\"],\n                            mirror[\"road_frame_motion\"][\"velocity_forward_m_s\"], abs_tol=.001)\n        assert case[\"instantaneous_motion\"][\"expected\"] != mirror[\"instantaneous_motion\"][\"expected\"]\n        assert forecast(rebuilt) == proof[\"forecast\"]\n    direction_counts = Counter(case[\"instantaneous_motion\"][\"expected\"] for case in cases)\n    assert direction_counts == Counter(leftward=8, rightward=8)\n    for region in (\"straight\", \"curve\"):\n        for risk in (\"safe\", \"hazard\"):\n            assert Counter(case[\"instantaneous_motion\"][\"expected\"] for case in cases\n                           if case[\"region\"] == region and case[\"risk_class\"] == risk) == Counter(\n                               leftward=2, rightward=2,\n                           )\n    return {\n        \"cases\": len(cases), \"mirrored_pairs\": len(cases) // 2,\n        \"risk_by_region\": {f\"{region}_{risk}\": count for (region, risk), count in sorted(risk_region.items())},\n        \"held_wheels_by_risk\": {risk: {str(key): count for key, count in sorted(values.items())}\n                                for risk, values in wheels.items()},\n        \"held_pedals_by_risk\": {risk: dict(sorted(values.items())) for risk, values in pedals.items()},\n        \"held_controls_by_risk\": {risk: dict(sorted(values.items())) for risk, values in held_controls.items()},\n        \"minimum_safe_future_clearance_m\": min(case[\"proof\"][\"forecast\"][\"minimum_future_center_clearance_m\"]\n                                                for case in cases if case[\"risk_class\"] == \"safe\"),\n        \"maximum_hazard_future_clearance_m\": max(case[\"proof\"][\"forecast\"][\"minimum_future_center_clearance_m\"]\n                                                  for case in cases if case[\"risk_class\"] == \"hazard\"),\n        \"minimum_initial_clearance_m\": min(case[\"proof\"][\"forecast\"][\"initial_center_clearance_m\"]\n                                            for case in cases),\n        \"instantaneous_motion_counts\": dict(direction_counts),\n        \"minimum_abs_current_road_lateral_velocity_m_s\": min(\n            abs(case[\"road_frame_motion\"][\"velocity_left_m_s\"]) for case in cases\n        ),\n        \"reconstruction_and_forecast_exact\": True,\n    }\n\n\ndef main() -> None:\n    cases = make_cases()\n    coverage = validate(cases)\n    _, _, sources = _prior_geometry()\n    bank = {\n        \"schema_version\": 1,\n        \"metadata\": {\n            \"scope\": \"offline_ground_truth_for_factual_held_control_risk_prediction\",\n            \"generator_sha256\": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),\n            \"model_requests\": 0, \"budget_writes\": 0,\n            \"prior_answers_or_responses_consulted\": False,\n            \"observation_contract\": \"bench.driving_evidence road_navigation with runtime finished decoration\",\n            \"road_frame_motion_scope\": \"additional current factual telemetry; no future or control selection\",\n            \"instantaneous_motion_scope\": \"sign of CURRENT road-relative lateral velocity, not offset growth or risk\",\n            \"current_states\": \"synthetic_transients_not_claimed_recorded_race_trajectories\",\n            \"label_semantics\": \"kart centre ever strictly outside road half-width during next30 physics frames\",\n            \"safe_rule\": \"minimum future centre clearance>=0.5m\",\n            \"hazard_rule\": \"minimum future centre clearance<=-0.5m\",\n            \"initial_rule\": \"onroad,centre clearance>=0.5m,rescue inactive,no prior rescues\",\n            \"forecast_steps\": FORECAST_STEPS, \"dt\": DT, \"horizon_s\": FORECAST_STEPS * DT,\n            \"setup\": SETUP, \"selection\": \"fixed deterministic primitive slots; no model responses read\",\n            \"freshness_sources\": sources, \"excluded_demonstration_xy_m\": DEMONSTRATION_XY_M,\n            \"fresh_requested_arc_values\": len(SLOTS),\n            \"distinct_world_poses\": len(cases),\n            \"future_trace_never_part_of_paid_observation\": True,\n            \"no_control_search_or_policy_labels\": True,\n            \"coverage\": coverage,\n        },\n        \"cases\": cases,\n    }\n    (ROOT / \"cases.json\").write_text(json.dumps(bank, indent=2, allow_nan=False) + \"\\n\")\n    print(json.dumps(coverage, indent=2, allow_nan=False))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+  "fixture_metadata": {
+    "schema_version": 1,
+    "metadata": {
+      "scope": "offline_ground_truth_for_factual_held_control_risk_prediction",
+      "generator_sha256": "69f524b6d3b3a0b5a834400441ff6919591ce80d531b8be77a4a8a6e3531402e",
+      "model_requests": 0,
+      "budget_writes": 0,
+      "prior_answers_or_responses_consulted": false,
+      "observation_contract": "bench.driving_evidence road_navigation with runtime finished decoration",
+      "road_frame_motion_scope": "additional current factual telemetry; no future or control selection",
+      "instantaneous_motion_scope": "sign of CURRENT road-relative lateral velocity, not offset growth or risk",
+      "current_states": "synthetic_transients_not_claimed_recorded_race_trajectories",
+      "label_semantics": "kart centre ever strictly outside road half-width during next30 physics frames",
+      "safe_rule": "minimum future centre clearance>=0.5m",
+      "hazard_rule": "minimum future centre clearance<=-0.5m",
+      "initial_rule": "onroad,centre clearance>=0.5m,rescue inactive,no prior rescues",
+      "forecast_steps": 30,
+      "dt": 0.016666666666666666,
+      "horizon_s": 0.5,
+      "setup": {
+        "laps": 3,
+        "reset_after_s": 3.0,
+        "road_width": 24.0,
+        "max_speed": 12.0,
+        "max_steering_angle": 0.12
+      },
+      "selection": "fixed deterministic primitive slots; no model responses read",
+      "freshness_sources": [
+        {
+          "case_bank": "artifacts/jev-skills-v1/cases.json",
+          "sha256": "ae525deec3cc99dcd3ebfb6c68b2459613f6fa4f1ce8394df50c2bcd93b1a5f3",
+          "unique_15m_xy_pairs": 38,
+          "unique_requested_positions": 8
+        },
+        {
+          "case_bank": "artifacts/jev-wheel-target-v1/cases.json",
+          "sha256": "460748eacdb271fcfb78d66c9c962561e90b02481c42eb3cff3197184e4a56d1",
+          "unique_15m_xy_pairs": 12,
+          "unique_requested_positions": 6
+        },
+        {
+          "case_bank": "artifacts/jev-coordinate-v1/cases.json",
+          "sha256": "863fe23ebbe8feb3f2daadeba8c337253896b5f32817d0b9687c4296593994cb",
+          "unique_15m_xy_pairs": 24,
+          "unique_requested_positions": 12
+        },
+        {
+          "case_bank": "artifacts/jev-literal-v1/cases.json",
+          "sha256": "114c2bbc4cbae1007a2898e28c3ad1b96697ea05a019fb522239c0fbac8f51b8",
+          "unique_15m_xy_pairs": 24,
+          "unique_requested_positions": 12
+        },
+        {
+          "case_bank": "artifacts/jev-examples-v1/cases.json",
+          "sha256": "eb79f9f388c3cd9f8a295306b0ebb63a0f7e75b7a0808315f7968e6c88b032e3",
+          "unique_15m_xy_pairs": 24,
+          "unique_requested_positions": 12
+        },
+        {
+          "case_bank": "artifacts/jev-menu-v1/cases.json",
+          "sha256": "f133797814684885c529c61527f416d3871738a1938898aa29fa81efc46723c1",
+          "unique_15m_xy_pairs": 24,
+          "unique_requested_positions": 12
+        },
+        {
+          "case_bank": "artifacts/jev-context-v1/cases.json",
+          "sha256": "65e4723c13a7686a5952af7a46bb80b49da1a0e768b1cae7e4d0ac9f9ea7c596",
+          "unique_15m_xy_pairs": 24,
+          "unique_requested_positions": 12
+        },
+        {
+          "case_bank": "artifacts/jev-crossmul-v1/cases.json",
+          "sha256": "324d2ab2a7846b7800a43976e9f72f4e54ae7ccc9f8512a4ea75556994091bbf",
+          "unique_15m_xy_pairs": 24,
+          "unique_requested_positions": 12
+        },
+        {
+          "case_bank": "artifacts/jev-factored-commands-v1/cases.json",
+          "sha256": "cb83a20b055c16f94c4e9f8bbef170f0bec900b6875535dde22ec4bce9b186d3",
+          "unique_15m_xy_pairs": 24,
+          "unique_requested_positions": 12
+        },
+        {
+          "case_bank": "artifacts/jev-motion-risk-v1/cases.json",
+          "sha256": "deec94bd2383c927c70a0d4e9034deb523be2dcbd76e04d7189384707259808e",
+          "unique_15m_xy_pairs": 24,
+          "unique_requested_positions": 12
+        },
+        {
+          "case_bank": "artifacts/jev-risk-context-v1/cases.json",
+          "sha256": "3cffe08ceb965ca4d8492ed072f9eb5e2b81d9243e33edff3e95f6e652c3cbfd",
+          "unique_15m_xy_pairs": 32,
+          "unique_requested_positions": 16
+        }
+      ],
+      "excluded_demonstration_xy_m": [
+        [
+          15.0,
+          1.0
+        ],
+        [
+          15.0,
+          -1.0
+        ],
+        [
+          15.0,
+          4.0
+        ],
+        [
+          15.0,
+          -4.0
+        ],
+        [
+          10.0,
+          5.0
+        ],
+        [
+          10.0,
+          -5.0
+        ]
+      ],
+      "fresh_requested_arc_values": 8,
+      "distinct_world_poses": 16,
+      "future_trace_never_part_of_paid_observation": true,
+      "no_control_search_or_policy_labels": true,
+      "coverage": {
+        "cases": 16,
+        "mirrored_pairs": 8,
+        "risk_by_region": {
+          "curve_hazard": 4,
+          "curve_safe": 4,
+          "straight_hazard": 4,
+          "straight_safe": 4
+        },
+        "held_wheels_by_risk": {
+          "safe": {
+            "-1.0": 2,
+            "-0.5": 1,
+            "0.0": 2,
+            "0.5": 1,
+            "1.0": 2
+          },
+          "hazard": {
+            "-1.0": 2,
+            "-0.5": 1,
+            "0.0": 2,
+            "0.5": 1,
+            "1.0": 2
+          }
+        },
+        "held_pedals_by_risk": {
+          "safe": {
+            "accelerate": 4,
+            "brake": 2,
+            "coast": 2
+          },
+          "hazard": {
+            "accelerate": 4,
+            "brake": 2,
+            "coast": 2
+          }
+        },
+        "held_controls_by_risk": {
+          "safe": {
+            "hard_left_brake": 1,
+            "hard_left_coast": 1,
+            "hard_right_brake": 1,
+            "hard_right_coast": 1,
+            "left_accelerate": 1,
+            "right_accelerate": 1,
+            "straight_accelerate": 2
+          },
+          "hazard": {
+            "hard_left_brake": 1,
+            "hard_left_coast": 1,
+            "hard_right_brake": 1,
+            "hard_right_coast": 1,
+            "left_accelerate": 1,
+            "right_accelerate": 1,
+            "straight_accelerate": 2
+          }
+        },
+        "minimum_safe_future_clearance_m": 0.8434462489113308,
+        "maximum_hazard_future_clearance_m": -1.033134960909397,
+        "minimum_initial_clearance_m": 0.75,
+        "instantaneous_motion_counts": {
+          "rightward": 8,
+          "leftward": 8
+        },
+        "minimum_abs_current_road_lateral_velocity_m_s": 3.4201,
+        "reconstruction_and_forecast_exact": true
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "road-motion-00-a",
+      "mirror_id": "road-motion-00-b",
+      "pair_index": 0,
+      "reflection_sign": 1,
+      "region": "straight",
+      "risk_class": "safe",
+      "expected": "stays_on_road",
+      "observation": {
+        "tick": 120,
+        "time": 2.0,
+        "progress": {
+          "lap": 1,
+          "laps_completed": 0,
+          "laps": 3,
+          "checkpoint": 1,
+          "checkpoints_passed": 0,
+          "checkpoints_per_lap": 40,
+          "resets": 0,
+          "track_distance": 0.969,
+          "finished": false
+        },
+        "rescue": {
+          "after_s": 3.0,
+          "offroad_elapsed": 0.0,
+          "count": 0,
+          "last_reset_tick": null
+        },
+        "control": "straight_accelerate",
+        "finished": false,
+        "handling": {
+          "max_speed": 12.0,
+          "acceleration": 12.0,
+          "braking": 24.0,
+          "max_steering_angle": 0.12,
+          "wheelbase": 1.8,
+          "steering_response": 0.12,
+          "yaw_response": 0.1,
+          "lateral_grip": 13.0,
+          "rolling_drag": 0.35,
+          "aerodynamic_drag": 0.006,
+          "grass_acceleration": 4.0,
+          "grass_drag": 1.1,
+          "grass_grip": 8.0
+        },
+        "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+        "kart": {
+          "speed_m_s": 10.0,
+          "velocity_forward_m_s": 8.1695,
+          "velocity_left_m_s": -5.767,
+          "yaw_deg_s": 16.0,
+          "yaw_direction": "left",
+          "steering_deg": 3.438,
+          "steering_direction": "left"
+        },
+        "physics": {
+          "current_surface": "road",
+          "current_lateral_grip_mps2": 13.0,
+          "grip_limited_minimum_steady_turn_radius_m": 7.692
+        },
+        "road": {
+          "width_m": 24.0,
+          "offset_m": 10.75,
+          "kart_side": "left",
+          "left_edge_clearance_m": 1.25,
+          "right_edge_clearance_m": 22.75,
+          "on_road": true,
+          "road_vs_kart_deg": -15.219,
+          "road_faces": "right",
+          "preview_columns": [
+            "ahead_m",
+            "ego_x_m",
+            "ego_y_m",
+            "road_turn_deg",
+            "bend",
+            "radius_m",
+            "lateral_acceleration_needed_at_current_speed_mps2",
+            "grip_usage_at_current_speed"
+          ],
+          "preview": [
+            [
+              0.0,
+              -2.822,
+              -10.373,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              0.073,
+              -11.161,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              6.0,
+              2.968,
+              -11.948,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              10.0,
+              6.827,
+              -12.998,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              15.0,
+              11.652,
+              -14.311,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              22.0,
+              18.407,
+              -16.148,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              32.0,
+              28.091,
+              -18.624,
+              5.67,
+              "left",
+              30.021,
+              3.331,
+              0.2562
+            ],
+            [
+              45.0,
+              40.972,
+              -17.982,
+              30.5,
+              "left",
+              30.012,
+              3.332,
+              0.2563
+            ],
+            [
+              60.0,
+              53.876,
+              -10.647,
+              59.147,
+              "left",
+              30.012,
+              3.332,
+              0.2563
+            ]
+          ],
+          "bends": [
+            {
+              "starts_in_road_m": 27.677,
+              "ends_in_road_m": 60.0,
+              "direction": "left",
+              "tightest_radius_m": 29.923,
+              "tightest_in_road_m": 37.592,
+              "heading_change_deg": 59.137,
+              "lateral_acceleration_needed_at_current_speed_mps2": 3.342,
+              "grip_usage_at_current_speed": 0.2571
+            }
+          ],
+          "bend_sampling": {
+            "horizon_road_m": 60.0,
+            "max_step_m": 1.0,
+            "includes_all_source_vertices": true,
+            "straight_threshold_rad_per_m": 0.004,
+            "total_regions": 1,
+            "shown_limit": 3
+          }
+        },
+        "next_gate": {
+          "known": true,
+          "index": 1,
+          "centre_ego_m": [
+            3.685,
+            -12.143
+          ],
+          "range_m": 12.69,
+          "bearing_to_centre_deg": -73.12,
+          "forward_heading_vs_kart_deg": -15.219,
+          "behind_kart_nose": false,
+          "signed_plane_m": -6.7432,
+          "signed_lateral_m": 10.75,
+          "gate_forward_velocity_m_s": 9.3969,
+          "half_width_m": 12.0,
+          "within_span_now": true,
+          "crossing_rule": "Next gate only: step crosses plane<=0 to>0 and interpolated |lateral|<=half_width. Plane positive=gate forward side; lateral positive=gate left. Bearing points to centre; forward heading orients gate. Within_span_now is not credit. Uncredited gate remains required; reverse crossings and rescue give no credit."
+        }
+      },
+      "road_frame_motion": {
+        "nose_vs_road_deg": 15.219,
+        "velocity_vs_road_deg": -20.0,
+        "velocity_left_m_s": -3.4202,
+        "velocity_forward_m_s": 9.3969
+      },
+      "instantaneous_motion": {
+        "expected": "rightward",
+        "road_lateral_velocity_m_s": -3.4202,
+        "scope": "current_road_relative_motion_not_future_risk"
+      }
+    },
+    {
+      "id": "road-motion-00-b",
+      "mirror_id": "road-motion-00-a",
+      "pair_index": 0,
+      "reflection_sign": -1,
+      "region": "straight",
+      "risk_class": "safe",
+      "expected": "stays_on_road",
+      "observation": {
+        "tick": 120,
+        "time": 2.0,
+        "progress": {
+          "lap": 1,
+          "laps_completed": 0,
+          "laps": 3,
+          "checkpoint": 1,
+          "checkpoints_passed": 0,
+          "checkpoints_per_lap": 40,
+          "resets": 0,
+          "track_distance": 0.969,
+          "finished": false
+        },
+        "rescue": {
+          "after_s": 3.0,
+          "offroad_elapsed": 0.0,
+          "count": 0,
+          "last_reset_tick": null
+        },
+        "control": "straight_accelerate",
+        "finished": false,
+        "handling": {
+          "max_speed": 12.0,
+          "acceleration": 12.0,
+          "braking": 24.0,
+          "max_steering_angle": 0.12,
+          "wheelbase": 1.8,
+          "steering_response": 0.12,
+          "yaw_response": 0.1,
+          "lateral_grip": 13.0,
+          "rolling_drag": 0.35,
+          "aerodynamic_drag": 0.006,
+          "grass_acceleration": 4.0,
+          "grass_drag": 1.1,
+          "grass_grip": 8.0
+        },
+        "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+        "kart": {
+          "speed_m_s": 10.0,
+          "velocity_forward_m_s": 8.1696,
+          "velocity_left_m_s": 5.767,
+          "yaw_deg_s": -16.0,
+          "yaw_direction": "right",
+          "steering_deg": -3.438,
+          "steering_direction": "right"
+        },
+        "physics": {
+          "current_surface": "road",
+          "current_lateral_grip_mps2": 13.0,
+          "grip_limited_minimum_steady_turn_radius_m": 7.692
+        },
+        "road": {
+          "width_m": 24.0,
+          "offset_m": -10.75,
+          "kart_side": "right",
+          "left_edge_clearance_m": 22.75,
+          "right_edge_clearance_m": 1.25,
+          "on_road": true,
+          "road_vs_kart_deg": 15.219,
+          "road_faces": "left",
+          "preview_columns": [
+            "ahead_m",
+            "ego_x_m",
+            "ego_y_m",
+            "road_turn_deg",
+            "bend",
+            "radius_m",
+            "lateral_acceleration_needed_at_current_speed_mps2",
+            "grip_usage_at_current_speed"
+          ],
+          "preview": [
+            [
+              0.0,
+              -2.822,
+              10.373,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              0.073,
+              11.161,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              6.0,
+              2.968,
+              11.948,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              10.0,
+              6.827,
+              12.998,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              15.0,
+              11.652,
+              14.311,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              22.0,
+              18.407,
+              16.148,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              32.0,
+              28.091,
+              18.624,
+              -5.67,
+              "right",
+              30.021,
+              3.331,
+              0.2562
+            ],
+            [
+              45.0,
+              40.972,
+              17.982,
+              -30.5,
+              "right",
+              30.012,
+              3.332,
+              0.2563
+            ],
+            [
+              60.0,
+              53.876,
+              10.647,
+              -59.147,
+              "right",
+              30.012,
+              3.332,
+              0.2563
+            ]
+          ],
+          "bends": [
+            {
+              "starts_in_road_m": 27.677,
+              "ends_in_road_m": 60.0,
+              "direction": "right",
+              "tightest_radius_m": 29.923,
+              "tightest_in_road_m": 37.592,
+              "heading_change_deg": -59.137,
+              "lateral_acceleration_needed_at_current_speed_mps2": 3.342,
+              "grip_usage_at_current_speed": 0.2571
+            }
+          ],
+          "bend_sampling": {
+            "horizon_road_m": 60.0,
+            "max_step_m": 1.0,
+            "includes_all_source_vertices": true,
+            "straight_threshold_rad_per_m": 0.004,
+            "total_regions": 1,
+            "shown_limit": 3
+          }
+        },
+        "next_gate": {
+          "known": true,
+          "index": 1,
+          "centre_ego_m": [
+            3.685,
+            12.143
+          ],
+          "range_m": 12.69,
+          "bearing_to_centre_deg": 73.119,
+          "forward_heading_vs_kart_deg": 15.218,
+          "behind_kart_nose": false,
+          "signed_plane_m": -6.7433,
+          "signed_lateral_m": -10.75,
+          "gate_forward_velocity_m_s": 9.3969,
+          "half_width_m": 12.0,
+          "within_span_now": true,
+          "crossing_rule": "Next gate only: step crosses plane<=0 to>0 and interpolated |lateral|<=half_width. Plane positive=gate forward side; lateral positive=gate left. Bearing points to centre; forward heading orients gate. Within_span_now is not credit. Uncredited gate remains required; reverse crossings and rescue give no credit."
+        }
+      },
+      "road_frame_motion": {
+        "nose_vs_road_deg": -15.219,
+        "velocity_vs_road_deg": 20.0,
+        "velocity_left_m_s": 3.4201,
+        "velocity_forward_m_s": 9.3969
+      },
+      "instantaneous_motion": {
+        "expected": "leftward",
+        "road_lateral_velocity_m_s": 3.4201,
+        "scope": "current_road_relative_motion_not_future_risk"
+      }
+    },
+    {
+      "id": "road-motion-01-a",
+      "mirror_id": "road-motion-01-b",
+      "pair_index": 1,
+      "reflection_sign": 1,
+      "region": "straight",
+      "risk_class": "hazard",
+      "expected": "leaves_road",
+      "observation": {
+        "tick": 120,
+        "time": 2.0,
+        "progress": {
+          "lap": 1,
+          "laps_completed": 0,
+          "laps": 3,
+          "checkpoint": 1,
+          "checkpoints_passed": 0,
+          "checkpoints_per_lap": 40,
+          "resets": 0,
+          "track_distance": 2.969,
+          "finished": false
+        },
+        "rescue": {
+          "after_s": 3.0,
+          "offroad_elapsed": 0.0,
+          "count": 0,
+          "last_reset_tick": null
+        },
+        "control": "straight_accelerate",
+        "finished": false,
+        "handling": {
+          "max_speed": 12.0,
+          "acceleration": 12.0,
+          "braking": 24.0,
+          "max_steering_angle": 0.12,
+          "wheelbase": 1.8,
+          "steering_response": 0.12,
+          "yaw_response": 0.1,
+          "lateral_grip": 13.0,
+          "rolling_drag": 0.35,
+          "aerodynamic_drag": 0.006,
+          "grass_acceleration": 4.0,
+          "grass_drag": 1.1,
+          "grass_grip": 8.0
+        },
+        "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+        "kart": {
+          "speed_m_s": 10.0,
+          "velocity_forward_m_s": 7.7128,
+          "velocity_left_m_s": 6.365,
+          "yaw_deg_s": 16.0,
+          "yaw_direction": "left",
+          "steering_deg": 3.438,
+          "steering_direction": "left"
+        },
+        "physics": {
+          "current_surface": "road",
+          "current_lateral_grip_mps2": 13.0,
+          "grip_limited_minimum_steady_turn_radius_m": 7.692
+        },
+        "road": {
+          "width_m": 24.0,
+          "offset_m": 10.75,
+          "kart_side": "left",
+          "left_edge_clearance_m": 1.25,
+          "right_edge_clearance_m": 22.75,
+          "on_road": true,
+          "road_vs_kart_deg": -15.469,
+          "road_faces": "right",
+          "preview_columns": [
+            "ahead_m",
+            "ego_x_m",
+            "ego_y_m",
+            "road_turn_deg",
+            "bend",
+            "radius_m",
+            "lateral_acceleration_needed_at_current_speed_mps2",
+            "grip_usage_at_current_speed"
+          ],
+          "preview": [
+            [
+              0.0,
+              -2.867,
+              -10.361,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              0.024,
+              -11.161,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              6.0,
+              2.915,
+              -11.961,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              10.0,
+              6.771,
+              -13.028,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              15.0,
+              11.589,
+              -14.361,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              22.0,
+              18.336,
+              -16.228,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              32.0,
+              28.062,
+              -18.493,
+              9.488,
+              "left",
+              30.012,
+              3.332,
+              0.2563
+            ],
+            [
+              45.0,
+              40.879,
+              -17.044,
+              34.318,
+              "left",
+              30.012,
+              3.332,
+              0.2563
+            ],
+            [
+              60.0,
+              53.302,
+              -8.921,
+              62.966,
+              "left",
+              29.976,
+              3.336,
+              0.2566
+            ]
+          ],
+          "bends": [
+            {
+              "starts_in_road_m": 25.677,
+              "ends_in_road_m": 60.0,
+              "direction": "left",
+              "tightest_radius_m": 29.923,
+              "tightest_in_road_m": 35.592,
+              "heading_change_deg": 62.956,
+              "lateral_acceleration_needed_at_current_speed_mps2": 3.342,
+              "grip_usage_at_current_speed": 0.2571
+            }
+          ],
+          "bend_sampling": {
+            "horizon_road_m": 60.0,
+            "max_step_m": 1.0,
+            "includes_all_source_vertices": true,
+            "straight_threshold_rad_per_m": 0.004,
+            "total_regions": 1,
+            "shown_limit": 3
+          }
+        },
+        "next_gate": {
+          "known": true,
+          "index": 1,
+          "centre_ego_m": [
+            1.704,
+            -11.626
+          ],
+          "range_m": 11.75,
+          "bearing_to_centre_deg": -81.66,
+          "forward_heading_vs_kart_deg": -15.469,
+          "behind_kart_nose": false,
+          "signed_plane_m": -4.7432,
+          "signed_lateral_m": 10.75,
+          "gate_forward_velocity_m_s": 5.7358,
+          "half_width_m": 12.0,
+          "within_span_now": true,
+          "crossing_rule": "Next gate only: step crosses plane<=0 to>0 and interpolated |lateral|<=half_width. Plane positive=gate forward side; lateral positive=gate left. Bearing points to centre; forward heading orients gate. Within_span_now is not credit. Uncredited gate remains required; reverse crossings and rescue give no credit."
+        }
+      },
+      "road_frame_motion": {
+        "nose_vs_road_deg": 15.469,
+        "velocity_vs_road_deg": 55.0,
+        "velocity_left_m_s": 8.1915,
+        "velocity_forward_m_s": 5.7358
+      },
+      "instantaneous_motion": {
+        "expected": "leftward",
+        "road_lateral_velocity_m_s": 8.1915,
+        "scope": "current_road_relative_motion_not_future_risk"
+      }
+    },
+    {
+      "id": "road-motion-01-b",
+      "mirror_id": "road-motion-01-a",
+      "pair_index": 1,
+      "reflection_sign": -1,
+      "region": "straight",
+      "risk_class": "hazard",
+      "expected": "leaves_road",
+      "observation": {
+        "tick": 120,
+        "time": 2.0,
+        "progress": {
+          "lap": 1,
+          "laps_completed": 0,
+          "laps": 3,
+          "checkpoint": 1,
+          "checkpoints_passed": 0,
+          "checkpoints_per_lap": 40,
+          "resets": 0,
+          "track_distance": 2.969,
+          "finished": false
+        },
+        "rescue": {
+          "after_s": 3.0,
+          "offroad_elapsed": 0.0,
+          "count": 0,
+          "last_reset_tick": null
+        },
+        "control": "straight_accelerate",
+        "finished": false,
+        "handling": {
+          "max_speed": 12.0,
+          "acceleration": 12.0,
+          "braking": 24.0,
+          "max_steering_angle": 0.12,
+          "wheelbase": 1.8,
+          "steering_response": 0.12,
+          "yaw_response": 0.1,
+          "lateral_grip": 13.0,
+          "rolling_drag": 0.35,
+          "aerodynamic_drag": 0.006,
+          "grass_acceleration": 4.0,
+          "grass_drag": 1.1,
+          "grass_grip": 8.0
+        },
+        "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+        "kart": {
+          "speed_m_s": 10.0,
+          "velocity_forward_m_s": 7.7128,
+          "velocity_left_m_s": -6.3649,
+          "yaw_deg_s": -16.0,
+          "yaw_direction": "right",
+          "steering_deg": -3.438,
+          "steering_direction": "right"
+        },
+        "physics": {
+          "current_surface": "road",
+          "current_lateral_grip_mps2": 13.0,
+          "grip_limited_minimum_steady_turn_radius_m": 7.692
+        },
+        "road": {
+          "width_m": 24.0,
+          "offset_m": -10.75,
+          "kart_side": "right",
+          "left_edge_clearance_m": 22.75,
+          "right_edge_clearance_m": 1.25,
+          "on_road": true,
+          "road_vs_kart_deg": 15.469,
+          "road_faces": "left",
+          "preview_columns": [
+            "ahead_m",
+            "ego_x_m",
+            "ego_y_m",
+            "road_turn_deg",
+            "bend",
+            "radius_m",
+            "lateral_acceleration_needed_at_current_speed_mps2",
+            "grip_usage_at_current_speed"
+          ],
+          "preview": [
+            [
+              0.0,
+              -2.867,
+              10.361,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              0.024,
+              11.161,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              6.0,
+              2.915,
+              11.961,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              10.0,
+              6.771,
+              13.028,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              15.0,
+              11.589,
+              14.361,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              22.0,
+              18.336,
+              16.228,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              32.0,
+              28.062,
+              18.493,
+              -9.488,
+              "right",
+              30.012,
+              3.332,
+              0.2563
+            ],
+            [
+              45.0,
+              40.879,
+              17.044,
+              -34.318,
+              "right",
+              30.012,
+              3.332,
+              0.2563
+            ],
+            [
+              60.0,
+              53.302,
+              8.921,
+              -62.966,
+              "right",
+              29.976,
+              3.336,
+              0.2566
+            ]
+          ],
+          "bends": [
+            {
+              "starts_in_road_m": 25.677,
+              "ends_in_road_m": 60.0,
+              "direction": "right",
+              "tightest_radius_m": 29.923,
+              "tightest_in_road_m": 35.592,
+              "heading_change_deg": -62.956,
+              "lateral_acceleration_needed_at_current_speed_mps2": 3.342,
+              "grip_usage_at_current_speed": 0.2571
+            }
+          ],
+          "bend_sampling": {
+            "horizon_road_m": 60.0,
+            "max_step_m": 1.0,
+            "includes_all_source_vertices": true,
+            "straight_threshold_rad_per_m": 0.004,
+            "total_regions": 1,
+            "shown_limit": 3
+          }
+        },
+        "next_gate": {
+          "known": true,
+          "index": 1,
+          "centre_ego_m": [
+            1.704,
+            11.626
+          ],
+          "range_m": 11.75,
+          "bearing_to_centre_deg": 81.66,
+          "forward_heading_vs_kart_deg": 15.469,
+          "behind_kart_nose": false,
+          "signed_plane_m": -4.7433,
+          "signed_lateral_m": -10.75,
+          "gate_forward_velocity_m_s": 5.7358,
+          "half_width_m": 12.0,
+          "within_span_now": true,
+          "crossing_rule": "Next gate only: step crosses plane<=0 to>0 and interpolated |lateral|<=half_width. Plane positive=gate forward side; lateral positive=gate left. Bearing points to centre; forward heading orients gate. Within_span_now is not credit. Uncredited gate remains required; reverse crossings and rescue give no credit."
+        }
+      },
+      "road_frame_motion": {
+        "nose_vs_road_deg": -15.469,
+        "velocity_vs_road_deg": -55.0,
+        "velocity_left_m_s": -8.1915,
+        "velocity_forward_m_s": 5.7358
+      },
+      "instantaneous_motion": {
+        "expected": "rightward",
+        "road_lateral_velocity_m_s": -8.1915,
+        "scope": "current_road_relative_motion_not_future_risk"
+      }
+    },
+    {
+      "id": "road-motion-02-a",
+      "mirror_id": "road-motion-02-b",
+      "pair_index": 2,
+      "reflection_sign": 1,
+      "region": "straight",
+      "risk_class": "safe",
+      "expected": "stays_on_road",
+      "observation": {
+        "tick": 120,
+        "time": 2.0,
+        "progress": {
+          "lap": 1,
+          "laps_completed": 0,
+          "laps": 3,
+          "checkpoint": 1,
+          "checkpoints_passed": 0,
+          "checkpoints_per_lap": 40,
+          "resets": 0,
+          "track_distance": 4.969,
+          "finished": false
+        },
+        "rescue": {
+          "after_s": 3.0,
+          "offroad_elapsed": 0.0,
+          "count": 0,
+          "last_reset_tick": null
+        },
+        "control": "hard_left_brake",
+        "finished": false,
+        "handling": {
+          "max_speed": 12.0,
+          "acceleration": 12.0,
+          "braking": 24.0,
+          "max_steering_angle": 0.12,
+          "wheelbase": 1.8,
+          "steering_response": 0.12,
+          "yaw_response": 0.1,
+          "lateral_grip": 13.0,
+          "rolling_drag": 0.35,
+          "aerodynamic_drag": 0.006,
+          "grass_acceleration": 4.0,
+          "grass_drag": 1.1,
+          "grass_grip": 8.0
+        },
+        "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+        "kart": {
+          "speed_m_s": 12.0,
+          "velocity_forward_m_s": 5.9602,
+          "velocity_left_m_s": -10.4152,
+          "yaw_deg_s": 20.0,
+          "yaw_direction": "left",
+          "steering_deg": 3.438,
+          "steering_direction": "left"
+        },
+        "physics": {
+          "current_surface": "road",
+          "current_lateral_grip_mps2": 13.0,
+          "grip_limited_minimum_steady_turn_radius_m": 11.077
+        },
+        "road": {
+          "width_m": 24.0,
+          "offset_m": 11.25,
+          "kart_side": "left",
+          "left_edge_clearance_m": 0.75,
+          "right_edge_clearance_m": 23.25,
+          "on_road": true,
+          "road_vs_kart_deg": -30.219,
+          "road_faces": "right",
+          "preview_columns": [
+            "ahead_m",
+            "ego_x_m",
+            "ego_y_m",
+            "road_turn_deg",
+            "bend",
+            "radius_m",
+            "lateral_acceleration_needed_at_current_speed_mps2",
+            "grip_usage_at_current_speed"
+          ],
+          "preview": [
+            [
+              0.0,
+              -5.662,
+              -9.721,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              -3.07,
+              -11.231,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              6.0,
+              -0.477,
+              -12.741,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              10.0,
+              2.979,
+              -14.754,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              15.0,
+              7.299,
+              -17.271,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              22.0,
+              13.348,
+              -20.794,
+              0.0,
+              "left",
+              25000.0,
+              0.006,
+              0.0004
+            ],
+            [
+              32.0,
+              22.343,
+              -25.094,
+              13.306,
+              "left",
+              29.985,
+              4.802,
+              0.3694
+            ],
+            [
+              45.0,
+              35.2,
+              -26.104,
+              38.137,
+              "left",
+              29.976,
+              4.804,
+              0.3695
+            ],
+            [
+              60.0,
+              48.94,
+              -20.488,
+              66.794,
+              "left",
+              29.949,
+              4.808,
+              0.3699
+            ]
+          ],
+          "bends": [
+            {
+              "starts_in_road_m": 23.677,
+              "ends_in_road_m": 60.0,
+              "direction": "left",
+              "tightest_radius_m": 29.923,
+              "tightest_in_road_m": 33.592,
+              "heading_change_deg": 66.783,
+              "lateral_acceleration_needed_at_current_speed_mps2": 4.812,
+              "grip_usage_at_current_speed": 0.3702
+            }
+          ],
+          "bend_sampling": {
+            "horizon_road_m": 60.0,
+            "max_step_m": 1.0,
+            "includes_all_source_vertices": true,
+            "straight_threshold_rad_per_m": 0.004,
+            "total_regions": 1,
+            "shown_limit": 3
+          }
+        },
+        "next_gate": {
+          "known": true,
+          "index": 1,
+          "centre_ego_m": [
+            -3.292,
+            -11.102
+          ],
+          "range_m": 11.58,
+          "bearing_to_centre_deg": -106.515,
+          "forward_heading_vs_kart_deg": -30.219,
+          "behind_kart_nose": true,
+          "signed_plane_m": -2.7432,
+          "signed_lateral_m": 11.25,
+          "gate_forward_velocity_m_s": 10.3923,
+          "half_width_m": 12.0,
+          "within_span_now": true,
+          "crossing_rule": "Next gate only: step crosses plane<=0 to>0 and interpolated |lateral|<=half_width. Plane positive=gate forward side; lateral positive=gate left. Bearing points to centre; forward heading orients gate. Within_span_now is not credit. Uncredited gate remains required; reverse crossings and rescue give no credit."
+        }
+      },
+      "road_frame_motion": {
+        "nose_vs_road_deg": 30.219,
+        "velocity_vs_road_deg": -30.0,
+        "velocity_left_m_s": -6.0,
+        "velocity_forward_m_s": 10.3923
+      },
+      "instantaneous_motion": {
+        "expected": "rightward",
+        "road_lateral_velocity_m_s": -6.0,
+        "scope": "current_road_relative_motion_not_future_risk"
+      }
+    },
+    {
+      "id": "road-motion-02-b",
+      "mirror_id": "road-motion-02-a",
+      "pair_index": 2,
+      "reflection_sign": -1,
+      "region": "straight",
+      "risk_class": "safe",
+      "expected": "stays_on_road",
+      "observation": {
+        "tick": 120,
+        "time": 2.0,
+        "progress": {
+          "lap": 1,
+          "laps_completed": 0,
+          "laps": 3,
+          "checkpoint": 1,
+          "checkpoints_passed": 0,
+          "checkpoints_per_lap": 40,
+          "resets": 0,
+          "track_distance": 4.969,
+          "finished": false
+        },
+        "rescue": {
+          "after_s": 3.0,
+          "offroad_elapsed": 0.0,
+          "count": 0,
+          "last_reset_tick": null
+        },
+        "control": "hard_right_brake",
+        "finished": false,
+        "handling": {
+          "max_speed": 12.0,
+          "acceleration": 12.0,
+          "braking": 24.0,
+          "max_steering_angle": 0.12,
+          "wheelbase": 1.8,
+          "steering_response": 0.12,
+          "yaw_response": 0.1,
+          "lateral_grip": 13.0,
+          "rolling_drag": 0.35,
+          "aerodynamic_drag": 0.006,
+          "grass_acceleration": 4.0,
+          "grass_drag": 1.1,
+          "grass_grip": 8.0
+        },
+        "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+        "kart": {
+          "speed_m_s": 12.0,
+          "velocity_forward_m_s": 5.9603,
+          "velocity_left_m_s": 10.4151,
+          "yaw_deg_s": -20.0,
+          "yaw_direction": "right",
+          "steering_deg": -3.438,
+          "steering_direction": "right"
+        },
+        "physics": {
+          "current_surface": "road",
+          "current_lateral_grip_mps2": 13.0,
+          "grip_limited_minimum_steady_turn_radius_m": 11.077
+        },
+        "road": {
+          "width_m": 24.0,
+          "offset_m": -11.25,
+          "kart_side": "right",
+          "left_edge_clearance_m": 23.25,
+          "right_edge_clearance_m": 0.75,
+          "on_road": true,
+          "road_vs_kart_deg": 30.219,
+          "road_faces": "left",
+          "preview_columns": [
+            "ahead_m",
+            "ego_x_m",
+            "ego_y_m",
+            "road_turn_deg",
+            "bend",
+            "radius_m",
+            "lateral_acceleration_needed_at_current_speed_mps2",
+            "grip_usage_at_current_speed"
+          ],
+          "preview": [
+            [
+              0.0,
+              -5.662,
+              9.721,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              -3.07,
+              11.231,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              6.0,
+              -0.477,
+              12.741,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              10.0,
+              2.979,
+              14.754,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              15.0,
+              7.299,
+              17.271,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              22.0,
+              13.348,
+              20.794,
+              0.0,
+              "right",
+              25000.0,
+              0.006,
+              0.0004
+            ],
+            [
+              32.0,
+              22.343,
+              25.094,
+              -13.306,
+              "right",
+              29.985,
+              4.802,
+              0.3694
+            ],
+            [
+              45.0,
+              35.2,
+              26.104,
+              -38.137,
+              "right",
+              29.976,
+              4.804,
+              0.3695
+            ],
+            [
+              60.0,
+              48.94,
+              20.488,
+              -66.794,
+              "right",
+              29.949,
+              4.808,
+              0.3699
+            ]
+          ],
+          "bends": [
+            {
+              "starts_in_road_m": 23.677,
+              "ends_in_road_m": 60.0,
+              "direction": "right",
+              "tightest_radius_m": 29.923,
+              "tightest_in_road_m": 33.592,
+              "heading_change_deg": -66.783,
+              "lateral_acceleration_needed_at_current_speed_mps2": 4.812,
+              "grip_usage_at_current_speed": 0.3702
+            }
+          ],
+          "bend_sampling": {
+            "horizon_road_m": 60.0,
+            "max_step_m": 1.0,
+            "includes_all_source_vertices": true,
+            "straight_threshold_rad_per_m": 0.004,
+            "total_regions": 1,
+            "shown_limit": 3
+          }
+        },
+        "next_gate": {
+          "known": true,
+          "index": 1,
+          "centre_ego_m": [
+            -3.292,
+            11.102
+          ],
+          "range_m": 11.58,
+          "bearing_to_centre_deg": 106.514,
+          "forward_heading_vs_kart_deg": 30.219,
+          "behind_kart_nose": true,
+          "signed_plane_m": -2.7433,
+          "signed_lateral_m": -11.25,
+          "gate_forward_velocity_m_s": 10.3923,
+          "half_width_m": 12.0,
+          "within_span_now": true,
+          "crossing_rule": "Next gate only: step crosses plane<=0 to>0 and interpolated |lateral|<=half_width. Plane positive=gate forward side; lateral positive=gate left. Bearing points to centre; forward heading orients gate. Within_span_now is not credit. Uncredited gate remains required; reverse crossings and rescue give no credit."
+        }
+      },
+      "road_frame_motion": {
+        "nose_vs_road_deg": -30.219,
+        "velocity_vs_road_deg": 30.0,
+        "velocity_left_m_s": 5.9999,
+        "velocity_forward_m_s": 10.3923
+      },
+      "instantaneous_motion": {
+        "expected": "leftward",
+        "road_lateral_velocity_m_s": 5.9999,
+        "scope": "current_road_relative_motion_not_future_risk"
+      }
+    },
+    {
+      "id": "road-motion-03-a",
+      "mirror_id": "road-motion-03-b",
+      "pair_index": 3,
+      "reflection_sign": 1,
+      "region": "straight",
+      "risk_class": "hazard",
+      "expected": "leaves_road",
+      "observation": {
+        "tick": 120,
+        "time": 2.0,
+        "progress": {
+          "lap": 1,
+          "laps_completed": 0,
+          "laps": 3,
+          "checkpoint": 1,
+          "checkpoints_passed": 0,
+          "checkpoints_per_lap": 40,
+          "resets": 0,
+          "track_distance": 6.969,
+          "finished": false
+        },
+        "rescue": {
+          "after_s": 3.0,
+          "offroad_elapsed": 0.0,
+          "count": 0,
+          "last_reset_tick": null
+        },
+        "control": "hard_left_brake",
+        "finished": false,
+        "handling": {
+          "max_speed": 12.0,
+          "acceleration": 12.0,
+          "braking": 24.0,
+          "max_steering_angle": 0.12,
+          "wheelbase": 1.8,
+          "steering_response": 0.12,
+          "yaw_response": 0.1,
+          "lateral_grip": 13.0,
+          "rolling_drag": 0.35,
+          "aerodynamic_drag": 0.006,
+          "grass_acceleration": 4.0,
+          "grass_drag": 1.1,
+          "grass_grip": 8.0
+        },
+        "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+        "kart": {
+          "speed_m_s": 12.0,
+          "velocity_forward_m_s": 9.2553,
+          "velocity_left_m_s": 7.638,
+          "yaw_deg_s": 20.0,
+          "yaw_direction": "left",
+          "steering_deg": 3.438,
+          "steering_direction": "left"
+        },
+        "physics": {
+          "current_surface": "road",
+          "current_lateral_grip_mps2": 13.0,
+          "grip_limited_minimum_steady_turn_radius_m": 11.077
+        },
+        "road": {
+          "width_m": 24.0,
+          "offset_m": 11.25,
+          "kart_side": "left",
+          "left_edge_clearance_m": 0.75,
+          "right_edge_clearance_m": 23.25,
+          "on_road": true,
+          "road_vs_kart_deg": -30.469,
+          "road_faces": "right",
+          "preview_columns": [
+            "ahead_m",
+            "ego_x_m",
+            "ego_y_m",
+            "road_turn_deg",
+            "bend",
+            "radius_m",
+            "lateral_acceleration_needed_at_current_speed_mps2",
+            "grip_usage_at_current_speed"
+          ],
+          "preview": [
+            [
+              0.0,
+              -5.705,
+              -9.696,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              -3.119,
+              -11.218,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              6.0,
+              -0.533,
+              -12.739,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              10.0,
+              2.915,
+              -14.767,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              15.0,
+              7.224,
+              -17.302,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              22.0,
+              13.257,
+              -20.852,
+              0.042,
+              "left",
+              176.367,
+              0.816,
+              0.0628
+            ],
+            [
+              32.0,
+              22.438,
+              -24.703,
+              17.133,
+              "left",
+              29.94,
+              4.81,
+              0.37
+            ],
+            [
+              45.0,
+              35.334,
+              -24.914,
+              41.963,
+              "left",
+              29.949,
+              4.808,
+              0.3699
+            ],
+            [
+              60.0,
+              48.695,
+              -18.447,
+              70.615,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ]
+          ],
+          "bends": [
+            {
+              "starts_in_road_m": 21.677,
+              "ends_in_road_m": 60.0,
+              "direction": "left",
+              "tightest_radius_m": 29.923,
+              "tightest_in_road_m": 31.592,
+              "heading_change_deg": 70.604,
+              "lateral_acceleration_needed_at_current_speed_mps2": 4.812,
+              "grip_usage_at_current_speed": 0.3702
+            }
+          ],
+          "bend_sampling": {
+            "horizon_road_m": 60.0,
+            "max_step_m": 1.0,
+            "includes_all_source_vertices": true,
+            "straight_threshold_rad_per_m": 0.004,
+            "total_regions": 1,
+            "shown_limit": 3
+          }
+        },
+        "next_gate": {
+          "known": true,
+          "index": 1,
+          "centre_ego_m": [
+            -5.064,
+            -10.073
+          ],
+          "range_m": 11.275,
+          "bearing_to_centre_deg": -116.689,
+          "forward_heading_vs_kart_deg": -30.469,
+          "behind_kart_nose": true,
+          "signed_plane_m": -0.7432,
+          "signed_lateral_m": 11.25,
+          "gate_forward_velocity_m_s": 4.1042,
+          "half_width_m": 12.0,
+          "within_span_now": true,
+          "crossing_rule": "Next gate only: step crosses plane<=0 to>0 and interpolated |lateral|<=half_width. Plane positive=gate forward side; lateral positive=gate left. Bearing points to centre; forward heading orients gate. Within_span_now is not credit. Uncredited gate remains required; reverse crossings and rescue give no credit."
+        }
+      },
+      "road_frame_motion": {
+        "nose_vs_road_deg": 30.469,
+        "velocity_vs_road_deg": 70.0,
+        "velocity_left_m_s": 11.2763,
+        "velocity_forward_m_s": 4.1042
+      },
+      "instantaneous_motion": {
+        "expected": "leftward",
+        "road_lateral_velocity_m_s": 11.2763,
+        "scope": "current_road_relative_motion_not_future_risk"
+      }
+    },
+    {
+      "id": "road-motion-03-b",
+      "mirror_id": "road-motion-03-a",
+      "pair_index": 3,
+      "reflection_sign": -1,
+      "region": "straight",
+      "risk_class": "hazard",
+      "expected": "leaves_road",
+      "observation": {
+        "tick": 120,
+        "time": 2.0,
+        "progress": {
+          "lap": 1,
+          "laps_completed": 0,
+          "laps": 3,
+          "checkpoint": 1,
+          "checkpoints_passed": 0,
+          "checkpoints_per_lap": 40,
+          "resets": 0,
+          "track_distance": 6.969,
+          "finished": false
+        },
+        "rescue": {
+          "after_s": 3.0,
+          "offroad_elapsed": 0.0,
+          "count": 0,
+          "last_reset_tick": null
+        },
+        "control": "hard_right_brake",
+        "finished": false,
+        "handling": {
+          "max_speed": 12.0,
+          "acceleration": 12.0,
+          "braking": 24.0,
+          "max_steering_angle": 0.12,
+          "wheelbase": 1.8,
+          "steering_response": 0.12,
+          "yaw_response": 0.1,
+          "lateral_grip": 13.0,
+          "rolling_drag": 0.35,
+          "aerodynamic_drag": 0.006,
+          "grass_acceleration": 4.0,
+          "grass_drag": 1.1,
+          "grass_grip": 8.0
+        },
+        "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+        "kart": {
+          "speed_m_s": 12.0,
+          "velocity_forward_m_s": 9.2553,
+          "velocity_left_m_s": -7.638,
+          "yaw_deg_s": -20.0,
+          "yaw_direction": "right",
+          "steering_deg": -3.438,
+          "steering_direction": "right"
+        },
+        "physics": {
+          "current_surface": "road",
+          "current_lateral_grip_mps2": 13.0,
+          "grip_limited_minimum_steady_turn_radius_m": 11.077
+        },
+        "road": {
+          "width_m": 24.0,
+          "offset_m": -11.25,
+          "kart_side": "right",
+          "left_edge_clearance_m": 23.25,
+          "right_edge_clearance_m": 0.75,
+          "on_road": true,
+          "road_vs_kart_deg": 30.469,
+          "road_faces": "left",
+          "preview_columns": [
+            "ahead_m",
+            "ego_x_m",
+            "ego_y_m",
+            "road_turn_deg",
+            "bend",
+            "radius_m",
+            "lateral_acceleration_needed_at_current_speed_mps2",
+            "grip_usage_at_current_speed"
+          ],
+          "preview": [
+            [
+              0.0,
+              -5.705,
+              9.696,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              -3.119,
+              11.218,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              6.0,
+              -0.533,
+              12.739,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              10.0,
+              2.915,
+              14.767,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              15.0,
+              7.224,
+              17.302,
+              0.0,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              22.0,
+              13.257,
+              20.852,
+              -0.042,
+              "right",
+              176.367,
+              0.816,
+              0.0628
+            ],
+            [
+              32.0,
+              22.438,
+              24.703,
+              -17.133,
+              "right",
+              29.94,
+              4.81,
+              0.37
+            ],
+            [
+              45.0,
+              35.334,
+              24.914,
+              -41.963,
+              "right",
+              29.949,
+              4.808,
+              0.3699
+            ],
+            [
+              60.0,
+              48.695,
+              18.447,
+              -70.615,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ]
+          ],
+          "bends": [
+            {
+              "starts_in_road_m": 21.677,
+              "ends_in_road_m": 60.0,
+              "direction": "right",
+              "tightest_radius_m": 29.923,
+              "tightest_in_road_m": 31.592,
+              "heading_change_deg": -70.604,
+              "lateral_acceleration_needed_at_current_speed_mps2": 4.812,
+              "grip_usage_at_current_speed": 0.3702
+            }
+          ],
+          "bend_sampling": {
+            "horizon_road_m": 60.0,
+            "max_step_m": 1.0,
+            "includes_all_source_vertices": true,
+            "straight_threshold_rad_per_m": 0.004,
+            "total_regions": 1,
+            "shown_limit": 3
+          }
+        },
+        "next_gate": {
+          "known": true,
+          "index": 1,
+          "centre_ego_m": [
+            -5.064,
+            10.073
+          ],
+          "range_m": 11.275,
+          "bearing_to_centre_deg": 116.689,
+          "forward_heading_vs_kart_deg": 30.469,
+          "behind_kart_nose": true,
+          "signed_plane_m": -0.7433,
+          "signed_lateral_m": -11.25,
+          "gate_forward_velocity_m_s": 4.1042,
+          "half_width_m": 12.0,
+          "within_span_now": true,
+          "crossing_rule": "Next gate only: step crosses plane<=0 to>0 and interpolated |lateral|<=half_width. Plane positive=gate forward side; lateral positive=gate left. Bearing points to centre; forward heading orients gate. Within_span_now is not credit. Uncredited gate remains required; reverse crossings and rescue give no credit."
+        }
+      },
+      "road_frame_motion": {
+        "nose_vs_road_deg": -30.469,
+        "velocity_vs_road_deg": -70.0,
+        "velocity_left_m_s": -11.2763,
+        "velocity_forward_m_s": 4.1042
+      },
+      "instantaneous_motion": {
+        "expected": "rightward",
+        "road_lateral_velocity_m_s": -11.2763,
+        "scope": "current_road_relative_motion_not_future_risk"
+      }
+    },
+    {
+      "id": "road-motion-04-a",
+      "mirror_id": "road-motion-04-b",
+      "pair_index": 4,
+      "reflection_sign": 1,
+      "region": "curve",
+      "risk_class": "safe",
+      "expected": "stays_on_road",
+      "observation": {
+        "tick": 120,
+        "time": 2.0,
+        "progress": {
+          "lap": 1,
+          "laps_completed": 0,
+          "laps": 3,
+          "checkpoint": 8,
+          "checkpoints_passed": 7,
+          "checkpoints_per_lap": 40,
+          "resets": 0,
+          "track_distance": 54.918,
+          "finished": false
+        },
+        "rescue": {
+          "after_s": 3.0,
+          "offroad_elapsed": 0.0,
+          "count": 0,
+          "last_reset_tick": null
+        },
+        "control": "left_accelerate",
+        "finished": false,
+        "handling": {
+          "max_speed": 12.0,
+          "acceleration": 12.0,
+          "braking": 24.0,
+          "max_steering_angle": 0.12,
+          "wheelbase": 1.8,
+          "steering_response": 0.12,
+          "yaw_response": 0.1,
+          "lateral_grip": 13.0,
+          "rolling_drag": 0.35,
+          "aerodynamic_drag": 0.006,
+          "grass_acceleration": 4.0,
+          "grass_drag": 1.1,
+          "grass_grip": 8.0
+        },
+        "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+        "kart": {
+          "speed_m_s": 12.0,
+          "velocity_forward_m_s": 11.2605,
+          "velocity_left_m_s": -4.1472,
+          "yaw_deg_s": -24.0,
+          "yaw_direction": "right",
+          "steering_deg": -6.875,
+          "steering_direction": "right"
+        },
+        "physics": {
+          "current_surface": "road",
+          "current_lateral_grip_mps2": 13.0,
+          "grip_limited_minimum_steady_turn_radius_m": 11.077
+        },
+        "road": {
+          "width_m": 24.0,
+          "offset_m": 10.75,
+          "kart_side": "left",
+          "left_edge_clearance_m": 1.25,
+          "right_edge_clearance_m": 22.75,
+          "on_road": true,
+          "road_vs_kart_deg": 9.685,
+          "road_faces": "left",
+          "preview_columns": [
+            "ahead_m",
+            "ego_x_m",
+            "ego_y_m",
+            "road_turn_deg",
+            "bend",
+            "radius_m",
+            "lateral_acceleration_needed_at_current_speed_mps2",
+            "grip_usage_at_current_speed"
+          ],
+          "preview": [
+            [
+              0.0,
+              1.777,
+              -10.602,
+              0.0,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              3.0,
+              4.705,
+              -9.955,
+              5.727,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              6.0,
+              7.551,
+              -9.01,
+              11.454,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              10.0,
+              11.175,
+              -7.327,
+              19.1,
+              "left",
+              29.949,
+              4.808,
+              0.3699
+            ],
+            [
+              15.0,
+              15.338,
+              -4.568,
+              28.648,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              22.0,
+              20.274,
+              0.374,
+              42.016,
+              "left",
+              29.931,
+              4.811,
+              0.3701
+            ],
+            [
+              32.0,
+              25.061,
+              9.101,
+              61.113,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              45.0,
+              26.585,
+              21.909,
+              85.943,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              60.0,
+              21.516,
+              35.859,
+              114.593,
+              "left",
+              29.949,
+              4.808,
+              0.3699
+            ]
+          ],
+          "bends": [
+            {
+              "starts_in_road_m": 0.0,
+              "ends_in_road_m": 60.0,
+              "direction": "left",
+              "tightest_radius_m": 29.924,
+              "tightest_in_road_m": 22.202,
+              "heading_change_deg": 114.593,
+              "lateral_acceleration_needed_at_current_speed_mps2": 4.812,
+              "grip_usage_at_current_speed": 0.3702
+            }
+          ],
+          "bend_sampling": {
+            "horizon_road_m": 60.0,
+            "max_step_m": 1.0,
+            "includes_all_source_vertices": true,
+            "straight_threshold_rad_per_m": 0.004,
+            "total_regions": 1,
+            "shown_limit": 3
+          }
+        },
+        "next_gate": {
+          "known": true,
+          "index": 8,
+          "centre_ego_m": [
+            8.273,
+            -8.722
+          ],
+          "range_m": 12.022,
+          "bearing_to_centre_deg": -46.515,
+          "forward_heading_vs_kart_deg": 22.624,
+          "behind_kart_nose": false,
+          "signed_plane_m": -4.281,
+          "signed_lateral_m": 11.2336,
+          "gate_forward_velocity_m_s": 8.7987,
+          "half_width_m": 12.0,
+          "within_span_now": true,
+          "crossing_rule": "Next gate only: step crosses plane<=0 to>0 and interpolated |lateral|<=half_width. Plane positive=gate forward side; lateral positive=gate left. Bearing points to centre; forward heading orients gate. Within_span_now is not credit. Uncredited gate remains required; reverse crossings and rescue give no credit."
+        }
+      },
+      "road_frame_motion": {
+        "nose_vs_road_deg": -9.685,
+        "velocity_vs_road_deg": -29.904,
+        "velocity_left_m_s": -5.9825,
+        "velocity_forward_m_s": 10.4023
+      },
+      "instantaneous_motion": {
+        "expected": "rightward",
+        "road_lateral_velocity_m_s": -5.9825,
+        "scope": "current_road_relative_motion_not_future_risk"
+      }
+    },
+    {
+      "id": "road-motion-04-b",
+      "mirror_id": "road-motion-04-a",
+      "pair_index": 4,
+      "reflection_sign": -1,
+      "region": "curve",
+      "risk_class": "safe",
+      "expected": "stays_on_road",
+      "observation": {
+        "tick": 120,
+        "time": 2.0,
+        "progress": {
+          "lap": 1,
+          "laps_completed": 0,
+          "laps": 3,
+          "checkpoint": 8,
+          "checkpoints_passed": 7,
+          "checkpoints_per_lap": 40,
+          "resets": 0,
+          "track_distance": 54.918,
+          "finished": false
+        },
+        "rescue": {
+          "after_s": 3.0,
+          "offroad_elapsed": 0.0,
+          "count": 0,
+          "last_reset_tick": null
+        },
+        "control": "right_accelerate",
+        "finished": false,
+        "handling": {
+          "max_speed": 12.0,
+          "acceleration": 12.0,
+          "braking": 24.0,
+          "max_steering_angle": 0.12,
+          "wheelbase": 1.8,
+          "steering_response": 0.12,
+          "yaw_response": 0.1,
+          "lateral_grip": 13.0,
+          "rolling_drag": 0.35,
+          "aerodynamic_drag": 0.006,
+          "grass_acceleration": 4.0,
+          "grass_drag": 1.1,
+          "grass_grip": 8.0
+        },
+        "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+        "kart": {
+          "speed_m_s": 12.0,
+          "velocity_forward_m_s": 11.2605,
+          "velocity_left_m_s": 4.1472,
+          "yaw_deg_s": 24.0,
+          "yaw_direction": "left",
+          "steering_deg": 6.875,
+          "steering_direction": "left"
+        },
+        "physics": {
+          "current_surface": "road",
+          "current_lateral_grip_mps2": 13.0,
+          "grip_limited_minimum_steady_turn_radius_m": 11.077
+        },
+        "road": {
+          "width_m": 24.0,
+          "offset_m": -10.75,
+          "kart_side": "right",
+          "left_edge_clearance_m": 22.75,
+          "right_edge_clearance_m": 1.25,
+          "on_road": true,
+          "road_vs_kart_deg": -9.685,
+          "road_faces": "right",
+          "preview_columns": [
+            "ahead_m",
+            "ego_x_m",
+            "ego_y_m",
+            "road_turn_deg",
+            "bend",
+            "radius_m",
+            "lateral_acceleration_needed_at_current_speed_mps2",
+            "grip_usage_at_current_speed"
+          ],
+          "preview": [
+            [
+              0.0,
+              1.777,
+              10.602,
+              0.0,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              3.0,
+              4.705,
+              9.955,
+              -5.727,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              6.0,
+              7.551,
+              9.01,
+              -11.454,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              10.0,
+              11.175,
+              7.327,
+              -19.1,
+              "right",
+              29.949,
+              4.808,
+              0.3699
+            ],
+            [
+              15.0,
+              15.338,
+              4.568,
+              -28.648,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              22.0,
+              20.274,
+              -0.374,
+              -42.016,
+              "right",
+              29.931,
+              4.811,
+              0.3701
+            ],
+            [
+              32.0,
+              25.061,
+              -9.101,
+              -61.113,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              45.0,
+              26.585,
+              -21.909,
+              -85.943,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              60.0,
+              21.516,
+              -35.859,
+              -114.593,
+              "right",
+              29.949,
+              4.808,
+              0.3699
+            ]
+          ],
+          "bends": [
+            {
+              "starts_in_road_m": 0.0,
+              "ends_in_road_m": 60.0,
+              "direction": "right",
+              "tightest_radius_m": 29.924,
+              "tightest_in_road_m": 22.202,
+              "heading_change_deg": -114.593,
+              "lateral_acceleration_needed_at_current_speed_mps2": 4.812,
+              "grip_usage_at_current_speed": 0.3702
+            }
+          ],
+          "bend_sampling": {
+            "horizon_road_m": 60.0,
+            "max_step_m": 1.0,
+            "includes_all_source_vertices": true,
+            "straight_threshold_rad_per_m": 0.004,
+            "total_regions": 1,
+            "shown_limit": 3
+          }
+        },
+        "next_gate": {
+          "known": true,
+          "index": 8,
+          "centre_ego_m": [
+            8.273,
+            8.722
+          ],
+          "range_m": 12.022,
+          "bearing_to_centre_deg": 46.515,
+          "forward_heading_vs_kart_deg": -22.624,
+          "behind_kart_nose": false,
+          "signed_plane_m": -4.281,
+          "signed_lateral_m": -11.2336,
+          "gate_forward_velocity_m_s": 8.7987,
+          "half_width_m": 12.0,
+          "within_span_now": true,
+          "crossing_rule": "Next gate only: step crosses plane<=0 to>0 and interpolated |lateral|<=half_width. Plane positive=gate forward side; lateral positive=gate left. Bearing points to centre; forward heading orients gate. Within_span_now is not credit. Uncredited gate remains required; reverse crossings and rescue give no credit."
+        }
+      },
+      "road_frame_motion": {
+        "nose_vs_road_deg": 9.685,
+        "velocity_vs_road_deg": 29.904,
+        "velocity_left_m_s": 5.9825,
+        "velocity_forward_m_s": 10.4023
+      },
+      "instantaneous_motion": {
+        "expected": "leftward",
+        "road_lateral_velocity_m_s": 5.9825,
+        "scope": "current_road_relative_motion_not_future_risk"
+      }
+    },
+    {
+      "id": "road-motion-05-a",
+      "mirror_id": "road-motion-05-b",
+      "pair_index": 5,
+      "reflection_sign": 1,
+      "region": "curve",
+      "risk_class": "hazard",
+      "expected": "leaves_road",
+      "observation": {
+        "tick": 120,
+        "time": 2.0,
+        "progress": {
+          "lap": 1,
+          "laps_completed": 0,
+          "laps": 3,
+          "checkpoint": 9,
+          "checkpoints_passed": 8,
+          "checkpoints_per_lap": 40,
+          "resets": 0,
+          "track_distance": 64.789,
+          "finished": false
+        },
+        "rescue": {
+          "after_s": 3.0,
+          "offroad_elapsed": 0.0,
+          "count": 0,
+          "last_reset_tick": null
+        },
+        "control": "left_accelerate",
+        "finished": false,
+        "handling": {
+          "max_speed": 12.0,
+          "acceleration": 12.0,
+          "braking": 24.0,
+          "max_steering_angle": 0.12,
+          "wheelbase": 1.8,
+          "steering_response": 0.12,
+          "yaw_response": 0.1,
+          "lateral_grip": 13.0,
+          "rolling_drag": 0.35,
+          "aerodynamic_drag": 0.006,
+          "grass_acceleration": 4.0,
+          "grass_drag": 1.1,
+          "grass_grip": 8.0
+        },
+        "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+        "kart": {
+          "speed_m_s": 12.0,
+          "velocity_forward_m_s": 4.1964,
+          "velocity_left_m_s": 11.2423,
+          "yaw_deg_s": -24.0,
+          "yaw_direction": "right",
+          "steering_deg": -6.875,
+          "steering_direction": "right"
+        },
+        "physics": {
+          "current_surface": "road",
+          "current_lateral_grip_mps2": 13.0,
+          "grip_limited_minimum_steady_turn_radius_m": 11.077
+        },
+        "road": {
+          "width_m": 24.0,
+          "offset_m": 10.748,
+          "kart_side": "left",
+          "left_edge_clearance_m": 1.252,
+          "right_edge_clearance_m": 22.748,
+          "on_road": true,
+          "road_vs_kart_deg": 9.187,
+          "road_faces": "left",
+          "preview_columns": [
+            "ahead_m",
+            "ego_x_m",
+            "ego_y_m",
+            "road_turn_deg",
+            "bend",
+            "radius_m",
+            "lateral_acceleration_needed_at_current_speed_mps2",
+            "grip_usage_at_current_speed"
+          ],
+          "preview": [
+            [
+              0.0,
+              1.602,
+              -10.628,
+              0.0,
+              "left",
+              29.949,
+              4.808,
+              0.3699
+            ],
+            [
+              3.0,
+              4.535,
+              -10.002,
+              5.731,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              6.0,
+              7.39,
+              -9.086,
+              11.457,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              10.0,
+              11.029,
+              -7.434,
+              19.093,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              15.0,
+              15.213,
+              -4.707,
+              28.652,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              22.0,
+              20.196,
+              0.187,
+              42.014,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              32.0,
+              25.054,
+              8.874,
+              61.117,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              45.0,
+              26.691,
+              21.667,
+              85.947,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              60.0,
+              21.752,
+              35.668,
+              113.229,
+              "left",
+              91.324,
+              1.577,
+              0.1213
+            ]
+          ],
+          "bends": [
+            {
+              "starts_in_road_m": 0.0,
+              "ends_in_road_m": 60.0,
+              "direction": "left",
+              "tightest_radius_m": 29.923,
+              "tightest_in_road_m": 50.89,
+              "heading_change_deg": 113.229,
+              "lateral_acceleration_needed_at_current_speed_mps2": 4.812,
+              "grip_usage_at_current_speed": 0.3702
+            }
+          ],
+          "bend_sampling": {
+            "horizon_road_m": 60.0,
+            "max_step_m": 1.0,
+            "includes_all_source_vertices": true,
+            "straight_threshold_rad_per_m": 0.004,
+            "total_regions": 1,
+            "shown_limit": 3
+          }
+        },
+        "next_gate": {
+          "known": true,
+          "index": 9,
+          "centre_ego_m": [
+            6.087,
+            -9.542
+          ],
+          "range_m": 11.318,
+          "bearing_to_centre_deg": -57.466,
+          "forward_heading_vs_kart_deg": 18.009,
+          "behind_kart_nose": false,
+          "signed_plane_m": -2.8386,
+          "signed_lateral_m": 10.9563,
+          "gate_forward_velocity_m_s": 7.4666,
+          "half_width_m": 12.0,
+          "within_span_now": true,
+          "crossing_rule": "Next gate only: step crosses plane<=0 to>0 and interpolated |lateral|<=half_width. Plane positive=gate forward side; lateral positive=gate left. Bearing points to centre; forward heading orients gate. Within_span_now is not credit. Uncredited gate remains required; reverse crossings and rescue give no credit."
+        }
+      },
+      "road_frame_motion": {
+        "nose_vs_road_deg": -9.187,
+        "velocity_vs_road_deg": 60.344,
+        "velocity_left_m_s": 10.4281,
+        "velocity_forward_m_s": 5.9376
+      },
+      "instantaneous_motion": {
+        "expected": "leftward",
+        "road_lateral_velocity_m_s": 10.4281,
+        "scope": "current_road_relative_motion_not_future_risk"
+      }
+    },
+    {
+      "id": "road-motion-05-b",
+      "mirror_id": "road-motion-05-a",
+      "pair_index": 5,
+      "reflection_sign": -1,
+      "region": "curve",
+      "risk_class": "hazard",
+      "expected": "leaves_road",
+      "observation": {
+        "tick": 120,
+        "time": 2.0,
+        "progress": {
+          "lap": 1,
+          "laps_completed": 0,
+          "laps": 3,
+          "checkpoint": 9,
+          "checkpoints_passed": 8,
+          "checkpoints_per_lap": 40,
+          "resets": 0,
+          "track_distance": 64.789,
+          "finished": false
+        },
+        "rescue": {
+          "after_s": 3.0,
+          "offroad_elapsed": 0.0,
+          "count": 0,
+          "last_reset_tick": null
+        },
+        "control": "right_accelerate",
+        "finished": false,
+        "handling": {
+          "max_speed": 12.0,
+          "acceleration": 12.0,
+          "braking": 24.0,
+          "max_steering_angle": 0.12,
+          "wheelbase": 1.8,
+          "steering_response": 0.12,
+          "yaw_response": 0.1,
+          "lateral_grip": 13.0,
+          "rolling_drag": 0.35,
+          "aerodynamic_drag": 0.006,
+          "grass_acceleration": 4.0,
+          "grass_drag": 1.1,
+          "grass_grip": 8.0
+        },
+        "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+        "kart": {
+          "speed_m_s": 12.0,
+          "velocity_forward_m_s": 4.1964,
+          "velocity_left_m_s": -11.2423,
+          "yaw_deg_s": 24.0,
+          "yaw_direction": "left",
+          "steering_deg": 6.875,
+          "steering_direction": "left"
+        },
+        "physics": {
+          "current_surface": "road",
+          "current_lateral_grip_mps2": 13.0,
+          "grip_limited_minimum_steady_turn_radius_m": 11.077
+        },
+        "road": {
+          "width_m": 24.0,
+          "offset_m": -10.748,
+          "kart_side": "right",
+          "left_edge_clearance_m": 22.748,
+          "right_edge_clearance_m": 1.252,
+          "on_road": true,
+          "road_vs_kart_deg": -9.187,
+          "road_faces": "right",
+          "preview_columns": [
+            "ahead_m",
+            "ego_x_m",
+            "ego_y_m",
+            "road_turn_deg",
+            "bend",
+            "radius_m",
+            "lateral_acceleration_needed_at_current_speed_mps2",
+            "grip_usage_at_current_speed"
+          ],
+          "preview": [
+            [
+              0.0,
+              1.602,
+              10.628,
+              0.0,
+              "right",
+              29.949,
+              4.808,
+              0.3699
+            ],
+            [
+              3.0,
+              4.535,
+              10.002,
+              -5.731,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              6.0,
+              7.39,
+              9.086,
+              -11.457,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              10.0,
+              11.029,
+              7.434,
+              -19.093,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              15.0,
+              15.213,
+              4.707,
+              -28.652,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              22.0,
+              20.196,
+              -0.187,
+              -42.014,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              32.0,
+              25.054,
+              -8.874,
+              -61.117,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              45.0,
+              26.691,
+              -21.667,
+              -85.947,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              60.0,
+              21.752,
+              -35.668,
+              -113.229,
+              "right",
+              91.324,
+              1.577,
+              0.1213
+            ]
+          ],
+          "bends": [
+            {
+              "starts_in_road_m": 0.0,
+              "ends_in_road_m": 60.0,
+              "direction": "right",
+              "tightest_radius_m": 29.923,
+              "tightest_in_road_m": 50.89,
+              "heading_change_deg": -113.229,
+              "lateral_acceleration_needed_at_current_speed_mps2": 4.812,
+              "grip_usage_at_current_speed": 0.3702
+            }
+          ],
+          "bend_sampling": {
+            "horizon_road_m": 60.0,
+            "max_step_m": 1.0,
+            "includes_all_source_vertices": true,
+            "straight_threshold_rad_per_m": 0.004,
+            "total_regions": 1,
+            "shown_limit": 3
+          }
+        },
+        "next_gate": {
+          "known": true,
+          "index": 9,
+          "centre_ego_m": [
+            6.087,
+            9.542
+          ],
+          "range_m": 11.318,
+          "bearing_to_centre_deg": 57.466,
+          "forward_heading_vs_kart_deg": -18.009,
+          "behind_kart_nose": false,
+          "signed_plane_m": -2.8386,
+          "signed_lateral_m": -10.9563,
+          "gate_forward_velocity_m_s": 7.4666,
+          "half_width_m": 12.0,
+          "within_span_now": true,
+          "crossing_rule": "Next gate only: step crosses plane<=0 to>0 and interpolated |lateral|<=half_width. Plane positive=gate forward side; lateral positive=gate left. Bearing points to centre; forward heading orients gate. Within_span_now is not credit. Uncredited gate remains required; reverse crossings and rescue give no credit."
+        }
+      },
+      "road_frame_motion": {
+        "nose_vs_road_deg": 9.187,
+        "velocity_vs_road_deg": -60.343,
+        "velocity_left_m_s": -10.4281,
+        "velocity_forward_m_s": 5.9376
+      },
+      "instantaneous_motion": {
+        "expected": "rightward",
+        "road_lateral_velocity_m_s": -10.4281,
+        "scope": "current_road_relative_motion_not_future_risk"
+      }
+    },
+    {
+      "id": "road-motion-06-a",
+      "mirror_id": "road-motion-06-b",
+      "pair_index": 6,
+      "reflection_sign": 1,
+      "region": "curve",
+      "risk_class": "safe",
+      "expected": "stays_on_road",
+      "observation": {
+        "tick": 120,
+        "time": 2.0,
+        "progress": {
+          "lap": 1,
+          "laps_completed": 0,
+          "laps": 3,
+          "checkpoint": 10,
+          "checkpoints_passed": 9,
+          "checkpoints_per_lap": 40,
+          "resets": 0,
+          "track_distance": 75.06,
+          "finished": false
+        },
+        "rescue": {
+          "after_s": 3.0,
+          "offroad_elapsed": 0.0,
+          "count": 0,
+          "last_reset_tick": null
+        },
+        "control": "hard_right_coast",
+        "finished": false,
+        "handling": {
+          "max_speed": 12.0,
+          "acceleration": 12.0,
+          "braking": 24.0,
+          "max_steering_angle": 0.12,
+          "wheelbase": 1.8,
+          "steering_response": 0.12,
+          "yaw_response": 0.1,
+          "lateral_grip": 13.0,
+          "rolling_drag": 0.35,
+          "aerodynamic_drag": 0.006,
+          "grass_acceleration": 4.0,
+          "grass_drag": 1.1,
+          "grass_grip": 8.0
+        },
+        "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+        "kart": {
+          "speed_m_s": 12.0,
+          "velocity_forward_m_s": 11.2919,
+          "velocity_left_m_s": 4.0612,
+          "yaw_deg_s": 24.0,
+          "yaw_direction": "left",
+          "steering_deg": 6.875,
+          "steering_direction": "left"
+        },
+        "physics": {
+          "current_surface": "road",
+          "current_lateral_grip_mps2": 13.0,
+          "grip_limited_minimum_steady_turn_radius_m": 11.077
+        },
+        "road": {
+          "width_m": 24.0,
+          "offset_m": 8.0,
+          "kart_side": "left",
+          "left_edge_clearance_m": 4.0,
+          "right_edge_clearance_m": 20.0,
+          "on_road": true,
+          "road_vs_kart_deg": -30.044,
+          "road_faces": "right",
+          "preview_columns": [
+            "ahead_m",
+            "ego_x_m",
+            "ego_y_m",
+            "road_turn_deg",
+            "bend",
+            "radius_m",
+            "lateral_acceleration_needed_at_current_speed_mps2",
+            "grip_usage_at_current_speed"
+          ],
+          "preview": [
+            [
+              0.0,
+              -3.947,
+              -6.958,
+              0.0,
+              "left",
+              30.003,
+              4.8,
+              0.3692
+            ],
+            [
+              3.0,
+              -1.28,
+              -8.328,
+              5.739,
+              "left",
+              29.958,
+              4.807,
+              0.3697
+            ],
+            [
+              6.0,
+              1.512,
+              -9.424,
+              11.468,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              10.0,
+              5.377,
+              -10.441,
+              19.103,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              15.0,
+              10.341,
+              -10.979,
+              28.655,
+              "left",
+              29.94,
+              4.81,
+              0.37
+            ],
+            [
+              22.0,
+              17.295,
+              -10.332,
+              42.024,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              32.0,
+              26.554,
+              -6.682,
+              61.127,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              45.0,
+              35.909,
+              2.197,
+              85.957,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              60.0,
+              42.769,
+              15.524,
+              93.94,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ]
+          ],
+          "bends": [
+            {
+              "starts_in_road_m": 0.0,
+              "ends_in_road_m": 50.534,
+              "direction": "left",
+              "tightest_radius_m": 29.923,
+              "tightest_in_road_m": 40.619,
+              "heading_change_deg": 93.929,
+              "lateral_acceleration_needed_at_current_speed_mps2": 4.812,
+              "grip_usage_at_current_speed": 0.3702
+            }
+          ],
+          "bend_sampling": {
+            "horizon_road_m": 60.0,
+            "max_step_m": 1.0,
+            "includes_all_source_vertices": true,
+            "straight_threshold_rad_per_m": 0.004,
+            "total_regions": 1,
+            "shown_limit": 3
+          }
+        },
+        "next_gate": {
+          "known": true,
+          "index": 10,
+          "centre_ego_m": [
+            -2.132,
+            -7.932
+          ],
+          "range_m": 8.213,
+          "bearing_to_centre_deg": -105.045,
+          "forward_heading_vs_kart_deg": -26.105,
+          "behind_kart_nose": true,
+          "signed_plane_m": -1.5756,
+          "signed_lateral_m": 8.0608,
+          "gate_forward_velocity_m_s": 8.3531,
+          "half_width_m": 12.0,
+          "within_span_now": true,
+          "crossing_rule": "Next gate only: step crosses plane<=0 to>0 and interpolated |lateral|<=half_width. Plane positive=gate forward side; lateral positive=gate left. Bearing points to centre; forward heading orients gate. Within_span_now is not credit. Uncredited gate remains required; reverse crossings and rescue give no credit."
+        }
+      },
+      "road_frame_motion": {
+        "nose_vs_road_deg": 30.044,
+        "velocity_vs_road_deg": 49.825,
+        "velocity_left_m_s": 9.1689,
+        "velocity_forward_m_s": 7.7416
+      },
+      "instantaneous_motion": {
+        "expected": "leftward",
+        "road_lateral_velocity_m_s": 9.1689,
+        "scope": "current_road_relative_motion_not_future_risk"
+      }
+    },
+    {
+      "id": "road-motion-06-b",
+      "mirror_id": "road-motion-06-a",
+      "pair_index": 6,
+      "reflection_sign": -1,
+      "region": "curve",
+      "risk_class": "safe",
+      "expected": "stays_on_road",
+      "observation": {
+        "tick": 120,
+        "time": 2.0,
+        "progress": {
+          "lap": 1,
+          "laps_completed": 0,
+          "laps": 3,
+          "checkpoint": 10,
+          "checkpoints_passed": 9,
+          "checkpoints_per_lap": 40,
+          "resets": 0,
+          "track_distance": 75.06,
+          "finished": false
+        },
+        "rescue": {
+          "after_s": 3.0,
+          "offroad_elapsed": 0.0,
+          "count": 0,
+          "last_reset_tick": null
+        },
+        "control": "hard_left_coast",
+        "finished": false,
+        "handling": {
+          "max_speed": 12.0,
+          "acceleration": 12.0,
+          "braking": 24.0,
+          "max_steering_angle": 0.12,
+          "wheelbase": 1.8,
+          "steering_response": 0.12,
+          "yaw_response": 0.1,
+          "lateral_grip": 13.0,
+          "rolling_drag": 0.35,
+          "aerodynamic_drag": 0.006,
+          "grass_acceleration": 4.0,
+          "grass_drag": 1.1,
+          "grass_grip": 8.0
+        },
+        "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+        "kart": {
+          "speed_m_s": 12.0,
+          "velocity_forward_m_s": 11.2919,
+          "velocity_left_m_s": -4.0612,
+          "yaw_deg_s": -24.0,
+          "yaw_direction": "right",
+          "steering_deg": -6.875,
+          "steering_direction": "right"
+        },
+        "physics": {
+          "current_surface": "road",
+          "current_lateral_grip_mps2": 13.0,
+          "grip_limited_minimum_steady_turn_radius_m": 11.077
+        },
+        "road": {
+          "width_m": 24.0,
+          "offset_m": -8.0,
+          "kart_side": "right",
+          "left_edge_clearance_m": 20.0,
+          "right_edge_clearance_m": 4.0,
+          "on_road": true,
+          "road_vs_kart_deg": 30.044,
+          "road_faces": "left",
+          "preview_columns": [
+            "ahead_m",
+            "ego_x_m",
+            "ego_y_m",
+            "road_turn_deg",
+            "bend",
+            "radius_m",
+            "lateral_acceleration_needed_at_current_speed_mps2",
+            "grip_usage_at_current_speed"
+          ],
+          "preview": [
+            [
+              0.0,
+              -3.947,
+              6.958,
+              0.0,
+              "right",
+              30.003,
+              4.8,
+              0.3692
+            ],
+            [
+              3.0,
+              -1.28,
+              8.328,
+              -5.739,
+              "right",
+              29.958,
+              4.807,
+              0.3697
+            ],
+            [
+              6.0,
+              1.512,
+              9.424,
+              -11.468,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              10.0,
+              5.377,
+              10.441,
+              -19.103,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              15.0,
+              10.341,
+              10.979,
+              -28.655,
+              "right",
+              29.94,
+              4.81,
+              0.37
+            ],
+            [
+              22.0,
+              17.295,
+              10.332,
+              -42.024,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              32.0,
+              26.554,
+              6.682,
+              -61.127,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              45.0,
+              35.909,
+              -2.197,
+              -85.957,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              60.0,
+              42.769,
+              -15.524,
+              -93.94,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ]
+          ],
+          "bends": [
+            {
+              "starts_in_road_m": 0.0,
+              "ends_in_road_m": 50.534,
+              "direction": "right",
+              "tightest_radius_m": 29.923,
+              "tightest_in_road_m": 40.619,
+              "heading_change_deg": -93.929,
+              "lateral_acceleration_needed_at_current_speed_mps2": 4.812,
+              "grip_usage_at_current_speed": 0.3702
+            }
+          ],
+          "bend_sampling": {
+            "horizon_road_m": 60.0,
+            "max_step_m": 1.0,
+            "includes_all_source_vertices": true,
+            "straight_threshold_rad_per_m": 0.004,
+            "total_regions": 1,
+            "shown_limit": 3
+          }
+        },
+        "next_gate": {
+          "known": true,
+          "index": 10,
+          "centre_ego_m": [
+            -2.132,
+            7.932
+          ],
+          "range_m": 8.213,
+          "bearing_to_centre_deg": 105.044,
+          "forward_heading_vs_kart_deg": 26.104,
+          "behind_kart_nose": true,
+          "signed_plane_m": -1.5756,
+          "signed_lateral_m": -8.0608,
+          "gate_forward_velocity_m_s": 8.3531,
+          "half_width_m": 12.0,
+          "within_span_now": true,
+          "crossing_rule": "Next gate only: step crosses plane<=0 to>0 and interpolated |lateral|<=half_width. Plane positive=gate forward side; lateral positive=gate left. Bearing points to centre; forward heading orients gate. Within_span_now is not credit. Uncredited gate remains required; reverse crossings and rescue give no credit."
+        }
+      },
+      "road_frame_motion": {
+        "nose_vs_road_deg": -30.044,
+        "velocity_vs_road_deg": -49.825,
+        "velocity_left_m_s": -9.169,
+        "velocity_forward_m_s": 7.7415
+      },
+      "instantaneous_motion": {
+        "expected": "rightward",
+        "road_lateral_velocity_m_s": -9.169,
+        "scope": "current_road_relative_motion_not_future_risk"
+      }
+    },
+    {
+      "id": "road-motion-07-a",
+      "mirror_id": "road-motion-07-b",
+      "pair_index": 7,
+      "reflection_sign": 1,
+      "region": "curve",
+      "risk_class": "hazard",
+      "expected": "leaves_road",
+      "observation": {
+        "tick": 120,
+        "time": 2.0,
+        "progress": {
+          "lap": 1,
+          "laps_completed": 0,
+          "laps": 3,
+          "checkpoint": 12,
+          "checkpoints_passed": 11,
+          "checkpoints_per_lap": 40,
+          "resets": 0,
+          "track_distance": 84.963,
+          "finished": false
+        },
+        "rescue": {
+          "after_s": 3.0,
+          "offroad_elapsed": 0.0,
+          "count": 0,
+          "last_reset_tick": null
+        },
+        "control": "hard_right_coast",
+        "finished": false,
+        "handling": {
+          "max_speed": 12.0,
+          "acceleration": 12.0,
+          "braking": 24.0,
+          "max_steering_angle": 0.12,
+          "wheelbase": 1.8,
+          "steering_response": 0.12,
+          "yaw_response": 0.1,
+          "lateral_grip": 13.0,
+          "rolling_drag": 0.35,
+          "aerodynamic_drag": 0.006,
+          "grass_acceleration": 4.0,
+          "grass_drag": 1.1,
+          "grass_grip": 8.0
+        },
+        "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+        "kart": {
+          "speed_m_s": 12.0,
+          "velocity_forward_m_s": 11.3095,
+          "velocity_left_m_s": 4.0119,
+          "yaw_deg_s": 24.0,
+          "yaw_direction": "left",
+          "steering_deg": 6.875,
+          "steering_direction": "left"
+        },
+        "physics": {
+          "current_surface": "road",
+          "current_lateral_grip_mps2": 13.0,
+          "grip_limited_minimum_steady_turn_radius_m": 11.077
+        },
+        "road": {
+          "width_m": 24.0,
+          "offset_m": 11.0,
+          "kart_side": "left",
+          "left_edge_clearance_m": 1.0,
+          "right_edge_clearance_m": 23.0,
+          "on_road": true,
+          "road_vs_kart_deg": -30.48,
+          "road_faces": "right",
+          "preview_columns": [
+            "ahead_m",
+            "ego_x_m",
+            "ego_y_m",
+            "road_turn_deg",
+            "bend",
+            "radius_m",
+            "lateral_acceleration_needed_at_current_speed_mps2",
+            "grip_usage_at_current_speed"
+          ],
+          "preview": [
+            [
+              0.0,
+              -5.583,
+              -9.478,
+              0.0,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              3.0,
+              -2.929,
+              -10.873,
+              5.727,
+              "left",
+              30.003,
+              4.8,
+              0.3692
+            ],
+            [
+              6.0,
+              -0.144,
+              -11.985,
+              11.465,
+              "left",
+              29.958,
+              4.807,
+              0.3697
+            ],
+            [
+              10.0,
+              3.713,
+              -13.035,
+              19.103,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              15.0,
+              8.673,
+              -13.612,
+              28.648,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              22.0,
+              15.632,
+              -13.018,
+              42.024,
+              "left",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              32.0,
+              24.92,
+              -9.439,
+              61.127,
+              "left",
+              29.976,
+              4.804,
+              0.3695
+            ],
+            [
+              45.0,
+              34.752,
+              -0.997,
+              75.022,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              60.0,
+              45.443,
+              9.524,
+              75.022,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ]
+          ],
+          "bends": [
+            {
+              "starts_in_road_m": 0.0,
+              "ends_in_road_m": 40.631,
+              "direction": "left",
+              "tightest_radius_m": 29.923,
+              "tightest_in_road_m": 30.716,
+              "heading_change_deg": 75.011,
+              "lateral_acceleration_needed_at_current_speed_mps2": 4.812,
+              "grip_usage_at_current_speed": 0.3702
+            }
+          ],
+          "bend_sampling": {
+            "horizon_road_m": 60.0,
+            "max_step_m": 1.0,
+            "includes_all_source_vertices": true,
+            "straight_threshold_rad_per_m": 0.004,
+            "total_regions": 1,
+            "shown_limit": 3
+          }
+        },
+        "next_gate": {
+          "known": true,
+          "index": 12,
+          "centre_ego_m": [
+            1.364,
+            -12.463
+          ],
+          "range_m": 12.537,
+          "bearing_to_centre_deg": -83.756,
+          "forward_heading_vs_kart_deg": -15.993,
+          "behind_kart_nose": false,
+          "signed_plane_m": -4.7446,
+          "signed_lateral_m": 11.605,
+          "gate_forward_velocity_m_s": 9.7664,
+          "half_width_m": 12.0,
+          "within_span_now": true,
+          "crossing_rule": "Next gate only: step crosses plane<=0 to>0 and interpolated |lateral|<=half_width. Plane positive=gate forward side; lateral positive=gate left. Bearing points to centre; forward heading orients gate. Within_span_now is not credit. Uncredited gate remains required; reverse crossings and rescue give no credit."
+        }
+      },
+      "road_frame_motion": {
+        "nose_vs_road_deg": 30.48,
+        "velocity_vs_road_deg": 50.012,
+        "velocity_left_m_s": 9.1941,
+        "velocity_forward_m_s": 7.7116
+      },
+      "instantaneous_motion": {
+        "expected": "leftward",
+        "road_lateral_velocity_m_s": 9.1941,
+        "scope": "current_road_relative_motion_not_future_risk"
+      }
+    },
+    {
+      "id": "road-motion-07-b",
+      "mirror_id": "road-motion-07-a",
+      "pair_index": 7,
+      "reflection_sign": -1,
+      "region": "curve",
+      "risk_class": "hazard",
+      "expected": "leaves_road",
+      "observation": {
+        "tick": 120,
+        "time": 2.0,
+        "progress": {
+          "lap": 1,
+          "laps_completed": 0,
+          "laps": 3,
+          "checkpoint": 12,
+          "checkpoints_passed": 11,
+          "checkpoints_per_lap": 40,
+          "resets": 0,
+          "track_distance": 84.963,
+          "finished": false
+        },
+        "rescue": {
+          "after_s": 3.0,
+          "offroad_elapsed": 0.0,
+          "count": 0,
+          "last_reset_tick": null
+        },
+        "control": "hard_left_coast",
+        "finished": false,
+        "handling": {
+          "max_speed": 12.0,
+          "acceleration": 12.0,
+          "braking": 24.0,
+          "max_steering_angle": 0.12,
+          "wheelbase": 1.8,
+          "steering_response": 0.12,
+          "yaw_response": 0.1,
+          "lateral_grip": 13.0,
+          "rolling_drag": 0.35,
+          "aerodynamic_drag": 0.006,
+          "grass_acceleration": 4.0,
+          "grass_drag": 1.1,
+          "grass_grip": 8.0
+        },
+        "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+        "kart": {
+          "speed_m_s": 12.0,
+          "velocity_forward_m_s": 11.3095,
+          "velocity_left_m_s": -4.0119,
+          "yaw_deg_s": -24.0,
+          "yaw_direction": "right",
+          "steering_deg": -6.875,
+          "steering_direction": "right"
+        },
+        "physics": {
+          "current_surface": "road",
+          "current_lateral_grip_mps2": 13.0,
+          "grip_limited_minimum_steady_turn_radius_m": 11.077
+        },
+        "road": {
+          "width_m": 24.0,
+          "offset_m": -11.0,
+          "kart_side": "right",
+          "left_edge_clearance_m": 23.0,
+          "right_edge_clearance_m": 1.0,
+          "on_road": true,
+          "road_vs_kart_deg": 30.48,
+          "road_faces": "left",
+          "preview_columns": [
+            "ahead_m",
+            "ego_x_m",
+            "ego_y_m",
+            "road_turn_deg",
+            "bend",
+            "radius_m",
+            "lateral_acceleration_needed_at_current_speed_mps2",
+            "grip_usage_at_current_speed"
+          ],
+          "preview": [
+            [
+              0.0,
+              -5.583,
+              9.478,
+              0.0,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              3.0,
+              -2.929,
+              10.873,
+              -5.727,
+              "right",
+              30.003,
+              4.8,
+              0.3692
+            ],
+            [
+              6.0,
+              -0.144,
+              11.985,
+              -11.465,
+              "right",
+              29.958,
+              4.807,
+              0.3697
+            ],
+            [
+              10.0,
+              3.713,
+              13.035,
+              -19.103,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              15.0,
+              8.673,
+              13.612,
+              -28.648,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              22.0,
+              15.632,
+              13.018,
+              -42.024,
+              "right",
+              30.012,
+              4.798,
+              0.3691
+            ],
+            [
+              32.0,
+              24.92,
+              9.439,
+              -61.127,
+              "right",
+              29.976,
+              4.804,
+              0.3695
+            ],
+            [
+              45.0,
+              34.752,
+              0.997,
+              -75.022,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ],
+            [
+              60.0,
+              45.443,
+              -9.524,
+              -75.022,
+              "straight",
+              null,
+              0.0,
+              0.0
+            ]
+          ],
+          "bends": [
+            {
+              "starts_in_road_m": 0.0,
+              "ends_in_road_m": 40.631,
+              "direction": "right",
+              "tightest_radius_m": 29.923,
+              "tightest_in_road_m": 30.716,
+              "heading_change_deg": -75.011,
+              "lateral_acceleration_needed_at_current_speed_mps2": 4.812,
+              "grip_usage_at_current_speed": 0.3702
+            }
+          ],
+          "bend_sampling": {
+            "horizon_road_m": 60.0,
+            "max_step_m": 1.0,
+            "includes_all_source_vertices": true,
+            "straight_threshold_rad_per_m": 0.004,
+            "total_regions": 1,
+            "shown_limit": 3
+          }
+        },
+        "next_gate": {
+          "known": true,
+          "index": 12,
+          "centre_ego_m": [
+            1.363,
+            12.463
+          ],
+          "range_m": 12.537,
+          "bearing_to_centre_deg": 83.757,
+          "forward_heading_vs_kart_deg": 15.993,
+          "behind_kart_nose": false,
+          "signed_plane_m": -4.7446,
+          "signed_lateral_m": -11.605,
+          "gate_forward_velocity_m_s": 9.7664,
+          "half_width_m": 12.0,
+          "within_span_now": true,
+          "crossing_rule": "Next gate only: step crosses plane<=0 to>0 and interpolated |lateral|<=half_width. Plane positive=gate forward side; lateral positive=gate left. Bearing points to centre; forward heading orients gate. Within_span_now is not credit. Uncredited gate remains required; reverse crossings and rescue give no credit."
+        }
+      },
+      "road_frame_motion": {
+        "nose_vs_road_deg": -30.48,
+        "velocity_vs_road_deg": -50.012,
+        "velocity_left_m_s": -9.1941,
+        "velocity_forward_m_s": 7.7116
+      },
+      "instantaneous_motion": {
+        "expected": "rightward",
+        "road_lateral_velocity_m_s": -9.1941,
+        "scope": "current_road_relative_motion_not_future_risk"
+      }
+    }
+  ],
+  "ordered_requests": [
+    {
+      "index": 0,
+      "block": "forecast",
+      "case_id": "road-motion-00-a",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 1,
+      "block": "forecast",
+      "case_id": "road-motion-00-a",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 2,
+      "block": "forecast",
+      "case_id": "road-motion-00-a",
+      "context": "road_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 3,
+      "block": "forecast",
+      "case_id": "road-motion-00-a",
+      "context": "road_frame_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 4,
+      "block": "forecast",
+      "case_id": "road-motion-06-b",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 5,
+      "block": "forecast",
+      "case_id": "road-motion-06-b",
+      "context": "road_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 6,
+      "block": "forecast",
+      "case_id": "road-motion-06-b",
+      "context": "road_frame_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 7,
+      "block": "forecast",
+      "case_id": "road-motion-06-b",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 8,
+      "block": "forecast",
+      "case_id": "road-motion-04-b",
+      "context": "road_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 9,
+      "block": "forecast",
+      "case_id": "road-motion-04-b",
+      "context": "road_frame_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 10,
+      "block": "forecast",
+      "case_id": "road-motion-04-b",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 11,
+      "block": "forecast",
+      "case_id": "road-motion-04-b",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 12,
+      "block": "forecast",
+      "case_id": "road-motion-03-a",
+      "context": "road_frame_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 13,
+      "block": "forecast",
+      "case_id": "road-motion-03-a",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 14,
+      "block": "forecast",
+      "case_id": "road-motion-03-a",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 15,
+      "block": "forecast",
+      "case_id": "road-motion-03-a",
+      "context": "road_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 16,
+      "block": "forecast",
+      "case_id": "road-motion-00-b",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 17,
+      "block": "forecast",
+      "case_id": "road-motion-00-b",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 18,
+      "block": "forecast",
+      "case_id": "road-motion-00-b",
+      "context": "road_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 19,
+      "block": "forecast",
+      "case_id": "road-motion-00-b",
+      "context": "road_frame_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 20,
+      "block": "forecast",
+      "case_id": "road-motion-07-a",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 21,
+      "block": "forecast",
+      "case_id": "road-motion-07-a",
+      "context": "road_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 22,
+      "block": "forecast",
+      "case_id": "road-motion-07-a",
+      "context": "road_frame_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 23,
+      "block": "forecast",
+      "case_id": "road-motion-07-a",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 24,
+      "block": "forecast",
+      "case_id": "road-motion-01-a",
+      "context": "road_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 25,
+      "block": "forecast",
+      "case_id": "road-motion-01-a",
+      "context": "road_frame_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 26,
+      "block": "forecast",
+      "case_id": "road-motion-01-a",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 27,
+      "block": "forecast",
+      "case_id": "road-motion-01-a",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 28,
+      "block": "forecast",
+      "case_id": "road-motion-01-b",
+      "context": "road_frame_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 29,
+      "block": "forecast",
+      "case_id": "road-motion-01-b",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 30,
+      "block": "forecast",
+      "case_id": "road-motion-01-b",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 31,
+      "block": "forecast",
+      "case_id": "road-motion-01-b",
+      "context": "road_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 32,
+      "block": "forecast",
+      "case_id": "road-motion-02-b",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 33,
+      "block": "forecast",
+      "case_id": "road-motion-02-b",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 34,
+      "block": "forecast",
+      "case_id": "road-motion-02-b",
+      "context": "road_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 35,
+      "block": "forecast",
+      "case_id": "road-motion-02-b",
+      "context": "road_frame_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 36,
+      "block": "forecast",
+      "case_id": "road-motion-06-a",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 37,
+      "block": "forecast",
+      "case_id": "road-motion-06-a",
+      "context": "road_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 38,
+      "block": "forecast",
+      "case_id": "road-motion-06-a",
+      "context": "road_frame_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 39,
+      "block": "forecast",
+      "case_id": "road-motion-06-a",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 40,
+      "block": "forecast",
+      "case_id": "road-motion-05-a",
+      "context": "road_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 41,
+      "block": "forecast",
+      "case_id": "road-motion-05-a",
+      "context": "road_frame_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 42,
+      "block": "forecast",
+      "case_id": "road-motion-05-a",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 43,
+      "block": "forecast",
+      "case_id": "road-motion-05-a",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 44,
+      "block": "forecast",
+      "case_id": "road-motion-03-b",
+      "context": "road_frame_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 45,
+      "block": "forecast",
+      "case_id": "road-motion-03-b",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 46,
+      "block": "forecast",
+      "case_id": "road-motion-03-b",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 47,
+      "block": "forecast",
+      "case_id": "road-motion-03-b",
+      "context": "road_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "leaves_road",
+        "stays_on_road"
+      ]
+    },
+    {
+      "index": 48,
+      "block": "forecast",
+      "case_id": "road-motion-05-b",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 49,
+      "block": "forecast",
+      "case_id": "road-motion-05-b",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 50,
+      "block": "forecast",
+      "case_id": "road-motion-05-b",
+      "context": "road_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 51,
+      "block": "forecast",
+      "case_id": "road-motion-05-b",
+      "context": "road_frame_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 52,
+      "block": "forecast",
+      "case_id": "road-motion-07-b",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 53,
+      "block": "forecast",
+      "case_id": "road-motion-07-b",
+      "context": "road_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 54,
+      "block": "forecast",
+      "case_id": "road-motion-07-b",
+      "context": "road_frame_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 55,
+      "block": "forecast",
+      "case_id": "road-motion-07-b",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 56,
+      "block": "forecast",
+      "case_id": "road-motion-04-a",
+      "context": "road_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 57,
+      "block": "forecast",
+      "case_id": "road-motion-04-a",
+      "context": "road_frame_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 58,
+      "block": "forecast",
+      "case_id": "road-motion-04-a",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 59,
+      "block": "forecast",
+      "case_id": "road-motion-04-a",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 60,
+      "block": "forecast",
+      "case_id": "road-motion-02-a",
+      "context": "road_frame_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 61,
+      "block": "forecast",
+      "case_id": "road-motion-02-a",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 62,
+      "block": "forecast",
+      "case_id": "road-motion-02-a",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 63,
+      "block": "forecast",
+      "case_id": "road-motion-02-a",
+      "context": "road_no_badges",
+      "repetition": 1,
+      "physical_order": [
+        "stays_on_road",
+        "leaves_road"
+      ]
+    },
+    {
+      "index": 64,
+      "block": "motion",
+      "case_id": "road-motion-00-a",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "leftward",
+        "rightward"
+      ]
+    },
+    {
+      "index": 65,
+      "block": "motion",
+      "case_id": "road-motion-00-a",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "leftward",
+        "rightward"
+      ]
+    },
+    {
+      "index": 66,
+      "block": "motion",
+      "case_id": "road-motion-06-b",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "leftward",
+        "rightward"
+      ]
+    },
+    {
+      "index": 67,
+      "block": "motion",
+      "case_id": "road-motion-06-b",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "leftward",
+        "rightward"
+      ]
+    },
+    {
+      "index": 68,
+      "block": "motion",
+      "case_id": "road-motion-04-b",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "rightward",
+        "leftward"
+      ]
+    },
+    {
+      "index": 69,
+      "block": "motion",
+      "case_id": "road-motion-04-b",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "rightward",
+        "leftward"
+      ]
+    },
+    {
+      "index": 70,
+      "block": "motion",
+      "case_id": "road-motion-03-a",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "rightward",
+        "leftward"
+      ]
+    },
+    {
+      "index": 71,
+      "block": "motion",
+      "case_id": "road-motion-03-a",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "rightward",
+        "leftward"
+      ]
+    },
+    {
+      "index": 72,
+      "block": "motion",
+      "case_id": "road-motion-00-b",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "leftward",
+        "rightward"
+      ]
+    },
+    {
+      "index": 73,
+      "block": "motion",
+      "case_id": "road-motion-00-b",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "leftward",
+        "rightward"
+      ]
+    },
+    {
+      "index": 74,
+      "block": "motion",
+      "case_id": "road-motion-07-a",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "leftward",
+        "rightward"
+      ]
+    },
+    {
+      "index": 75,
+      "block": "motion",
+      "case_id": "road-motion-07-a",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "leftward",
+        "rightward"
+      ]
+    },
+    {
+      "index": 76,
+      "block": "motion",
+      "case_id": "road-motion-01-a",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "rightward",
+        "leftward"
+      ]
+    },
+    {
+      "index": 77,
+      "block": "motion",
+      "case_id": "road-motion-01-a",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "rightward",
+        "leftward"
+      ]
+    },
+    {
+      "index": 78,
+      "block": "motion",
+      "case_id": "road-motion-01-b",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "rightward",
+        "leftward"
+      ]
+    },
+    {
+      "index": 79,
+      "block": "motion",
+      "case_id": "road-motion-01-b",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "rightward",
+        "leftward"
+      ]
+    },
+    {
+      "index": 80,
+      "block": "motion",
+      "case_id": "road-motion-02-b",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "leftward",
+        "rightward"
+      ]
+    },
+    {
+      "index": 81,
+      "block": "motion",
+      "case_id": "road-motion-02-b",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "leftward",
+        "rightward"
+      ]
+    },
+    {
+      "index": 82,
+      "block": "motion",
+      "case_id": "road-motion-06-a",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "leftward",
+        "rightward"
+      ]
+    },
+    {
+      "index": 83,
+      "block": "motion",
+      "case_id": "road-motion-06-a",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "leftward",
+        "rightward"
+      ]
+    },
+    {
+      "index": 84,
+      "block": "motion",
+      "case_id": "road-motion-05-a",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "rightward",
+        "leftward"
+      ]
+    },
+    {
+      "index": 85,
+      "block": "motion",
+      "case_id": "road-motion-05-a",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "rightward",
+        "leftward"
+      ]
+    },
+    {
+      "index": 86,
+      "block": "motion",
+      "case_id": "road-motion-03-b",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "rightward",
+        "leftward"
+      ]
+    },
+    {
+      "index": 87,
+      "block": "motion",
+      "case_id": "road-motion-03-b",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "rightward",
+        "leftward"
+      ]
+    },
+    {
+      "index": 88,
+      "block": "motion",
+      "case_id": "road-motion-05-b",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "leftward",
+        "rightward"
+      ]
+    },
+    {
+      "index": 89,
+      "block": "motion",
+      "case_id": "road-motion-05-b",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "leftward",
+        "rightward"
+      ]
+    },
+    {
+      "index": 90,
+      "block": "motion",
+      "case_id": "road-motion-07-b",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "leftward",
+        "rightward"
+      ]
+    },
+    {
+      "index": 91,
+      "block": "motion",
+      "case_id": "road-motion-07-b",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "leftward",
+        "rightward"
+      ]
+    },
+    {
+      "index": 92,
+      "block": "motion",
+      "case_id": "road-motion-04-a",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "rightward",
+        "leftward"
+      ]
+    },
+    {
+      "index": 93,
+      "block": "motion",
+      "case_id": "road-motion-04-a",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "rightward",
+        "leftward"
+      ]
+    },
+    {
+      "index": 94,
+      "block": "motion",
+      "case_id": "road-motion-02-a",
+      "context": "road_frame",
+      "repetition": 1,
+      "physical_order": [
+        "rightward",
+        "leftward"
+      ]
+    },
+    {
+      "index": 95,
+      "block": "motion",
+      "case_id": "road-motion-02-a",
+      "context": "road",
+      "repetition": 1,
+      "physical_order": [
+        "rightward",
+        "leftward"
+      ]
+    }
+  ],
+  "scope": "Exact current-state fixtures and pure builders; future trace bulk remains in ignored evidence. No paid responses."
+}

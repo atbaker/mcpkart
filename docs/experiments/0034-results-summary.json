@@ -1,0 +1,1174 @@
+{
+  "schema_version": 1,
+  "kind": "static_policy_facts_projection_results",
+  "experiment": "0034",
+  "status": "complete_audit_and_provenance_passed_facts_gate_passed",
+  "scope": "Fresh paired fixed factual projection versus full state under the exact0033drivingquestions and unchanged0032bearingpolicy; not optimal-action labels or live qualification.",
+  "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+  "provenance_files": [
+    {
+      "path": "artifacts/jev-policy-facts-v1/protocol.json",
+      "sha256": "d33ad23e345e3a8dac09a4293ede866dc6b726cfc9fb1d8abd3d2bcad56f764b"
+    },
+    {
+      "path": "docs/experiments/0034-policy-facts-prompts.json",
+      "sha256": "0fcae7cec4218702c107f563521203eae583acfd272981753dea71abe279a046"
+    },
+    {
+      "path": "artifacts/jev-policy-facts-v1/final-audit.json",
+      "sha256": "c6718533f30b2c6e069bff9343ac4e87211a4665d02c337c02c0116d512e811a"
+    },
+    {
+      "path": "artifacts/jev-policy-facts-v1/report/summary.json",
+      "sha256": "096ff594e34ce42f39ecd98e18abb6311abacf67d263e8eab28e046c32ab4a25"
+    },
+    {
+      "path": "artifacts/jev-policy-facts-v1/preflight-before-collection.json",
+      "sha256": "d4805e78900ba5ca9a91b96d2faf4793199ae19f716c6e0f55369106e631714c"
+    },
+    {
+      "path": "artifacts/jev-policy-facts-v1/preflight.json",
+      "sha256": "42eace817e8e21d028e6eb76349af017075e2991a8b792d02184685b679e41e4"
+    },
+    {
+      "path": "artifacts/jev-policy-facts-v1/root-authorization.json",
+      "sha256": "4f16fbb983b86e19ce8f464948e5fc9acb3cc933e98574a713342a67e976f29e"
+    },
+    {
+      "path": "artifacts/jev-policy-facts-v1/root-execution-confirmation.json",
+      "sha256": "da9165319144ef6d93663956655c0d6827a167c1ca14156a8cc829c568cc4a12"
+    },
+    {
+      "path": "artifacts/jev-policy-facts-v1/source-inheritance.json",
+      "sha256": "ece1e0b6d84170ac16be0e45f94ca78ca1e494fd5562cbbf0a8e75cd2387f568"
+    },
+    {
+      "path": "artifacts/jev-policy-facts-v1/origin-manifest.json",
+      "sha256": "c3434c69b3794b5100afbf3f3182a3e3b6c1c8b592b621664bc3c025ad8dfa87"
+    },
+    {
+      "path": "artifacts/jev-policy-facts-v1/prospective-design.md",
+      "sha256": "c5b8607f58b7553b258886af5770ff6d40def184ada0c73b1c9b108afa8e9778"
+    },
+    {
+      "path": "artifacts/jev-policy-facts-v1/collection-provenance-verification.json",
+      "sha256": "370c673d56d2123d6578a1faf7713f31287e5da4d7cf12a661bc502267fae2de"
+    }
+  ],
+  "frozen_protocol": {
+    "schema_version": 1,
+    "kind": "static_policy_facts_projection",
+    "frozen": true,
+    "created_utc": "2026-10-20T03:30:05.864107+00:00",
+    "client_date": "2026-10-20",
+    "planned_calls": 60,
+    "cases": 30,
+    "repetitions": 1,
+    "contexts": [
+      "full",
+      "facts"
+    ],
+    "order_seed": 2026102034,
+    "order_cells": {
+      "facts|reverse=0": 8,
+      "facts|reverse=1": 7,
+      "full|reverse=0": 8,
+      "full|reverse=1": 7
+    },
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "input_token_ceiling": 16384,
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61279,
+      "charged_usd": 7.561810875999882,
+      "charged_tokens": 244410246,
+      "reported_cost_usd": 7.504532411999866,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "shared_ledger": "artifacts/budget.json",
+    "limits": {
+      "max_requests": 75000,
+      "cap_usd": 10.0,
+      "max_tokens": 250000000
+    },
+    "route": {
+      "model": "typesafe/jev-1.14",
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "typesafe",
+      "provider_name": "TypeSafe",
+      "endpoint_name": "TypeSafe | typesafe/jev-1.14-20261014",
+      "price_input_per_token": 4.2e-08,
+      "price_output_per_token": 0.0,
+      "price_per_request": 0.0,
+      "context_length": 262144,
+      "max_prompt_tokens": 262144,
+      "max_completion_tokens": 235929
+    },
+    "automatic_retries": 0,
+    "provider_fallbacks": false,
+    "no_controls_applied": true,
+    "stop_on_first_endpoint_error": true,
+    "stop_on_uncertain_accounting": true,
+    "collect_all_valid_answers": true,
+    "format_gate": null,
+    "order_policy": "Shuffle30caseunitsseed2026102034;firstcontextj%2,reversebothwheelandpedalmenuordersj//2%2;4cellsexactcountsrecordedinorder_cells(each7or8),eachcontexteachposition15times.Onepresentationpercase/context.",
+    "task_contract": "Applysameexactfrozen0032canonicalround4bearingandpedalguardpolicy,notjudgeoptimalinput.NoDAMPEDguide.BothquestionsBYTEEXACT0033DRIVINGbuilder.Commondefinitions/componenttasks/criterionlocalrules/physicalmenus/IDs/nativeCartesianmapunchanged.FullarmaddsONLYsamecanonicalbearingtobasefullobservation.Factsarmfixedpureprojectionofthatstate:topunits,kartspeed,roadonroad/offset/leftclearance/rightclearance/bearing/first3previewcolumnsand15mrowfirst3cells,currentroadleftvelocityandoriginalunits,nextgateknown/signedplane.Retainedleavesidentical,full/factslabelsidentical.Noevaluatedpolicytarget/guard/eligibilityfieldsorlabelsinstates.",
+    "client_contract": "IgnoredsubclassoverridesONLYquestionsproperty;productiondecide/componentdecode/uncertainty/accountinginheritedunchanged.Completephysical5x3inverse,noremappingresponseorhostpolicyselection;oneatomicnativepaironly.Staticnocommandsapplied.",
+    "policy_scope": "Ahead15mlookaheadandnonmissedgateonly;unsupportedbehind15m/missedgaterecoveryexcludedwithoutinventedlabels.Physicalbraking/coastingeffectivenessunprovenbyfreeupperboundracesbecausenevertriggeredthere.",
+    "facts_gate": {
+      "exact_pairs_correct_min": 27,
+      "responses": 30,
+      "straight_wheel_correct_required": 6,
+      "straight_responses": 6,
+      "half_wheel_correct_min": 11,
+      "half_responses": 12,
+      "full_wheel_correct_min": 11,
+      "full_responses": 12,
+      "each_pedal_correct_min": 9,
+      "each_pedal_responses": 10,
+      "brake_choices_below_2m_s_max": 0,
+      "net_exact_pair_gain_min": 3,
+      "audit_pass_required": true,
+      "endpoint_or_accounting_errors_max": 0
+    },
+    "score_interpretation": "Policyexecutiononly,notoptimalcontrolorraceperformance;allvalidresponsescollectedregardlesscorrectness.",
+    "followup_policy": "Passingonlymotivatesfreshnativecompatibility/physicalchoicebridgeandthenbudgetpermittedseparatelyfrozenlive;noautomaticlive,qualificationorpromotion.Bearingthresholdsnewengineeringpolicy,notpursuitequivalent.",
+    "session_deadline_utc": "2026-10-20T06:17:26+00:00",
+    "helper_sha256": {
+      "policy.py": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+      "case_bank.py": "ac9b2b1c9aa85f61734b6d66783bb5ffea571ddbff224bfbf79088231f0e32c6",
+      "cases.json": "2ef593da18ba53f437be23dcceeb20cc67ac1207911671c91d9ad1c8d1639aed",
+      "policy_client.py": "ec7050e706ddd7e3327d96ddbf76dc591b95d305d8e444a2294bcadc4cd6050e",
+      "source-inheritance.json": "ece1e0b6d84170ac16be0e45f94ca78ca1e494fd5562cbbf0a8e75cd2387f568",
+      "payloads.py": "f1dee6db79ba94b7494e928941a428eee8ea1705a1e8a394396af1410f1556d2",
+      "prepare.py": "1c137e22b1f2f490184dee316eb052da1940c8bdbea3bf8f4018a3f23b9a1d98",
+      "runner.py": "c4c65b11293dc58d50d28ffca3bf46fd0dbbe23c47f57bee915fcd9bdfbdea72",
+      "audit.py": "41d96f8eb7a55f232cfca4eac4787cb6f1512348e2444591627534718a5a3f13",
+      "preflight.py": "736e4369556b77f6f2d78d7e68973aecd8f2dbb9919800786375694bc3b7d46c",
+      "preflight.json": "42eace817e8e21d028e6eb76349af017075e2991a8b792d02184685b679e41e4",
+      "order.json": "25be7d377df0a8084e165d07ec5398c295737025e3fc527b88dc9ec0722614e7",
+      "routes.json": "216c5b1891ca565c55ac40e1884e44c7797acf037a3a36e1843b389ba50e1a7c",
+      "DESIGN.md": "95713cf960112f9ea6e41aa3ecd3b74e7d0fbc28b6436eec07f1c7ccc818f336",
+      "CASE_DESIGN.md": "8ae8cc48150b825b3c8282eb1d554e0d855a9087d1b9e03ebd06aed26f9fc096",
+      "origin-manifest.json": "c3434c69b3794b5100afbf3f3182a3e3b6c1c8b592b621664bc3c025ad8dfa87",
+      "prospective-design.md": "c5b8607f58b7553b258886af5770ff6d40def184ada0c73b1c9b108afa8e9778",
+      "protocol.draft.json": "a9ade2e321feea7b734e5848d4d2a76c92adc39bfea90b7fe88a0df335522bfe"
+    },
+    "prompt_archive": {
+      "path": "docs/experiments/0034-policy-facts-prompts.json",
+      "sha256": "0fcae7cec4218702c107f563521203eae583acfd272981753dea71abe279a046"
+    },
+    "frozen_utc": "2026-10-20T03:31:50.003766+00:00"
+  },
+  "final_audit": {
+    "passed": true,
+    "complete": true,
+    "checked_at_utc": "2026-10-20T03:32:54.746998+00:00",
+    "errors": [],
+    "warnings": [],
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "helper_checks": {
+      "policy.py": {
+        "expected": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+        "actual": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+        "matches": true
+      },
+      "case_bank.py": {
+        "expected": "ac9b2b1c9aa85f61734b6d66783bb5ffea571ddbff224bfbf79088231f0e32c6",
+        "actual": "ac9b2b1c9aa85f61734b6d66783bb5ffea571ddbff224bfbf79088231f0e32c6",
+        "matches": true
+      },
+      "cases.json": {
+        "expected": "2ef593da18ba53f437be23dcceeb20cc67ac1207911671c91d9ad1c8d1639aed",
+        "actual": "2ef593da18ba53f437be23dcceeb20cc67ac1207911671c91d9ad1c8d1639aed",
+        "matches": true
+      },
+      "policy_client.py": {
+        "expected": "ec7050e706ddd7e3327d96ddbf76dc591b95d305d8e444a2294bcadc4cd6050e",
+        "actual": "ec7050e706ddd7e3327d96ddbf76dc591b95d305d8e444a2294bcadc4cd6050e",
+        "matches": true
+      },
+      "source-inheritance.json": {
+        "expected": "ece1e0b6d84170ac16be0e45f94ca78ca1e494fd5562cbbf0a8e75cd2387f568",
+        "actual": "ece1e0b6d84170ac16be0e45f94ca78ca1e494fd5562cbbf0a8e75cd2387f568",
+        "matches": true
+      },
+      "payloads.py": {
+        "expected": "f1dee6db79ba94b7494e928941a428eee8ea1705a1e8a394396af1410f1556d2",
+        "actual": "f1dee6db79ba94b7494e928941a428eee8ea1705a1e8a394396af1410f1556d2",
+        "matches": true
+      },
+      "prepare.py": {
+        "expected": "1c137e22b1f2f490184dee316eb052da1940c8bdbea3bf8f4018a3f23b9a1d98",
+        "actual": "1c137e22b1f2f490184dee316eb052da1940c8bdbea3bf8f4018a3f23b9a1d98",
+        "matches": true
+      },
+      "runner.py": {
+        "expected": "c4c65b11293dc58d50d28ffca3bf46fd0dbbe23c47f57bee915fcd9bdfbdea72",
+        "actual": "c4c65b11293dc58d50d28ffca3bf46fd0dbbe23c47f57bee915fcd9bdfbdea72",
+        "matches": true
+      },
+      "audit.py": {
+        "expected": "41d96f8eb7a55f232cfca4eac4787cb6f1512348e2444591627534718a5a3f13",
+        "actual": "41d96f8eb7a55f232cfca4eac4787cb6f1512348e2444591627534718a5a3f13",
+        "matches": true
+      },
+      "preflight.py": {
+        "expected": "736e4369556b77f6f2d78d7e68973aecd8f2dbb9919800786375694bc3b7d46c",
+        "actual": "736e4369556b77f6f2d78d7e68973aecd8f2dbb9919800786375694bc3b7d46c",
+        "matches": true
+      },
+      "preflight.json": {
+        "expected": "42eace817e8e21d028e6eb76349af017075e2991a8b792d02184685b679e41e4",
+        "actual": "42eace817e8e21d028e6eb76349af017075e2991a8b792d02184685b679e41e4",
+        "matches": true
+      },
+      "order.json": {
+        "expected": "25be7d377df0a8084e165d07ec5398c295737025e3fc527b88dc9ec0722614e7",
+        "actual": "25be7d377df0a8084e165d07ec5398c295737025e3fc527b88dc9ec0722614e7",
+        "matches": true
+      },
+      "routes.json": {
+        "expected": "216c5b1891ca565c55ac40e1884e44c7797acf037a3a36e1843b389ba50e1a7c",
+        "actual": "216c5b1891ca565c55ac40e1884e44c7797acf037a3a36e1843b389ba50e1a7c",
+        "matches": true
+      },
+      "DESIGN.md": {
+        "expected": "95713cf960112f9ea6e41aa3ecd3b74e7d0fbc28b6436eec07f1c7ccc818f336",
+        "actual": "95713cf960112f9ea6e41aa3ecd3b74e7d0fbc28b6436eec07f1c7ccc818f336",
+        "matches": true
+      },
+      "CASE_DESIGN.md": {
+        "expected": "8ae8cc48150b825b3c8282eb1d554e0d855a9087d1b9e03ebd06aed26f9fc096",
+        "actual": "8ae8cc48150b825b3c8282eb1d554e0d855a9087d1b9e03ebd06aed26f9fc096",
+        "matches": true
+      },
+      "origin-manifest.json": {
+        "expected": "c3434c69b3794b5100afbf3f3182a3e3b6c1c8b592b621664bc3c025ad8dfa87",
+        "actual": "c3434c69b3794b5100afbf3f3182a3e3b6c1c8b592b621664bc3c025ad8dfa87",
+        "matches": true
+      },
+      "prospective-design.md": {
+        "expected": "c5b8607f58b7553b258886af5770ff6d40def184ada0c73b1c9b108afa8e9778",
+        "actual": "c5b8607f58b7553b258886af5770ff6d40def184ada0c73b1c9b108afa8e9778",
+        "matches": true
+      },
+      "protocol.draft.json": {
+        "expected": "a9ade2e321feea7b734e5848d4d2a76c92adc39bfea90b7fe88a0df335522bfe",
+        "actual": "a9ade2e321feea7b734e5848d4d2a76c92adc39bfea90b7fe88a0df335522bfe",
+        "matches": true
+      }
+    },
+    "independent_policy_cases_checked": 30,
+    "policy_client_source_review": {
+      "passed": true,
+      "subclass_own_attributes": [
+        "questions"
+      ],
+      "method_identity": {
+        "__init__": true,
+        "decide": true,
+        "_decode_components": true,
+        "_record_component_uncertainty": true,
+        "__aenter__": true,
+        "__aexit__": true,
+        "_safe_detail": true,
+        "_error_detail": true
+      },
+      "production_decide_source_sha256": "118e79f7d6107f6bd467967760fd1c2bd9ae0a8f828df9a1473cf621ccc82020",
+      "no_response_rewriting_or_host_selection": true
+    },
+    "free_policy_evidence_review": {
+      "passed": true,
+      "review_sha256": "a16ec5a8eaf5981178b2a535f10b22257837144eb585b3f4e689284dc250d1c0",
+      "independent_review": {
+        "passed": true,
+        "checked_at_utc": "2026-10-20T03:15:16.041882+00:00",
+        "errors": [],
+        "caveats": [],
+        "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+        "policy_sha256": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+        "free_policy_sha256": "5fa307439db5d0f73aae04ee8ac7357913b0441372b0a889f82c457533cfdfba",
+        "free_report_sha256": "b73c9f703b080bfcc1e671bc165b2c456e3bc657cecf44ff748dba269bfa6ea7",
+        "stationary_velocity_angles_checked": 10,
+        "review_script_sha256": "7eed04033162059ce20bec858f6bc9826ce8b1ab15ec8d30706001c86a1ee935",
+        "reviewed_runs": [
+          {
+            "file": "artifacts/jev-bearing-policy-v1/free-runs/seed-15-delay-15-ticks.json",
+            "sha256": "86ea97eab4dae770bae0c47c19b2dba0e21b7d11c930ecbc9d71ec16be8cc1a9",
+            "seed": 15,
+            "delay_ticks": 15,
+            "physics_samples": 4708,
+            "requests": 314,
+            "commands": 313,
+            "elapsed_s": 78.44999999999683,
+            "minimum_clearance_m": 9.962399449076194,
+            "all_saved_states_and_policy_labels_reproduced": true
+          },
+          {
+            "file": "artifacts/jev-bearing-policy-v1/free-runs/seed-16-delay-15-ticks.json",
+            "sha256": "797269f01bdc09bc20069ebfe45f8cece2d2723cdd14df50815e129fcef4ef85",
+            "seed": 16,
+            "delay_ticks": 15,
+            "physics_samples": 4716,
+            "requests": 315,
+            "commands": 314,
+            "elapsed_s": 78.58333333333016,
+            "minimum_clearance_m": 9.954966270076028,
+            "all_saved_states_and_policy_labels_reproduced": true
+          },
+          {
+            "file": "artifacts/jev-bearing-policy-v1/free-runs/seed-15-delay-0-ticks.json",
+            "sha256": "1eb5f93538c08da8d6e9faf2c3e9b376ab2efbf6bba0d0c6352e81f1be346d7e",
+            "seed": 15,
+            "delay_ticks": 0,
+            "physics_samples": 4651,
+            "requests": 310,
+            "commands": 310,
+            "elapsed_s": 77.49999999999689,
+            "minimum_clearance_m": 10.57603733582755,
+            "all_saved_states_and_policy_labels_reproduced": true
+          },
+          {
+            "file": "artifacts/jev-bearing-policy-v1/free-runs/seed-16-delay-0-ticks.json",
+            "sha256": "28cd23d316297bd8415c29004061535b626d8857c700fb480aa686229274a854",
+            "seed": 16,
+            "delay_ticks": 0,
+            "physics_samples": 4656,
+            "requests": 311,
+            "commands": 311,
+            "elapsed_s": 77.58333333333022,
+            "minimum_clearance_m": 10.499450433654959,
+            "all_saved_states_and_policy_labels_reproduced": true
+          }
+        ],
+        "physics_samples_checked": 18731,
+        "policy_observations_checked": 1250,
+        "guard_fixtures_checked": 16,
+        "all_policy_implementations_independent": true,
+        "model_requests": 0,
+        "paid_model_calls": 0,
+        "shared_ledger_unchanged": true,
+        "evidence_sha256": {
+          "artifacts/jev-bearing-policy-v1/policy.py": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+          "artifacts/jev-bearing-policy-v1/free_policy.py": "5fa307439db5d0f73aae04ee8ac7357913b0441372b0a889f82c457533cfdfba",
+          "artifacts/jev-bearing-policy-v1/free-policy-report.json": "b73c9f703b080bfcc1e671bc165b2c456e3bc657cecf44ff748dba269bfa6ea7",
+          "artifacts/jev-bearing-policy-v1/free-runs/guard-release-fixtures.json": "3852da50ccef0ac1834ed39ab7e451139f1849a35edf126c550d71d39f8955e1",
+          "artifacts/jev-prompts-v4/r3/stadium24-reference.json": "0fda7026e279fcb1989e01eccb24f496bc8db6b1df9f92afd30b7ce5fcc67a1f",
+          "artifacts/jev-bearing-policy-v1/free-runs/seed-15-delay-15-ticks.json": "86ea97eab4dae770bae0c47c19b2dba0e21b7d11c930ecbc9d71ec16be8cc1a9",
+          "artifacts/jev-bearing-policy-v1/free-runs/seed-16-delay-15-ticks.json": "797269f01bdc09bc20069ebfe45f8cece2d2723cdd14df50815e129fcef4ef85",
+          "artifacts/jev-bearing-policy-v1/free-runs/seed-15-delay-0-ticks.json": "1eb5f93538c08da8d6e9faf2c3e9b376ab2efbf6bba0d0c6352e81f1be346d7e",
+          "artifacts/jev-bearing-policy-v1/free-runs/seed-16-delay-0-ticks.json": "28cd23d316297bd8415c29004061535b626d8857c700fb480aa686229274a854"
+        },
+        "limitations": [
+          "All complete races had zero concern observations, so braking/coasting recovery effectiveness is untested.",
+          "Synthetic guard fixtures establish rule labels and low-speed release, not successful recovery trajectories.",
+          "Behind-target and uncredited-positive-gate recovery remains unsupported; no such state arose in these runs.",
+          "Host-executed free tracking is an upper bound; model compliance and live latency tails are unproven.",
+          "Bearing thresholds are new engineering constants and are not equivalent to the previous pursuit rule."
+        ]
+      },
+      "origin_manifest_review": {
+        "passed": true,
+        "manifest_sha256": "c3434c69b3794b5100afbf3f3182a3e3b6c1c8b592b621664bc3c025ad8dfa87",
+        "origin_files_checked": 31,
+        "policy_copy_exact": true,
+        "old_frozen_cli_executed_by_audit": false
+      },
+      "audit_replay_counts": {
+        "physics_samples": 18731,
+        "request_observations": 1250,
+        "guard_fixtures": 16
+      },
+      "limitation": "No complete free race triggered guardB; recovery effectiveness untested."
+    },
+    "static_policy_labels_checked": 30,
+    "planned_requests": 60,
+    "saved_requests": 60,
+    "failures": [],
+    "unrun": [],
+    "writer": {
+      "session_id": "520c36b333e4412b9e6bd1b55930bdf2",
+      "pid": 39494,
+      "process_start_ticks": 9471782,
+      "parent_pid": 39493,
+      "parent_start_ticks": 9471781,
+      "boot_id": "b113cec5-1758-4140-b960-8d20b2906b04",
+      "started_utc": "2026-10-20T03:32:17.635772+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-policy-facts-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61279,
+      "charged_usd": 7.561810875999882,
+      "charged_tokens": 244410246,
+      "reported_cost_usd": 7.504532411999866,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61339,
+      "charged_usd": 7.567857111999886,
+      "charged_tokens": 244559951,
+      "reported_cost_usd": 7.51057864799987,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 60,
+      "charged_usd": 0.006046236000003979,
+      "reported_cost_usd": 0.006046236000003979,
+      "charged_tokens": 149705,
+      "uncertain_requests": 0
+    },
+    "automatic_followup_or_promotion": false,
+    "model_requests_by_audit": 0,
+    "ledger_written_by_audit": false,
+    "no_controls_applied": true
+  },
+  "audited_report": {
+    "complete": true,
+    "overall": {
+      "full": {
+        "planned": 30,
+        "attempted": 30,
+        "unrun": 0,
+        "endpoint_ok": 30,
+        "endpoint_errors": 0,
+        "correct": 25,
+        "incorrect_or_endpoint_error": 5,
+        "attempted_accuracy": 0.8333333333333334,
+        "planned_correct_fraction": 0.8333333333333334,
+        "endpoint_success_accuracy": 0.8333333333333334,
+        "charged_usd": 0.003823134,
+        "charged_tokens": 93902,
+        "median_latency_ms": 245.81183
+      },
+      "facts": {
+        "planned": 30,
+        "attempted": 30,
+        "unrun": 0,
+        "endpoint_ok": 30,
+        "endpoint_errors": 0,
+        "correct": 30,
+        "incorrect_or_endpoint_error": 0,
+        "attempted_accuracy": 1.0,
+        "planned_correct_fraction": 1.0,
+        "endpoint_success_accuracy": 1.0,
+        "charged_usd": 0.002223102,
+        "charged_tokens": 55803,
+        "median_latency_ms": 241.8605905
+      }
+    },
+    "components": {
+      "full": {
+        "wheel_correct": 25,
+        "pedal_correct": 30,
+        "wheel_by_magnitude": {
+          "straight": {
+            "correct": 3,
+            "responses": 6
+          },
+          "half": {
+            "correct": 10,
+            "responses": 12
+          },
+          "full": {
+            "correct": 12,
+            "responses": 12
+          }
+        },
+        "pedal_by_class": {
+          "accelerate": {
+            "correct": 10,
+            "responses": 10
+          },
+          "coast": {
+            "correct": 10,
+            "responses": 10
+          },
+          "brake": {
+            "correct": 10,
+            "responses": 10
+          }
+        },
+        "wheel_by_signed_direction": {
+          "hard_right": {
+            "correct": 6,
+            "responses": 6
+          },
+          "right": {
+            "correct": 5,
+            "responses": 6
+          },
+          "straight": {
+            "correct": 3,
+            "responses": 6
+          },
+          "left": {
+            "correct": 5,
+            "responses": 6
+          },
+          "hard_left": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "brake_choices_below_2mps": 0,
+        "chosen_native_counts": {
+          "straight_accelerate": 3,
+          "left_brake": 2,
+          "right_brake": 3,
+          "right_accelerate": 1,
+          "hard_left_brake": 2,
+          "left_accelerate": 2,
+          "right_coast": 2,
+          "hard_left_coast": 3,
+          "hard_right_coast": 4,
+          "hard_left_accelerate": 2,
+          "hard_right_brake": 2,
+          "hard_right_accelerate": 2,
+          "straight_brake": 1,
+          "left_coast": 1
+        },
+        "chosen_wheel_counts": {
+          "straight": 4,
+          "left": 5,
+          "right": 6,
+          "hard_left": 7,
+          "hard_right": 8
+        },
+        "chosen_pedal_counts": {
+          "accelerate": 10,
+          "brake": 10,
+          "coast": 10
+        }
+      },
+      "facts": {
+        "wheel_correct": 30,
+        "pedal_correct": 30,
+        "wheel_by_magnitude": {
+          "straight": {
+            "correct": 6,
+            "responses": 6
+          },
+          "half": {
+            "correct": 12,
+            "responses": 12
+          },
+          "full": {
+            "correct": 12,
+            "responses": 12
+          }
+        },
+        "pedal_by_class": {
+          "accelerate": {
+            "correct": 10,
+            "responses": 10
+          },
+          "coast": {
+            "correct": 10,
+            "responses": 10
+          },
+          "brake": {
+            "correct": 10,
+            "responses": 10
+          }
+        },
+        "wheel_by_signed_direction": {
+          "hard_right": {
+            "correct": 6,
+            "responses": 6
+          },
+          "right": {
+            "correct": 6,
+            "responses": 6
+          },
+          "straight": {
+            "correct": 6,
+            "responses": 6
+          },
+          "left": {
+            "correct": 6,
+            "responses": 6
+          },
+          "hard_left": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "brake_choices_below_2mps": 0,
+        "chosen_native_counts": {
+          "right_accelerate": 2,
+          "left_brake": 2,
+          "right_brake": 2,
+          "hard_left_brake": 2,
+          "left_accelerate": 2,
+          "right_coast": 2,
+          "hard_left_coast": 2,
+          "hard_right_coast": 2,
+          "left_coast": 2,
+          "straight_coast": 2,
+          "straight_brake": 2,
+          "straight_accelerate": 2,
+          "hard_left_accelerate": 2,
+          "hard_right_brake": 2,
+          "hard_right_accelerate": 2
+        },
+        "chosen_wheel_counts": {
+          "right": 6,
+          "left": 6,
+          "hard_left": 6,
+          "hard_right": 6,
+          "straight": 6
+        },
+        "chosen_pedal_counts": {
+          "accelerate": 10,
+          "brake": 10,
+          "coast": 10
+        }
+      }
+    },
+    "paired": {
+      "complete_pairs": 30,
+      "gains": 5,
+      "losses": 0,
+      "net_gain": 5,
+      "both_correct": 25,
+      "both_incorrect": 0
+    },
+    "gate": {
+      "passed": true,
+      "predicates": {
+        "complete_and_audited": true,
+        "zero_endpoint_or_accounting_errors": true,
+        "exact_pairs_27_of30": true,
+        "straight_wheel_6_of6": true,
+        "half_wheel_11_of12": true,
+        "full_wheel_11_of12": true,
+        "each_pedal_9_of10": true,
+        "zero_low_speed_brakes": true,
+        "net_facts_minus_full_at_least3": true
+      }
+    },
+    "source_case_coverage": {
+      "cases": 30,
+      "pairs": 15,
+      "target_counts": {
+        "straight_accelerate": 2,
+        "straight_coast": 2,
+        "straight_brake": 2,
+        "left_accelerate": 2,
+        "right_accelerate": 2,
+        "left_coast": 2,
+        "right_coast": 2,
+        "left_brake": 2,
+        "right_brake": 2,
+        "hard_left_accelerate": 2,
+        "hard_right_accelerate": 2,
+        "hard_left_coast": 2,
+        "hard_right_coast": 2,
+        "hard_left_brake": 2,
+        "hard_right_brake": 2
+      }
+    },
+    "score_scope": "Fixed supplied policy compliance, not optimality or general driving competence",
+    "automatic_followup_or_promotion": false,
+    "free_policy_evidence_review": {
+      "passed": true,
+      "review_sha256": "a16ec5a8eaf5981178b2a535f10b22257837144eb585b3f4e689284dc250d1c0",
+      "independent_review": {
+        "passed": true,
+        "checked_at_utc": "2026-10-20T03:15:16.041882+00:00",
+        "errors": [],
+        "caveats": [],
+        "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+        "policy_sha256": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+        "free_policy_sha256": "5fa307439db5d0f73aae04ee8ac7357913b0441372b0a889f82c457533cfdfba",
+        "free_report_sha256": "b73c9f703b080bfcc1e671bc165b2c456e3bc657cecf44ff748dba269bfa6ea7",
+        "stationary_velocity_angles_checked": 10,
+        "review_script_sha256": "7eed04033162059ce20bec858f6bc9826ce8b1ab15ec8d30706001c86a1ee935",
+        "reviewed_runs": [
+          {
+            "file": "artifacts/jev-bearing-policy-v1/free-runs/seed-15-delay-15-ticks.json",
+            "sha256": "86ea97eab4dae770bae0c47c19b2dba0e21b7d11c930ecbc9d71ec16be8cc1a9",
+            "seed": 15,
+            "delay_ticks": 15,
+            "physics_samples": 4708,
+            "requests": 314,
+            "commands": 313,
+            "elapsed_s": 78.44999999999683,
+            "minimum_clearance_m": 9.962399449076194,
+            "all_saved_states_and_policy_labels_reproduced": true
+          },
+          {
+            "file": "artifacts/jev-bearing-policy-v1/free-runs/seed-16-delay-15-ticks.json",
+            "sha256": "797269f01bdc09bc20069ebfe45f8cece2d2723cdd14df50815e129fcef4ef85",
+            "seed": 16,
+            "delay_ticks": 15,
+            "physics_samples": 4716,
+            "requests": 315,
+            "commands": 314,
+            "elapsed_s": 78.58333333333016,
+            "minimum_clearance_m": 9.954966270076028,
+            "all_saved_states_and_policy_labels_reproduced": true
+          },
+          {
+            "file": "artifacts/jev-bearing-policy-v1/free-runs/seed-15-delay-0-ticks.json",
+            "sha256": "1eb5f93538c08da8d6e9faf2c3e9b376ab2efbf6bba0d0c6352e81f1be346d7e",
+            "seed": 15,
+            "delay_ticks": 0,
+            "physics_samples": 4651,
+            "requests": 310,
+            "commands": 310,
+            "elapsed_s": 77.49999999999689,
+            "minimum_clearance_m": 10.57603733582755,
+            "all_saved_states_and_policy_labels_reproduced": true
+          },
+          {
+            "file": "artifacts/jev-bearing-policy-v1/free-runs/seed-16-delay-0-ticks.json",
+            "sha256": "28cd23d316297bd8415c29004061535b626d8857c700fb480aa686229274a854",
+            "seed": 16,
+            "delay_ticks": 0,
+            "physics_samples": 4656,
+            "requests": 311,
+            "commands": 311,
+            "elapsed_s": 77.58333333333022,
+            "minimum_clearance_m": 10.499450433654959,
+            "all_saved_states_and_policy_labels_reproduced": true
+          }
+        ],
+        "physics_samples_checked": 18731,
+        "policy_observations_checked": 1250,
+        "guard_fixtures_checked": 16,
+        "all_policy_implementations_independent": true,
+        "model_requests": 0,
+        "paid_model_calls": 0,
+        "shared_ledger_unchanged": true,
+        "evidence_sha256": {
+          "artifacts/jev-bearing-policy-v1/policy.py": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+          "artifacts/jev-bearing-policy-v1/free_policy.py": "5fa307439db5d0f73aae04ee8ac7357913b0441372b0a889f82c457533cfdfba",
+          "artifacts/jev-bearing-policy-v1/free-policy-report.json": "b73c9f703b080bfcc1e671bc165b2c456e3bc657cecf44ff748dba269bfa6ea7",
+          "artifacts/jev-bearing-policy-v1/free-runs/guard-release-fixtures.json": "3852da50ccef0ac1834ed39ab7e451139f1849a35edf126c550d71d39f8955e1",
+          "artifacts/jev-prompts-v4/r3/stadium24-reference.json": "0fda7026e279fcb1989e01eccb24f496bc8db6b1df9f92afd30b7ce5fcc67a1f",
+          "artifacts/jev-bearing-policy-v1/free-runs/seed-15-delay-15-ticks.json": "86ea97eab4dae770bae0c47c19b2dba0e21b7d11c930ecbc9d71ec16be8cc1a9",
+          "artifacts/jev-bearing-policy-v1/free-runs/seed-16-delay-15-ticks.json": "797269f01bdc09bc20069ebfe45f8cece2d2723cdd14df50815e129fcef4ef85",
+          "artifacts/jev-bearing-policy-v1/free-runs/seed-15-delay-0-ticks.json": "1eb5f93538c08da8d6e9faf2c3e9b376ab2efbf6bba0d0c6352e81f1be346d7e",
+          "artifacts/jev-bearing-policy-v1/free-runs/seed-16-delay-0-ticks.json": "28cd23d316297bd8415c29004061535b626d8857c700fb480aa686229274a854"
+        },
+        "limitations": [
+          "All complete races had zero concern observations, so braking/coasting recovery effectiveness is untested.",
+          "Synthetic guard fixtures establish rule labels and low-speed release, not successful recovery trajectories.",
+          "Behind-target and uncredited-positive-gate recovery remains unsupported; no such state arose in these runs.",
+          "Host-executed free tracking is an upper bound; model compliance and live latency tails are unproven.",
+          "Bearing thresholds are new engineering constants and are not equivalent to the previous pursuit rule."
+        ]
+      },
+      "origin_manifest_review": {
+        "passed": true,
+        "manifest_sha256": "c3434c69b3794b5100afbf3f3182a3e3b6c1c8b592b621664bc3c025ad8dfa87",
+        "origin_files_checked": 31,
+        "policy_copy_exact": true,
+        "old_frozen_cli_executed_by_audit": false
+      },
+      "audit_replay_counts": {
+        "physics_samples": 18731,
+        "request_observations": 1250,
+        "guard_fixtures": 16
+      },
+      "limitation": "No complete free race triggered guardB; recovery effectiveness untested."
+    },
+    "audit_passed": true
+  },
+  "root_authorization": {
+    "root_thread_id": "01a151b8-43d6-733b-a890-7368ae08c015",
+    "root_host_id": "durable",
+    "authorization_id": "b9d224f286cb48dc96337faf60c0edec",
+    "authorized_utc": "2026-10-20T03:32:12.637275+00:00",
+    "protocol_sha256": "d33ad23e345e3a8dac09a4293ede866dc6b726cfc9fb1d8abd3d2bcad56f764b",
+    "independent_preflight_sha256": "d4805e78900ba5ca9a91b96d2faf4793199ae19f716c6e0f55369106e631714c",
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61279,
+      "charged_usd": 7.561810875999882,
+      "charged_tokens": 244410246,
+      "reported_cost_usd": 7.504532411999866,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "scope": "Exactlyfrozen60staticfactprojectioncalls,onewriter,allvalidanswers,noretries/actuation/sourcechanges."
+  },
+  "collection_writer": {
+    "session_id": "520c36b333e4412b9e6bd1b55930bdf2",
+    "pid": 39494,
+    "process_start_ticks": 9471782,
+    "parent_pid": 39493,
+    "parent_start_ticks": 9471781,
+    "boot_id": "b113cec5-1758-4140-b960-8d20b2906b04",
+    "started_utc": "2026-10-20T03:32:17.635772+00:00",
+    "script_path": "/workspace/mcpkart/artifacts/jev-policy-facts-v1/runner.py",
+    "executable": "/workspace/mcpkart/.venv/bin/python",
+    "explicit_collect_flag": true
+  },
+  "collection_completed_utc": "2026-10-20T03:32:33.919814+00:00",
+  "independent_collection_provenance": {
+    "passed": true,
+    "checked_at_utc": "2026-10-20T03:34:17.943966+00:00",
+    "errors": [],
+    "check_count": 47,
+    "checks": [
+      {
+        "check": "complete_frozen_60_call_scope",
+        "passed": true
+      },
+      {
+        "check": "all_frozen_helper_hashes_unchanged",
+        "passed": true
+      },
+      {
+        "check": "archive_frozen_hash",
+        "passed": true
+      },
+      {
+        "check": "full_11_file_and_rust_bench_fingerprint",
+        "passed": true
+      },
+      {
+        "check": "archive_binds_case_bank",
+        "passed": true
+      },
+      {
+        "check": "all_frozen_origin_hashes_retained_without_running_old_audits",
+        "passed": true
+      },
+      {
+        "check": "fixed_policy_byte_exact_0032_copy",
+        "passed": true
+      },
+      {
+        "check": "0033_prompt_archive_origin_hash",
+        "passed": true
+      },
+      {
+        "check": "all_15_targets_twice_and_held_twice",
+        "passed": true
+      },
+      {
+        "check": "native_inverse_preserves_all_15_inputs",
+        "passed": true
+      },
+      {
+        "check": "independent_labels_match_bank",
+        "passed": true
+      },
+      {
+        "check": "registered_shuffle_and_counterbalance",
+        "passed": true
+      },
+      {
+        "check": "preflight_immutable_passing_zero_paid",
+        "passed": true
+      },
+      {
+        "check": "protocol_bound_preflight_auth_start_complete",
+        "passed": true
+      },
+      {
+        "check": "root_authorization_identity",
+        "passed": true
+      },
+      {
+        "check": "root_explicit_execution_completed",
+        "passed": true
+      },
+      {
+        "check": "prospective_timestamp_chain_before_deadline",
+        "passed": true
+      },
+      {
+        "check": "one_writer_identity_everywhere",
+        "passed": true
+      },
+      {
+        "check": "writer_script_executable_boot_identity",
+        "passed": true
+      },
+      {
+        "check": "no_stop_or_failure_artifacts",
+        "passed": true
+      },
+      {
+        "check": "no_retry_fallback_control_application",
+        "passed": true
+      },
+      {
+        "check": "all_60_exact_archive_payload_bytes_and_hashes",
+        "passed": true
+      },
+      {
+        "check": "all_60_exact_registered_order_entries",
+        "passed": true
+      },
+      {
+        "check": "all_60_factual_states_no_oracle_keys",
+        "passed": true
+      },
+      {
+        "check": "all_60_single_successful_identity_pinned_responses",
+        "passed": true
+      },
+      {
+        "check": "all_60_raw_typed_components_atomic_native_pair",
+        "passed": true
+      },
+      {
+        "check": "all_60_exact_ledger_transitions_and_conservative_admission",
+        "passed": true
+      },
+      {
+        "check": "all_60_requests_strictly_sequential_no_overlap",
+        "passed": true
+      },
+      {
+        "check": "all_60_result_rows_independently_reconstructed",
+        "passed": true
+      },
+      {
+        "check": "all_30_pairs_exact_fixed_factual_leaf_table_projection",
+        "passed": true
+      },
+      {
+        "check": "all_30_pairs_policy_labels_identical_after_projection",
+        "passed": true
+      },
+      {
+        "check": "all_30_pairs_byte_equal_questions_and_matched_menus",
+        "passed": true
+      },
+      {
+        "check": "all_60_questions_byte_exact_0033_driving_origin",
+        "passed": true
+      },
+      {
+        "check": "unique_60_reservations_and_response_ids",
+        "passed": true
+      },
+      {
+        "check": "budget_before_bound_everywhere",
+        "passed": true
+      },
+      {
+        "check": "budget_after_bound_everywhere",
+        "passed": true
+      },
+      {
+        "check": "retained_caps_and_no_pending",
+        "passed": true
+      },
+      {
+        "check": "exact_expected_end_boundary",
+        "passed": true
+      },
+      {
+        "check": "budget_delta_reconciles_all_60_usage",
+        "passed": true
+      },
+      {
+        "check": "independent_scores_expected",
+        "passed": true
+      },
+      {
+        "check": "summary_scores_match_raw_choices",
+        "passed": true
+      },
+      {
+        "check": "paired_gains_losses_reconstructed",
+        "passed": true
+      },
+      {
+        "check": "facts_gate_independently_passed",
+        "passed": true
+      },
+      {
+        "check": "all_gate_predicates_passed",
+        "passed": true
+      },
+      {
+        "check": "final_audit_complete_pass_zero_errors",
+        "passed": true
+      },
+      {
+        "check": "no_automatic_followup_or_promotion",
+        "passed": true
+      },
+      {
+        "check": "read_only_ledger_byte_unchanged",
+        "passed": true
+      }
+    ],
+    "protocol_sha256": "d33ad23e345e3a8dac09a4293ede866dc6b726cfc9fb1d8abd3d2bcad56f764b",
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "writer": {
+      "session_id": "520c36b333e4412b9e6bd1b55930bdf2",
+      "pid": 39494,
+      "process_start_ticks": 9471782,
+      "parent_pid": 39493,
+      "parent_start_ticks": 9471781,
+      "boot_id": "b113cec5-1758-4140-b960-8d20b2906b04",
+      "started_utc": "2026-10-20T03:32:17.635772+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-policy-facts-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61279,
+      "charged_usd": 7.561810875999882,
+      "charged_tokens": 244410246,
+      "reported_cost_usd": 7.504532411999866,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61339,
+      "charged_usd": 7.567857111999886,
+      "charged_tokens": 244559951,
+      "reported_cost_usd": 7.51057864799987,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 60,
+      "charged_tokens": 149705,
+      "charged_usd": 0.006046236
+    },
+    "scores": {
+      "full": {
+        "pairs": 25,
+        "wheel": 25,
+        "pedal": 30,
+        "low_speed_brake": 0
+      },
+      "facts": {
+        "pairs": 30,
+        "wheel": 30,
+        "pedal": 30,
+        "low_speed_brake": 0
+      }
+    },
+    "wheel_correct_by_magnitude": {
+      "full": {
+        "half": 10,
+        "full": 12,
+        "straight": 3
+      },
+      "facts": {
+        "half": 12,
+        "full": 12,
+        "straight": 6
+      }
+    },
+    "facts_gate_passed": true,
+    "model_calls_by_verifier": 0,
+    "ledger_written": false,
+    "script_sha256": "8eb48f108a1bfcf68762213774d9583d4242e36d0bf9a76673740bb7c0875fec",
+    "interpretation": "Supplied-policy static compliance only; no model driving or promotion. Root execution IDs are checked against preserved confirmation, not independently queried from tool infrastructure."
+  },
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61279,
+    "charged_usd": 7.561810875999882,
+    "charged_tokens": 244410246,
+    "reported_cost_usd": 7.504532411999866,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61339,
+    "charged_usd": 7.567857111999886,
+    "charged_tokens": 244559951,
+    "reported_cost_usd": 7.51057864799987,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 60,
+    "charged_usd": 0.006046236000003979,
+    "reported_cost_usd": 0.006046236000003979,
+    "charged_tokens": 149705,
+    "uncertain_requests": 0
+  },
+  "decision": {
+    "facts_gate_passed": true,
+    "fresh_broader_native_validation_motivated": true,
+    "fresh_native_validation_completed": false,
+    "live_followup_triggered": false,
+    "preset_promoted": false,
+    "baseline": "joint damped",
+    "application_defaults_changed": false
+  },
+  "interpretation": {
+    "full_pair_correct": 25,
+    "facts_pair_correct": 30,
+    "responses_each_arm": 30,
+    "facts_paired_gains": 5,
+    "facts_paired_losses": 0,
+    "facts_net_pair_gain": 5,
+    "wheel_matches_pair_score": true,
+    "pedal_correct_each_arm": 30,
+    "pedal_correct_each_class_each_arm": 10,
+    "brake_choices_below_2mps_each_arm": 0,
+    "conclusion": "The fixed facts projection met every registered gate with30/30exactpairs and five gains without losses. This supports execution of the supplied bearing policy on this bank and motivates fresh broader native validation only."
+  },
+  "interpretation_limits": [
+    "Policy and questions are unchanged; projected leaves are exact copies from full state, with no evaluated guard or target added.",
+    "The scalar bearing remains a factual angle, not a host-computed wheel command or eligibility flag.",
+    "Removing other state facts changes available information; no internal distraction or attention mechanism is identified.",
+    "These labels measure supplied-policy compliance, not optimality or general driving competence.",
+    "Thirty synthetic states include fifteen reflected pairs; components, reflections and paired arms are related observations.",
+    "One presentation per state and context supplies no within-arm repeatability estimate.",
+    "The perfect facts score does not show that this reduced state supports general driving or recovery.",
+    "Inherited free host-policy evidence supports nominal tracking only; no complete free race triggered guardB and recovery effectiveness remains untested.",
+    "All valid planned answers were retained without adaptive projection, prompts, replacements or quality-based stopping.",
+    "No paid controls were applied and no race advanced.",
+    "A passing static projection screen requires separately frozen fresh broader native validation before live consideration; no promotion follows.",
+    "Root tool chunk/session IDs are checked against preserved execution confirmation rather than independently queried from tool infrastructure; actual writer and ledger records are independently verified."
+  ],
+  "report_generation": {
+    "saved_completed_evidence_only": true,
+    "audits_rerun": false,
+    "model_calls": 0,
+    "ledger_read_or_written": false,
+    "frozen_archives_modified": false
+  }
+}

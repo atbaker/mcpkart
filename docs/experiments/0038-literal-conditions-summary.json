@@ -1,0 +1,1100 @@
+{
+  "schema_version": 1,
+  "kind": "static_literal_eligibility_pilot_results",
+  "experiment": "0038",
+  "status": "complete_audit_and_provenance_passed_perfect_pilot_gate_failed",
+  "scope": "Eighteenfreshcases36pairedcalls,literalfieldpathsandexpandedBooleancriteriaunderunchangedpolicy,facts,instructionsandnativemeanings.",
+  "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+  "provenance_files": [
+    {
+      "path": "artifacts/jev-literal-conditions-v1/protocol.json",
+      "sha256": "c93bd299d83d5e3b0ca8e76dcf9c4a590c3dc7583a7741edf3c25fba6d10e0c2"
+    },
+    {
+      "path": "docs/experiments/0038-literal-conditions-prompts.json",
+      "sha256": "1aebde4dcae22c905dc9eb188e5623871915b8df769c30e6e533752a106a1483"
+    },
+    {
+      "path": "artifacts/jev-literal-conditions-v1/preflight-before-collection.json",
+      "sha256": "f3638d9c64f0f21ac5487f9d844a1512e8c2f1d286c6b6a7a696936ccb6027ae"
+    },
+    {
+      "path": "artifacts/jev-literal-conditions-v1/preflight.json",
+      "sha256": "4871a49351f7dd190e951d780e3b6f876fbc9b037524e6ba5d00547c8fcbe51e"
+    },
+    {
+      "path": "artifacts/jev-literal-conditions-v1/root-authorization.json",
+      "sha256": "ce8342096ad78a38f1bbcfbe1fc613291cd0060c41fa52b8c683d93c220abf82"
+    },
+    {
+      "path": "artifacts/jev-literal-conditions-v1/source-inheritance.json",
+      "sha256": "ba91bbaea3b4fadba5f68f444ed35cadaaef68c14dc03ba4353c8856f3e8c270"
+    },
+    {
+      "path": "artifacts/jev-literal-conditions-v1/origin-manifest.json",
+      "sha256": "17ca7f86a5a4cb6a9fa61ac1d7ba4f67a36661550489b93326fd2809d83eb74d"
+    },
+    {
+      "path": "artifacts/jev-literal-conditions-v1/prospective-design.md",
+      "sha256": "3a05bf4563212bf28e7d9fd9dd6d7927ae8eebe797e0a98eb07e3b72605f43dd"
+    },
+    {
+      "path": "artifacts/jev-literal-conditions-v1/final-audit.json",
+      "sha256": "bdf30c04bb20432f8e78f9863da2cd469b220c11d4c5a70ed4c50fbe9275ab54"
+    },
+    {
+      "path": "artifacts/jev-literal-conditions-v1/report/summary.json",
+      "sha256": "78f561597a333a089c59bdbdb06e527f5b13c41b063478e4d8ab1ed8aa746c7b"
+    },
+    {
+      "path": "artifacts/jev-literal-conditions-v1/root-execution-confirmation.json",
+      "sha256": "214d4a7b2543c8984049a2be03bf2dbf35e806598916ca0dd78a36bccfad4703"
+    },
+    {
+      "path": "artifacts/jev-literal-conditions-v1/collection-provenance-verification.json",
+      "sha256": "cfc5cfc449c6267bdec6ac079b3960ee1169d8211fe9732b59681d68f2cebbed"
+    },
+    {
+      "path": "artifacts/jev-six-hour-v1/new-boot-clock-v1/qualification.json",
+      "sha256": "c2cf73dcd7b8fa3a7e5244666d4ae1db298eac423c5a563edf4dfdfa366f7ba5"
+    }
+  ],
+  "frozen_protocol": {
+    "schema_version": 1,
+    "kind": "static_literal_eligibility_conditions",
+    "frozen": true,
+    "created_utc": "2026-10-20T04:16:15.309849+00:00",
+    "client_date": "2026-10-20",
+    "planned_calls": 36,
+    "cases": 18,
+    "repetitions": 1,
+    "contexts": [
+      "baseline",
+      "candidate"
+    ],
+    "order_seed": 2026102038,
+    "order_cells": {
+      "baseline|reverse=0": 5,
+      "baseline|reverse=1": 4,
+      "candidate|reverse=0": 5,
+      "candidate|reverse=1": 4
+    },
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "input_token_ceiling": 16384,
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61495,
+      "charged_usd": 7.579654281999889,
+      "charged_tokens": 244855779,
+      "reported_cost_usd": 7.522375817999873,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "shared_ledger": "artifacts/budget.json",
+    "limits": {
+      "max_requests": 75000,
+      "cap_usd": 10.0,
+      "max_tokens": 250000000
+    },
+    "route": {
+      "model": "typesafe/jev-1.14",
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "typesafe",
+      "provider_name": "TypeSafe",
+      "endpoint_name": "TypeSafe | typesafe/jev-1.14-20261014",
+      "price_input_per_token": 4.2e-08,
+      "price_output_per_token": 0.0,
+      "price_per_request": 0.0,
+      "context_length": 262144,
+      "max_prompt_tokens": 262144,
+      "max_completion_tokens": 235929
+    },
+    "automatic_retries": 0,
+    "provider_fallbacks": false,
+    "no_controls_applied": true,
+    "stop_on_first_endpoint_error": true,
+    "stop_on_uncertain_accounting": true,
+    "collect_all_valid_answers": true,
+    "format_gate": null,
+    "order_policy": "Shuffle18caseunitsseed2026102038;firstcontextj%2,reversebothmenusj//2%2;4firstcontext/ordercells5/5/4/4,eachcontexteachposition9times.Onepresentationpercase/context.OrderwrittenbycaseagentandverifiedbeforepublicGET.",
+    "task_contract": "Applysameexactfrozen0032policyand0034factsprojection.BaselinequestionsBYTEEXACT0037candidate.CandidateONLYmechanicalONEPASSWHOLEWORDaliassubstitutioninsidecriterionstrings:theta->road.preview_15m_bearing_deg;speed->kart.speed_m_s;B->frozenexactparenthesizedBooleanexpression.Retaintrailingistrue/isfalse/operators/boundaries.Instructions/physicaldefinitions/order/common/tasks/deadband/IDs/state/nativeinverseunchanged.NoreplacementinsideBRAKE/noevaluatedflags/advice/actions.",
+    "client_contract": "IgnoredsubclassoverridesONLYquestionsproperty;productiondecide/componentdecode/uncertainty/accountinginheritedunchanged.Completephysical5x3inverse,noremappingresponseorhostpolicyselection;oneatomicnativepaironly.Staticnocommandsapplied.",
+    "policy_scope": "Ahead15mlookaheadandnonmissedgateonly;unsupportedbehind15m/missedgaterecoveryexcludedwithoutinventedlabels.Physicalbraking/coastingeffectivenessunprovenbyfreeupperboundracesbecausenevertriggeredthere.",
+    "candidate_gate": {
+      "exact_pairs_correct_required": 18,
+      "responses": 18,
+      "wheel_correct_required": 18,
+      "pedal_correct_required": 18,
+      "brake_choices_below_2m_s_max": 0,
+      "audit_pass_required": true,
+      "endpoint_or_accounting_errors_max": 0
+    },
+    "score_interpretation": "Policyexecutiononly,notoptimalcontrolorraceperformance;allvalidresponsescollectedregardlesscorrectness.",
+    "followup_policy": "PassingonlyadmitsseparatelyfrozenFRESH60callbroadernativevalidationwithUNCHANGED0035gates;NEVERdirectlive.Noautomaticqualificationorpromotion.Pairedcomparisondescriptiveonly,notagate.",
+    "session_deadline_utc": "2026-10-20T06:17:26+00:00",
+    "helper_sha256": {
+      "policy.py": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+      "case_bank.py": "4db263424dd3fcf6d40dedb2cd79418fb4e53293b125c2175170b9575d4db02a",
+      "cases.json": "27d8600f40f0b356fd4060c696e43b553b06b03e1f0804f0f47b100a7c125825",
+      "case-design.json": "d56bb32b01d6a97494cebc3a165e503f195bb25668b3ac7d2f16b88c8085c223",
+      "policy_client.py": "eca05a419c948ff45d26f6ff4b444ae7c3f684d321630a821397cab4d2e7f76d",
+      "source-inheritance.json": "ba91bbaea3b4fadba5f68f444ed35cadaaef68c14dc03ba4353c8856f3e8c270",
+      "payloads.py": "1fa61f96bee9c0ac6d0b7bc0a4b287660a92572f4c73e3db761e38361775a7f5",
+      "prepare.py": "64f4208bde1bfa33c25cf855786d394398746cb7b24ec528f1494a40d88d7536",
+      "runner.py": "d793db3a57224f3a397219b3c6b5afa4ff15a4bce62a9a199be1e9e3ae8cb561",
+      "audit.py": "d5b179e22c64f0351d8567b85f7e4457ae39f7baf8d389fa92a644c72beaf0c3",
+      "preflight.py": "cf872a8b223be5c3f64ba7b20a76f87a3aa1b57f746058671600025f077f3d82",
+      "preflight.json": "4871a49351f7dd190e951d780e3b6f876fbc9b037524e6ba5d00547c8fcbe51e",
+      "order.json": "8b426cf4ed275c9b522dc927bbd1968e88115e7c2d97225c2f82d07adac6dc99",
+      "routes.json": "2236e22bcdd0b1a1922e151b98a3d78c53fdf94e74656e504ae0548347cb8e30",
+      "DESIGN.md": "403d48c3ea9afb91b1f87100e4dd08de8647d845181f666534680588e9a9dddc",
+      "origin-manifest.json": "17ca7f86a5a4cb6a9fa61ac1d7ba4f67a36661550489b93326fd2809d83eb74d",
+      "prospective-design.md": "3a05bf4563212bf28e7d9fd9dd6d7927ae8eebe797e0a98eb07e3b72605f43dd",
+      "protocol.draft.json": "098fa47d4e35c1ec001469c5b241cd4a83487d519dd2ee55a72d43a1bd6c57aa"
+    },
+    "frozen_utc": "2026-10-20T04:17:48.345149+00:00",
+    "prompt_archive": {
+      "path": "docs/experiments/0038-literal-conditions-prompts.json",
+      "sha256": "1aebde4dcae22c905dc9eb188e5623871915b8df769c30e6e533752a106a1483"
+    }
+  },
+  "root_authorization": {
+    "root_thread_id": "01a151b8-43d6-733b-a890-7368ae08c015",
+    "root_host_id": "durable",
+    "authorization_id": "b7498bb9cd194f0398b1c31c5511f57b",
+    "authorized_utc": "2026-10-20T04:18:22.872164+00:00",
+    "protocol_sha256": "c93bd299d83d5e3b0ca8e76dcf9c4a590c3dc7583a7741edf3c25fba6d10e0c2",
+    "independent_preflight_sha256": "f3638d9c64f0f21ac5487f9d844a1512e8c2f1d286c6b6a7a696936ccb6027ae",
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61495,
+      "charged_usd": 7.579654281999889,
+      "charged_tokens": 244855779,
+      "reported_cost_usd": 7.522375817999873,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "scope": "Only frozen 0038 36-call paired static criterion alias-expansion pilot. One writer and request at a time; no retries or controls, unchanged hard caps and session deadline."
+  },
+  "independent_prospective_preflight": {
+    "passed": true,
+    "mode": "independent_literal_conditions_preflight",
+    "checked_at_utc": "2026-10-20T04:17:54.584762+00:00",
+    "protocol_sha256": "c93bd299d83d5e3b0ca8e76dcf9c4a590c3dc7583a7741edf3c25fba6d10e0c2",
+    "errors": [],
+    "independent_policy_cases": 18,
+    "static_policy_labels_checked": 18,
+    "exact_payloads_checked": 36,
+    "policy_client_source_review": {
+      "passed": true,
+      "subclass_own_attributes": [
+        "questions"
+      ],
+      "method_identity": {
+        "__init__": true,
+        "decide": true,
+        "_decode_components": true,
+        "_record_component_uncertainty": true,
+        "__aenter__": true,
+        "__aexit__": true,
+        "_safe_detail": true,
+        "_error_detail": true
+      },
+      "production_decide_source_sha256": "118e79f7d6107f6bd467967760fd1c2bd9ae0a8f828df9a1473cf621ccc82020",
+      "no_response_rewriting_or_host_selection": true
+    },
+    "free_policy_evidence_review": {
+      "passed": true,
+      "report_sha256": "368d1805d90ffc06cd4c4c5dbb3cd35999a4e5ea367cacad44d06ee4226eb254",
+      "independent_review_sha256": "9c4e82654b6629d8336c5787be57118f3c7e8a73ed35604477f61318f2343589",
+      "audit_replay_counts": {
+        "physics_samples": 18872,
+        "request_observations": 1259,
+        "commands": 1255,
+        "candidate_grid_queries": 284
+      },
+      "limitation": "No free rollout triggered pedal guard; host tracking supports nominal policy execution only.",
+      "origin_manifest_review": {
+        "passed": true,
+        "manifest_sha256": "17ca7f86a5a4cb6a9fa61ac1d7ba4f67a36661550489b93326fd2809d83eb74d",
+        "origin_files_checked": 75,
+        "policy_copy_exact": true,
+        "old_frozen_cli_executed_by_audit": false
+      }
+    },
+    "model_requests": 0,
+    "no_controls_applied": true,
+    "shared_ledger_unchanged": true
+  },
+  "collection_writer": {
+    "session_id": "a164a03a01d44802bbef238acd25e52f",
+    "pid": 3859,
+    "process_start_ticks": 248879,
+    "parent_pid": 3858,
+    "parent_start_ticks": 248878,
+    "boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+    "started_utc": "2026-10-20T04:18:27.941159+00:00",
+    "script_path": "/workspace/mcpkart/artifacts/jev-literal-conditions-v1/runner.py",
+    "executable": "/workspace/mcpkart/.venv/bin/python",
+    "explicit_collect_flag": true
+  },
+  "final_audit": {
+    "passed": true,
+    "complete": true,
+    "checked_at_utc": "2026-10-20T04:19:28.095837+00:00",
+    "errors": [],
+    "warnings": [],
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "helper_checks": {
+      "policy.py": {
+        "expected": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+        "actual": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+        "matches": true
+      },
+      "case_bank.py": {
+        "expected": "4db263424dd3fcf6d40dedb2cd79418fb4e53293b125c2175170b9575d4db02a",
+        "actual": "4db263424dd3fcf6d40dedb2cd79418fb4e53293b125c2175170b9575d4db02a",
+        "matches": true
+      },
+      "cases.json": {
+        "expected": "27d8600f40f0b356fd4060c696e43b553b06b03e1f0804f0f47b100a7c125825",
+        "actual": "27d8600f40f0b356fd4060c696e43b553b06b03e1f0804f0f47b100a7c125825",
+        "matches": true
+      },
+      "case-design.json": {
+        "expected": "d56bb32b01d6a97494cebc3a165e503f195bb25668b3ac7d2f16b88c8085c223",
+        "actual": "d56bb32b01d6a97494cebc3a165e503f195bb25668b3ac7d2f16b88c8085c223",
+        "matches": true
+      },
+      "policy_client.py": {
+        "expected": "eca05a419c948ff45d26f6ff4b444ae7c3f684d321630a821397cab4d2e7f76d",
+        "actual": "eca05a419c948ff45d26f6ff4b444ae7c3f684d321630a821397cab4d2e7f76d",
+        "matches": true
+      },
+      "source-inheritance.json": {
+        "expected": "ba91bbaea3b4fadba5f68f444ed35cadaaef68c14dc03ba4353c8856f3e8c270",
+        "actual": "ba91bbaea3b4fadba5f68f444ed35cadaaef68c14dc03ba4353c8856f3e8c270",
+        "matches": true
+      },
+      "payloads.py": {
+        "expected": "1fa61f96bee9c0ac6d0b7bc0a4b287660a92572f4c73e3db761e38361775a7f5",
+        "actual": "1fa61f96bee9c0ac6d0b7bc0a4b287660a92572f4c73e3db761e38361775a7f5",
+        "matches": true
+      },
+      "prepare.py": {
+        "expected": "64f4208bde1bfa33c25cf855786d394398746cb7b24ec528f1494a40d88d7536",
+        "actual": "64f4208bde1bfa33c25cf855786d394398746cb7b24ec528f1494a40d88d7536",
+        "matches": true
+      },
+      "runner.py": {
+        "expected": "d793db3a57224f3a397219b3c6b5afa4ff15a4bce62a9a199be1e9e3ae8cb561",
+        "actual": "d793db3a57224f3a397219b3c6b5afa4ff15a4bce62a9a199be1e9e3ae8cb561",
+        "matches": true
+      },
+      "audit.py": {
+        "expected": "d5b179e22c64f0351d8567b85f7e4457ae39f7baf8d389fa92a644c72beaf0c3",
+        "actual": "d5b179e22c64f0351d8567b85f7e4457ae39f7baf8d389fa92a644c72beaf0c3",
+        "matches": true
+      },
+      "preflight.py": {
+        "expected": "cf872a8b223be5c3f64ba7b20a76f87a3aa1b57f746058671600025f077f3d82",
+        "actual": "cf872a8b223be5c3f64ba7b20a76f87a3aa1b57f746058671600025f077f3d82",
+        "matches": true
+      },
+      "preflight.json": {
+        "expected": "4871a49351f7dd190e951d780e3b6f876fbc9b037524e6ba5d00547c8fcbe51e",
+        "actual": "4871a49351f7dd190e951d780e3b6f876fbc9b037524e6ba5d00547c8fcbe51e",
+        "matches": true
+      },
+      "order.json": {
+        "expected": "8b426cf4ed275c9b522dc927bbd1968e88115e7c2d97225c2f82d07adac6dc99",
+        "actual": "8b426cf4ed275c9b522dc927bbd1968e88115e7c2d97225c2f82d07adac6dc99",
+        "matches": true
+      },
+      "routes.json": {
+        "expected": "2236e22bcdd0b1a1922e151b98a3d78c53fdf94e74656e504ae0548347cb8e30",
+        "actual": "2236e22bcdd0b1a1922e151b98a3d78c53fdf94e74656e504ae0548347cb8e30",
+        "matches": true
+      },
+      "DESIGN.md": {
+        "expected": "403d48c3ea9afb91b1f87100e4dd08de8647d845181f666534680588e9a9dddc",
+        "actual": "403d48c3ea9afb91b1f87100e4dd08de8647d845181f666534680588e9a9dddc",
+        "matches": true
+      },
+      "origin-manifest.json": {
+        "expected": "17ca7f86a5a4cb6a9fa61ac1d7ba4f67a36661550489b93326fd2809d83eb74d",
+        "actual": "17ca7f86a5a4cb6a9fa61ac1d7ba4f67a36661550489b93326fd2809d83eb74d",
+        "matches": true
+      },
+      "prospective-design.md": {
+        "expected": "3a05bf4563212bf28e7d9fd9dd6d7927ae8eebe797e0a98eb07e3b72605f43dd",
+        "actual": "3a05bf4563212bf28e7d9fd9dd6d7927ae8eebe797e0a98eb07e3b72605f43dd",
+        "matches": true
+      },
+      "protocol.draft.json": {
+        "expected": "098fa47d4e35c1ec001469c5b241cd4a83487d519dd2ee55a72d43a1bd6c57aa",
+        "actual": "098fa47d4e35c1ec001469c5b241cd4a83487d519dd2ee55a72d43a1bd6c57aa",
+        "matches": true
+      }
+    },
+    "independent_policy_cases_checked": 18,
+    "policy_client_source_review": {
+      "passed": true,
+      "subclass_own_attributes": [
+        "questions"
+      ],
+      "method_identity": {
+        "__init__": true,
+        "decide": true,
+        "_decode_components": true,
+        "_record_component_uncertainty": true,
+        "__aenter__": true,
+        "__aexit__": true,
+        "_safe_detail": true,
+        "_error_detail": true
+      },
+      "production_decide_source_sha256": "118e79f7d6107f6bd467967760fd1c2bd9ae0a8f828df9a1473cf621ccc82020",
+      "no_response_rewriting_or_host_selection": true
+    },
+    "free_policy_evidence_review": {
+      "passed": true,
+      "report_sha256": "368d1805d90ffc06cd4c4c5dbb3cd35999a4e5ea367cacad44d06ee4226eb254",
+      "independent_review_sha256": "9c4e82654b6629d8336c5787be57118f3c7e8a73ed35604477f61318f2343589",
+      "audit_replay_counts": {
+        "physics_samples": 18872,
+        "request_observations": 1259,
+        "commands": 1255,
+        "candidate_grid_queries": 284
+      },
+      "limitation": "No free rollout triggered pedal guard; host tracking supports nominal policy execution only.",
+      "origin_manifest_review": {
+        "passed": true,
+        "manifest_sha256": "17ca7f86a5a4cb6a9fa61ac1d7ba4f67a36661550489b93326fd2809d83eb74d",
+        "origin_files_checked": 75,
+        "policy_copy_exact": true,
+        "old_frozen_cli_executed_by_audit": false
+      }
+    },
+    "static_policy_labels_checked": 18,
+    "planned_requests": 36,
+    "saved_requests": 36,
+    "failures": [],
+    "unrun": [],
+    "writer": {
+      "session_id": "a164a03a01d44802bbef238acd25e52f",
+      "pid": 3859,
+      "process_start_ticks": 248879,
+      "parent_pid": 3858,
+      "parent_start_ticks": 248878,
+      "boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+      "started_utc": "2026-10-20T04:18:27.941159+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-literal-conditions-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61495,
+      "charged_usd": 7.579654281999889,
+      "charged_tokens": 244855779,
+      "reported_cost_usd": 7.522375817999873,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61531,
+      "charged_usd": 7.582676265999883,
+      "charged_tokens": 244931180,
+      "reported_cost_usd": 7.525397801999867,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 36,
+      "charged_usd": 0.0030219839999938714,
+      "reported_cost_usd": 0.0030219839999938714,
+      "charged_tokens": 75401,
+      "uncertain_requests": 0
+    },
+    "automatic_followup_or_promotion": false,
+    "model_requests_by_audit": 0,
+    "ledger_written_by_audit": false,
+    "no_controls_applied": true
+  },
+  "audited_report": {
+    "complete": true,
+    "overall": {
+      "baseline": {
+        "planned": 18,
+        "attempted": 18,
+        "unrun": 0,
+        "endpoint_ok": 18,
+        "endpoint_errors": 0,
+        "correct": 16,
+        "incorrect_or_endpoint_error": 2,
+        "attempted_accuracy": 0.8888888888888888,
+        "planned_correct_fraction": 0.8888888888888888,
+        "endpoint_success_accuracy": 0.8888888888888888,
+        "charged_usd": 0.0014112,
+        "charged_tokens": 35324,
+        "median_latency_ms": 233.33454799999998
+      },
+      "candidate": {
+        "planned": 18,
+        "attempted": 18,
+        "unrun": 0,
+        "endpoint_ok": 18,
+        "endpoint_errors": 0,
+        "correct": 15,
+        "incorrect_or_endpoint_error": 3,
+        "attempted_accuracy": 0.8333333333333334,
+        "planned_correct_fraction": 0.8333333333333334,
+        "endpoint_success_accuracy": 0.8333333333333334,
+        "charged_usd": 0.001610784,
+        "charged_tokens": 40077,
+        "median_latency_ms": 238.2711505
+      }
+    },
+    "components": {
+      "baseline": {
+        "wheel_correct": 16,
+        "pedal_correct": 18,
+        "wheel_by_magnitude": {
+          "straight": {
+            "correct": 4,
+            "responses": 6
+          },
+          "half": {
+            "correct": 6,
+            "responses": 6
+          },
+          "full": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "pedal_by_class": {
+          "accelerate": {
+            "correct": 6,
+            "responses": 6
+          },
+          "coast": {
+            "correct": 6,
+            "responses": 6
+          },
+          "brake": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "wheel_by_signed_direction": {
+          "hard_right": {
+            "correct": 3,
+            "responses": 3
+          },
+          "right": {
+            "correct": 3,
+            "responses": 3
+          },
+          "straight": {
+            "correct": 4,
+            "responses": 6
+          },
+          "left": {
+            "correct": 3,
+            "responses": 3
+          },
+          "hard_left": {
+            "correct": 3,
+            "responses": 3
+          }
+        },
+        "speed_below2_responses": 4,
+        "brake_choices_below_2mps": 0,
+        "chosen_native_counts": {
+          "right_coast": 1,
+          "straight_accelerate": 1,
+          "straight_coast": 1,
+          "hard_right_accelerate": 2,
+          "left_accelerate": 1,
+          "hard_left_coast": 2,
+          "straight_brake": 2,
+          "left_brake": 1,
+          "hard_left_brake": 1,
+          "left_coast": 1,
+          "hard_right_brake": 1,
+          "hard_left_accelerate": 1,
+          "right_brake": 1,
+          "right_accelerate": 1,
+          "hard_right_coast": 1
+        },
+        "chosen_wheel_counts": {
+          "right": 3,
+          "straight": 4,
+          "hard_right": 4,
+          "left": 3,
+          "hard_left": 4
+        },
+        "chosen_pedal_counts": {
+          "coast": 6,
+          "accelerate": 6,
+          "brake": 6
+        }
+      },
+      "candidate": {
+        "wheel_correct": 15,
+        "pedal_correct": 18,
+        "wheel_by_magnitude": {
+          "straight": {
+            "correct": 3,
+            "responses": 6
+          },
+          "half": {
+            "correct": 6,
+            "responses": 6
+          },
+          "full": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "pedal_by_class": {
+          "accelerate": {
+            "correct": 6,
+            "responses": 6
+          },
+          "coast": {
+            "correct": 6,
+            "responses": 6
+          },
+          "brake": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "wheel_by_signed_direction": {
+          "hard_right": {
+            "correct": 3,
+            "responses": 3
+          },
+          "right": {
+            "correct": 3,
+            "responses": 3
+          },
+          "straight": {
+            "correct": 3,
+            "responses": 6
+          },
+          "left": {
+            "correct": 3,
+            "responses": 3
+          },
+          "hard_left": {
+            "correct": 3,
+            "responses": 3
+          }
+        },
+        "speed_below2_responses": 4,
+        "brake_choices_below_2mps": 0,
+        "chosen_native_counts": {
+          "right_coast": 1,
+          "straight_accelerate": 1,
+          "straight_coast": 1,
+          "hard_right_accelerate": 2,
+          "left_accelerate": 1,
+          "hard_left_coast": 2,
+          "straight_brake": 1,
+          "left_brake": 1,
+          "hard_left_brake": 2,
+          "left_coast": 1,
+          "hard_right_brake": 1,
+          "hard_left_accelerate": 1,
+          "right_brake": 1,
+          "right_accelerate": 1,
+          "hard_right_coast": 1
+        },
+        "chosen_wheel_counts": {
+          "right": 3,
+          "straight": 3,
+          "hard_right": 4,
+          "left": 3,
+          "hard_left": 5
+        },
+        "chosen_pedal_counts": {
+          "coast": 6,
+          "accelerate": 6,
+          "brake": 6
+        }
+      }
+    },
+    "paired": {
+      "complete_pairs": 18,
+      "gains": 0,
+      "losses": 1,
+      "net_gain": -1,
+      "both_correct": 15,
+      "both_incorrect": 2
+    },
+    "gate": {
+      "passed": false,
+      "predicates": {
+        "complete_and_audited": true,
+        "zero_endpoint_or_accounting_errors": true,
+        "exact_pairs_18_of18": false,
+        "wheels_18_of18": false,
+        "pedals_18_of18": true,
+        "zero_low_speed_brakes": true
+      },
+      "paired_gain_required": false
+    },
+    "source_case_coverage": {
+      "cases": 18,
+      "synthetic_mirror_pairs": 9,
+      "straight_bearings_deg": [
+        1.3417,
+        -1.3417,
+        0.8387,
+        -0.8387,
+        1.4776,
+        -1.4776
+      ],
+      "target_counts": {
+        "straight_accelerate": 2,
+        "straight_coast": 2,
+        "straight_brake": 2,
+        "left_accelerate": 1,
+        "right_accelerate": 1,
+        "left_coast": 1,
+        "right_coast": 1,
+        "left_brake": 1,
+        "right_brake": 1,
+        "hard_left_accelerate": 1,
+        "hard_right_accelerate": 1,
+        "hard_left_coast": 1,
+        "hard_right_coast": 1,
+        "hard_left_brake": 1,
+        "hard_right_brake": 1
+      }
+    },
+    "score_scope": "Fresh synthetic literal-condition criterion comparison; paired gains descriptive, no live qualification",
+    "automatic_followup_or_promotion": false,
+    "free_policy_evidence_review": {
+      "passed": true,
+      "report_sha256": "368d1805d90ffc06cd4c4c5dbb3cd35999a4e5ea367cacad44d06ee4226eb254",
+      "independent_review_sha256": "9c4e82654b6629d8336c5787be57118f3c7e8a73ed35604477f61318f2343589",
+      "audit_replay_counts": {
+        "physics_samples": 18872,
+        "request_observations": 1259,
+        "commands": 1255,
+        "candidate_grid_queries": 284
+      },
+      "limitation": "No free rollout triggered pedal guard; host tracking supports nominal policy execution only.",
+      "origin_manifest_review": {
+        "passed": true,
+        "manifest_sha256": "17ca7f86a5a4cb6a9fa61ac1d7ba4f67a36661550489b93326fd2809d83eb74d",
+        "origin_files_checked": 75,
+        "policy_copy_exact": true,
+        "old_frozen_cli_executed_by_audit": false
+      }
+    },
+    "audit_passed": true
+  },
+  "independent_collection_provenance": {
+    "passed": true,
+    "checked_at_utc": "2026-10-20T04:20:01.744021+00:00",
+    "errors": [],
+    "check_count": 47,
+    "checks": [
+      {
+        "check": "expected_frozen_protocol",
+        "passed": true
+      },
+      {
+        "check": "complete_frozen_36_call_scope",
+        "passed": true
+      },
+      {
+        "check": "all_frozen_helper_hashes_unchanged",
+        "passed": true
+      },
+      {
+        "check": "archive_frozen_hash",
+        "passed": true
+      },
+      {
+        "check": "full_11_file_and_rust_bench_fingerprint",
+        "passed": true
+      },
+      {
+        "check": "archive_binds_case_bank",
+        "passed": true
+      },
+      {
+        "check": "all_frozen_origin_hashes_retained_without_running_old_audits",
+        "passed": true
+      },
+      {
+        "check": "fixed_policy_byte_exact_0032_copy",
+        "passed": true
+      },
+      {
+        "check": "0037_prompt_archive_origin_hash",
+        "passed": true
+      },
+      {
+        "check": "all_15_targets_twice_and_held_twice",
+        "passed": true
+      },
+      {
+        "check": "native_inverse_preserves_all_15_inputs",
+        "passed": true
+      },
+      {
+        "check": "independent_labels_match_bank",
+        "passed": true
+      },
+      {
+        "check": "registered_shuffle_and_counterbalance",
+        "passed": true
+      },
+      {
+        "check": "preflight_immutable_passing_zero_paid",
+        "passed": true
+      },
+      {
+        "check": "protocol_bound_preflight_auth_start_complete",
+        "passed": true
+      },
+      {
+        "check": "root_authorization_identity",
+        "passed": true
+      },
+      {
+        "check": "root_explicit_execution_completed",
+        "passed": true
+      },
+      {
+        "check": "prospective_timestamp_chain_before_deadline",
+        "passed": true
+      },
+      {
+        "check": "one_writer_identity_everywhere",
+        "passed": true
+      },
+      {
+        "check": "writer_script_executable_boot_identity",
+        "passed": true
+      },
+      {
+        "check": "no_stop_or_failure_artifacts",
+        "passed": true
+      },
+      {
+        "check": "no_retry_fallback_control_application",
+        "passed": true
+      },
+      {
+        "check": "all_36_exact_archive_payload_bytes_and_hashes",
+        "passed": true
+      },
+      {
+        "check": "all_36_exact_registered_order_entries",
+        "passed": true
+      },
+      {
+        "check": "all_36_factual_states_no_oracle_keys",
+        "passed": true
+      },
+      {
+        "check": "all_36_single_successful_identity_pinned_responses",
+        "passed": true
+      },
+      {
+        "check": "all_36_raw_typed_components_atomic_native_pair",
+        "passed": true
+      },
+      {
+        "check": "all_36_exact_ledger_transitions_and_conservative_admission",
+        "passed": true
+      },
+      {
+        "check": "all_36_requests_strictly_sequential_no_overlap",
+        "passed": true
+      },
+      {
+        "check": "all_36_result_rows_independently_reconstructed",
+        "passed": true
+      },
+      {
+        "check": "frozen_whole_word_alias_map_and_guard",
+        "passed": true
+      },
+      {
+        "check": "all_18_pairs_exact_fixed_factual_leaf_table_projection",
+        "passed": true
+      },
+      {
+        "check": "all_18_pairs_policy_labels_identical_after_projection",
+        "passed": true
+      },
+      {
+        "check": "all_18_pairs_instruction_bytes_and_physical_lists_identical",
+        "passed": true
+      },
+      {
+        "check": "all_18_pairs_exact_one_pass_whole_word_criterion_expansion_only",
+        "passed": true
+      },
+      {
+        "check": "all_18_baseline_questions_byte_exact_0037_candidate_origin",
+        "passed": true
+      },
+      {
+        "check": "unique_36_reservations_and_response_ids",
+        "passed": true
+      },
+      {
+        "check": "budget_before_bound_everywhere",
+        "passed": true
+      },
+      {
+        "check": "budget_after_bound_everywhere",
+        "passed": true
+      },
+      {
+        "check": "retained_caps_and_no_pending",
+        "passed": true
+      },
+      {
+        "check": "budget_delta_reconciles_all_36_usage",
+        "passed": true
+      },
+      {
+        "check": "summary_scores_match_raw_choices",
+        "passed": true
+      },
+      {
+        "check": "paired_gains_losses_reconstructed",
+        "passed": true
+      },
+      {
+        "check": "candidate_gate_independently_reconstructed",
+        "passed": true
+      },
+      {
+        "check": "final_audit_complete_pass_zero_errors",
+        "passed": true
+      },
+      {
+        "check": "no_automatic_followup_or_promotion",
+        "passed": true
+      },
+      {
+        "check": "read_only_ledger_byte_unchanged",
+        "passed": true
+      }
+    ],
+    "protocol_sha256": "c93bd299d83d5e3b0ca8e76dcf9c4a590c3dc7583a7741edf3c25fba6d10e0c2",
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "writer": {
+      "session_id": "a164a03a01d44802bbef238acd25e52f",
+      "pid": 3859,
+      "process_start_ticks": 248879,
+      "parent_pid": 3858,
+      "parent_start_ticks": 248878,
+      "boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+      "started_utc": "2026-10-20T04:18:27.941159+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-literal-conditions-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61495,
+      "charged_usd": 7.579654281999889,
+      "charged_tokens": 244855779,
+      "reported_cost_usd": 7.522375817999873,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61531,
+      "charged_usd": 7.582676265999883,
+      "charged_tokens": 244931180,
+      "reported_cost_usd": 7.525397801999867,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 36,
+      "charged_tokens": 75401,
+      "charged_usd": 0.0030219840000000006
+    },
+    "scores": {
+      "baseline": {
+        "pairs": 16,
+        "wheel": 16,
+        "pedal": 18,
+        "low_speed_brake": 0
+      },
+      "candidate": {
+        "pairs": 15,
+        "wheel": 15,
+        "pedal": 18,
+        "low_speed_brake": 0
+      }
+    },
+    "wrong_choices": [
+      {
+        "case_id": "literal-conditions-00-b",
+        "context": "candidate",
+        "expected": "straight_accelerate",
+        "chosen": "hard_right_accelerate"
+      },
+      {
+        "case_id": "literal-conditions-00-b",
+        "context": "baseline",
+        "expected": "straight_accelerate",
+        "chosen": "hard_right_accelerate"
+      },
+      {
+        "case_id": "literal-conditions-01-a",
+        "context": "baseline",
+        "expected": "straight_coast",
+        "chosen": "hard_left_coast"
+      },
+      {
+        "case_id": "literal-conditions-01-a",
+        "context": "candidate",
+        "expected": "straight_coast",
+        "chosen": "hard_left_coast"
+      },
+      {
+        "case_id": "literal-conditions-02-a",
+        "context": "candidate",
+        "expected": "straight_brake",
+        "chosen": "hard_left_brake"
+      }
+    ],
+    "wheel_correct_by_magnitude": {
+      "baseline": {
+        "half": 6,
+        "straight": 4,
+        "full": 6
+      },
+      "candidate": {
+        "half": 6,
+        "straight": 3,
+        "full": 6
+      }
+    },
+    "candidate_gate_passed": false,
+    "model_calls_by_verifier": 0,
+    "ledger_written": false,
+    "script_sha256": "f9851dcaf935e64d132d03f839ff8b2550e2b147546a25ab6a293a676ee7a600",
+    "interpretation": "Supplied-policy static compliance only; no model driving or promotion. Root execution IDs are checked against preserved confirmation, not independently queried from tool infrastructure."
+  },
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61495,
+    "charged_usd": 7.579654281999889,
+    "charged_tokens": 244855779,
+    "reported_cost_usd": 7.522375817999873,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61531,
+    "charged_usd": 7.582676265999883,
+    "charged_tokens": 244931180,
+    "reported_cost_usd": 7.525397801999867,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 36,
+    "charged_usd": 0.0030219839999938714,
+    "reported_cost_usd": 0.0030219839999938714,
+    "charged_tokens": 75401,
+    "uncertain_requests": 0
+  },
+  "decision": {
+    "pilot_gate_passed": false,
+    "new_broader_validation_requires_perfect_pilot": true,
+    "broader_gate_unchanged_from": "0035",
+    "live_followup_triggered": false,
+    "preset_promoted": false,
+    "baseline": "joint damped",
+    "application_default": "original",
+    "application_defaults_changed": false,
+    "new_broader_validation_admitted": false
+  },
+  "interpretation_limits": [
+    "Baseline is exact0037candidate; candidate criterion values expand aliases and Boolean guards mechanically while all instructions,facts and native meanings remain unchanged.",
+    "A perfect18/18candidatepair/wheel/pedal pilot,no slow BRAKEchoices,zero technical errors and passing audit are required; paired gain is descriptive.",
+    "A perfect pilot only motivates new fresh broader validation under unchanged0035thresholds; no direct live admission or promotion.",
+    "Related synthetic cases and a single presentation do not establish general competence or an internal mechanism.",
+    "Current-boot runtime timing passed04:09:25,but exact candidate control,native gates and actual resource/time admission remain separate.",
+    "Separately recorded free seeds21/22grant no model qualification.",
+    "Literal field references and Boolean expansion were tested as one fixed package; outcomes do not identify an internal mechanism.",
+    "All candidate errors were small-bearing straight targets; these few observations do not establish a general directional bias.",
+    "One presentation per case and related reflected states limit repeatability and generalization.",
+    "Inherited free host-policy evidence supports nominal tracking only; no complete source rollout triggered guardB or validated physical recovery.",
+    "Every valid planned answer was retained without retries,replacements or gate relaxation.",
+    "No paid controls were applied and no race advanced.",
+    "Root tool chunk/session IDs are checked against preserved execution confirmation rather than independently queried from tool infrastructure; actual writer and ledger records are independently verified."
+  ],
+  "report_generation": {
+    "saved_completed_evidence_only": true,
+    "audits_rerun": false,
+    "model_calls": 0,
+    "ledger_read_or_written": false,
+    "frozen_archives_modified": false
+  },
+  "collection_completed_utc": "2026-10-20T04:18:38.052214+00:00",
+  "interpretation": {
+    "baseline_pair_correct": 16,
+    "candidate_pair_correct": 15,
+    "responses_each_arm": 18,
+    "candidate_paired_gains": 0,
+    "candidate_paired_losses": 1,
+    "candidate_net_pair_gain": -1,
+    "baseline_wheel_correct": 16,
+    "candidate_wheel_correct": 15,
+    "pedal_correct_each_arm": 18,
+    "brake_choices_below_2mps_each_arm": 0,
+    "failed_candidate_gate_predicates": [
+      "exact_pairs_18_of18",
+      "wheels_18_of18"
+    ],
+    "paired_gain_was_required": false,
+    "conclusion": "Literal criterion expansion produced no gains and one paired loss. All candidate errors were straight-wheel targets; pedals were correct in both contexts. The perfect gate failed and no broader or live validation is admitted."
+  }
+}

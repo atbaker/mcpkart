@@ -1,0 +1,22 @@
+{
+  "experiment": "0063",
+  "complete": true,
+  "model_requests": 0,
+  "is_jev": false,
+  "selected": "steer22_d7_f30",
+  "physical_gate_passed": true,
+  "holdout_clean": 12,
+  "holdout_n": 12,
+  "audit": {
+    "passed": true,
+    "cells": 60,
+    "physics_steps_exact": 277124,
+    "query_actions_exact": 13092,
+    "gate_reconstructed": true,
+    "model_requests": 0,
+    "is_jev": false,
+    "shared_ledger_unchanged": true,
+    "result_sha256": "14c7a7fd683a12c4b3aaae5fa70637c82e9007b1dda1eafba378fa14be77cf59",
+    "root_only_not_second_agent_review": true
+  }
+}

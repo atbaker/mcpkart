@@ -339,12 +339,13 @@ class RaceRuntime:
                 "clock_mode": NATIVE_CLOCK_MODE if self._native_sleeper else ASYNCIO_CLOCK_MODE, "physics_hz": round(1 / DT),
                 "process_pid": os.getpid()}
 
-    def start(self, seed: int = 0, deadline: float = 120.0, label: str = "", reset_after_s: float | None = 3.0) -> dict[str, Any]:
+    def start(self, seed: int = 0, deadline: float = 120.0, label: str = "", reset_after_s: float | None = 3.0,
+              race_setup: dict | None = None) -> dict[str, Any]:
         if not math.isfinite(deadline) or deadline <= 0 or deadline > 86400:
             raise ValueError("deadline must be a positive number of seconds, at most 86400")
         if self.current is not None and self.current.status == "running":
             raise ValueError("A race is already running; finish it before starting another")
-        sim = Simulation(seed=seed, laps=3, reset_after_s=reset_after_s)
+        sim = Simulation(seed=seed, laps=3, reset_after_s=reset_after_s, **(race_setup or {}))
         sleeper = NativeSleeper(asyncio.get_running_loop()) if self._native_sleeper else None
         race = _Race(uuid.uuid4().hex, sim, seed, deadline, label, time.monotonic_ns(),
                      diagnostics=TimingDiagnostics(watchdog_enabled=self._watchdog_enabled), sleeper=sleeper)

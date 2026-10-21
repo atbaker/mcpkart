@@ -1,0 +1,680 @@
+{
+  "passed": true,
+  "complete": true,
+  "errors": [],
+  "checked_at_utc": "2026-10-20T06:00:28.270189+00:00",
+  "protocol_sha256": "e45fe6d5a0b59e8ff202cee4d880361e18a5a9448364a9ca72aa33c796f991f2",
+  "overall": {
+    "grouped": {
+      "attempts": 24,
+      "pair_correct": 21,
+      "wheel_correct": 21,
+      "pedal_correct": 23,
+      "slow_brake": 0,
+      "median_latency_ms": 271.42618000000004,
+      "tokens": 44282,
+      "cost": 0.001763454
+    },
+    "wheel_examples": {
+      "attempts": 24,
+      "pair_correct": 21,
+      "wheel_correct": 21,
+      "pedal_correct": 23,
+      "slow_brake": 0,
+      "median_latency_ms": 248.49284849999998,
+      "tokens": 46658,
+      "cost": 0.001863246
+    },
+    "pedal_examples": {
+      "attempts": 24,
+      "pair_correct": 22,
+      "wheel_correct": 22,
+      "pedal_correct": 24,
+      "slow_brake": 0,
+      "median_latency_ms": 264.956901,
+      "tokens": 51026,
+      "cost": 0.002046702
+    },
+    "both_examples": {
+      "attempts": 24,
+      "pair_correct": 22,
+      "wheel_correct": 22,
+      "pedal_correct": 24,
+      "slow_brake": 0,
+      "median_latency_ms": 249.3910055,
+      "tokens": 53402,
+      "cost": 0.002146494
+    }
+  },
+  "paired": {
+    "wheel_examples": {
+      "gains": 0,
+      "losses": 0,
+      "net_gain": 0
+    },
+    "pedal_examples": {
+      "gains": 1,
+      "losses": 0,
+      "net_gain": 1
+    },
+    "both_examples": {
+      "gains": 1,
+      "losses": 0,
+      "net_gain": 1
+    }
+  },
+  "factorial_contrasts": {
+    "wheel_without_pedal": {
+      "gains": 0,
+      "losses": 0,
+      "net_gain": 0
+    },
+    "wheel_with_pedal": {
+      "gains": 1,
+      "losses": 1,
+      "net_gain": 0
+    },
+    "pedal_without_wheel": {
+      "gains": 1,
+      "losses": 0,
+      "net_gain": 1
+    },
+    "pedal_with_wheel": {
+      "gains": 1,
+      "losses": 0,
+      "net_gain": 1
+    }
+  },
+  "by_magnitude": {
+    "grouped": {
+      "straight": {
+        "attempts": 12,
+        "pair_correct": 9,
+        "wheel_correct": 9,
+        "pedal_correct": 11,
+        "slow_brake": 0,
+        "median_latency_ms": 268.7090875,
+        "tokens": 22136,
+        "cost": 0.000881622
+      },
+      "moderate": {
+        "attempts": 6,
+        "pair_correct": 6,
+        "wheel_correct": 6,
+        "pedal_correct": 6,
+        "slow_brake": 0,
+        "median_latency_ms": 276.67336650000004,
+        "tokens": 11066,
+        "cost": 0.000440748
+      },
+      "full": {
+        "attempts": 6,
+        "pair_correct": 6,
+        "wheel_correct": 6,
+        "pedal_correct": 6,
+        "slow_brake": 0,
+        "median_latency_ms": 275.6512045,
+        "tokens": 11080,
+        "cost": 0.000441084
+      }
+    },
+    "wheel_examples": {
+      "straight": {
+        "attempts": 12,
+        "pair_correct": 9,
+        "wheel_correct": 9,
+        "pedal_correct": 11,
+        "slow_brake": 0,
+        "median_latency_ms": 248.0515715,
+        "tokens": 23324,
+        "cost": 0.000931518
+      },
+      "moderate": {
+        "attempts": 6,
+        "pair_correct": 6,
+        "wheel_correct": 6,
+        "pedal_correct": 6,
+        "slow_brake": 0,
+        "median_latency_ms": 235.1449895,
+        "tokens": 11660,
+        "cost": 0.00046569600000000004
+      },
+      "full": {
+        "attempts": 6,
+        "pair_correct": 6,
+        "wheel_correct": 6,
+        "pedal_correct": 6,
+        "slow_brake": 0,
+        "median_latency_ms": 265.90547549999997,
+        "tokens": 11674,
+        "cost": 0.000466032
+      }
+    },
+    "pedal_examples": {
+      "straight": {
+        "attempts": 12,
+        "pair_correct": 10,
+        "wheel_correct": 10,
+        "pedal_correct": 12,
+        "slow_brake": 0,
+        "median_latency_ms": 243.890268,
+        "tokens": 25508,
+        "cost": 0.001023246
+      },
+      "moderate": {
+        "attempts": 6,
+        "pair_correct": 6,
+        "wheel_correct": 6,
+        "pedal_correct": 6,
+        "slow_brake": 0,
+        "median_latency_ms": 273.0726995,
+        "tokens": 12752,
+        "cost": 0.00051156
+      },
+      "full": {
+        "attempts": 6,
+        "pair_correct": 6,
+        "wheel_correct": 6,
+        "pedal_correct": 6,
+        "slow_brake": 0,
+        "median_latency_ms": 280.605634,
+        "tokens": 12766,
+        "cost": 0.000511896
+      }
+    },
+    "both_examples": {
+      "straight": {
+        "attempts": 12,
+        "pair_correct": 10,
+        "wheel_correct": 10,
+        "pedal_correct": 12,
+        "slow_brake": 0,
+        "median_latency_ms": 249.65902699999998,
+        "tokens": 26696,
+        "cost": 0.001073142
+      },
+      "moderate": {
+        "attempts": 6,
+        "pair_correct": 6,
+        "wheel_correct": 6,
+        "pedal_correct": 6,
+        "slow_brake": 0,
+        "median_latency_ms": 277.2812195,
+        "tokens": 13346,
+        "cost": 0.000536508
+      },
+      "full": {
+        "attempts": 6,
+        "pair_correct": 6,
+        "wheel_correct": 6,
+        "pedal_correct": 6,
+        "slow_brake": 0,
+        "median_latency_ms": 237.34080699999998,
+        "tokens": 13360,
+        "cost": 0.000536844
+      }
+    }
+  },
+  "by_sign": {
+    "grouped": {
+      "positive": {
+        "attempts": 12,
+        "pair_correct": 9,
+        "wheel_correct": 9,
+        "pedal_correct": 11,
+        "slow_brake": 0,
+        "median_latency_ms": 288.0113335,
+        "tokens": 22135,
+        "cost": 0.000881454
+      },
+      "negative": {
+        "attempts": 12,
+        "pair_correct": 12,
+        "wheel_correct": 12,
+        "pedal_correct": 12,
+        "slow_brake": 0,
+        "median_latency_ms": 256.4908935,
+        "tokens": 22147,
+        "cost": 0.000882
+      }
+    },
+    "wheel_examples": {
+      "positive": {
+        "attempts": 12,
+        "pair_correct": 9,
+        "wheel_correct": 9,
+        "pedal_correct": 11,
+        "slow_brake": 0,
+        "median_latency_ms": 256.24326599999995,
+        "tokens": 23323,
+        "cost": 0.0009313500000000001
+      },
+      "negative": {
+        "attempts": 12,
+        "pair_correct": 12,
+        "wheel_correct": 12,
+        "pedal_correct": 12,
+        "slow_brake": 0,
+        "median_latency_ms": 241.7392865,
+        "tokens": 23335,
+        "cost": 0.000931896
+      }
+    },
+    "pedal_examples": {
+      "positive": {
+        "attempts": 12,
+        "pair_correct": 10,
+        "wheel_correct": 10,
+        "pedal_correct": 12,
+        "slow_brake": 0,
+        "median_latency_ms": 260.73207049999996,
+        "tokens": 25507,
+        "cost": 0.001023078
+      },
+      "negative": {
+        "attempts": 12,
+        "pair_correct": 12,
+        "wheel_correct": 12,
+        "pedal_correct": 12,
+        "slow_brake": 0,
+        "median_latency_ms": 274.2454135,
+        "tokens": 25519,
+        "cost": 0.0010236239999999999
+      }
+    },
+    "both_examples": {
+      "positive": {
+        "attempts": 12,
+        "pair_correct": 10,
+        "wheel_correct": 10,
+        "pedal_correct": 12,
+        "slow_brake": 0,
+        "median_latency_ms": 247.643078,
+        "tokens": 26695,
+        "cost": 0.001072974
+      },
+      "negative": {
+        "attempts": 12,
+        "pair_correct": 12,
+        "wheel_correct": 12,
+        "pedal_correct": 12,
+        "slow_brake": 0,
+        "median_latency_ms": 260.89824550000003,
+        "tokens": 26707,
+        "cost": 0.00107352
+      }
+    }
+  },
+  "by_guard": {
+    "grouped": {
+      "fast_inside_guard_false": {
+        "attempts": 2,
+        "pair_correct": 2,
+        "wheel_correct": 2,
+        "pedal_correct": 2,
+        "slow_brake": 0,
+        "median_latency_ms": 293.93730300000004,
+        "tokens": 3686,
+        "cost": 0.00014674799999999998
+      },
+      "fast_near_edge_inward_guard_false": {
+        "attempts": 2,
+        "pair_correct": 1,
+        "wheel_correct": 1,
+        "pedal_correct": 1,
+        "slow_brake": 0,
+        "median_latency_ms": 255.6269925,
+        "tokens": 3690,
+        "cost": 0.000146916
+      },
+      "offroad_inward_brake_guard_true": {
+        "attempts": 4,
+        "pair_correct": 4,
+        "wheel_correct": 4,
+        "pedal_correct": 4,
+        "slow_brake": 0,
+        "median_latency_ms": 287.8445755,
+        "tokens": 7382,
+        "cost": 0.000294
+      },
+      "offroad_inward_coast_guard_true": {
+        "attempts": 4,
+        "pair_correct": 3,
+        "wheel_correct": 3,
+        "pedal_correct": 4,
+        "slow_brake": 0,
+        "median_latency_ms": 262.659331,
+        "tokens": 7378,
+        "cost": 0.00029391599999999997
+      },
+      "onroad_outward_brake_guard_true": {
+        "attempts": 4,
+        "pair_correct": 3,
+        "wheel_correct": 3,
+        "pedal_correct": 4,
+        "slow_brake": 0,
+        "median_latency_ms": 259.63625,
+        "tokens": 7387,
+        "cost": 0.000294252
+      },
+      "onroad_outward_coast_guard_true": {
+        "attempts": 4,
+        "pair_correct": 4,
+        "wheel_correct": 4,
+        "pedal_correct": 4,
+        "slow_brake": 0,
+        "median_latency_ms": 261.499938,
+        "tokens": 7386,
+        "cost": 0.000294168
+      },
+      "slow_outward_acceleration_floor": {
+        "attempts": 2,
+        "pair_correct": 2,
+        "wheel_correct": 2,
+        "pedal_correct": 2,
+        "slow_brake": 0,
+        "median_latency_ms": 267.248267,
+        "tokens": 3698,
+        "cost": 0.000147168
+      },
+      "stationary_offroad_acceleration_floor": {
+        "attempts": 2,
+        "pair_correct": 2,
+        "wheel_correct": 2,
+        "pedal_correct": 2,
+        "slow_brake": 0,
+        "median_latency_ms": 292.3658915,
+        "tokens": 3675,
+        "cost": 0.000146286
+      }
+    },
+    "wheel_examples": {
+      "fast_inside_guard_false": {
+        "attempts": 2,
+        "pair_correct": 2,
+        "wheel_correct": 2,
+        "pedal_correct": 2,
+        "slow_brake": 0,
+        "median_latency_ms": 242.99403949999999,
+        "tokens": 3884,
+        "cost": 0.000155064
+      },
+      "fast_near_edge_inward_guard_false": {
+        "attempts": 2,
+        "pair_correct": 1,
+        "wheel_correct": 1,
+        "pedal_correct": 1,
+        "slow_brake": 0,
+        "median_latency_ms": 268.831897,
+        "tokens": 3888,
+        "cost": 0.000155232
+      },
+      "offroad_inward_brake_guard_true": {
+        "attempts": 4,
+        "pair_correct": 4,
+        "wheel_correct": 4,
+        "pedal_correct": 4,
+        "slow_brake": 0,
+        "median_latency_ms": 252.2941735,
+        "tokens": 7778,
+        "cost": 0.00031063200000000003
+      },
+      "offroad_inward_coast_guard_true": {
+        "attempts": 4,
+        "pair_correct": 3,
+        "wheel_correct": 3,
+        "pedal_correct": 4,
+        "slow_brake": 0,
+        "median_latency_ms": 270.8007785,
+        "tokens": 7774,
+        "cost": 0.000310548
+      },
+      "onroad_outward_brake_guard_true": {
+        "attempts": 4,
+        "pair_correct": 3,
+        "wheel_correct": 3,
+        "pedal_correct": 4,
+        "slow_brake": 0,
+        "median_latency_ms": 232.820032,
+        "tokens": 7783,
+        "cost": 0.000310884
+      },
+      "onroad_outward_coast_guard_true": {
+        "attempts": 4,
+        "pair_correct": 4,
+        "wheel_correct": 4,
+        "pedal_correct": 4,
+        "slow_brake": 0,
+        "median_latency_ms": 245.89146499999998,
+        "tokens": 7782,
+        "cost": 0.0003108
+      },
+      "slow_outward_acceleration_floor": {
+        "attempts": 2,
+        "pair_correct": 2,
+        "wheel_correct": 2,
+        "pedal_correct": 2,
+        "slow_brake": 0,
+        "median_latency_ms": 683.723541,
+        "tokens": 3896,
+        "cost": 0.000155484
+      },
+      "stationary_offroad_acceleration_floor": {
+        "attempts": 2,
+        "pair_correct": 2,
+        "wheel_correct": 2,
+        "pedal_correct": 2,
+        "slow_brake": 0,
+        "median_latency_ms": 248.351761,
+        "tokens": 3873,
+        "cost": 0.000154602
+      }
+    },
+    "pedal_examples": {
+      "fast_inside_guard_false": {
+        "attempts": 2,
+        "pair_correct": 2,
+        "wheel_correct": 2,
+        "pedal_correct": 2,
+        "slow_brake": 0,
+        "median_latency_ms": 267.07573,
+        "tokens": 4248,
+        "cost": 0.000170352
+      },
+      "fast_near_edge_inward_guard_false": {
+        "attempts": 2,
+        "pair_correct": 2,
+        "wheel_correct": 2,
+        "pedal_correct": 2,
+        "slow_brake": 0,
+        "median_latency_ms": 247.8427355,
+        "tokens": 4252,
+        "cost": 0.00017052000000000001
+      },
+      "offroad_inward_brake_guard_true": {
+        "attempts": 4,
+        "pair_correct": 4,
+        "wheel_correct": 4,
+        "pedal_correct": 4,
+        "slow_brake": 0,
+        "median_latency_ms": 261.6494605,
+        "tokens": 8506,
+        "cost": 0.00034120799999999996
+      },
+      "offroad_inward_coast_guard_true": {
+        "attempts": 4,
+        "pair_correct": 3,
+        "wheel_correct": 3,
+        "pedal_correct": 4,
+        "slow_brake": 0,
+        "median_latency_ms": 242.838456,
+        "tokens": 8502,
+        "cost": 0.000341124
+      },
+      "onroad_outward_brake_guard_true": {
+        "attempts": 4,
+        "pair_correct": 3,
+        "wheel_correct": 3,
+        "pedal_correct": 4,
+        "slow_brake": 0,
+        "median_latency_ms": 275.880852,
+        "tokens": 8511,
+        "cost": 0.00034146000000000003
+      },
+      "onroad_outward_coast_guard_true": {
+        "attempts": 4,
+        "pair_correct": 4,
+        "wheel_correct": 4,
+        "pedal_correct": 4,
+        "slow_brake": 0,
+        "median_latency_ms": 251.7832935,
+        "tokens": 8510,
+        "cost": 0.000341376
+      },
+      "slow_outward_acceleration_floor": {
+        "attempts": 2,
+        "pair_correct": 2,
+        "wheel_correct": 2,
+        "pedal_correct": 2,
+        "slow_brake": 0,
+        "median_latency_ms": 282.9395385,
+        "tokens": 4260,
+        "cost": 0.000170772
+      },
+      "stationary_offroad_acceleration_floor": {
+        "attempts": 2,
+        "pair_correct": 2,
+        "wheel_correct": 2,
+        "pedal_correct": 2,
+        "slow_brake": 0,
+        "median_latency_ms": 254.93527949999998,
+        "tokens": 4237,
+        "cost": 0.00016989000000000001
+      }
+    },
+    "both_examples": {
+      "fast_inside_guard_false": {
+        "attempts": 2,
+        "pair_correct": 2,
+        "wheel_correct": 2,
+        "pedal_correct": 2,
+        "slow_brake": 0,
+        "median_latency_ms": 271.8919705,
+        "tokens": 4446,
+        "cost": 0.000178668
+      },
+      "fast_near_edge_inward_guard_false": {
+        "attempts": 2,
+        "pair_correct": 1,
+        "wheel_correct": 1,
+        "pedal_correct": 2,
+        "slow_brake": 0,
+        "median_latency_ms": 273.829717,
+        "tokens": 4451,
+        "cost": 0.000178836
+      },
+      "offroad_inward_brake_guard_true": {
+        "attempts": 4,
+        "pair_correct": 4,
+        "wheel_correct": 4,
+        "pedal_correct": 4,
+        "slow_brake": 0,
+        "median_latency_ms": 231.8898775,
+        "tokens": 8902,
+        "cost": 0.00035784
+      },
+      "offroad_inward_coast_guard_true": {
+        "attempts": 4,
+        "pair_correct": 3,
+        "wheel_correct": 3,
+        "pedal_correct": 4,
+        "slow_brake": 0,
+        "median_latency_ms": 257.040832,
+        "tokens": 8898,
+        "cost": 0.000357756
+      },
+      "onroad_outward_brake_guard_true": {
+        "attempts": 4,
+        "pair_correct": 4,
+        "wheel_correct": 4,
+        "pedal_correct": 4,
+        "slow_brake": 0,
+        "median_latency_ms": 239.8065155,
+        "tokens": 8906,
+        "cost": 0.00035809199999999996
+      },
+      "onroad_outward_coast_guard_true": {
+        "attempts": 4,
+        "pair_correct": 4,
+        "wheel_correct": 4,
+        "pedal_correct": 4,
+        "slow_brake": 0,
+        "median_latency_ms": 275.66319,
+        "tokens": 8906,
+        "cost": 0.000358008
+      },
+      "slow_outward_acceleration_floor": {
+        "attempts": 2,
+        "pair_correct": 2,
+        "wheel_correct": 2,
+        "pedal_correct": 2,
+        "slow_brake": 0,
+        "median_latency_ms": 253.7944655,
+        "tokens": 4458,
+        "cost": 0.000179088
+      },
+      "stationary_offroad_acceleration_floor": {
+        "attempts": 2,
+        "pair_correct": 2,
+        "wheel_correct": 2,
+        "pedal_correct": 2,
+        "slow_brake": 0,
+        "median_latency_ms": 252.03437050000002,
+        "tokens": 4435,
+        "cost": 0.00017820599999999998
+      }
+    }
+  },
+  "candidate_gates": {
+    "wheel_examples": false,
+    "pedal_examples": false,
+    "both_examples": false
+  },
+  "selected_for_broader_static": null,
+  "gate_passed": false,
+  "native_or_live_qualification": false,
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 61957,
+    "charged_usd": 7.608504543999866,
+    "charged_tokens": 245576468,
+    "reported_cost_usd": 7.551226079999851,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 62053,
+    "charged_usd": 7.616324439999867,
+    "charged_tokens": 245771836,
+    "reported_cost_usd": 7.559045975999852,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 96,
+    "charged_tokens": 195368,
+    "charged_usd": 0.007819896000000881,
+    "reported_cost_usd": 0.007819896000000881,
+    "uncertain_requests": 0
+  },
+  "model_requests_by_audit": 0,
+  "shared_ledger_unchanged": true,
+  "review_scope": "Root-authored separate arithmetic/physics/wire/accounting checker; no second-agent review."
+}

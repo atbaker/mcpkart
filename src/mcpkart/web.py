@@ -126,7 +126,8 @@ def create_app(runtime: RaceRuntime | ProcessRaceRuntime | None = None, replay_r
     catalog = ReplayCatalog(replay_root or Path(__file__).resolve().parents[2] / "artifacts", busy=replay_busy)
     mcp = FastMCP("MCP Kart — realtime driving laboratory")
 
-    async def admit_race(seed: int = 0, deadline: float = 120.0, label: str = "", reset_after_s: float | None = 3.0) -> dict[str, Any]:
+    async def admit_race(seed: int = 0, deadline: float = 120.0, label: str = "", reset_after_s: float | None = 3.0,
+                         race_setup: dict | None = None) -> dict[str, Any]:
         """Start a solo three-lap race. Physics runs continuously at 60 Hz.
 
         Returns the first observation. Call drive with its race_id and tick,
@@ -142,7 +143,8 @@ def create_app(runtime: RaceRuntime | ProcessRaceRuntime | None = None, replay_r
         admitting = True
         try:
             await asyncio.to_thread(catalog.warm)
-            return await _resolved(runtime.start(seed=seed, deadline=deadline, label=label, reset_after_s=reset_after_s))
+            return await _resolved(runtime.start(seed=seed, deadline=deadline, label=label, reset_after_s=reset_after_s,
+                                                 **({"race_setup": race_setup} if race_setup else {})))
         finally:
             admitting = False
 

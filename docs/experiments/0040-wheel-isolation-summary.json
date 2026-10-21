@@ -1,0 +1,1353 @@
+{
+  "schema_version": 1,
+  "kind": "static_wheel_head_context_isolation_diagnostic",
+  "experiment": "0040",
+  "status": "complete_diagnostic_audit_and_provenance_passed_no_qualification",
+  "scope": "Purestaticdiagnostic54calls18freshcases3contexts,requestedrawwheelvalidityandscoreseparatefromunchangedproductionnative-decoderrejections.",
+  "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+  "provenance_files": [
+    {
+      "path": "artifacts/jev-wheel-isolation-v1/protocol.json",
+      "sha256": "3379845a94125eec380de731cd738cb6131f438aa45775ca90f21bc48ae1e441"
+    },
+    {
+      "path": "docs/experiments/0040-wheel-isolation-prompts.json",
+      "sha256": "bbc9daab0e47b37bc5bf9880ce998c46293b7f9de5faf5fdbbc67036db576e09"
+    },
+    {
+      "path": "artifacts/jev-wheel-isolation-v1/preflight-before-collection.json",
+      "sha256": "2a3281ce6d7499c3385e42ba7a5e8eb72b1b8be0b9ad3f1c5945348e4d27195c"
+    },
+    {
+      "path": "artifacts/jev-wheel-isolation-v1/preflight.json",
+      "sha256": "abf1d4a7df1f872265c08ec649ca823da6995ab3452a0ed606eada79a97112ab"
+    },
+    {
+      "path": "artifacts/jev-wheel-isolation-v1/root-authorization.json",
+      "sha256": "f5acb19cf796a7a253418f5ee58dc8ef393c947e8e3f9a815281b7d4cdb6bdbb"
+    },
+    {
+      "path": "artifacts/jev-wheel-isolation-v1/source-inheritance.json",
+      "sha256": "aeca7b871692a27f96d42a4af86c699888c4e05c05eedf3f9fcc0049c0940f7b"
+    },
+    {
+      "path": "artifacts/jev-wheel-isolation-v1/origin-manifest.json",
+      "sha256": "16e16a8beb56fafafba3149cf708de812691bf38aa0dde8caa04a332e5435e9a"
+    },
+    {
+      "path": "artifacts/jev-wheel-isolation-v1/prospective-design.md",
+      "sha256": "9661404cb26a82b4a2179c631abae0ccbf09a6e5c7acdad61b1d2e3d37e01036"
+    },
+    {
+      "path": "artifacts/jev-wheel-isolation-v1/decode-review.md",
+      "sha256": "bd240623ffbae09bccfd0f7918ff8aa5e0eb5f5039be00a810267d7ad1aa1fc7"
+    },
+    {
+      "path": "artifacts/jev-wheel-isolation-v1/final-audit.json",
+      "sha256": "d797a8eaae0e10c138de78e51d754384318fe38389c7b9f36f25a7fdfa5cd9ac"
+    },
+    {
+      "path": "artifacts/jev-wheel-isolation-v1/report/summary.json",
+      "sha256": "83d1ec0472df89113fe417f45769544069bbfe95d457885ca9baa670a50ec00b"
+    },
+    {
+      "path": "artifacts/jev-wheel-isolation-v1/root-execution-confirmation.json",
+      "sha256": "a27cb6c603d52b2bd17fdaf36956cda9ec5c37d814da343b75df5a57ad69ebd0"
+    },
+    {
+      "path": "artifacts/jev-wheel-isolation-v1/collection-provenance-verification.json",
+      "sha256": "6619b7e75d79fabb88cdd9b8295cd7e3a59ae4fa274a0c5e9cf226507bf12a07"
+    },
+    {
+      "path": "artifacts/jev-wheel-isolation-v1/diagnostics/pre-full-ledger-guard/reason.json",
+      "sha256": "b107d492d6d0c34ebe0e702684fa30fde58272d74ae7a99bd2efb85f232caa81"
+    },
+    {
+      "path": "artifacts/jev-six-hour-v1/new-boot-clock-v1/qualification.json",
+      "sha256": "c2cf73dcd7b8fa3a7e5244666d4ae1db298eac423c5a563edf4dfdfa366f7ba5"
+    }
+  ],
+  "frozen_protocol": {
+    "schema_version": 1,
+    "kind": "static_wheel_head_context_diagnostic",
+    "frozen": true,
+    "created_utc": "2026-10-20T04:36:40.449677+00:00",
+    "planned_calls": 54,
+    "cases": 18,
+    "repetitions": 1,
+    "contexts": [
+      "combined_full",
+      "wheel_full",
+      "wheel_facts"
+    ],
+    "order_seed": 2026102040,
+    "position_menu_cells": {
+      "combined_full|position=0|reverse=0": 3,
+      "combined_full|position=0|reverse=1": 3,
+      "combined_full|position=1|reverse=0": 3,
+      "combined_full|position=1|reverse=1": 3,
+      "combined_full|position=2|reverse=0": 3,
+      "combined_full|position=2|reverse=1": 3,
+      "wheel_facts|position=0|reverse=0": 3,
+      "wheel_facts|position=0|reverse=1": 3,
+      "wheel_facts|position=1|reverse=0": 3,
+      "wheel_facts|position=1|reverse=1": 3,
+      "wheel_facts|position=2|reverse=0": 3,
+      "wheel_facts|position=2|reverse=1": 3,
+      "wheel_full|position=0|reverse=0": 3,
+      "wheel_full|position=0|reverse=1": 3,
+      "wheel_full|position=1|reverse=0": 3,
+      "wheel_full|position=1|reverse=1": 3,
+      "wheel_full|position=2|reverse=0": 3,
+      "wheel_full|position=2|reverse=1": 3
+    },
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "input_token_ceiling": 16384,
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61567,
+      "charged_usd": 7.586051301999877,
+      "charged_tokens": 245014989,
+      "reported_cost_usd": 7.5287728379998615,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "shared_ledger": "artifacts/budget.json",
+    "limits": {
+      "max_requests": 75000,
+      "cap_usd": 10.0,
+      "max_tokens": 250000000
+    },
+    "route": {
+      "model": "typesafe/jev-1.14",
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "typesafe",
+      "provider_name": "TypeSafe",
+      "endpoint_name": "TypeSafe | typesafe/jev-1.14-20261014",
+      "price_input_per_token": 4.2e-08,
+      "price_output_per_token": 0.0,
+      "price_per_request": 0.0,
+      "context_length": 262144,
+      "max_prompt_tokens": 262144,
+      "max_completion_tokens": 235929
+    },
+    "automatic_retries": 0,
+    "provider_fallbacks": false,
+    "no_controls_applied": true,
+    "format_gate": null,
+    "accuracy_gate": null,
+    "stop_on_first_diagnostic_technical_error": true,
+    "stop_on_uncertain_accounting": true,
+    "collect_all_valid_answers": true,
+    "native_or_live_qualification": false,
+    "order_policy": "Sixcontextpermutationseach3times;normalcounts1,2,2,1,1,2;independentRandom(seed)shuffle18cellsand18IDsthenzip.Eachcontext/position/menu3,eachcontextposition6,nineforward/ninereversecaseunits.Onepresentationpercase/context.",
+    "task_contract": "Rollbackwordingto0034facts.Allthreewheelquestionsidenticalexceptsamecase/orderfacts:DRIVING/COMMON/physical-plus-eligibilitycriteria/IDsinherited;ONLYWHEEL_TASKsymmetricallyneutralizedtoremovefalsepedalpromise.CombinedpedalquestionEXACT0034.Wheelfactsfixedmaskretainsoriginaltopunits,canonicalbearing/raw15mpreviewfirst3columnsandcells,nextgateknown/signedplane;noflags/advice/labels.",
+    "client_contract": "ONLYquestion-propertyoverride;productiondecide/transport/Budget/decoderinheritedunchanged.Single-headORIGINALrecordremainsokfalse/actionNone/errorinvalid_action/component_errorspedal:missing_answer/component_choiceswheel:rawchoice,pedal:None/alluncertaintyNone.NOsubstitutedpedal/nativeverdictrewrite.",
+    "diagnostic_acceptance": "Separatestrictdiagnostic_validation:exactrawrequestedheadset,typedvalidchoices,norefusal,HTTP200andraw-recorddatedmodel/provider/ID/usageparity,reportednonnegativeusage/cost,onePOST/full252313reservation/ledgerchain.SinglestopunlessEXACTexpectedmissingpedalcore;rawidentitycheckedindependentlybecauseproductionmissingheadpreemptsidentityvalidation.Allothertechnicalfailuresstopafterpreservingattempt.",
+    "architecture_limitations": [
+      "COMMON deliberately retains unused pedal definitions whose facts are absent in wheel_facts; mask effects include this context mismatch.",
+      "Thirty-six expected production missing-pedal native rejections are distinct from API/diagnostic technical failures.",
+      "Raw wheel probabilities are descriptive only; no joint uncertainty or calibration claim.",
+      "Single-head validity is not native success and never admits a driver."
+    ],
+    "report_contract": "Percontextstrict-rawwheelscores,pairedgains/losses,latency,chargedtokens/cost,rawprobabilitiesandconfidenceifreturned,expectedmissingpedalcountsSEPARATEfromtechnicalfailures.Allmetricsdescriptive,NOaccuracy/native/livegateorpromotion.",
+    "followup_policy": "Purediagnosticonly.Noresultadmitsnative/livequalificationorchangesDAMPEDbaseline/applicationdefaults.",
+    "session_deadline_utc": "2026-10-20T06:17:26+00:00",
+    "helper_sha256": {
+      "policy.py": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+      "case_bank.py": "5654c21c31648773e34b55a8e7b25f09f38b881536f11614d29e472c268d27a2",
+      "cases.json": "7d8045788522f3380219abae68c3b2a2c9ce56b60c1b21dcf3e2021e7449de2a",
+      "case-design.json": "7ad237bda5c42501e36846f0101bca26a52349166b29e568316cf35c5ab9228e",
+      "policy_client.py": "a688b668902b3c8e7821787c6aa2128cc3d863a213d1b0841ed344ee60118a7c",
+      "source-inheritance.json": "aeca7b871692a27f96d42a4af86c699888c4e05c05eedf3f9fcc0049c0940f7b",
+      "payloads.py": "6b84e4b30b99efb130e5fee1bb8148efdd8cddcc2498cd579359497aa0f42a26",
+      "prepare.py": "1f4e3c3568d573ee53a7e6fc1bcf970529f1d0831682a49ca43a1fef6bc50824",
+      "runner.py": "17beb0f6b0a71954322e2764a9b2dd4b0e5faf3190a101ef73e63b7b73df24fb",
+      "audit.py": "b1c419dd9f6fb37895fe68f5ec210a10088a8a784e8470a3cd3ede573bd4bbe5",
+      "decode-review.py": "a0618bc2e6140d90842c0fd9a5185b4cfc028aeee48810b91a7f1458b90ad72d",
+      "decode-review.md": "bd240623ffbae09bccfd0f7918ff8aa5e0eb5f5039be00a810267d7ad1aa1fc7",
+      "preflight.py": "4e6b0b5b3678c3543d866911e21380b9ac4a777128166d4f278091cb15750369",
+      "preflight.json": "abf1d4a7df1f872265c08ec649ca823da6995ab3452a0ed606eada79a97112ab",
+      "order.json": "a9f063e9f5e04feb25f0d7438dc923682e6b1fa6a78870534c35d5fd85d9ad13",
+      "routes.json": "6de1efa5966a075c1ce8c70edaeaacc3c5fb1d9ecbfd22dd7090a9cb5245df80",
+      "DESIGN.md": "54485f95ffdb21489ca9ca2c0322116e263782d38487025f7bcab7178b0c4302",
+      "origin-manifest.json": "16e16a8beb56fafafba3149cf708de812691bf38aa0dde8caa04a332e5435e9a",
+      "prospective-design.md": "9661404cb26a82b4a2179c631abae0ccbf09a6e5c7acdad61b1d2e3d37e01036",
+      "protocol.draft.json": "2bd9cae5561a5db02026aea9d62d771fdc2451a3fa5895bb88112e3a98e59233"
+    },
+    "frozen_utc": "2026-10-20T04:41:21.917958+00:00",
+    "prompt_archive": {
+      "path": "docs/experiments/0040-wheel-isolation-prompts.json",
+      "sha256": "bbc9daab0e47b37bc5bf9880ce998c46293b7f9de5faf5fdbbc67036db576e09"
+    }
+  },
+  "root_authorization": {
+    "root_thread_id": "01a151b8-43d6-733b-a890-7368ae08c015",
+    "root_host_id": "durable",
+    "authorization_id": "b985046ea65242bf9494169154c284e4",
+    "authorized_utc": "2026-10-20T04:41:50.767681+00:00",
+    "protocol_sha256": "3379845a94125eec380de731cd738cb6131f438aa45775ca90f21bc48ae1e441",
+    "independent_preflight_sha256": "2a3281ce6d7499c3385e42ba7a5e8eb72b1b8be0b9ad3f1c5945348e4d27195c",
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61567,
+      "charged_usd": 7.586051301999877,
+      "charged_tokens": 245014989,
+      "reported_cost_usd": 7.5287728379998615,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "scope": "Only frozen 0040 54-call static wheel question/context diagnostic. Preserve original incomplete native rejections and score raw wheel answers separately. No controls, retries, native/live qualification, or cap/deadline changes."
+  },
+  "independent_prospective_preflight": {
+    "passed": true,
+    "mode": "independent_wheel_isolation_preflight",
+    "checked_at_utc": "2026-10-20T04:41:28.767473+00:00",
+    "protocol_sha256": "3379845a94125eec380de731cd738cb6131f438aa45775ca90f21bc48ae1e441",
+    "errors": [],
+    "independent_policy_cases": 18,
+    "static_policy_labels_checked": 18,
+    "exact_payloads_checked": 54,
+    "policy_client_source_review": {
+      "passed": true,
+      "subclass_own_attributes": [
+        "questions"
+      ],
+      "method_identity": {
+        "__init__": true,
+        "decide": true,
+        "_decode_components": true,
+        "_record_component_uncertainty": true,
+        "__aenter__": true,
+        "__aexit__": true,
+        "_safe_detail": true,
+        "_error_detail": true
+      },
+      "production_decide_source_sha256": "118e79f7d6107f6bd467967760fd1c2bd9ae0a8f828df9a1473cf621ccc82020",
+      "no_response_rewriting_or_host_selection": true
+    },
+    "free_policy_evidence_review": {
+      "passed": true,
+      "report_sha256": "368d1805d90ffc06cd4c4c5dbb3cd35999a4e5ea367cacad44d06ee4226eb254",
+      "independent_review_sha256": "9c4e82654b6629d8336c5787be57118f3c7e8a73ed35604477f61318f2343589",
+      "audit_replay_counts": {
+        "physics_samples": 18872,
+        "request_observations": 1259,
+        "commands": 1255,
+        "candidate_grid_queries": 284
+      },
+      "limitation": "No free rollout triggered pedal guard; host tracking supports nominal policy execution only.",
+      "origin_manifest_review": {
+        "passed": true,
+        "manifest_sha256": "16e16a8beb56fafafba3149cf708de812691bf38aa0dde8caa04a332e5435e9a",
+        "origin_files_checked": 39,
+        "policy_copy_exact": true,
+        "old_frozen_cli_executed_by_audit": false
+      }
+    },
+    "model_requests": 0,
+    "no_controls_applied": true,
+    "shared_ledger_unchanged": true
+  },
+  "collection_writer": {
+    "session_id": "4cc553359b9743eab9a9eee061273313",
+    "pid": 6573,
+    "process_start_ticks": 389632,
+    "parent_pid": 6572,
+    "parent_start_ticks": 389631,
+    "boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+    "started_utc": "2026-10-20T04:41:55.486747+00:00",
+    "script_path": "/workspace/mcpkart/artifacts/jev-wheel-isolation-v1/runner.py",
+    "executable": "/workspace/mcpkart/.venv/bin/python",
+    "explicit_collect_flag": true
+  },
+  "planned_contexts": [
+    "combined_full",
+    "wheel_full",
+    "wheel_facts"
+  ],
+  "planned_single_head_calls": 36,
+  "native_decoding_contract": "Productionfactoreddecoderdemandstwoheads;missingpedalisrejectedandpreserved,noactionfabricated.",
+  "final_audit": {
+    "passed": true,
+    "complete": true,
+    "checked_at_utc": "2026-10-20T04:43:33.279728+00:00",
+    "errors": [],
+    "warnings": [],
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "helper_checks": {
+      "policy.py": {
+        "expected": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+        "actual": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+        "matches": true
+      },
+      "case_bank.py": {
+        "expected": "5654c21c31648773e34b55a8e7b25f09f38b881536f11614d29e472c268d27a2",
+        "actual": "5654c21c31648773e34b55a8e7b25f09f38b881536f11614d29e472c268d27a2",
+        "matches": true
+      },
+      "cases.json": {
+        "expected": "7d8045788522f3380219abae68c3b2a2c9ce56b60c1b21dcf3e2021e7449de2a",
+        "actual": "7d8045788522f3380219abae68c3b2a2c9ce56b60c1b21dcf3e2021e7449de2a",
+        "matches": true
+      },
+      "case-design.json": {
+        "expected": "7ad237bda5c42501e36846f0101bca26a52349166b29e568316cf35c5ab9228e",
+        "actual": "7ad237bda5c42501e36846f0101bca26a52349166b29e568316cf35c5ab9228e",
+        "matches": true
+      },
+      "policy_client.py": {
+        "expected": "a688b668902b3c8e7821787c6aa2128cc3d863a213d1b0841ed344ee60118a7c",
+        "actual": "a688b668902b3c8e7821787c6aa2128cc3d863a213d1b0841ed344ee60118a7c",
+        "matches": true
+      },
+      "source-inheritance.json": {
+        "expected": "aeca7b871692a27f96d42a4af86c699888c4e05c05eedf3f9fcc0049c0940f7b",
+        "actual": "aeca7b871692a27f96d42a4af86c699888c4e05c05eedf3f9fcc0049c0940f7b",
+        "matches": true
+      },
+      "payloads.py": {
+        "expected": "6b84e4b30b99efb130e5fee1bb8148efdd8cddcc2498cd579359497aa0f42a26",
+        "actual": "6b84e4b30b99efb130e5fee1bb8148efdd8cddcc2498cd579359497aa0f42a26",
+        "matches": true
+      },
+      "prepare.py": {
+        "expected": "1f4e3c3568d573ee53a7e6fc1bcf970529f1d0831682a49ca43a1fef6bc50824",
+        "actual": "1f4e3c3568d573ee53a7e6fc1bcf970529f1d0831682a49ca43a1fef6bc50824",
+        "matches": true
+      },
+      "runner.py": {
+        "expected": "17beb0f6b0a71954322e2764a9b2dd4b0e5faf3190a101ef73e63b7b73df24fb",
+        "actual": "17beb0f6b0a71954322e2764a9b2dd4b0e5faf3190a101ef73e63b7b73df24fb",
+        "matches": true
+      },
+      "audit.py": {
+        "expected": "b1c419dd9f6fb37895fe68f5ec210a10088a8a784e8470a3cd3ede573bd4bbe5",
+        "actual": "b1c419dd9f6fb37895fe68f5ec210a10088a8a784e8470a3cd3ede573bd4bbe5",
+        "matches": true
+      },
+      "decode-review.py": {
+        "expected": "a0618bc2e6140d90842c0fd9a5185b4cfc028aeee48810b91a7f1458b90ad72d",
+        "actual": "a0618bc2e6140d90842c0fd9a5185b4cfc028aeee48810b91a7f1458b90ad72d",
+        "matches": true
+      },
+      "decode-review.md": {
+        "expected": "bd240623ffbae09bccfd0f7918ff8aa5e0eb5f5039be00a810267d7ad1aa1fc7",
+        "actual": "bd240623ffbae09bccfd0f7918ff8aa5e0eb5f5039be00a810267d7ad1aa1fc7",
+        "matches": true
+      },
+      "preflight.py": {
+        "expected": "4e6b0b5b3678c3543d866911e21380b9ac4a777128166d4f278091cb15750369",
+        "actual": "4e6b0b5b3678c3543d866911e21380b9ac4a777128166d4f278091cb15750369",
+        "matches": true
+      },
+      "preflight.json": {
+        "expected": "abf1d4a7df1f872265c08ec649ca823da6995ab3452a0ed606eada79a97112ab",
+        "actual": "abf1d4a7df1f872265c08ec649ca823da6995ab3452a0ed606eada79a97112ab",
+        "matches": true
+      },
+      "order.json": {
+        "expected": "a9f063e9f5e04feb25f0d7438dc923682e6b1fa6a78870534c35d5fd85d9ad13",
+        "actual": "a9f063e9f5e04feb25f0d7438dc923682e6b1fa6a78870534c35d5fd85d9ad13",
+        "matches": true
+      },
+      "routes.json": {
+        "expected": "6de1efa5966a075c1ce8c70edaeaacc3c5fb1d9ecbfd22dd7090a9cb5245df80",
+        "actual": "6de1efa5966a075c1ce8c70edaeaacc3c5fb1d9ecbfd22dd7090a9cb5245df80",
+        "matches": true
+      },
+      "DESIGN.md": {
+        "expected": "54485f95ffdb21489ca9ca2c0322116e263782d38487025f7bcab7178b0c4302",
+        "actual": "54485f95ffdb21489ca9ca2c0322116e263782d38487025f7bcab7178b0c4302",
+        "matches": true
+      },
+      "origin-manifest.json": {
+        "expected": "16e16a8beb56fafafba3149cf708de812691bf38aa0dde8caa04a332e5435e9a",
+        "actual": "16e16a8beb56fafafba3149cf708de812691bf38aa0dde8caa04a332e5435e9a",
+        "matches": true
+      },
+      "prospective-design.md": {
+        "expected": "9661404cb26a82b4a2179c631abae0ccbf09a6e5c7acdad61b1d2e3d37e01036",
+        "actual": "9661404cb26a82b4a2179c631abae0ccbf09a6e5c7acdad61b1d2e3d37e01036",
+        "matches": true
+      },
+      "protocol.draft.json": {
+        "expected": "2bd9cae5561a5db02026aea9d62d771fdc2451a3fa5895bb88112e3a98e59233",
+        "actual": "2bd9cae5561a5db02026aea9d62d771fdc2451a3fa5895bb88112e3a98e59233",
+        "matches": true
+      }
+    },
+    "independent_policy_cases_checked": 18,
+    "policy_client_source_review": {
+      "passed": true,
+      "subclass_own_attributes": [
+        "questions"
+      ],
+      "method_identity": {
+        "__init__": true,
+        "decide": true,
+        "_decode_components": true,
+        "_record_component_uncertainty": true,
+        "__aenter__": true,
+        "__aexit__": true,
+        "_safe_detail": true,
+        "_error_detail": true
+      },
+      "production_decide_source_sha256": "118e79f7d6107f6bd467967760fd1c2bd9ae0a8f828df9a1473cf621ccc82020",
+      "no_response_rewriting_or_host_selection": true
+    },
+    "free_policy_evidence_review": {
+      "passed": true,
+      "report_sha256": "368d1805d90ffc06cd4c4c5dbb3cd35999a4e5ea367cacad44d06ee4226eb254",
+      "independent_review_sha256": "9c4e82654b6629d8336c5787be57118f3c7e8a73ed35604477f61318f2343589",
+      "audit_replay_counts": {
+        "physics_samples": 18872,
+        "request_observations": 1259,
+        "commands": 1255,
+        "candidate_grid_queries": 284
+      },
+      "limitation": "No free rollout triggered pedal guard; host tracking supports nominal policy execution only.",
+      "origin_manifest_review": {
+        "passed": true,
+        "manifest_sha256": "16e16a8beb56fafafba3149cf708de812691bf38aa0dde8caa04a332e5435e9a",
+        "origin_files_checked": 39,
+        "policy_copy_exact": true,
+        "old_frozen_cli_executed_by_audit": false
+      }
+    },
+    "static_policy_labels_checked": 18,
+    "planned_requests": 54,
+    "saved_requests": 54,
+    "failures": [],
+    "unrun": [],
+    "writer": {
+      "session_id": "4cc553359b9743eab9a9eee061273313",
+      "pid": 6573,
+      "process_start_ticks": 389632,
+      "parent_pid": 6572,
+      "parent_start_ticks": 389631,
+      "boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+      "started_utc": "2026-10-20T04:41:55.486747+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-wheel-isolation-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61567,
+      "charged_usd": 7.586051301999877,
+      "charged_tokens": 245014989,
+      "reported_cost_usd": 7.5287728379998615,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61621,
+      "charged_usd": 7.589198865999872,
+      "charged_tokens": 245093612,
+      "reported_cost_usd": 7.531920401999857,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 54,
+      "charged_usd": 0.003147563999995384,
+      "reported_cost_usd": 0.003147563999995384,
+      "charged_tokens": 78623,
+      "uncertain_requests": 0
+    },
+    "automatic_followup_or_promotion": false,
+    "model_requests_by_audit": 0,
+    "ledger_written_by_audit": false,
+    "no_controls_applied": true
+  },
+  "audited_report": {
+    "complete": true,
+    "audit_passed": true,
+    "overall": {
+      "combined_full": {
+        "planned": 18,
+        "attempted": 18,
+        "unrun": 0,
+        "diagnostic_valid": 18,
+        "diagnostic_technical_failures": 0,
+        "raw_response_failures": 0,
+        "full_ledger_accounting_failures": 0,
+        "wheel_correct": 15,
+        "wheel_incorrect_or_technical_failure": 3,
+        "attempted_wheel_accuracy": 0.8333333333333334,
+        "valid_response_wheel_accuracy": 0.8333333333333334,
+        "planned_wheel_correct_fraction": 0.8333333333333334,
+        "expected_production_missing_pedal_rejections": 0,
+        "production_native_successes": 18,
+        "charged_usd": 0.001333164,
+        "charged_tokens": 33466,
+        "median_latency_ms": 220.248864,
+        "mean_latency_ms": 234.827792,
+        "minimum_latency_ms": 203.819933,
+        "maximum_latency_ms": 446.902453
+      },
+      "wheel_full": {
+        "planned": 18,
+        "attempted": 18,
+        "unrun": 0,
+        "diagnostic_valid": 18,
+        "diagnostic_technical_failures": 0,
+        "raw_response_failures": 0,
+        "full_ledger_accounting_failures": 0,
+        "wheel_correct": 15,
+        "wheel_incorrect_or_technical_failure": 3,
+        "attempted_wheel_accuracy": 0.8333333333333334,
+        "valid_response_wheel_accuracy": 0.8333333333333334,
+        "planned_wheel_correct_fraction": 0.8333333333333334,
+        "expected_production_missing_pedal_rejections": 18,
+        "production_native_successes": 0,
+        "charged_usd": 0.000964992,
+        "charged_tokens": 23955,
+        "median_latency_ms": 209.525488,
+        "mean_latency_ms": 247.37992894444446,
+        "minimum_latency_ms": 197.840101,
+        "maximum_latency_ms": 568.29363
+      },
+      "wheel_facts": {
+        "planned": 18,
+        "attempted": 18,
+        "unrun": 0,
+        "diagnostic_valid": 18,
+        "diagnostic_technical_failures": 0,
+        "raw_response_failures": 0,
+        "full_ledger_accounting_failures": 0,
+        "wheel_correct": 18,
+        "wheel_incorrect_or_technical_failure": 0,
+        "attempted_wheel_accuracy": 1.0,
+        "valid_response_wheel_accuracy": 1.0,
+        "planned_wheel_correct_fraction": 1.0,
+        "expected_production_missing_pedal_rejections": 18,
+        "production_native_successes": 0,
+        "charged_usd": 0.000849408,
+        "charged_tokens": 21202,
+        "median_latency_ms": 212.618739,
+        "mean_latency_ms": 216.55639883333333,
+        "minimum_latency_ms": 188.784304,
+        "maximum_latency_ms": 256.933487
+      }
+    },
+    "components": {
+      "combined_full": {
+        "wheel_correct": 15,
+        "wheel_by_magnitude": {
+          "straight": {
+            "correct": 3,
+            "responses": 6
+          },
+          "half": {
+            "correct": 6,
+            "responses": 6
+          },
+          "full": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "wheel_by_signed_direction": {
+          "hard_right": {
+            "correct": 3,
+            "responses": 3
+          },
+          "right": {
+            "correct": 3,
+            "responses": 3
+          },
+          "straight": {
+            "correct": 3,
+            "responses": 6
+          },
+          "left": {
+            "correct": 3,
+            "responses": 3
+          },
+          "hard_left": {
+            "correct": 3,
+            "responses": 3
+          }
+        },
+        "small_straight_by_bearing_sign": {
+          "positive": {
+            "correct": 1,
+            "responses": 3
+          },
+          "negative": {
+            "correct": 2,
+            "responses": 3
+          }
+        },
+        "raw_answer_key_sets": {
+          "pedal,wheel": 18
+        },
+        "unsolicited_head_responses": 0,
+        "chosen_wheel_counts": {
+          "right": 3,
+          "left": 4,
+          "straight": 3,
+          "hard_left": 4,
+          "hard_right": 4
+        },
+        "pedal_correct": 18,
+        "native_pair_correct": 15,
+        "pedal_by_class": {
+          "accelerate": {
+            "correct": 6,
+            "responses": 6
+          },
+          "coast": {
+            "correct": 6,
+            "responses": 6
+          },
+          "brake": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "brake_choices_below_2mps": 0,
+        "production_action_counts": {
+          "right_coast": 1,
+          "left_coast": 2,
+          "straight_accelerate": 2,
+          "hard_left_brake": 2,
+          "left_brake": 1,
+          "hard_left_coast": 1,
+          "hard_right_brake": 2,
+          "right_accelerate": 1,
+          "hard_left_accelerate": 1,
+          "hard_right_accelerate": 1,
+          "left_accelerate": 1,
+          "straight_coast": 1,
+          "right_brake": 1,
+          "hard_right_coast": 1
+        },
+        "raw_wheel_probability_fields_present": 18,
+        "raw_wheel_confidence_fields_present": 18
+      },
+      "wheel_full": {
+        "wheel_correct": 15,
+        "wheel_by_magnitude": {
+          "straight": {
+            "correct": 3,
+            "responses": 6
+          },
+          "half": {
+            "correct": 6,
+            "responses": 6
+          },
+          "full": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "wheel_by_signed_direction": {
+          "hard_right": {
+            "correct": 3,
+            "responses": 3
+          },
+          "right": {
+            "correct": 3,
+            "responses": 3
+          },
+          "straight": {
+            "correct": 3,
+            "responses": 6
+          },
+          "left": {
+            "correct": 3,
+            "responses": 3
+          },
+          "hard_left": {
+            "correct": 3,
+            "responses": 3
+          }
+        },
+        "small_straight_by_bearing_sign": {
+          "positive": {
+            "correct": 1,
+            "responses": 3
+          },
+          "negative": {
+            "correct": 2,
+            "responses": 3
+          }
+        },
+        "raw_answer_key_sets": {
+          "wheel": 18
+        },
+        "unsolicited_head_responses": 0,
+        "chosen_wheel_counts": {
+          "right": 4,
+          "left": 4,
+          "straight": 3,
+          "hard_left": 4,
+          "hard_right": 3
+        },
+        "pedal_correct": null,
+        "native_pair_correct": null,
+        "pedal_by_class": null,
+        "brake_choices_below_2mps": null,
+        "production_action_counts": {
+          "null": 18
+        },
+        "raw_wheel_probability_fields_present": 18,
+        "raw_wheel_confidence_fields_present": 18
+      },
+      "wheel_facts": {
+        "wheel_correct": 18,
+        "wheel_by_magnitude": {
+          "straight": {
+            "correct": 6,
+            "responses": 6
+          },
+          "half": {
+            "correct": 6,
+            "responses": 6
+          },
+          "full": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "wheel_by_signed_direction": {
+          "hard_right": {
+            "correct": 3,
+            "responses": 3
+          },
+          "right": {
+            "correct": 3,
+            "responses": 3
+          },
+          "straight": {
+            "correct": 6,
+            "responses": 6
+          },
+          "left": {
+            "correct": 3,
+            "responses": 3
+          },
+          "hard_left": {
+            "correct": 3,
+            "responses": 3
+          }
+        },
+        "small_straight_by_bearing_sign": {
+          "positive": {
+            "correct": 3,
+            "responses": 3
+          },
+          "negative": {
+            "correct": 3,
+            "responses": 3
+          }
+        },
+        "raw_answer_key_sets": {
+          "wheel": 18
+        },
+        "unsolicited_head_responses": 0,
+        "chosen_wheel_counts": {
+          "right": 3,
+          "left": 3,
+          "straight": 6,
+          "hard_left": 3,
+          "hard_right": 3
+        },
+        "pedal_correct": null,
+        "native_pair_correct": null,
+        "pedal_by_class": null,
+        "brake_choices_below_2mps": null,
+        "production_action_counts": {
+          "null": 18
+        },
+        "raw_wheel_probability_fields_present": 18,
+        "raw_wheel_confidence_fields_present": 18
+      }
+    },
+    "paired_wheel_contrasts": {
+      "wheel_full_minus_combined_full": {
+        "paired_cases": 18,
+        "gains": 0,
+        "losses": 0,
+        "net_gain": 0,
+        "both_correct": 15,
+        "both_incorrect_or_invalid": 3
+      },
+      "wheel_facts_minus_wheel_full": {
+        "paired_cases": 18,
+        "gains": 3,
+        "losses": 0,
+        "net_gain": 3,
+        "both_correct": 15,
+        "both_incorrect_or_invalid": 0
+      },
+      "wheel_facts_minus_combined_full": {
+        "paired_cases": 18,
+        "gains": 3,
+        "losses": 0,
+        "net_gain": 3,
+        "both_correct": 15,
+        "both_incorrect_or_invalid": 0
+      }
+    },
+    "expected_production_missing_pedal_rejections": 36,
+    "planned_expected_production_missing_pedal_rejections": 36,
+    "diagnostic_technical_failures": 0,
+    "accuracy_gate": null,
+    "gate": null,
+    "native_or_live_qualification": false,
+    "source_case_coverage": {
+      "cases": 18,
+      "synthetic_mirror_pairs": 9,
+      "straight_bearings_deg": [
+        1.4046,
+        -1.4046,
+        1.224,
+        -1.224,
+        1.3176,
+        -1.3176
+      ],
+      "target_counts": {
+        "straight_accelerate": 2,
+        "straight_coast": 2,
+        "straight_brake": 2,
+        "left_accelerate": 1,
+        "right_accelerate": 1,
+        "left_coast": 1,
+        "right_coast": 1,
+        "left_brake": 1,
+        "right_brake": 1,
+        "hard_left_accelerate": 1,
+        "hard_right_accelerate": 1,
+        "hard_left_coast": 1,
+        "hard_right_coast": 1,
+        "hard_left_brake": 1,
+        "hard_right_brake": 1
+      }
+    },
+    "score_scope": "Strict raw wheel diagnostic; single-head original native verdicts remain rejected for the missing pedal.",
+    "interpretation_limits": [
+      "COMMON retains unused pedal definitions in wheel_facts; the masked contrast identifies the factual-deletion package under those instructions.",
+      "Raw probabilities and confidence are descriptive only; no joint uncertainty or calibration claim.",
+      "All contrasts are descriptive and cannot admit native or live driving."
+    ],
+    "automatic_followup_or_promotion": false,
+    "free_policy_evidence_review": {
+      "passed": true,
+      "report_sha256": "368d1805d90ffc06cd4c4c5dbb3cd35999a4e5ea367cacad44d06ee4226eb254",
+      "independent_review_sha256": "9c4e82654b6629d8336c5787be57118f3c7e8a73ed35604477f61318f2343589",
+      "audit_replay_counts": {
+        "physics_samples": 18872,
+        "request_observations": 1259,
+        "commands": 1255,
+        "candidate_grid_queries": 284
+      },
+      "limitation": "No free rollout triggered pedal guard; host tracking supports nominal policy execution only.",
+      "origin_manifest_review": {
+        "passed": true,
+        "manifest_sha256": "16e16a8beb56fafafba3149cf708de812691bf38aa0dde8caa04a332e5435e9a",
+        "origin_files_checked": 39,
+        "policy_copy_exact": true,
+        "old_frozen_cli_executed_by_audit": false
+      }
+    }
+  },
+  "independent_collection_provenance": {
+    "passed": true,
+    "checked_at_utc": "2026-10-20T04:45:18.721183+00:00",
+    "check_count": 48,
+    "checks": [
+      {
+        "check": "root_frozen_protocol_identity",
+        "passed": true
+      },
+      {
+        "check": "frozen_18_case_54_call_scope",
+        "passed": true
+      },
+      {
+        "check": "all_frozen_helper_hashes",
+        "passed": true
+      },
+      {
+        "check": "exact_frozen_archive",
+        "passed": true
+      },
+      {
+        "check": "full_bench_11_file_and_rust_source_fingerprint",
+        "passed": true
+      },
+      {
+        "check": "all_read_only_origin_hashes_retained",
+        "passed": true
+      },
+      {
+        "check": "byte_exact_fixed_policy",
+        "passed": true
+      },
+      {
+        "check": "all_native_targets_held_coverage_derangement",
+        "passed": true
+      },
+      {
+        "check": "independent_unchanged_native_and_wheel_labels",
+        "passed": true
+      },
+      {
+        "check": "exact_registered_permutation_and_independent_shuffles_order",
+        "passed": true
+      },
+      {
+        "check": "context_position_menu_cells_three_each",
+        "passed": true
+      },
+      {
+        "check": "immutable_passing_independent_preflight",
+        "passed": true
+      },
+      {
+        "check": "protocol_hash_bound_to_admission_and_markers",
+        "passed": true
+      },
+      {
+        "check": "root_authorization_identity",
+        "passed": true
+      },
+      {
+        "check": "explicit_root_execution_completed",
+        "passed": true
+      },
+      {
+        "check": "prospective_timestamp_chain_within_session",
+        "passed": true
+      },
+      {
+        "check": "one_writer_identity_every_record",
+        "passed": true
+      },
+      {
+        "check": "writer_script_executable_current_boot",
+        "passed": true
+      },
+      {
+        "check": "no_retries_fallbacks_or_commands",
+        "passed": true
+      },
+      {
+        "check": "no_stop_markers",
+        "passed": true
+      },
+      {
+        "check": "no_quality_native_or_live_gate",
+        "passed": true
+      },
+      {
+        "check": "original0034_archive_hash_retained",
+        "passed": true
+      },
+      {
+        "check": "exact_neutral_wheel_task_archive",
+        "passed": true
+      },
+      {
+        "check": "all_54_exact_frozen_wire_bytes_and_hashes",
+        "passed": true
+      },
+      {
+        "check": "all_54_exact_order_entries",
+        "passed": true
+      },
+      {
+        "check": "all_54_exact_treatment_masks_and_independent_wheel_truth",
+        "passed": true
+      },
+      {
+        "check": "all_54_exact_question_treatments_from0034_neutralized_task",
+        "passed": true
+      },
+      {
+        "check": "all_54_independent_pinned_http_identity",
+        "passed": true
+      },
+      {
+        "check": "all_54_exact_requested_typed_raw_heads",
+        "passed": true
+      },
+      {
+        "check": "all_original_production_success_and_missing_pedal_verdicts_preserved",
+        "passed": true
+      },
+      {
+        "check": "18_native_successes_36_expected_missing_pedal_rejections",
+        "passed": true
+      },
+      {
+        "check": "saved_diagnostic_and_accounting_validations_independently_match",
+        "passed": true
+      },
+      {
+        "check": "all_54_complete_budget_transitions_and_conservative_admission",
+        "passed": true
+      },
+      {
+        "check": "all_54_requests_strictly_sequential",
+        "passed": true
+      },
+      {
+        "check": "all_54_result_rows_reconstructed_from_raw",
+        "passed": true
+      },
+      {
+        "check": "all_54_raw_wheel_probability_and_confidence_fields_preserved",
+        "passed": true
+      },
+      {
+        "check": "54_unique_reservations_and_response_ids",
+        "passed": true
+      },
+      {
+        "check": "all_18_matched_policy_facts_and_masked_state_contrasts",
+        "passed": true
+      },
+      {
+        "check": "all_18_wheel_questions_byte_identical_across_three_treatments",
+        "passed": true
+      },
+      {
+        "check": "budget_boundaries_exact_root_start_completion_and_actual_ledger",
+        "passed": true
+      },
+      {
+        "check": "budget_delta_exact_raw_usage",
+        "passed": true
+      },
+      {
+        "check": "retained_caps_and_no_pending",
+        "passed": true
+      },
+      {
+        "check": "wheel_score_summaries_exact",
+        "passed": true
+      },
+      {
+        "check": "two_primary_and_one_reported_paired_wheel_contrasts_exact",
+        "passed": true
+      },
+      {
+        "check": "expected_rejections_separate_from_technical_failures",
+        "passed": true
+      },
+      {
+        "check": "no_quality_gate_native_qualification_or_promotion_in_results",
+        "passed": true
+      },
+      {
+        "check": "final_independent_audit_complete_and_error_free",
+        "passed": true
+      },
+      {
+        "check": "verifier_ledger_bytes_unchanged",
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "protocol_sha256": "3379845a94125eec380de731cd738cb6131f438aa45775ca90f21bc48ae1e441",
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "writer": {
+      "session_id": "4cc553359b9743eab9a9eee061273313",
+      "pid": 6573,
+      "process_start_ticks": 389632,
+      "parent_pid": 6572,
+      "parent_start_ticks": 389631,
+      "boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+      "started_utc": "2026-10-20T04:41:55.486747+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-wheel-isolation-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61567,
+      "charged_usd": 7.586051301999877,
+      "charged_tokens": 245014989,
+      "reported_cost_usd": 7.5287728379998615,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61621,
+      "charged_usd": 7.589198865999872,
+      "charged_tokens": 245093612,
+      "reported_cost_usd": 7.531920401999857,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 54,
+      "charged_tokens": 78623,
+      "charged_usd": 0.003147563999999998
+    },
+    "wheel_scores": {
+      "wheel_full": 15,
+      "wheel_facts": 18,
+      "combined_full": 15
+    },
+    "combined_pedal_correct": 18,
+    "combined_native_pair_correct": 15,
+    "expected_production_missing_pedal_rejections": 36,
+    "paired_wheel_contrasts": {
+      "wheel_full_minus_combined_full": {
+        "paired_cases": 18,
+        "gains": 0,
+        "losses": 0,
+        "net_gain": 0,
+        "both_correct": 15,
+        "both_incorrect_or_invalid": 3
+      },
+      "wheel_facts_minus_wheel_full": {
+        "paired_cases": 18,
+        "gains": 3,
+        "losses": 0,
+        "net_gain": 3,
+        "both_correct": 15,
+        "both_incorrect_or_invalid": 0
+      },
+      "wheel_facts_minus_combined_full": {
+        "paired_cases": 18,
+        "gains": 3,
+        "losses": 0,
+        "net_gain": 3,
+        "both_correct": 15,
+        "both_incorrect_or_invalid": 0
+      }
+    },
+    "wrong_wheel_choices": [
+      {
+        "case_id": "wheel-isolation-02-b",
+        "context": "combined_full",
+        "theta_deg": -1.3176,
+        "expected_wheel": "straight",
+        "chosen_wheel": "hard_right"
+      },
+      {
+        "case_id": "wheel-isolation-02-b",
+        "context": "wheel_full",
+        "theta_deg": -1.3176,
+        "expected_wheel": "straight",
+        "chosen_wheel": "right"
+      },
+      {
+        "case_id": "wheel-isolation-01-a",
+        "context": "combined_full",
+        "theta_deg": 1.224,
+        "expected_wheel": "straight",
+        "chosen_wheel": "left"
+      },
+      {
+        "case_id": "wheel-isolation-01-a",
+        "context": "wheel_full",
+        "theta_deg": 1.224,
+        "expected_wheel": "straight",
+        "chosen_wheel": "left"
+      },
+      {
+        "case_id": "wheel-isolation-02-a",
+        "context": "combined_full",
+        "theta_deg": 1.3176,
+        "expected_wheel": "straight",
+        "chosen_wheel": "hard_left"
+      },
+      {
+        "case_id": "wheel-isolation-02-a",
+        "context": "wheel_full",
+        "theta_deg": 1.3176,
+        "expected_wheel": "straight",
+        "chosen_wheel": "hard_left"
+      }
+    ],
+    "paired_raw_wheel_choice_changes": {
+      "wheel_full_minus_combined_full": [
+        {
+          "case_id": "wheel-isolation-02-b",
+          "theta_deg": -1.3176,
+          "baseline_choice": "hard_right",
+          "candidate_choice": "right"
+        }
+      ],
+      "wheel_facts_minus_wheel_full": [
+        {
+          "case_id": "wheel-isolation-02-b",
+          "theta_deg": -1.3176,
+          "baseline_choice": "right",
+          "candidate_choice": "straight"
+        },
+        {
+          "case_id": "wheel-isolation-01-a",
+          "theta_deg": 1.224,
+          "baseline_choice": "left",
+          "candidate_choice": "straight"
+        },
+        {
+          "case_id": "wheel-isolation-02-a",
+          "theta_deg": 1.3176,
+          "baseline_choice": "hard_left",
+          "candidate_choice": "straight"
+        }
+      ],
+      "wheel_facts_minus_combined_full": [
+        {
+          "case_id": "wheel-isolation-02-b",
+          "theta_deg": -1.3176,
+          "baseline_choice": "hard_right",
+          "candidate_choice": "straight"
+        },
+        {
+          "case_id": "wheel-isolation-01-a",
+          "theta_deg": 1.224,
+          "baseline_choice": "left",
+          "candidate_choice": "straight"
+        },
+        {
+          "case_id": "wheel-isolation-02-a",
+          "theta_deg": 1.3176,
+          "baseline_choice": "hard_left",
+          "candidate_choice": "straight"
+        }
+      ]
+    },
+    "accuracy_gate": null,
+    "native_or_live_qualification": false,
+    "model_calls_by_verifier": 0,
+    "initial_verifier_attempt": {
+      "completed": false,
+      "exec_chunk": "cba826",
+      "exit_code": 1,
+      "error": "KeyError: correct",
+      "cause": "Verifier reader expected the earlier overall.correct summary key; 0040 uses overall.wheel_correct. Corrected only the independent reader field, with no collected evidence or ledger change."
+    },
+    "ledger_written": false,
+    "script_sha256": "063bf3bdbb11e340c0e35c61141e07eaf742f6f5d36af64f2cb8d39b024b23ff",
+    "interpretation": "Raw wheel diagnostic only. All 36 single-head native rejections remain intact; no pedal or native success is synthesized. Unused pedal definitions remain in the common wheel instructions. Root execution IDs bind preserved confirmation, not an independently queried tool service."
+  },
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61567,
+    "charged_usd": 7.586051301999877,
+    "charged_tokens": 245014989,
+    "reported_cost_usd": 7.5287728379998615,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61621,
+    "charged_usd": 7.589198865999872,
+    "charged_tokens": 245093612,
+    "reported_cost_usd": 7.531920401999857,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 54,
+    "charged_usd": 0.003147563999995384,
+    "reported_cost_usd": 0.003147563999995384,
+    "charged_tokens": 78623,
+    "uncertain_requests": 0
+  },
+  "decision": {
+    "accuracy_gate": null,
+    "any_outcome_qualifies_native": false,
+    "any_outcome_qualifies_live": false,
+    "live_resource_blocked": true,
+    "live_followup_triggered": false,
+    "preset_promoted": false,
+    "baseline": "joint damped",
+    "application_default": "original",
+    "application_defaults_changed": false
+  },
+  "interpretation_limits": [
+    "The0034wordingrollbackandneutralWHEEL_TASKarecommon toallthreecontexts;historicalexperimentsarenotconcurrentcontrols.",
+    "Removingthepedalheadandremovingfactsareseparateplannedcontrasts,butthisisnotafullfactorialandidentifiesnointeraction.",
+    "Single-headrequestsareexpectedtoberejectedbyunchangedproductionnativefactoreddecoder;requestedrawwheelvaliditymustbestrictlyvalidatedandscoredseparately.",
+    "Noaccuracygateandnoresultcanqualifynativeorliveuseunderanyoutcome.",
+    "Full-ledgerguardhardeningprecededfreeze;114localmocks passedandoriginalfreeevidenceretained,withnopayloadorquestionchanged.",
+    "Theactualremainingbalanceisalreadybelowunchanged5mtokenliveguard;staticresearchcontinueswithincaps/deadline.",
+    "Thewheel_facts common instructions retain unused pedal definitions; the effect is deletion of factual inputs under those unchanged instructions.",
+    "All three mask gains were small-bearing straight states; head removal changed one wrong magnitude without changing correctness.",
+    "There is no combined-head/reduced-state arm,so no factorial interaction is identified.",
+    "The raw single-head score is not pedal compliance,native-pair accuracy or a deployable action.",
+    "Raw wheel confidence/probabilities are preserved descriptively without normalization,joint uncertainty or calibration claims.",
+    "One presentation per eighteen related synthetic cases does not establish repeatability or general driving competence.",
+    "The initial provenance checker expected legacy report key correct instead of wheel_correct and raised KeyError before writing an initial JSON; exception metadata is retained in the final proof and only the checker changed.",
+    "No paid controls were applied and no race advanced.",
+    "Root tool chunk/session IDs are checked against preserved execution confirmation rather than independently queried from tool infrastructure; actual writer and ledger records are independently verified."
+  ],
+  "report_generation": {
+    "saved_completed_evidence_only": true,
+    "audits_rerun": false,
+    "model_calls": 0,
+    "ledger_read_or_written": false,
+    "frozen_archives_modified": false
+  },
+  "collection_completed_utc": "2026-10-20T04:42:08.381540+00:00",
+  "interpretation": {
+    "strict_raw_wheel_valid": 54,
+    "calls": 54,
+    "wheel_correct": {
+      "combined_full": 15,
+      "wheel_full": 15,
+      "wheel_facts": 18
+    },
+    "responses_each_context": 18,
+    "expected_production_missing_pedal_rejections": 36,
+    "production_combined_native_successes": 18,
+    "technical_or_accounting_failures": 0,
+    "head_removal_gain_loss": {
+      "gains": 0,
+      "losses": 0
+    },
+    "wheel_mask_gain_loss": {
+      "gains": 3,
+      "losses": 0
+    },
+    "combined_ancillary_pedal_correct": 18,
+    "combined_pedal_responses": 18,
+    "unsolicited_head_responses": 0,
+    "conclusion": "The fixed wheel factual mask corrected three wheel-only errors on this bank, while head removal produced no accuracy gain. All single-head native rejections remain intact; no accuracy gate or native/live qualification exists."
+  },
+  "live_resource_boundary": {
+    "remaining_tokens": 4906388,
+    "unchanged_minimum_tokens_before_race": 5000000,
+    "live_admission_resource_blocked": true,
+    "authorized_static_work_may_continue_within_caps": true
+  }
+}

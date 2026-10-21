@@ -1,0 +1,138 @@
+{
+  "complete": true,
+  "technical_audit_passed": true,
+  "all_four_attempts_retained": true,
+  "format_correct": 30,
+  "rows": [
+    {
+      "index": 0,
+      "profile": "baseline",
+      "seed": 31,
+      "course": "stadium",
+      "finished": true,
+      "elapsed_s": 130.083333333329,
+      "time_ratio": 1.6824746712653702,
+      "rescues": 4,
+      "grass_s": 12.550000000000203,
+      "checkpoints": 120,
+      "requests": 477,
+      "cost_usd": 0.058385082,
+      "latency": {
+        "n": 477,
+        "p50": 227.078095,
+        "p95": 327.58905219999997,
+        "p99": null,
+        "max": 1670.63106
+      },
+      "audit_sha256": "3b261fab048a68c8b5cf362f292b153a80ecdaf131dae3de0a597ebeb566b553",
+      "trial_sha256": "38770644d645acc1d9d929156a1589873a0f8bb5c9b429246c536d270c6beb08"
+    },
+    {
+      "index": 1,
+      "profile": "advisory",
+      "seed": 31,
+      "course": "stadium",
+      "finished": true,
+      "elapsed_s": 109.39999999999507,
+      "time_ratio": 1.4149601207156646,
+      "rescues": 7,
+      "grass_s": 21.00000000000009,
+      "checkpoints": 120,
+      "requests": 408,
+      "cost_usd": 0.043237152,
+      "latency": {
+        "n": 408,
+        "p50": 218.42239949999998,
+        "p95": 303.95145295,
+        "p99": null,
+        "max": 1642.570403
+      },
+      "audit_sha256": "96c273cda803845a0484552bf68f17f788f472ca28748e37a4927fb64d84a36f",
+      "trial_sha256": "b0e1618b90857ef72755cf2019d3aa1ee37cf04321c0252172fca0a320e40680"
+    },
+    {
+      "index": 2,
+      "profile": "advisory",
+      "seed": 32,
+      "course": "stadium_clockwise",
+      "finished": false,
+      "elapsed_s": 231.85000000007665,
+      "time_ratio": null,
+      "rescues": 31,
+      "grass_s": 92.999999999996,
+      "checkpoints": 114,
+      "requests": 698,
+      "cost_usd": 0.074817792,
+      "latency": {
+        "n": 698,
+        "p50": 228.30150450000002,
+        "p95": 891.16993655,
+        "p99": null,
+        "max": 2591.958352
+      },
+      "audit_sha256": "2695395d8ca641c5a5d7d3e97aeb57669696ff2d2e1577f0db8439d7d3a61b7e",
+      "trial_sha256": "9f96f68dc135c8750a712a3ffc27e8b8e8231bdac065b7f7296c8b3ab18d4368"
+    },
+    {
+      "index": 3,
+      "profile": "baseline",
+      "seed": 32,
+      "course": "stadium_clockwise",
+      "finished": true,
+      "elapsed_s": 117.08333333332797,
+      "time_ratio": 1.5149881388828899,
+      "rescues": 9,
+      "grass_s": 26.999999999999748,
+      "checkpoints": 120,
+      "requests": 329,
+      "cost_usd": 0.040161954,
+      "latency": {
+        "n": 329,
+        "p50": 234.873918,
+        "p95": 1036.3875383999991,
+        "p99": null,
+        "max": 2102.059831
+      },
+      "audit_sha256": "682ae7ed4d8221b7732c56c7bcbe5b4cb2d0d6ad7548e84a9d4138a3980e3542",
+      "trial_sha256": "3028a1260e201c1a7eb015113cc2b1ec93eeead047cfb25cf21e5b6ada33fa94"
+    }
+  ],
+  "positive_paired_screen": false,
+  "candidate_clean_useful_finishes": 0,
+  "driver_promoted": false,
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 62245,
+    "charged_usd": 7.632844383999882,
+    "charged_tokens": 246183532,
+    "reported_cost_usd": 7.575565919999867,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 64187,
+    "charged_usd": 7.852823877999887,
+    "charged_tokens": 251665372,
+    "reported_cost_usd": 7.795545413999871,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 1942,
+    "charged_tokens": 5481840,
+    "charged_usd": 0.21997949400000483,
+    "reported_cost_usd": 0.21997949400000483,
+    "uncertain_requests": 0
+  },
+  "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+  "model_requests_by_auditor": 0,
+  "root_only_not_second_agent_review": true,
+  "created_utc": "2026-10-20T07:08:48.917840+00:00"
+}

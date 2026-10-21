@@ -10,11 +10,13 @@ from __future__ import annotations
 import math
 import random
 from bisect import bisect_right
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from itertools import pairwise
 
 DT = 1 / 60
 VERSION = "solo-v2-rescue"
+COURSES = ("winding", "oval", "oval_clockwise", "circle", "circle_clockwise",
+           "stadium", "stadium_clockwise")
 
 _STEERING = (("hard_right", -1.0), ("right", -0.5), ("straight", 0.0),
              ("left", 0.5), ("hard_left", 1.0))
@@ -57,7 +59,12 @@ class Track:
 
     width = 9.0
 
-    def __init__(self) -> None:
+    def __init__(self, course: str = "winding", width: float = 9.0) -> None:
+        if course not in COURSES:
+            raise ValueError(f"Unknown course: {course}")
+        if isinstance(width, bool) or not math.isfinite(width) or not 2 <= width <= 40:
+            raise ValueError("Road width must be finite and between 2 and 40 metres")
+        self.course, self.width = course, float(width)
         anchors = [(0, -25), (30, -25), (45, -10), (42, 8), (28, 17),
                    (30, 32), (8, 40), (-25, 30), (-40, 10), (-30, -18)]
         dense: list[tuple[float, float]] = []
@@ -70,6 +77,34 @@ class Track:
                              + (-p0[k] + 3*p1[k] - 3*p2[k] + p3[k]) * t*t*t)
                                    for k in (0, 1)))
         dense.append(dense[0])
+        if course != "winding":
+            # Analytic, symmetric geometry; no driving policy or racing line.
+            major = 45.0 if course.startswith("oval") else 30.0
+            direction = -1 if course.endswith("clockwise") else 1
+            dense = [(direction * major * math.cos(-math.pi/2 + 2*math.pi*i/1000),
+                      30.0 * math.sin(-math.pi/2 + 2*math.pi*i/1000)) for i in range(1000)]
+            dense.append(dense[0])
+        if course.startswith("stadium"):
+            # Two 60m straights joined tangentially by radius-30 semicircles.
+            # Start halfway along the lower straight, facing right (CCW).
+            dense = []
+            arc = math.pi * 30
+            for i in range(1000):
+                s = (120 + 2*arc) * i / 1000
+                if s < 30:
+                    x, y = s, -30.0
+                elif s < 30 + arc:
+                    angle = -math.pi/2 + (s-30)/30
+                    x, y = 30+30*math.cos(angle), 30*math.sin(angle)
+                elif s < 90 + arc:
+                    x, y = 30-(s-30-arc), 30.0
+                elif s < 90 + 2*arc:
+                    angle = math.pi/2 + (s-90-arc)/30
+                    x, y = -30+30*math.cos(angle), 30*math.sin(angle)
+                else:
+                    x, y = -30+(s-90-2*arc), -30.0
+                dense.append((direction*x, y))
+            dense.append(dense[0])
         lengths = [0.0]
         for a, b in pairwise(dense):
             lengths.append(lengths[-1] + math.dist(a, b))
@@ -120,15 +155,20 @@ class Track:
         return nearest_s % self.length, offset, math.sqrt(best)
 
     def as_dict(self) -> dict:
-        return {"points": [[round(x, 5), round(y, 5)] for x, y in self.points],
+        result = {"points": [[round(x, 5), round(y, 5)] for x, y in self.points],
                 "width": self.width, "length": self.length,
                 "checkpoints": [{"x": x, "y": y, "heading": heading}
                                 for x, y, heading, _ in self.checkpoints]}
+        if self.course != "winding":
+            result["course"] = self.course
+        return result
 
 
 class Simulation:
     def __init__(self, seed: int = 0, laps: int = 3,
-                 reset_after_s: float | None = 3.0) -> None:
+                 reset_after_s: float | None = 3.0, *, course: str = "winding",
+                 road_width: float = 9.0, max_speed: float = 24.0,
+                 max_steering_angle: float = 0.32) -> None:
         if laps < 1:
             raise ValueError("laps must be positive")
         if reset_after_s is not None and (
@@ -137,7 +177,13 @@ class Simulation:
             raise ValueError("reset_after_s must be positive and finite, or None")
         self.seed, self.laps = seed, laps
         self.reset_after_s = reset_after_s
-        self.track, self.handling = Track(), Handling()
+        for name, value, lower, upper in (("max_speed", max_speed, .5, 60),
+                                           ("max_steering_angle", max_steering_angle, .01, .6)):
+            if isinstance(value, bool) or not math.isfinite(value) or not lower <= value <= upper:
+                raise ValueError(f"{name} must be finite and between {lower} and {upper}")
+        self.track = Track(course, road_width)
+        self.handling = replace(Handling(), max_speed=float(max_speed),
+                                max_steering_angle=float(max_steering_angle))
         rng = random.Random(seed)
         x, y, heading, _ = self.track.at(0)
         offset = rng.uniform(-0.35, 0.35)
@@ -157,6 +203,20 @@ class Simulation:
         self.offroad_elapsed = 0.0
         self.last_reset_tick: int | None = None
         self.reset_events: list[dict] = []
+
+    @classmethod
+    def from_config(cls, config: dict, seed: int = 0) -> Simulation:
+        """Reconstruct a declared course/handling configuration, rejecting drift."""
+        try:
+            sim = cls(seed=seed, laps=config["laps"], reset_after_s=config["rescue"]["after_s"],
+                      course=config["track"].get("course", "winding"),
+                      road_width=config["track"]["width"], max_speed=config["handling"]["max_speed"],
+                      max_steering_angle=config["handling"]["max_steering_angle"])
+        except (KeyError, TypeError, ValueError) as exc:
+            raise ValueError("Saved simulation configuration is invalid") from exc
+        if sim.config() != config:
+            raise ValueError("Saved simulation configuration differs from supported physics")
+        return sim
 
     @property
     def speed(self) -> float:
@@ -319,8 +379,10 @@ class Simulation:
                 "start_conditions": {"lateral_uniform": [-0.35, 0.35], "heading_uniform": [-0.025, 0.025]}}
 
 
-def scripted_action(observation: dict) -> str:
+def scripted_action(observation: dict, *, max_steering_angle: float = 0.32) -> str:
     """Reference-only geometric driver, using the public telemetry and menu."""
+    if not math.isfinite(max_steering_angle) or max_steering_angle <= 0:
+        raise ValueError("Reference steering range must be finite and positive")
     kart, track = observation["kart"], observation["track"]
     speed = kart["speed"]
     target_distance = 4.0 + speed*0.5
@@ -334,7 +396,7 @@ def scripted_action(observation: dict) -> str:
     px, py = (px*math.cos(rotation)+py*math.sin(rotation),
               -px*math.sin(rotation)+py*math.cos(rotation))
     desired_angle = math.atan2(2*1.8*py, px*px + py*py)
-    steer = clamp(desired_angle/0.32, -1, 1)
+    steer = clamp(desired_angle/max_steering_angle, -1, 1)
     steering_name = min(_STEERING, key=lambda item: abs(item[1]-steer))[0]
     target_speed = 24.0
     for point in track["lookahead"]:

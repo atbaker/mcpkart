@@ -1,0 +1,679 @@
+{
+  "complete": true,
+  "technical_audit_passed": true,
+  "experiment": "0068",
+  "protocol_sha256": "f6d3935ff70bd37ec993b11570091aa1fed5802970858c8ef4880dcba02a1ea4",
+  "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+  "controller_sources_sha256": {
+    "/workspace/mcpkart/src/mcpkart/question_context.py": "d6d6481ea0c28801a20f89c785617bfa95d764c5578b22d02378d72d663514ac",
+    "/workspace/mcpkart/src/mcpkart/question_context_driver.py": "543a41fd5e3971085712bf97cacaf59ec402425ab56d377b3f0f700546546229",
+    "/workspace/mcpkart/src/mcpkart/question_context_run.py": "eb9de8c56557ce8f3567aed694f79d679aa49e74d916fde7c6a4bbf013daeafc"
+  },
+  "no_game_or_harness_changes": true,
+  "no_performance_based_tuning": true,
+  "rows": [
+    {
+      "index": 0,
+      "model": "typesafe/jev-1.14",
+      "model_index": 0,
+      "seed": 99,
+      "course": "stadium",
+      "finished": true,
+      "useful": true,
+      "clean": true,
+      "elapsed_s": 79.31666666666345,
+      "reference_s": 77.1999999999969,
+      "time_ratio": 1.0274179620034538,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "gates": 120,
+      "domain_stop": null,
+      "request_errors": 0,
+      "requests": 299,
+      "cost_usd": 0.02581824,
+      "api_latency_ms": {
+        "n": 299,
+        "p50": 220.845477,
+        "p95": 309.3605796999998,
+        "p99": null,
+        "max": 1260.683844
+      },
+      "observation_age_ms": {
+        "n": 298,
+        "p50": 249.0906005,
+        "p95": 333.2526307,
+        "p99": null,
+        "max": 1285.227623
+      },
+      "audit_sha256": "f57ad991ced98997ebc97dfb172c2301d4d4f0e6164a4a6f48da00dd9291672a",
+      "trial_sha256": "a724247fbd9b8c9458b8a4fd4da9dfe2c1d3c30a707f353f635197d3d2ffe3fd"
+    },
+    {
+      "index": 1,
+      "model": "openai/gpt-6-luna-decisions",
+      "model_index": 1,
+      "seed": 99,
+      "course": "stadium",
+      "finished": true,
+      "useful": true,
+      "clean": true,
+      "elapsed_s": 79.34999999999678,
+      "reference_s": 77.1999999999969,
+      "time_ratio": 1.027849740932642,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "gates": 120,
+      "domain_stop": null,
+      "request_errors": 0,
+      "requests": 262,
+      "cost_usd": 0.044145000000000004,
+      "api_latency_ms": {
+        "n": 262,
+        "p50": 266.87818649999997,
+        "p95": 339.8799309499999,
+        "p99": null,
+        "max": 989.099259
+      },
+      "observation_age_ms": {
+        "n": 261,
+        "p50": 284.519247,
+        "p95": 366.622669,
+        "p99": null,
+        "max": 1016.279599
+      },
+      "audit_sha256": "575bd347d22dac7a3e27cf5959c9c863fda733762f5c5ae629a5ee5835a302b4",
+      "trial_sha256": "25fd826271608777b499aef65a65054396ec6d9b8f06300a06c07c14542c451d"
+    },
+    {
+      "index": 2,
+      "model": "cloudflare/clef",
+      "model_index": 2,
+      "seed": 99,
+      "course": "stadium",
+      "finished": false,
+      "useful": false,
+      "clean": false,
+      "elapsed_s": 22.383333333333344,
+      "reference_s": 77.1999999999969,
+      "time_ratio": null,
+      "rescues": 1,
+      "grass_s": 3.9333333333333242,
+      "gates": 20,
+      "domain_stop": "required_uncredited_gate_already_positive",
+      "request_errors": 0,
+      "requests": 39,
+      "cost_usd": 0.01632432,
+      "api_latency_ms": {
+        "n": 39,
+        "p50": 475.124244,
+        "p95": 804.8722482000002,
+        "p99": null,
+        "max": 1261.001325
+      },
+      "observation_age_ms": {
+        "n": 38,
+        "p50": 515.397064,
+        "p95": 919.7410649,
+        "p99": null,
+        "max": 1282.85707
+      },
+      "audit_sha256": "dae3dd65f2847595099e919d51ba13fdeead3e0a45cb762b91a19d1bac8aa37d",
+      "trial_sha256": "2dea3b0fefdaff4ab61eec0f7d48c00e744a9269536d74fc334e552cb9950285"
+    },
+    {
+      "index": 3,
+      "model": "cloudflare/clef",
+      "model_index": 2,
+      "seed": 100,
+      "course": "stadium_clockwise",
+      "finished": false,
+      "useful": false,
+      "clean": false,
+      "elapsed_s": 16.616666666667005,
+      "reference_s": 77.18333333333024,
+      "time_ratio": null,
+      "rescues": 0,
+      "grass_s": 0.16666666666666666,
+      "gates": 20,
+      "domain_stop": "15m_preview_not_forward",
+      "request_errors": 0,
+      "requests": 27,
+      "cost_usd": 0.01129224,
+      "api_latency_ms": {
+        "n": 27,
+        "p50": 500.28012,
+        "p95": 903.9724422999999,
+        "p99": null,
+        "max": 2074.319993
+      },
+      "observation_age_ms": {
+        "n": 27,
+        "p50": 533.158023,
+        "p95": 929.998691,
+        "p99": null,
+        "max": 2099.466745
+      },
+      "audit_sha256": "434a4e64822bb97c76d1caa5f13e3b1c50490191f9397a8df092b83d7468de27",
+      "trial_sha256": "546a18b1811318795f9a4a3653ba08196d935f4b11b8d19c2891d4c793bdb0e9"
+    },
+    {
+      "index": 4,
+      "model": "openai/gpt-6-luna-decisions",
+      "model_index": 1,
+      "seed": 100,
+      "course": "stadium_clockwise",
+      "finished": true,
+      "useful": true,
+      "clean": true,
+      "elapsed_s": 79.0999999999968,
+      "reference_s": 77.18333333333024,
+      "time_ratio": 1.024832649535737,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "gates": 120,
+      "domain_stop": null,
+      "request_errors": 0,
+      "requests": 258,
+      "cost_usd": 0.04348,
+      "api_latency_ms": {
+        "n": 258,
+        "p50": 270.857104,
+        "p95": 362.06271364999986,
+        "p99": null,
+        "max": 1001.513538
+      },
+      "observation_age_ms": {
+        "n": 257,
+        "p50": 299.427043,
+        "p95": 383.1144494,
+        "p99": null,
+        "max": 1016.09118
+      },
+      "audit_sha256": "38fa11cff4ea965ed2d4f63543114be8858f4d976ed6e28427f8a6fa8af731df",
+      "trial_sha256": "25e79dd8a78af7c52f42ebbe854885456bf9db040175877f6352eb0618e9f32c"
+    },
+    {
+      "index": 5,
+      "model": "typesafe/jev-1.14",
+      "model_index": 0,
+      "seed": 100,
+      "course": "stadium_clockwise",
+      "finished": true,
+      "useful": true,
+      "clean": true,
+      "elapsed_s": 78.9999999999968,
+      "reference_s": 77.18333333333024,
+      "time_ratio": 1.0235370330382203,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "gates": 120,
+      "domain_stop": null,
+      "request_errors": 0,
+      "requests": 303,
+      "cost_usd": 0.026178138,
+      "api_latency_ms": {
+        "n": 303,
+        "p50": 228.899324,
+        "p95": 294.97481989999994,
+        "p99": null,
+        "max": 456.432262
+      },
+      "observation_age_ms": {
+        "n": 302,
+        "p50": 250.2450485,
+        "p95": 317.10327205000004,
+        "p99": null,
+        "max": 484.179107
+      },
+      "audit_sha256": "eb90b6af0771619c5e8c2317f2318afc0b3f588b46880e5887761de0e62a1e87",
+      "trial_sha256": "4d8da335e7e63b9d2851605d0c763e9fb6ec0e97a004b540dbf0a4d2a7a12585"
+    }
+  ],
+  "models": [
+    {
+      "model": "typesafe/jev-1.14",
+      "name": "Jev",
+      "route": {
+        "model": "typesafe/jev-1.14",
+        "resolved_model": "typesafe/jev-1.14-20261014",
+        "canonical_version_available": true,
+        "canonical_version_pinned": false,
+        "provider": "typesafe",
+        "provider_name": "TypeSafe",
+        "endpoint_name": "TypeSafe | typesafe/jev-1.14-20261014",
+        "price_input_per_token": 4.2e-08,
+        "price_output_per_token": 0.0,
+        "price_per_request": 0.0,
+        "context_length": 262144,
+        "max_prompt_tokens": 262144,
+        "max_completion_tokens": 235929,
+        "catalog_observed_at": "2026-10-20T20:02:59.866908+00:00",
+        "catalog_entry": {
+          "id": "typesafe/jev-1.14",
+          "canonical_slug": "typesafe/jev-1.14-20261014",
+          "hugging_face_id": null,
+          "name": "TypeSafe: Jev 1.14",
+          "created": 1792021417,
+          "description": "Jev 1.14 is the latest version of Jev, TypeSafe's structured decision model and the first of its System One models. System One models make fast, structured decisions for software, returning...",
+          "context_length": 262144,
+          "architecture": {
+            "modality": "text+image->decisions",
+            "input_modalities": [
+              "text",
+              "image"
+            ],
+            "output_modalities": [
+              "decisions"
+            ],
+            "tokenizer": "Other",
+            "instruct_type": null
+          },
+          "pricing": {
+            "prompt": "0.000000042",
+            "completion": "0"
+          },
+          "top_provider": {
+            "context_length": 262144,
+            "max_completion_tokens": 235929,
+            "is_moderated": false
+          },
+          "per_request_limits": null,
+          "supported_parameters": [],
+          "default_parameters": {},
+          "supported_voices": null,
+          "knowledge_cutoff": null,
+          "expiration_date": null,
+          "links": {
+            "details": "/api/v1/models/typesafe/jev-1.14-20261014/endpoints"
+          }
+        },
+        "endpoint": {
+          "name": "TypeSafe | typesafe/jev-1.14-20261014",
+          "model_id": "typesafe/jev-1.14",
+          "model_name": "TypeSafe: Jev 1.14",
+          "context_length": 262144,
+          "pricing": {
+            "prompt": "0.000000042",
+            "completion": "0",
+            "discount": 0
+          },
+          "provider_name": "TypeSafe",
+          "tag": "typesafe",
+          "service_tier": null,
+          "quantization": "unknown",
+          "max_completion_tokens": 235929,
+          "max_prompt_tokens": 262144,
+          "supported_parameters": [],
+          "supports_tool_choice": {
+            "none": true,
+            "auto": true,
+            "required": true,
+            "function": true
+          },
+          "status": 0,
+          "uptime_last_30m": 100,
+          "uptime_last_5m": 100,
+          "uptime_last_1d": 100,
+          "supports_implicit_caching": false,
+          "native_tools": {},
+          "supports_voice_cloning": false,
+          "supports_multiple_audio_references": false,
+          "supports_image_reference": false,
+          "supports_diarization": false,
+          "latency_last_30m": null,
+          "throughput_last_30m": null
+        }
+      },
+      "races": 2,
+      "finished": 2,
+      "useful": 2,
+      "clean": 2,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "requests": 602,
+      "cost_usd": 0.051996378,
+      "latency_ms": {
+        "n": 602,
+        "p50": 226.460692,
+        "p95": 303.0913577,
+        "p99": null,
+        "max": 1260.683844
+      },
+      "observation_age_ms": {
+        "n": 600,
+        "p50": 249.9048575,
+        "p95": 333.15174335,
+        "p99": null,
+        "max": 1285.227623
+      },
+      "rule_agreement_own_queried_states": {
+        "wheel": 599,
+        "pedal": 600,
+        "n": 602,
+        "matched_input_comparison": false
+      },
+      "native_diagnostic": {
+        "attempts": 3,
+        "valid": 3,
+        "correct": 3,
+        "latencies_ms": [
+          460.365947,
+          986.988623,
+          269.033599
+        ]
+      }
+    },
+    {
+      "model": "openai/gpt-6-luna-decisions",
+      "name": "OpenAI",
+      "route": {
+        "model": "openai/gpt-6-luna-decisions",
+        "resolved_model": "openai/gpt-6-luna-decisions-20261006",
+        "canonical_version_available": true,
+        "canonical_version_pinned": false,
+        "provider": "openai",
+        "provider_name": "OpenAI",
+        "endpoint_name": "OpenAI | openai/gpt-6-luna-decisions-20261006",
+        "price_input_per_token": 1e-07,
+        "price_output_per_token": 0.0,
+        "price_per_request": 0.0,
+        "context_length": 1050000,
+        "max_prompt_tokens": null,
+        "max_completion_tokens": 945000,
+        "catalog_observed_at": "2026-10-20T20:02:59.866908+00:00",
+        "catalog_entry": {
+          "id": "openai/gpt-6-luna-decisions",
+          "canonical_slug": "openai/gpt-6-luna-decisions-20261006",
+          "hugging_face_id": null,
+          "name": "OpenAI: GPT-6 Luna Decisions",
+          "created": 1791321558,
+          "description": "GPT-6 Luna Decisions is [GPT-6 Luna](/openai/gpt-6-luna) served through OpenAI's Decisions API. Instead of generating text, it reads the content passed as `state` (text, JSON, or images) and returns typed, probabilistic...",
+          "context_length": 1050000,
+          "architecture": {
+            "modality": "text+image->decisions",
+            "input_modalities": [
+              "text",
+              "image"
+            ],
+            "output_modalities": [
+              "decisions"
+            ],
+            "tokenizer": "GPT",
+            "instruct_type": null
+          },
+          "pricing": {
+            "prompt": "0.0000001",
+            "completion": "0",
+            "web_search": "0.01",
+            "input_cache_read": "0",
+            "input_cache_write": "0"
+          },
+          "top_provider": {
+            "context_length": 1050000,
+            "max_completion_tokens": 945000,
+            "is_moderated": true
+          },
+          "per_request_limits": null,
+          "supported_parameters": [],
+          "default_parameters": {},
+          "supported_voices": null,
+          "knowledge_cutoff": null,
+          "expiration_date": null,
+          "links": {
+            "details": "/api/v1/models/openai/gpt-6-luna-decisions-20261006/endpoints"
+          }
+        },
+        "endpoint": {
+          "name": "OpenAI | openai/gpt-6-luna-decisions-20261006",
+          "model_id": "openai/gpt-6-luna-decisions",
+          "model_name": "OpenAI: GPT-6 Luna Decisions",
+          "context_length": 1050000,
+          "pricing": {
+            "prompt": "0.0000001",
+            "completion": "0",
+            "web_search": "0.01",
+            "input_cache_read": "0",
+            "input_cache_write": "0",
+            "discount": 0
+          },
+          "provider_name": "OpenAI",
+          "tag": "openai",
+          "service_tier": null,
+          "quantization": "unknown",
+          "max_completion_tokens": 945000,
+          "max_prompt_tokens": null,
+          "supported_parameters": [],
+          "supports_tool_choice": {
+            "none": true,
+            "auto": true,
+            "required": true,
+            "function": true
+          },
+          "status": 0,
+          "uptime_last_30m": 100,
+          "uptime_last_5m": 100,
+          "uptime_last_1d": 99.93055555555556,
+          "supports_implicit_caching": false,
+          "native_tools": {},
+          "supports_voice_cloning": false,
+          "supports_multiple_audio_references": false,
+          "supports_image_reference": false,
+          "supports_diarization": false,
+          "latency_last_30m": null,
+          "throughput_last_30m": null
+        }
+      },
+      "races": 2,
+      "finished": 2,
+      "useful": 2,
+      "clean": 2,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "requests": 520,
+      "cost_usd": 0.08762500000000001,
+      "latency_ms": {
+        "n": 520,
+        "p50": 268.759601,
+        "p95": 349.51849684999996,
+        "p99": null,
+        "max": 1001.513538
+      },
+      "observation_age_ms": {
+        "n": 518,
+        "p50": 298.5885485,
+        "p95": 367.24735075,
+        "p99": null,
+        "max": 1016.279599
+      },
+      "rule_agreement_own_queried_states": {
+        "wheel": 519,
+        "pedal": 520,
+        "n": 520,
+        "matched_input_comparison": false
+      },
+      "native_diagnostic": {
+        "attempts": 3,
+        "valid": 3,
+        "correct": 3,
+        "latencies_ms": [
+          282.866789,
+          745.2307,
+          395.030856
+        ]
+      }
+    },
+    {
+      "model": "cloudflare/clef",
+      "name": "Cloudflare",
+      "route": {
+        "model": "cloudflare/clef",
+        "resolved_model": "cloudflare/clef",
+        "canonical_version_available": false,
+        "canonical_version_pinned": false,
+        "provider": "cloudflare",
+        "provider_name": "Cloudflare",
+        "endpoint_name": "Cloudflare | cloudflare/clef",
+        "price_input_per_token": 2.4e-07,
+        "price_output_per_token": 0.0,
+        "price_per_request": 0.0,
+        "context_length": 65536,
+        "max_prompt_tokens": null,
+        "max_completion_tokens": 58982,
+        "catalog_observed_at": "2026-10-20T20:02:59.866908+00:00",
+        "catalog_entry": {
+          "id": "cloudflare/clef",
+          "canonical_slug": "cloudflare/clef",
+          "hugging_face_id": "Cloudflare/clef",
+          "name": "Cloudflare: Clef",
+          "created": 1790870972,
+          "description": "Clef is Cloudflare's open-source 27B multimodal decision model, a fine-tune of Qwen3.8-27B served on Workers AI. It turns a state (text or structured JSON) plus a schema of typed questions...",
+          "context_length": 65537,
+          "architecture": {
+            "modality": "text+image->decisions",
+            "input_modalities": [
+              "text",
+              "image"
+            ],
+            "output_modalities": [
+              "decisions"
+            ],
+            "tokenizer": "Qwen",
+            "instruct_type": null
+          },
+          "pricing": {
+            "prompt": "0.000000042",
+            "completion": "0"
+          },
+          "top_provider": {
+            "context_length": 16384,
+            "max_completion_tokens": 14745,
+            "is_moderated": false
+          },
+          "per_request_limits": null,
+          "supported_parameters": [],
+          "default_parameters": {},
+          "supported_voices": null,
+          "knowledge_cutoff": null,
+          "expiration_date": null,
+          "links": {
+            "details": "/api/v1/models/cloudflare/clef/endpoints"
+          }
+        },
+        "endpoint": {
+          "name": "Cloudflare | cloudflare/clef",
+          "model_id": "cloudflare/clef",
+          "model_name": "Cloudflare: Clef",
+          "context_length": 65536,
+          "pricing": {
+            "prompt": "0.00000024",
+            "completion": "0",
+            "discount": 0
+          },
+          "provider_name": "Cloudflare",
+          "tag": "cloudflare",
+          "service_tier": null,
+          "quantization": "unknown",
+          "max_completion_tokens": 58982,
+          "max_prompt_tokens": null,
+          "supported_parameters": [],
+          "supports_tool_choice": {
+            "none": true,
+            "auto": true,
+            "required": true,
+            "function": true
+          },
+          "status": 0,
+          "uptime_last_30m": 100,
+          "uptime_last_5m": 100,
+          "uptime_last_1d": 100,
+          "supports_implicit_caching": false,
+          "native_tools": {},
+          "supports_voice_cloning": false,
+          "supports_multiple_audio_references": false,
+          "supports_image_reference": false,
+          "supports_diarization": false,
+          "latency_last_30m": null,
+          "throughput_last_30m": null
+        }
+      },
+      "races": 2,
+      "finished": 0,
+      "useful": 0,
+      "clean": 0,
+      "rescues": 1,
+      "grass_s": 4.099999999999991,
+      "requests": 66,
+      "cost_usd": 0.02761656,
+      "latency_ms": {
+        "n": 66,
+        "p50": 487.26453200000003,
+        "p95": 884.2196497499999,
+        "p99": null,
+        "max": 2074.319993
+      },
+      "observation_age_ms": {
+        "n": 65,
+        "p50": 516.880572,
+        "p95": 930.2431838,
+        "p99": null,
+        "max": 2099.466745
+      },
+      "rule_agreement_own_queried_states": {
+        "wheel": 26,
+        "pedal": 64,
+        "n": 66,
+        "matched_input_comparison": false
+      },
+      "native_diagnostic": {
+        "attempts": 3,
+        "valid": 3,
+        "correct": 3,
+        "latencies_ms": [
+          2259.452346,
+          610.979168,
+          411.576322
+        ]
+      }
+    }
+  ],
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 69960,
+    "charged_usd": 8.389473334000606,
+    "charged_tokens": 265041176,
+    "reported_cost_usd": 8.332194870000563,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 71157,
+    "charged_usd": 8.55872745200061,
+    "charged_tokens": 267345099,
+    "reported_cost_usd": 8.501448988000568,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 1197,
+    "charged_tokens": 2303923,
+    "charged_usd": 0.1692541180000049,
+    "uncertain_requests": 0
+  },
+  "native_requests": 9,
+  "driving_requests": 1188,
+  "root_only_review": true,
+  "created_utc": "2026-10-20T20:21:54.066876+00:00",
+  "limitations": [
+    "Two starts, one stadium and its mirror, small start variation.",
+    "Prompt previously developed for Jev; no model-specific tuning.",
+    "Actual provider latency is part of the comparison, not held equal.",
+    "Own-trajectory rule fidelity uses differing states and is descriptive."
+  ]
+}

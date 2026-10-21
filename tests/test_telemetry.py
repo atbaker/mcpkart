@@ -5,7 +5,7 @@ import math
 import pytest
 
 from mcpkart import telemetry
-from mcpkart.decisions import DRIVING_INSTRUCTIONS, explicit_control_description
+from mcpkart.decisions import DRIVING_INSTRUCTIONS, explicit_control_description, geometry_control_description
 from mcpkart.observations import ObservationHistory
 from mcpkart.sim import ACTIONS, Simulation
 from mcpkart.telemetry import VARIANTS, represent
@@ -186,7 +186,7 @@ def test_presentations_do_not_mutate_kinematics_inputs_or_config(variant):
         assert result["control"] == observation["control"]
     assert result["progress"] == observation["progress"]
     assert result["rescue"] == observation["rescue"]
-    if variant in {"compact", "compact_text", "compact_inputs", "road_compass", "compact_navigation"}:
+    if variant in {"compact", "compact_text", "compact_inputs", "road_compass", "compact_navigation", "scene_svg", "scene_image", "near_field"}:
         assert result["handling"]["road_grip_m_s2"] == config["handling"]["lateral_grip"]
         assert result["handling"]["wheelbase_m"] == config["handling"]["wheelbase"]
     else:
@@ -447,8 +447,8 @@ def test_compact_text_keeps_identical_metadata_and_reports_facts_without_duplica
 
 
 @pytest.mark.parametrize("variant", VARIANTS)
-@pytest.mark.parametrize("language", ["numeric", "explicit"])
-def test_profiles_fit_existing_decision_request_guard_for_full_real_track_states(variant, language):
+@pytest.mark.parametrize("language", ["numeric", "explicit", "geometry"])
+def test_profiles_fit_their_decision_request_guard_for_full_real_track_states(variant, language):
     for position in (0, 50, 100):
         sim = Simulation(reset_after_s=3)
         sim.s, sim.offset = position, 0
@@ -466,7 +466,8 @@ def test_profiles_fit_existing_decision_request_guard_for_full_real_track_states
                     "type": "choice",
                     "instructions": DRIVING_INSTRUCTIONS,
                     "criteria": {
-                        key: explicit_control_description(value)
+                        key: geometry_control_description(value,config['handling']) if language == 'geometry'
+                        else explicit_control_description(value)
                         if language == "explicit"
                         else value["description"]
                         for key, value in ACTIONS.items()
@@ -476,7 +477,8 @@ def test_profiles_fit_existing_decision_request_guard_for_full_real_track_states
             "provider": {"only": ["typesafe"], "allow_fallbacks": False},
         }
         encoded = json.dumps(payload, separators=(",", ":"), ensure_ascii=False, allow_nan=False).encode()
-        assert len(encoded) + 512 <= 8192
+        limit = 262144 if variant == "scene_image" else 16384 if variant == "scene_svg" or language == 'geometry' else 8192
+        assert len(encoded) + 512 <= limit
         if variant in {"compact", "compact_text", "compact_inputs", "road_compass"}:
             assert len(json.dumps(state, separators=(",", ":"), ensure_ascii=False).encode()) <= 2500
 

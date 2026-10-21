@@ -81,6 +81,49 @@ async def test_typed_payload_pins_route_records_actual_identity_and_cost(tmp_pat
 
 
 @pytest.mark.asyncio
+@pytest.mark.parametrize("status", [200, 503])
+async def test_default_client_uses_environment_proxy_without_retry(tmp_path, monkeypatch, status):
+    from mcpkart import decisions
+
+    received = []
+    body = json.dumps(good_response() if status == 200 else {"error": "unavailable"}).encode()
+
+    async def proxy(reader, writer):
+        try:
+            headers = await reader.readuntil(b"\r\n\r\n")
+            length = next(int(line.split(b":", 1)[1]) for line in headers.split(b"\r\n")
+                          if line.lower().startswith(b"content-length:"))
+            payload = await reader.readexactly(length)
+            received.append((headers, json.loads(payload)))
+            writer.write(f"HTTP/1.1 {status} Test\r\nContent-Type: application/json\r\n"
+                         f"Content-Length: {len(body)}\r\nConnection: close\r\n\r\n".encode() + body)
+            await writer.drain()
+        finally:
+            writer.close()
+            await writer.wait_closed()
+
+    for name in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "NO_PROXY",
+                 "http_proxy", "https_proxy", "all_proxy", "no_proxy"):
+        monkeypatch.delenv(name, raising=False)
+    # This reserved target can only succeed through the loopback test proxy.
+    monkeypatch.setattr(decisions, "DECISIONS_URL", "http://decisions.invalid/api/alpha/decisions")
+    server = await asyncio.start_server(proxy, "127.0.0.1", 0)
+    port = server.sockets[0].getsockname()[1]
+    monkeypatch.setenv("HTTP_PROXY", f"http://127.0.0.1:{port}")
+    async with server, DecisionClient(budget=Budget(tmp_path / "budget.json"), actions=ACTIONS,
+                                     api_key="fake-test-key", timeout_s=1) as api:
+        result = await api.decide(ROUTE, {"observation_id": 1})
+
+    assert len(received) == 1
+    headers, payload = received[0]
+    assert headers.startswith(b"POST http://decisions.invalid/api/alpha/decisions HTTP/1.1\r\n")
+    assert payload["state"] == {"observation_id": 1}
+    assert result["ok"] is (status == 200)
+    assert result["http_status"] == status
+    assert result["error"] == (None if status == 200 else "http_503")
+
+
+@pytest.mark.asyncio
 async def test_explicit_controls_keep_action_ids_and_physical_inputs_and_retain_uncertainty(tmp_path):
     from mcpkart.sim import ACTIONS as physical_actions
 
@@ -289,6 +332,24 @@ def test_budget_hard_request_and_token_ceilings(tmp_path, limit, value):
     budget.commit(reservation)
     with pytest.raises(BudgetExceeded):
         budget.reserve(0.001, 1, model="m", provider="p")
+
+
+def test_budget_reopening_preserves_authorized_request_limit_and_history(tmp_path):
+    path = tmp_path / "budget.json"
+    budget = Budget(path, max_requests=50_000)
+    reservation = budget.reserve(0.001, 10, model="m", provider="p")
+    budget.commit(reservation)
+    before = budget.summary()
+    assert Budget(path).summary() == before
+    assert Budget(path, max_requests=60_000).summary() == before
+    lowered = Budget(path, max_requests=40_000).summary()
+    assert lowered == {**before, "max_requests": 40_000}
+
+
+def test_new_budget_keeps_default_request_limit_and_hard_dollar_cap(tmp_path):
+    assert Budget(tmp_path / "budget.json").summary()["max_requests"] == 25_000
+    with pytest.raises(ValueError, match="at most"):
+        Budget(tmp_path / "over-budget.json", cap_usd=10.01)
 
 
 def test_two_ledger_instances_cannot_over_reserve_concurrently(tmp_path):

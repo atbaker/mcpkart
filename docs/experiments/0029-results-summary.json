@@ -1,0 +1,1792 @@
+{
+  "schema_version": 1,
+  "kind": "static_natural_state_physics_scaffold_results",
+  "experiment": "0029",
+  "status": "complete_audit_and_provenance_passed_forecast_benchmarks_not_met",
+  "scope": "Static paired natural-recorded-state forecast diagnostic. Prefixes are historical; future fixed-input continuations are hypothetical, not recorded outcomes.",
+  "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+  "provenance_files": [
+    {
+      "path": "artifacts/jev-natural-forecast-v1/protocol.json",
+      "sha256": "f75d9eb2248b504f16e794060aa36fabd166d8b3849a02db4a8723ce3dfce3f0"
+    },
+    {
+      "path": "artifacts/jev-natural-forecast-v1/final-audit.json",
+      "sha256": "77b9436be52883469ed87a8f0213036e3ae09dc0e836078975c08aef62747fd8"
+    },
+    {
+      "path": "artifacts/jev-natural-forecast-v1/report/summary.json",
+      "sha256": "3444cfb569032607efb07a1d9f137bc1c93eec8057af52770130e334d940c6ad"
+    },
+    {
+      "path": "artifacts/jev-natural-forecast-v1/collection-provenance-verification.json",
+      "sha256": "a7969262f1acb5a8be6d56b552ed1b975554ab71519a3d45ee1a1b3271285eb9"
+    },
+    {
+      "path": "artifacts/jev-natural-forecast-v1/preflight-canonical-case-order-amendment.json",
+      "sha256": "b7ef785c17ca95cfa9a2106f448b0f6af0c5d036848990c1a235f1284ad2124f"
+    },
+    {
+      "path": "artifacts/jev-natural-forecast-v1/preflight-before-canonical-case-order.json",
+      "sha256": "bc7c01ece0e2c1be2728c7c6cf501a54b080949e45011820e4c96278531c6d22"
+    },
+    {
+      "path": "docs/experiments/0029-natural-forecast-prompts.json",
+      "sha256": "f733bdf0eac52a8c0b0609fecff5bb8bbd48ced963b0990dcf9a5dde7e0d2449"
+    }
+  ],
+  "frozen_protocol": {
+    "schema_version": 1,
+    "kind": "static_natural_state_physics_scaffold",
+    "frozen": true,
+    "created_utc": "2026-10-20T02:04:36.683080+00:00",
+    "client_date": "2026-10-20",
+    "planned_calls": 32,
+    "forecast_calls": 32,
+    "cases": 16,
+    "repetitions": 1,
+    "contexts": [
+      "baseline",
+      "scaffold"
+    ],
+    "order_seed": 2026102029,
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "input_token_ceiling": 16384,
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61059,
+      "charged_usd": 7.533861261999891,
+      "charged_tokens": 243725833,
+      "reported_cost_usd": 7.476582797999876,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "shared_ledger": "artifacts/budget.json",
+    "limits": {
+      "max_requests": 75000,
+      "cap_usd": 10.0,
+      "max_tokens": 250000000
+    },
+    "route": {
+      "model": "typesafe/jev-1.14",
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "typesafe",
+      "provider_name": "TypeSafe",
+      "endpoint_name": "TypeSafe | typesafe/jev-1.14-20261014",
+      "price_input_per_token": 4.2e-08,
+      "price_output_per_token": 0.0,
+      "price_per_request": 0.0,
+      "context_length": 262144,
+      "max_prompt_tokens": 262144,
+      "max_completion_tokens": 235929
+    },
+    "automatic_retries": 0,
+    "provider_fallbacks": false,
+    "no_controls_applied": true,
+    "stop_on_first_endpoint_error": true,
+    "stop_on_uncertain_accounting": true,
+    "collect_all_valid_answers": true,
+    "format_gate": null,
+    "forecast_thresholds": {
+      "per_context_correct_min": 15,
+      "per_context_responses": 16,
+      "each_risk_correct_min": 7,
+      "each_region_correct_min": 7,
+      "subgroup_responses": 8,
+      "candidate_net_gain_required": 4
+    },
+    "order_policy": "Shuffle16naturalcaseunitsseed2026102029;2contextfirstalternatesj%2,physicalorderj//2%2;4cells4unitseach,eachcontexteachposition8times.Onepresentationpercase/context,noformatgateormotionblock.",
+    "task_contract": "Bothcontextsidenticalfull0028Bstate:road_navigationplusfourfactualcurrent_road_framevaluesandfixedunits,currentbadgesretained.Baselineexact0028forecastquestion/semanticcriteria/quotedDAMPED.CandidatediffersONLYbyexactSCAFFOLDinsertedafterENDREFERENCEguidebeforeunchangedREQUIREDTASK.Noevaluatedqueryforecast,controloradviceprovided.",
+    "natural_case_contract": "Statesareunperturbedreconstructedhistoricalraceprefixesnotpreviouslysenttothemodel;futurecurrent-held-inputcontinuationshypothetical.Notindependentgeneralgeometrysamples;nogeneralincapacityclaimfromfailure.",
+    "forecast_contract": {
+      "steps": 30,
+      "dt_s": 0.016666666666666666,
+      "horizon_s": 0.5,
+      "held_control": "currentstate.controlheldfixed",
+      "risk": "kartCENTREoffroadatANYstep1..30"
+    },
+    "reports": [
+      "contexts",
+      "confusion",
+      "risk",
+      "region",
+      "physical_edge",
+      "native_input",
+      "paired_gain_loss"
+    ],
+    "followup_policy": "Candidate>=15/16overalland>=7/8eachrisk/regionANDnetgain>=4/16overbaselinemaymotivateseparatelyfrozen32freshstatereplicationonly.Reportbaselinecapabilityseparatelyifmet;noautomaticnativevalidation,liveuse,qualificationorpromotion.",
+    "session_deadline_utc": "2026-10-20T06:17:26+00:00",
+    "helper_sha256": {
+      "case_bank.py": "4a2063be622b31fe528da6c4910f9009d39617d0a110cde039514541f54d866d",
+      "cases.json": "35a8fef20f78922f06a3463d3b5702ca0be882a43f1522ff2085e2ab972da1be",
+      "CASE_DESIGN.md": "99a2dd85249dacc27fc5e47a3eac99f171c17b097f0d8f4954d1339b0dbc2418",
+      "payloads.py": "51b1f98e6eebcc0366549a2bd13b38888721120a2d098210934a7829c618749c",
+      "prepare.py": "cfa7f384e7d436a6997054f34cf17c2b07dc9f2ee7b0deb759f5c07884c4c432",
+      "runner.py": "75dda9922d5b335ce072da47a08fe7f43a7e33a2ae92ef7007f6ed47b9923041",
+      "audit.py": "3001f19959a60a71750c2a2df39c83acd6cc5eceb7c63ffc5292ec06a86a53f2",
+      "preflight.py": "a528beaee1115c1c310e43b9abac9ad528a3fecfca81aabe19741bd22798f1bc",
+      "preflight.json": "5fff098931d29f5f1a47b85ef8d00ffef37f4fcaa543dbe2e81e3502b933237a",
+      "order.json": "4aa7627928512fdc38006657b0383ac2a4d99939a87230ac9f048aa1b66ee50e",
+      "routes.json": "0c77cb91a288b41fecb90e139cb6bf9adf89cbaeae5d6f021d97b56de4bddc2a",
+      "DESIGN.md": "985d798f41999b1ea8abe244f7a9cd121a162ace5216dcce74cb70a99e4465aa",
+      "no-collect-smoke.json": "ac4bcf1a4471315983accd5736d8599e895f54105273e3060fdb96e4b2987383",
+      "preflight-before-canonical-case-order.json": "bc7c01ece0e2c1be2728c7c6cf501a54b080949e45011820e4c96278531c6d22",
+      "preflight-canonical-case-order-amendment.json": "b7ef785c17ca95cfa9a2106f448b0f6af0c5d036848990c1a235f1284ad2124f"
+    },
+    "frozen_utc": "2026-10-20T02:07:12.549213+00:00"
+  },
+  "final_audit": {
+    "passed": true,
+    "complete": true,
+    "checked_at_utc": "2026-10-20T02:07:58.086721+00:00",
+    "errors": [],
+    "warnings": [],
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "helper_checks": {
+      "case_bank.py": {
+        "expected": "4a2063be622b31fe528da6c4910f9009d39617d0a110cde039514541f54d866d",
+        "actual": "4a2063be622b31fe528da6c4910f9009d39617d0a110cde039514541f54d866d",
+        "matches": true
+      },
+      "cases.json": {
+        "expected": "35a8fef20f78922f06a3463d3b5702ca0be882a43f1522ff2085e2ab972da1be",
+        "actual": "35a8fef20f78922f06a3463d3b5702ca0be882a43f1522ff2085e2ab972da1be",
+        "matches": true
+      },
+      "CASE_DESIGN.md": {
+        "expected": "99a2dd85249dacc27fc5e47a3eac99f171c17b097f0d8f4954d1339b0dbc2418",
+        "actual": "99a2dd85249dacc27fc5e47a3eac99f171c17b097f0d8f4954d1339b0dbc2418",
+        "matches": true
+      },
+      "payloads.py": {
+        "expected": "51b1f98e6eebcc0366549a2bd13b38888721120a2d098210934a7829c618749c",
+        "actual": "51b1f98e6eebcc0366549a2bd13b38888721120a2d098210934a7829c618749c",
+        "matches": true
+      },
+      "prepare.py": {
+        "expected": "cfa7f384e7d436a6997054f34cf17c2b07dc9f2ee7b0deb759f5c07884c4c432",
+        "actual": "cfa7f384e7d436a6997054f34cf17c2b07dc9f2ee7b0deb759f5c07884c4c432",
+        "matches": true
+      },
+      "runner.py": {
+        "expected": "75dda9922d5b335ce072da47a08fe7f43a7e33a2ae92ef7007f6ed47b9923041",
+        "actual": "75dda9922d5b335ce072da47a08fe7f43a7e33a2ae92ef7007f6ed47b9923041",
+        "matches": true
+      },
+      "audit.py": {
+        "expected": "3001f19959a60a71750c2a2df39c83acd6cc5eceb7c63ffc5292ec06a86a53f2",
+        "actual": "3001f19959a60a71750c2a2df39c83acd6cc5eceb7c63ffc5292ec06a86a53f2",
+        "matches": true
+      },
+      "preflight.py": {
+        "expected": "a528beaee1115c1c310e43b9abac9ad528a3fecfca81aabe19741bd22798f1bc",
+        "actual": "a528beaee1115c1c310e43b9abac9ad528a3fecfca81aabe19741bd22798f1bc",
+        "matches": true
+      },
+      "preflight.json": {
+        "expected": "5fff098931d29f5f1a47b85ef8d00ffef37f4fcaa543dbe2e81e3502b933237a",
+        "actual": "5fff098931d29f5f1a47b85ef8d00ffef37f4fcaa543dbe2e81e3502b933237a",
+        "matches": true
+      },
+      "order.json": {
+        "expected": "4aa7627928512fdc38006657b0383ac2a4d99939a87230ac9f048aa1b66ee50e",
+        "actual": "4aa7627928512fdc38006657b0383ac2a4d99939a87230ac9f048aa1b66ee50e",
+        "matches": true
+      },
+      "routes.json": {
+        "expected": "0c77cb91a288b41fecb90e139cb6bf9adf89cbaeae5d6f021d97b56de4bddc2a",
+        "actual": "0c77cb91a288b41fecb90e139cb6bf9adf89cbaeae5d6f021d97b56de4bddc2a",
+        "matches": true
+      },
+      "DESIGN.md": {
+        "expected": "985d798f41999b1ea8abe244f7a9cd121a162ace5216dcce74cb70a99e4465aa",
+        "actual": "985d798f41999b1ea8abe244f7a9cd121a162ace5216dcce74cb70a99e4465aa",
+        "matches": true
+      },
+      "no-collect-smoke.json": {
+        "expected": "ac4bcf1a4471315983accd5736d8599e895f54105273e3060fdb96e4b2987383",
+        "actual": "ac4bcf1a4471315983accd5736d8599e895f54105273e3060fdb96e4b2987383",
+        "matches": true
+      },
+      "preflight-before-canonical-case-order.json": {
+        "expected": "bc7c01ece0e2c1be2728c7c6cf501a54b080949e45011820e4c96278531c6d22",
+        "actual": "bc7c01ece0e2c1be2728c7c6cf501a54b080949e45011820e4c96278531c6d22",
+        "matches": true
+      },
+      "preflight-canonical-case-order-amendment.json": {
+        "expected": "b7ef785c17ca95cfa9a2106f448b0f6af0c5d036848990c1a235f1284ad2124f",
+        "actual": "b7ef785c17ca95cfa9a2106f448b0f6af0c5d036848990c1a235f1284ad2124f",
+        "matches": true
+      }
+    },
+    "independent_forecasts_checked": 16,
+    "physics_scaffold_source_review": {
+      "passed": true,
+      "checks": {
+        "steering_lag": true,
+        "nonnegative_body_forward_speed": true,
+        "bicycle_yaw_target": true,
+        "grip_yaw_cap": true,
+        "clamped_yaw_target": true,
+        "yaw_lag": true,
+        "new_nose_rotation": true,
+        "new_nose_axes": true,
+        "body_lateral_slip": true,
+        "bounded_body_slip_change": true,
+        "surface_throttle_acceleration": true,
+        "net_brake_drag": true,
+        "negative_acceleration_stops_vector": true,
+        "positive_acceleration_nose_x": true,
+        "positive_acceleration_nose_y": true,
+        "speed_ceiling": true,
+        "position_from_resulting_velocity_x": true,
+        "position_from_resulting_velocity_y": true,
+        "road_reprojection": true,
+        "update_order": true
+      },
+      "scope": "Fixed qualitative explanation of the frozen Simulation.step; body-lateral grip is not road-lateral acceleration; no current-query forecast or control is computed."
+    },
+    "forecast_steps_checked": 480,
+    "planned_requests": 32,
+    "saved_requests": 32,
+    "forecast_responses": 32,
+    "failures": [],
+    "unrun": [],
+    "writer": {
+      "session_id": "70baa53d35bc4834821de9f48e3599bd",
+      "pid": 34046,
+      "process_start_ticks": 8963104,
+      "parent_pid": 34043,
+      "parent_start_ticks": 8963103,
+      "boot_id": "b113cec5-1758-4140-b960-8d20b2906b04",
+      "started_utc": "2026-10-20T02:07:30.892806+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-natural-forecast-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61059,
+      "charged_usd": 7.533861261999891,
+      "charged_tokens": 243725833,
+      "reported_cost_usd": 7.476582797999876,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61091,
+      "charged_usd": 7.537810101999889,
+      "charged_tokens": 243821197,
+      "reported_cost_usd": 7.480531637999873,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 32,
+      "charged_usd": 0.003948839999997844,
+      "reported_cost_usd": 0.003948839999997844,
+      "charged_tokens": 95364,
+      "uncertain_requests": 0
+    },
+    "automatic_followup_or_promotion": false,
+    "model_requests_by_audit": 0,
+    "ledger_written_by_audit": false,
+    "no_controls_applied": true
+  },
+  "audited_report": {
+    "scope": "Static paired natural-recorded-state forecast diagnostic. Prefixes are historical; future fixed-input continuations are hypothetical, not recorded outcomes.",
+    "complete": true,
+    "forecast_overall": [
+      {
+        "context": "baseline",
+        "planned": 16,
+        "attempted": 16,
+        "unrun": 0,
+        "endpoint_ok": 16,
+        "endpoint_errors": 0,
+        "correct": 8,
+        "incorrect_or_endpoint_error": 8,
+        "attempted_accuracy": 0.5,
+        "planned_correct_fraction": 0.5,
+        "endpoint_success_accuracy": 0.5,
+        "charged_usd": 0.00188034,
+        "charged_tokens": 45442,
+        "median_latency_ms": 259.54535050000004
+      },
+      {
+        "context": "scaffold",
+        "planned": 16,
+        "attempted": 16,
+        "unrun": 0,
+        "endpoint_ok": 16,
+        "endpoint_errors": 0,
+        "correct": 8,
+        "incorrect_or_endpoint_error": 8,
+        "attempted_accuracy": 0.5,
+        "planned_correct_fraction": 0.5,
+        "endpoint_success_accuracy": 0.5,
+        "charged_usd": 0.0020685,
+        "charged_tokens": 49922,
+        "median_latency_ms": 288.7476715
+      }
+    ],
+    "groups": {
+      "risk_class": [
+        {
+          "context": "baseline",
+          "risk_class": "hazard",
+          "planned": 8,
+          "attempted": 8,
+          "unrun": 0,
+          "endpoint_ok": 8,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 8,
+          "attempted_accuracy": 0.0,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": 0.0,
+          "charged_usd": 0.000942984,
+          "charged_tokens": 22788,
+          "median_latency_ms": 267.040661
+        },
+        {
+          "context": "baseline",
+          "risk_class": "safe",
+          "planned": 8,
+          "attempted": 8,
+          "unrun": 0,
+          "endpoint_ok": 8,
+          "endpoint_errors": 0,
+          "correct": 8,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": 1.0,
+          "planned_correct_fraction": 1.0,
+          "endpoint_success_accuracy": 1.0,
+          "charged_usd": 0.000937356,
+          "charged_tokens": 22654,
+          "median_latency_ms": 255.90945200000002
+        },
+        {
+          "context": "scaffold",
+          "risk_class": "hazard",
+          "planned": 8,
+          "attempted": 8,
+          "unrun": 0,
+          "endpoint_ok": 8,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 8,
+          "attempted_accuracy": 0.0,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": 0.0,
+          "charged_usd": 0.001037064,
+          "charged_tokens": 25028,
+          "median_latency_ms": 300.830879
+        },
+        {
+          "context": "scaffold",
+          "risk_class": "safe",
+          "planned": 8,
+          "attempted": 8,
+          "unrun": 0,
+          "endpoint_ok": 8,
+          "endpoint_errors": 0,
+          "correct": 8,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": 1.0,
+          "planned_correct_fraction": 1.0,
+          "endpoint_success_accuracy": 1.0,
+          "charged_usd": 0.001031436,
+          "charged_tokens": 24894,
+          "median_latency_ms": 277.73409949999996
+        }
+      ],
+      "region": [
+        {
+          "context": "baseline",
+          "region": "curve",
+          "planned": 8,
+          "attempted": 8,
+          "unrun": 0,
+          "endpoint_ok": 8,
+          "endpoint_errors": 0,
+          "correct": 4,
+          "incorrect_or_endpoint_error": 4,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.000951426,
+          "charged_tokens": 22989,
+          "median_latency_ms": 259.648826
+        },
+        {
+          "context": "baseline",
+          "region": "straight",
+          "planned": 8,
+          "attempted": 8,
+          "unrun": 0,
+          "endpoint_ok": 8,
+          "endpoint_errors": 0,
+          "correct": 4,
+          "incorrect_or_endpoint_error": 4,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.000928914,
+          "charged_tokens": 22453,
+          "median_latency_ms": 258.8035395
+        },
+        {
+          "context": "scaffold",
+          "region": "curve",
+          "planned": 8,
+          "attempted": 8,
+          "unrun": 0,
+          "endpoint_ok": 8,
+          "endpoint_errors": 0,
+          "correct": 4,
+          "incorrect_or_endpoint_error": 4,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.001045506,
+          "charged_tokens": 25229,
+          "median_latency_ms": 260.033953
+        },
+        {
+          "context": "scaffold",
+          "region": "straight",
+          "planned": 8,
+          "attempted": 8,
+          "unrun": 0,
+          "endpoint_ok": 8,
+          "endpoint_errors": 0,
+          "correct": 4,
+          "incorrect_or_endpoint_error": 4,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.001022994,
+          "charged_tokens": 24693,
+          "median_latency_ms": 296.659532
+        }
+      ],
+      "edge_side": [
+        {
+          "context": "baseline",
+          "edge_side": "left",
+          "planned": 8,
+          "attempted": 8,
+          "unrun": 0,
+          "endpoint_ok": 8,
+          "endpoint_errors": 0,
+          "correct": 4,
+          "incorrect_or_endpoint_error": 4,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.0009364320000000001,
+          "charged_tokens": 22632,
+          "median_latency_ms": 261.5448405
+        },
+        {
+          "context": "baseline",
+          "edge_side": "right",
+          "planned": 8,
+          "attempted": 8,
+          "unrun": 0,
+          "endpoint_ok": 8,
+          "endpoint_errors": 0,
+          "correct": 4,
+          "incorrect_or_endpoint_error": 4,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.000943908,
+          "charged_tokens": 22810,
+          "median_latency_ms": 259.54535050000004
+        },
+        {
+          "context": "scaffold",
+          "edge_side": "left",
+          "planned": 8,
+          "attempted": 8,
+          "unrun": 0,
+          "endpoint_ok": 8,
+          "endpoint_errors": 0,
+          "correct": 4,
+          "incorrect_or_endpoint_error": 4,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.001030512,
+          "charged_tokens": 24872,
+          "median_latency_ms": 302.79422650000004
+        },
+        {
+          "context": "scaffold",
+          "edge_side": "right",
+          "planned": 8,
+          "attempted": 8,
+          "unrun": 0,
+          "endpoint_ok": 8,
+          "endpoint_errors": 0,
+          "correct": 4,
+          "incorrect_or_endpoint_error": 4,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.001037988,
+          "charged_tokens": 25050,
+          "median_latency_ms": 266.8564465
+        }
+      ],
+      "held_control": [
+        {
+          "context": "baseline",
+          "held_control": "left_accelerate",
+          "planned": 8,
+          "attempted": 8,
+          "unrun": 0,
+          "endpoint_ok": 8,
+          "endpoint_errors": 0,
+          "correct": 4,
+          "incorrect_or_endpoint_error": 4,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.000951426,
+          "charged_tokens": 22989,
+          "median_latency_ms": 259.648826
+        },
+        {
+          "context": "baseline",
+          "held_control": "right_accelerate",
+          "planned": 2,
+          "attempted": 2,
+          "unrun": 0,
+          "endpoint_ok": 2,
+          "endpoint_errors": 0,
+          "correct": 1,
+          "incorrect_or_endpoint_error": 1,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.000235242,
+          "charged_tokens": 5685,
+          "median_latency_ms": 247.913089
+        },
+        {
+          "context": "baseline",
+          "held_control": "right_coast",
+          "planned": 2,
+          "attempted": 2,
+          "unrun": 0,
+          "endpoint_ok": 2,
+          "endpoint_errors": 0,
+          "correct": 1,
+          "incorrect_or_endpoint_error": 1,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.000229992,
+          "charged_tokens": 5560,
+          "median_latency_ms": 262.2419095
+        },
+        {
+          "context": "baseline",
+          "held_control": "straight_accelerate",
+          "planned": 4,
+          "attempted": 4,
+          "unrun": 0,
+          "endpoint_ok": 4,
+          "endpoint_errors": 0,
+          "correct": 2,
+          "incorrect_or_endpoint_error": 2,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.00046368,
+          "charged_tokens": 11208,
+          "median_latency_ms": 266.05992000000003
+        },
+        {
+          "context": "scaffold",
+          "held_control": "left_accelerate",
+          "planned": 8,
+          "attempted": 8,
+          "unrun": 0,
+          "endpoint_ok": 8,
+          "endpoint_errors": 0,
+          "correct": 4,
+          "incorrect_or_endpoint_error": 4,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.001045506,
+          "charged_tokens": 25229,
+          "median_latency_ms": 260.033953
+        },
+        {
+          "context": "scaffold",
+          "held_control": "right_accelerate",
+          "planned": 2,
+          "attempted": 2,
+          "unrun": 0,
+          "endpoint_ok": 2,
+          "endpoint_errors": 0,
+          "correct": 1,
+          "incorrect_or_endpoint_error": 1,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.000258762,
+          "charged_tokens": 6245,
+          "median_latency_ms": 305.974558
+        },
+        {
+          "context": "scaffold",
+          "held_control": "right_coast",
+          "planned": 2,
+          "attempted": 2,
+          "unrun": 0,
+          "endpoint_ok": 2,
+          "endpoint_errors": 0,
+          "correct": 1,
+          "incorrect_or_endpoint_error": 1,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.000253512,
+          "charged_tokens": 6120,
+          "median_latency_ms": 280.8512115
+        },
+        {
+          "context": "scaffold",
+          "held_control": "straight_accelerate",
+          "planned": 4,
+          "attempted": 4,
+          "unrun": 0,
+          "endpoint_ok": 4,
+          "endpoint_errors": 0,
+          "correct": 2,
+          "incorrect_or_endpoint_error": 2,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.00051072,
+          "charged_tokens": 12328,
+          "median_latency_ms": 305.004739
+        }
+      ],
+      "held_steer": [
+        {
+          "context": "baseline",
+          "held_steer": -0.5,
+          "planned": 4,
+          "attempted": 4,
+          "unrun": 0,
+          "endpoint_ok": 4,
+          "endpoint_errors": 0,
+          "correct": 2,
+          "incorrect_or_endpoint_error": 2,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.000465234,
+          "charged_tokens": 11245,
+          "median_latency_ms": 258.8035395
+        },
+        {
+          "context": "baseline",
+          "held_steer": 0.0,
+          "planned": 4,
+          "attempted": 4,
+          "unrun": 0,
+          "endpoint_ok": 4,
+          "endpoint_errors": 0,
+          "correct": 2,
+          "incorrect_or_endpoint_error": 2,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.00046368,
+          "charged_tokens": 11208,
+          "median_latency_ms": 266.05992000000003
+        },
+        {
+          "context": "baseline",
+          "held_steer": 0.5,
+          "planned": 8,
+          "attempted": 8,
+          "unrun": 0,
+          "endpoint_ok": 8,
+          "endpoint_errors": 0,
+          "correct": 4,
+          "incorrect_or_endpoint_error": 4,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.000951426,
+          "charged_tokens": 22989,
+          "median_latency_ms": 259.648826
+        },
+        {
+          "context": "scaffold",
+          "held_steer": -0.5,
+          "planned": 4,
+          "attempted": 4,
+          "unrun": 0,
+          "endpoint_ok": 4,
+          "endpoint_errors": 0,
+          "correct": 2,
+          "incorrect_or_endpoint_error": 2,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.0005122740000000001,
+          "charged_tokens": 12365,
+          "median_latency_ms": 288.7476715
+        },
+        {
+          "context": "scaffold",
+          "held_steer": 0.0,
+          "planned": 4,
+          "attempted": 4,
+          "unrun": 0,
+          "endpoint_ok": 4,
+          "endpoint_errors": 0,
+          "correct": 2,
+          "incorrect_or_endpoint_error": 2,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.00051072,
+          "charged_tokens": 12328,
+          "median_latency_ms": 305.004739
+        },
+        {
+          "context": "scaffold",
+          "held_steer": 0.5,
+          "planned": 8,
+          "attempted": 8,
+          "unrun": 0,
+          "endpoint_ok": 8,
+          "endpoint_errors": 0,
+          "correct": 4,
+          "incorrect_or_endpoint_error": 4,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.001045506,
+          "charged_tokens": 25229,
+          "median_latency_ms": 260.033953
+        }
+      ],
+      "held_pedal": [
+        {
+          "context": "baseline",
+          "held_pedal": "accelerate",
+          "planned": 14,
+          "attempted": 14,
+          "unrun": 0,
+          "endpoint_ok": 14,
+          "endpoint_errors": 0,
+          "correct": 7,
+          "incorrect_or_endpoint_error": 7,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.001650348,
+          "charged_tokens": 39882,
+          "median_latency_ms": 258.573182
+        },
+        {
+          "context": "baseline",
+          "held_pedal": "coast",
+          "planned": 2,
+          "attempted": 2,
+          "unrun": 0,
+          "endpoint_ok": 2,
+          "endpoint_errors": 0,
+          "correct": 1,
+          "incorrect_or_endpoint_error": 1,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.000229992,
+          "charged_tokens": 5560,
+          "median_latency_ms": 262.2419095
+        },
+        {
+          "context": "scaffold",
+          "held_pedal": "accelerate",
+          "planned": 14,
+          "attempted": 14,
+          "unrun": 0,
+          "endpoint_ok": 14,
+          "endpoint_errors": 0,
+          "correct": 7,
+          "incorrect_or_endpoint_error": 7,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.001814988,
+          "charged_tokens": 43802,
+          "median_latency_ms": 290.7514505
+        },
+        {
+          "context": "scaffold",
+          "held_pedal": "coast",
+          "planned": 2,
+          "attempted": 2,
+          "unrun": 0,
+          "endpoint_ok": 2,
+          "endpoint_errors": 0,
+          "correct": 1,
+          "incorrect_or_endpoint_error": 1,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.000253512,
+          "charged_tokens": 6120,
+          "median_latency_ms": 280.8512115
+        }
+      ],
+      "nose_motion_conflict": [
+        {
+          "context": "baseline",
+          "nose_motion_conflict": false,
+          "planned": 16,
+          "attempted": 16,
+          "unrun": 0,
+          "endpoint_ok": 16,
+          "endpoint_errors": 0,
+          "correct": 8,
+          "incorrect_or_endpoint_error": 8,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.00188034,
+          "charged_tokens": 45442,
+          "median_latency_ms": 259.54535050000004
+        },
+        {
+          "context": "scaffold",
+          "nose_motion_conflict": false,
+          "planned": 16,
+          "attempted": 16,
+          "unrun": 0,
+          "endpoint_ok": 16,
+          "endpoint_errors": 0,
+          "correct": 8,
+          "incorrect_or_endpoint_error": 8,
+          "attempted_accuracy": 0.5,
+          "planned_correct_fraction": 0.5,
+          "endpoint_success_accuracy": 0.5,
+          "charged_usd": 0.0020685,
+          "charged_tokens": 49922,
+          "median_latency_ms": 288.7476715
+        }
+      ]
+    },
+    "forecast_confusion": [
+      {
+        "context": "baseline",
+        "hazard_predicted_safe": 8,
+        "safe_predicted_hazard": 0,
+        "choice_counts": {
+          "stays_on_road": 16
+        },
+        "endpoint_errors": 0
+      },
+      {
+        "context": "scaffold",
+        "hazard_predicted_safe": 8,
+        "safe_predicted_hazard": 0,
+        "choice_counts": {
+          "stays_on_road": 16
+        },
+        "endpoint_errors": 0
+      }
+    ],
+    "descriptive_thresholds": [
+      {
+        "context": "baseline",
+        "descriptive_threshold_met": false,
+        "checks": {
+          "all16_observed": true,
+          "overall_at_least15": false,
+          "safe_at_least7": true,
+          "hazard_at_least7": false,
+          "straight_at_least7": false,
+          "curve_at_least7": false
+        }
+      },
+      {
+        "context": "scaffold",
+        "descriptive_threshold_met": false,
+        "checks": {
+          "all16_observed": true,
+          "overall_at_least15": false,
+          "safe_at_least7": true,
+          "hazard_at_least7": false,
+          "straight_at_least7": false,
+          "curve_at_least7": false
+        }
+      }
+    ],
+    "matched_case_outcomes": [
+      {
+        "case_id": "natural-00-hazard",
+        "risk_class": "hazard",
+        "region": "curve",
+        "edge_side": "left",
+        "held_control": "left_accelerate",
+        "held_steer": 0.5,
+        "held_pedal": "accelerate",
+        "nose_motion_conflict": false,
+        "baseline_correct": false,
+        "scaffold_correct": false,
+        "baseline_choice": "stays_on_road",
+        "scaffold_choice": "stays_on_road",
+        "same_choice": true,
+        "scaffold_only_correct": false,
+        "baseline_only_correct": false
+      },
+      {
+        "case_id": "natural-00-safe",
+        "risk_class": "safe",
+        "region": "curve",
+        "edge_side": "left",
+        "held_control": "left_accelerate",
+        "held_steer": 0.5,
+        "held_pedal": "accelerate",
+        "nose_motion_conflict": false,
+        "baseline_correct": true,
+        "scaffold_correct": true,
+        "baseline_choice": "stays_on_road",
+        "scaffold_choice": "stays_on_road",
+        "same_choice": true,
+        "scaffold_only_correct": false,
+        "baseline_only_correct": false
+      },
+      {
+        "case_id": "natural-01-hazard",
+        "risk_class": "hazard",
+        "region": "curve",
+        "edge_side": "left",
+        "held_control": "left_accelerate",
+        "held_steer": 0.5,
+        "held_pedal": "accelerate",
+        "nose_motion_conflict": false,
+        "baseline_correct": false,
+        "scaffold_correct": false,
+        "baseline_choice": "stays_on_road",
+        "scaffold_choice": "stays_on_road",
+        "same_choice": true,
+        "scaffold_only_correct": false,
+        "baseline_only_correct": false
+      },
+      {
+        "case_id": "natural-01-safe",
+        "risk_class": "safe",
+        "region": "curve",
+        "edge_side": "right",
+        "held_control": "left_accelerate",
+        "held_steer": 0.5,
+        "held_pedal": "accelerate",
+        "nose_motion_conflict": false,
+        "baseline_correct": true,
+        "scaffold_correct": true,
+        "baseline_choice": "stays_on_road",
+        "scaffold_choice": "stays_on_road",
+        "same_choice": true,
+        "scaffold_only_correct": false,
+        "baseline_only_correct": false
+      },
+      {
+        "case_id": "natural-02-hazard",
+        "risk_class": "hazard",
+        "region": "straight",
+        "edge_side": "left",
+        "held_control": "straight_accelerate",
+        "held_steer": 0.0,
+        "held_pedal": "accelerate",
+        "nose_motion_conflict": false,
+        "baseline_correct": false,
+        "scaffold_correct": false,
+        "baseline_choice": "stays_on_road",
+        "scaffold_choice": "stays_on_road",
+        "same_choice": true,
+        "scaffold_only_correct": false,
+        "baseline_only_correct": false
+      },
+      {
+        "case_id": "natural-02-safe",
+        "risk_class": "safe",
+        "region": "straight",
+        "edge_side": "right",
+        "held_control": "straight_accelerate",
+        "held_steer": 0.0,
+        "held_pedal": "accelerate",
+        "nose_motion_conflict": false,
+        "baseline_correct": true,
+        "scaffold_correct": true,
+        "baseline_choice": "stays_on_road",
+        "scaffold_choice": "stays_on_road",
+        "same_choice": true,
+        "scaffold_only_correct": false,
+        "baseline_only_correct": false
+      },
+      {
+        "case_id": "natural-03-hazard",
+        "risk_class": "hazard",
+        "region": "straight",
+        "edge_side": "left",
+        "held_control": "straight_accelerate",
+        "held_steer": 0.0,
+        "held_pedal": "accelerate",
+        "nose_motion_conflict": false,
+        "baseline_correct": false,
+        "scaffold_correct": false,
+        "baseline_choice": "stays_on_road",
+        "scaffold_choice": "stays_on_road",
+        "same_choice": true,
+        "scaffold_only_correct": false,
+        "baseline_only_correct": false
+      },
+      {
+        "case_id": "natural-03-safe",
+        "risk_class": "safe",
+        "region": "straight",
+        "edge_side": "left",
+        "held_control": "straight_accelerate",
+        "held_steer": 0.0,
+        "held_pedal": "accelerate",
+        "nose_motion_conflict": false,
+        "baseline_correct": true,
+        "scaffold_correct": true,
+        "baseline_choice": "stays_on_road",
+        "scaffold_choice": "stays_on_road",
+        "same_choice": true,
+        "scaffold_only_correct": false,
+        "baseline_only_correct": false
+      },
+      {
+        "case_id": "natural-04-hazard",
+        "risk_class": "hazard",
+        "region": "straight",
+        "edge_side": "right",
+        "held_control": "right_accelerate",
+        "held_steer": -0.5,
+        "held_pedal": "accelerate",
+        "nose_motion_conflict": false,
+        "baseline_correct": false,
+        "scaffold_correct": false,
+        "baseline_choice": "stays_on_road",
+        "scaffold_choice": "stays_on_road",
+        "same_choice": true,
+        "scaffold_only_correct": false,
+        "baseline_only_correct": false
+      },
+      {
+        "case_id": "natural-04-safe",
+        "risk_class": "safe",
+        "region": "straight",
+        "edge_side": "left",
+        "held_control": "right_accelerate",
+        "held_steer": -0.5,
+        "held_pedal": "accelerate",
+        "nose_motion_conflict": false,
+        "baseline_correct": true,
+        "scaffold_correct": true,
+        "baseline_choice": "stays_on_road",
+        "scaffold_choice": "stays_on_road",
+        "same_choice": true,
+        "scaffold_only_correct": false,
+        "baseline_only_correct": false
+      },
+      {
+        "case_id": "natural-05-hazard",
+        "risk_class": "hazard",
+        "region": "straight",
+        "edge_side": "right",
+        "held_control": "right_coast",
+        "held_steer": -0.5,
+        "held_pedal": "coast",
+        "nose_motion_conflict": false,
+        "baseline_correct": false,
+        "scaffold_correct": false,
+        "baseline_choice": "stays_on_road",
+        "scaffold_choice": "stays_on_road",
+        "same_choice": true,
+        "scaffold_only_correct": false,
+        "baseline_only_correct": false
+      },
+      {
+        "case_id": "natural-05-safe",
+        "risk_class": "safe",
+        "region": "straight",
+        "edge_side": "right",
+        "held_control": "right_coast",
+        "held_steer": -0.5,
+        "held_pedal": "coast",
+        "nose_motion_conflict": false,
+        "baseline_correct": true,
+        "scaffold_correct": true,
+        "baseline_choice": "stays_on_road",
+        "scaffold_choice": "stays_on_road",
+        "same_choice": true,
+        "scaffold_only_correct": false,
+        "baseline_only_correct": false
+      },
+      {
+        "case_id": "natural-06-hazard",
+        "risk_class": "hazard",
+        "region": "curve",
+        "edge_side": "right",
+        "held_control": "left_accelerate",
+        "held_steer": 0.5,
+        "held_pedal": "accelerate",
+        "nose_motion_conflict": false,
+        "baseline_correct": false,
+        "scaffold_correct": false,
+        "baseline_choice": "stays_on_road",
+        "scaffold_choice": "stays_on_road",
+        "same_choice": true,
+        "scaffold_only_correct": false,
+        "baseline_only_correct": false
+      },
+      {
+        "case_id": "natural-06-safe",
+        "risk_class": "safe",
+        "region": "curve",
+        "edge_side": "right",
+        "held_control": "left_accelerate",
+        "held_steer": 0.5,
+        "held_pedal": "accelerate",
+        "nose_motion_conflict": false,
+        "baseline_correct": true,
+        "scaffold_correct": true,
+        "baseline_choice": "stays_on_road",
+        "scaffold_choice": "stays_on_road",
+        "same_choice": true,
+        "scaffold_only_correct": false,
+        "baseline_only_correct": false
+      },
+      {
+        "case_id": "natural-07-hazard",
+        "risk_class": "hazard",
+        "region": "curve",
+        "edge_side": "right",
+        "held_control": "left_accelerate",
+        "held_steer": 0.5,
+        "held_pedal": "accelerate",
+        "nose_motion_conflict": false,
+        "baseline_correct": false,
+        "scaffold_correct": false,
+        "baseline_choice": "stays_on_road",
+        "scaffold_choice": "stays_on_road",
+        "same_choice": true,
+        "scaffold_only_correct": false,
+        "baseline_only_correct": false
+      },
+      {
+        "case_id": "natural-07-safe",
+        "risk_class": "safe",
+        "region": "curve",
+        "edge_side": "left",
+        "held_control": "left_accelerate",
+        "held_steer": 0.5,
+        "held_pedal": "accelerate",
+        "nose_motion_conflict": false,
+        "baseline_correct": true,
+        "scaffold_correct": true,
+        "baseline_choice": "stays_on_road",
+        "scaffold_choice": "stays_on_road",
+        "same_choice": true,
+        "scaffold_only_correct": false,
+        "baseline_only_correct": false
+      }
+    ],
+    "paired_gain_loss": {
+      "matched_cases": 16,
+      "scaffold_only_correct": 0,
+      "baseline_only_correct": 0,
+      "net_correct_gain": 0,
+      "accuracy_difference": 0.0
+    },
+    "replication_signals": [
+      {
+        "positive": "scaffold",
+        "negative": "baseline",
+        "matched_cases": 16,
+        "net_correct_gain": 0,
+        "positive_benchmark_met": false,
+        "may_motivate_separately_frozen_fresh_replication": false,
+        "automatic_action": false,
+        "audit_clean": true
+      }
+    ],
+    "baseline_capability_reported_separately": false,
+    "automatic_followup_or_promotion": false,
+    "limitations": [
+      "Sixteen selected recorded states are a small balanced diagnostic bank, not an independent representative sample of all natural driving situations.",
+      "Each context is presented once per state; there are no repeats or newly generated mirror cases.",
+      "Native inputs are matched by risk within region, while within-side matching was infeasible in the predeclared pool. All curve states hold left_accelerate; selected states have zero observed body slip and mostly maximum speed.",
+      "Recorded source prefixes establish unperturbed physical provenance. The forecast holds the current input fixed for30DT, which may differ from the commands recorded after selection.",
+      "State selection uses physical forecasts and predeclared matching, not source reply choices, probabilities or model answers.",
+      "Current road-frame facts and present on-road badges remain in both contexts. The candidate adds a fixed qualitative physics scaffold, not a computed query-specific answer.",
+      "Static forecasting, native input selection and live driving are different tasks. No outcome automatically authorizes native validation, live use or preset promotion."
+    ],
+    "natural_provenance": {
+      "distinct_recorded_races": 16,
+      "recorded_physics_samples_verified": 29968,
+      "recorded_applied_commands_replayed": 1756,
+      "grid_ticks": 6,
+      "one_state_per_race": true,
+      "current_clearance_ranges_by_risk": {
+        "hazard": [
+          0.8239360496416026,
+          2.956342196319426
+        ],
+        "safe": [
+          0.683674539766848,
+          2.95245241323704
+        ]
+      },
+      "maximum_body_slip_deg": 0.0,
+      "matching": {
+        "complete_native_input_frequencies_exact_within_edge": false,
+        "complete_native_input_frequencies_exact_within_region": true,
+        "distinct_races_required": 16,
+        "risk_region_edge_quotas_unchanged": true,
+        "stronger_within_edge_design_feasible": false
+      },
+      "source_states": [
+        {
+          "case_id": "natural-00-hazard",
+          "speed_m_s": 12.0,
+          "source_path": "artifacts/jev-widths-v1/paid/seed-01-width-24/trial.json",
+          "tick": 3936,
+          "region": "curve",
+          "risk_class": "hazard",
+          "current_physical_edge": "left"
+        },
+        {
+          "case_id": "natural-00-safe",
+          "speed_m_s": 12.0,
+          "source_path": "artifacts/jev-prompts-v4/r3/paid/damped-seed-09/trial.json",
+          "tick": 1224,
+          "region": "curve",
+          "risk_class": "safe",
+          "current_physical_edge": "left"
+        },
+        {
+          "case_id": "natural-01-hazard",
+          "speed_m_s": 11.999999999999998,
+          "source_path": "artifacts/jev-widths-v1/paid/seed-00-width-24/trial.json",
+          "tick": 4182,
+          "region": "curve",
+          "risk_class": "hazard",
+          "current_physical_edge": "left"
+        },
+        {
+          "case_id": "natural-01-safe",
+          "speed_m_s": 12.0,
+          "source_path": "artifacts/jev-prompts-v4/r1/paid/damped-seed-05/trial.json",
+          "tick": 1350,
+          "region": "curve",
+          "risk_class": "safe",
+          "current_physical_edge": "right"
+        },
+        {
+          "case_id": "natural-02-hazard",
+          "speed_m_s": 12.0,
+          "source_path": "artifacts/jev-prompts-v4/r3/paid/inverse_frame-seed-09/trial.json",
+          "tick": 816,
+          "region": "straight",
+          "risk_class": "hazard",
+          "current_physical_edge": "left"
+        },
+        {
+          "case_id": "natural-02-safe",
+          "speed_m_s": 12.000000000000002,
+          "source_path": "artifacts/jev-prompts-v4/r3/paid/inverse_frame-seed-10/trial.json",
+          "tick": 1890,
+          "region": "straight",
+          "risk_class": "safe",
+          "current_physical_edge": "right"
+        },
+        {
+          "case_id": "natural-03-hazard",
+          "speed_m_s": 11.999999999999998,
+          "source_path": "artifacts/jev-prompts-v4/r2/paid/straight_release-seed-08/trial.json",
+          "tick": 894,
+          "region": "straight",
+          "risk_class": "hazard",
+          "current_physical_edge": "left"
+        },
+        {
+          "case_id": "natural-03-safe",
+          "speed_m_s": 12.0,
+          "source_path": "artifacts/jev-prompts-v4/r2/paid/straight_release-seed-07/trial.json",
+          "tick": 870,
+          "region": "straight",
+          "risk_class": "safe",
+          "current_physical_edge": "left"
+        },
+        {
+          "case_id": "natural-04-hazard",
+          "speed_m_s": 11.999999999999998,
+          "source_path": "artifacts/jev-prompts-v4/r2/paid/pursuit_formula-seed-07/trial.json",
+          "tick": 894,
+          "region": "straight",
+          "risk_class": "hazard",
+          "current_physical_edge": "right"
+        },
+        {
+          "case_id": "natural-04-safe",
+          "speed_m_s": 11.999999999999998,
+          "source_path": "artifacts/jev-prompts-v4/r1/paid/pedal_release-seed-06/trial.json",
+          "tick": 804,
+          "region": "straight",
+          "risk_class": "safe",
+          "current_physical_edge": "left"
+        },
+        {
+          "case_id": "natural-05-hazard",
+          "speed_m_s": 8.079574368711329,
+          "source_path": "artifacts/jev-prompts-v3/paid/early_margin-seed-03/trial.json",
+          "tick": 954,
+          "region": "straight",
+          "risk_class": "hazard",
+          "current_physical_edge": "right"
+        },
+        {
+          "case_id": "natural-05-safe",
+          "speed_m_s": 11.720088819401786,
+          "source_path": "artifacts/jev-prompts-v4/r3/paid/inverse_history-seed-09/trial.json",
+          "tick": 5676,
+          "region": "straight",
+          "risk_class": "safe",
+          "current_physical_edge": "right"
+        },
+        {
+          "case_id": "natural-06-hazard",
+          "speed_m_s": 12.0,
+          "source_path": "artifacts/jev-prompts-v3/paid/damped-seed-03/trial.json",
+          "tick": 1458,
+          "region": "curve",
+          "risk_class": "hazard",
+          "current_physical_edge": "right"
+        },
+        {
+          "case_id": "natural-06-safe",
+          "speed_m_s": 12.0,
+          "source_path": "artifacts/jev-prompts-v4/r1/paid/damped-seed-06/trial.json",
+          "tick": 420,
+          "region": "curve",
+          "risk_class": "safe",
+          "current_physical_edge": "right"
+        },
+        {
+          "case_id": "natural-07-hazard",
+          "speed_m_s": 12.000000000000002,
+          "source_path": "artifacts/jev-prompts-v3/paid/corridor_veto-seed-03/trial.json",
+          "tick": 336,
+          "region": "curve",
+          "risk_class": "hazard",
+          "current_physical_edge": "right"
+        },
+        {
+          "case_id": "natural-07-safe",
+          "speed_m_s": 12.0,
+          "source_path": "artifacts/jev-prompts-v3/paid/damped-seed-04/trial.json",
+          "tick": 4248,
+          "region": "curve",
+          "risk_class": "safe",
+          "current_physical_edge": "left"
+        }
+      ]
+    },
+    "audit_passed": true
+  },
+  "collection_provenance_verification": {
+    "passed": true,
+    "checked_at_utc": "2026-10-20T02:09:33.994331+00:00",
+    "checks": {
+      "authorization_id_matches_explicit_root_instruction": true,
+      "immutable_preflight_hash_matches_authorization": true,
+      "immutable_preflight_hash_matches_retained_original": true,
+      "preflight_passed_before_collection": true,
+      "authorization_created_before_writer_started": true,
+      "immutable_preflight_file_written_before_writer_started": true,
+      "authorization_file_written_before_writer_started": true,
+      "protocol_identity_exact": true,
+      "budget_boundary_exact": true,
+      "writer_consistent_start_complete_finalaudit": true,
+      "writer_boot_matches_current_execution_boot": true,
+      "writer_pid_parent_and_session_recorded": true,
+      "explicit_root_collect_invocation": true,
+      "complete_bench_fingerprint_independently_reproduced": true,
+      "source_identity_exact": true,
+      "coverage_is_the_exact_32_call_order": true,
+      "forecast_only_scope_exact_no_format_gate": true,
+      "all_32_call_writer_identities_match": true,
+      "all_32_call_protocols_match": true,
+      "requests_begin_after_process_start": true,
+      "one_request_in_flight_in_saved_order": true,
+      "each_call_has_one_captured_successful_reply": true,
+      "request_and_reservation_ids_are_unique": true,
+      "all_wire_bodies_match_saved_payloads": true,
+      "all_32_actual_typed_choices_match_decoded_records": true,
+      "all_32_actual_model_provider_identities_match": true,
+      "all_budget_transitions_form_one_exact_writer_chain": true,
+      "completion_and_finalaudit_consistent": true,
+      "no_foreign_writer_or_accounting_stop": true,
+      "frozen_helpers_and_ledger_unchanged": true,
+      "audit_made_no_calls_or_ledger_writes": true,
+      "shared_ledger_still_unchanged_at_evidence_write": true
+    },
+    "errors": [],
+    "authorization_id": "07c1da0314064d3d9d509a3e9896dcee",
+    "writer": {
+      "session_id": "70baa53d35bc4834821de9f48e3599bd",
+      "pid": 34046,
+      "process_start_ticks": 8963104,
+      "parent_pid": 34043,
+      "parent_start_ticks": 8963103,
+      "boot_id": "b113cec5-1758-4140-b960-8d20b2906b04",
+      "started_utc": "2026-10-20T02:07:30.892806+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-natural-forecast-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "root_execution_session_reported": 53906,
+    "preflight_file_sha256": "2c8ecc5bdbead7ebea66fc6a6b0655908867d3567c6a735256638247650ce4eb",
+    "preflight_file_mtime_utc": "2026-10-20T02:07:30.215984+00:00",
+    "authorization_created_utc": "2026-10-20T02:07:30.216008+00:00",
+    "authorization_file_mtime_utc": "2026-10-20T02:07:30.216130+00:00",
+    "writer_started_utc": "2026-10-20T02:07:30.892806+00:00",
+    "completed_utc": "2026-10-20T02:07:41.363513+00:00",
+    "protocol_sha256": "f75d9eb2248b504f16e794060aa36fabd166d8b3849a02db4a8723ce3dfce3f0",
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "source_fingerprint_algorithm": {
+      "function": "mcpkart.bench.fingerprint",
+      "independent_reproduction": true,
+      "runtime_function_matches": true,
+      "python_filename_order": [
+        "sim.py",
+        "decisions.py",
+        "runtime.py",
+        "process_runtime.py",
+        "physics_worker.py",
+        "rust_runtime.py",
+        "web.py",
+        "bench.py",
+        "telemetry.py",
+        "observations.py",
+        "scene.py"
+      ],
+      "rust_order": "Sorted Cargo.toml, Cargo.lock and src/*.rs; hash relative POSIX path then bytes for each existing file",
+      "source_file_sha256": {
+        "/workspace/mcpkart/src/mcpkart/sim.py": "8d3ac6a9ab3fd1f244e179e9a4d99a0597cc5b7eceb73d691be73b08e17c42ee",
+        "/workspace/mcpkart/src/mcpkart/decisions.py": "bfb2b454526caa6b36010a69fa927ead6b754841155a415c34fb9a078168cb4d",
+        "/workspace/mcpkart/src/mcpkart/runtime.py": "d19bba47418747b0c9b600ffc6f4e7a7b69d0046b54eb538d3aeebc5e962c695",
+        "/workspace/mcpkart/src/mcpkart/process_runtime.py": "34c36049426013e6d1286ef03ad7c4e34d9487ad92f60504b0a56aa074b5b468",
+        "/workspace/mcpkart/src/mcpkart/physics_worker.py": "cc478b1cb09fd1f3f4f2059a6e69dc1288379cd77d790e693d39f2d68cb32ea8",
+        "/workspace/mcpkart/src/mcpkart/rust_runtime.py": "a5b27ce28f559ca995362c7f9e81ae357da40f20898ca40333388200aa7cc427",
+        "/workspace/mcpkart/src/mcpkart/web.py": "2d3bb6aa690c2624c17cb0abcb4bc711cba794b31f3701dbd29bdb3b30590965",
+        "/workspace/mcpkart/src/mcpkart/bench.py": "9885a0e6792803f7314f2c83a812648811b53b8401a20428b0178443a80dbc92",
+        "/workspace/mcpkart/src/mcpkart/telemetry.py": "44e1a97c6448ffdaf95b97767072e3f99341f3ed5a5092735f5343254788ed6d",
+        "/workspace/mcpkart/src/mcpkart/observations.py": "5febca57d1e474abc9268de49924fe7c8c418bd1a4f469e34ffa564ab1af3255",
+        "/workspace/mcpkart/src/mcpkart/scene.py": "855dcb4e5a337a137d57dba4345bbbece6df6e4f24121dfbd4c7bb1881bc92af",
+        "/workspace/mcpkart/rust-race/Cargo.lock": "bbf4e1ef201063d743fa2f694146fe5c134fb8cbf21aaae4e2530647d9e06d40",
+        "/workspace/mcpkart/rust-race/Cargo.toml": "36e00a322b4ad084e5feb1ed39dd89da3cee41f73a3777830a5e2e4baebedf4e",
+        "/workspace/mcpkart/rust-race/src/main.rs": "0bcb3a55c68b7e668d246319b565f72c4f5794fd9aefc8efa7cec1c88148dc3c",
+        "/workspace/mcpkart/rust-race/src/runtime.rs": "2d5b1f2ef84b7eac362af2f0eb18bd5eee2c54ae879fc0cd4ac2f2ceeed967d4",
+        "/workspace/mcpkart/rust-race/src/sim.rs": "079ecfc528d091b990a84de8ddfb67dc75b5856e4358556e06d157ce2ee8367e"
+      }
+    },
+    "actual_calls_checked": 32,
+    "forecast_calls_checked": 32,
+    "format_gate_applicable": false,
+    "termination_mode": "complete32",
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61059,
+      "charged_usd": 7.533861261999891,
+      "charged_tokens": 243725833,
+      "reported_cost_usd": 7.476582797999876,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61091,
+      "charged_usd": 7.537810101999889,
+      "charged_tokens": 243821197,
+      "reported_cost_usd": 7.480531637999873,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "file_sha256": {
+      "protocol.json": "f75d9eb2248b504f16e794060aa36fabd166d8b3849a02db4a8723ce3dfce3f0",
+      "collection-authorization.json": "20801578082fabe09cece1f684fdb1f11e4ad3b4431aa0e4356079bfad229406",
+      "collection-start.json": "a1528ec72bc4326be854258e2182c249fb24f542c80d3bc274c1ef7301b84d8e",
+      "collection-complete.json": "2db4ce3efa6455426050d89324523d15412a4c6ee2904bfc6e79790ddfc00b9c",
+      "independent-preflight-before-collection.json": "2c8ecc5bdbead7ebea66fc6a6b0655908867d3567c6a735256638247650ce4eb",
+      "independent-preflight.json": "2c8ecc5bdbead7ebea66fc6a6b0655908867d3567c6a735256638247650ce4eb",
+      "final-audit.json": "77b9436be52883469ed87a8f0213036e3ae09dc0e836078975c08aef62747fd8"
+    },
+    "call_evidence_aggregate_sha256": "9790245a49a479720f4a82bd2815f4731618c82c71329f5511b26f734c2102f0",
+    "audit_reruns": 0,
+    "audit_model_calls": 0,
+    "ledger_writes": 0
+  },
+  "fixture_selection": {
+    "candidate_scan": {
+      "candidate_cells": {
+        "curve_hazard_left": {
+          "source_races": 3,
+          "ticks": 8
+        },
+        "curve_hazard_right": {
+          "source_races": 7,
+          "ticks": 15
+        },
+        "curve_safe_left": {
+          "source_races": 7,
+          "ticks": 181
+        },
+        "curve_safe_right": {
+          "source_races": 6,
+          "ticks": 219
+        },
+        "straight_hazard_left": {
+          "source_races": 6,
+          "ticks": 13
+        },
+        "straight_hazard_right": {
+          "source_races": 5,
+          "ticks": 14
+        },
+        "straight_safe_left": {
+          "source_races": 7,
+          "ticks": 48
+        },
+        "straight_safe_right": {
+          "source_races": 2,
+          "ticks": 73
+        }
+      },
+      "eligible_candidates": 571,
+      "exact_commands": 11134,
+      "exact_samples": 188381,
+      "rejections": {
+        "future_margin_under_0.5m": 56,
+        "prior_or_sent_15m_xy": 25
+      }
+    },
+    "candidate_pool_sha256": "5831759c6c03d68d318a2bd4665707e5a66e281152037d4c6d8f8e85fdceafb8",
+    "coverage": {
+      "all_before_first_rescue": true,
+      "all_original_sent_15m_xy_excluded": true,
+      "all_selected_ticks_unsent": true,
+      "cases": 16,
+      "cases_at_12_m_s_within_1e_minus9_tolerance": 14,
+      "current_clearance_ranges_by_risk": {
+        "hazard": [
+          0.8239360496416026,
+          2.956342196319426
+        ],
+        "safe": [
+          0.683674539766848,
+          2.95245241323704
+        ]
+      },
+      "distinct_source_races": 16,
+      "exact_reconstruction_and_forecast": true,
+      "held_inputs_by_region_and_risk": {
+        "curve": {
+          "hazard": {
+            "left_accelerate": 4
+          },
+          "safe": {
+            "left_accelerate": 4
+          }
+        },
+        "straight": {
+          "hazard": {
+            "right_accelerate": 1,
+            "right_coast": 1,
+            "straight_accelerate": 2
+          },
+          "safe": {
+            "right_accelerate": 1,
+            "right_coast": 1,
+            "straight_accelerate": 2
+          }
+        }
+      },
+      "matched_safe_hazard_pairs": 8,
+      "maximum_absolute_body_slip_deg": 0.0,
+      "maximum_hazard_future_clearance_m": -0.7287402441038218,
+      "minimum_current_clearance_m": 0.683674539766848,
+      "minimum_safe_future_clearance_m": 0.5437317702707212,
+      "region_risk_edge": {
+        "curve_hazard_left": 2,
+        "curve_hazard_right": 2,
+        "curve_safe_left": 2,
+        "curve_safe_right": 2,
+        "straight_hazard_left": 2,
+        "straight_hazard_right": 2,
+        "straight_safe_left": 2,
+        "straight_safe_right": 2
+      },
+      "source_seeds": [
+        0,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "speed_range_m_s": [
+        8.079574368711329,
+        12.000000000000002
+      ],
+      "unique_fresh_15m_xy_pairs": 16
+    },
+    "matching": {
+      "complete_native_input_frequencies_exact_within_edge": false,
+      "complete_native_input_frequencies_exact_within_region": true,
+      "distinct_races_required": 16,
+      "risk_region_edge_quotas_unchanged": true,
+      "stronger_within_edge_design_feasible": false
+    },
+    "selection_feasibility_findings": [
+      {
+        "attempt": "stronger_within_edge_pair_matching",
+        "scope": "Exact search over the registered deterministic hazard representatives and safe partners",
+        "solution_found": false
+      },
+      {
+        "all_requested_constraints_preserved": true,
+        "attempt": "requested_within_region_pair_matching",
+        "common_current_clearance_0.5_to_3m": true,
+        "optional_all_historical_sent_15m_xy_exclusion_preserved": true,
+        "solution_found": true
+      }
+    ],
+    "source_manifest_sha256": "c4ab4e3c000c42bb5ba4fbb5538b8fbdb47c0ae2fa094f72c524d5b4c3061790",
+    "current_states_perturbed_or_reflected": false,
+    "recorded_future_commands_used_for_forecast": false,
+    "maximum_current_clearance_m": 3.0,
+    "minimum_current_and_future_margin_m": 0.5,
+    "minimum_speed_m_s": 2.0
+  },
+  "free_wire_preflight_refresh": {
+    "preserved_proof": "preflight-before-canonical-case-order.json",
+    "preserved_sha256": "bc7c01ece0e2c1be2728c7c6cf501a54b080949e45011820e4c96278531c6d22",
+    "final_cases_sha256": "35a8fef20f78922f06a3463d3b5702ca0be882a43f1522ff2085e2ab972da1be",
+    "reason": "Final case JSON canonicalization preserved semantic values but changed state insertion order and actual ordered wire bytes; preserve prior free mock proof and rerun all33wiremocks before any protocol freeze or paid collection.",
+    "model_requests": 0,
+    "created_utc": "2026-10-20T02:06:09.778437+00:00"
+  },
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61059,
+    "charged_usd": 7.533861261999891,
+    "charged_tokens": 243725833,
+    "reported_cost_usd": 7.476582797999876,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61091,
+    "charged_usd": 7.537810101999889,
+    "charged_tokens": 243821197,
+    "reported_cost_usd": 7.480531637999873,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 32,
+    "charged_usd": 0.003948839999997844,
+    "reported_cost_usd": 0.003948839999997844,
+    "charged_tokens": 95364,
+    "uncertain_requests": 0
+  },
+  "interpretation": {
+    "all_contexts_correct": 8,
+    "all_contexts_responses": 16,
+    "all_contexts_safe_correct": 8,
+    "all_contexts_hazard_correct": 0,
+    "all_contexts_each_region_correct": 4,
+    "all_contexts_each_region_responses": 8,
+    "chosen_physical_category": "stays_on_road",
+    "chosen_count": 32,
+    "false_safe": 16,
+    "false_hazard": 0,
+    "paired_gains": 0,
+    "paired_losses": 0,
+    "net_correct_gain": 0,
+    "within_context_repetitions": 1,
+    "conclusion": "Both arms retained constant safe forecasts on these selected natural states. The qualitative fixed physics scaffold did not improve this bank; cross-bank causal effects and internal mechanisms are not identified."
+  },
+  "decision": {
+    "any_forecast_benchmark_met": false,
+    "replication_signal": false,
+    "replication_triggered": false,
+    "native_validation_triggered": false,
+    "live_followup_triggered": false,
+    "preset_promoted": false
+  },
+  "interpretation_limits": [
+    "Sixteen selected recorded states are a small balanced diagnostic bank, not an independent representative sample of all natural driving situations.",
+    "Each context is presented once per state; there are no repeats or newly generated mirror cases.",
+    "Native inputs are matched by risk within region, while within-side matching was infeasible in the predeclared pool. All curve states hold left_accelerate; selected states have zero observed body slip and mostly maximum speed.",
+    "Recorded source prefixes establish unperturbed physical provenance. The forecast holds the current input fixed for30DT, which may differ from the commands recorded after selection.",
+    "State selection uses physical forecasts and predeclared matching, not source reply choices, probabilities or model answers.",
+    "Current road-frame facts and present on-road badges remain in both contexts. The candidate adds a fixed qualitative physics scaffold, not a computed query-specific answer.",
+    "Static forecasting, native input selection and live driving are different tasks. No outcome automatically authorizes native validation, live use or preset promotion.",
+    "The scaffold is qualitative; full exponential update equations and a complete track map are not supplied. Exact-ground-truth disagreement does not establish a specific internal mechanism or general driving incapacity."
+  ],
+  "report_generation": {
+    "saved_completed_evidence_only": true,
+    "audits_rerun": false,
+    "model_calls": 0,
+    "ledger_read_or_written": false,
+    "frozen_archives_modified": false
+  }
+}

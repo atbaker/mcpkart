@@ -1,14 +1,34 @@
 # Codex Cloud development
 
-Use the process-isolated Python engine with asyncio pacing for the current
-solo PoC. The [GCP comparison](experiments/0009-python-on-gcp.md) passed the
-timing gate with Python. That result does not qualify another machine: run
-the free clock controls in the new Codex Cloud environment before buying more
-Jev decisions. The local stalls do not establish a specific hardware cause.
+Use the process-isolated Python engine with asyncio pacing for the solo PoC.
+The [progress checkpoint](experiments/2026-10-21-progress-checkpoint.md) records
+current driving results, limits and the latest budget. Individual historical
+runtime and model studies are indexed in [experiments](experiments/README.md).
+
+All paid experiment windows are closed. The present task is cleanup and
+publication of existing work; it makes no model calls. The latest ledger is
+71,160 requests / 267,423,949 tokens / $8.563495772000609, with 70 uncertainties
+and no pending reservations. Cumulative caps remain $10 / 75,000 requests /
+500 million tokens. A provider-account top-up does not raise these caps.
+
+The current 15 m question-local driver passed repeated solo 24 m stadium and
+mirror runs. Its [run guide](question-context-driver.md) describes the opt-in
+CLI. It preserves saved budget caps. Older generic benchmark paid commands
+construct Budget with a 250-million-token default; do not use them against
+the expanded real ledger without reviewing that limit. Direct constructors
+must explicitly pass the authorized 500-million-token ceiling.
+
+Clock qualifications are machine/source/boot/server-specific. A successful
+GCP or earlier Cloud gate does not qualify a fresh environment. The last gate
+in this workspace is `artifacts/jev-six-hour-v2/restart-clock-v2/qualification.json`;
+check its binding rather than assuming its PID or boot still applies. It
+passed three controls, a parent-pause independence check, a 170.1 s neutral
+check and exact replay. New candidates also need their exact-interface free
+controls and declared native checks before paid use.
 
 ## Prepare the environment
 
-Create an environment for this repository's `main` branch, then ask its setup
+Create an environment for the repository branch containing this checkpoint, then ask its setup
 conversation to run the following from the repository root:
 
 ```sh
@@ -160,10 +180,29 @@ the repository to bridge those phases. See the
 
 `artifacts/`, including the cumulative spending ledger and recordings, is
 ignored by Git. Setup initializes a missing `artifacts/budget.json` from the
-versioned [October 18 spending snapshot](experiments/model-budget-snapshot.json),
-which records $0.914245672 charged against the $10 cap. It never overwrites an
-existing ledger. This snapshot does not synchronize balances across machines:
+versioned [spending snapshot](experiments/model-budget-snapshot.json), whose
+current boundary is documented in the [progress checkpoint](experiments/2026-10-21-progress-checkpoint.md). Setup never
+overwrites an existing ledger.
+This snapshot does not synchronize balances across machines:
 copy the latest ledger when switching environments after further paid work,
 and run only one paid experiment at a time. Do not reset the ledger or start
 parallel paid writers with separate balances. Keep `.env` and raw credentials
 out of commits, setup logs, and saved recordings.
+
+### Recovery after many experiment recordings
+
+The October 20 renewed session observed a cloud reboot at about 11:17 UTC. All
+completed records and the shared budget survived; active processes did not.
+Preserve incomplete per-query files and do not score them as completed races.
+The old boot's clock qualification must be rejected even when source matches.
+
+With a large artifacts tree, the first MCPstart can exceed its 30-second timeout
+while the spectator replay catalog is cold. Race admission warms that catalog
+before starting physics, so an orphan neutral race can exist even when the
+client times out. Inspect and finish that exact race before further controls.
+The failed first recovery gate is retained in
+artifacts/jev-six-hour-v2/restart-clock-v1. Explicitly warm `/api/replays` while
+idle before a new gate; do not scan recordings alongside an active timed trial.
+For example, `curl --fail --max-time 120 --output /dev/null http://127.0.0.1:8765/api/replays`. This local request uses no
+model credential and makes no model call. A new complete source/boot/PID-bound
+clock gate is still required; warming alone does not qualify timing.

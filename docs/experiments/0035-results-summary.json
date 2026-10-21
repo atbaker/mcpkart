@@ -1,0 +1,1163 @@
+{
+  "schema_version": 1,
+  "kind": "broader_native_policy_validation_results",
+  "experiment": "0035",
+  "status": "complete_audit_and_provenance_passed_native_gate_failed",
+  "scope": "Single-arm broader supplied-policy validation,30actualfree-rolloutobservations+30variedsyntheticstates,notprojection-effectestimateorracesuccess.",
+  "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+  "provenance_files": [
+    {
+      "path": "artifacts/jev-broader-native-v1/protocol.json",
+      "sha256": "c03a185d28f5f0739f667c2fb89ca6076aafd2f5ef162d6b5590a690a7775852"
+    },
+    {
+      "path": "docs/experiments/0035-broader-native-validation-prompts.json",
+      "sha256": "1525dba82dfd2db21aa18d592a64ec326ad7c09a06f839747842ce5f805b686e"
+    },
+    {
+      "path": "artifacts/jev-broader-native-v1/final-audit.json",
+      "sha256": "b3f7d8a35eb109e5da9c9b2bb221c06712187dcf2a07a8beebf60972e2907e6c"
+    },
+    {
+      "path": "artifacts/jev-broader-native-v1/report/summary.json",
+      "sha256": "d3167ad850745f9833c1ecaf2ed1aad41177202f9c0ea106de0fd50a373f28c0"
+    },
+    {
+      "path": "artifacts/jev-broader-native-v1/preflight-before-collection.json",
+      "sha256": "b535270b3f276f9eb3759e7b53e1474ca52232cc1c872fcced302e5af60760ab"
+    },
+    {
+      "path": "artifacts/jev-broader-native-v1/preflight.json",
+      "sha256": "36157dc9ec0b2406d20bb3bb8d316bfbe49e61c7f7279dbeee05e2f1c29fe26e"
+    },
+    {
+      "path": "artifacts/jev-broader-native-v1/root-authorization.json",
+      "sha256": "37c3e36ca92dd62607882bd6e3b3ac7d3ff23e2b9098ede4da8d3443dddd4320"
+    },
+    {
+      "path": "artifacts/jev-broader-native-v1/root-execution-confirmation.json",
+      "sha256": "0847b70b52801b632e092499bc5510176a012a7ab5a409870ef22b0c8252c47b"
+    },
+    {
+      "path": "artifacts/jev-broader-native-v1/source-inheritance.json",
+      "sha256": "53abf731180a61547b7a0c22041b01e1a4e62fdc3e22e1bb86a96bbf520396cd"
+    },
+    {
+      "path": "artifacts/jev-broader-native-v1/origin-manifest.json",
+      "sha256": "a23c57f2465781bf42684707713cd7d7efa39a278161f2b40f4f23ed2d261c4a"
+    },
+    {
+      "path": "artifacts/jev-broader-native-v1/prospective-design.md",
+      "sha256": "dcf1af3c248f78b3119f81129b11d6acabbbd86f5565d7c8917c83c8a05f0523"
+    },
+    {
+      "path": "artifacts/jev-broader-native-v1/freshness-scope.json",
+      "sha256": "f756089a8309c280e0a27ba32824dac2540f9e1cddac0243fa1b32c589dbfa14"
+    },
+    {
+      "path": "artifacts/jev-broader-native-v1/independent-rollout-review.json",
+      "sha256": "9c4e82654b6629d8336c5787be57118f3c7e8a73ed35604477f61318f2343589"
+    },
+    {
+      "path": "artifacts/jev-broader-native-v1/rollout-report.json",
+      "sha256": "368d1805d90ffc06cd4c4c5dbb3cd35999a4e5ea367cacad44d06ee4226eb254"
+    },
+    {
+      "path": "artifacts/jev-broader-native-v1/collection-provenance-verification.json",
+      "sha256": "1fe8a6088215bca34ba584e51e8d5a63d46a9049326608a4c5eb50033664c4fc"
+    }
+  ],
+  "frozen_protocol": {
+    "schema_version": 1,
+    "kind": "static_broader_native_validation",
+    "frozen": true,
+    "created_utc": "2026-10-20T03:40:53.158477+00:00",
+    "client_date": "2026-10-20",
+    "planned_calls": 60,
+    "cases": 60,
+    "repetitions": 1,
+    "contexts": [
+      "facts"
+    ],
+    "families": {
+      "natural": 30,
+      "synthetic": 30
+    },
+    "order_seed": 2026102035,
+    "menu_order_counts": {
+      "forward": 30,
+      "reverse": 30
+    },
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "input_token_ceiling": 16384,
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61339,
+      "charged_usd": 7.567857111999886,
+      "charged_tokens": 244559951,
+      "reported_cost_usd": 7.51057864799987,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "shared_ledger": "artifacts/budget.json",
+    "limits": {
+      "max_requests": 75000,
+      "cap_usd": 10.0,
+      "max_tokens": 250000000
+    },
+    "route": {
+      "model": "typesafe/jev-1.14",
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "typesafe",
+      "provider_name": "TypeSafe",
+      "endpoint_name": "TypeSafe | typesafe/jev-1.14-20261014",
+      "price_input_per_token": 4.2e-08,
+      "price_output_per_token": 0.0,
+      "price_per_request": 0.0,
+      "context_length": 262144,
+      "max_prompt_tokens": 262144,
+      "max_completion_tokens": 235929
+    },
+    "automatic_retries": 0,
+    "provider_fallbacks": false,
+    "no_controls_applied": true,
+    "stop_on_first_endpoint_error": true,
+    "stop_on_uncertain_accounting": true,
+    "collect_all_valid_answers": true,
+    "format_gate": null,
+    "order_policy": "Shuffleall60freshcasesseed2026102035;singlefactscontext;reversebothmenusindex%2for30forward30reverse.Onepresentationpercase.",
+    "task_contract": "Byteexact0032policy,0034factsprojectionand0033DRIVINGquestions.Onefactualround4bearingfromSAMEroundedraw15mxy.Nohostcontrolselection,nopredictedfuture,risklabel,targetoreligibilityflaginstate.Native5x3factoredPOSTunchanged.",
+    "client_contract": "IgnoredsubclassoverridesONLYquestionsproperty;productiondecide/componentdecode/uncertainty/accountinginheritedunchanged.Completephysical5x3inverse;oneatomicnativepaironly;Staticnocommandsapplied.",
+    "free_admission": "Fourfreshhostpolicyrunsseeds19/20onstadiumandstadium_clockwise,24m12m_s.12rad3lapsrescue3s;15tickrequestcadenceand15ticksetdelay.Eachmustfinish120gateswith0grass/rescues/unsupportedstops/parking.Noreplacementortuning;alloutcomespreserved.FreehosttrackingnotJevdriving.",
+    "natural_selection": "Thirtyactualqueryposesfromregisteredgridticks180..4380step60;deterministic10straight10left10right/sourcequotasfromfourpassedrollouts.Noresponsesconsultedandnobearingminimummarginfilter;sourceprefixexactreplayrequired.",
+    "policy_scope": "Ahead15mfinitepreview/nonmissedgateonly;unsupportedstatesexcludedwithoutinventedlabels.Braking/coastingeffectivenessunprovenbyfreeupperboundifguardnevertriggered.",
+    "native_gate": {
+      "natural": {
+        "exact_pairs_correct_min": 29,
+        "responses": 30
+      },
+      "synthetic": {
+        "exact_pairs_correct_min": 27,
+        "responses": 30,
+        "straight_wheel_correct_required": 6,
+        "straight_responses": 6,
+        "half_wheel_correct_min": 11,
+        "half_responses": 12,
+        "full_wheel_correct_min": 11,
+        "full_responses": 12,
+        "each_pedal_correct_min": 9,
+        "each_pedal_responses": 10
+      },
+      "brake_choices_below_2m_s_max": 0,
+      "audit_pass_required": true,
+      "endpoint_or_accounting_errors_max": 0
+    },
+    "score_interpretation": "Suppliedpolicyexecutionandnativecompatibilityonly;notoptimalcontrolorraceperformance.Naturalqueriesrelatedwithinsources;singlepresentationnoarmcomparisonorreplicationestimate.",
+    "followup_policy": "Passingonlymotivatesseparatelyfrozenbudgetpermittedlivecomparison;noautomaticliveorpromotion.DAMPEDbaseline/applicationdefaultsretained.",
+    "session_deadline_utc": "2026-10-20T06:17:26+00:00",
+    "helper_sha256": {
+      "policy.py": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+      "case_bank.py": "11c111ab0c44ba59f2844a4c256e114e0e31255a0329e8c3b72a9b8b30e4a8f9",
+      "cases.json": "8acc4d91d396bd3961415abe2c1ed07cf303268c9b1bbbb47a236d9c07e61a18",
+      "policy_client.py": "b00882f71970a04e264b9866392999225e8130973276e42d16cb62c52a2566be",
+      "source-inheritance.json": "53abf731180a61547b7a0c22041b01e1a4e62fdc3e22e1bb86a96bbf520396cd",
+      "payloads.py": "1fa61f96bee9c0ac6d0b7bc0a4b287660a92572f4c73e3db761e38361775a7f5",
+      "prepare.py": "248d8c748bb16a049527b03ff3a53a5a10f988f9f36f2bad377b71bfda577859",
+      "runner.py": "b280511c9e99b1a41fed8ee2b7f42d34a56eef4b3f435edd77ed97fe6e26d519",
+      "audit.py": "06962dcdec0af1f5f33bb7732c57cd0677b15a6e83272cbb888b63eb520e56e9",
+      "preflight.py": "f7d61d5dfa55f6a8658460e0bb60713d3ae736d28c5057cc8f71b37ec46291c9",
+      "preflight.json": "36157dc9ec0b2406d20bb3bb8d316bfbe49e61c7f7279dbeee05e2f1c29fe26e",
+      "order.json": "a23e0e872e364ee8513b033fb41533cff81a8facf7712bf9bda32af36a64eca2",
+      "routes.json": "2f99d33f4f773b9da4cf463ece33d0e27b1b53fae7a21d9f1a2e3f86fe77156d",
+      "DESIGN.md": "9cb0c328f171eb66d57b6ae1fa90ec3544781fa088786328509bb5ce708ef7fb",
+      "CASE_DESIGN.md": "4c332f9cab3c605a4013fc8eb70354b3950c8cc2fe2d70cc7ed139c4ebec307c",
+      "origin-manifest.json": "a23c57f2465781bf42684707713cd7d7efa39a278161f2b40f4f23ed2d261c4a",
+      "prospective-design.md": "dcf1af3c248f78b3119f81129b11d6acabbbd86f5565d7c8917c83c8a05f0523",
+      "protocol.draft.json": "b8576bf018f26b7f7093ab3764cef948ea1c814224aa6cbab8d58a11b39063aa",
+      "freshness-scope.json": "f756089a8309c280e0a27ba32824dac2540f9e1cddac0243fa1b32c589dbfa14",
+      "rollouts.py": "aa94b1e97134cc5be6ac53cd701d10a05f724053e35493117ae34c59045d218e",
+      "rollout-report.json": "368d1805d90ffc06cd4c4c5dbb3cd35999a4e5ea367cacad44d06ee4226eb254",
+      "independent_rollout_review.py": "506c40deee8ace78e778c522965d6c947903804cc1da605d860968d04763a51b",
+      "independent-rollout-review.json": "9c4e82654b6629d8336c5787be57118f3c7e8a73ed35604477f61318f2343589",
+      "rollouts/stadium-seed-19-delay-15-ticks.json": "5b39ba5cc52ca204ada05bfab9cf89b88fb770838e52effa28456f8bc5ed5884",
+      "rollouts/stadium-seed-20-delay-15-ticks.json": "cb129b6aaacb58742aceda0a76f7ae9c46a8f5ee02f3886df602349dabc186c2",
+      "rollouts/stadium_clockwise-seed-19-delay-15-ticks.json": "fce7a8d035c6923bcaee123783a59f82ec04f7b582026da144ccea19f8d27fd2",
+      "rollouts/stadium_clockwise-seed-20-delay-15-ticks.json": "fcac5d9fae81a20d3fcc9ceebeecd569bfe490c0a9fa260eecab6a973e7736c0"
+    },
+    "prompt_archive": {
+      "path": "docs/experiments/0035-broader-native-validation-prompts.json",
+      "sha256": "1525dba82dfd2db21aa18d592a64ec326ad7c09a06f839747842ce5f805b686e"
+    },
+    "frozen_utc": "2026-10-20T03:44:13.500329+00:00"
+  },
+  "final_audit": {
+    "passed": true,
+    "complete": true,
+    "checked_at_utc": "2026-10-20T03:46:13.747434+00:00",
+    "errors": [],
+    "warnings": [],
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "helper_checks": {
+      "policy.py": {
+        "expected": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+        "actual": "5ddf5898413c1a843769b4ca7be95ad1a79df0ec3907db610d8ba1f360c5fccb",
+        "matches": true
+      },
+      "case_bank.py": {
+        "expected": "11c111ab0c44ba59f2844a4c256e114e0e31255a0329e8c3b72a9b8b30e4a8f9",
+        "actual": "11c111ab0c44ba59f2844a4c256e114e0e31255a0329e8c3b72a9b8b30e4a8f9",
+        "matches": true
+      },
+      "cases.json": {
+        "expected": "8acc4d91d396bd3961415abe2c1ed07cf303268c9b1bbbb47a236d9c07e61a18",
+        "actual": "8acc4d91d396bd3961415abe2c1ed07cf303268c9b1bbbb47a236d9c07e61a18",
+        "matches": true
+      },
+      "policy_client.py": {
+        "expected": "b00882f71970a04e264b9866392999225e8130973276e42d16cb62c52a2566be",
+        "actual": "b00882f71970a04e264b9866392999225e8130973276e42d16cb62c52a2566be",
+        "matches": true
+      },
+      "source-inheritance.json": {
+        "expected": "53abf731180a61547b7a0c22041b01e1a4e62fdc3e22e1bb86a96bbf520396cd",
+        "actual": "53abf731180a61547b7a0c22041b01e1a4e62fdc3e22e1bb86a96bbf520396cd",
+        "matches": true
+      },
+      "payloads.py": {
+        "expected": "1fa61f96bee9c0ac6d0b7bc0a4b287660a92572f4c73e3db761e38361775a7f5",
+        "actual": "1fa61f96bee9c0ac6d0b7bc0a4b287660a92572f4c73e3db761e38361775a7f5",
+        "matches": true
+      },
+      "prepare.py": {
+        "expected": "248d8c748bb16a049527b03ff3a53a5a10f988f9f36f2bad377b71bfda577859",
+        "actual": "248d8c748bb16a049527b03ff3a53a5a10f988f9f36f2bad377b71bfda577859",
+        "matches": true
+      },
+      "runner.py": {
+        "expected": "b280511c9e99b1a41fed8ee2b7f42d34a56eef4b3f435edd77ed97fe6e26d519",
+        "actual": "b280511c9e99b1a41fed8ee2b7f42d34a56eef4b3f435edd77ed97fe6e26d519",
+        "matches": true
+      },
+      "audit.py": {
+        "expected": "06962dcdec0af1f5f33bb7732c57cd0677b15a6e83272cbb888b63eb520e56e9",
+        "actual": "06962dcdec0af1f5f33bb7732c57cd0677b15a6e83272cbb888b63eb520e56e9",
+        "matches": true
+      },
+      "preflight.py": {
+        "expected": "f7d61d5dfa55f6a8658460e0bb60713d3ae736d28c5057cc8f71b37ec46291c9",
+        "actual": "f7d61d5dfa55f6a8658460e0bb60713d3ae736d28c5057cc8f71b37ec46291c9",
+        "matches": true
+      },
+      "preflight.json": {
+        "expected": "36157dc9ec0b2406d20bb3bb8d316bfbe49e61c7f7279dbeee05e2f1c29fe26e",
+        "actual": "36157dc9ec0b2406d20bb3bb8d316bfbe49e61c7f7279dbeee05e2f1c29fe26e",
+        "matches": true
+      },
+      "order.json": {
+        "expected": "a23e0e872e364ee8513b033fb41533cff81a8facf7712bf9bda32af36a64eca2",
+        "actual": "a23e0e872e364ee8513b033fb41533cff81a8facf7712bf9bda32af36a64eca2",
+        "matches": true
+      },
+      "routes.json": {
+        "expected": "2f99d33f4f773b9da4cf463ece33d0e27b1b53fae7a21d9f1a2e3f86fe77156d",
+        "actual": "2f99d33f4f773b9da4cf463ece33d0e27b1b53fae7a21d9f1a2e3f86fe77156d",
+        "matches": true
+      },
+      "DESIGN.md": {
+        "expected": "9cb0c328f171eb66d57b6ae1fa90ec3544781fa088786328509bb5ce708ef7fb",
+        "actual": "9cb0c328f171eb66d57b6ae1fa90ec3544781fa088786328509bb5ce708ef7fb",
+        "matches": true
+      },
+      "CASE_DESIGN.md": {
+        "expected": "4c332f9cab3c605a4013fc8eb70354b3950c8cc2fe2d70cc7ed139c4ebec307c",
+        "actual": "4c332f9cab3c605a4013fc8eb70354b3950c8cc2fe2d70cc7ed139c4ebec307c",
+        "matches": true
+      },
+      "origin-manifest.json": {
+        "expected": "a23c57f2465781bf42684707713cd7d7efa39a278161f2b40f4f23ed2d261c4a",
+        "actual": "a23c57f2465781bf42684707713cd7d7efa39a278161f2b40f4f23ed2d261c4a",
+        "matches": true
+      },
+      "prospective-design.md": {
+        "expected": "dcf1af3c248f78b3119f81129b11d6acabbbd86f5565d7c8917c83c8a05f0523",
+        "actual": "dcf1af3c248f78b3119f81129b11d6acabbbd86f5565d7c8917c83c8a05f0523",
+        "matches": true
+      },
+      "protocol.draft.json": {
+        "expected": "b8576bf018f26b7f7093ab3764cef948ea1c814224aa6cbab8d58a11b39063aa",
+        "actual": "b8576bf018f26b7f7093ab3764cef948ea1c814224aa6cbab8d58a11b39063aa",
+        "matches": true
+      },
+      "freshness-scope.json": {
+        "expected": "f756089a8309c280e0a27ba32824dac2540f9e1cddac0243fa1b32c589dbfa14",
+        "actual": "f756089a8309c280e0a27ba32824dac2540f9e1cddac0243fa1b32c589dbfa14",
+        "matches": true
+      },
+      "rollouts.py": {
+        "expected": "aa94b1e97134cc5be6ac53cd701d10a05f724053e35493117ae34c59045d218e",
+        "actual": "aa94b1e97134cc5be6ac53cd701d10a05f724053e35493117ae34c59045d218e",
+        "matches": true
+      },
+      "rollout-report.json": {
+        "expected": "368d1805d90ffc06cd4c4c5dbb3cd35999a4e5ea367cacad44d06ee4226eb254",
+        "actual": "368d1805d90ffc06cd4c4c5dbb3cd35999a4e5ea367cacad44d06ee4226eb254",
+        "matches": true
+      },
+      "independent_rollout_review.py": {
+        "expected": "506c40deee8ace78e778c522965d6c947903804cc1da605d860968d04763a51b",
+        "actual": "506c40deee8ace78e778c522965d6c947903804cc1da605d860968d04763a51b",
+        "matches": true
+      },
+      "independent-rollout-review.json": {
+        "expected": "9c4e82654b6629d8336c5787be57118f3c7e8a73ed35604477f61318f2343589",
+        "actual": "9c4e82654b6629d8336c5787be57118f3c7e8a73ed35604477f61318f2343589",
+        "matches": true
+      },
+      "rollouts/stadium-seed-19-delay-15-ticks.json": {
+        "expected": "5b39ba5cc52ca204ada05bfab9cf89b88fb770838e52effa28456f8bc5ed5884",
+        "actual": "5b39ba5cc52ca204ada05bfab9cf89b88fb770838e52effa28456f8bc5ed5884",
+        "matches": true
+      },
+      "rollouts/stadium-seed-20-delay-15-ticks.json": {
+        "expected": "cb129b6aaacb58742aceda0a76f7ae9c46a8f5ee02f3886df602349dabc186c2",
+        "actual": "cb129b6aaacb58742aceda0a76f7ae9c46a8f5ee02f3886df602349dabc186c2",
+        "matches": true
+      },
+      "rollouts/stadium_clockwise-seed-19-delay-15-ticks.json": {
+        "expected": "fce7a8d035c6923bcaee123783a59f82ec04f7b582026da144ccea19f8d27fd2",
+        "actual": "fce7a8d035c6923bcaee123783a59f82ec04f7b582026da144ccea19f8d27fd2",
+        "matches": true
+      },
+      "rollouts/stadium_clockwise-seed-20-delay-15-ticks.json": {
+        "expected": "fcac5d9fae81a20d3fcc9ceebeecd569bfe490c0a9fa260eecab6a973e7736c0",
+        "actual": "fcac5d9fae81a20d3fcc9ceebeecd569bfe490c0a9fa260eecab6a973e7736c0",
+        "matches": true
+      }
+    },
+    "independent_policy_cases_checked": 60,
+    "policy_client_source_review": {
+      "passed": true,
+      "subclass_own_attributes": [
+        "questions"
+      ],
+      "method_identity": {
+        "__init__": true,
+        "decide": true,
+        "_decode_components": true,
+        "_record_component_uncertainty": true,
+        "__aenter__": true,
+        "__aexit__": true,
+        "_safe_detail": true,
+        "_error_detail": true
+      },
+      "production_decide_source_sha256": "118e79f7d6107f6bd467967760fd1c2bd9ae0a8f828df9a1473cf621ccc82020",
+      "no_response_rewriting_or_host_selection": true
+    },
+    "free_policy_evidence_review": {
+      "passed": true,
+      "report_sha256": "368d1805d90ffc06cd4c4c5dbb3cd35999a4e5ea367cacad44d06ee4226eb254",
+      "independent_review_sha256": "9c4e82654b6629d8336c5787be57118f3c7e8a73ed35604477f61318f2343589",
+      "audit_replay_counts": {
+        "physics_samples": 18872,
+        "request_observations": 1259,
+        "commands": 1255,
+        "candidate_grid_queries": 284
+      },
+      "limitation": "No free rollout triggered pedal guard; host tracking supports nominal policy execution only.",
+      "origin_manifest_review": {
+        "passed": true,
+        "manifest_sha256": "a23c57f2465781bf42684707713cd7d7efa39a278161f2b40f4f23ed2d261c4a",
+        "origin_files_checked": 42,
+        "policy_copy_exact": true,
+        "old_frozen_cli_executed_by_audit": false
+      }
+    },
+    "static_policy_labels_checked": 60,
+    "planned_requests": 60,
+    "saved_requests": 60,
+    "failures": [],
+    "unrun": [],
+    "writer": {
+      "session_id": "50ea035ed7294835afa3cf6e2656bc80",
+      "pid": 1139,
+      "process_start_ticks": 45969,
+      "parent_pid": 1138,
+      "parent_start_ticks": 45969,
+      "boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+      "started_utc": "2026-10-20T03:44:38.839585+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-broader-native-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61339,
+      "charged_usd": 7.567857111999886,
+      "charged_tokens": 244559951,
+      "reported_cost_usd": 7.51057864799987,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61399,
+      "charged_usd": 7.572323853999888,
+      "charged_tokens": 244672055,
+      "reported_cost_usd": 7.515045389999872,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 60,
+      "charged_usd": 0.004466742000001744,
+      "reported_cost_usd": 0.004466742000001744,
+      "charged_tokens": 112104,
+      "uncertain_requests": 0
+    },
+    "automatic_followup_or_promotion": false,
+    "model_requests_by_audit": 0,
+    "ledger_written_by_audit": false,
+    "no_controls_applied": true
+  },
+  "audited_report": {
+    "complete": true,
+    "overall": {
+      "facts": {
+        "planned": 60,
+        "attempted": 60,
+        "unrun": 0,
+        "endpoint_ok": 60,
+        "endpoint_errors": 0,
+        "correct": 57,
+        "incorrect_or_endpoint_error": 3,
+        "attempted_accuracy": 0.95,
+        "planned_correct_fraction": 0.95,
+        "endpoint_success_accuracy": 0.95,
+        "charged_usd": 0.004466742,
+        "charged_tokens": 112104,
+        "median_latency_ms": 252.6918905
+      }
+    },
+    "families": {
+      "natural": {
+        "planned": 30,
+        "attempted": 30,
+        "unrun": 0,
+        "endpoint_ok": 30,
+        "endpoint_errors": 0,
+        "correct": 28,
+        "incorrect_or_endpoint_error": 2,
+        "attempted_accuracy": 0.9333333333333333,
+        "planned_correct_fraction": 0.9333333333333333,
+        "endpoint_success_accuracy": 0.9333333333333333,
+        "charged_usd": 0.002230704,
+        "charged_tokens": 55993,
+        "median_latency_ms": 252.9307835,
+        "wheel_correct": 28,
+        "pedal_correct": 30,
+        "wheel_by_magnitude": {
+          "straight": {
+            "correct": 8,
+            "responses": 10
+          },
+          "half": {
+            "correct": 20,
+            "responses": 20
+          },
+          "full": {
+            "correct": 0,
+            "responses": 0
+          }
+        },
+        "pedal_by_class": {
+          "accelerate": {
+            "correct": 30,
+            "responses": 30
+          },
+          "coast": {
+            "correct": 0,
+            "responses": 0
+          },
+          "brake": {
+            "correct": 0,
+            "responses": 0
+          }
+        },
+        "wheel_by_signed_direction": {
+          "hard_right": {
+            "correct": 0,
+            "responses": 0
+          },
+          "right": {
+            "correct": 10,
+            "responses": 10
+          },
+          "straight": {
+            "correct": 8,
+            "responses": 10
+          },
+          "left": {
+            "correct": 10,
+            "responses": 10
+          },
+          "hard_left": {
+            "correct": 0,
+            "responses": 0
+          }
+        },
+        "speed_below2_responses": 0,
+        "brake_choices_below_2mps": 0,
+        "chosen_native_counts": {
+          "right_accelerate": 10,
+          "hard_left_accelerate": 1,
+          "left_accelerate": 11,
+          "straight_accelerate": 8
+        },
+        "chosen_wheel_counts": {
+          "right": 10,
+          "hard_left": 1,
+          "left": 11,
+          "straight": 8
+        },
+        "chosen_pedal_counts": {
+          "accelerate": 30
+        }
+      },
+      "synthetic": {
+        "planned": 30,
+        "attempted": 30,
+        "unrun": 0,
+        "endpoint_ok": 30,
+        "endpoint_errors": 0,
+        "correct": 29,
+        "incorrect_or_endpoint_error": 1,
+        "attempted_accuracy": 0.9666666666666667,
+        "planned_correct_fraction": 0.9666666666666667,
+        "endpoint_success_accuracy": 0.9666666666666667,
+        "charged_usd": 0.002236038,
+        "charged_tokens": 56111,
+        "median_latency_ms": 250.014802,
+        "wheel_correct": 29,
+        "pedal_correct": 30,
+        "wheel_by_magnitude": {
+          "straight": {
+            "correct": 5,
+            "responses": 6
+          },
+          "half": {
+            "correct": 12,
+            "responses": 12
+          },
+          "full": {
+            "correct": 12,
+            "responses": 12
+          }
+        },
+        "pedal_by_class": {
+          "accelerate": {
+            "correct": 10,
+            "responses": 10
+          },
+          "coast": {
+            "correct": 10,
+            "responses": 10
+          },
+          "brake": {
+            "correct": 10,
+            "responses": 10
+          }
+        },
+        "wheel_by_signed_direction": {
+          "hard_right": {
+            "correct": 6,
+            "responses": 6
+          },
+          "right": {
+            "correct": 6,
+            "responses": 6
+          },
+          "straight": {
+            "correct": 5,
+            "responses": 6
+          },
+          "left": {
+            "correct": 6,
+            "responses": 6
+          },
+          "hard_left": {
+            "correct": 6,
+            "responses": 6
+          }
+        },
+        "speed_below2_responses": 6,
+        "brake_choices_below_2mps": 0,
+        "chosen_native_counts": {
+          "hard_right_accelerate": 2,
+          "left_coast": 3,
+          "left_accelerate": 2,
+          "right_accelerate": 2,
+          "right_coast": 2,
+          "left_brake": 2,
+          "hard_left_coast": 2,
+          "hard_left_brake": 2,
+          "straight_accelerate": 2,
+          "straight_brake": 2,
+          "hard_right_coast": 2,
+          "right_brake": 2,
+          "hard_right_brake": 2,
+          "hard_left_accelerate": 2,
+          "straight_coast": 1
+        },
+        "chosen_wheel_counts": {
+          "hard_right": 6,
+          "left": 7,
+          "right": 6,
+          "hard_left": 6,
+          "straight": 5
+        },
+        "chosen_pedal_counts": {
+          "accelerate": 10,
+          "coast": 10,
+          "brake": 10
+        }
+      }
+    },
+    "gate": {
+      "passed": false,
+      "predicates": {
+        "complete_and_audited": true,
+        "zero_endpoint_or_accounting_errors": true,
+        "natural_pairs_29_of30": false,
+        "synthetic_pairs_27_of30": true,
+        "synthetic_straight_wheel_6_of6": false,
+        "synthetic_half_wheel_11_of12": true,
+        "synthetic_full_wheel_11_of12": true,
+        "synthetic_each_pedal_9_of10": true,
+        "zero_low_speed_brakes_both": true
+      }
+    },
+    "source_case_coverage": {
+      "cases": 60,
+      "families": {
+        "natural": 30,
+        "synthetic": 30
+      },
+      "natural_sources": {
+        "artifacts/jev-broader-native-v1/rollouts/stadium-seed-19-delay-15-ticks.json": 8,
+        "artifacts/jev-broader-native-v1/rollouts/stadium-seed-20-delay-15-ticks.json": 7,
+        "artifacts/jev-broader-native-v1/rollouts/stadium_clockwise-seed-19-delay-15-ticks.json": 8,
+        "artifacts/jev-broader-native-v1/rollouts/stadium_clockwise-seed-20-delay-15-ticks.json": 7
+      },
+      "natural_bearing_margin_deg": {
+        "minimum": 0.12509999999999977,
+        "maximum": 7.27
+      }
+    },
+    "score_scope": "Single-arm broader fixed-policy native validation, no paired projection contrast or optimality claim",
+    "automatic_followup_or_promotion": false,
+    "free_policy_evidence_review": {
+      "passed": true,
+      "report_sha256": "368d1805d90ffc06cd4c4c5dbb3cd35999a4e5ea367cacad44d06ee4226eb254",
+      "independent_review_sha256": "9c4e82654b6629d8336c5787be57118f3c7e8a73ed35604477f61318f2343589",
+      "audit_replay_counts": {
+        "physics_samples": 18872,
+        "request_observations": 1259,
+        "commands": 1255,
+        "candidate_grid_queries": 284
+      },
+      "limitation": "No free rollout triggered pedal guard; host tracking supports nominal policy execution only.",
+      "origin_manifest_review": {
+        "passed": true,
+        "manifest_sha256": "a23c57f2465781bf42684707713cd7d7efa39a278161f2b40f4f23ed2d261c4a",
+        "origin_files_checked": 42,
+        "policy_copy_exact": true,
+        "old_frozen_cli_executed_by_audit": false
+      }
+    },
+    "audit_passed": true
+  },
+  "root_authorization": {
+    "root_thread_id": "01a151b8-43d6-733b-a890-7368ae08c015",
+    "root_host_id": "durable",
+    "authorization_id": "000f7f53339346bcaa9066bb0f3b94a8",
+    "authorized_utc": "2026-10-20T03:44:34.395461+00:00",
+    "protocol_sha256": "c03a185d28f5f0739f667c2fb89ca6076aafd2f5ef162d6b5590a690a7775852",
+    "independent_preflight_sha256": "b535270b3f276f9eb3759e7b53e1474ca52232cc1c872fcced302e5af60760ab",
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61339,
+      "charged_usd": 7.567857111999886,
+      "charged_tokens": 244559951,
+      "reported_cost_usd": 7.51057864799987,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "scope": "Exactly frozen 60 single-arm native validation calls; one writer; all valid answers retained; no retries, actuation or source changes."
+  },
+  "collection_writer": {
+    "session_id": "50ea035ed7294835afa3cf6e2656bc80",
+    "pid": 1139,
+    "process_start_ticks": 45969,
+    "parent_pid": 1138,
+    "parent_start_ticks": 45969,
+    "boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+    "started_utc": "2026-10-20T03:44:38.839585+00:00",
+    "script_path": "/workspace/mcpkart/artifacts/jev-broader-native-v1/runner.py",
+    "executable": "/workspace/mcpkart/.venv/bin/python",
+    "explicit_collect_flag": true
+  },
+  "collection_completed_utc": "2026-10-20T03:44:56.337530+00:00",
+  "independent_collection_provenance": {
+    "passed": true,
+    "checked_at_utc": "2026-10-20T03:49:11.818648+00:00",
+    "errors": [],
+    "check_count": 50,
+    "checks": [
+      {
+        "check": "complete_frozen_60_call_scope",
+        "passed": true
+      },
+      {
+        "check": "all_frozen_helper_hashes_unchanged",
+        "passed": true
+      },
+      {
+        "check": "archive_frozen_hash",
+        "passed": true
+      },
+      {
+        "check": "full_11_file_and_rust_bench_fingerprint",
+        "passed": true
+      },
+      {
+        "check": "archive_binds_case_bank",
+        "passed": true
+      },
+      {
+        "check": "all_frozen_origin_hashes_retained_without_running_old_audits",
+        "passed": true
+      },
+      {
+        "check": "fixed_policy_byte_exact_0032_copy",
+        "passed": true
+      },
+      {
+        "check": "0034_prompt_archive_origin_hash",
+        "passed": true
+      },
+      {
+        "check": "30_natural_and_30_synthetic",
+        "passed": true
+      },
+      {
+        "check": "synthetic_all_15_targets_twice_and_held_twice",
+        "passed": true
+      },
+      {
+        "check": "natural_native_targets_10_straight_left_right",
+        "passed": true
+      },
+      {
+        "check": "all_30_natural_cases_exact_actual_queries_from_four_clean_sources",
+        "passed": true
+      },
+      {
+        "check": "natural_source_quotas_8_7_8_7",
+        "passed": true
+      },
+      {
+        "check": "native_inverse_preserves_all_15_inputs",
+        "passed": true
+      },
+      {
+        "check": "independent_labels_match_bank",
+        "passed": true
+      },
+      {
+        "check": "registered_shuffle_and_counterbalance",
+        "passed": true
+      },
+      {
+        "check": "preflight_immutable_passing_zero_paid",
+        "passed": true
+      },
+      {
+        "check": "protocol_bound_preflight_auth_start_complete",
+        "passed": true
+      },
+      {
+        "check": "root_authorization_identity",
+        "passed": true
+      },
+      {
+        "check": "root_explicit_execution_completed",
+        "passed": true
+      },
+      {
+        "check": "prospective_timestamp_chain_before_deadline",
+        "passed": true
+      },
+      {
+        "check": "one_writer_identity_everywhere",
+        "passed": true
+      },
+      {
+        "check": "writer_script_executable_boot_identity",
+        "passed": true
+      },
+      {
+        "check": "legitimate_new_boot_writer_with_unchanged_precollection_ledger",
+        "passed": true
+      },
+      {
+        "check": "no_stop_or_failure_artifacts",
+        "passed": true
+      },
+      {
+        "check": "no_retry_fallback_control_application",
+        "passed": true
+      },
+      {
+        "check": "all_60_exact_archive_payload_bytes_and_hashes",
+        "passed": true
+      },
+      {
+        "check": "all_60_exact_registered_order_entries",
+        "passed": true
+      },
+      {
+        "check": "all_60_factual_states_no_oracle_keys",
+        "passed": true
+      },
+      {
+        "check": "all_60_single_successful_identity_pinned_responses",
+        "passed": true
+      },
+      {
+        "check": "all_60_raw_typed_components_atomic_native_pair",
+        "passed": true
+      },
+      {
+        "check": "all_60_exact_ledger_transitions_and_conservative_admission",
+        "passed": true
+      },
+      {
+        "check": "all_60_requests_strictly_sequential_no_overlap",
+        "passed": true
+      },
+      {
+        "check": "all_60_result_rows_independently_reconstructed",
+        "passed": true
+      },
+      {
+        "check": "all_60_states_exact_fixed_factual_leaf_table_projection_and_labels",
+        "passed": true
+      },
+      {
+        "check": "all_60_questions_byte_exact_0034_facts_origin",
+        "passed": true
+      },
+      {
+        "check": "unique_60_reservations_and_response_ids",
+        "passed": true
+      },
+      {
+        "check": "budget_before_bound_everywhere",
+        "passed": true
+      },
+      {
+        "check": "budget_after_bound_everywhere",
+        "passed": true
+      },
+      {
+        "check": "retained_caps_and_no_pending",
+        "passed": true
+      },
+      {
+        "check": "exact_expected_end_boundary",
+        "passed": true
+      },
+      {
+        "check": "budget_delta_reconciles_all_60_usage",
+        "passed": true
+      },
+      {
+        "check": "independent_family_scores_expected",
+        "passed": true
+      },
+      {
+        "check": "family_summary_scores_match_raw_choices",
+        "passed": true
+      },
+      {
+        "check": "native_family_gate_independently_failed",
+        "passed": true
+      },
+      {
+        "check": "prespecified_failed_gate_predicates_match",
+        "passed": true
+      },
+      {
+        "check": "three_wrong_choices_are_small_positive_straight_targets",
+        "passed": true
+      },
+      {
+        "check": "final_audit_complete_pass_zero_errors",
+        "passed": true
+      },
+      {
+        "check": "no_automatic_followup_or_promotion",
+        "passed": true
+      },
+      {
+        "check": "read_only_ledger_byte_unchanged",
+        "passed": true
+      }
+    ],
+    "protocol_sha256": "c03a185d28f5f0739f667c2fb89ca6076aafd2f5ef162d6b5590a690a7775852",
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "writer": {
+      "session_id": "50ea035ed7294835afa3cf6e2656bc80",
+      "pid": 1139,
+      "process_start_ticks": 45969,
+      "parent_pid": 1138,
+      "parent_start_ticks": 45969,
+      "boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+      "started_utc": "2026-10-20T03:44:38.839585+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-broader-native-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61339,
+      "charged_usd": 7.567857111999886,
+      "charged_tokens": 244559951,
+      "reported_cost_usd": 7.51057864799987,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61399,
+      "charged_usd": 7.572323853999888,
+      "charged_tokens": 244672055,
+      "reported_cost_usd": 7.515045389999872,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 60,
+      "charged_tokens": 112104,
+      "charged_usd": 0.004466741999999998
+    },
+    "scores": {
+      "natural": {
+        "pairs": 28,
+        "wheel": 28,
+        "pedal": 30,
+        "low_speed_brake": 0
+      },
+      "synthetic": {
+        "pairs": 29,
+        "wheel": 29,
+        "pedal": 30,
+        "low_speed_brake": 0
+      }
+    },
+    "wrong_choices": [
+      {
+        "case_id": "broader-natural-stadium_clockwise-seed-20-tick-0660",
+        "family": "natural",
+        "theta_deg": 0.5731,
+        "expected": "straight_accelerate",
+        "chosen": "hard_left_accelerate"
+      },
+      {
+        "case_id": "broader-natural-stadium_clockwise-seed-19-tick-0660",
+        "family": "natural",
+        "theta_deg": 0.2522,
+        "expected": "straight_accelerate",
+        "chosen": "left_accelerate"
+      },
+      {
+        "case_id": "broader-synthetic-01-a",
+        "family": "synthetic",
+        "theta_deg": 1.3782,
+        "expected": "straight_coast",
+        "chosen": "left_coast"
+      }
+    ],
+    "environment_boot_note": "Collection ran on the new boot after a host restart during preparation. The shared ledger was unchanged and pending-empty between the old and new boot collections. Static validation is independent of the old timing gate; future live driving requires a fresh full clock gate on this boot.",
+    "wheel_correct_by_magnitude": {
+      "natural": {
+        "half": 20,
+        "straight": 8
+      },
+      "synthetic": {
+        "full": 12,
+        "half": 12,
+        "straight": 5
+      }
+    },
+    "native_gate_passed": false,
+    "model_calls_by_verifier": 0,
+    "ledger_written": false,
+    "script_sha256": "ecf3d9a7c7fe1ed51b773caad474881a358542de6263e49b387772210d94e5d2",
+    "interpretation": "Supplied-policy static compliance only; no model driving or promotion. Root execution IDs are checked against preserved confirmation, not independently queried from tool infrastructure."
+  },
+  "freshness_scope": {
+    "schema_version": 1,
+    "decided_utc": "2026-10-20T03:42:12.788866+00:00",
+    "root_thread_id": "01a151b8-43d6-733b-a890-7368ae08c015",
+    "decision": "No historical sent-XY cache is used for0035caseexclusion.",
+    "freshness_claim": "All60rounded15mXYpairsaredistinctandexcludedfromthe18priorstaticbanksandworkeddemonstrationslistedinthebank. Naturalstatesareactualnewfreequeryposes.",
+    "historical_sent_query_freshness_claimed": false,
+    "historical_cache_used": false,
+    "basis": "0029computedoptionalhistoricalsentXYexclusionfrom27specificsourcefilesatgenerationtime;nomaterializedstandalonecachewasfoundinthe0029namespace. Thatboundedearlierpooldoesnotestablishexhaustivehistoricalquerycoverage.0035retainsitsprespecifiedstatic-bank/demonstrationexclusionsandmakesnoexhaustivehistoricalsentXYclaim.",
+    "reviewed_prior_generator": {
+      "path": "artifacts/jev-natural-forecast-v1/case_bank.py",
+      "sha256": "4a2063be622b31fe528da6c4910f9009d39617d0a110cde039514541f54d866d"
+    },
+    "case_bank_sha256": "8acc4d91d396bd3961415abe2c1ed07cf303268c9b1bbbb47a236d9c07e61a18",
+    "selection_changed": false,
+    "paid_calls_before_decision": 0
+  },
+  "environment_restart": {
+    "reported_window_utc": "2026-10-20 03:36\u201303:37 UTC",
+    "new_boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+    "python_version": "3.14.8",
+    "paid_writer_in_flight_during_restart": false,
+    "source_and_shared_ledger_persisted": true,
+    "prior_spectator_server_pid": 26551,
+    "prior_server_alive": false,
+    "prior_clock_gate_qualifies_new_boot": false,
+    "full_current_boot_clock_gate_required_before_future_live": true,
+    "static_collection_legitimate": true
+  },
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61339,
+    "charged_usd": 7.567857111999886,
+    "charged_tokens": 244559951,
+    "reported_cost_usd": 7.51057864799987,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61399,
+    "charged_usd": 7.572323853999888,
+    "charged_tokens": 244672055,
+    "reported_cost_usd": 7.515045389999872,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 60,
+    "charged_usd": 0.004466742000001744,
+    "reported_cost_usd": 0.004466742000001744,
+    "charged_tokens": 112104,
+    "uncertain_requests": 0
+  },
+  "decision": {
+    "broader_native_gate_passed": false,
+    "exploratory_race_admitted": false,
+    "live_followup_triggered": false,
+    "preset_promoted": false,
+    "baseline": "joint damped",
+    "application_defaults_changed": false
+  },
+  "interpretation": {
+    "overall_pair_correct": 57,
+    "responses": 60,
+    "natural_pair_correct": 28,
+    "natural_responses": 30,
+    "synthetic_pair_correct": 29,
+    "synthetic_responses": 30,
+    "pedal_correct_each_family": 30,
+    "natural_all_accelerate": true,
+    "synthetic_each_pedal_class_correct": 10,
+    "brake_choices_below_2mps": 0,
+    "errors": [
+      {
+        "case_id": "broader-natural-stadium_clockwise-seed-20-tick-0660",
+        "family": "natural",
+        "index": 4,
+        "expected": "straight_accelerate",
+        "chosen": "hard_left_accelerate",
+        "bearing_deg": 0.5731,
+        "bearing_margin_deg": 6.4269
+      },
+      {
+        "case_id": "broader-natural-stadium_clockwise-seed-19-tick-0660",
+        "family": "natural",
+        "index": 18,
+        "expected": "straight_accelerate",
+        "chosen": "left_accelerate",
+        "bearing_deg": 0.2522,
+        "bearing_margin_deg": 6.7478
+      },
+      {
+        "case_id": "broader-synthetic-01-a",
+        "family": "synthetic",
+        "index": 39,
+        "expected": "straight_coast",
+        "chosen": "left_coast",
+        "bearing_deg": 1.3782,
+        "bearing_margin_deg": 5.6218
+      }
+    ],
+    "failed_gate_predicates": [
+      "natural_pairs_29_of30",
+      "synthetic_straight_wheel_6_of6"
+    ],
+    "conclusion": "Overall supplied-policy compliance was95%,but the natural overall and synthetic straight requirements failed. All three errors were small-positive-bearing straight targets well away from thresholds. The conditional exploratory race was withheld."
+  },
+  "interpretation_limits": [
+    "This single-arm validation has no comparison arm or new projection-effect estimate.",
+    "The same selected facts projection, driving questions and bearing policy are unchanged; no evaluated guard or target is supplied.",
+    "Natural cases are actual new host-policy rollout observations, not Jev driving outcomes or reflected standard-course states.",
+    "Freshness excludes the18listedpriorstaticbanksandworkeddemonstrations; exhaustivehistoricalsent-XYfreshnessisnotclaimed.",
+    "Natural cases include only straight/moderate wheels and ACCELERATE pedals; unobserved full/coast/brake categories are not0%accuracy.",
+    "The synthetic family covers all15nativepairs twice and sixbelow2mpscases; reflected relationships remain.",
+    "One presentation per state supplies no within-arm repeatability estimate.",
+    "The95%score measures supplied-policy execution, not race success or general driving competence.",
+    "No complete free rollout triggered guardB; edge braking/coasting and recovery effectiveness remain physically untested.",
+    "All planned valid answers were retained without reruns or replacements.",
+    "The environment restarted between paid collections; older clock qualification cannot admit futureliveonthenewboot.",
+    "No paid controls were applied and no race advanced; the failed gate admits no live race or promotion.",
+    "Root tool chunk/session IDs are checked against preserved execution confirmation rather than independently queried from tool infrastructure; actual writer and ledger records are independently verified."
+  ],
+  "report_generation": {
+    "saved_completed_evidence_only": true,
+    "audits_rerun": false,
+    "model_calls": 0,
+    "ledger_read_or_written": false,
+    "frozen_archives_modified": false
+  }
+}

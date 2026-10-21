@@ -1,0 +1,35 @@
+{
+  "status": "interrupted_incomplete_not_quality_failure",
+  "boot_changed": true,
+  "new_boot_id": "4b247f0d-313e-4038-ac10-acff9274db8e",
+  "old_boot_id": "f534ef07-e837-401d-bf64-a0fe7c51e3d3",
+  "completed_free_control_indices": [
+    0
+  ],
+  "interrupted_index": 1,
+  "unrun_free_indices": [
+    2,
+    3
+  ],
+  "paid_races_admitted": 0,
+  "actual_model_requests": 0,
+  "budget_unchanged": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 69960,
+    "charged_usd": 8.389473334000606,
+    "charged_tokens": 265041176,
+    "reported_cost_usd": 8.332194870000563,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "partial": {
+    "query_files": 155,
+    "call_files": 155
+  },
+  "partial_trial_saved": false,
+  "partial_collection_ended": false,
+  "do_not_resume_frozen_runner_against_new_boot": true
+}

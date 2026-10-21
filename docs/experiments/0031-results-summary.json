@@ -1,0 +1,1208 @@
+{
+  "schema_version": 1,
+  "kind": "static_criterion_policy_results",
+  "experiment": "0031",
+  "status": "complete_audit_and_provenance_passed_local_gate_failed",
+  "scope": "Supplied-policy compliance on30freshsyntheticstates,notoptimal-actionlabelsorJevdriving.",
+  "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+  "provenance_files": [
+    {
+      "path": "artifacts/jev-criterion-policy-v1/protocol.json",
+      "sha256": "f836e2428fa283ac4a7e648ba46df057e62a06b9fef3f2da58b6cd51e7e98cb3"
+    },
+    {
+      "path": "docs/experiments/0031-criterion-policy-prompts.json",
+      "sha256": "3e10b2be4880f39b5ac8deb1797fe48c8222dec786cb2bd5de8f6053aeb32562"
+    },
+    {
+      "path": "artifacts/jev-criterion-policy-v1/final-audit.json",
+      "sha256": "b3a8f18396eb5d405925d45e48cd4e46cd5bd122f393d4793873fb09a785046a"
+    },
+    {
+      "path": "artifacts/jev-criterion-policy-v1/report/summary.json",
+      "sha256": "a25502787ecfe7e57d3d7ca1e1dfab83f9ba787f439aaba98df03e516cf1d9ce"
+    },
+    {
+      "path": "artifacts/jev-criterion-policy-v1/preflight-before-collection.json",
+      "sha256": "82e97a2f675399a165c24cda2be519c45eaeea9e776586870fb9318a9bf7ebca"
+    },
+    {
+      "path": "artifacts/jev-criterion-policy-v1/root-authorization.json",
+      "sha256": "36eb10f389917bb60deb582d73c60d208722d0a66c5b31c0734e1a79a4c38b13"
+    },
+    {
+      "path": "artifacts/jev-criterion-policy-v1/root-execution-confirmation.json",
+      "sha256": "56d3baf6dafe428bf9043721752a4b4039c6790e0daac59cfad6c6d3b8824d0e"
+    },
+    {
+      "path": "artifacts/jev-criterion-policy-v1/source-inheritance.json",
+      "sha256": "007aa11e3e61e5e809a05c9444604d3001bb0d454819ab586fbb90a7c48d90af"
+    },
+    {
+      "path": "artifacts/jev-criterion-policy-v1/independent-free-review.json",
+      "sha256": "4fd04e5e42c7f41d7ce16ffab25f59867223ef0d151f1aa63521db195b915265"
+    },
+    {
+      "path": "artifacts/jev-criterion-policy-v1/prospective-design.md",
+      "sha256": "fda9e5a4f3c19933c78d60550470cc9f6ecc607dbf08a8db3ef1d7737b7d4eb6"
+    },
+    {
+      "path": "artifacts/jev-criterion-policy-v1/free-runs/factual-formatter-correction.json",
+      "sha256": "fe9fc5db57a926df261407c7c412dc9673a5aae92bab8707d18705b60522144b"
+    },
+    {
+      "path": "artifacts/jev-criterion-policy-v1/independent-free-review-initial-formatter-check.json",
+      "sha256": "92f32944627395dbdc8e84cc07a189a2f4404a5dea9ae7231c977e376ac7af21"
+    },
+    {
+      "path": "artifacts/jev-criterion-policy-v1/preflight.json",
+      "sha256": "41da8f1858be2cfb5343ae4dd3618428c9eecfbb54cf709de96ae49e94afac9c"
+    },
+    {
+      "path": "artifacts/jev-criterion-policy-v1/collection-provenance-verification.json",
+      "sha256": "bff825a2e6966d5b0e5dcd4f8d56dfc79eec9d8f3c29baad107dd1004350fb40"
+    }
+  ],
+  "frozen_protocol": {
+    "schema_version": 1,
+    "kind": "static_fixed_policy_criterion_placement",
+    "frozen": true,
+    "created_utc": "2026-10-20T03:05:29.109814+00:00",
+    "client_date": "2026-10-20",
+    "planned_calls": 60,
+    "cases": 30,
+    "repetitions": 1,
+    "contexts": [
+      "shared",
+      "local"
+    ],
+    "order_seed": 2026102031,
+    "order_cells": {
+      "local|reverse=0": 8,
+      "local|reverse=1": 7,
+      "shared|reverse=0": 8,
+      "shared|reverse=1": 7
+    },
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "input_token_ceiling": 16384,
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61099,
+      "charged_usd": 7.538698821999888,
+      "charged_tokens": 243842702,
+      "reported_cost_usd": 7.481420357999872,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "shared_ledger": "artifacts/budget.json",
+    "limits": {
+      "max_requests": 75000,
+      "cap_usd": 10.0,
+      "max_tokens": 250000000
+    },
+    "route": {
+      "model": "typesafe/jev-1.14",
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "typesafe",
+      "provider_name": "TypeSafe",
+      "endpoint_name": "TypeSafe | typesafe/jev-1.14-20261014",
+      "price_input_per_token": 4.2e-08,
+      "price_output_per_token": 0.0,
+      "price_per_request": 0.0,
+      "context_length": 262144,
+      "max_prompt_tokens": 262144,
+      "max_completion_tokens": 235929
+    },
+    "automatic_retries": 0,
+    "provider_fallbacks": false,
+    "no_controls_applied": true,
+    "stop_on_first_endpoint_error": true,
+    "stop_on_uncertain_accounting": true,
+    "collect_all_valid_answers": true,
+    "format_gate": null,
+    "order_policy": "Shuffle30caseunitsseed2026102031;firstcontextj%2,reversebothwheelandpedalmenuordersj//2%2;4cellsexactcountsrecordedinorder_cells(each7or8),eachcontexteachposition15times.Onepresentationpercase/context.",
+    "task_contract": "Applysameexactfixed15mpursuitandpedalguardpolicy,notjudgeoptimalinput.NoDAMPEDguide.Sharedlistsallfivewheel/allthreepedaleligibilityclausesincomponentinstructions;localappendseachexactclausetoitsownunchangedphysicalgeometrycriterion.Commondefinitions/componenttasks/IDs/nativeCartesianmapunchanged.Fullfactualroundedstateidentical;noevaluatedD/z/delta/B/target/eligibilityfieldsorlabelsinstates.",
+    "client_contract": "IgnoredsubclassoverridesONLYquestionsproperty;productiondecide/componentdecode/uncertainty/accountinginheritedunchanged.Completephysical5x3inverse,noremappingresponseorhostpolicyselection;oneatomicnativepaironly.Staticnocommandsapplied.",
+    "policy_scope": "Ahead15mlookaheadandnonmissedgateonly;unsupportedbehind15m/missedgaterecoveryexcludedwithoutinventedlabels.Physicalbraking/coastingeffectivenessunprovenbyfreeupperboundracesbecausenevertriggeredthere.",
+    "local_gate": {
+      "exact_pairs_correct_min": 27,
+      "responses": 30,
+      "straight_wheel_correct_required": 6,
+      "straight_responses": 6,
+      "half_wheel_correct_min": 11,
+      "half_responses": 12,
+      "full_wheel_correct_min": 11,
+      "full_responses": 12,
+      "each_pedal_correct_min": 9,
+      "each_pedal_responses": 10,
+      "brake_choices_below_2m_s_max": 0,
+      "net_exact_pair_gain_min": 3,
+      "audit_pass_required": true,
+      "endpoint_or_accounting_errors_max": 0
+    },
+    "score_interpretation": "Policyexecutiononly,notoptimalcontrolorraceperformance;allvalidresponsescollectedregardlesscorrectness.",
+    "followup_policy": "Passingonlymotivatesfreshnativecompatibility/physicalchoicebridgeandthenbudgetpermittedseparatelyfrozenlive;noautomaticlive,qualificationorpromotion.",
+    "session_deadline_utc": "2026-10-20T06:17:26+00:00",
+    "helper_sha256": {
+      "policy.py": "1408cdeee21a0916a565cd5fdcb9f8b200f3d5c595366869905debb271a7d253",
+      "case_bank.py": "8fc5a967a7da2828806a4cf0ea16981a48bbed570c8aee21a78228adc135ca93",
+      "cases.json": "8c2d1dc18ccd3e02b34c74a6c17f5222a995c51f523d37741b306ef3d55d50ef",
+      "policy_client.py": "6858a860e8594658145209e982c53c0293a85af14b1e073ae5a5090bf90f2183",
+      "source-inheritance.json": "007aa11e3e61e5e809a05c9444604d3001bb0d454819ab586fbb90a7c48d90af",
+      "payloads.py": "a183045de58e718959a8e74839c4d922df9cd42a49cf5762eea28f117b8ac4ac",
+      "prepare.py": "e0340f6e43f93c387fb146ad1a5da3058543a0f6afd85d9a2c11db8bfc559faf",
+      "runner.py": "f3c0b38eb67621f995d8694d9ebc8c8417d475d5af8cb2fb56d99136503a450b",
+      "audit.py": "e7bdebb012b5c5f70b9760c759d9ed0408b746bbb61bcd815613624ac62e05cd",
+      "preflight.py": "4dedc585d795bb26731be960711e6d90b07e3c69a69278f7bb35631526a37074",
+      "preflight.json": "41da8f1858be2cfb5343ae4dd3618428c9eecfbb54cf709de96ae49e94afac9c",
+      "order.json": "1d98ca2613167c5eaae4a8e957bac8452650e75eeaefc917b5a0b244bf7e9913",
+      "routes.json": "ee6d0fd7fa3749a02fcbc3ce2c32ef69a30f6b076565a79c78c983913e7b1bae",
+      "DESIGN.md": "57861ecad5d7bb15402e8a542e7b3d88605393b5fab62d6258fa5f8b17aa0606",
+      "CASE_DESIGN.md": "3b4c205599190db356af8811b08ea6ba15f7db8caf332636473226f459d85a14",
+      "POLICY.md": "18a457ee44a94d54c65b303a9570c4f6793dcefd47e761741f1e81ab951c4684",
+      "free_policy.py": "50c5ded6a324d99a14bb3391879cae49c3c883b921f10c1d2aef6521bdbcea3b",
+      "free-policy-report.json": "e03bba19425a77621e807dc6c92768c216b166c21cd3098d3153ae9086ac8616",
+      "independent_free_review.py": "e7ef5f9dacb378285c0017e284e69ceaefacd6d5a52d14d078551c983cce990d",
+      "independent-free-review.json": "4fd04e5e42c7f41d7ce16ffab25f59867223ef0d151f1aa63521db195b915265",
+      "prospective-design.md": "fda9e5a4f3c19933c78d60550470cc9f6ecc607dbf08a8db3ef1d7737b7d4eb6",
+      "protocol.draft.json": "7047cf533666e8a9e2dde233cc74e73ec89b80954abbe4dcd28f66b3bf8174a2",
+      "free-runs/factual-formatter-correction.json": "fe9fc5db57a926df261407c7c412dc9673a5aae92bab8707d18705b60522144b",
+      "free-runs/guard-release-fixtures.json": "56dff3ea1436ad7063bdbda19b6f9b2059a2a72fcfd04eb6b978d6372d173679",
+      "free-runs/original-factual-formatter-v1/README.json": "d44c3edd2d11e39558cc29c8ef9488ebdff8205c06f86da8eb30d6b8df8fd28b",
+      "free-runs/original-factual-formatter-v1/free-policy-report.json": "2eaa2c7d770b5591950d36f52231e5134088342dee40bed0adf31cf96b6d88d0",
+      "free-runs/original-factual-formatter-v1/guard-release-fixtures.json": "32304682aea31576335a77ffff667ef3e12e05fb10e16756b31632d65c17662c",
+      "free-runs/original-factual-formatter-v1/seed-13-delay-0-ticks.json": "c7773386923fba18db86a2247f018454b94891ef50871ff3ed239e946fd96a13",
+      "free-runs/original-factual-formatter-v1/seed-13-delay-15-ticks.json": "413dcd8062ce1182782fa28632f5593ccbddc2128aa48b6329a9bfeb29ad6249",
+      "free-runs/original-factual-formatter-v1/seed-14-delay-0-ticks.json": "9f63621a2c5849f782b71edd5f0f7812369b9c1f26ae5d62641e5b487a802ca0",
+      "free-runs/original-factual-formatter-v1/seed-14-delay-15-ticks.json": "85b4950bc130ae204498a10165cc4569251a901622fdca8fa96b77af90f0f55f",
+      "free-runs/seed-13-delay-0-ticks.json": "063e6101babbd394122c50178fc442331d932f5d7c7a8aef2b402c1dd26b2645",
+      "free-runs/seed-13-delay-15-ticks.json": "2952e78b0ce94fe209b267c5fcd1a761458e220384daab807b7f00b6a79fab85",
+      "free-runs/seed-14-delay-0-ticks.json": "31ebed0beeac91a062be1b0e4419b7e83457bc86f752ed5e89e4e793ba45ac2a",
+      "free-runs/seed-14-delay-15-ticks.json": "e269205c211526b56850a397858e8e796be72f818bf66978fc97c1af9ef187e9"
+    },
+    "prompt_archive": {
+      "path": "docs/experiments/0031-criterion-policy-prompts.json",
+      "sha256": "3e10b2be4880f39b5ac8deb1797fe48c8222dec786cb2bd5de8f6053aeb32562"
+    },
+    "frozen_utc": "2026-10-20T03:09:58.968629+00:00"
+  },
+  "final_audit": {
+    "passed": true,
+    "complete": true,
+    "checked_at_utc": "2026-10-20T03:10:53.530145+00:00",
+    "errors": [],
+    "warnings": [],
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "helper_checks": {
+      "policy.py": {
+        "expected": "1408cdeee21a0916a565cd5fdcb9f8b200f3d5c595366869905debb271a7d253",
+        "actual": "1408cdeee21a0916a565cd5fdcb9f8b200f3d5c595366869905debb271a7d253",
+        "matches": true
+      },
+      "case_bank.py": {
+        "expected": "8fc5a967a7da2828806a4cf0ea16981a48bbed570c8aee21a78228adc135ca93",
+        "actual": "8fc5a967a7da2828806a4cf0ea16981a48bbed570c8aee21a78228adc135ca93",
+        "matches": true
+      },
+      "cases.json": {
+        "expected": "8c2d1dc18ccd3e02b34c74a6c17f5222a995c51f523d37741b306ef3d55d50ef",
+        "actual": "8c2d1dc18ccd3e02b34c74a6c17f5222a995c51f523d37741b306ef3d55d50ef",
+        "matches": true
+      },
+      "policy_client.py": {
+        "expected": "6858a860e8594658145209e982c53c0293a85af14b1e073ae5a5090bf90f2183",
+        "actual": "6858a860e8594658145209e982c53c0293a85af14b1e073ae5a5090bf90f2183",
+        "matches": true
+      },
+      "source-inheritance.json": {
+        "expected": "007aa11e3e61e5e809a05c9444604d3001bb0d454819ab586fbb90a7c48d90af",
+        "actual": "007aa11e3e61e5e809a05c9444604d3001bb0d454819ab586fbb90a7c48d90af",
+        "matches": true
+      },
+      "payloads.py": {
+        "expected": "a183045de58e718959a8e74839c4d922df9cd42a49cf5762eea28f117b8ac4ac",
+        "actual": "a183045de58e718959a8e74839c4d922df9cd42a49cf5762eea28f117b8ac4ac",
+        "matches": true
+      },
+      "prepare.py": {
+        "expected": "e0340f6e43f93c387fb146ad1a5da3058543a0f6afd85d9a2c11db8bfc559faf",
+        "actual": "e0340f6e43f93c387fb146ad1a5da3058543a0f6afd85d9a2c11db8bfc559faf",
+        "matches": true
+      },
+      "runner.py": {
+        "expected": "f3c0b38eb67621f995d8694d9ebc8c8417d475d5af8cb2fb56d99136503a450b",
+        "actual": "f3c0b38eb67621f995d8694d9ebc8c8417d475d5af8cb2fb56d99136503a450b",
+        "matches": true
+      },
+      "audit.py": {
+        "expected": "e7bdebb012b5c5f70b9760c759d9ed0408b746bbb61bcd815613624ac62e05cd",
+        "actual": "e7bdebb012b5c5f70b9760c759d9ed0408b746bbb61bcd815613624ac62e05cd",
+        "matches": true
+      },
+      "preflight.py": {
+        "expected": "4dedc585d795bb26731be960711e6d90b07e3c69a69278f7bb35631526a37074",
+        "actual": "4dedc585d795bb26731be960711e6d90b07e3c69a69278f7bb35631526a37074",
+        "matches": true
+      },
+      "preflight.json": {
+        "expected": "41da8f1858be2cfb5343ae4dd3618428c9eecfbb54cf709de96ae49e94afac9c",
+        "actual": "41da8f1858be2cfb5343ae4dd3618428c9eecfbb54cf709de96ae49e94afac9c",
+        "matches": true
+      },
+      "order.json": {
+        "expected": "1d98ca2613167c5eaae4a8e957bac8452650e75eeaefc917b5a0b244bf7e9913",
+        "actual": "1d98ca2613167c5eaae4a8e957bac8452650e75eeaefc917b5a0b244bf7e9913",
+        "matches": true
+      },
+      "routes.json": {
+        "expected": "ee6d0fd7fa3749a02fcbc3ce2c32ef69a30f6b076565a79c78c983913e7b1bae",
+        "actual": "ee6d0fd7fa3749a02fcbc3ce2c32ef69a30f6b076565a79c78c983913e7b1bae",
+        "matches": true
+      },
+      "DESIGN.md": {
+        "expected": "57861ecad5d7bb15402e8a542e7b3d88605393b5fab62d6258fa5f8b17aa0606",
+        "actual": "57861ecad5d7bb15402e8a542e7b3d88605393b5fab62d6258fa5f8b17aa0606",
+        "matches": true
+      },
+      "CASE_DESIGN.md": {
+        "expected": "3b4c205599190db356af8811b08ea6ba15f7db8caf332636473226f459d85a14",
+        "actual": "3b4c205599190db356af8811b08ea6ba15f7db8caf332636473226f459d85a14",
+        "matches": true
+      },
+      "POLICY.md": {
+        "expected": "18a457ee44a94d54c65b303a9570c4f6793dcefd47e761741f1e81ab951c4684",
+        "actual": "18a457ee44a94d54c65b303a9570c4f6793dcefd47e761741f1e81ab951c4684",
+        "matches": true
+      },
+      "free_policy.py": {
+        "expected": "50c5ded6a324d99a14bb3391879cae49c3c883b921f10c1d2aef6521bdbcea3b",
+        "actual": "50c5ded6a324d99a14bb3391879cae49c3c883b921f10c1d2aef6521bdbcea3b",
+        "matches": true
+      },
+      "free-policy-report.json": {
+        "expected": "e03bba19425a77621e807dc6c92768c216b166c21cd3098d3153ae9086ac8616",
+        "actual": "e03bba19425a77621e807dc6c92768c216b166c21cd3098d3153ae9086ac8616",
+        "matches": true
+      },
+      "independent_free_review.py": {
+        "expected": "e7ef5f9dacb378285c0017e284e69ceaefacd6d5a52d14d078551c983cce990d",
+        "actual": "e7ef5f9dacb378285c0017e284e69ceaefacd6d5a52d14d078551c983cce990d",
+        "matches": true
+      },
+      "independent-free-review.json": {
+        "expected": "4fd04e5e42c7f41d7ce16ffab25f59867223ef0d151f1aa63521db195b915265",
+        "actual": "4fd04e5e42c7f41d7ce16ffab25f59867223ef0d151f1aa63521db195b915265",
+        "matches": true
+      },
+      "prospective-design.md": {
+        "expected": "fda9e5a4f3c19933c78d60550470cc9f6ecc607dbf08a8db3ef1d7737b7d4eb6",
+        "actual": "fda9e5a4f3c19933c78d60550470cc9f6ecc607dbf08a8db3ef1d7737b7d4eb6",
+        "matches": true
+      },
+      "protocol.draft.json": {
+        "expected": "7047cf533666e8a9e2dde233cc74e73ec89b80954abbe4dcd28f66b3bf8174a2",
+        "actual": "7047cf533666e8a9e2dde233cc74e73ec89b80954abbe4dcd28f66b3bf8174a2",
+        "matches": true
+      },
+      "free-runs/factual-formatter-correction.json": {
+        "expected": "fe9fc5db57a926df261407c7c412dc9673a5aae92bab8707d18705b60522144b",
+        "actual": "fe9fc5db57a926df261407c7c412dc9673a5aae92bab8707d18705b60522144b",
+        "matches": true
+      },
+      "free-runs/guard-release-fixtures.json": {
+        "expected": "56dff3ea1436ad7063bdbda19b6f9b2059a2a72fcfd04eb6b978d6372d173679",
+        "actual": "56dff3ea1436ad7063bdbda19b6f9b2059a2a72fcfd04eb6b978d6372d173679",
+        "matches": true
+      },
+      "free-runs/original-factual-formatter-v1/README.json": {
+        "expected": "d44c3edd2d11e39558cc29c8ef9488ebdff8205c06f86da8eb30d6b8df8fd28b",
+        "actual": "d44c3edd2d11e39558cc29c8ef9488ebdff8205c06f86da8eb30d6b8df8fd28b",
+        "matches": true
+      },
+      "free-runs/original-factual-formatter-v1/free-policy-report.json": {
+        "expected": "2eaa2c7d770b5591950d36f52231e5134088342dee40bed0adf31cf96b6d88d0",
+        "actual": "2eaa2c7d770b5591950d36f52231e5134088342dee40bed0adf31cf96b6d88d0",
+        "matches": true
+      },
+      "free-runs/original-factual-formatter-v1/guard-release-fixtures.json": {
+        "expected": "32304682aea31576335a77ffff667ef3e12e05fb10e16756b31632d65c17662c",
+        "actual": "32304682aea31576335a77ffff667ef3e12e05fb10e16756b31632d65c17662c",
+        "matches": true
+      },
+      "free-runs/original-factual-formatter-v1/seed-13-delay-0-ticks.json": {
+        "expected": "c7773386923fba18db86a2247f018454b94891ef50871ff3ed239e946fd96a13",
+        "actual": "c7773386923fba18db86a2247f018454b94891ef50871ff3ed239e946fd96a13",
+        "matches": true
+      },
+      "free-runs/original-factual-formatter-v1/seed-13-delay-15-ticks.json": {
+        "expected": "413dcd8062ce1182782fa28632f5593ccbddc2128aa48b6329a9bfeb29ad6249",
+        "actual": "413dcd8062ce1182782fa28632f5593ccbddc2128aa48b6329a9bfeb29ad6249",
+        "matches": true
+      },
+      "free-runs/original-factual-formatter-v1/seed-14-delay-0-ticks.json": {
+        "expected": "9f63621a2c5849f782b71edd5f0f7812369b9c1f26ae5d62641e5b487a802ca0",
+        "actual": "9f63621a2c5849f782b71edd5f0f7812369b9c1f26ae5d62641e5b487a802ca0",
+        "matches": true
+      },
+      "free-runs/original-factual-formatter-v1/seed-14-delay-15-ticks.json": {
+        "expected": "85b4950bc130ae204498a10165cc4569251a901622fdca8fa96b77af90f0f55f",
+        "actual": "85b4950bc130ae204498a10165cc4569251a901622fdca8fa96b77af90f0f55f",
+        "matches": true
+      },
+      "free-runs/seed-13-delay-0-ticks.json": {
+        "expected": "063e6101babbd394122c50178fc442331d932f5d7c7a8aef2b402c1dd26b2645",
+        "actual": "063e6101babbd394122c50178fc442331d932f5d7c7a8aef2b402c1dd26b2645",
+        "matches": true
+      },
+      "free-runs/seed-13-delay-15-ticks.json": {
+        "expected": "2952e78b0ce94fe209b267c5fcd1a761458e220384daab807b7f00b6a79fab85",
+        "actual": "2952e78b0ce94fe209b267c5fcd1a761458e220384daab807b7f00b6a79fab85",
+        "matches": true
+      },
+      "free-runs/seed-14-delay-0-ticks.json": {
+        "expected": "31ebed0beeac91a062be1b0e4419b7e83457bc86f752ed5e89e4e793ba45ac2a",
+        "actual": "31ebed0beeac91a062be1b0e4419b7e83457bc86f752ed5e89e4e793ba45ac2a",
+        "matches": true
+      },
+      "free-runs/seed-14-delay-15-ticks.json": {
+        "expected": "e269205c211526b56850a397858e8e796be72f818bf66978fc97c1af9ef187e9",
+        "actual": "e269205c211526b56850a397858e8e796be72f818bf66978fc97c1af9ef187e9",
+        "matches": true
+      }
+    },
+    "independent_policy_cases_checked": 30,
+    "policy_client_source_review": {
+      "passed": true,
+      "subclass_own_attributes": [
+        "questions"
+      ],
+      "method_identity": {
+        "__init__": true,
+        "decide": true,
+        "_decode_components": true,
+        "_record_component_uncertainty": true,
+        "__aenter__": true,
+        "__aexit__": true,
+        "_safe_detail": true,
+        "_error_detail": true
+      },
+      "production_decide_source_sha256": "118e79f7d6107f6bd467967760fd1c2bd9ae0a8f828df9a1473cf621ccc82020",
+      "no_response_rewriting_or_host_selection": true
+    },
+    "free_policy_evidence_review": {
+      "passed": true,
+      "review_sha256": "4fd04e5e42c7f41d7ce16ffab25f59867223ef0d151f1aa63521db195b915265",
+      "independent_review": {
+        "passed": true,
+        "checked_at_utc": "2026-10-20T03:06:59.833442+00:00",
+        "errors": [],
+        "caveats": [
+          {
+            "field": "current_road_frame.velocity_vs_road_deg",
+            "issue": "The original retained free observer represented zero velocity with atan2(0,0)-tangent. Before any paid collection the observer was corrected to production's None for undefined velocity angle, and all free evidence was reproduced while originals were retained. This field is not read by either wheel or pedal policy; independent labels and exact physical replays agree.",
+            "zero_speed_free_observations_and_fixtures": 10
+          }
+        ],
+        "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+        "policy_sha256": "1408cdeee21a0916a565cd5fdcb9f8b200f3d5c595366869905debb271a7d253",
+        "free_policy_sha256": "50c5ded6a324d99a14bb3391879cae49c3c883b921f10c1d2aef6521bdbcea3b",
+        "free_report_sha256": "e03bba19425a77621e807dc6c92768c216b166c21cd3098d3153ae9086ac8616",
+        "formatter_correction_sha256": "fe9fc5db57a926df261407c7c412dc9673a5aae92bab8707d18705b60522144b",
+        "original_to_corrected_only_stationary_angle_fields_checked": 10,
+        "review_script_sha256": "e7ef5f9dacb378285c0017e284e69ceaefacd6d5a52d14d078551c983cce990d",
+        "reviewed_runs": [
+          {
+            "file": "artifacts/jev-criterion-policy-v1/free-runs/seed-13-delay-15-ticks.json",
+            "sha256": "2952e78b0ce94fe209b267c5fcd1a761458e220384daab807b7f00b6a79fab85",
+            "seed": 13,
+            "delay_ticks": 15,
+            "physics_samples": 4717,
+            "requests": 315,
+            "commands": 314,
+            "elapsed_s": 78.59999999999683,
+            "minimum_clearance_m": 9.9093749530445,
+            "all_saved_states_and_policy_labels_reproduced": true
+          },
+          {
+            "file": "artifacts/jev-criterion-policy-v1/free-runs/seed-14-delay-15-ticks.json",
+            "sha256": "e269205c211526b56850a397858e8e796be72f818bf66978fc97c1af9ef187e9",
+            "seed": 14,
+            "delay_ticks": 15,
+            "physics_samples": 4725,
+            "requests": 315,
+            "commands": 314,
+            "elapsed_s": 78.73333333333015,
+            "minimum_clearance_m": 10.100611442437621,
+            "all_saved_states_and_policy_labels_reproduced": true
+          },
+          {
+            "file": "artifacts/jev-criterion-policy-v1/free-runs/seed-13-delay-0-ticks.json",
+            "sha256": "063e6101babbd394122c50178fc442331d932f5d7c7a8aef2b402c1dd26b2645",
+            "seed": 13,
+            "delay_ticks": 0,
+            "physics_samples": 4648,
+            "requests": 310,
+            "commands": 310,
+            "elapsed_s": 77.44999999999689,
+            "minimum_clearance_m": 10.119515258061401,
+            "all_saved_states_and_policy_labels_reproduced": true
+          },
+          {
+            "file": "artifacts/jev-criterion-policy-v1/free-runs/seed-14-delay-0-ticks.json",
+            "sha256": "31ebed0beeac91a062be1b0e4419b7e83457bc86f752ed5e89e4e793ba45ac2a",
+            "seed": 14,
+            "delay_ticks": 0,
+            "physics_samples": 4651,
+            "requests": 310,
+            "commands": 310,
+            "elapsed_s": 77.49999999999689,
+            "minimum_clearance_m": 10.164391072159683,
+            "all_saved_states_and_policy_labels_reproduced": true
+          }
+        ],
+        "physics_samples_checked": 18741,
+        "policy_observations_checked": 1250,
+        "guard_fixtures_checked": 16,
+        "all_policy_implementations_independent": true,
+        "paid_model_calls": 0,
+        "shared_ledger_unchanged": true,
+        "limitations": [
+          "All complete races had zero concern observations, so braking/coasting recovery effectiveness is untested.",
+          "Synthetic guard fixtures establish rule labels and low-speed release, not successful recovery trajectories.",
+          "Behind-target and uncredited-positive-gate recovery remains unsupported; no such state arose in these runs.",
+          "Host-executed free tracking is an upper bound; model compliance and live latency tails are unproven.",
+          "Signed-product predicates and tolerance-based atan quantization agree on protected observations, not arbitrary near-threshold floating-point ties."
+        ]
+      },
+      "audit_replay_counts": {
+        "physics_samples": 18741,
+        "request_observations": 1250,
+        "guard_fixtures": 16
+      },
+      "limitation": "No complete free race triggered guardB; recovery effectiveness untested."
+    },
+    "static_policy_labels_checked": 30,
+    "planned_requests": 60,
+    "saved_requests": 60,
+    "failures": [],
+    "unrun": [],
+    "writer": {
+      "session_id": "99a507649d174bda80d85b999b8f190f",
+      "pid": 37195,
+      "process_start_ticks": 9340579,
+      "parent_pid": 37194,
+      "parent_start_ticks": 9340578,
+      "boot_id": "b113cec5-1758-4140-b960-8d20b2906b04",
+      "started_utc": "2026-10-20T03:10:25.644022+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-criterion-policy-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61099,
+      "charged_usd": 7.538698821999888,
+      "charged_tokens": 243842702,
+      "reported_cost_usd": 7.481420357999872,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61159,
+      "charged_usd": 7.546515861999886,
+      "charged_tokens": 244034581,
+      "reported_cost_usd": 7.4892373979998705,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 60,
+      "charged_usd": 0.007817039999998165,
+      "reported_cost_usd": 0.007817039999998165,
+      "charged_tokens": 191879,
+      "uncertain_requests": 0
+    },
+    "automatic_followup_or_promotion": false,
+    "model_requests_by_audit": 0,
+    "ledger_written_by_audit": false,
+    "no_controls_applied": true
+  },
+  "audited_report": {
+    "complete": true,
+    "overall": {
+      "shared": {
+        "planned": 30,
+        "attempted": 30,
+        "unrun": 0,
+        "endpoint_ok": 30,
+        "endpoint_errors": 0,
+        "correct": 15,
+        "incorrect_or_endpoint_error": 15,
+        "attempted_accuracy": 0.5,
+        "planned_correct_fraction": 0.5,
+        "endpoint_success_accuracy": 0.5,
+        "charged_usd": 0.00393939,
+        "charged_tokens": 96675,
+        "median_latency_ms": 236.348826
+      },
+      "local": {
+        "planned": 30,
+        "attempted": 30,
+        "unrun": 0,
+        "endpoint_ok": 30,
+        "endpoint_errors": 0,
+        "correct": 12,
+        "incorrect_or_endpoint_error": 18,
+        "attempted_accuracy": 0.4,
+        "planned_correct_fraction": 0.4,
+        "endpoint_success_accuracy": 0.4,
+        "charged_usd": 0.00387765,
+        "charged_tokens": 95204,
+        "median_latency_ms": 242.260504
+      }
+    },
+    "components": {
+      "shared": {
+        "wheel_correct": 15,
+        "pedal_correct": 30,
+        "wheel_by_magnitude": {
+          "straight": {
+            "correct": 3,
+            "responses": 6
+          },
+          "half": {
+            "correct": 2,
+            "responses": 12
+          },
+          "full": {
+            "correct": 10,
+            "responses": 12
+          }
+        },
+        "pedal_by_class": {
+          "accelerate": {
+            "correct": 10,
+            "responses": 10
+          },
+          "coast": {
+            "correct": 10,
+            "responses": 10
+          },
+          "brake": {
+            "correct": 10,
+            "responses": 10
+          }
+        },
+        "wheel_by_signed_direction": {
+          "hard_right": {
+            "correct": 5,
+            "responses": 6
+          },
+          "right": {
+            "correct": 2,
+            "responses": 6
+          },
+          "straight": {
+            "correct": 3,
+            "responses": 6
+          },
+          "left": {
+            "correct": 0,
+            "responses": 6
+          },
+          "hard_left": {
+            "correct": 5,
+            "responses": 6
+          }
+        },
+        "brake_choices_below_2mps": 0,
+        "chosen_native_counts": {
+          "right_brake": 2,
+          "hard_left_brake": 2,
+          "hard_right_brake": 5,
+          "straight_accelerate": 5,
+          "straight_brake": 1,
+          "hard_left_coast": 4,
+          "hard_right_accelerate": 2,
+          "hard_right_coast": 4,
+          "hard_left_accelerate": 3,
+          "right_coast": 1,
+          "left_coast": 1
+        },
+        "chosen_wheel_counts": {
+          "right": 3,
+          "hard_left": 9,
+          "hard_right": 11,
+          "straight": 6,
+          "left": 1
+        },
+        "chosen_pedal_counts": {
+          "brake": 10,
+          "accelerate": 10,
+          "coast": 10
+        }
+      },
+      "local": {
+        "wheel_correct": 12,
+        "pedal_correct": 30,
+        "wheel_by_magnitude": {
+          "straight": {
+            "correct": 2,
+            "responses": 6
+          },
+          "half": {
+            "correct": 2,
+            "responses": 12
+          },
+          "full": {
+            "correct": 8,
+            "responses": 12
+          }
+        },
+        "pedal_by_class": {
+          "accelerate": {
+            "correct": 10,
+            "responses": 10
+          },
+          "coast": {
+            "correct": 10,
+            "responses": 10
+          },
+          "brake": {
+            "correct": 10,
+            "responses": 10
+          }
+        },
+        "wheel_by_signed_direction": {
+          "hard_right": {
+            "correct": 4,
+            "responses": 6
+          },
+          "right": {
+            "correct": 2,
+            "responses": 6
+          },
+          "straight": {
+            "correct": 2,
+            "responses": 6
+          },
+          "left": {
+            "correct": 0,
+            "responses": 6
+          },
+          "hard_left": {
+            "correct": 4,
+            "responses": 6
+          }
+        },
+        "brake_choices_below_2mps": 0,
+        "chosen_native_counts": {
+          "right_brake": 3,
+          "hard_left_brake": 3,
+          "hard_right_brake": 4,
+          "straight_accelerate": 5,
+          "left_coast": 1,
+          "hard_left_coast": 1,
+          "hard_right_accelerate": 2,
+          "hard_right_coast": 6,
+          "hard_left_accelerate": 3,
+          "right_coast": 2
+        },
+        "chosen_wheel_counts": {
+          "right": 5,
+          "hard_left": 7,
+          "hard_right": 12,
+          "straight": 5,
+          "left": 1
+        },
+        "chosen_pedal_counts": {
+          "brake": 10,
+          "accelerate": 10,
+          "coast": 10
+        }
+      }
+    },
+    "paired": {
+      "complete_pairs": 30,
+      "gains": 1,
+      "losses": 4,
+      "net_gain": -3,
+      "both_correct": 11,
+      "both_incorrect": 14
+    },
+    "gate": {
+      "passed": false,
+      "predicates": {
+        "complete_and_audited": true,
+        "zero_endpoint_or_accounting_errors": true,
+        "exact_pairs_27_of30": false,
+        "straight_wheel_6_of6": false,
+        "half_wheel_11_of12": false,
+        "full_wheel_11_of12": false,
+        "each_pedal_9_of10": true,
+        "zero_low_speed_brakes": true,
+        "net_pair_gain_at_least3": false
+      }
+    },
+    "source_case_coverage": {
+      "cases": 30,
+      "pairs": 15,
+      "target_counts": {
+        "straight_accelerate": 2,
+        "straight_coast": 2,
+        "straight_brake": 2,
+        "left_accelerate": 2,
+        "right_accelerate": 2,
+        "left_coast": 2,
+        "right_coast": 2,
+        "left_brake": 2,
+        "right_brake": 2,
+        "hard_left_accelerate": 2,
+        "hard_right_accelerate": 2,
+        "hard_left_coast": 2,
+        "hard_right_coast": 2,
+        "hard_left_brake": 2,
+        "hard_right_brake": 2
+      }
+    },
+    "score_scope": "Fixed supplied policy compliance, not optimality or general driving competence",
+    "automatic_followup_or_promotion": false,
+    "free_policy_evidence_review": {
+      "passed": true,
+      "review_sha256": "4fd04e5e42c7f41d7ce16ffab25f59867223ef0d151f1aa63521db195b915265",
+      "independent_review": {
+        "passed": true,
+        "checked_at_utc": "2026-10-20T03:06:59.833442+00:00",
+        "errors": [],
+        "caveats": [
+          {
+            "field": "current_road_frame.velocity_vs_road_deg",
+            "issue": "The original retained free observer represented zero velocity with atan2(0,0)-tangent. Before any paid collection the observer was corrected to production's None for undefined velocity angle, and all free evidence was reproduced while originals were retained. This field is not read by either wheel or pedal policy; independent labels and exact physical replays agree.",
+            "zero_speed_free_observations_and_fixtures": 10
+          }
+        ],
+        "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+        "policy_sha256": "1408cdeee21a0916a565cd5fdcb9f8b200f3d5c595366869905debb271a7d253",
+        "free_policy_sha256": "50c5ded6a324d99a14bb3391879cae49c3c883b921f10c1d2aef6521bdbcea3b",
+        "free_report_sha256": "e03bba19425a77621e807dc6c92768c216b166c21cd3098d3153ae9086ac8616",
+        "formatter_correction_sha256": "fe9fc5db57a926df261407c7c412dc9673a5aae92bab8707d18705b60522144b",
+        "original_to_corrected_only_stationary_angle_fields_checked": 10,
+        "review_script_sha256": "e7ef5f9dacb378285c0017e284e69ceaefacd6d5a52d14d078551c983cce990d",
+        "reviewed_runs": [
+          {
+            "file": "artifacts/jev-criterion-policy-v1/free-runs/seed-13-delay-15-ticks.json",
+            "sha256": "2952e78b0ce94fe209b267c5fcd1a761458e220384daab807b7f00b6a79fab85",
+            "seed": 13,
+            "delay_ticks": 15,
+            "physics_samples": 4717,
+            "requests": 315,
+            "commands": 314,
+            "elapsed_s": 78.59999999999683,
+            "minimum_clearance_m": 9.9093749530445,
+            "all_saved_states_and_policy_labels_reproduced": true
+          },
+          {
+            "file": "artifacts/jev-criterion-policy-v1/free-runs/seed-14-delay-15-ticks.json",
+            "sha256": "e269205c211526b56850a397858e8e796be72f818bf66978fc97c1af9ef187e9",
+            "seed": 14,
+            "delay_ticks": 15,
+            "physics_samples": 4725,
+            "requests": 315,
+            "commands": 314,
+            "elapsed_s": 78.73333333333015,
+            "minimum_clearance_m": 10.100611442437621,
+            "all_saved_states_and_policy_labels_reproduced": true
+          },
+          {
+            "file": "artifacts/jev-criterion-policy-v1/free-runs/seed-13-delay-0-ticks.json",
+            "sha256": "063e6101babbd394122c50178fc442331d932f5d7c7a8aef2b402c1dd26b2645",
+            "seed": 13,
+            "delay_ticks": 0,
+            "physics_samples": 4648,
+            "requests": 310,
+            "commands": 310,
+            "elapsed_s": 77.44999999999689,
+            "minimum_clearance_m": 10.119515258061401,
+            "all_saved_states_and_policy_labels_reproduced": true
+          },
+          {
+            "file": "artifacts/jev-criterion-policy-v1/free-runs/seed-14-delay-0-ticks.json",
+            "sha256": "31ebed0beeac91a062be1b0e4419b7e83457bc86f752ed5e89e4e793ba45ac2a",
+            "seed": 14,
+            "delay_ticks": 0,
+            "physics_samples": 4651,
+            "requests": 310,
+            "commands": 310,
+            "elapsed_s": 77.49999999999689,
+            "minimum_clearance_m": 10.164391072159683,
+            "all_saved_states_and_policy_labels_reproduced": true
+          }
+        ],
+        "physics_samples_checked": 18741,
+        "policy_observations_checked": 1250,
+        "guard_fixtures_checked": 16,
+        "all_policy_implementations_independent": true,
+        "paid_model_calls": 0,
+        "shared_ledger_unchanged": true,
+        "limitations": [
+          "All complete races had zero concern observations, so braking/coasting recovery effectiveness is untested.",
+          "Synthetic guard fixtures establish rule labels and low-speed release, not successful recovery trajectories.",
+          "Behind-target and uncredited-positive-gate recovery remains unsupported; no such state arose in these runs.",
+          "Host-executed free tracking is an upper bound; model compliance and live latency tails are unproven.",
+          "Signed-product predicates and tolerance-based atan quantization agree on protected observations, not arbitrary near-threshold floating-point ties."
+        ]
+      },
+      "audit_replay_counts": {
+        "physics_samples": 18741,
+        "request_observations": 1250,
+        "guard_fixtures": 16
+      },
+      "limitation": "No complete free race triggered guardB; recovery effectiveness untested."
+    },
+    "audit_passed": true
+  },
+  "root_authorization": {
+    "root_thread_id": "01a151b8-43d6-733b-a890-7368ae08c015",
+    "root_host_id": "durable",
+    "authorization_id": "e76c557d64ed4a14b0dc8e853c700ace",
+    "authorized_utc": "2026-10-20T03:10:21.295107+00:00",
+    "protocol_sha256": "f836e2428fa283ac4a7e648ba46df057e62a06b9fef3f2da58b6cd51e7e98cb3",
+    "independent_preflight_sha256": "82e97a2f675399a165c24cda2be519c45eaeea9e776586870fb9318a9bf7ebca",
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61099,
+      "charged_usd": 7.538698821999888,
+      "charged_tokens": 243842702,
+      "reported_cost_usd": 7.481420357999872,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "scope": "Root explicitly authorizes exactly the frozen60staticcalls,onewriter,allvalidanswers,no retries/controls/sourcechanges."
+  },
+  "collection_writer": {
+    "session_id": "99a507649d174bda80d85b999b8f190f",
+    "pid": 37195,
+    "process_start_ticks": 9340579,
+    "parent_pid": 37194,
+    "parent_start_ticks": 9340578,
+    "boot_id": "b113cec5-1758-4140-b960-8d20b2906b04",
+    "started_utc": "2026-10-20T03:10:25.644022+00:00",
+    "script_path": "/workspace/mcpkart/artifacts/jev-criterion-policy-v1/runner.py",
+    "executable": "/workspace/mcpkart/.venv/bin/python",
+    "explicit_collect_flag": true
+  },
+  "collection_completed_utc": "2026-10-20T03:10:40.862348+00:00",
+  "independent_collection_provenance": {
+    "passed": true,
+    "checked_at_utc": "2026-10-20T03:13:20.279544+00:00",
+    "errors": [],
+    "check_count": 37,
+    "checks": [
+      {
+        "check": "complete_frozen_60_call_scope",
+        "passed": true
+      },
+      {
+        "check": "all_frozen_helper_hashes_unchanged",
+        "passed": true
+      },
+      {
+        "check": "archive_frozen_hash",
+        "passed": true
+      },
+      {
+        "check": "full_11_file_and_rust_bench_fingerprint",
+        "passed": true
+      },
+      {
+        "check": "archive_binds_case_bank",
+        "passed": true
+      },
+      {
+        "check": "all_15_targets_twice_and_held_twice",
+        "passed": true
+      },
+      {
+        "check": "independent_labels_match_bank",
+        "passed": true
+      },
+      {
+        "check": "registered_shuffle_and_counterbalance",
+        "passed": true
+      },
+      {
+        "check": "preflight_immutable_passing_zero_paid",
+        "passed": true
+      },
+      {
+        "check": "protocol_bound_preflight_auth_start_complete",
+        "passed": true
+      },
+      {
+        "check": "root_authorization_identity",
+        "passed": true
+      },
+      {
+        "check": "root_explicit_execution_completed",
+        "passed": true
+      },
+      {
+        "check": "prospective_timestamp_chain_before_deadline",
+        "passed": true
+      },
+      {
+        "check": "one_writer_identity_everywhere",
+        "passed": true
+      },
+      {
+        "check": "writer_script_executable_boot_identity",
+        "passed": true
+      },
+      {
+        "check": "no_stop_or_failure_artifacts",
+        "passed": true
+      },
+      {
+        "check": "no_retry_fallback_control_application",
+        "passed": true
+      },
+      {
+        "check": "all_60_exact_archive_payload_bytes_and_hashes",
+        "passed": true
+      },
+      {
+        "check": "all_60_exact_registered_order_entries",
+        "passed": true
+      },
+      {
+        "check": "all_60_factual_states_no_oracle_keys",
+        "passed": true
+      },
+      {
+        "check": "all_60_single_successful_identity_pinned_responses",
+        "passed": true
+      },
+      {
+        "check": "all_60_raw_typed_components_atomic_native_pair",
+        "passed": true
+      },
+      {
+        "check": "all_60_exact_ledger_transitions_and_conservative_admission",
+        "passed": true
+      },
+      {
+        "check": "all_60_requests_strictly_sequential_no_overlap",
+        "passed": true
+      },
+      {
+        "check": "all_60_result_rows_independently_reconstructed",
+        "passed": true
+      },
+      {
+        "check": "unique_60_reservations_and_response_ids",
+        "passed": true
+      },
+      {
+        "check": "budget_before_bound_everywhere",
+        "passed": true
+      },
+      {
+        "check": "budget_after_bound_everywhere",
+        "passed": true
+      },
+      {
+        "check": "retained_caps_and_no_pending",
+        "passed": true
+      },
+      {
+        "check": "exact_expected_end_boundary",
+        "passed": true
+      },
+      {
+        "check": "budget_delta_reconciles_all_60_usage",
+        "passed": true
+      },
+      {
+        "check": "independent_scores_expected",
+        "passed": true
+      },
+      {
+        "check": "summary_scores_match_raw_choices",
+        "passed": true
+      },
+      {
+        "check": "local_gate_independently_failed",
+        "passed": true
+      },
+      {
+        "check": "final_audit_complete_pass_zero_errors",
+        "passed": true
+      },
+      {
+        "check": "no_automatic_followup_or_promotion",
+        "passed": true
+      },
+      {
+        "check": "read_only_ledger_byte_unchanged",
+        "passed": true
+      }
+    ],
+    "protocol_sha256": "f836e2428fa283ac4a7e648ba46df057e62a06b9fef3f2da58b6cd51e7e98cb3",
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "writer": {
+      "session_id": "99a507649d174bda80d85b999b8f190f",
+      "pid": 37195,
+      "process_start_ticks": 9340579,
+      "parent_pid": 37194,
+      "parent_start_ticks": 9340578,
+      "boot_id": "b113cec5-1758-4140-b960-8d20b2906b04",
+      "started_utc": "2026-10-20T03:10:25.644022+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-criterion-policy-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61099,
+      "charged_usd": 7.538698821999888,
+      "charged_tokens": 243842702,
+      "reported_cost_usd": 7.481420357999872,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61159,
+      "charged_usd": 7.546515861999886,
+      "charged_tokens": 244034581,
+      "reported_cost_usd": 7.4892373979998705,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 60,
+      "charged_tokens": 191879,
+      "charged_usd": 0.00781704
+    },
+    "scores": {
+      "shared": {
+        "pairs": 15,
+        "wheel": 15,
+        "pedal": 30,
+        "low_speed_brake": 0
+      },
+      "local": {
+        "pairs": 12,
+        "wheel": 12,
+        "pedal": 30,
+        "low_speed_brake": 0
+      }
+    },
+    "wheel_correct_by_magnitude": {
+      "shared": {
+        "half": 2,
+        "full": 10,
+        "straight": 3
+      },
+      "local": {
+        "half": 2,
+        "full": 8,
+        "straight": 2
+      }
+    },
+    "local_gate_passed": false,
+    "model_calls_by_verifier": 0,
+    "ledger_written": false,
+    "script_sha256": "a0428ee104b30d1258c165898c6bee47d9d12be7d6aafe184add643f301bd4a8",
+    "interpretation": "Supplied-policy static compliance only; no model driving or promotion. Root execution IDs are checked against preserved confirmation, not independently queried from tool infrastructure."
+  },
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61099,
+    "charged_usd": 7.538698821999888,
+    "charged_tokens": 243842702,
+    "reported_cost_usd": 7.481420357999872,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61159,
+    "charged_usd": 7.546515861999886,
+    "charged_tokens": 244034581,
+    "reported_cost_usd": 7.4892373979998705,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 60,
+    "charged_usd": 0.007817039999998165,
+    "reported_cost_usd": 0.007817039999998165,
+    "charged_tokens": 191879,
+    "uncertain_requests": 0
+  },
+  "decision": {
+    "local_gate_passed": false,
+    "native_validation_triggered": false,
+    "live_followup_triggered": false,
+    "preset_promoted": false,
+    "baseline": "joint damped",
+    "application_defaults_changed": false
+  },
+  "interpretation": {
+    "shared_pair_correct": 15,
+    "local_pair_correct": 12,
+    "responses_each_arm": 30,
+    "local_paired_gains": 1,
+    "local_paired_losses": 4,
+    "local_net_pair_gain": -3,
+    "wheel_matches_pair_score": true,
+    "pedal_correct_each_arm": 30,
+    "pedal_correct_each_class_each_arm": 10,
+    "brake_choices_below_2mps_each_arm": 0,
+    "conclusion": "Criterion-local placement failed every wheel and exact-pair requirement and the gain requirement. Both arms executed the supplied pedal policy on every case. No candidate qualified."
+  },
+  "interpretation_limits": [
+    "Scores measure execution of the supplied fixed mathematical policy, not general driving competence or optimal control.",
+    "Both arms are supplied-policy tasks; neither is the ordinary damped driving baseline.",
+    "Thirty synthetic states include fifteen reflected pairs; components, reflections and paired arms are related observations.",
+    "One presentation per state and context supplies no within-arm repeatability estimate.",
+    "All complete free host-policy races were clean but never triggered the pedal guard; edge recovery effectiveness remains untested.",
+    "The precollection stationary velocity-angle formatter correction changed only undefined-angle observations; original evidence is retained, and all physical commands and trajectories were reproduced identically.",
+    "No paid controls were applied or race advanced.",
+    "No automatic followup or preset promotion follows.",
+    "Root tool chunk/session IDs are checked against the preserved execution confirmation, not independently queried from tool infrastructure; actual writer and ledger records are independently verified."
+  ],
+  "report_generation": {
+    "saved_completed_evidence_only": true,
+    "audits_rerun": false,
+    "model_calls": 0,
+    "ledger_read_or_written": false,
+    "frozen_archives_modified": false
+  }
+}

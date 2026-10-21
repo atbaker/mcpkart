@@ -273,7 +273,9 @@ class ProcessRaceRuntime:
                 "physics_hz": round(1/DT), "process_pid": os.getpid()}
 
     async def start(self, seed: int = 0, deadline: float = 120, label: str = "",
-                    reset_after_s: float | None = 3) -> dict:
+                    reset_after_s: float | None = 3, race_setup: dict | None = None) -> dict:
+        if race_setup and self.runtime_info().get("engine", "python") != "python":
+            raise ValueError("Configurable race setups currently require the Python engine")
         if self._starting or (self.current is not None and self.current.status == "running"):
             raise ValueError("A race is already running or being admitted")
         self._starting = True
@@ -285,7 +287,8 @@ class ProcessRaceRuntime:
             self._parent_spans = {}
             session = await self._spawn()
             value = await self._rpc("start", {"seed": seed, "deadline": deadline, "label": label,
-                                               "reset_after_s": reset_after_s}, session=session)
+                                               "reset_after_s": reset_after_s,
+                                               **({"race_setup": race_setup} if race_setup else {})}, session=session)
             if self.current is None or self.current.race_id != value["race_id"]:
                 self.current = RaceProxy(value["race_id"], value["status"])
             return value

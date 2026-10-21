@@ -1,0 +1,72 @@
+{
+  "complete": true,
+  "technical_audit_passed": true,
+  "protocol_sha256": "67029acbc0a8f1c550c9320e7379f989b27cddebdde00073861bc82d2bd5b947",
+  "stats": {
+    "control": {
+      "pairs": 81,
+      "wheel": 84,
+      "pedal": 81,
+      "n": 84,
+      "by_source": {
+        "natural": 22,
+        "synthetic": 59
+      },
+      "qualified": false,
+      "max_payload_bytes": 5913
+    },
+    "focused": {
+      "pairs": 84,
+      "wheel": 84,
+      "pedal": 84,
+      "n": 84,
+      "by_source": {
+        "natural": 24,
+        "synthetic": 60
+      },
+      "qualified": true,
+      "max_payload_bytes": 6151
+    }
+  },
+  "gate_passed": true,
+  "selected": "focused",
+  "paired_pedal_gains": 3,
+  "paired_pedal_losses": 0,
+  "current_snapshots_exact": 84,
+  "natural_prefix_physics_steps_exact": 28833,
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 69792,
+    "charged_usd": 8.37507182800066,
+    "charged_tokens": 264682182,
+    "reported_cost_usd": 8.317793364000618,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 69960,
+    "charged_usd": 8.389473334000606,
+    "charged_tokens": 265041176,
+    "reported_cost_usd": 8.332194870000563,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 168,
+    "charged_tokens": 358994,
+    "charged_usd": 0.014401505999945385,
+    "reported_cost_usd": 0.014401505999945385,
+    "uncertain_requests": 0
+  },
+  "controls_applied": 0,
+  "model_requests_by_auditor": 0,
+  "root_only_not_second_agent_review": true,
+  "created_utc": "2026-10-20T11:04:36.413481+00:00"
+}

@@ -1,0 +1,1217 @@
+{
+  "result": {
+    "complete": true,
+    "model_requests": 0,
+    "is_jev": false,
+    "rows": [
+      {
+        "path": "artifacts/jev-yaw-damping-v1/51-fixed250-unchanged.json",
+        "sha256": "62b14f78cb8ba8c077c6d92da8fdbdb7540b926e3491b9019eabc715a7aa59cf",
+        "entry": {
+          "seed": 51,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed250",
+        "elapsed_s": 78.5666666666635,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/51-fixed250-damp025.json",
+        "sha256": "b4aa068e2a8665df4670ed76f7bbf6eaaf42b1abba4ac8036d01dbab8df926a7",
+        "entry": {
+          "seed": 51,
+          "course": "stadium"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed250",
+        "elapsed_s": 80.08333333333007,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/51-fixed250-damp050.json",
+        "sha256": "1e8b3df0b0e7e701b9f8826c4ce28600b7ce839a62a9072551117e5e2b4e2b61",
+        "entry": {
+          "seed": 51,
+          "course": "stadium"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed250",
+        "elapsed_s": 81.61666666666332,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/51-fixed250-damp075.json",
+        "sha256": "d5d05d25fd2aeba8e890ccd1f30ff3624e87f646429d6c22b465279f976917e9",
+        "entry": {
+          "seed": 51,
+          "course": "stadium"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed250",
+        "elapsed_s": 83.88333333332986,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/51-fixed500-unchanged.json",
+        "sha256": "bce075de224e531626d82760acf45eb563e4c88520f60b3ddefda776937d2b15",
+        "entry": {
+          "seed": 51,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed500",
+        "elapsed_s": 27.899999999999697,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/51-fixed500-damp025.json",
+        "sha256": "40ac444e3b8ed84547c12fe0cd58ac821d724fd7fc4a90b8590577b72259a825",
+        "entry": {
+          "seed": 51,
+          "course": "stadium"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed500",
+        "elapsed_s": 85.06666666666312,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/51-fixed500-damp050.json",
+        "sha256": "e57c2f893416ad3e50451bf34b8d1f15fa969e6e1f1f555e3fd99a7a6ce57c8f",
+        "entry": {
+          "seed": 51,
+          "course": "stadium"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed500",
+        "elapsed_s": 83.01666666666324,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/51-fixed500-damp075.json",
+        "sha256": "7cab76fe589d3c5399022a207dc3f9ad9885a1ee077e2b1deda9cbc2ac175a01",
+        "entry": {
+          "seed": 51,
+          "course": "stadium"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed500",
+        "elapsed_s": 86.94999999999635,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/51-fixed750-unchanged.json",
+        "sha256": "5d6f32a7a99a7a0c9c276442d9d4d064be7401fefa5bfe08dc999b42afd0746e",
+        "entry": {
+          "seed": 51,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed750",
+        "elapsed_s": 16.86666666666699,
+        "rescues": 0,
+        "grass_s": 0.6666666666666671,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/51-fixed750-damp025.json",
+        "sha256": "6a7110b3ff3c198c4deef081b5a0d030ac1b7b56d4155ec768bb9af6ec50a4fd",
+        "entry": {
+          "seed": 51,
+          "course": "stadium"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed750",
+        "elapsed_s": 10.733333333333446,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/51-fixed750-damp050.json",
+        "sha256": "e7f385daac4d35931f4bced6bf100c0a3f50095fff49f2b5b193df611b8363a1",
+        "entry": {
+          "seed": 51,
+          "course": "stadium"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed750",
+        "elapsed_s": 42.166666666665556,
+        "rescues": 1,
+        "grass_s": 4.233333333333324,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/51-fixed750-damp075.json",
+        "sha256": "941d1941decfdb9f5a527dd1222797516b9849b75080b05a04003642e376d25f",
+        "entry": {
+          "seed": 51,
+          "course": "stadium"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed750",
+        "elapsed_s": 22.233333333333352,
+        "rescues": 0,
+        "grass_s": 0.3833333333333333,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/52-fixed250-unchanged.json",
+        "sha256": "7a08df9a0074db5b65201d55166543fc44eb64b9d240b0c87c5661a6ee10d412",
+        "entry": {
+          "seed": 52,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed250",
+        "elapsed_s": 78.83333333333015,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/52-fixed250-damp025.json",
+        "sha256": "d7dc15c5bf9818a0cc5698e73672764b3485541721a8639801168778874d3aeb",
+        "entry": {
+          "seed": 52,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed250",
+        "elapsed_s": 80.06666666666341,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/52-fixed250-damp050.json",
+        "sha256": "3586f9043808ec03622c2f1d3709820e965bb639a2681f4ef40b30389392317d",
+        "entry": {
+          "seed": 52,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed250",
+        "elapsed_s": 81.79999999999664,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/52-fixed250-damp075.json",
+        "sha256": "bf6f4eaa96a6d81c19c08a372a9f847b53ef1c565f235928c1b950efaefabfb3",
+        "entry": {
+          "seed": 52,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed250",
+        "elapsed_s": 83.7166666666632,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/52-fixed500-unchanged.json",
+        "sha256": "a04e604dcc0fa7980a1ba0a80e1c0bf1b605fcd7e32ca3e26e2499e2c3e64d37",
+        "entry": {
+          "seed": 52,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed500",
+        "elapsed_s": 22.733333333333324,
+        "rescues": 0,
+        "grass_s": 0.13333333333333333,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/52-fixed500-damp025.json",
+        "sha256": "4cb126915955ad94296aa443eb30460288725fb13bbf2bcc734edfcdc30ca4a6",
+        "entry": {
+          "seed": 52,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed500",
+        "elapsed_s": 85.21666666666312,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/52-fixed500-damp050.json",
+        "sha256": "74661b6090b86dc591b3352d44e500dfdcb41080830229b3b3463c979897be81",
+        "entry": {
+          "seed": 52,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed500",
+        "elapsed_s": 83.41666666666322,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/52-fixed500-damp075.json",
+        "sha256": "19735e230c5a215e3f223d916e22376d99e514ccaa674f7e3434a78375544c7d",
+        "entry": {
+          "seed": 52,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed500",
+        "elapsed_s": 88.46666666666293,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/52-fixed750-unchanged.json",
+        "sha256": "36da6b2781f18725450278f6168c7044ee7dc0c8c29e3bb7130baf36036bb41e",
+        "entry": {
+          "seed": 52,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed750",
+        "elapsed_s": 16.86666666666699,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/52-fixed750-damp025.json",
+        "sha256": "660982cb672f50cf9120ccaa5dc0b29ebabf64bf86c5658c98b7856ca3ed12a1",
+        "entry": {
+          "seed": 52,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed750",
+        "elapsed_s": 10.733333333333446,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/52-fixed750-damp050.json",
+        "sha256": "3afbec985599fd311fcecca85fa207ba973406855375668c6fa19886d9177cd3",
+        "entry": {
+          "seed": 52,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed750",
+        "elapsed_s": 23.766666666666598,
+        "rescues": 0,
+        "grass_s": 0.6500000000000004,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/52-fixed750-damp075.json",
+        "sha256": "648c501b834fa6d0b676c24cc1b94a76bf9bb4c53221574e1436748d26cfa83f",
+        "entry": {
+          "seed": 52,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed750",
+        "elapsed_s": 22.233333333333352,
+        "rescues": 0,
+        "grass_s": 0.7000000000000005,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/53-fixed250-unchanged.json",
+        "sha256": "dbd3da00fb9e8bc2480d4dfdc14dbe0553036f4403375e5ff7dabc8eb74f9292",
+        "entry": {
+          "seed": 53,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed250",
+        "elapsed_s": 78.61666666666349,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/53-fixed250-damp025.json",
+        "sha256": "2320e10c7f82ecfc3b483c14caa8672e804f9157bee04241bfa0d64e22c3514c",
+        "entry": {
+          "seed": 53,
+          "course": "stadium"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed250",
+        "elapsed_s": 79.86666666666342,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/53-fixed250-damp050.json",
+        "sha256": "370d18195364f68bed9d3abe482b4e9d50ab220f6b8b45bc2c0ce8e199ea0555",
+        "entry": {
+          "seed": 53,
+          "course": "stadium"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed250",
+        "elapsed_s": 81.51666666666333,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/53-fixed250-damp075.json",
+        "sha256": "51f1520a00d66047b74cc632cca29f54eedd5004a768327788f64c156599c081",
+        "entry": {
+          "seed": 53,
+          "course": "stadium"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed250",
+        "elapsed_s": 83.93333333332986,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/53-fixed500-unchanged.json",
+        "sha256": "075d77a0186d1ab0aff433c41d783c2f6306cea249fa7dd148a8cf3fdc0f9e7d",
+        "entry": {
+          "seed": 53,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed500",
+        "elapsed_s": 24.799999999999873,
+        "rescues": 0,
+        "grass_s": 1.7666666666666653,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/53-fixed500-damp025.json",
+        "sha256": "4b2bd05414936875808cf3be6c8d9c86b40c222c6c351fe31fb99e4267ee4bff",
+        "entry": {
+          "seed": 53,
+          "course": "stadium"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed500",
+        "elapsed_s": 87.08333333332968,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/53-fixed500-damp050.json",
+        "sha256": "e38307ae91b5007b12b40ed184cf6d906d6b31a2ae15c5bafb980d9217a31d5f",
+        "entry": {
+          "seed": 53,
+          "course": "stadium"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed500",
+        "elapsed_s": 83.53333333332988,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/53-fixed500-damp075.json",
+        "sha256": "c204e3d876b8b6d963a43b013f4b4ee346184830996c309c42e2ecf88b1e6d50",
+        "entry": {
+          "seed": 53,
+          "course": "stadium"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed500",
+        "elapsed_s": 89.0166666666629,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/53-fixed750-unchanged.json",
+        "sha256": "35a64a5635645c18c9536d6799ac4a63a996872ef21f3483de2f5ed8bc36c0c2",
+        "entry": {
+          "seed": 53,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed750",
+        "elapsed_s": 16.86666666666699,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/53-fixed750-damp025.json",
+        "sha256": "fd5b1a50ab98d48793233874f309908a0c7bceb8f57b0c379b8115680278423f",
+        "entry": {
+          "seed": 53,
+          "course": "stadium"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed750",
+        "elapsed_s": 10.733333333333446,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/53-fixed750-damp050.json",
+        "sha256": "0f5998ee6551195ed0fa2fb68ea242ed164a0ba8ede1613410ec087df25e27cb",
+        "entry": {
+          "seed": 53,
+          "course": "stadium"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed750",
+        "elapsed_s": 39.09999999999906,
+        "rescues": 0,
+        "grass_s": 0.6666666666666671,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/53-fixed750-damp075.json",
+        "sha256": "59b769b34a7e02dd0df1625f0d35428de52a99ee77a4cea7b1c38eabd13977c7",
+        "entry": {
+          "seed": 53,
+          "course": "stadium"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed750",
+        "elapsed_s": 20.700000000000106,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/54-fixed250-unchanged.json",
+        "sha256": "7e9538098824891ca3fe9d7be34411f158acb50bb0f7271a1de27ed6847d2044",
+        "entry": {
+          "seed": 54,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed250",
+        "elapsed_s": 78.48333333333017,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/54-fixed250-damp025.json",
+        "sha256": "f70aa7be57849191f21de92bd5ee166b8c56a7a180787285141a397b839a0c70",
+        "entry": {
+          "seed": 54,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed250",
+        "elapsed_s": 79.56666666666344,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/54-fixed250-damp050.json",
+        "sha256": "a9a5f242a3d22d8d10ce530ba1b93a8cb08e21b568d3192f74d3108d9d8d4447",
+        "entry": {
+          "seed": 54,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed250",
+        "elapsed_s": 81.63333333332999,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/54-fixed250-damp075.json",
+        "sha256": "171faa5fe83392780ca93468a4715e95f76defa4b55a78749779b8142a892fb2",
+        "entry": {
+          "seed": 54,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed250",
+        "elapsed_s": 83.64999999999654,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/54-fixed500-unchanged.json",
+        "sha256": "1cb02cf29036e197aab2be8ebf73860ad69f1567f50d00f96a6e3f9ac6ad760b",
+        "entry": {
+          "seed": 54,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed500",
+        "elapsed_s": 22.733333333333324,
+        "rescues": 0,
+        "grass_s": 0.13333333333333333,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/54-fixed500-damp025.json",
+        "sha256": "85f0ec1d4d894da9e793cd01f024fdaa58658442bdd1b73c9123c110ddb36c9e",
+        "entry": {
+          "seed": 54,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed500",
+        "elapsed_s": 83.48333333332988,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/54-fixed500-damp050.json",
+        "sha256": "1b4e2c37a2dfaed70bcf75e57fbc7014efb604bc6fd5341061bd3ec3c93f57fd",
+        "entry": {
+          "seed": 54,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed500",
+        "elapsed_s": 83.91666666666319,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/54-fixed500-damp075.json",
+        "sha256": "af33cbd10acbc6b27f32602ddb4d424e083c772537c37de067b917070419a518",
+        "entry": {
+          "seed": 54,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed500",
+        "elapsed_s": 88.08333333332962,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/54-fixed750-unchanged.json",
+        "sha256": "bbbf8d8cb4032cbeb423525c4cb38b2b000c5d8f4498651bc1a2ca888e948960",
+        "entry": {
+          "seed": 54,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed750",
+        "elapsed_s": 16.86666666666699,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/54-fixed750-damp025.json",
+        "sha256": "cddfee9031a62d07906dc00d47b06d0426a6bf59effbd5c4ad4dcc2ebff0ec14",
+        "entry": {
+          "seed": 54,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed750",
+        "elapsed_s": 10.733333333333446,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/54-fixed750-damp050.json",
+        "sha256": "b48f721c3cdcab613c85033e35e13fc9714c93fcfcd56bdbeaf601588d7b20ff",
+        "entry": {
+          "seed": 54,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed750",
+        "elapsed_s": 23.766666666666598,
+        "rescues": 0,
+        "grass_s": 0.6500000000000004,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/54-fixed750-damp075.json",
+        "sha256": "97292ab8e5447bdf5e09081b553b419be39b22ea8a9ed7ade32e51a336604098",
+        "entry": {
+          "seed": 54,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed750",
+        "elapsed_s": 22.233333333333352,
+        "rescues": 0,
+        "grass_s": 0.7000000000000005,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/55-fixed250-unchanged.json",
+        "sha256": "be9446ad853432513140999d5f1b47d597996d2d6a709bae2fcfa0e1508a4c5b",
+        "entry": {
+          "seed": 55,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed250",
+        "elapsed_s": 78.49999999999683,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/55-fixed250-damp025.json",
+        "sha256": "eabbe37f1a8bfc3d6bcb898043b140e11e0e22933f519dde56f6be561761d89e",
+        "entry": {
+          "seed": 55,
+          "course": "stadium"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed250",
+        "elapsed_s": 80.14999999999674,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/55-fixed250-damp050.json",
+        "sha256": "e97d98ba1c1f189bc785b6cd2ea0a794e080190e6308807a1fb4e4217b649632",
+        "entry": {
+          "seed": 55,
+          "course": "stadium"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed250",
+        "elapsed_s": 81.83333333332997,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/55-fixed250-damp075.json",
+        "sha256": "e71515245f2026d433bf0d29b8bf5fdf788c37577fe1a099307b64cedc9cf9e1",
+        "entry": {
+          "seed": 55,
+          "course": "stadium"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed250",
+        "elapsed_s": 83.64999999999654,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/55-fixed500-unchanged.json",
+        "sha256": "fc24fc39589de36b44a4e6d204a976ac5891acc38dd90c5529c4824311894577",
+        "entry": {
+          "seed": 55,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed500",
+        "elapsed_s": 22.733333333333324,
+        "rescues": 0,
+        "grass_s": 0.15,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/55-fixed500-damp025.json",
+        "sha256": "24dd470568552fa1f1cab04cc22a8a780c852296875a04aad6f0a8975ae7ddbd",
+        "entry": {
+          "seed": 55,
+          "course": "stadium"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed500",
+        "elapsed_s": 85.48333333332977,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/55-fixed500-damp050.json",
+        "sha256": "5819f63b665a789d3c38859cb9af1adeb0656e7b90d633c06cca817cca51477c",
+        "entry": {
+          "seed": 55,
+          "course": "stadium"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed500",
+        "elapsed_s": 83.31666666666322,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/55-fixed500-damp075.json",
+        "sha256": "88f43724c915c6ee38ada12e26fea4bac8f0de765e45ed367a69908315ae20c8",
+        "entry": {
+          "seed": 55,
+          "course": "stadium"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed500",
+        "elapsed_s": 86.6833333333297,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/55-fixed750-unchanged.json",
+        "sha256": "68c4ba769e1a6a02520f9af45ab52c6915035eccd69017d8839ff70ded03be39",
+        "entry": {
+          "seed": 55,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed750",
+        "elapsed_s": 16.86666666666699,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/55-fixed750-damp025.json",
+        "sha256": "57bb65d2c066c2cba874c4bba5755e8153a4462ca2e19a840b5d6954546720e1",
+        "entry": {
+          "seed": 55,
+          "course": "stadium"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed750",
+        "elapsed_s": 10.733333333333446,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/55-fixed750-damp050.json",
+        "sha256": "c257e31e2a7e996d728a86461caa239346da08290925dd6f3a170481d6672d8f",
+        "entry": {
+          "seed": 55,
+          "course": "stadium"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed750",
+        "elapsed_s": 23.766666666666598,
+        "rescues": 0,
+        "grass_s": 0.6500000000000004,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/55-fixed750-damp075.json",
+        "sha256": "8739f61ae1637fbf13aa93fd8106594b2694a1a69e16bdec4c188f6aa012430e",
+        "entry": {
+          "seed": 55,
+          "course": "stadium"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed750",
+        "elapsed_s": 22.233333333333352,
+        "rescues": 0,
+        "grass_s": 0.7166666666666672,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/56-fixed250-unchanged.json",
+        "sha256": "ebcb3268fc46126ee1546ca569df4b54be604e25e34527dcd6e4d2372c567503",
+        "entry": {
+          "seed": 56,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed250",
+        "elapsed_s": 78.53333333333016,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/56-fixed250-damp025.json",
+        "sha256": "62548f584b9bc20685fe41187e1559e3828c33691c7e7828c0717863f1a647f8",
+        "entry": {
+          "seed": 56,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed250",
+        "elapsed_s": 79.84999999999675,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/56-fixed250-damp050.json",
+        "sha256": "09800ef68bd1acd2d249a7c474e6ec305b94aaab796d752a77bdcb0ff3d4a7e7",
+        "entry": {
+          "seed": 56,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed250",
+        "elapsed_s": 81.63333333332999,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/56-fixed250-damp075.json",
+        "sha256": "308eb2c5b89ef8219f5e55c50834f9296c0c34a5a6d1d1d952141db01ef24df9",
+        "entry": {
+          "seed": 56,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed250",
+        "elapsed_s": 83.83333333332986,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/56-fixed500-unchanged.json",
+        "sha256": "4f83f803c182d8d099cdb2456f93c0066d1b28f0000a5b93f67b0a867c9f2465",
+        "entry": {
+          "seed": 56,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed500",
+        "elapsed_s": 27.899999999999697,
+        "rescues": 0,
+        "grass_s": 0.9833333333333347,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/56-fixed500-damp025.json",
+        "sha256": "6661b1250bc89b27aff99b2ee5015ee2fff6bdbcd5ed10ab037bc7c453323994",
+        "entry": {
+          "seed": 56,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed500",
+        "elapsed_s": 84.21666666666317,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/56-fixed500-damp050.json",
+        "sha256": "234d735bbb0b501865940c81a247a2f8788d8517a7430800141de846675d79df",
+        "entry": {
+          "seed": 56,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed500",
+        "elapsed_s": 83.04999999999657,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/56-fixed500-damp075.json",
+        "sha256": "95a883ce1916ffc77019c36398ff49800fe526104514c1f00b6bb4a20166a7ed",
+        "entry": {
+          "seed": 56,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed500",
+        "elapsed_s": 87.53333333332965,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/56-fixed750-unchanged.json",
+        "sha256": "28a8e14e6bd63bf36033c50e5e5243f8812cc4df7864d0d2c0c860b4e9864b89",
+        "entry": {
+          "seed": 56,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed750",
+        "elapsed_s": 16.86666666666699,
+        "rescues": 0,
+        "grass_s": 0.6833333333333338,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/56-fixed750-damp025.json",
+        "sha256": "e798b5e396141125ca8dc0a34a5d1c6083c804756ef0eac7fdf005855ab4d784",
+        "entry": {
+          "seed": 56,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp025",
+        "delay_profile": "fixed750",
+        "elapsed_s": 10.733333333333446,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/56-fixed750-damp050.json",
+        "sha256": "bebe5be26765cce01dc523627281868b490f35f9e6eda1e3c78b506e8d58da04",
+        "entry": {
+          "seed": 56,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp050",
+        "delay_profile": "fixed750",
+        "elapsed_s": 42.166666666665556,
+        "rescues": 1,
+        "grass_s": 4.233333333333324,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-yaw-damping-v1/56-fixed750-damp075.json",
+        "sha256": "e2b4e503a5e65f66d4e5ad3f34cbe70fa1079a539ffba7c0f9f19123dd78dba8",
+        "entry": {
+          "seed": 56,
+          "course": "stadium_clockwise"
+        },
+        "profile": "damp075",
+        "delay_profile": "fixed750",
+        "elapsed_s": 22.233333333333352,
+        "rescues": 0,
+        "grass_s": 0.35,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      }
+    ],
+    "candidates": {
+      "damp025": {
+        "ordinary_six_clean": true,
+        "fixed500_clean": 6,
+        "fixed750_clean": 0,
+        "fixed500_by_direction": {
+          "stadium": 3,
+          "stadium_clockwise": 3
+        },
+        "stress_net_clean_gain": 6,
+        "no_net_useful_loss": true,
+        "eligible": true
+      },
+      "damp050": {
+        "ordinary_six_clean": true,
+        "fixed500_clean": 6,
+        "fixed750_clean": 0,
+        "fixed500_by_direction": {
+          "stadium": 3,
+          "stadium_clockwise": 3
+        },
+        "stress_net_clean_gain": 6,
+        "no_net_useful_loss": true,
+        "eligible": true
+      },
+      "damp075": {
+        "ordinary_six_clean": true,
+        "fixed500_clean": 6,
+        "fixed750_clean": 0,
+        "fixed500_by_direction": {
+          "stadium": 3,
+          "stadium_clockwise": 3
+        },
+        "stress_net_clean_gain": 6,
+        "no_net_useful_loss": true,
+        "eligible": true
+      }
+    },
+    "selected": "damp025",
+    "physical_selection_gate_passed": true,
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "plan_sha256": "f46b85eaa11fdcb1f32e8f40e54c4bb38b4df76883a74413b4fc1e2f960334bb",
+    "shared_ledger_unchanged": true,
+    "created_utc": "2026-10-20T09:58:17.848093+00:00"
+  },
+  "audit": {
+    "passed": true,
+    "cells": 72,
+    "physics_steps_exact": 247341,
+    "query_actions_exact": 11215,
+    "gate_reconstructed": true,
+    "model_requests": 0,
+    "is_jev": false,
+    "shared_ledger_unchanged": true,
+    "result_sha256": "073c5aa28a0f1853f04d298b9a2a8d10d08ff94217a8f4e1bf91167e8e1d2f6b",
+    "root_only_not_second_agent_review": true
+  }
+}

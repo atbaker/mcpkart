@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "kind": "verification_only_continuation",
+  "frozen": true,
+  "created_utc": "2026-10-20T01:02:37.338834+00:00",
+  "parent_protocol_path": "protocol.json",
+  "parent_protocol_sha256": "996c1741e841189d75cbb1f0a428354034865095f5b88529591f1843a9c12e91",
+  "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+  "known_first_trial": {
+    "index": 0,
+    "protocol_path": "paid/00-joint-seed-11/protocol.json",
+    "protocol_sha256": "cd671a44a4fa6385b346693833c68fc8025852e2b86fd06ae58a68c0e1d022f9",
+    "trial_path": "paid/00-joint-seed-11/trial.json",
+    "trial_sha256": "34e2c188f7747810675aaf960e36367e2b98472ba766f3bf0337ab8354ad3752",
+    "result_path": "paid/00-joint-seed-11/result.json",
+    "result_sha256": "a259f95392f7b70008da730d1a5fa5438f0ee04d509020cc34f797f9c49612c8",
+    "diagnostic_path": "diagnostics/runtime-finished-field.json",
+    "diagnostic_sha256": "e3703e66c230c352b2e300dc9c3a34a6e059315b44c77c5d523a9b74cec0b07f",
+    "corrected_replay_path": "diagnostics/corrected-replay-00.json",
+    "corrected_replay_sha256": "91b585507af38782bde4c0893fa835a49f4d84853d96d75050503ed078ec93c5"
+  },
+  "budget_at_amendment": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 59616,
+    "charged_usd": 7.358979393999878,
+    "charged_tokens": 239420644,
+    "reported_cost_usd": 7.301700929999862,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "permitted_correction": "finished=sim.finished",
+  "permitted_unrun_indices": [
+    1,
+    2,
+    3
+  ],
+  "order": [
+    {
+      "index": 0,
+      "seed": 11,
+      "layout": "joint"
+    },
+    {
+      "index": 1,
+      "seed": 11,
+      "layout": "factored"
+    },
+    {
+      "index": 2,
+      "seed": 12,
+      "layout": "factored"
+    },
+    {
+      "index": 3,
+      "seed": 12,
+      "layout": "joint"
+    }
+  ],
+  "comparison_unchanged": true,
+  "limits": {
+    "max_requests": 75000,
+    "cap_usd": 10.0,
+    "max_tokens": 250000000
+  },
+  "session_deadline_utc": "2026-10-20T06:17:26+00:00",
+  "original_stop_path": "phase-stop-00.json",
+  "original_stop_sha256": "49fe5fe3458d631bd95e3601df3827195d9670223b7b9463afdf1018081ae0b2",
+  "original_failed_audit_path": "final-audit.json",
+  "original_failed_audit_sha256": "4384b4d99a52a3fe11426f52c8681315acf9b7cecef4f9f69976306264294348",
+  "helper_sha256": {
+    "resume_amended.py": "7f3338ae718e9def82e9fc1b5bdc210f34960df5ab200f4adb3dd54ad299ce01",
+    "audit_amended.py": "67e0aa544f197cf5a7fde328651314b995c6b5da0c6795cc6b90aefc7420a545",
+    "resume-amended-preflight.json": "fd398baefa1b12bf9b4757e5fe7da24e7d0b8b547082926b26a643adb01572e1",
+    "diagnostics/runtime-finished-field.py": "f436037adc5b2beee828957b9ebf309d57aa003e2efdda114af8ac7ee1ed08b5",
+    "diagnostics/request-state-check.py": "2e764838ee7370f1bb17c234c219350681b91d9b0dad4588577311124a33eda8",
+    "diagnostics/request-state-check.json": "3db0919ed2b442c527344a018774d7903377eb9d144dbc4c8d3abf164f7652ac"
+  },
+  "policy": "Retain original index0 and allfailedverificationoutputs; run onlyunattemptedindices1\u20133. No source/client/payload/physics/timing/action/menu/route/cap/order/performancegate change. Originalresult00 remainscontinuefalse; only itscertifiedverificationomission isexcepted inresume admission.",
+  "frozen_utc": "2026-10-20T01:03:38.854055+00:00"
+}

@@ -558,7 +558,7 @@ async def test_comparison_stops_and_saves_incomplete_attempt_in_summary(monkeypa
 
     monkeypatch.setattr(bench, "tool", fake_tool)
     monkeypatch.setattr(bench, "Client", FakeContext)
-    monkeypatch.setattr(bench, "reference_durations", lambda path: {0: 56.7, 1: 56.7})
+    monkeypatch.setattr(bench, "reference_durations", lambda path, **kwargs: {0: 56.7, 1: 56.7})
     monkeypatch.setattr(decisions, "DecisionClient", Driver)
     monkeypatch.setattr(decisions, "Budget", FakeBudget)
     args = argparse.Namespace(

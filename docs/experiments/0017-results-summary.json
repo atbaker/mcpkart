@@ -1,0 +1,1201 @@
+{
+  "schema_version": 1,
+  "scope": "Static supplied-formula execution; no controls applied, driving claim or preset promotion.",
+  "audit": {
+    "passed": true,
+    "complete": true,
+    "checked_at_utc": "2026-10-19T22:36:24.970127+00:00",
+    "source_fingerprint": "588958f4c0bd594064b55c24cc9b678a4a41448c7334592521bb91bfa2130e6c",
+    "planned_requests": 720,
+    "saved_requests": 720,
+    "failures": [],
+    "unrun": [],
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 57256,
+      "charged_usd": 7.145243367999857,
+      "charged_tokens": 234138647,
+      "reported_cost_usd": 7.087964903999842,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 57976,
+      "charged_usd": 7.209357207999865,
+      "charged_tokens": 235712034,
+      "reported_cost_usd": 7.15207874399985,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 720,
+      "charged_usd": 0.06411384000000808,
+      "reported_cost_usd": 0.06411384000000808,
+      "charged_tokens": 1573387,
+      "uncertain_requests": 0
+    },
+    "no_controls_applied": true
+  },
+  "groups": {
+    "context": [
+      {
+        "context": "baseline",
+        "planned": 360,
+        "attempted": 360,
+        "unrun": 0,
+        "endpoint_ok": 360,
+        "endpoint_errors": 0,
+        "correct": 137,
+        "incorrect_or_endpoint_error": 223,
+        "attempted_accuracy": 0.38055555555555554,
+        "planned_correct_fraction": 0.38055555555555554,
+        "endpoint_success_accuracy": 0.38055555555555554,
+        "charged_usd": 0.0307566,
+        "charged_tokens": 755703,
+        "median_latency_ms": 229.87406
+      },
+      {
+        "context": "explicit_target",
+        "planned": 360,
+        "attempted": 360,
+        "unrun": 0,
+        "endpoint_ok": 360,
+        "endpoint_errors": 0,
+        "correct": 185,
+        "incorrect_or_endpoint_error": 175,
+        "attempted_accuracy": 0.5138888888888888,
+        "planned_correct_fraction": 0.5138888888888888,
+        "endpoint_success_accuracy": 0.5138888888888888,
+        "charged_usd": 0.03335724,
+        "charged_tokens": 817684,
+        "median_latency_ms": 230.78743400000002
+      }
+    ],
+    "expected_class": [
+      {
+        "context": "baseline",
+        "expected_class": "full_left",
+        "planned": 60,
+        "attempted": 60,
+        "unrun": 0,
+        "endpoint_ok": 60,
+        "endpoint_errors": 0,
+        "correct": 2,
+        "incorrect_or_endpoint_error": 58,
+        "attempted_accuracy": 0.03333333333333333,
+        "planned_correct_fraction": 0.03333333333333333,
+        "endpoint_success_accuracy": 0.03333333333333333,
+        "charged_usd": 0.00513954,
+        "charged_tokens": 126270,
+        "median_latency_ms": 235.5924035
+      },
+      {
+        "context": "baseline",
+        "expected_class": "full_right",
+        "planned": 60,
+        "attempted": 60,
+        "unrun": 0,
+        "endpoint_ok": 60,
+        "endpoint_errors": 0,
+        "correct": 12,
+        "incorrect_or_endpoint_error": 48,
+        "attempted_accuracy": 0.2,
+        "planned_correct_fraction": 0.2,
+        "endpoint_success_accuracy": 0.2,
+        "charged_usd": 0.00517986,
+        "charged_tokens": 127230,
+        "median_latency_ms": 225.469996
+      },
+      {
+        "context": "baseline",
+        "expected_class": "moderate_left",
+        "planned": 60,
+        "attempted": 60,
+        "unrun": 0,
+        "endpoint_ok": 60,
+        "endpoint_errors": 0,
+        "correct": 60,
+        "incorrect_or_endpoint_error": 0,
+        "attempted_accuracy": 1.0,
+        "planned_correct_fraction": 1.0,
+        "endpoint_success_accuracy": 1.0,
+        "charged_usd": 0.00513198,
+        "charged_tokens": 126090,
+        "median_latency_ms": 227.0490225
+      },
+      {
+        "context": "baseline",
+        "expected_class": "moderate_right",
+        "planned": 60,
+        "attempted": 60,
+        "unrun": 0,
+        "endpoint_ok": 60,
+        "endpoint_errors": 0,
+        "correct": 60,
+        "incorrect_or_endpoint_error": 0,
+        "attempted_accuracy": 1.0,
+        "planned_correct_fraction": 1.0,
+        "endpoint_success_accuracy": 1.0,
+        "charged_usd": 0.00515592,
+        "charged_tokens": 126660,
+        "median_latency_ms": 238.179914
+      },
+      {
+        "context": "baseline",
+        "expected_class": "straight",
+        "planned": 120,
+        "attempted": 120,
+        "unrun": 0,
+        "endpoint_ok": 120,
+        "endpoint_errors": 0,
+        "correct": 3,
+        "incorrect_or_endpoint_error": 117,
+        "attempted_accuracy": 0.025,
+        "planned_correct_fraction": 0.025,
+        "endpoint_success_accuracy": 0.025,
+        "charged_usd": 0.0101493,
+        "charged_tokens": 249453,
+        "median_latency_ms": 228.34704
+      },
+      {
+        "context": "explicit_target",
+        "expected_class": "full_left",
+        "planned": 60,
+        "attempted": 60,
+        "unrun": 0,
+        "endpoint_ok": 60,
+        "endpoint_errors": 0,
+        "correct": 0,
+        "incorrect_or_endpoint_error": 60,
+        "attempted_accuracy": 0.0,
+        "planned_correct_fraction": 0.0,
+        "endpoint_success_accuracy": 0.0,
+        "charged_usd": 0.00557298,
+        "charged_tokens": 136590,
+        "median_latency_ms": 233.7629055
+      },
+      {
+        "context": "explicit_target",
+        "expected_class": "full_right",
+        "planned": 60,
+        "attempted": 60,
+        "unrun": 0,
+        "endpoint_ok": 60,
+        "endpoint_errors": 0,
+        "correct": 1,
+        "incorrect_or_endpoint_error": 59,
+        "attempted_accuracy": 0.016666666666666666,
+        "planned_correct_fraction": 0.016666666666666666,
+        "endpoint_success_accuracy": 0.016666666666666666,
+        "charged_usd": 0.0056133,
+        "charged_tokens": 137550,
+        "median_latency_ms": 232.96941750000002
+      },
+      {
+        "context": "explicit_target",
+        "expected_class": "moderate_left",
+        "planned": 60,
+        "attempted": 60,
+        "unrun": 0,
+        "endpoint_ok": 60,
+        "endpoint_errors": 0,
+        "correct": 60,
+        "incorrect_or_endpoint_error": 0,
+        "attempted_accuracy": 1.0,
+        "planned_correct_fraction": 1.0,
+        "endpoint_success_accuracy": 1.0,
+        "charged_usd": 0.00556542,
+        "charged_tokens": 136410,
+        "median_latency_ms": 228.71447899999998
+      },
+      {
+        "context": "explicit_target",
+        "expected_class": "moderate_right",
+        "planned": 60,
+        "attempted": 60,
+        "unrun": 0,
+        "endpoint_ok": 60,
+        "endpoint_errors": 0,
+        "correct": 60,
+        "incorrect_or_endpoint_error": 0,
+        "attempted_accuracy": 1.0,
+        "planned_correct_fraction": 1.0,
+        "endpoint_success_accuracy": 1.0,
+        "charged_usd": 0.00558936,
+        "charged_tokens": 136980,
+        "median_latency_ms": 233.322361
+      },
+      {
+        "context": "explicit_target",
+        "expected_class": "straight",
+        "planned": 120,
+        "attempted": 120,
+        "unrun": 0,
+        "endpoint_ok": 120,
+        "endpoint_errors": 0,
+        "correct": 64,
+        "incorrect_or_endpoint_error": 56,
+        "attempted_accuracy": 0.5333333333333333,
+        "planned_correct_fraction": 0.5333333333333333,
+        "endpoint_success_accuracy": 0.5333333333333333,
+        "charged_usd": 0.01101618,
+        "charged_tokens": 270154,
+        "median_latency_ms": 227.4449745
+      }
+    ],
+    "expected_magnitude": [
+      {
+        "context": "baseline",
+        "expected_magnitude": "full",
+        "planned": 120,
+        "attempted": 120,
+        "unrun": 0,
+        "endpoint_ok": 120,
+        "endpoint_errors": 0,
+        "correct": 14,
+        "incorrect_or_endpoint_error": 106,
+        "attempted_accuracy": 0.11666666666666667,
+        "planned_correct_fraction": 0.11666666666666667,
+        "endpoint_success_accuracy": 0.11666666666666667,
+        "charged_usd": 0.0103194,
+        "charged_tokens": 253500,
+        "median_latency_ms": 230.7349835
+      },
+      {
+        "context": "baseline",
+        "expected_magnitude": "moderate",
+        "planned": 120,
+        "attempted": 120,
+        "unrun": 0,
+        "endpoint_ok": 120,
+        "endpoint_errors": 0,
+        "correct": 120,
+        "incorrect_or_endpoint_error": 0,
+        "attempted_accuracy": 1.0,
+        "planned_correct_fraction": 1.0,
+        "endpoint_success_accuracy": 1.0,
+        "charged_usd": 0.0102879,
+        "charged_tokens": 252750,
+        "median_latency_ms": 234.12685900000002
+      },
+      {
+        "context": "baseline",
+        "expected_magnitude": "straight",
+        "planned": 120,
+        "attempted": 120,
+        "unrun": 0,
+        "endpoint_ok": 120,
+        "endpoint_errors": 0,
+        "correct": 3,
+        "incorrect_or_endpoint_error": 117,
+        "attempted_accuracy": 0.025,
+        "planned_correct_fraction": 0.025,
+        "endpoint_success_accuracy": 0.025,
+        "charged_usd": 0.0101493,
+        "charged_tokens": 249453,
+        "median_latency_ms": 228.34704
+      },
+      {
+        "context": "explicit_target",
+        "expected_magnitude": "full",
+        "planned": 120,
+        "attempted": 120,
+        "unrun": 0,
+        "endpoint_ok": 120,
+        "endpoint_errors": 0,
+        "correct": 1,
+        "incorrect_or_endpoint_error": 119,
+        "attempted_accuracy": 0.008333333333333333,
+        "planned_correct_fraction": 0.008333333333333333,
+        "endpoint_success_accuracy": 0.008333333333333333,
+        "charged_usd": 0.01118628,
+        "charged_tokens": 274140,
+        "median_latency_ms": 232.96941750000002
+      },
+      {
+        "context": "explicit_target",
+        "expected_magnitude": "moderate",
+        "planned": 120,
+        "attempted": 120,
+        "unrun": 0,
+        "endpoint_ok": 120,
+        "endpoint_errors": 0,
+        "correct": 120,
+        "incorrect_or_endpoint_error": 0,
+        "attempted_accuracy": 1.0,
+        "planned_correct_fraction": 1.0,
+        "endpoint_success_accuracy": 1.0,
+        "charged_usd": 0.01115478,
+        "charged_tokens": 273390,
+        "median_latency_ms": 230.507155
+      },
+      {
+        "context": "explicit_target",
+        "expected_magnitude": "straight",
+        "planned": 120,
+        "attempted": 120,
+        "unrun": 0,
+        "endpoint_ok": 120,
+        "endpoint_errors": 0,
+        "correct": 64,
+        "incorrect_or_endpoint_error": 56,
+        "attempted_accuracy": 0.5333333333333333,
+        "planned_correct_fraction": 0.5333333333333333,
+        "endpoint_success_accuracy": 0.5333333333333333,
+        "charged_usd": 0.01101618,
+        "charged_tokens": 270154,
+        "median_latency_ms": 227.4449745
+      }
+    ],
+    "current_wheel_rad": [
+      {
+        "context": "baseline",
+        "current_wheel_rad": -0.12,
+        "planned": 72,
+        "attempted": 72,
+        "unrun": 0,
+        "endpoint_ok": 72,
+        "endpoint_errors": 0,
+        "correct": 27,
+        "incorrect_or_endpoint_error": 45,
+        "attempted_accuracy": 0.375,
+        "planned_correct_fraction": 0.375,
+        "endpoint_success_accuracy": 0.375,
+        "charged_usd": 0.006157368,
+        "charged_tokens": 151285,
+        "median_latency_ms": 233.3212385
+      },
+      {
+        "context": "baseline",
+        "current_wheel_rad": -0.06,
+        "planned": 72,
+        "attempted": 72,
+        "unrun": 0,
+        "endpoint_ok": 72,
+        "endpoint_errors": 0,
+        "correct": 29,
+        "incorrect_or_endpoint_error": 43,
+        "attempted_accuracy": 0.4027777777777778,
+        "planned_correct_fraction": 0.4027777777777778,
+        "endpoint_success_accuracy": 0.4027777777777778,
+        "charged_usd": 0.006154344,
+        "charged_tokens": 151214,
+        "median_latency_ms": 226.363768
+      },
+      {
+        "context": "baseline",
+        "current_wheel_rad": 0.0,
+        "planned": 72,
+        "attempted": 72,
+        "unrun": 0,
+        "endpoint_ok": 72,
+        "endpoint_errors": 0,
+        "correct": 28,
+        "incorrect_or_endpoint_error": 44,
+        "attempted_accuracy": 0.3888888888888889,
+        "planned_correct_fraction": 0.3888888888888889,
+        "endpoint_success_accuracy": 0.3888888888888889,
+        "charged_usd": 0.006139224,
+        "charged_tokens": 150852,
+        "median_latency_ms": 229.15732
+      },
+      {
+        "context": "baseline",
+        "current_wheel_rad": 0.06,
+        "planned": 72,
+        "attempted": 72,
+        "unrun": 0,
+        "endpoint_ok": 72,
+        "endpoint_errors": 0,
+        "correct": 26,
+        "incorrect_or_endpoint_error": 46,
+        "attempted_accuracy": 0.3611111111111111,
+        "planned_correct_fraction": 0.3611111111111111,
+        "endpoint_success_accuracy": 0.3611111111111111,
+        "charged_usd": 0.00615132,
+        "charged_tokens": 151140,
+        "median_latency_ms": 230.51500299999998
+      },
+      {
+        "context": "baseline",
+        "current_wheel_rad": 0.12,
+        "planned": 72,
+        "attempted": 72,
+        "unrun": 0,
+        "endpoint_ok": 72,
+        "endpoint_errors": 0,
+        "correct": 27,
+        "incorrect_or_endpoint_error": 45,
+        "attempted_accuracy": 0.375,
+        "planned_correct_fraction": 0.375,
+        "endpoint_success_accuracy": 0.375,
+        "charged_usd": 0.006154344,
+        "charged_tokens": 151212,
+        "median_latency_ms": 231.582728
+      },
+      {
+        "context": "explicit_target",
+        "current_wheel_rad": -0.12,
+        "planned": 72,
+        "attempted": 72,
+        "unrun": 0,
+        "endpoint_ok": 72,
+        "endpoint_errors": 0,
+        "correct": 38,
+        "incorrect_or_endpoint_error": 34,
+        "attempted_accuracy": 0.5277777777777778,
+        "planned_correct_fraction": 0.5277777777777778,
+        "endpoint_success_accuracy": 0.5277777777777778,
+        "charged_usd": 0.006677496,
+        "charged_tokens": 163681,
+        "median_latency_ms": 231.574029
+      },
+      {
+        "context": "explicit_target",
+        "current_wheel_rad": -0.06,
+        "planned": 72,
+        "attempted": 72,
+        "unrun": 0,
+        "endpoint_ok": 72,
+        "endpoint_errors": 0,
+        "correct": 39,
+        "incorrect_or_endpoint_error": 33,
+        "attempted_accuracy": 0.5416666666666666,
+        "planned_correct_fraction": 0.5416666666666666,
+        "endpoint_success_accuracy": 0.5416666666666666,
+        "charged_usd": 0.006674472,
+        "charged_tokens": 163611,
+        "median_latency_ms": 227.4754585
+      },
+      {
+        "context": "explicit_target",
+        "current_wheel_rad": 0.0,
+        "planned": 72,
+        "attempted": 72,
+        "unrun": 0,
+        "endpoint_ok": 72,
+        "endpoint_errors": 0,
+        "correct": 39,
+        "incorrect_or_endpoint_error": 33,
+        "attempted_accuracy": 0.5416666666666666,
+        "planned_correct_fraction": 0.5416666666666666,
+        "endpoint_success_accuracy": 0.5416666666666666,
+        "charged_usd": 0.006659352,
+        "charged_tokens": 163251,
+        "median_latency_ms": 226.69073300000002
+      },
+      {
+        "context": "explicit_target",
+        "current_wheel_rad": 0.06,
+        "planned": 72,
+        "attempted": 72,
+        "unrun": 0,
+        "endpoint_ok": 72,
+        "endpoint_errors": 0,
+        "correct": 34,
+        "incorrect_or_endpoint_error": 38,
+        "attempted_accuracy": 0.4722222222222222,
+        "planned_correct_fraction": 0.4722222222222222,
+        "endpoint_success_accuracy": 0.4722222222222222,
+        "charged_usd": 0.006671448,
+        "charged_tokens": 163534,
+        "median_latency_ms": 235.0761555
+      },
+      {
+        "context": "explicit_target",
+        "current_wheel_rad": 0.12,
+        "planned": 72,
+        "attempted": 72,
+        "unrun": 0,
+        "endpoint_ok": 72,
+        "endpoint_errors": 0,
+        "correct": 35,
+        "incorrect_or_endpoint_error": 37,
+        "attempted_accuracy": 0.4861111111111111,
+        "planned_correct_fraction": 0.4861111111111111,
+        "endpoint_success_accuracy": 0.4861111111111111,
+        "charged_usd": 0.006674472,
+        "charged_tokens": 163607,
+        "median_latency_ms": 229.236578
+      }
+    ],
+    "current_yaw_deg_s": [
+      {
+        "context": "baseline",
+        "current_yaw_deg_s": -12.0,
+        "planned": 120,
+        "attempted": 120,
+        "unrun": 0,
+        "endpoint_ok": 120,
+        "endpoint_errors": 0,
+        "correct": 47,
+        "incorrect_or_endpoint_error": 73,
+        "attempted_accuracy": 0.39166666666666666,
+        "planned_correct_fraction": 0.39166666666666666,
+        "endpoint_success_accuracy": 0.39166666666666666,
+        "charged_usd": 0.01025724,
+        "charged_tokens": 252022,
+        "median_latency_ms": 230.50110899999999
+      },
+      {
+        "context": "baseline",
+        "current_yaw_deg_s": 0.0,
+        "planned": 120,
+        "attempted": 120,
+        "unrun": 0,
+        "endpoint_ok": 120,
+        "endpoint_errors": 0,
+        "correct": 44,
+        "incorrect_or_endpoint_error": 76,
+        "attempted_accuracy": 0.36666666666666664,
+        "planned_correct_fraction": 0.36666666666666664,
+        "endpoint_success_accuracy": 0.36666666666666664,
+        "charged_usd": 0.01024716,
+        "charged_tokens": 251780,
+        "median_latency_ms": 232.7568025
+      },
+      {
+        "context": "baseline",
+        "current_yaw_deg_s": 12.0,
+        "planned": 120,
+        "attempted": 120,
+        "unrun": 0,
+        "endpoint_ok": 120,
+        "endpoint_errors": 0,
+        "correct": 46,
+        "incorrect_or_endpoint_error": 74,
+        "attempted_accuracy": 0.38333333333333336,
+        "planned_correct_fraction": 0.38333333333333336,
+        "endpoint_success_accuracy": 0.38333333333333336,
+        "charged_usd": 0.0102522,
+        "charged_tokens": 251901,
+        "median_latency_ms": 228.154766
+      },
+      {
+        "context": "explicit_target",
+        "current_yaw_deg_s": -12.0,
+        "planned": 120,
+        "attempted": 120,
+        "unrun": 0,
+        "endpoint_ok": 120,
+        "endpoint_errors": 0,
+        "correct": 61,
+        "incorrect_or_endpoint_error": 59,
+        "attempted_accuracy": 0.5083333333333333,
+        "planned_correct_fraction": 0.5083333333333333,
+        "endpoint_success_accuracy": 0.5083333333333333,
+        "charged_usd": 0.01112412,
+        "charged_tokens": 272680,
+        "median_latency_ms": 227.99804699999999
+      },
+      {
+        "context": "explicit_target",
+        "current_yaw_deg_s": 0.0,
+        "planned": 120,
+        "attempted": 120,
+        "unrun": 0,
+        "endpoint_ok": 120,
+        "endpoint_errors": 0,
+        "correct": 63,
+        "incorrect_or_endpoint_error": 57,
+        "attempted_accuracy": 0.525,
+        "planned_correct_fraction": 0.525,
+        "endpoint_success_accuracy": 0.525,
+        "charged_usd": 0.01111404,
+        "charged_tokens": 272443,
+        "median_latency_ms": 229.383905
+      },
+      {
+        "context": "explicit_target",
+        "current_yaw_deg_s": 12.0,
+        "planned": 120,
+        "attempted": 120,
+        "unrun": 0,
+        "endpoint_ok": 120,
+        "endpoint_errors": 0,
+        "correct": 61,
+        "incorrect_or_endpoint_error": 59,
+        "attempted_accuracy": 0.5083333333333333,
+        "planned_correct_fraction": 0.5083333333333333,
+        "endpoint_success_accuracy": 0.5083333333333333,
+        "charged_usd": 0.01111908,
+        "charged_tokens": 272561,
+        "median_latency_ms": 231.424151
+      }
+    ]
+  },
+  "paired_context_counts": [
+    {
+      "baseline_correct": false,
+      "explicit_target_correct": false,
+      "count": 161
+    },
+    {
+      "baseline_correct": false,
+      "explicit_target_correct": true,
+      "count": 62
+    },
+    {
+      "baseline_correct": true,
+      "explicit_target_correct": false,
+      "count": 14
+    },
+    {
+      "baseline_correct": true,
+      "explicit_target_correct": true,
+      "count": 123
+    }
+  ],
+  "current_wheel_tracking": [
+    {
+      "context": "baseline",
+      "current_equals_expected": true,
+      "attempted": 72,
+      "endpoint_ok": 72,
+      "chosen_equals_current": 27,
+      "correct": 27
+    },
+    {
+      "context": "baseline",
+      "current_equals_expected": false,
+      "attempted": 288,
+      "endpoint_ok": 288,
+      "chosen_equals_current": 45,
+      "correct": 110
+    },
+    {
+      "context": "explicit_target",
+      "current_equals_expected": true,
+      "attempted": 72,
+      "endpoint_ok": 72,
+      "chosen_equals_current": 40,
+      "correct": 40
+    },
+    {
+      "context": "explicit_target",
+      "current_equals_expected": false,
+      "attempted": 288,
+      "endpoint_ok": 288,
+      "chosen_equals_current": 35,
+      "correct": 145
+    }
+  ],
+  "factorial_invariance_summary": [
+    {
+      "context": "baseline",
+      "complete_five_wheel_blocks": 72,
+      "five_wheel_blocks_all_endpoint_ok": 72,
+      "five_wheel_blocks_same_choice": 61,
+      "five_wheel_blocks_all_correct": 24,
+      "complete_three_yaw_blocks": 120,
+      "three_yaw_blocks_same_choice": 107,
+      "three_yaw_blocks_all_correct": 40,
+      "complete_repetition_pairs": 180,
+      "repetition_same_choice": 165,
+      "repetition_both_correct": 61
+    },
+    {
+      "context": "explicit_target",
+      "complete_five_wheel_blocks": 72,
+      "five_wheel_blocks_all_endpoint_ok": 72,
+      "five_wheel_blocks_same_choice": 64,
+      "five_wheel_blocks_all_correct": 34,
+      "complete_three_yaw_blocks": 120,
+      "three_yaw_blocks_same_choice": 109,
+      "three_yaw_blocks_all_correct": 56,
+      "complete_repetition_pairs": 180,
+      "repetition_same_choice": 173,
+      "repetition_both_correct": 89
+    }
+  ],
+  "shortcut_coverage": {
+    "x15_informative_geometries": 2,
+    "x15_informative_cases": 30,
+    "atan_omission_informative_geometries": 0,
+    "atan_omission_informative_cases": 0,
+    "interpretation": "Quantized answers discriminate x=15 only on informative cases; atan execution is unidentified wherever omitting atan preserves the wheel class."
+  },
+  "x15_shortcut_results": [
+    {
+      "context": "baseline",
+      "attempted_informative": 60,
+      "correct": 0,
+      "equals_x15_shortcut": 60
+    },
+    {
+      "context": "explicit_target",
+      "attempted_informative": 60,
+      "correct": 1,
+      "equals_x15_shortcut": 59
+    }
+  ],
+  "limitations": [
+    "Twelve synthetic geometries and repeated factorial conditions support descriptive comparisons, not independent population samples or significance claims.",
+    "Only question instructions change between contexts; the explicit-target prefix combines role clarification and quantization wording, so those components are not isolated.",
+    "Current wheel and yaw vary independently of each geometry's unchanged mathematical target; observed answer tracking does not identify the model's internal reasoning.",
+    "A supplied geometric policy is not an optimal-control label; no static score qualifies closed-loop driving.",
+    "Only informative coarse wheel classes distinguish x=15 extraction; matching classes do not prove exact numerical or trigonometric execution.",
+    "Endpoint errors count as incorrect in attempted accuracy; planned coverage and unrun cases remain separate."
+  ],
+  "strong_gain_gate": {
+    "passed": false,
+    "checks": {
+      "overall_accuracy": false,
+      "every_target_magnitude": false,
+      "every_held_wheel": false,
+      "paired_gain": true,
+      "endpoint_clean": true,
+      "audit_passed": true
+    },
+    "thresholds": {
+      "explicit_accuracy_min": 0.9,
+      "target_magnitude_accuracy_min": 0.85,
+      "each_current_wheel_accuracy_min": 0.85,
+      "paired_gain_min": 0.1,
+      "endpoint_errors_max": 0,
+      "audit_passed": true
+    },
+    "accuracy_gain": 0.1333333333333333,
+    "explicit_accuracy": 0.5138888888888888,
+    "accuracy_by_target_magnitude": {
+      "full": 0.008333333333333333,
+      "moderate": 1.0,
+      "straight": 0.5333333333333333
+    },
+    "accuracy_by_held_wheel": {
+      "-0.12": 0.5277777777777778,
+      "-0.06": 0.5416666666666666,
+      "0.0": 0.5416666666666666,
+      "0.06": 0.4722222222222222,
+      "0.12": 0.4861111111111111
+    },
+    "additional_native_menu_calls": 0,
+    "live_races": 0,
+    "preset_promoted": false
+  },
+  "independent_posthoc_review": {
+    "passed": true,
+    "records_crosschecked_against_final_results": 720,
+    "contexts": [
+      {
+        "context": "baseline",
+        "responses": 360,
+        "correct": 137,
+        "accuracy": 0.38055555555555554,
+        "chosen_wheel_counts": {
+          "-0.12": 12,
+          "-0.06": 168,
+          "0.0": 3,
+          "0.06": 175,
+          "0.12": 2
+        },
+        "moderate_choices": 343,
+        "current_wheel_matches": 72,
+        "five_wheel_invariant_blocks": 61,
+        "five_wheel_blocks": 72,
+        "yaw_invariant_blocks": 107,
+        "yaw_blocks": 120,
+        "nonzero_choices": 357,
+        "nonzero_choices_matching_sign_of_formula": 357,
+        "target_confusion": [
+          {
+            "expected_wheel_rad": -0.12,
+            "responses": 60,
+            "correct": 12,
+            "chosen_wheel_counts": {
+              "-0.12": 12,
+              "-0.06": 48
+            }
+          },
+          {
+            "expected_wheel_rad": -0.06,
+            "responses": 60,
+            "correct": 60,
+            "chosen_wheel_counts": {
+              "-0.06": 60
+            }
+          },
+          {
+            "expected_wheel_rad": 0,
+            "responses": 120,
+            "correct": 3,
+            "chosen_wheel_counts": {
+              "-0.06": 60,
+              "0.0": 3,
+              "0.06": 57
+            }
+          },
+          {
+            "expected_wheel_rad": 0.06,
+            "responses": 60,
+            "correct": 60,
+            "chosen_wheel_counts": {
+              "0.06": 60
+            }
+          },
+          {
+            "expected_wheel_rad": 0.12,
+            "responses": 60,
+            "correct": 2,
+            "chosen_wheel_counts": {
+              "0.06": 58,
+              "0.12": 2
+            }
+          }
+        ],
+        "x15_informative_responses": 60,
+        "x15_informative_correct": 0,
+        "x15_informative_matches_shortcut": 60
+      },
+      {
+        "context": "explicit_target",
+        "responses": 360,
+        "correct": 185,
+        "accuracy": 0.5138888888888888,
+        "chosen_wheel_counts": {
+          "-0.12": 1,
+          "-0.06": 171,
+          "0.0": 64,
+          "0.06": 124
+        },
+        "moderate_choices": 295,
+        "current_wheel_matches": 75,
+        "five_wheel_invariant_blocks": 64,
+        "five_wheel_blocks": 72,
+        "yaw_invariant_blocks": 109,
+        "yaw_blocks": 120,
+        "nonzero_choices": 296,
+        "nonzero_choices_matching_sign_of_formula": 296,
+        "target_confusion": [
+          {
+            "expected_wheel_rad": -0.12,
+            "responses": 60,
+            "correct": 1,
+            "chosen_wheel_counts": {
+              "-0.12": 1,
+              "-0.06": 59
+            }
+          },
+          {
+            "expected_wheel_rad": -0.06,
+            "responses": 60,
+            "correct": 60,
+            "chosen_wheel_counts": {
+              "-0.06": 60
+            }
+          },
+          {
+            "expected_wheel_rad": 0,
+            "responses": 120,
+            "correct": 64,
+            "chosen_wheel_counts": {
+              "-0.06": 52,
+              "0.0": 64,
+              "0.06": 4
+            }
+          },
+          {
+            "expected_wheel_rad": 0.06,
+            "responses": 60,
+            "correct": 60,
+            "chosen_wheel_counts": {
+              "0.06": 60
+            }
+          },
+          {
+            "expected_wheel_rad": 0.12,
+            "responses": 60,
+            "correct": 0,
+            "chosen_wheel_counts": {
+              "0.06": 60
+            }
+          }
+        ],
+        "x15_informative_responses": 60,
+        "x15_informative_correct": 1,
+        "x15_informative_matches_shortcut": 59
+      }
+    ],
+    "by_geometry": [
+      {
+        "context": "baseline",
+        "geometry_id": "geometry-00-a",
+        "expected_wheel_rad": 0,
+        "responses": 30,
+        "correct": 3,
+        "chosen_wheel_counts": {
+          "0.0": 3,
+          "0.06": 27
+        }
+      },
+      {
+        "context": "baseline",
+        "geometry_id": "geometry-00-b",
+        "expected_wheel_rad": 0,
+        "responses": 30,
+        "correct": 0,
+        "chosen_wheel_counts": {
+          "-0.06": 30
+        }
+      },
+      {
+        "context": "baseline",
+        "geometry_id": "geometry-01-a",
+        "expected_wheel_rad": 0,
+        "responses": 30,
+        "correct": 0,
+        "chosen_wheel_counts": {
+          "0.06": 30
+        }
+      },
+      {
+        "context": "baseline",
+        "geometry_id": "geometry-01-b",
+        "expected_wheel_rad": 0,
+        "responses": 30,
+        "correct": 0,
+        "chosen_wheel_counts": {
+          "-0.06": 30
+        }
+      },
+      {
+        "context": "baseline",
+        "geometry_id": "geometry-02-a",
+        "expected_wheel_rad": 0.06,
+        "responses": 30,
+        "correct": 30,
+        "chosen_wheel_counts": {
+          "0.06": 30
+        }
+      },
+      {
+        "context": "baseline",
+        "geometry_id": "geometry-02-b",
+        "expected_wheel_rad": -0.06,
+        "responses": 30,
+        "correct": 30,
+        "chosen_wheel_counts": {
+          "-0.06": 30
+        }
+      },
+      {
+        "context": "baseline",
+        "geometry_id": "geometry-03-a",
+        "expected_wheel_rad": 0.06,
+        "responses": 30,
+        "correct": 30,
+        "chosen_wheel_counts": {
+          "0.06": 30
+        }
+      },
+      {
+        "context": "baseline",
+        "geometry_id": "geometry-03-b",
+        "expected_wheel_rad": -0.06,
+        "responses": 30,
+        "correct": 30,
+        "chosen_wheel_counts": {
+          "-0.06": 30
+        }
+      },
+      {
+        "context": "baseline",
+        "geometry_id": "geometry-04-a",
+        "expected_wheel_rad": 0.12,
+        "responses": 30,
+        "correct": 0,
+        "chosen_wheel_counts": {
+          "0.06": 30
+        }
+      },
+      {
+        "context": "baseline",
+        "geometry_id": "geometry-04-b",
+        "expected_wheel_rad": -0.12,
+        "responses": 30,
+        "correct": 0,
+        "chosen_wheel_counts": {
+          "-0.06": 30
+        }
+      },
+      {
+        "context": "baseline",
+        "geometry_id": "geometry-05-a",
+        "expected_wheel_rad": 0.12,
+        "responses": 30,
+        "correct": 2,
+        "chosen_wheel_counts": {
+          "0.06": 28,
+          "0.12": 2
+        }
+      },
+      {
+        "context": "baseline",
+        "geometry_id": "geometry-05-b",
+        "expected_wheel_rad": -0.12,
+        "responses": 30,
+        "correct": 12,
+        "chosen_wheel_counts": {
+          "-0.12": 12,
+          "-0.06": 18
+        }
+      },
+      {
+        "context": "explicit_target",
+        "geometry_id": "geometry-00-a",
+        "expected_wheel_rad": 0,
+        "responses": 30,
+        "correct": 30,
+        "chosen_wheel_counts": {
+          "0.0": 30
+        }
+      },
+      {
+        "context": "explicit_target",
+        "geometry_id": "geometry-00-b",
+        "expected_wheel_rad": 0,
+        "responses": 30,
+        "correct": 8,
+        "chosen_wheel_counts": {
+          "-0.06": 22,
+          "0.0": 8
+        }
+      },
+      {
+        "context": "explicit_target",
+        "geometry_id": "geometry-01-a",
+        "expected_wheel_rad": 0,
+        "responses": 30,
+        "correct": 26,
+        "chosen_wheel_counts": {
+          "0.0": 26,
+          "0.06": 4
+        }
+      },
+      {
+        "context": "explicit_target",
+        "geometry_id": "geometry-01-b",
+        "expected_wheel_rad": 0,
+        "responses": 30,
+        "correct": 0,
+        "chosen_wheel_counts": {
+          "-0.06": 30
+        }
+      },
+      {
+        "context": "explicit_target",
+        "geometry_id": "geometry-02-a",
+        "expected_wheel_rad": 0.06,
+        "responses": 30,
+        "correct": 30,
+        "chosen_wheel_counts": {
+          "0.06": 30
+        }
+      },
+      {
+        "context": "explicit_target",
+        "geometry_id": "geometry-02-b",
+        "expected_wheel_rad": -0.06,
+        "responses": 30,
+        "correct": 30,
+        "chosen_wheel_counts": {
+          "-0.06": 30
+        }
+      },
+      {
+        "context": "explicit_target",
+        "geometry_id": "geometry-03-a",
+        "expected_wheel_rad": 0.06,
+        "responses": 30,
+        "correct": 30,
+        "chosen_wheel_counts": {
+          "0.06": 30
+        }
+      },
+      {
+        "context": "explicit_target",
+        "geometry_id": "geometry-03-b",
+        "expected_wheel_rad": -0.06,
+        "responses": 30,
+        "correct": 30,
+        "chosen_wheel_counts": {
+          "-0.06": 30
+        }
+      },
+      {
+        "context": "explicit_target",
+        "geometry_id": "geometry-04-a",
+        "expected_wheel_rad": 0.12,
+        "responses": 30,
+        "correct": 0,
+        "chosen_wheel_counts": {
+          "0.06": 30
+        }
+      },
+      {
+        "context": "explicit_target",
+        "geometry_id": "geometry-04-b",
+        "expected_wheel_rad": -0.12,
+        "responses": 30,
+        "correct": 1,
+        "chosen_wheel_counts": {
+          "-0.12": 1,
+          "-0.06": 29
+        }
+      },
+      {
+        "context": "explicit_target",
+        "geometry_id": "geometry-05-a",
+        "expected_wheel_rad": 0.12,
+        "responses": 30,
+        "correct": 0,
+        "chosen_wheel_counts": {
+          "0.06": 30
+        }
+      },
+      {
+        "context": "explicit_target",
+        "geometry_id": "geometry-05-b",
+        "expected_wheel_rad": -0.12,
+        "responses": 30,
+        "correct": 0,
+        "chosen_wheel_counts": {
+          "-0.06": 30
+        }
+      }
+    ],
+    "conclusions": [
+      "The combined clarification prefix raised sampled accuracy by 48/360=13.33 percentage points, from 137/360 to185/360, while failing the frozen strong-gain gate.",
+      "Straight answers improved61/120; full-wheel answers declined13/120; moderate answers remained120/120. Overall gain is therefore uneven and cannot support promotion.",
+      "Moderate output preference remains dominant:343/360 baseline choices and295/360 explicit-target choices. The observed pattern is inconsistent with a general strategy that simply copies the held wheel, because each geometry/yaw is crossed with five independent wheels and most blocks retain the same output across all five.",
+      "Current-wheel matches are72/360 and75/360. An output independent of current wheel produces one match per complete five-wheel block by design; a20% pooled match rate does not by itself identify copying or its absence.",
+      "Current input may still influence some answers:11/72 baseline and8/72 explicit-target five-wheel blocks change their chosen answer, and stochastic repeat variation remains. The experiment does not exclude all held-input influence or identify the internal computation.",
+      "The explicit straight improvement is asymmetric across reflected geometries:56/60 on positive-delta straight geometries versus8/60 on their negative-delta mirrors. The exact influential representation remains unidentified.",
+      "All nonzero choices share the sign of the nominal formula result, but all fixtures also correlate target sign with road-heading sign. This is descriptive sign consistency, not proof of correct equation extraction.",
+      "On the two x=15-informative geometries, baseline0/60 and explicit1/60 are correct;60/60 and59/60 match the x=15 shortcut. The same mostly moderate output preference predicts those answers, so these fixtures do not identify x=15 substitution as the cause.",
+      "Omitting atan never changes the quantized label on this bank; trigonometric execution remains unidentified.",
+      "Retain damped and the Python/24m live configuration. No native-menu followup or live race is triggered by the failed prospective gate."
+    ],
+    "limitations": [
+      "Two repetitions of twelve geometries with factorial motion conditions are related observations, not720 independent geometries.",
+      "Question prefix combines input/target clarification and magnitude branches; individual clauses are not isolated.",
+      "Synthetic supplied-rule execution is not optimal steering or closed-loop driving performance."
+    ],
+    "model_requests_by_review": 0,
+    "controls_applied": false
+  },
+  "audit_timing_incident": {
+    "archive": "audit-before-collection-complete.json",
+    "cause": "Root launched audit before the last requests finished; audit refused a pending reservation.",
+    "paid_requests_retried": 0,
+    "ledger_or_snapshot_written_by_rejected_audit": false,
+    "final_audit_passed_after_collection_closed": true
+  }
+}

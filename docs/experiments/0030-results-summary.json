@@ -1,0 +1,2659 @@
+{
+  "schema_version": 1,
+  "kind": "question_key_format_gate_stop_results",
+  "experiment": "0030",
+  "status": "stopped_at_registered_format_gate_audit_and_provenance_passed_forecasts_unrun",
+  "complete": false,
+  "registered_format_stop_verified": true,
+  "scope": "Eight prescribed-format responses only. All32 physical forecasts were conditionally unrun; there is no forecasting score or question-key forecast comparison.",
+  "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+  "reuse_intentional": true,
+  "fresh_case_bank": false,
+  "provenance_files": [
+    {
+      "path": "artifacts/jev-question-key-v1/protocol.json",
+      "sha256": "dc32e7ee5072aed333ac97b48790473968897d24085d44001857ee3f43fc4ef4"
+    },
+    {
+      "path": "artifacts/jev-question-key-v1/final-audit.json",
+      "sha256": "e78ad90a53b3310626716740aabaefa34423385701484ceaeabb304bafc6726c"
+    },
+    {
+      "path": "artifacts/jev-question-key-v1/report/summary.json",
+      "sha256": "59aed4e6aeaaef82a430aee147d2f78bbdce05089a9c5890bcd70efa0574edbf"
+    },
+    {
+      "path": "artifacts/jev-question-key-v1/collection-provenance-verification.json",
+      "sha256": "ade8f45c545d88ff1aa48b0b42c7b7c02853352a07f9ae63e610cc2649b215ee"
+    },
+    {
+      "path": "artifacts/jev-question-key-v1/collection-provenance-verification-initial.json",
+      "sha256": "7ada13029c34de99608cf501be426a6eafc376ac0fa239acf47ef327004f0d15"
+    },
+    {
+      "path": "artifacts/jev-question-key-v1/format-stop.json",
+      "sha256": "be225136fccb6145796379fdba0a5f3281a632583ec8fc3f73f545f250f18d44"
+    },
+    {
+      "path": "artifacts/jev-question-key-v1/source-normalization.json",
+      "sha256": "ffd788653b8078c0a61f29075a07262b9fe1be47c34ddc85720fb4b782c983ab"
+    },
+    {
+      "path": "artifacts/jev-question-key-v1/preflight.json",
+      "sha256": "6703b39cfcfb299fef89c24be6eedc981357368627eb71b36e23719c2085489e"
+    },
+    {
+      "path": "artifacts/jev-question-key-v1/independent-preflight-before-collection.json",
+      "sha256": "6139a7a804eb6d0b8fb15be760b8b4c0e60ef2a4e87f66dcd56c55df54f5aa21"
+    },
+    {
+      "path": "artifacts/jev-question-key-v1/fixture-reuse.json",
+      "sha256": "c4c125860c14e589b5007d8a3d2563512d1a4146d3e960e1aa1d433126a39c19"
+    },
+    {
+      "path": "docs/experiments/0030-question-key-prompts.json",
+      "sha256": "7a4db6689247126e2a4eb14abc2b92d12001f51cbe0e56080826de502cf9f8d9"
+    }
+  ],
+  "frozen_protocol": {
+    "schema_version": 1,
+    "kind": "static_question_key_reused_state_diagnostic",
+    "frozen": true,
+    "created_utc": "2026-10-20T02:15:14.335104+00:00",
+    "client_date": "2026-10-20",
+    "planned_calls": 40,
+    "format_calls": 8,
+    "forecast_calls": 32,
+    "cases": 16,
+    "repetitions": 1,
+    "contexts": [
+      "control",
+      "future_departure"
+    ],
+    "order_seed": 2026102030,
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "input_token_ceiling": 16384,
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61091,
+      "charged_usd": 7.537810101999889,
+      "charged_tokens": 243821197,
+      "reported_cost_usd": 7.480531637999873,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "shared_ledger": "artifacts/budget.json",
+    "limits": {
+      "max_requests": 75000,
+      "cap_usd": 10.0,
+      "max_tokens": 250000000
+    },
+    "route": {
+      "model": "typesafe/jev-1.14",
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "typesafe",
+      "provider_name": "TypeSafe",
+      "endpoint_name": "TypeSafe | typesafe/jev-1.14-20261014",
+      "price_input_per_token": 4.2e-08,
+      "price_output_per_token": 0.0,
+      "price_per_request": 0.0,
+      "context_length": 262144,
+      "max_prompt_tokens": 262144,
+      "max_completion_tokens": 235929
+    },
+    "automatic_retries": 0,
+    "provider_fallbacks": false,
+    "no_controls_applied": true,
+    "stop_on_first_endpoint_error": true,
+    "stop_on_uncertain_accounting": true,
+    "format_gate": {
+      "planned": 8,
+      "correct_required": 8,
+      "collect_all_valid_before_gate": true,
+      "if_failed": "stopatindex8;retain8formatrecordsand32unrunforecasts"
+    },
+    "order_policy": "First8=2questionkeysx2prescribedcategoriesx2physicalorders,allfixedcasebank[0].Forecastshuffle16unitsseed2026102030;firstkeyj%2,physicalorderj//2%2;4cells4unitseach,eachkeyeachposition8times.Onepresentationpercase/key.",
+    "task_contract": "Forecastbotharmsexact0029baselinequestion/quotedDAMPED/semanticcriteria/fullBstate,badgesretained,noscaffold.ONLYquestiondictionarykeyandcorrespondingrawresponseanswerkeyvary.CurrentcontrolarmusesunmodifiedproductionDecisionClient.Future_departurearmusesignoredsubclasswithsinglecopieddecideanswerlookupchange.Noresponseinterception,renamingoraliases.",
+    "adapter_contract": "jointlayoutonly;question_idwhitelistcontrol/future_departure;normalizereplacinganswers.get(self.question_id)withanswers.get(\"control\")restoresexactproductionsource/AST;allreferencedglobalsandhelpersoriginalobjects;rawrequestedkeymustsupplyvalidchoice,otherkeysneverfallback.",
+    "reuse_contract": "Intentionalbyte-exact0029bankreuse;notfreshcasesevidence.Concurrentcontrolarmrequired;noforecastoutcomequalifiespromptornative/liveuse.Frozenfixture-reusemanifestbindsoriginalsourceevidence;validateexternalevidencebeforeeachpaidcall.",
+    "forecast_contract": {
+      "steps": 30,
+      "dt_s": 0.016666666666666666,
+      "horizon_s": 0.5,
+      "held_control": "currentstate.controlheldfixed",
+      "risk": "kartCENTREoffroadatANYstep1..30"
+    },
+    "reports": [
+      "contexts",
+      "confusion",
+      "risk",
+      "region",
+      "paired_gain_loss",
+      "choice_counts",
+      "raw_probabilities"
+    ],
+    "followup_policy": "DiagnosticONLY.Noqualification,nativevalidation,liveuseorpromotionunderANYoutcome.Akey-sensitivealwayshazardanswerisnotimprovement.Reusedbankandconcurrentcontrolprominent;rawprobabilitiesdescriptiveonly.",
+    "session_deadline_utc": "2026-10-20T06:17:26+00:00",
+    "helper_sha256": {
+      "cases.json": "35a8fef20f78922f06a3463d3b5702ca0be882a43f1522ff2085e2ab972da1be",
+      "fixture-reuse.json": "c4c125860c14e589b5007d8a3d2563512d1a4146d3e960e1aa1d433126a39c19",
+      "question_client.py": "d081186ee499806c879dd8ca81e2a77461dd456e876ed46a6be6eb54158d9b04",
+      "source-normalization.json": "ffd788653b8078c0a61f29075a07262b9fe1be47c34ddc85720fb4b782c983ab",
+      "payloads.py": "a88e84dda19ac7f7e791162af203b789369824eef9ea753ebfede62db8a11039",
+      "prepare.py": "0f265eaa56f21456a8f4e841ac5516fd005b07cf638520a7c7db9b6abd0f38a3",
+      "runner.py": "8fb7e5cf29509e72bd27f056fb085d8491035bb030cf9087dc83afd066d0fc5f",
+      "audit.py": "69b7cfa5b60d697811f7506d45e3842f1117d1e9cdc2fc4995a461ae2119d9fd",
+      "preflight.py": "f2ca5869119e0397549b06fb978f2f21f2ba9a061a695c32d240a33087424de7",
+      "preflight.json": "6703b39cfcfb299fef89c24be6eedc981357368627eb71b36e23719c2085489e",
+      "order.json": "08cd83428fb7e0e80ae53d258116ad418f81af471b30aba57b4c6db8f77b411a",
+      "routes.json": "2251906bf20c903f019357a68cc320bb7f54a9d73a8615331f3dff491e0eb501",
+      "DESIGN.md": "e4aee396958377a0f384dbca8c4044de8095b58cebdb23db8ce03092ebb1dad9",
+      "no-collect-smoke.json": "ac4bcf1a4471315983accd5736d8599e895f54105273e3060fdb96e4b2987383"
+    },
+    "frozen_utc": "2026-10-20T02:19:09.204142+00:00"
+  },
+  "final_audit": {
+    "passed": true,
+    "complete": false,
+    "checked_at_utc": "2026-10-20T02:21:04.054619+00:00",
+    "errors": [],
+    "warnings": [],
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "helper_checks": {
+      "cases.json": {
+        "expected": "35a8fef20f78922f06a3463d3b5702ca0be882a43f1522ff2085e2ab972da1be",
+        "actual": "35a8fef20f78922f06a3463d3b5702ca0be882a43f1522ff2085e2ab972da1be",
+        "matches": true
+      },
+      "fixture-reuse.json": {
+        "expected": "c4c125860c14e589b5007d8a3d2563512d1a4146d3e960e1aa1d433126a39c19",
+        "actual": "c4c125860c14e589b5007d8a3d2563512d1a4146d3e960e1aa1d433126a39c19",
+        "matches": true
+      },
+      "question_client.py": {
+        "expected": "d081186ee499806c879dd8ca81e2a77461dd456e876ed46a6be6eb54158d9b04",
+        "actual": "d081186ee499806c879dd8ca81e2a77461dd456e876ed46a6be6eb54158d9b04",
+        "matches": true
+      },
+      "source-normalization.json": {
+        "expected": "ffd788653b8078c0a61f29075a07262b9fe1be47c34ddc85720fb4b782c983ab",
+        "actual": "ffd788653b8078c0a61f29075a07262b9fe1be47c34ddc85720fb4b782c983ab",
+        "matches": true
+      },
+      "payloads.py": {
+        "expected": "a88e84dda19ac7f7e791162af203b789369824eef9ea753ebfede62db8a11039",
+        "actual": "a88e84dda19ac7f7e791162af203b789369824eef9ea753ebfede62db8a11039",
+        "matches": true
+      },
+      "prepare.py": {
+        "expected": "0f265eaa56f21456a8f4e841ac5516fd005b07cf638520a7c7db9b6abd0f38a3",
+        "actual": "0f265eaa56f21456a8f4e841ac5516fd005b07cf638520a7c7db9b6abd0f38a3",
+        "matches": true
+      },
+      "runner.py": {
+        "expected": "8fb7e5cf29509e72bd27f056fb085d8491035bb030cf9087dc83afd066d0fc5f",
+        "actual": "8fb7e5cf29509e72bd27f056fb085d8491035bb030cf9087dc83afd066d0fc5f",
+        "matches": true
+      },
+      "audit.py": {
+        "expected": "69b7cfa5b60d697811f7506d45e3842f1117d1e9cdc2fc4995a461ae2119d9fd",
+        "actual": "69b7cfa5b60d697811f7506d45e3842f1117d1e9cdc2fc4995a461ae2119d9fd",
+        "matches": true
+      },
+      "preflight.py": {
+        "expected": "f2ca5869119e0397549b06fb978f2f21f2ba9a061a695c32d240a33087424de7",
+        "actual": "f2ca5869119e0397549b06fb978f2f21f2ba9a061a695c32d240a33087424de7",
+        "matches": true
+      },
+      "preflight.json": {
+        "expected": "6703b39cfcfb299fef89c24be6eedc981357368627eb71b36e23719c2085489e",
+        "actual": "6703b39cfcfb299fef89c24be6eedc981357368627eb71b36e23719c2085489e",
+        "matches": true
+      },
+      "order.json": {
+        "expected": "08cd83428fb7e0e80ae53d258116ad418f81af471b30aba57b4c6db8f77b411a",
+        "actual": "08cd83428fb7e0e80ae53d258116ad418f81af471b30aba57b4c6db8f77b411a",
+        "matches": true
+      },
+      "routes.json": {
+        "expected": "2251906bf20c903f019357a68cc320bb7f54a9d73a8615331f3dff491e0eb501",
+        "actual": "2251906bf20c903f019357a68cc320bb7f54a9d73a8615331f3dff491e0eb501",
+        "matches": true
+      },
+      "DESIGN.md": {
+        "expected": "e4aee396958377a0f384dbca8c4044de8095b58cebdb23db8ce03092ebb1dad9",
+        "actual": "e4aee396958377a0f384dbca8c4044de8095b58cebdb23db8ce03092ebb1dad9",
+        "matches": true
+      },
+      "no-collect-smoke.json": {
+        "expected": "ac4bcf1a4471315983accd5736d8599e895f54105273e3060fdb96e4b2987383",
+        "actual": "ac4bcf1a4471315983accd5736d8599e895f54105273e3060fdb96e4b2987383",
+        "matches": true
+      }
+    },
+    "independent_forecasts_checked": 16,
+    "question_adapter_source_review": {
+      "passed": true,
+      "production_decide_sha256": "118e79f7d6107f6bd467967760fd1c2bd9ae0a8f828df9a1473cf621ccc82020",
+      "adapter_decide_sha256": "11071a71262809eccf3f0d7ad02f4209bdf7b2e1b4250bdda97b8c9645166313",
+      "single_lookup_normalization_exact": true,
+      "referenced_global_identity": {
+        "DECISIONS_URL": true,
+        "Mapping": true,
+        "_nonnegative": true,
+        "asyncio": true,
+        "httpx": true,
+        "json": true,
+        "math": true,
+        "re": true,
+        "time": true
+      },
+      "control_arm_original_production_client": true,
+      "no_response_key_rewriting_or_aliases": true
+    },
+    "forecast_steps_checked": 480,
+    "planned_requests": 40,
+    "reuse_intentional": true,
+    "fresh_case_bank": false,
+    "fixture_reuse_manifest_sha256": "c4c125860c14e589b5007d8a3d2563512d1a4146d3e960e1aa1d433126a39c19",
+    "saved_requests": 8,
+    "format_responses": 8,
+    "format_gate_passed": false,
+    "forecast_responses": 0,
+    "failures": [],
+    "unrun": [
+      {
+        "index": 8,
+        "block": "forecast",
+        "case_id": "natural-02-safe",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 9,
+        "block": "forecast",
+        "case_id": "natural-02-safe",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 10,
+        "block": "forecast",
+        "case_id": "natural-07-hazard",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 11,
+        "block": "forecast",
+        "case_id": "natural-07-hazard",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 12,
+        "block": "forecast",
+        "case_id": "natural-06-hazard",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 13,
+        "block": "forecast",
+        "case_id": "natural-06-hazard",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 14,
+        "block": "forecast",
+        "case_id": "natural-03-hazard",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 15,
+        "block": "forecast",
+        "case_id": "natural-03-hazard",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 16,
+        "block": "forecast",
+        "case_id": "natural-04-safe",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 17,
+        "block": "forecast",
+        "case_id": "natural-04-safe",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 18,
+        "block": "forecast",
+        "case_id": "natural-05-safe",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 19,
+        "block": "forecast",
+        "case_id": "natural-05-safe",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 20,
+        "block": "forecast",
+        "case_id": "natural-07-safe",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 21,
+        "block": "forecast",
+        "case_id": "natural-07-safe",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 22,
+        "block": "forecast",
+        "case_id": "natural-00-safe",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 23,
+        "block": "forecast",
+        "case_id": "natural-00-safe",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 24,
+        "block": "forecast",
+        "case_id": "natural-01-safe",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 25,
+        "block": "forecast",
+        "case_id": "natural-01-safe",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 26,
+        "block": "forecast",
+        "case_id": "natural-00-hazard",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 27,
+        "block": "forecast",
+        "case_id": "natural-00-hazard",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 28,
+        "block": "forecast",
+        "case_id": "natural-04-hazard",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 29,
+        "block": "forecast",
+        "case_id": "natural-04-hazard",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 30,
+        "block": "forecast",
+        "case_id": "natural-03-safe",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 31,
+        "block": "forecast",
+        "case_id": "natural-03-safe",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 32,
+        "block": "forecast",
+        "case_id": "natural-06-safe",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 33,
+        "block": "forecast",
+        "case_id": "natural-06-safe",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 34,
+        "block": "forecast",
+        "case_id": "natural-01-hazard",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 35,
+        "block": "forecast",
+        "case_id": "natural-01-hazard",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 36,
+        "block": "forecast",
+        "case_id": "natural-05-hazard",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 37,
+        "block": "forecast",
+        "case_id": "natural-05-hazard",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 38,
+        "block": "forecast",
+        "case_id": "natural-02-hazard",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 39,
+        "block": "forecast",
+        "case_id": "natural-02-hazard",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      }
+    ],
+    "writer": {
+      "session_id": "09c38c73915b4c6da67d6f1673f9f1a1",
+      "pid": 35149,
+      "process_start_ticks": 9037301,
+      "parent_pid": 35146,
+      "parent_start_ticks": 9037300,
+      "boot_id": "b113cec5-1758-4140-b960-8d20b2906b04",
+      "started_utc": "2026-10-20T02:19:52.865786+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-question-key-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61091,
+      "charged_usd": 7.537810101999889,
+      "charged_tokens": 243821197,
+      "reported_cost_usd": 7.480531637999873,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61099,
+      "charged_usd": 7.538698821999888,
+      "charged_tokens": 243842702,
+      "reported_cost_usd": 7.481420357999872,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "deltas": {
+      "requests": 8,
+      "charged_usd": 0.0008887199999989548,
+      "reported_cost_usd": 0.0008887199999989548,
+      "charged_tokens": 21505,
+      "uncertain_requests": 0
+    },
+    "automatic_followup_or_promotion": false,
+    "model_requests_by_audit": 0,
+    "ledger_written_by_audit": false,
+    "no_controls_applied": true
+  },
+  "audited_report": {
+    "scope": "Intentional byte-exact0029 bank reuse for a question-name diagnostic. Concurrent original control client and future_departure adapter differ only in requested/decoded question key.",
+    "fresh_case_bank": false,
+    "reuse_manifest": "fixture-reuse.json",
+    "complete": false,
+    "format_gate": {
+      "passed": false,
+      "planned": 8,
+      "attempted": 8,
+      "unrun": 0,
+      "endpoint_ok": 8,
+      "endpoint_errors": 0,
+      "correct": 7,
+      "incorrect_or_endpoint_error": 1,
+      "attempted_accuracy": 0.875,
+      "planned_correct_fraction": 0.875,
+      "endpoint_success_accuracy": 0.875,
+      "charged_usd": 0.00088872,
+      "charged_tokens": 21505,
+      "median_latency_ms": 288.04981399999997,
+      "contexts": [
+        {
+          "context": "control",
+          "planned": 4,
+          "attempted": 4,
+          "unrun": 0,
+          "endpoint_ok": 4,
+          "endpoint_errors": 0,
+          "correct": 3,
+          "incorrect_or_endpoint_error": 1,
+          "attempted_accuracy": 0.75,
+          "planned_correct_fraction": 0.75,
+          "endpoint_success_accuracy": 0.75,
+          "charged_usd": 0.00044436,
+          "charged_tokens": 10747,
+          "median_latency_ms": 295.51659600000005
+        },
+        {
+          "context": "future_departure",
+          "planned": 4,
+          "attempted": 4,
+          "unrun": 0,
+          "endpoint_ok": 4,
+          "endpoint_errors": 0,
+          "correct": 4,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": 1.0,
+          "planned_correct_fraction": 1.0,
+          "endpoint_success_accuracy": 1.0,
+          "charged_usd": 0.00044436,
+          "charged_tokens": 10758,
+          "median_latency_ms": 253.0276245
+        }
+      ]
+    },
+    "forecast_overall": [
+      {
+        "context": "control",
+        "planned": 16,
+        "attempted": 0,
+        "unrun": 16,
+        "endpoint_ok": 0,
+        "endpoint_errors": 0,
+        "correct": 0,
+        "incorrect_or_endpoint_error": 0,
+        "attempted_accuracy": null,
+        "planned_correct_fraction": 0.0,
+        "endpoint_success_accuracy": null,
+        "charged_usd": 0,
+        "charged_tokens": 0,
+        "median_latency_ms": null
+      },
+      {
+        "context": "future_departure",
+        "planned": 16,
+        "attempted": 0,
+        "unrun": 16,
+        "endpoint_ok": 0,
+        "endpoint_errors": 0,
+        "correct": 0,
+        "incorrect_or_endpoint_error": 0,
+        "attempted_accuracy": null,
+        "planned_correct_fraction": 0.0,
+        "endpoint_success_accuracy": null,
+        "charged_usd": 0,
+        "charged_tokens": 0,
+        "median_latency_ms": null
+      }
+    ],
+    "groups": {
+      "risk_class": [
+        {
+          "context": "control",
+          "risk_class": "hazard",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "control",
+          "risk_class": "safe",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "future_departure",
+          "risk_class": "hazard",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "future_departure",
+          "risk_class": "safe",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        }
+      ],
+      "region": [
+        {
+          "context": "control",
+          "region": "curve",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "control",
+          "region": "straight",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "future_departure",
+          "region": "curve",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "future_departure",
+          "region": "straight",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        }
+      ],
+      "edge_side": [
+        {
+          "context": "control",
+          "edge_side": "left",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "control",
+          "edge_side": "right",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "future_departure",
+          "edge_side": "left",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "future_departure",
+          "edge_side": "right",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        }
+      ],
+      "held_control": [
+        {
+          "context": "control",
+          "held_control": "left_accelerate",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "control",
+          "held_control": "right_accelerate",
+          "planned": 2,
+          "attempted": 0,
+          "unrun": 2,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "control",
+          "held_control": "right_coast",
+          "planned": 2,
+          "attempted": 0,
+          "unrun": 2,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "control",
+          "held_control": "straight_accelerate",
+          "planned": 4,
+          "attempted": 0,
+          "unrun": 4,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "future_departure",
+          "held_control": "left_accelerate",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "future_departure",
+          "held_control": "right_accelerate",
+          "planned": 2,
+          "attempted": 0,
+          "unrun": 2,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "future_departure",
+          "held_control": "right_coast",
+          "planned": 2,
+          "attempted": 0,
+          "unrun": 2,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "future_departure",
+          "held_control": "straight_accelerate",
+          "planned": 4,
+          "attempted": 0,
+          "unrun": 4,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        }
+      ],
+      "criterion_first": [
+        {
+          "context": "control",
+          "criterion_first": "leaves_road",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "control",
+          "criterion_first": "stays_on_road",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "future_departure",
+          "criterion_first": "leaves_road",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        },
+        {
+          "context": "future_departure",
+          "criterion_first": "stays_on_road",
+          "planned": 8,
+          "attempted": 0,
+          "unrun": 8,
+          "endpoint_ok": 0,
+          "endpoint_errors": 0,
+          "correct": 0,
+          "incorrect_or_endpoint_error": 0,
+          "attempted_accuracy": null,
+          "planned_correct_fraction": 0.0,
+          "endpoint_success_accuracy": null,
+          "charged_usd": 0,
+          "charged_tokens": 0,
+          "median_latency_ms": null
+        }
+      ]
+    },
+    "forecast_confusion": [
+      {
+        "context": "control",
+        "hazard_predicted_safe": 0,
+        "safe_predicted_hazard": 0,
+        "valid_choice_counts": {},
+        "endpoint_errors": 0
+      },
+      {
+        "context": "future_departure",
+        "hazard_predicted_safe": 0,
+        "safe_predicted_hazard": 0,
+        "valid_choice_counts": {},
+        "endpoint_errors": 0
+      }
+    ],
+    "matched_case_outcomes": [],
+    "paired_gain_loss": {
+      "matched_cases": 0,
+      "future_key_only_correct": 0,
+      "control_only_correct": 0,
+      "net_correct_gain": 0,
+      "accuracy_difference": null
+    },
+    "raw_probability_descriptives": [
+      {
+        "block": "format",
+        "context": "control",
+        "valid_typed_responses": 4,
+        "raw_probability_dicts": 4,
+        "invalid_or_unrecognized_entries": 0,
+        "per_category": [
+          {
+            "category": "leaves_road",
+            "reported_count": 4,
+            "mean_reported_probability": 0.34249999999999997
+          },
+          {
+            "category": "stays_on_road",
+            "reported_count": 4,
+            "mean_reported_probability": 0.6575
+          }
+        ],
+        "nonunit_reported_category_mass": 0,
+        "normalized_or_calibrated_by_audit": false
+      },
+      {
+        "block": "format",
+        "context": "future_departure",
+        "valid_typed_responses": 4,
+        "raw_probability_dicts": 4,
+        "invalid_or_unrecognized_entries": 0,
+        "per_category": [
+          {
+            "category": "leaves_road",
+            "reported_count": 4,
+            "mean_reported_probability": 0.35
+          },
+          {
+            "category": "stays_on_road",
+            "reported_count": 4,
+            "mean_reported_probability": 0.65
+          }
+        ],
+        "nonunit_reported_category_mass": 0,
+        "normalized_or_calibrated_by_audit": false
+      },
+      {
+        "block": "forecast",
+        "context": "control",
+        "valid_typed_responses": 0,
+        "raw_probability_dicts": 0,
+        "invalid_or_unrecognized_entries": 0,
+        "per_category": [
+          {
+            "category": "leaves_road",
+            "reported_count": 0,
+            "mean_reported_probability": null
+          },
+          {
+            "category": "stays_on_road",
+            "reported_count": 0,
+            "mean_reported_probability": null
+          }
+        ],
+        "nonunit_reported_category_mass": 0,
+        "normalized_or_calibrated_by_audit": false
+      },
+      {
+        "block": "forecast",
+        "context": "future_departure",
+        "valid_typed_responses": 0,
+        "raw_probability_dicts": 0,
+        "invalid_or_unrecognized_entries": 0,
+        "per_category": [
+          {
+            "category": "leaves_road",
+            "reported_count": 0,
+            "mean_reported_probability": null
+          },
+          {
+            "category": "stays_on_road",
+            "reported_count": 0,
+            "mean_reported_probability": null
+          }
+        ],
+        "nonunit_reported_category_mass": 0,
+        "normalized_or_calibrated_by_audit": false
+      }
+    ],
+    "extra_unrequested_answer_heads": [],
+    "automatic_followup_or_promotion": false,
+    "qualification_native_live_or_promotion_permitted": false,
+    "limitations": [
+      "The sixteen natural cases are deliberately reused from0029. These outcomes are not fresh-case validation or a driving qualification.",
+      "Both question-name arms are collected concurrently in fixed balanced order; historical0029 responses are not used as the comparison arm.",
+      "A constant all-safe response changing to constant all-hazard under a key change is answer sensitivity, not improved forecasting.",
+      "Format checks test prescribed category mapping, while forecasts require physical prediction; their scores are separate.",
+      "Each forecast context is presented once per state. Shared source seeds and reused cases remain related observations.",
+      "Only the requested typed answer head is counted. Extra unrelated heads are preserved and reported, with no aliases or fallback lookup.",
+      "Raw model probabilities are descriptive, may be incomplete/nonunit, and are neither normalized nor calibrated by this audit.",
+      "No possible result authorizes qualification, native validation, live use or preset promotion."
+    ],
+    "natural_provenance": {
+      "distinct_recorded_races": 16,
+      "recorded_physics_samples_verified": 29968,
+      "recorded_applied_commands_replayed": 1756,
+      "grid_ticks": 6,
+      "one_state_per_race": true,
+      "current_clearance_ranges_by_risk": {
+        "hazard": [
+          0.8239360496416026,
+          2.956342196319426
+        ],
+        "safe": [
+          0.683674539766848,
+          2.95245241323704
+        ]
+      },
+      "maximum_body_slip_deg": 0.0,
+      "matching": {
+        "complete_native_input_frequencies_exact_within_edge": false,
+        "complete_native_input_frequencies_exact_within_region": true,
+        "distinct_races_required": 16,
+        "risk_region_edge_quotas_unchanged": true,
+        "stronger_within_edge_design_feasible": false
+      },
+      "source_states": [
+        {
+          "case_id": "natural-00-hazard",
+          "speed_m_s": 12.0,
+          "source_path": "artifacts/jev-widths-v1/paid/seed-01-width-24/trial.json",
+          "tick": 3936,
+          "region": "curve",
+          "risk_class": "hazard",
+          "current_physical_edge": "left"
+        },
+        {
+          "case_id": "natural-00-safe",
+          "speed_m_s": 12.0,
+          "source_path": "artifacts/jev-prompts-v4/r3/paid/damped-seed-09/trial.json",
+          "tick": 1224,
+          "region": "curve",
+          "risk_class": "safe",
+          "current_physical_edge": "left"
+        },
+        {
+          "case_id": "natural-01-hazard",
+          "speed_m_s": 11.999999999999998,
+          "source_path": "artifacts/jev-widths-v1/paid/seed-00-width-24/trial.json",
+          "tick": 4182,
+          "region": "curve",
+          "risk_class": "hazard",
+          "current_physical_edge": "left"
+        },
+        {
+          "case_id": "natural-01-safe",
+          "speed_m_s": 12.0,
+          "source_path": "artifacts/jev-prompts-v4/r1/paid/damped-seed-05/trial.json",
+          "tick": 1350,
+          "region": "curve",
+          "risk_class": "safe",
+          "current_physical_edge": "right"
+        },
+        {
+          "case_id": "natural-02-hazard",
+          "speed_m_s": 12.0,
+          "source_path": "artifacts/jev-prompts-v4/r3/paid/inverse_frame-seed-09/trial.json",
+          "tick": 816,
+          "region": "straight",
+          "risk_class": "hazard",
+          "current_physical_edge": "left"
+        },
+        {
+          "case_id": "natural-02-safe",
+          "speed_m_s": 12.000000000000002,
+          "source_path": "artifacts/jev-prompts-v4/r3/paid/inverse_frame-seed-10/trial.json",
+          "tick": 1890,
+          "region": "straight",
+          "risk_class": "safe",
+          "current_physical_edge": "right"
+        },
+        {
+          "case_id": "natural-03-hazard",
+          "speed_m_s": 11.999999999999998,
+          "source_path": "artifacts/jev-prompts-v4/r2/paid/straight_release-seed-08/trial.json",
+          "tick": 894,
+          "region": "straight",
+          "risk_class": "hazard",
+          "current_physical_edge": "left"
+        },
+        {
+          "case_id": "natural-03-safe",
+          "speed_m_s": 12.0,
+          "source_path": "artifacts/jev-prompts-v4/r2/paid/straight_release-seed-07/trial.json",
+          "tick": 870,
+          "region": "straight",
+          "risk_class": "safe",
+          "current_physical_edge": "left"
+        },
+        {
+          "case_id": "natural-04-hazard",
+          "speed_m_s": 11.999999999999998,
+          "source_path": "artifacts/jev-prompts-v4/r2/paid/pursuit_formula-seed-07/trial.json",
+          "tick": 894,
+          "region": "straight",
+          "risk_class": "hazard",
+          "current_physical_edge": "right"
+        },
+        {
+          "case_id": "natural-04-safe",
+          "speed_m_s": 11.999999999999998,
+          "source_path": "artifacts/jev-prompts-v4/r1/paid/pedal_release-seed-06/trial.json",
+          "tick": 804,
+          "region": "straight",
+          "risk_class": "safe",
+          "current_physical_edge": "left"
+        },
+        {
+          "case_id": "natural-05-hazard",
+          "speed_m_s": 8.079574368711329,
+          "source_path": "artifacts/jev-prompts-v3/paid/early_margin-seed-03/trial.json",
+          "tick": 954,
+          "region": "straight",
+          "risk_class": "hazard",
+          "current_physical_edge": "right"
+        },
+        {
+          "case_id": "natural-05-safe",
+          "speed_m_s": 11.720088819401786,
+          "source_path": "artifacts/jev-prompts-v4/r3/paid/inverse_history-seed-09/trial.json",
+          "tick": 5676,
+          "region": "straight",
+          "risk_class": "safe",
+          "current_physical_edge": "right"
+        },
+        {
+          "case_id": "natural-06-hazard",
+          "speed_m_s": 12.0,
+          "source_path": "artifacts/jev-prompts-v3/paid/damped-seed-03/trial.json",
+          "tick": 1458,
+          "region": "curve",
+          "risk_class": "hazard",
+          "current_physical_edge": "right"
+        },
+        {
+          "case_id": "natural-06-safe",
+          "speed_m_s": 12.0,
+          "source_path": "artifacts/jev-prompts-v4/r1/paid/damped-seed-06/trial.json",
+          "tick": 420,
+          "region": "curve",
+          "risk_class": "safe",
+          "current_physical_edge": "right"
+        },
+        {
+          "case_id": "natural-07-hazard",
+          "speed_m_s": 12.000000000000002,
+          "source_path": "artifacts/jev-prompts-v3/paid/corridor_veto-seed-03/trial.json",
+          "tick": 336,
+          "region": "curve",
+          "risk_class": "hazard",
+          "current_physical_edge": "right"
+        },
+        {
+          "case_id": "natural-07-safe",
+          "speed_m_s": 12.0,
+          "source_path": "artifacts/jev-prompts-v3/paid/damped-seed-04/trial.json",
+          "tick": 4248,
+          "region": "curve",
+          "risk_class": "safe",
+          "current_physical_edge": "left"
+        }
+      ]
+    },
+    "audit_passed": true
+  },
+  "collection_provenance_verification": {
+    "passed": true,
+    "checked_at_utc": "2026-10-20T02:24:53.155712+00:00",
+    "checks": {
+      "authorization_id_matches_explicit_root_instruction": true,
+      "immutable_preflight_hash_matches_authorization": true,
+      "immutable_preflight_hash_matches_retained_original": true,
+      "preflight_passed_before_collection": true,
+      "authorization_created_before_writer_started": true,
+      "immutable_preflight_file_written_before_writer_started": true,
+      "authorization_file_written_before_writer_started": true,
+      "protocol_identity_exact": true,
+      "budget_boundary_exact": true,
+      "writer_consistent_start_stop_finalaudit": true,
+      "writer_boot_matches_current_execution_boot": true,
+      "writer_pid_parent_and_session_recorded": true,
+      "explicit_root_collect_invocation": true,
+      "complete_bench_fingerprint_independently_reproduced": true,
+      "source_identity_exact": true,
+      "planned_40_with_exact_8_record_prefix": true,
+      "only_8_format_calls_no_forecast_observation": true,
+      "all_8_call_writer_identities_match": true,
+      "all_8_call_protocols_match": true,
+      "requests_begin_after_process_start": true,
+      "one_request_in_flight_in_saved_order": true,
+      "each_call_has_one_captured_successful_reply": true,
+      "request_and_reservation_ids_are_unique": true,
+      "all_wire_bodies_match_saved_payloads": true,
+      "actual_requested_raw_question_keys_preserved_without_aliases": true,
+      "all_8_actual_typed_head_choices_match_decoded_records": true,
+      "actual_paired_wire_scope_is_question_key_only": true,
+      "all_8_actual_model_provider_identities_match": true,
+      "adapter_diff_is_exactly_one_answer_lookup": true,
+      "adapter_globals_and_inherited_helpers_are_original_objects": true,
+      "frozen_adapter_normalization_manifest_matches_actual_sources": true,
+      "runner_uses_unmodified_production_control_arm": true,
+      "intentional_reuse_identity_and_prior_evidence_unchanged": true,
+      "all_budget_transitions_form_one_exact_writer_chain": true,
+      "registered_8_call_format_gate_stop_exact": true,
+      "all_32_conditional_forecasts_unrun_in_exact_frozen_order": true,
+      "passing_audit_correctly_incomplete_for_registered_stop": true,
+      "no_foreign_writer_or_accounting_or_response_stop": true,
+      "frozen_helpers_and_ledger_unchanged": true,
+      "audit_made_no_calls_or_ledger_writes": true,
+      "shared_ledger_still_unchanged_at_evidence_write": true,
+      "original_evidence_hashes_unchanged_during_checker_correction": true,
+      "physical_option_order_included_in_all_four_pair_keys": true
+    },
+    "errors": [],
+    "authorization_id": "9e16e768998047318001fd8624625a57",
+    "writer": {
+      "session_id": "09c38c73915b4c6da67d6f1673f9f1a1",
+      "pid": 35149,
+      "process_start_ticks": 9037301,
+      "parent_pid": 35146,
+      "parent_start_ticks": 9037300,
+      "boot_id": "b113cec5-1758-4140-b960-8d20b2906b04",
+      "started_utc": "2026-10-20T02:19:52.865786+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-question-key-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "root_execution_session_reported": 69088,
+    "preflight_file_sha256": "6139a7a804eb6d0b8fb15be760b8b4c0e60ef2a4e87f66dcd56c55df54f5aa21",
+    "preflight_file_mtime_utc": "2026-10-20T02:19:52.177941+00:00",
+    "authorization_created_utc": "2026-10-20T02:19:52.177966+00:00",
+    "authorization_file_mtime_utc": "2026-10-20T02:19:52.178088+00:00",
+    "writer_started_utc": "2026-10-20T02:19:52.865786+00:00",
+    "format_stop_written_utc": "2026-10-20T02:19:55.460638+00:00",
+    "protocol_sha256": "dc32e7ee5072aed333ac97b48790473968897d24085d44001857ee3f43fc4ef4",
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "source_fingerprint_algorithm": {
+      "function": "mcpkart.bench.fingerprint",
+      "independent_reproduction": true,
+      "runtime_function_matches": true,
+      "python_filename_order": [
+        "sim.py",
+        "decisions.py",
+        "runtime.py",
+        "process_runtime.py",
+        "physics_worker.py",
+        "rust_runtime.py",
+        "web.py",
+        "bench.py",
+        "telemetry.py",
+        "observations.py",
+        "scene.py"
+      ],
+      "rust_order": "Sorted Cargo.toml, Cargo.lock and src/*.rs; hash relative POSIX path then bytes for each existing file",
+      "source_file_sha256": {
+        "/workspace/mcpkart/src/mcpkart/sim.py": "8d3ac6a9ab3fd1f244e179e9a4d99a0597cc5b7eceb73d691be73b08e17c42ee",
+        "/workspace/mcpkart/src/mcpkart/decisions.py": "bfb2b454526caa6b36010a69fa927ead6b754841155a415c34fb9a078168cb4d",
+        "/workspace/mcpkart/src/mcpkart/runtime.py": "d19bba47418747b0c9b600ffc6f4e7a7b69d0046b54eb538d3aeebc5e962c695",
+        "/workspace/mcpkart/src/mcpkart/process_runtime.py": "34c36049426013e6d1286ef03ad7c4e34d9487ad92f60504b0a56aa074b5b468",
+        "/workspace/mcpkart/src/mcpkart/physics_worker.py": "cc478b1cb09fd1f3f4f2059a6e69dc1288379cd77d790e693d39f2d68cb32ea8",
+        "/workspace/mcpkart/src/mcpkart/rust_runtime.py": "a5b27ce28f559ca995362c7f9e81ae357da40f20898ca40333388200aa7cc427",
+        "/workspace/mcpkart/src/mcpkart/web.py": "2d3bb6aa690c2624c17cb0abcb4bc711cba794b31f3701dbd29bdb3b30590965",
+        "/workspace/mcpkart/src/mcpkart/bench.py": "9885a0e6792803f7314f2c83a812648811b53b8401a20428b0178443a80dbc92",
+        "/workspace/mcpkart/src/mcpkart/telemetry.py": "44e1a97c6448ffdaf95b97767072e3f99341f3ed5a5092735f5343254788ed6d",
+        "/workspace/mcpkart/src/mcpkart/observations.py": "5febca57d1e474abc9268de49924fe7c8c418bd1a4f469e34ffa564ab1af3255",
+        "/workspace/mcpkart/src/mcpkart/scene.py": "855dcb4e5a337a137d57dba4345bbbece6df6e4f24121dfbd4c7bb1881bc92af",
+        "/workspace/mcpkart/rust-race/Cargo.lock": "bbf4e1ef201063d743fa2f694146fe5c134fb8cbf21aaae4e2530647d9e06d40",
+        "/workspace/mcpkart/rust-race/Cargo.toml": "36e00a322b4ad084e5feb1ed39dd89da3cee41f73a3777830a5e2e4baebedf4e",
+        "/workspace/mcpkart/rust-race/src/main.rs": "0bcb3a55c68b7e668d246319b565f72c4f5794fd9aefc8efa7cec1c88148dc3c",
+        "/workspace/mcpkart/rust-race/src/runtime.rs": "2d5b1f2ef84b7eac362af2f0eb18bd5eee2c54ae879fc0cd4ac2f2ceeed967d4",
+        "/workspace/mcpkart/rust-race/src/sim.rs": "079ecfc528d091b990a84de8ddfb67dc75b5856e4358556e06d157ce2ee8367e"
+      }
+    },
+    "planned_calls": 40,
+    "actual_calls_checked": 8,
+    "format_calls_checked": 8,
+    "forecast_calls_checked": 0,
+    "format_correct": 7,
+    "format_correct_by_question_key": {
+      "control": 3,
+      "future_departure": 4
+    },
+    "unrun_conditional_forecasts": 32,
+    "unrun_order_sha256": "4fc515f52c9d1bead5cc8d6663438984c5b067af038e44405838f04c629b4824",
+    "termination_mode": "registered_format_gate_failed_after_all_8_valid_controls",
+    "audit_passed": true,
+    "audit_complete": false,
+    "intentional_fixture_reuse": {
+      "reuse_intentional": true,
+      "fresh_case_bank": false,
+      "source_experiment": "0029-natural-forecast",
+      "cases_sha256": "35a8fef20f78922f06a3463d3b5702ca0be882a43f1522ff2085e2ab972da1be"
+    },
+    "adapter_source_scope": {
+      "single_answer_lookup_only": true,
+      "method_source_canonicalization": "textwrap.dedent(inspect.getsource(method))",
+      "original_method_sha256": "118e79f7d6107f6bd467967760fd1c2bd9ae0a8f828df9a1473cf621ccc82020",
+      "adapter_method_sha256": "11071a71262809eccf3f0d7ad02f4209bdf7b2e1b4250bdda97b8c9645166313",
+      "actual_raw_question_keys": [
+        "control",
+        "future_departure"
+      ],
+      "no_key_rewriting": true,
+      "matched_format_pair_count": 4,
+      "pair_key_fields": [
+        "block",
+        "case_id",
+        "format_required_category",
+        "physical_order",
+        "repetition"
+      ]
+    },
+    "budget_before": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61091,
+      "charged_usd": 7.537810101999889,
+      "charged_tokens": 243821197,
+      "reported_cost_usd": 7.480531637999873,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "budget_after": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61099,
+      "charged_usd": 7.538698821999888,
+      "charged_tokens": 243842702,
+      "reported_cost_usd": 7.481420357999872,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "file_sha256": {
+      "protocol.json": "dc32e7ee5072aed333ac97b48790473968897d24085d44001857ee3f43fc4ef4",
+      "collection-authorization.json": "1b6905b0cf40e53d603bae2af4e08e0e977b3b8c2875ada005a7aaed55ef3582",
+      "collection-start.json": "c2e24ea4966c669c7e25f5f6fedbd7ad7ec85b318f8ce4131d4cd04cfb82ee43",
+      "format-stop.json": "be225136fccb6145796379fdba0a5f3281a632583ec8fc3f73f545f250f18d44",
+      "independent-preflight-before-collection.json": "6139a7a804eb6d0b8fb15be760b8b4c0e60ef2a4e87f66dcd56c55df54f5aa21",
+      "independent-preflight.json": "6139a7a804eb6d0b8fb15be760b8b4c0e60ef2a4e87f66dcd56c55df54f5aa21",
+      "final-audit.json": "e78ad90a53b3310626716740aabaefa34423385701484ceaeabb304bafc6726c",
+      "question_client.py": "d081186ee499806c879dd8ca81e2a77461dd456e876ed46a6be6eb54158d9b04",
+      "source-normalization.json": "ffd788653b8078c0a61f29075a07262b9fe1be47c34ddc85720fb4b782c983ab",
+      "fixture-reuse.json": "c4c125860c14e589b5007d8a3d2563512d1a4146d3e960e1aa1d433126a39c19"
+    },
+    "call_evidence_aggregate_sha256": "99314e866d10ce3c92765f9abb42ce169247c39fb48a4357754eec2c8104ef3a",
+    "audit_reruns": 0,
+    "audit_model_calls": 0,
+    "ledger_writes": 0,
+    "initial_diagnostic": {
+      "path": "/workspace/mcpkart/artifacts/jev-question-key-v1/collection-provenance-verification-initial.json",
+      "sha256": "7ada13029c34de99608cf501be426a6eafc376ac0fa239acf47ef327004f0d15",
+      "checked_at_utc": "2026-10-20T02:23:43.878236+00:00",
+      "passed": false,
+      "failed_checks": [
+        "actual_paired_wire_scope_is_question_key_only",
+        "frozen_adapter_normalization_manifest_matches_actual_sources"
+      ],
+      "retained_byte_for_byte": true,
+      "cause": "Verifier grouped distinct format controls without their physical option order and compared raw method-source hashes against a manifest that hashes dedented source. Corrected grouping produces four exact question-key-only pairs, and canonical source hashes match the frozen normalization manifest. No paid evidence or source discrepancy was established."
+    },
+    "correction_scope": "Correct only independent verifier pair grouping and method-source canonicalization; preserve initial diagnostic byte-for-byte. No production, paid recording, frozen helper, protocol or ledger changed."
+  },
+  "provenance_checker_correction_history": {
+    "initial_verification": {
+      "passed": false,
+      "checked_at_utc": "2026-10-20T02:23:43.878236+00:00",
+      "checks": {
+        "authorization_id_matches_explicit_root_instruction": true,
+        "immutable_preflight_hash_matches_authorization": true,
+        "immutable_preflight_hash_matches_retained_original": true,
+        "preflight_passed_before_collection": true,
+        "authorization_created_before_writer_started": true,
+        "immutable_preflight_file_written_before_writer_started": true,
+        "authorization_file_written_before_writer_started": true,
+        "protocol_identity_exact": true,
+        "budget_boundary_exact": true,
+        "writer_consistent_start_stop_finalaudit": true,
+        "writer_boot_matches_current_execution_boot": true,
+        "writer_pid_parent_and_session_recorded": true,
+        "explicit_root_collect_invocation": true,
+        "complete_bench_fingerprint_independently_reproduced": true,
+        "source_identity_exact": true,
+        "planned_40_with_exact_8_record_prefix": true,
+        "only_8_format_calls_no_forecast_observation": true,
+        "all_8_call_writer_identities_match": true,
+        "all_8_call_protocols_match": true,
+        "requests_begin_after_process_start": true,
+        "one_request_in_flight_in_saved_order": true,
+        "each_call_has_one_captured_successful_reply": true,
+        "request_and_reservation_ids_are_unique": true,
+        "all_wire_bodies_match_saved_payloads": true,
+        "actual_requested_raw_question_keys_preserved_without_aliases": true,
+        "all_8_actual_typed_head_choices_match_decoded_records": true,
+        "actual_paired_wire_scope_is_question_key_only": false,
+        "all_8_actual_model_provider_identities_match": true,
+        "adapter_diff_is_exactly_one_answer_lookup": true,
+        "adapter_globals_and_inherited_helpers_are_original_objects": true,
+        "frozen_adapter_normalization_manifest_matches_actual_sources": false,
+        "runner_uses_unmodified_production_control_arm": true,
+        "intentional_reuse_identity_and_prior_evidence_unchanged": true,
+        "all_budget_transitions_form_one_exact_writer_chain": true,
+        "registered_8_call_format_gate_stop_exact": true,
+        "all_32_conditional_forecasts_unrun_in_exact_frozen_order": true,
+        "passing_audit_correctly_incomplete_for_registered_stop": true,
+        "no_foreign_writer_or_accounting_or_response_stop": true,
+        "frozen_helpers_and_ledger_unchanged": true,
+        "audit_made_no_calls_or_ledger_writes": true,
+        "shared_ledger_still_unchanged_at_evidence_write": true
+      },
+      "errors": [
+        "actual_paired_wire_scope_is_question_key_only",
+        "frozen_adapter_normalization_manifest_matches_actual_sources"
+      ],
+      "authorization_id": "9e16e768998047318001fd8624625a57",
+      "writer": {
+        "session_id": "09c38c73915b4c6da67d6f1673f9f1a1",
+        "pid": 35149,
+        "process_start_ticks": 9037301,
+        "parent_pid": 35146,
+        "parent_start_ticks": 9037300,
+        "boot_id": "b113cec5-1758-4140-b960-8d20b2906b04",
+        "started_utc": "2026-10-20T02:19:52.865786+00:00",
+        "script_path": "/workspace/mcpkart/artifacts/jev-question-key-v1/runner.py",
+        "executable": "/workspace/mcpkart/.venv/bin/python",
+        "explicit_collect_flag": true
+      },
+      "root_execution_session_reported": 69088,
+      "preflight_file_sha256": "6139a7a804eb6d0b8fb15be760b8b4c0e60ef2a4e87f66dcd56c55df54f5aa21",
+      "preflight_file_mtime_utc": "2026-10-20T02:19:52.177941+00:00",
+      "authorization_created_utc": "2026-10-20T02:19:52.177966+00:00",
+      "authorization_file_mtime_utc": "2026-10-20T02:19:52.178088+00:00",
+      "writer_started_utc": "2026-10-20T02:19:52.865786+00:00",
+      "format_stop_written_utc": "2026-10-20T02:19:55.460638+00:00",
+      "protocol_sha256": "dc32e7ee5072aed333ac97b48790473968897d24085d44001857ee3f43fc4ef4",
+      "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+      "source_fingerprint_algorithm": {
+        "function": "mcpkart.bench.fingerprint",
+        "independent_reproduction": true,
+        "runtime_function_matches": true,
+        "python_filename_order": [
+          "sim.py",
+          "decisions.py",
+          "runtime.py",
+          "process_runtime.py",
+          "physics_worker.py",
+          "rust_runtime.py",
+          "web.py",
+          "bench.py",
+          "telemetry.py",
+          "observations.py",
+          "scene.py"
+        ],
+        "rust_order": "Sorted Cargo.toml, Cargo.lock and src/*.rs; hash relative POSIX path then bytes for each existing file",
+        "source_file_sha256": {
+          "/workspace/mcpkart/src/mcpkart/sim.py": "8d3ac6a9ab3fd1f244e179e9a4d99a0597cc5b7eceb73d691be73b08e17c42ee",
+          "/workspace/mcpkart/src/mcpkart/decisions.py": "bfb2b454526caa6b36010a69fa927ead6b754841155a415c34fb9a078168cb4d",
+          "/workspace/mcpkart/src/mcpkart/runtime.py": "d19bba47418747b0c9b600ffc6f4e7a7b69d0046b54eb538d3aeebc5e962c695",
+          "/workspace/mcpkart/src/mcpkart/process_runtime.py": "34c36049426013e6d1286ef03ad7c4e34d9487ad92f60504b0a56aa074b5b468",
+          "/workspace/mcpkart/src/mcpkart/physics_worker.py": "cc478b1cb09fd1f3f4f2059a6e69dc1288379cd77d790e693d39f2d68cb32ea8",
+          "/workspace/mcpkart/src/mcpkart/rust_runtime.py": "a5b27ce28f559ca995362c7f9e81ae357da40f20898ca40333388200aa7cc427",
+          "/workspace/mcpkart/src/mcpkart/web.py": "2d3bb6aa690c2624c17cb0abcb4bc711cba794b31f3701dbd29bdb3b30590965",
+          "/workspace/mcpkart/src/mcpkart/bench.py": "9885a0e6792803f7314f2c83a812648811b53b8401a20428b0178443a80dbc92",
+          "/workspace/mcpkart/src/mcpkart/telemetry.py": "44e1a97c6448ffdaf95b97767072e3f99341f3ed5a5092735f5343254788ed6d",
+          "/workspace/mcpkart/src/mcpkart/observations.py": "5febca57d1e474abc9268de49924fe7c8c418bd1a4f469e34ffa564ab1af3255",
+          "/workspace/mcpkart/src/mcpkart/scene.py": "855dcb4e5a337a137d57dba4345bbbece6df6e4f24121dfbd4c7bb1881bc92af",
+          "/workspace/mcpkart/rust-race/Cargo.lock": "bbf4e1ef201063d743fa2f694146fe5c134fb8cbf21aaae4e2530647d9e06d40",
+          "/workspace/mcpkart/rust-race/Cargo.toml": "36e00a322b4ad084e5feb1ed39dd89da3cee41f73a3777830a5e2e4baebedf4e",
+          "/workspace/mcpkart/rust-race/src/main.rs": "0bcb3a55c68b7e668d246319b565f72c4f5794fd9aefc8efa7cec1c88148dc3c",
+          "/workspace/mcpkart/rust-race/src/runtime.rs": "2d5b1f2ef84b7eac362af2f0eb18bd5eee2c54ae879fc0cd4ac2f2ceeed967d4",
+          "/workspace/mcpkart/rust-race/src/sim.rs": "079ecfc528d091b990a84de8ddfb67dc75b5856e4358556e06d157ce2ee8367e"
+        }
+      },
+      "planned_calls": 40,
+      "actual_calls_checked": 8,
+      "format_calls_checked": 8,
+      "forecast_calls_checked": 0,
+      "format_correct": 7,
+      "format_correct_by_question_key": {
+        "control": 3,
+        "future_departure": 4
+      },
+      "unrun_conditional_forecasts": 32,
+      "unrun_order_sha256": "4fc515f52c9d1bead5cc8d6663438984c5b067af038e44405838f04c629b4824",
+      "termination_mode": "registered_format_gate_failed_after_all_8_valid_controls",
+      "audit_passed": true,
+      "audit_complete": false,
+      "intentional_fixture_reuse": {
+        "reuse_intentional": true,
+        "fresh_case_bank": false,
+        "source_experiment": "0029-natural-forecast",
+        "cases_sha256": "35a8fef20f78922f06a3463d3b5702ca0be882a43f1522ff2085e2ab972da1be"
+      },
+      "adapter_source_scope": {
+        "single_answer_lookup_only": true,
+        "original_method_sha256": "54c8350632cd21d989d64b355db10bacfb3f9684f4fdd83e5e9ddece8b22ac2c",
+        "adapter_method_sha256": "ab15d48cbf00df900ba41109775913e29f304ecd10f5587b7a799ba6de4d6629",
+        "actual_raw_question_keys": [
+          "control",
+          "future_departure"
+        ],
+        "no_key_rewriting": true
+      },
+      "budget_before": {
+        "schema_version": 1,
+        "cap_usd": 10.0,
+        "max_requests": 75000,
+        "max_tokens": 250000000,
+        "requests": 61091,
+        "charged_usd": 7.537810101999889,
+        "charged_tokens": 243821197,
+        "reported_cost_usd": 7.480531637999873,
+        "uncertain_requests": 69,
+        "pending": {}
+      },
+      "budget_after": {
+        "schema_version": 1,
+        "cap_usd": 10.0,
+        "max_requests": 75000,
+        "max_tokens": 250000000,
+        "requests": 61099,
+        "charged_usd": 7.538698821999888,
+        "charged_tokens": 243842702,
+        "reported_cost_usd": 7.481420357999872,
+        "uncertain_requests": 69,
+        "pending": {}
+      },
+      "file_sha256": {
+        "protocol.json": "dc32e7ee5072aed333ac97b48790473968897d24085d44001857ee3f43fc4ef4",
+        "collection-authorization.json": "1b6905b0cf40e53d603bae2af4e08e0e977b3b8c2875ada005a7aaed55ef3582",
+        "collection-start.json": "c2e24ea4966c669c7e25f5f6fedbd7ad7ec85b318f8ce4131d4cd04cfb82ee43",
+        "format-stop.json": "be225136fccb6145796379fdba0a5f3281a632583ec8fc3f73f545f250f18d44",
+        "independent-preflight-before-collection.json": "6139a7a804eb6d0b8fb15be760b8b4c0e60ef2a4e87f66dcd56c55df54f5aa21",
+        "independent-preflight.json": "6139a7a804eb6d0b8fb15be760b8b4c0e60ef2a4e87f66dcd56c55df54f5aa21",
+        "final-audit.json": "e78ad90a53b3310626716740aabaefa34423385701484ceaeabb304bafc6726c",
+        "question_client.py": "d081186ee499806c879dd8ca81e2a77461dd456e876ed46a6be6eb54158d9b04",
+        "source-normalization.json": "ffd788653b8078c0a61f29075a07262b9fe1be47c34ddc85720fb4b782c983ab",
+        "fixture-reuse.json": "c4c125860c14e589b5007d8a3d2563512d1a4146d3e960e1aa1d433126a39c19"
+      },
+      "call_evidence_aggregate_sha256": "99314e866d10ce3c92765f9abb42ce169247c39fb48a4357754eec2c8104ef3a",
+      "audit_reruns": 0,
+      "audit_model_calls": 0,
+      "ledger_writes": 0
+    },
+    "initial_diagnostic": {
+      "path": "/workspace/mcpkart/artifacts/jev-question-key-v1/collection-provenance-verification-initial.json",
+      "sha256": "7ada13029c34de99608cf501be426a6eafc376ac0fa239acf47ef327004f0d15",
+      "checked_at_utc": "2026-10-20T02:23:43.878236+00:00",
+      "passed": false,
+      "failed_checks": [
+        "actual_paired_wire_scope_is_question_key_only",
+        "frozen_adapter_normalization_manifest_matches_actual_sources"
+      ],
+      "retained_byte_for_byte": true,
+      "cause": "Verifier grouped distinct format controls without their physical option order and compared raw method-source hashes against a manifest that hashes dedented source. Corrected grouping produces four exact question-key-only pairs, and canonical source hashes match the frozen normalization manifest. No paid evidence or source discrepancy was established."
+    },
+    "correction_scope": "Correct only independent verifier pair grouping and method-source canonicalization; preserve initial diagnostic byte-for-byte. No production, paid recording, frozen helper, protocol or ledger changed."
+  },
+  "registered_format_stop": {
+    "index": 8,
+    "passed": false,
+    "format_correct": 7,
+    "format_attempted": 8,
+    "budget": {
+      "schema_version": 1,
+      "cap_usd": 10.0,
+      "max_requests": 75000,
+      "max_tokens": 250000000,
+      "requests": 61099,
+      "charged_usd": 7.538698821999888,
+      "charged_tokens": 243842702,
+      "reported_cost_usd": 7.481420357999872,
+      "uncertain_requests": 69,
+      "pending": {}
+    },
+    "writer": {
+      "session_id": "09c38c73915b4c6da67d6f1673f9f1a1",
+      "pid": 35149,
+      "process_start_ticks": 9037301,
+      "parent_pid": 35146,
+      "parent_start_ticks": 9037300,
+      "boot_id": "b113cec5-1758-4140-b960-8d20b2906b04",
+      "started_utc": "2026-10-20T02:19:52.865786+00:00",
+      "script_path": "/workspace/mcpkart/artifacts/jev-question-key-v1/runner.py",
+      "executable": "/workspace/mcpkart/.venv/bin/python",
+      "explicit_collect_flag": true
+    },
+    "model_request_started": false,
+    "reason": "format_gate_failed",
+    "unrun_forecasts": 32,
+    "unrun": [
+      {
+        "index": 8,
+        "block": "forecast",
+        "case_id": "natural-02-safe",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 9,
+        "block": "forecast",
+        "case_id": "natural-02-safe",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 10,
+        "block": "forecast",
+        "case_id": "natural-07-hazard",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 11,
+        "block": "forecast",
+        "case_id": "natural-07-hazard",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 12,
+        "block": "forecast",
+        "case_id": "natural-06-hazard",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 13,
+        "block": "forecast",
+        "case_id": "natural-06-hazard",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 14,
+        "block": "forecast",
+        "case_id": "natural-03-hazard",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 15,
+        "block": "forecast",
+        "case_id": "natural-03-hazard",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 16,
+        "block": "forecast",
+        "case_id": "natural-04-safe",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 17,
+        "block": "forecast",
+        "case_id": "natural-04-safe",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 18,
+        "block": "forecast",
+        "case_id": "natural-05-safe",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 19,
+        "block": "forecast",
+        "case_id": "natural-05-safe",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 20,
+        "block": "forecast",
+        "case_id": "natural-07-safe",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 21,
+        "block": "forecast",
+        "case_id": "natural-07-safe",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 22,
+        "block": "forecast",
+        "case_id": "natural-00-safe",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 23,
+        "block": "forecast",
+        "case_id": "natural-00-safe",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 24,
+        "block": "forecast",
+        "case_id": "natural-01-safe",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 25,
+        "block": "forecast",
+        "case_id": "natural-01-safe",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 26,
+        "block": "forecast",
+        "case_id": "natural-00-hazard",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 27,
+        "block": "forecast",
+        "case_id": "natural-00-hazard",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 28,
+        "block": "forecast",
+        "case_id": "natural-04-hazard",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 29,
+        "block": "forecast",
+        "case_id": "natural-04-hazard",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 30,
+        "block": "forecast",
+        "case_id": "natural-03-safe",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 31,
+        "block": "forecast",
+        "case_id": "natural-03-safe",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 32,
+        "block": "forecast",
+        "case_id": "natural-06-safe",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 33,
+        "block": "forecast",
+        "case_id": "natural-06-safe",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 34,
+        "block": "forecast",
+        "case_id": "natural-01-hazard",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 35,
+        "block": "forecast",
+        "case_id": "natural-01-hazard",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "leaves_road",
+          "stays_on_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 36,
+        "block": "forecast",
+        "case_id": "natural-05-hazard",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 37,
+        "block": "forecast",
+        "case_id": "natural-05-hazard",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 38,
+        "block": "forecast",
+        "case_id": "natural-02-hazard",
+        "context": "future_departure",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      },
+      {
+        "index": 39,
+        "block": "forecast",
+        "case_id": "natural-02-hazard",
+        "context": "control",
+        "repetition": 1,
+        "physical_order": [
+          "stays_on_road",
+          "leaves_road"
+        ],
+        "format_required_category": null
+      }
+    ]
+  },
+  "source_normalization_proof": {
+    "passed": true,
+    "single_lookup_replacement_count": 1,
+    "normalized_source_exact": true,
+    "normalized_ast_exact": true,
+    "referenced_globals_original_objects": [
+      "DECISIONS_URL",
+      "Mapping",
+      "_nonnegative",
+      "asyncio",
+      "httpx",
+      "json",
+      "math",
+      "re",
+      "time"
+    ],
+    "inherited_helpers_original_objects": [
+      "_safe_detail",
+      "_error_detail",
+      "_decode_components",
+      "_record_component_uncertainty",
+      "__aenter__",
+      "__aexit__"
+    ],
+    "joint_layout_only": true,
+    "question_ids": [
+      "control",
+      "future_departure"
+    ],
+    "production_control_arm_unmodified": true,
+    "original_method_source_sha256": "118e79f7d6107f6bd467967760fd1c2bd9ae0a8f828df9a1473cf621ccc82020",
+    "adapter_method_source_sha256": "11071a71262809eccf3f0d7ad02f4209bdf7b2e1b4250bdda97b8c9645166313",
+    "normalized_method_source_sha256": "118e79f7d6107f6bd467967760fd1c2bd9ae0a8f828df9a1473cf621ccc82020",
+    "adapter_file_sha256": "d081186ee499806c879dd8ca81e2a77461dd456e876ed46a6be6eb54158d9b04",
+    "production_file_sha256": "bfb2b454526caa6b36010a69fa927ead6b754841155a415c34fb9a078168cb4d",
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "model_requests": 0
+  },
+  "local_mock_preflight": {
+    "passed": true,
+    "model_requests": 0,
+    "real_model_calls": 0,
+    "planned_wire_mock_posts": 40,
+    "local_mock_posts": 67,
+    "adapter_wire_mock_posts": 27,
+    "adapter_scenarios": [
+      "valid",
+      "wrong_key",
+      "missing_key",
+      "invalid_choice",
+      "unexpected_model",
+      "unexpected_provider",
+      "http_503",
+      "untyped",
+      "extra_head"
+    ],
+    "adapter_control_wire_and_record_equivalent": true,
+    "both_real_answer_keys_checked": true,
+    "wrong_missing_head_no_alias": true,
+    "one_reserve_commit_each_adapter_mock": true,
+    "malformed_type_rejected_by_wrapper_without_changing_client": true,
+    "planned_calls": 40,
+    "format_calls": 8,
+    "forecast_calls": 32,
+    "cases": 16,
+    "shared_ledger_unchanged": true,
+    "payloads_exact": true,
+    "oracle_metadata_excluded": true,
+    "no_controls_applied": true,
+    "same_state_and_menu_per_case": true,
+    "baseline_exact_0029": true,
+    "only_forecast_difference_is_question_key": true,
+    "all8valid_formats_before_gate": true,
+    "format_failure_stops_before_forecast": true,
+    "all_valid_forecasts_collected": true,
+    "external_advance_rejected_before_post": true,
+    "writer_identity_observable": true,
+    "four_order_cells_four_units_each": true,
+    "context_position_cells_eight_each": true,
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "max_input_byte_bound": 8332,
+    "payload_sha256": [
+      "485219e8e942e2ece3701263659a1b1d63e349ee7aa4c114a51682eefaf05487",
+      "e116362391180d62c6bc42caf8f366d0a4a59c3f73c80f8386363696b75d80f9",
+      "19374145aae1ad6050d78978185bf861d0d78b8cc6e0598235a9c3f50190c6df",
+      "81d80618d80702091cff7d45e68ff24b10f6eb323bfe082424a7e2b38ddef91d",
+      "6f82904c55eefe8a9b5495a6d5c63b5b22594c73d5b748e3f861376b79d61a6e",
+      "8a2e8c88c7bba118d83ec2e71913f85165bbb1e38b5617e4e2b3bf6d88ed6a8d",
+      "f999dfd0bb14d64c6598b9547b7871d7fd2e21218c6b4312abc57a86cd3cbd04",
+      "f364a42597088e15af45f7db9886d08ba3a04b356d24f15cadfe8d256634f923",
+      "c6f3ad6c90ed401268d9d62dea91e17387497f696c6dd2b6aa0a66769b1836cf",
+      "c003d671736de0126dd1cc66495078b1a6749bec5caba4e25e54dd2d56cf9e23",
+      "b428316c79c328a6b258369b6127af159626ae326b7318621b26fe4983df8a07",
+      "25613b45e0027767d725d4427d888e2f1f67edba5807973442a42479c23d48eb",
+      "87f66098457a145f754a07e828d99654aa70f544bdafd1c94bbf6ff1c4c2299e",
+      "a91198dc486b24ac68a74c2201ef569aff26fa42d084f99e4068142610383b0b",
+      "a255abfae18b0e8e9773c8d69b306184c3b21280bc01196956d7f09c20630092",
+      "67fe6eff3cf916224cc56f0f4e8f1a4259c390ac3a9acdc671e18a438b87c60a",
+      "98d211b1e6961128df74b83270c9173d235c51fd7264662c30f77a55de083af4",
+      "8554c67efbf8c98f9503eb173072d5ab243dc8b391f1a25274670d0fd9d672a1",
+      "8e5802b225995818e2f7ce72eb35090e6cc56b5d91ba432b308c16dc5977d21c",
+      "e317d3b8fa8ec85fbb7dab16d05b2fd4e0bd1889c18ae1dc5ab1fca4b17a9e81",
+      "1bf460b68137bb11c12dd9969c6517d68e46fa86bce80a89afe52fd29f4450d5",
+      "452a43471ad96f976a073f26645a4290b268662ba9d46088b81030c455c88fec",
+      "52d0094ef6aa2c53e82412886ddd6027973aaa5ab55e623d8b423f8a5103f123",
+      "05253a3ec252a60f38db809e4e919ef552f540fd281238eacd1f891603cb4210",
+      "26e85b28871c3bc107eeb21139fac0a4c3452483f37ec3ada2d58a4a318030d6",
+      "31933c91a1389902a45ec391683aff9c72ae2e3d65988f134d9914d4d90eadbe",
+      "6246528c52d7269f62de54a9acf40b7ecbd2526484b541d62881904c48ac9b4f",
+      "2d6083e25564989d5af13727dfcfce950f5cc5e000db5d7747099a3714fa79c8",
+      "f16ebe0df6662c9aa054ff23ba4af388f77a386bf9c004c9517ef4e116f59fae",
+      "26a133871767ce62f85cdb74b18ee0c6f830794f8ab24d6f125dcf0f9d1d21a4",
+      "ee8096411d3976a6effc4773346c4176ca37956d6e26de91dd2335f87572f2af",
+      "02eada281b5f23244f1fb9f7509d70fc5d0a83f3c47eb7d9474c04f126b8d39c",
+      "6babefe2766d37aeae023c8036a2b8f1f45700883c2a256af5a75df5a7216219",
+      "c6226436cbd15b1df0160feae78cf7f7d58327e971b813e1f01b8cae000422f1",
+      "08da31f82fe8add465e4e711acbe43784a9e80e49964b3c85e87b0fbe15e5f96",
+      "81a535a9a9780472131a5cf55f9388f763d81233e38a86e894df0eb5b1e1727d",
+      "9beb52cb2f975ee4990461c58b3834c8b72f7a5fbd2325be5daeff577860e171",
+      "85b82aceda39548a47c6dd58900698105ea073f09985789f4db3f82005557a79",
+      "5e0a5d20d24811d1b09feaefa992e017afc586f185058d52613b8ee73328d039",
+      "aec2f9c95ab0bab66696c6ef762828d339acc0790bb6c636c6e545ba6ee04bfe"
+    ],
+    "cases_sha256": "35a8fef20f78922f06a3463d3b5702ca0be882a43f1522ff2085e2ab972da1be",
+    "source_normalization_sha256": "ffd788653b8078c0a61f29075a07262b9fe1be47c34ddc85720fb4b782c983ab",
+    "helper_sha256": {
+      "question_client.py": "d081186ee499806c879dd8ca81e2a77461dd456e876ed46a6be6eb54158d9b04",
+      "payloads.py": "a88e84dda19ac7f7e791162af203b789369824eef9ea753ebfede62db8a11039",
+      "prepare.py": "0f265eaa56f21456a8f4e841ac5516fd005b07cf638520a7c7db9b6abd0f38a3",
+      "runner.py": "8fb7e5cf29509e72bd27f056fb085d8491035bb030cf9087dc83afd066d0fc5f",
+      "preflight.py": "f2ca5869119e0397549b06fb978f2f21f2ba9a061a695c32d240a33087424de7",
+      "DESIGN.md": "e4aee396958377a0f384dbca8c4044de8095b58cebdb23db8ce03092ebb1dad9"
+    }
+  },
+  "independent_prospective_preflight": {
+    "passed": true,
+    "mode": "independent_question_key_preflight",
+    "reuse_intentional": true,
+    "fresh_case_bank": false,
+    "format_questions_checked": 8,
+    "planned_wire_mocks": 40,
+    "adapter_compatibility_wire_mocks": 27,
+    "errors": [],
+    "independent_forecasts": 16,
+    "forecast_steps_checked": 480,
+    "exact_payloads_checked": 40,
+    "current_road_frame_fields_checked": 64,
+    "existing_renderer_crosschecks": "kart_physics angles and compact current road-lateral velocity",
+    "mock_scope": "40 actual local wire mocks plus endpoint/key-failure mocks; external-writer guard checks are local unit checks, not extra collection-loop requests",
+    "natural_recorded_prefixes_verified": 16,
+    "question_adapter_source_review": {
+      "passed": true,
+      "production_decide_sha256": "118e79f7d6107f6bd467967760fd1c2bd9ae0a8f828df9a1473cf621ccc82020",
+      "adapter_decide_sha256": "11071a71262809eccf3f0d7ad02f4209bdf7b2e1b4250bdda97b8c9645166313",
+      "single_lookup_normalization_exact": true,
+      "referenced_global_identity": {
+        "DECISIONS_URL": true,
+        "Mapping": true,
+        "_nonnegative": true,
+        "asyncio": true,
+        "httpx": true,
+        "json": true,
+        "math": true,
+        "re": true,
+        "time": true
+      },
+      "control_arm_original_production_client": true,
+      "no_response_key_rewriting_or_aliases": true
+    },
+    "recorded_samples_verified": 29968,
+    "recorded_commands_replayed": 1756,
+    "model_requests": 0,
+    "no_controls_applied": true,
+    "shared_ledger_unchanged": true
+  },
+  "format_results": [
+    {
+      "index": 0,
+      "context": "control",
+      "criterion_first": "leaves_road",
+      "required_category": "leaves_road",
+      "expected": "leaves_road",
+      "chosen": "stays_on_road",
+      "correct": false
+    },
+    {
+      "index": 1,
+      "context": "control",
+      "criterion_first": "stays_on_road",
+      "required_category": "leaves_road",
+      "expected": "leaves_road",
+      "chosen": "leaves_road",
+      "correct": true
+    },
+    {
+      "index": 2,
+      "context": "control",
+      "criterion_first": "leaves_road",
+      "required_category": "stays_on_road",
+      "expected": "stays_on_road",
+      "chosen": "stays_on_road",
+      "correct": true
+    },
+    {
+      "index": 3,
+      "context": "control",
+      "criterion_first": "stays_on_road",
+      "required_category": "stays_on_road",
+      "expected": "stays_on_road",
+      "chosen": "stays_on_road",
+      "correct": true
+    },
+    {
+      "index": 4,
+      "context": "future_departure",
+      "criterion_first": "leaves_road",
+      "required_category": "leaves_road",
+      "expected": "leaves_road",
+      "chosen": "leaves_road",
+      "correct": true
+    },
+    {
+      "index": 5,
+      "context": "future_departure",
+      "criterion_first": "stays_on_road",
+      "required_category": "leaves_road",
+      "expected": "leaves_road",
+      "chosen": "leaves_road",
+      "correct": true
+    },
+    {
+      "index": 6,
+      "context": "future_departure",
+      "criterion_first": "leaves_road",
+      "required_category": "stays_on_road",
+      "expected": "stays_on_road",
+      "chosen": "stays_on_road",
+      "correct": true
+    },
+    {
+      "index": 7,
+      "context": "future_departure",
+      "criterion_first": "stays_on_road",
+      "required_category": "stays_on_road",
+      "expected": "stays_on_road",
+      "chosen": "stays_on_road",
+      "correct": true
+    }
+  ],
+  "forecast_analysis": {
+    "status": "not_run_after_failed_format_gate",
+    "planned": 32,
+    "attempted": 0,
+    "conditionally_unrun": 32,
+    "accuracy": null,
+    "paired_accuracy_difference": null,
+    "net_correct_gain": null,
+    "question_key_forecast_effect": null,
+    "warning": "Zero forecast counters in the verbatim saved report represent absent observations, not0% accuracy or evidence of a null question-key effect."
+  },
+  "interpretation": {
+    "format_correct": 7,
+    "format_responses": 8,
+    "format_correct_by_key": {
+      "control": 3,
+      "future_departure": 4
+    },
+    "format_responses_each_key": 4,
+    "wrong_format_answer": {
+      "index": 0,
+      "question_key": "control",
+      "required_category": "leaves_road",
+      "chosen_category": "stays_on_road",
+      "structurally_valid": true
+    },
+    "requested_raw_keys_and_adapter_worked_for_observed_format_calls": true,
+    "conclusion": "The8/8 prerequisite failed. Four format responses per key cannot establish general key improvement; no physical forecasting observation was collected."
+  },
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61091,
+    "charged_usd": 7.537810101999889,
+    "charged_tokens": 243821197,
+    "reported_cost_usd": 7.480531637999873,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61099,
+    "charged_usd": 7.538698821999888,
+    "charged_tokens": 243842702,
+    "reported_cost_usd": 7.481420357999872,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 8,
+    "charged_usd": 0.0008887199999989548,
+    "reported_cost_usd": 0.0008887199999989548,
+    "charged_tokens": 21505,
+    "uncertain_requests": 0
+  },
+  "decision": {
+    "format_gate_passed": false,
+    "forecast_phase_admitted": false,
+    "forecast_inference_permitted": false,
+    "rerun_or_replacement": false,
+    "gate_relaxed": false,
+    "native_validation_triggered": false,
+    "live_followup_triggered": false,
+    "preset_promoted": false,
+    "no_qualification_under_any_outcome": true
+  },
+  "interpretation_limits": [
+    "The sixteen natural cases are deliberately reused from0029. These outcomes are not fresh-case validation or a driving qualification.",
+    "Both question-name arms are collected concurrently in fixed balanced order; historical0029 responses are not used as the comparison arm.",
+    "A constant all-safe response changing to constant all-hazard under a key change is answer sensitivity, not improved forecasting.",
+    "Format checks test prescribed category mapping, while forecasts require physical prediction; their scores are separate.",
+    "Each forecast context is presented once per state. Shared source seeds and reused cases remain related observations.",
+    "Only the requested typed answer head is counted. Extra unrelated heads are preserved and reported, with no aliases or fallback lookup.",
+    "Raw model probabilities are descriptive, may be incomplete/nonunit, and are neither normalized nor calibrated by this audit.",
+    "No possible result authorizes qualification, native validation, live use or preset promotion.",
+    "Only prescribed-format compliance was observed. Physical forecasting, forecast accuracy differences and question-key forecast effects remain untested."
+  ],
+  "report_generation": {
+    "saved_completed_evidence_only": true,
+    "audits_rerun": false,
+    "model_calls": 0,
+    "ledger_read_or_written": false,
+    "frozen_archives_modified": false
+  }
+}

@@ -26,6 +26,9 @@ VARIANTS = (
     "road_navigation",
     "compact_navigation",
     "road_history",
+    "scene_svg",
+    "scene_image",
+    "near_field",
 )
 COMPACT_PATH_ARCS_M = (0, 3, 6, 10, 15, 22)
 COMPACT_UNITS = (
@@ -622,6 +625,39 @@ def _next_gate(observation: dict, config: dict) -> dict:
     }
 
 
+def _near_field(observation: dict, config: dict) -> dict:
+    """Short factual road geometry, without a target or selected input."""
+    kart, road = observation["kart"], observation["track"]
+    cosine, sine = math.cos(kart["heading"]), math.sin(kart["heading"])
+    handling = config["handling"]
+    return {
+        "units": ("Metres, seconds, degrees. Kart looks FORWARD; positive left_m is LEFT of its nose. "
+                  "Road points are actual centreline positions, not a chosen path. "
+                  "Positive wheel, yaw, offset and nose angle mean LEFT. Controls are absolute held settings."),
+        "tick": observation["tick"], "time": observation["time"],
+        "progress": copy.deepcopy(observation["progress"]),
+        "rescue": copy.deepcopy(observation.get("rescue", {})),
+        "control": observation.get("control"),
+        "kart": {"speed_m_s": kart["speed"],
+                 "wheel_deg": _number(math.degrees(kart["steering_angle"])),
+                 "yaw_deg_s": _number(math.degrees(kart["yaw_rate"])),
+                 "velocity_forward_m_s": _number(kart["vx"]*cosine+kart["vy"]*sine),
+                 "velocity_left_m_s": _number(-kart["vx"]*sine+kart["vy"]*cosine),
+                 "offset_left_of_road_m": road["offset"],
+                 "nose_left_of_road_deg": _number(-math.degrees(road["heading_error"]))},
+        "road": {"width_m": road["width"], "on_road": road["on_road"],
+                 "centre_points": [{"arc_m": p["distance"], "forward_m": _number(p["x"]),
+                                    "left_m": _number(p["y"])}
+                                   for p in road["lookahead"] if p["distance"] <= 15]},
+        "handling": {"max_speed_m_s": handling.get("max_speed"),
+                     "max_wheel_deg": _number(math.degrees(handling["max_steering_angle"])),
+                     "wheelbase_m": handling["wheelbase"],
+                     "road_grip_m_s2": handling["lateral_grip"],
+                     "braking_m_s2": handling.get("braking")},
+        "next_gate": _next_gate(observation, config),
+    }
+
+
 def _navigation(observation: dict, config: dict, variant: str, context: dict | None) -> dict:
     compact = variant == "compact_navigation"
     state = represent(observation, config, "compact" if compact else "road_physics")
@@ -666,6 +702,24 @@ def represent(observation: dict, config: dict, variant: str = "road", *, context
     """
     if variant not in VARIANTS:
         raise ValueError(f"Unknown telemetry variant: {variant}")
+    if variant == "near_field":
+        return _near_field(observation, config)
+    if variant in {"scene_svg", "scene_image"}:
+        from .scene import image_part, scene_geometry, scene_svg
+
+        state = _compact(observation, config, text=False)
+        # The two scene profiles have identical numeric facts and camera geometry.
+        # Remove duplicate road previews; keep pose/handling/gate facts and progress.
+        for key in ("local_path", "future_bends", "bend_sampling", "next_checkpoint"):
+            state.pop(key, None)
+        state["next_gate"] = _next_gate(observation, config)
+        state["view"] = ("384x384 egocentric map: kart nose points UP. Yellow triangle=kart; "
+                         "grey=road, white=edges, dashed=road centre; cyan=next finite gate; "
+                         "blue segment=half a second of current velocity, not a selected path. "
+                         "Screen right is kart RIGHT. No automatic steering or recommended input.")
+        scene = scene_geometry(observation, config)
+        state["scene"] = scene_svg(scene) if variant == "scene_svg" else image_part(scene)
+        return state
     if variant == "raw":
         return copy.deepcopy(observation)
     if variant in {"road_navigation", "compact_navigation", "road_history"}:

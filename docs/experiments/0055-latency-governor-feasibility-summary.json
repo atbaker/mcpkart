@@ -1,0 +1,990 @@
+{
+  "result": {
+    "complete": true,
+    "model_requests": 0,
+    "is_jev": false,
+    "rows": [
+      {
+        "path": "artifacts/jev-latency-governor-v1/45-fixed250-unchanged.json",
+        "sha256": "f051fed222831860042179d4ecf093455ed21f931db302ae83510b0c519b93d9",
+        "entry": {
+          "seed": 45,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed250",
+        "elapsed_s": 78.58333333333016,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/45-fixed250-cruise10.json",
+        "sha256": "e14f4735cae6856689716e7627fbc69581c101188d32a3dc225e7d3d00a87e76",
+        "entry": {
+          "seed": 45,
+          "course": "stadium"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed250",
+        "elapsed_s": 85.54999999999643,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/45-fixed500-unchanged.json",
+        "sha256": "7dd88dd467129abd3de9c63c996e604653d733c5f4c2e51fc19be2a2e8097906",
+        "entry": {
+          "seed": 45,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed500",
+        "elapsed_s": 27.899999999999697,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/45-fixed500-cruise10.json",
+        "sha256": "25e1b8b71fa39a3418f8cd3b9b038b0bfdac5bdfb9644b6c232145b04ef0aef9",
+        "entry": {
+          "seed": 45,
+          "course": "stadium"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed500",
+        "elapsed_s": 21.18333333333341,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/45-fixed750-unchanged.json",
+        "sha256": "11365abdbf2a1511ce886a83b3780c4113ea0d9425a9d7a58e05842ec49329c2",
+        "entry": {
+          "seed": 45,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed750",
+        "elapsed_s": 16.86666666666699,
+        "rescues": 0,
+        "grass_s": 0.6500000000000004,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/45-fixed750-cruise10.json",
+        "sha256": "fe93a578902eef33694cf92223f077e3ad3f63e885cf99e0bd35ae763fc0994b",
+        "entry": {
+          "seed": 45,
+          "course": "stadium"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed750",
+        "elapsed_s": 11.500000000000151,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/45-fixed1000-unchanged.json",
+        "sha256": "196e8943fc38275e212f80f3c47418f1e9f5c70aba5ce49a56f283838594ac81",
+        "entry": {
+          "seed": 45,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed1000",
+        "elapsed_s": 10.166666666666751,
+        "rescues": 0,
+        "grass_s": 0.19999999999999998,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/45-fixed1000-cruise10.json",
+        "sha256": "cf085327f98373a05fe698628b26be461a2b85820957a7c6dd2774af806b3595",
+        "entry": {
+          "seed": 45,
+          "course": "stadium"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed1000",
+        "elapsed_s": 11.183333333333469,
+        "rescues": 0,
+        "grass_s": 1.2333333333333338,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/45-periodic1500-unchanged.json",
+        "sha256": "3c302638a0a2dfcdb65755536cc68208384af2a08cbcaa8f2b2bc67a1ff0d225",
+        "entry": {
+          "seed": 45,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "periodic1500",
+        "elapsed_s": 83.29999999999656,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/45-periodic1500-cruise10.json",
+        "sha256": "fe04d7f39e71fcb28025d71cc2bbbb84f0f177de32a3e0a48030a717ee7de139",
+        "entry": {
+          "seed": 45,
+          "course": "stadium"
+        },
+        "profile": "cruise10",
+        "delay_profile": "periodic1500",
+        "elapsed_s": 33.449999999999385,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/46-fixed250-unchanged.json",
+        "sha256": "2fe54a20a1c7a568c6f01c12f6c7b7dddb2c19ceb6944320580a6b673995be25",
+        "entry": {
+          "seed": 46,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed250",
+        "elapsed_s": 78.59999999999683,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/46-fixed250-cruise10.json",
+        "sha256": "e9712b6e637afbf4f6b55f827f06c31c80791f01609153e353ce090bd77d47ac",
+        "entry": {
+          "seed": 46,
+          "course": "stadium_clockwise"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed250",
+        "elapsed_s": 85.78333333332975,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/46-fixed500-unchanged.json",
+        "sha256": "0cf77d8c9fd3aaaa97134397e78e37ea87e1ad0e15b9a36c60619f0b65941047",
+        "entry": {
+          "seed": 46,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed500",
+        "elapsed_s": 62.5166666666644,
+        "rescues": 2,
+        "grass_s": 6.749999999999981,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/46-fixed500-cruise10.json",
+        "sha256": "725cfe6fed221aa879ddc47881939affcb358ea79f6b8f8dee9c8672fc160283",
+        "entry": {
+          "seed": 46,
+          "course": "stadium_clockwise"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed500",
+        "elapsed_s": 27.38333333333306,
+        "rescues": 0,
+        "grass_s": 2.0166666666666644,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/46-fixed750-unchanged.json",
+        "sha256": "73f3e25d1747747cb4a95902a2d67a254e15dc03c02a51e5cf8e650eeb40c8b4",
+        "entry": {
+          "seed": 46,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed750",
+        "elapsed_s": 16.86666666666699,
+        "rescues": 0,
+        "grass_s": 0.6666666666666671,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/46-fixed750-cruise10.json",
+        "sha256": "10d5ef7c5e95fed6775aca813bcbcfd989a7a152a4c957720ffbd9d7bd347637",
+        "entry": {
+          "seed": 46,
+          "course": "stadium_clockwise"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed750",
+        "elapsed_s": 17.633333333333614,
+        "rescues": 0,
+        "grass_s": 1.0500000000000012,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/46-fixed1000-unchanged.json",
+        "sha256": "2a9b60783618adc1a20dae2cda03bc41a87aaca0033ffd087db97e5203d2eb15",
+        "entry": {
+          "seed": 46,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed1000",
+        "elapsed_s": 10.166666666666751,
+        "rescues": 0,
+        "grass_s": 0.19999999999999998,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/46-fixed1000-cruise10.json",
+        "sha256": "78b1b14e7ea3816675d9e3f1ff7887572c575e663794c878000821d8c36619eb",
+        "entry": {
+          "seed": 46,
+          "course": "stadium_clockwise"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed1000",
+        "elapsed_s": 10.166666666666751,
+        "rescues": 0,
+        "grass_s": 0.2333333333333333,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/46-periodic1500-unchanged.json",
+        "sha256": "5fa88c18da60e6d465281fa709948b387f9b8774e92bea0548352600612f4c1e",
+        "entry": {
+          "seed": 46,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "periodic1500",
+        "elapsed_s": 47.149999999998606,
+        "rescues": 0,
+        "grass_s": 0.19999999999999998,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/46-periodic1500-cruise10.json",
+        "sha256": "9eec24a2aa61cbf1b7567c053892dedc84ac696ef7efe845487a90b57a0d5928",
+        "entry": {
+          "seed": 46,
+          "course": "stadium_clockwise"
+        },
+        "profile": "cruise10",
+        "delay_profile": "periodic1500",
+        "elapsed_s": 90.51666666666281,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/47-fixed250-unchanged.json",
+        "sha256": "44942a3a900938aa6273bbb30ea26a501d8e053f4a773c0da338f6b1d2c3c5d8",
+        "entry": {
+          "seed": 47,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed250",
+        "elapsed_s": 78.88333333333014,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/47-fixed250-cruise10.json",
+        "sha256": "be17609bad883fefd295c69e4e31d18f22a269e37a1ce541e2b5df11bcfebe04",
+        "entry": {
+          "seed": 47,
+          "course": "stadium"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed250",
+        "elapsed_s": 85.44999999999644,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/47-fixed500-unchanged.json",
+        "sha256": "f9fc9297b195a852714fa92d66ab39bea74a5ea6e156bdc3b25087f0eddd7b8a",
+        "entry": {
+          "seed": 47,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed500",
+        "elapsed_s": 27.899999999999697,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/47-fixed500-cruise10.json",
+        "sha256": "18e61b09ecb818592016d6cfc85f867a5aea0793d76a52844c013cf6695e27f1",
+        "entry": {
+          "seed": 47,
+          "course": "stadium"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed500",
+        "elapsed_s": 21.18333333333341,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/47-fixed750-unchanged.json",
+        "sha256": "205fe68e884cc5da6fbb3c1e6bc7b829596b677a7ddab0e3fa80a4edf6687570",
+        "entry": {
+          "seed": 47,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed750",
+        "elapsed_s": 16.86666666666699,
+        "rescues": 0,
+        "grass_s": 0.6500000000000004,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/47-fixed750-cruise10.json",
+        "sha256": "02a5e8665cbd1e4842b77753362c70da49fa6ffa4d63d809c6b0a29684eded5f",
+        "entry": {
+          "seed": 47,
+          "course": "stadium"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed750",
+        "elapsed_s": 11.500000000000151,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/47-fixed1000-unchanged.json",
+        "sha256": "74e3c18bb6f6609f74f85324d23d560bdc8824763bd1bb44183e1551ec8fdb69",
+        "entry": {
+          "seed": 47,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed1000",
+        "elapsed_s": 10.166666666666751,
+        "rescues": 0,
+        "grass_s": 0.18333333333333332,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/47-fixed1000-cruise10.json",
+        "sha256": "91f6d7c641a3a2438805f47501ab6049859e2afd315391debf2d5abaab78c967",
+        "entry": {
+          "seed": 47,
+          "course": "stadium"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed1000",
+        "elapsed_s": 11.183333333333469,
+        "rescues": 0,
+        "grass_s": 1.2166666666666672,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/47-periodic1500-unchanged.json",
+        "sha256": "772d431abc98121c33e38b8dc38e3cda691044d0663551735a1c1c5298bba6bb",
+        "entry": {
+          "seed": 47,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "periodic1500",
+        "elapsed_s": 83.29999999999656,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/47-periodic1500-cruise10.json",
+        "sha256": "724bca286ce3ecbe107aee4dfa2dce284523ce98c93c5b7fc07d036e3ace325d",
+        "entry": {
+          "seed": 47,
+          "course": "stadium"
+        },
+        "profile": "cruise10",
+        "delay_profile": "periodic1500",
+        "elapsed_s": 90.6666666666628,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/48-fixed250-unchanged.json",
+        "sha256": "7f89865a542b77422d712f09da8a181a54b8a6b6f326d96579b163095e4f79aa",
+        "entry": {
+          "seed": 48,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed250",
+        "elapsed_s": 78.73333333333015,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/48-fixed250-cruise10.json",
+        "sha256": "a82dcd7ab0a1f61f18a56008baeaacd133bb799943814f4b24a2095f1ff5f852",
+        "entry": {
+          "seed": 48,
+          "course": "stadium_clockwise"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed250",
+        "elapsed_s": 85.81666666666308,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/48-fixed500-unchanged.json",
+        "sha256": "cd2db096d0fc3ca7d70792e107b662089cf4474ff4f41ccc89dd111650b05232",
+        "entry": {
+          "seed": 48,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed500",
+        "elapsed_s": 23.24999999999996,
+        "rescues": 0,
+        "grass_s": 0.6833333333333338,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/48-fixed500-cruise10.json",
+        "sha256": "c1c158711eea44e49af1c962907b68130f86e174442451711eaa3dec7a7ef94e",
+        "entry": {
+          "seed": 48,
+          "course": "stadium_clockwise"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed500",
+        "elapsed_s": 110.91666666666165,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/48-fixed750-unchanged.json",
+        "sha256": "ff5151bca0dbc4c9fa171db19f1922a5453504f7dc7ae1a20010c0416771d24d",
+        "entry": {
+          "seed": 48,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed750",
+        "elapsed_s": 16.86666666666699,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/48-fixed750-cruise10.json",
+        "sha256": "5f1e8d841f59b47c3d414e6f4182929f64d7e22bd9fa51d3c9875738f9a99bf0",
+        "entry": {
+          "seed": 48,
+          "course": "stadium_clockwise"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed750",
+        "elapsed_s": 16.86666666666699,
+        "rescues": 0,
+        "grass_s": 0.15,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/48-fixed1000-unchanged.json",
+        "sha256": "e4d3e1084e932b3b8e9c3c85d49c8f778da21d9f5b993aee4444296c032e702d",
+        "entry": {
+          "seed": 48,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed1000",
+        "elapsed_s": 10.166666666666751,
+        "rescues": 0,
+        "grass_s": 0.2333333333333333,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/48-fixed1000-cruise10.json",
+        "sha256": "066f0132359025af08fc8a1cc63d114e73d86116b79124054512e38025ae60a7",
+        "entry": {
+          "seed": 48,
+          "course": "stadium_clockwise"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed1000",
+        "elapsed_s": 11.183333333333469,
+        "rescues": 0,
+        "grass_s": 1.2833333333333337,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/48-periodic1500-unchanged.json",
+        "sha256": "7c84a59244882577f333911870443e784d48678d4b4bd41cb7c087d3b2229d5e",
+        "entry": {
+          "seed": 48,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "periodic1500",
+        "elapsed_s": 26.59999999999977,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/48-periodic1500-cruise10.json",
+        "sha256": "0fc35e3175a548ac80cca508d1f7f7d8b301a378af5880de6093b79736aca80b",
+        "entry": {
+          "seed": 48,
+          "course": "stadium_clockwise"
+        },
+        "profile": "cruise10",
+        "delay_profile": "periodic1500",
+        "elapsed_s": 90.68333333332947,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/49-fixed250-unchanged.json",
+        "sha256": "b2fe591bd6406f7139c759179aea8cf72e2b29bc03ab908d729f688c5f960d74",
+        "entry": {
+          "seed": 49,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed250",
+        "elapsed_s": 78.89999999999681,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/49-fixed250-cruise10.json",
+        "sha256": "c4204d753250fb09ff96929de188fce41305a2c802fcc026b28e88df3dcab84d",
+        "entry": {
+          "seed": 49,
+          "course": "stadium"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed250",
+        "elapsed_s": 85.58333333332976,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/49-fixed500-unchanged.json",
+        "sha256": "8366f610cb2fca79c7bced999778ba5b59ef6e859b5f0ffb730d83f8b3c274e4",
+        "entry": {
+          "seed": 49,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed500",
+        "elapsed_s": 61.99999999999776,
+        "rescues": 1,
+        "grass_s": 3.2833333333333266,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/49-fixed500-cruise10.json",
+        "sha256": "e2280c741e7aaa8481812200598931061d31f0a9cf2d66282df79c92403eddf3",
+        "entry": {
+          "seed": 49,
+          "course": "stadium"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed500",
+        "elapsed_s": 70.26666666666397,
+        "rescues": 1,
+        "grass_s": 3.2833333333333266,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/49-fixed750-unchanged.json",
+        "sha256": "4f3315d3b9093751fb5a96fb37a61868e2e3d18a596f1c1444ac74be1d0d2b67",
+        "entry": {
+          "seed": 49,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed750",
+        "elapsed_s": 16.86666666666699,
+        "rescues": 0,
+        "grass_s": 0.6833333333333338,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/49-fixed750-cruise10.json",
+        "sha256": "c3445ff81a176473137f4a870ef74b7bf43830d56cbf9d2e96761840e775dd4d",
+        "entry": {
+          "seed": 49,
+          "course": "stadium"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed750",
+        "elapsed_s": 11.500000000000151,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/49-fixed1000-unchanged.json",
+        "sha256": "5758f6e11d06c27acca7755534c31109f95a5a342c400428103838b94042805c",
+        "entry": {
+          "seed": 49,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed1000",
+        "elapsed_s": 10.166666666666751,
+        "rescues": 0,
+        "grass_s": 0.18333333333333332,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/49-fixed1000-cruise10.json",
+        "sha256": "89fb91a3e9d2f69a6381ca45cdfd17c7ae1f95d15fc32a3a084f4565f01ab1e4",
+        "entry": {
+          "seed": 49,
+          "course": "stadium"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed1000",
+        "elapsed_s": 10.166666666666751,
+        "rescues": 0,
+        "grass_s": 0.19999999999999998,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/49-periodic1500-unchanged.json",
+        "sha256": "a8d944433075142d3dbd019e55f5f20048b4db89603187b773f6136b183cb411",
+        "entry": {
+          "seed": 49,
+          "course": "stadium"
+        },
+        "profile": "unchanged",
+        "delay_profile": "periodic1500",
+        "elapsed_s": 82.36666666666328,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/49-periodic1500-cruise10.json",
+        "sha256": "9d8745d7bc4295da2862420f25c0ff99df60211effff3ddd918a1dce84aa6b4d",
+        "entry": {
+          "seed": 49,
+          "course": "stadium"
+        },
+        "profile": "cruise10",
+        "delay_profile": "periodic1500",
+        "elapsed_s": 89.79999999999619,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/50-fixed250-unchanged.json",
+        "sha256": "8b20a633a5c7b49aff92680fb4d51262bc42c9d98597e272f2805ae2e71696da",
+        "entry": {
+          "seed": 50,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed250",
+        "elapsed_s": 78.78333333333015,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/50-fixed250-cruise10.json",
+        "sha256": "db0e7517c446eb547f584284bb107da46ffb5f888119c9893d69e619c4bf103f",
+        "entry": {
+          "seed": 50,
+          "course": "stadium_clockwise"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed250",
+        "elapsed_s": 85.91666666666308,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/50-fixed500-unchanged.json",
+        "sha256": "934fa4162b62813199060404f901345d14a7b6a9cff6400b47ec3744380897af",
+        "entry": {
+          "seed": 50,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed500",
+        "elapsed_s": 23.24999999999996,
+        "rescues": 0,
+        "grass_s": 0.7000000000000005,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/50-fixed500-cruise10.json",
+        "sha256": "3b2da287e544cb2e346d79117c4702b49bebbbedb7c707878a82484fe61e3a2f",
+        "entry": {
+          "seed": 50,
+          "course": "stadium_clockwise"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed500",
+        "elapsed_s": 71.81666666666388,
+        "rescues": 1,
+        "grass_s": 4.649999999999989,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/50-fixed750-unchanged.json",
+        "sha256": "d364aaf508a0f228304c4d67fb30d2bba1d1c11d121df29b9009bc41a75227ef",
+        "entry": {
+          "seed": 50,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed750",
+        "elapsed_s": 37.56666666666582,
+        "rescues": 1,
+        "grass_s": 3.6333333333333253,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/50-fixed750-cruise10.json",
+        "sha256": "207804b2e57ece73232de527c39c930245f3c5e33893638b406a98cdf5a2e27e",
+        "entry": {
+          "seed": 50,
+          "course": "stadium_clockwise"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed750",
+        "elapsed_s": 16.86666666666699,
+        "rescues": 0,
+        "grass_s": 0.16666666666666666,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/50-fixed1000-unchanged.json",
+        "sha256": "020034b47347b07daf8bf26f709ae742e47f8a4de7f12236a17b50264851d700",
+        "entry": {
+          "seed": 50,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "fixed1000",
+        "elapsed_s": 10.166666666666751,
+        "rescues": 0,
+        "grass_s": 0.21666666666666665,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/50-fixed1000-cruise10.json",
+        "sha256": "4f9313f3c8e87fb7fc626c9d5aa2c39b1ce136555a419bce39b225497900e262",
+        "entry": {
+          "seed": 50,
+          "course": "stadium_clockwise"
+        },
+        "profile": "cruise10",
+        "delay_profile": "fixed1000",
+        "elapsed_s": 11.183333333333469,
+        "rescues": 0,
+        "grass_s": 1.266666666666667,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/50-periodic1500-unchanged.json",
+        "sha256": "fb92d868874fd6ef8a84d637041d00a59832dcb75665b0a921fd1a6fd663e4bd",
+        "entry": {
+          "seed": 50,
+          "course": "stadium_clockwise"
+        },
+        "profile": "unchanged",
+        "delay_profile": "periodic1500",
+        "elapsed_s": 52.93333333333161,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": false,
+        "clean": false,
+        "domain_stop": true
+      },
+      {
+        "path": "artifacts/jev-latency-governor-v1/50-periodic1500-cruise10.json",
+        "sha256": "cf8c319522dcebe92c16b65f6962ef7733515c16df7511f1d347a70f7101778e",
+        "entry": {
+          "seed": 50,
+          "course": "stadium_clockwise"
+        },
+        "profile": "cruise10",
+        "delay_profile": "periodic1500",
+        "elapsed_s": 91.53333333332942,
+        "rescues": 0,
+        "grass_s": 0.0,
+        "useful": true,
+        "clean": true,
+        "domain_stop": false
+      }
+    ],
+    "ordinary_six_clean": true,
+    "stress_net_clean_gain": 3,
+    "fixed750_net_clean_gain": 0,
+    "no_net_useful_loss": true,
+    "physical_selection_gate_passed": false,
+    "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+    "plan_sha256": "9066dae67c8b9e09516065877b065ea63fcb2541e7406a5fa7eb9b81d8b6a2ae",
+    "shared_ledger_unchanged": true,
+    "created_utc": "2026-10-20T09:33:31.971721+00:00"
+  },
+  "audit": {
+    "passed": true,
+    "cells": 60,
+    "physics_steps_exact": 163937,
+    "query_actions_exact": 7813,
+    "gate_reconstructed": true,
+    "model_requests": 0,
+    "is_jev": false,
+    "shared_ledger_unchanged": true,
+    "result_sha256": "3aac3fe5c0fd3a632ef366f936962255f2c0593873e3182a9512ec3fb3a17b29",
+    "root_only_not_second_agent_review": true
+  }
+}

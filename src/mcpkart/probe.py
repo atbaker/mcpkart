@@ -160,8 +160,7 @@ def replay_observations(document: dict, ticks: set[int]) -> dict[int, dict]:
         raise ValueError("Replay requires nonnegative integer observation ticks")
     race = document["race"]
     config = race["config"]
-    sim = Simulation(seed=race["seed"], laps=config["laps"],
-                     reset_after_s=config["rescue"]["after_s"])
+    sim = Simulation.from_config(config, seed=race["seed"])
     if sim.config() != config:
         raise ValueError("Driving record physics/configuration differs from the current simulator")
     commands = race["commands"]
@@ -211,7 +210,7 @@ def replay_contexts(document: dict, targets: set[int], states: dict[int, dict] |
 
 def validate_replay(raw: dict, saved: dict, config: dict, sample: dict | None = None) -> dict:
     """Reject a reconstruction whose pose/progress differs from saved evidence."""
-    road = represent(driving_evidence(raw, variant="raw"), config, "road_physics")
+    road = represent(driving_evidence(raw, variant="raw", config=config), config, "road_physics")
     checks = {
         "time_s": (raw["time"], saved["time"], .00011),
         "offset_m": (road["road"]["offset_m"], saved["road"]["offset_m"], .002),
@@ -656,10 +655,13 @@ async def command(args: argparse.Namespace) -> dict:
     capture = WireCapture()
     async with (
         httpx.AsyncClient(timeout=5, follow_redirects=False,
-                          transport=httpx.AsyncHTTPTransport(retries=0),
                           event_hooks={"request": [capture.request], "response": [capture.response]}) as http,
         DecisionClient(budget=budget, actions=ACTIONS, http_client=http,
-                       control_language=args.control_language, instruction_style=args.instruction_style) as decisions,
+                       control_language=args.control_language, instruction_style=args.instruction_style,
+                       handling=Simulation().config()["handling"],
+                       max_input_tokens=(min(int(r.get("max_prompt_tokens") or r["context_length"]) for r in routes)
+                                         if "scene_image" in variants else 16384
+                                         if "scene_svg" in variants or args.control_language == "geometry" else 8192)) as decisions,
     ):
         capture.secret = decisions.api_key
         return await run_probes(decisions, budget, routes, snapshots, variants, output, capture,

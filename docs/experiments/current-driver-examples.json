@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "description": "Curated excerpts from saved experiments; not complete raw recordings or new model calls.",
+  "model_requests_to_prepare": 0,
+  "successful_race_examples": [
+    {
+      "label": "Jev",
+      "experiment": "0068",
+      "seed": 99,
+      "observation_tick": 1334,
+      "api_latency_ms": 202.754318,
+      "request_state": {},
+      "questions": {
+        "wheel": {
+          "type": "choice",
+          "instructions": {
+            "rules": "DRIVING POLICY. Choose the next native input by executing the supplied policy exactly. Apply the following fixed bearing policy to the CURRENT factual state; its eligible wheel and pedal form one native input. These are supplied engineering rules, not a claim that the input is optimal or pursuit-equivalent. Read x=ego_x_m and y=ego_y_m from the wheel_facts.road.preview row whose ahead_m equals 15, using wheel_facts.road.preview_columns. The 15 m centre bearing theta equals round(degrees(atan2(y,x)),4), calculated from those rounded raw coordinates. If wheel_facts.road.preview_15m_bearing_deg is present, read theta directly from that factual scalar; otherwise compute theta yourself. Positive theta means LEFT of the kart nose, negative theta means RIGHT. Thresholds are -22, -7, +7 and +22 degrees; exact threshold ties choose the smaller absolute wheel angle. \nWHEEL TASK: Select the single allowed absolute wheel ID whose supplied policy condition holds. Return only that wheel choice.",
+            "current_facts": {
+              "wheel_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "road": {
+                  "preview_15m_bearing_deg": 13.1855,
+                  "preview_columns": [
+                    "ahead_m",
+                    "ego_x_m",
+                    "ego_y_m"
+                  ],
+                  "preview": [
+                    [
+                      15.0,
+                      15.315,
+                      3.588
+                    ]
+                  ]
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -7.1892
+                }
+              }
+            }
+          },
+          "criteria": {
+            "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients. FIXED POLICY ELIGIBILITY: choose this wheel exactly when theta < -22 degrees.",
+            "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients. FIXED POLICY ELIGIBILITY: choose this wheel exactly when -22 <= theta < -7 degrees.",
+            "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients. FIXED POLICY ELIGIBILITY: choose this wheel exactly when -7 <= theta <= +7 degrees.",
+            "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients. FIXED POLICY ELIGIBILITY: choose this wheel exactly when +7 < theta <= +22 degrees.",
+            "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients. FIXED POLICY ELIGIBILITY: choose this wheel exactly when theta > +22 degrees."
+          }
+        },
+        "pedal": {
+          "type": "choice",
+          "instructions": {
+            "rules": "DRIVING POLICY. Choose the next native input by executing the supplied policy exactly. Apply the following fixed bearing policy to the CURRENT factual state; its eligible wheel and pedal form one native input. These are supplied engineering rules, not a claim that the input is optimal or pursuit-equivalent. Let speed=pedal_facts.kart.speed_m_s and L=pedal_facts.current_road_frame.velocity_left_m_s. Let B be true exactly when pedal_facts.road.on_road is false, OR (pedal_facts.road.offset_m>0 AND pedal_facts.road.left_edge_clearance_m<=3 AND L>=0.5), OR (pedal_facts.road.offset_m<0 AND pedal_facts.road.right_edge_clearance_m<=3 AND L<=-0.5). Otherwise B is false. The speed<2 acceleration rule takes priority even when B is true.\nFIXED WORKED PEDAL EXAMPLES (speed and L in m/s, distances in metres; never the current query's answer): on_road=true, offset_m=-10, left_edge_clearance_m=22, right_edge_clearance_m=2, L=+1, speed=8: right-side clearance is small but velocity is inward; B=false -> accelerate. on_road=true, offset_m=+10, left_edge_clearance_m=2, right_edge_clearance_m=22, L=-1, speed=8: left-side clearance is small but velocity is inward; B=false -> accelerate. on_road=true, offset_m=-10, left_edge_clearance_m=22, right_edge_clearance_m=2, L=-1, speed=8: all three right-side predicates hold; B=true -> brake. on_road=true, offset_m=+10, left_edge_clearance_m=2, right_edge_clearance_m=22, L=+1, speed=8: all three left-side predicates hold; B=true -> brake. on_road=false, speed=0: low-speed priority -> accelerate. on_road=false, speed=4: B=true -> coast. on_road=false, speed=8: B=true -> brake.\nPEDAL TASK: Select the single allowed pedal ID whose supplied policy condition holds. Return only that pedal choice; the wheel is selected separately in this same request.",
+            "current_facts": {
+              "pedal_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "kart": {
+                  "speed_m_s": 12.0
+                },
+                "road": {
+                  "on_road": true,
+                  "offset_m": -2.805,
+                  "left_edge_clearance_m": 14.805,
+                  "right_edge_clearance_m": 9.195
+                },
+                "current_road_frame": {
+                  "velocity_left_m_s": 2.3211,
+                  "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -7.1892
+                }
+              }
+            }
+          },
+          "criteria": {
+            "accelerate": "ACCELERATE: throttle 1, brake 0. FIXED POLICY ELIGIBILITY: choose ACCELERATE exactly when speed<2 OR (speed>=2 AND B is false).",
+            "coast": "COAST: throttle 0, brake 0. FIXED POLICY ELIGIBILITY: choose COAST exactly when B is true AND 2<=speed<=6.",
+            "brake": "BRAKE: throttle 0, brake 1. FIXED POLICY ELIGIBILITY: choose BRAKE exactly when B is true AND speed>6."
+          }
+        }
+      },
+      "response_excerpt": {
+        "model": "typesafe/jev-1.14-20261014",
+        "provider": "TypeSafe",
+        "answers": {
+          "wheel": {
+            "type": "choice",
+            "choice": "left"
+          },
+          "pedal": {
+            "type": "choice",
+            "choice": "accelerate"
+          }
+        }
+      },
+      "response_fields_omitted": [
+        "id",
+        "usage",
+        "answers.*.probabilities",
+        "answers.*.confidence"
+      ],
+      "source_sha256": {
+        "artifacts/decisions-model-comparison-v1/paid-0/query-00082.json": "c5732c17056fed519c5ff91ce4a5710be742eb8178d370d4d9c1cdbbb6796db8",
+        "artifacts/decisions-model-comparison-v1/paid-0/calls/00082.json": "2a4c567fb3472898475d69e7f7d736f26d2a357e4fa3c868c4b37b82e4c1987d"
+      }
+    },
+    {
+      "label": "OpenAI",
+      "experiment": "0068",
+      "seed": 99,
+      "observation_tick": 2181,
+      "api_latency_ms": 242.592302,
+      "request_state": {},
+      "questions": {
+        "wheel": {
+          "type": "choice",
+          "instructions": {
+            "rules": "DRIVING POLICY. Choose the next native input by executing the supplied policy exactly. Apply the following fixed bearing policy to the CURRENT factual state; its eligible wheel and pedal form one native input. These are supplied engineering rules, not a claim that the input is optimal or pursuit-equivalent. Read x=ego_x_m and y=ego_y_m from the wheel_facts.road.preview row whose ahead_m equals 15, using wheel_facts.road.preview_columns. The 15 m centre bearing theta equals round(degrees(atan2(y,x)),4), calculated from those rounded raw coordinates. If wheel_facts.road.preview_15m_bearing_deg is present, read theta directly from that factual scalar; otherwise compute theta yourself. Positive theta means LEFT of the kart nose, negative theta means RIGHT. Thresholds are -22, -7, +7 and +22 degrees; exact threshold ties choose the smaller absolute wheel angle. \nWHEEL TASK: Select the single allowed absolute wheel ID whose supplied policy condition holds. Return only that wheel choice.",
+            "current_facts": {
+              "wheel_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "road": {
+                  "preview_15m_bearing_deg": 16.8095,
+                  "preview_columns": [
+                    "ahead_m",
+                    "ego_x_m",
+                    "ego_y_m"
+                  ],
+                  "preview": [
+                    [
+                      15.0,
+                      14.012,
+                      4.233
+                    ]
+                  ]
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -2.0689
+                }
+              }
+            }
+          },
+          "criteria": {
+            "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients. FIXED POLICY ELIGIBILITY: choose this wheel exactly when theta < -22 degrees.",
+            "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients. FIXED POLICY ELIGIBILITY: choose this wheel exactly when -22 <= theta < -7 degrees.",
+            "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients. FIXED POLICY ELIGIBILITY: choose this wheel exactly when -7 <= theta <= +7 degrees.",
+            "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients. FIXED POLICY ELIGIBILITY: choose this wheel exactly when +7 < theta <= +22 degrees.",
+            "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients. FIXED POLICY ELIGIBILITY: choose this wheel exactly when theta > +22 degrees."
+          }
+        },
+        "pedal": {
+          "type": "choice",
+          "instructions": {
+            "rules": "DRIVING POLICY. Choose the next native input by executing the supplied policy exactly. Apply the following fixed bearing policy to the CURRENT factual state; its eligible wheel and pedal form one native input. These are supplied engineering rules, not a claim that the input is optimal or pursuit-equivalent. Let speed=pedal_facts.kart.speed_m_s and L=pedal_facts.current_road_frame.velocity_left_m_s. Let B be true exactly when pedal_facts.road.on_road is false, OR (pedal_facts.road.offset_m>0 AND pedal_facts.road.left_edge_clearance_m<=3 AND L>=0.5), OR (pedal_facts.road.offset_m<0 AND pedal_facts.road.right_edge_clearance_m<=3 AND L<=-0.5). Otherwise B is false. The speed<2 acceleration rule takes priority even when B is true.\nFIXED WORKED PEDAL EXAMPLES (speed and L in m/s, distances in metres; never the current query's answer): on_road=true, offset_m=-10, left_edge_clearance_m=22, right_edge_clearance_m=2, L=+1, speed=8: right-side clearance is small but velocity is inward; B=false -> accelerate. on_road=true, offset_m=+10, left_edge_clearance_m=2, right_edge_clearance_m=22, L=-1, speed=8: left-side clearance is small but velocity is inward; B=false -> accelerate. on_road=true, offset_m=-10, left_edge_clearance_m=22, right_edge_clearance_m=2, L=-1, speed=8: all three right-side predicates hold; B=true -> brake. on_road=true, offset_m=+10, left_edge_clearance_m=2, right_edge_clearance_m=22, L=+1, speed=8: all three left-side predicates hold; B=true -> brake. on_road=false, speed=0: low-speed priority -> accelerate. on_road=false, speed=4: B=true -> coast. on_road=false, speed=8: B=true -> brake.\nPEDAL TASK: Select the single allowed pedal ID whose supplied policy condition holds. Return only that pedal choice; the wheel is selected separately in this same request.",
+            "current_facts": {
+              "pedal_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "kart": {
+                  "speed_m_s": 12.0
+                },
+                "road": {
+                  "on_road": true,
+                  "offset_m": 1.553,
+                  "left_edge_clearance_m": 10.447,
+                  "right_edge_clearance_m": 13.553
+                },
+                "current_road_frame": {
+                  "velocity_left_m_s": -2.0003,
+                  "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -2.0689
+                }
+              }
+            }
+          },
+          "criteria": {
+            "accelerate": "ACCELERATE: throttle 1, brake 0. FIXED POLICY ELIGIBILITY: choose ACCELERATE exactly when speed<2 OR (speed>=2 AND B is false).",
+            "coast": "COAST: throttle 0, brake 0. FIXED POLICY ELIGIBILITY: choose COAST exactly when B is true AND 2<=speed<=6.",
+            "brake": "BRAKE: throttle 0, brake 1. FIXED POLICY ELIGIBILITY: choose BRAKE exactly when B is true AND speed>6."
+          }
+        }
+      },
+      "response_excerpt": {
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "answers": {
+          "wheel": {
+            "type": "choice",
+            "choice": "left"
+          },
+          "pedal": {
+            "type": "choice",
+            "choice": "accelerate"
+          }
+        }
+      },
+      "response_fields_omitted": [
+        "id",
+        "usage",
+        "answers.*.probabilities",
+        "answers.*.confidence"
+      ],
+      "source_sha256": {
+        "artifacts/decisions-model-comparison-v1/paid-1/query-00124.json": "9320ef2d736b28ba1ec825331e269afd2aa958db88dd7a15a05bd46323ce6113",
+        "artifacts/decisions-model-comparison-v1/paid-1/calls/00124.json": "141f36bdfae6edb9baac9bc46b6233d8ae2b4333472342164b10e1b3008b6e1f"
+      }
+    }
+  ],
+  "matched_static_relocation_example": [
+    {
+      "experiment": "0050",
+      "case_id": "relocation-a-03-a",
+      "placement": "structured_shared",
+      "bearing_deg": 0.9183,
+      "expected_policy_action": "straight_coast",
+      "response_choices": {
+        "wheel": "hard_left",
+        "pedal": "coast"
+      },
+      "source_sha256": {
+        "artifacts/jev-relocation-replication-v1/requests/0016.json": "1f643a55f16fe428428fcfc25806d564ffed1c1570a00b4c7ca4f2b3b1ee50d6"
+      }
+    },
+    {
+      "experiment": "0050",
+      "case_id": "relocation-a-03-a",
+      "placement": "question_component",
+      "bearing_deg": 0.9183,
+      "expected_policy_action": "straight_coast",
+      "response_choices": {
+        "wheel": "straight",
+        "pedal": "coast"
+      },
+      "source_sha256": {
+        "artifacts/jev-relocation-replication-v1/requests/0017.json": "e51a7481ace364a034fa7c1b54f3fdf56a1d587aeeaacde573b30c847d5d4871"
+      }
+    }
+  ]
+}

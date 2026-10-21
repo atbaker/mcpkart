@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "kind": "explicit_user_authorized_token_ceiling_increase",
+  "authorized_request": "Go ahead and keep working for another 6 hours. And use more tokens if you have to",
+  "recorded_utc": "2026-10-20T05:39:19.863001+00:00",
+  "root_thread_id": "01a151b8-43d6-733b-a890-7368ae08c015",
+  "before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 250000000,
+    "requests": 61837,
+    "charged_usd": 7.600079637999871,
+    "charged_tokens": 245364387,
+    "reported_cost_usd": 7.542801173999855,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 61837,
+    "charged_usd": 7.600079637999871,
+    "charged_tokens": 245364387,
+    "reported_cost_usd": 7.542801173999855,
+    "uncertain_requests": 69,
+    "pending": {}
+  },
+  "only_changed_field": "max_tokens",
+  "prior_ledger_sha256": "f1b2fad087ccae9d5464a307ced8dbbb131050af5bac69595835ecf4015e240b",
+  "request_and_dollar_caps_unchanged": true,
+  "prior_attempts_charges_uncertain_and_pending_preserved": true,
+  "per_post_reservation_unchanged": 252313,
+  "live_admission_guard_unchanged": {
+    "requests": 1000,
+    "tokens": 5000000
+  }
+}
