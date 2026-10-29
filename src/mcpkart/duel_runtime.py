@@ -11,6 +11,7 @@ import secrets
 import sys
 import time
 import uuid
+from collections import deque
 from dataclasses import dataclass, field
 from pathlib import Path
 from types import SimpleNamespace
@@ -69,6 +70,9 @@ class _DuelRace:
     commands: list = field(default_factory=list)
     rejected_commands: list = field(default_factory=list)
     samples: list = field(default_factory=list)
+    live_trails: dict = field(default_factory=dict)
+    live_track: dict | None = None
+    live_max_lateness_ms: float = 0.0
     lateness_ms: list = field(default_factory=list)
     diagnostics: TimingDiagnostics = field(default_factory=TimingDiagnostics)
     sleeper: None = None
@@ -115,6 +119,7 @@ class DuelRuntime:
         sim = DuelSimulation(seed=seed, **setup)
         if sim.finished:
             raise ValueError("A finished checkpoint cannot start an active race")
+        live_track = sim.track.as_dict() if len(self.racers) == 3 else None
         race = _DuelRace(
             uuid.uuid4().hex,
             sim,
@@ -126,6 +131,8 @@ class DuelRuntime:
             secrets.token_urlsafe(24),
             origin_tick=sim.tick,
             origin_elapsed=sim.elapsed,
+            live_track=live_track,
+            live_trails={r: deque(maxlen=600) for r in self.racers} if live_track else {},
             diagnostics=TimingDiagnostics(watchdog_enabled=self.watchdog),
             last_command_seq={r: -1 for r in self.racers},
             last_observed_ns={r: None for r in self.racers},
@@ -288,7 +295,13 @@ class DuelRuntime:
 
     def _sample(self, race, wall_ns, late):
         started, cpu = time.monotonic_ns(), time.process_time_ns()
-        race.samples.append({**race.sim.state(), "wall_ns": wall_ns, "lateness_ms": late})
+        sample = {**race.sim.state(), "wall_ns": wall_ns, "lateness_ms": late}
+        race.samples.append(sample)
+        if race.live_track is not None:
+            race.live_max_lateness_ms = max(race.live_max_lateness_ms, late)
+            for rid, trail in race.live_trails.items():
+                kart = sample["racers"][rid]["kart"]
+                trail.append((sample["tick"], kart["x"], kart["y"]))
         race.diagnostics.span("physics_sample", started, cpu)
 
     def _end(self, race, reason):
@@ -372,6 +385,8 @@ class DuelRuntime:
                 "observation": self._preview.state(),
             }
         race = self.current
+        if race.live_track is not None and race.status == "running":
+            return self._live_state(race)
         result = {
             "race_id": race.race_id,
             "status": race.status,
@@ -391,6 +406,31 @@ class DuelRuntime:
                 ]
                 for r in self.racers
             },
+        }
+        if race.sim.episode is not None:
+            result["episode"] = {**race.sim.episode, "outcome": race.sim.episode_outcome() or race.reason}
+        return result
+
+    def _live_state(self, race):
+        """Bounded publication work; exact whole-run timing is computed at stop."""
+        elapsed = race.sim.elapsed - race.origin_elapsed
+        wall = (time.monotonic_ns() - race.started_ns) / 1e9
+        observation = {k: v for k, v in race.samples[-1].items() if k not in ("wall_ns", "lateness_ms")}
+        result = {
+            "race_id": race.race_id, "status": race.status, "reason": race.reason, "label": race.label,
+            "observation": observation, "track": race.live_track,
+            "timing": {"wall_elapsed": wall, "simulation_elapsed": elapsed,
+                       "drift_ms": (wall - elapsed) * 1000,
+                       "max_lateness_ms": race.live_max_lateness_ms, "p95_lateness_ms": None,
+                       "physics_hz": round(1 / DT), "physics_steps": race.sim.tick - race.origin_tick,
+                       "clock_mode": ASYNCIO_CLOCK_MODE, "metrics_complete": False,
+                       "infrastructure_valid": None},
+            "events": race.sim.events[-16:],
+            "command_count": {r: race.last_command_seq[r] + 1 for r in self.racers},
+            "pending": {r: r in race.pending for r in self.racers},
+            "trail": {r: [[x, y] for tick, x, y in list(trail)[::3]
+                          if tick >= (race.sim.karts[r].last_reset_tick or 0)]
+                      for r, trail in race.live_trails.items()},
         }
         if race.sim.episode is not None:
             result["episode"] = {**race.sim.episode, "outcome": race.sim.episode_outcome() or race.reason}

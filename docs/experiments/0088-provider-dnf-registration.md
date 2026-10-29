@@ -14,7 +14,9 @@ remaining. Each is capped at 180 seconds and 1,100 native requests per kart.
 Jev / OpenAI Decisions / Clef, pinned OpenRouter providers, standard oval,
 seed zero, ghost grid -4/0/4 m, three laps, goal-only facts, and all optional
 geometry/motion/timing packets remain fixed. No handling, physics or model
-questions change. Conventional Temporal workers, Local Activities, AgentCore
+questions change. Live spectator publication reuses the latest exact sample and
+bounded trail; whole-history timing statistics are computed after stopping.
+Live p95 and infrastructure validity remain explicitly incomplete until then. Conventional Temporal workers, Local Activities, AgentCore
 byte-preserving dispatch and real MCP controls remain in use.
 
 An HTTP 408/429/500/502/503/504/529 or a transport failure terminates only that

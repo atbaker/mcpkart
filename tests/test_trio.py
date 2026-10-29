@@ -240,3 +240,30 @@ async def test_provider_dnf_stops_only_failed_racer_without_new_controls(tmp_pat
             assert broker.journal.check()["uncertain_requests"] == 1
     finally:
         await app.state.race_runtime.close()
+
+
+async def test_trio_publication_is_bounded_and_matches_exact_latest_sample(monkeypatch):
+    from mcpkart.duel_runtime import DuelRuntime
+    runtime = DuelRuntime(trio=True)
+    try:
+        runtime.start(deadline=3)
+        race = runtime.current
+        original_timing = runtime._timing
+        monkeypatch.setattr(runtime, "_timing", lambda *_args, **_kwargs: pytest.fail("Live publication must not scan timing history"))
+        for _ in range(750):
+            race.sim.step()
+            runtime._sample(race, 0, 0)
+        state = runtime.state()
+        assert state["observation"] == race.sim.state()
+        assert state["track"] == race.sim.track.as_dict()
+        for rid in TRIO_RACERS:
+            expected = [[s["racers"][rid]["kart"]["x"], s["racers"][rid]["kart"]["y"]]
+                        for s in race.samples[-600::3]
+                        if s["tick"] >= (race.sim.karts[rid].last_reset_tick or 0)]
+            assert state["trail"][rid] == expected
+            assert len(race.live_trails[rid]) == 600
+        assert state["timing"]["metrics_complete"] is False
+        assert state["timing"]["infrastructure_valid"] is None
+        monkeypatch.setattr(runtime, "_timing", original_timing)
+    finally:
+        await runtime.close()

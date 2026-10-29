@@ -13,7 +13,7 @@ import boto3
 from dotenv import dotenv_values
 
 ROOT = Path(__file__).resolve().parents[1]
-RELEASE = "artifacts/aws-demo-dnf-release-v1"
+RELEASE = "artifacts/aws-demo-dnf-release-v2"
 CONTAINER = "mcpkart-demo-linux-20261029"
 
 
