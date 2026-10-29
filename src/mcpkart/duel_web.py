@@ -214,11 +214,14 @@ def main():
 
     parser = argparse.ArgumentParser(description="Two-kart Python race and spectator")
     parser.add_argument("--trio", action="store_true", help="Three ghost karts on the shared clock")
+    parser.add_argument("--watchdog", action="store_true", help="Record bounded clock-stall diagnostics")
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8766)
     parser.add_argument("--replay-root", type=Path)
     args = parser.parse_args()
-    uvicorn.run(create_app(replay_root=args.replay_root, trio=args.trio), host=args.host, port=args.port, log_level="warning")
+    runtime = ProcessDuelRuntime(trio=args.trio, watchdog=args.watchdog)
+    uvicorn.run(create_app(runtime=runtime, replay_root=args.replay_root, trio=args.trio),
+                host=args.host, port=args.port, log_level="warning")
 
 
 if __name__ == "__main__":

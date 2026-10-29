@@ -167,3 +167,21 @@ async def test_failed_reply_stops_other_controls_and_keeps_all_reservations(tmp_
             assert proof["passed"] and proof["exact_queries"] == 3
     finally:
         await app.state.race_runtime.close()
+
+
+def test_trio_builds_own_telemetry_once_and_preserves_opponent_packets(monkeypatch):
+    sim = DuelSimulation(racer_ids=TRIO_RACERS, contact="ghost")
+    kart = sim.karts["red"]
+    original = kart.observation
+    calls = []
+
+    def observe():
+        calls.append(1)
+        return original()
+
+    monkeypatch.setattr(kart, "observation", observe)
+    observation = sim.observation("red")
+    assert len(calls) == 1
+    for actual in observation["competition"]["opponents"]:
+        expected = sim._observation_with_opponent("red", actual["racer_id"])["competition"]["opponent"]
+        assert actual == expected

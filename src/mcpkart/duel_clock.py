@@ -100,7 +100,7 @@ def _worker_memory(parent_pid):
             continue
         try:
             args = (path / "cmdline").read_bytes().split(b"\0")
-            if b"mcpkart.duel_worker" not in args:
+            if not any(module in args for module in (b"mcpkart.duel_worker", b"mcpkart.trio_worker")):
                 continue
             fields = dict(
                 line.split(":", 1) for line in (path / "status").read_text().splitlines() if ":" in line

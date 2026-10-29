@@ -12,7 +12,7 @@ from pathlib import Path
 import boto3
 
 ROOT = Path(__file__).resolve().parents[1]
-RELEASE = "artifacts/aws-demo-live-release-v1"
+RELEASE = "artifacts/aws-demo-live-release-v2"
 CONTAINER = "mcpkart-demo-linux-20261029"
 
 
@@ -40,7 +40,7 @@ def main():
     identity = plan["entries"][0 if args.entry == "rehearsal" else 1]
     command = ["docker", "exec", CONTAINER, "python", "-m", "mcpkart.demo_run", "--paid", "--local",
                "--url", "http://127.0.0.1:8771/mcp", "--release", RELEASE + "/release.json",
-               "--clock-qualification", "artifacts/aws-demo-linux-clock-v1/qualification.json",
+               "--clock-qualification", "artifacts/aws-demo-linux-clock-v3/qualification.json",
                "--interface", "artifacts/aws-demo-cloud-interface-v1/trial/interface-proof.json",
                "--deployment", RELEASE + "/deployment.json", "--agentcore-arn", plan["agentcore_arn"],
                "--output", "artifacts/aws-demo-live-" + args.entry + "-v1/trial", "--race-id", identity,

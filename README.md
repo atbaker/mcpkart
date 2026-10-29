@@ -119,9 +119,10 @@ Original application defaults and the joint `damped` baseline remain available.
 
 The `codex/aws-temporal-demo` branch adds an opt-in three-ghost-kart demo with
 conventional Temporal workers, Local Activities, MCP controls, and an AgentCore
-mock adapter. See the [demo runbook](docs/aws-demo.md). Its executable path is
-currently scripted mocks; paid trio admission remains closed pending the new
-deployment-specific qualification and registration.
+adapter for OpenRouter. See the [demo runbook](docs/aws-demo.md) and
+[finite live registration](docs/experiments/0087-aws-live-demo-registration.md).
+Scripted mocks remain explicit; live admission requires source/server-bound
+Linux qualification and a complete Temporal Cloud / AgentCore / MCP rehearsal.
 
 Install [uv](https://docs.astral.sh/uv/), then:
 
@@ -219,6 +220,6 @@ comparison; configurable race setups currently require the Python engine.
 The [project plan](docs/plan.md), [original experiment](docs/experiments/0001-realtime-driving.md),
 [API research](docs/research/decision-models.md) and [glossary](GLOSSARY.md) record
 the design. Two-kart traffic and contact are implemented; larger fields,
-Temporal orchestration, items, authentication and matchmaking remain later
-work. The previous implementation and its run
+items, authentication and matchmaking remain later work. The opt-in demo
+branch adds a three-kart ghost field and Temporal orchestration. The previous implementation and its run
 instructions are preserved under [legacy](legacy/README.md).

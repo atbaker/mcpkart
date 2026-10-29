@@ -7,11 +7,11 @@ The [design and research](research/2026-10-29-temporal-agentcore-demo.md) explai
 the boundaries and prospective paid gates.
 
 The [free preparation checkpoint](experiments/0086-aws-demo-preparation.md)
-records two complete audited rehearsals. The current executable path is
-**scripted mocks only**. It can exercise a real
-Temporal service and real AgentCore Runtime without a provider request. Every
-card and recording labels those controls as mocks. Paid trio admission fails
-closed; no historical experiment window is reused.
+records two complete audited scripted rehearsals. Live driving is separately
+bounded by the [0087 registration](experiments/0087-aws-live-demo-registration.md):
+one rehearsal and one manually launched stage race, with no retries or
+replacement races. Admission requires fresh Linux timing and exact Cloud
+interface evidence. No historical experiment window is reused.
 
 ## Local free race
 
@@ -61,12 +61,15 @@ No secrets or driver capabilities enter workflow inputs/history.
 
 ## AgentCore free race
 
-The isolated mock Runtime is deployed in the company sandbox in us-west-2.
+The isolated demo Runtime is deployed in the company sandbox in us-west-2.
 Its name starts with `mcpkart_aws_demo_20261029`; the exact account, ARN and
 created bucket/role are recorded in ignored
 `artifacts/aws-demo-package-v3/aws-resources.json`. Another demo's resources
-were not changed. The role has no Bedrock inference or secret-read permission;
-the application rejects paid mode and contains no provider dispatch code.
+were not changed. Version 1 was mock-only. The live-capable versions can forward native
+OpenRouter requests under a hash-bound, expiring release. Its role reads only
+this demo's dedicated Secrets Manager secret, code objects and logs; it has no
+Bedrock inference permission. The live deployment receipt is in
+`artifacts/aws-demo-live-release-v2/deployment.json`.
 
 Pass that receipt's Runtime ARN to the same command:
 
@@ -137,26 +140,58 @@ Local Activity has completed but before its marker is persisted. The wrapper
 runs again, while the model dispatch and native command occur once. An unknown
 dispatch state remains unresolved rather than being retried.
 
-## Remaining paid readiness work
+## Tonight's operator path
 
-The missing ledger was seeded from the versioned handoff snapshot with all
-99,403 requests, $11.520516764002778, 333,848,829 tokens and 71 uncertainties
-preserved. A newer authoritative ledger must take precedence if one exists.
+The preserved Linux container is `mcpkart-demo-linux-20261029`. Its physics and
+conventional Temporal worker share one Linux clock; the Mac exposes only the
+spectator at [localhost:8773](http://127.0.0.1:8773/). Keep this container and
+server running: recreating them invalidates the saved timing qualification.
+The server process is held awake by `caffeinate` while it runs.
 
-Before live models: configure the OpenRouter secret, confirm the latest
-authoritative ledger, qualify the final source and server on Linux, validate the
-three native routes and exact distributed interfaces, freeze a new finite
-registration, and enable the paid adapter under that registration. Do not label
-mock finish order as model capability. Cloud latency, rescues and failures belong
-in the result even if they make the demo less tidy.
-
-The Linux clock command for the final trio server is:
+After the rehearsal's observed exit and full root audit, launch the one stage
+entry from the repo root:
 
 ```sh
-env -u OPENROUTER_API_KEY .venv/bin/python -m mcpkart.duel_clock \
-  --trio --url http://127.0.0.1:8771/mcp \
-  --output artifacts/aws-demo-trio-clock-001 --neutral-seconds 170.1
+.venv/bin/python scripts/run_aws_demo.py stage
 ```
 
-This is a full four-control gate plus the parent-pause and neutral checks. The
-separate complete local/cloud mock rehearsals do not substitute for it.
+This refreshes only the demo's private AWS credential file and starts the
+registered conventional worker against `mcpkart-dev.iuiaz`, using Local
+Activities and the dedicated AgentCore Runtime. It refuses an already consumed
+entry, changed source/evidence, expired release, changed server or new ledger
+uncertainty. No secrets enter command arguments or Temporal history.
+
+The release expires at midnight Pacific on 29 October; starting requires fifteen
+minutes remaining. A failed entry is preserved and cannot be retried. Another
+model, start, prompt, extra race or renewed release requires new authorization
+and prospective registration. The real model ledger remains
+`artifacts/budget.json`; mock budgets are separate.
+
+The rehearsal and stage recordings are saved under
+`artifacts/aws-demo-live-rehearsal-v1/trial/` and
+`artifacts/aws-demo-live-stage-v1/trial/`. Watch Temporal Cloud's execution list
+for `mcpkart-aws-demo-rehearsal-20261029` or
+`mcpkart-aws-demo-stage-20261029` and their three children. These are conventional
+operator-managed workers, not Temporal serverless workers.
+
+MCP provides the actual `start_duel`, `drive_duel` and `finish_duel` operations.
+Native model wheel/pedal choices map directly to MCP controls. AgentCore runs the
+model adapter; OpenRouter supplies inference. Physics runs independently at
+60 Hz, holding each kart's previous input while its next decision is pending.
+Temporal coordinates the three independent drivers and saves step receipts.
+Local Activities reduce service scheduling round trips; broker receipts prevent
+duplicate dispatch during workflow-task replay. Restarting the broker cannot
+resume this live race and never silently resends an unresolved operation.
+
+The full Linux qualifier is:
+
+```sh
+docker exec mcpkart-demo-linux-20261029 python -m mcpkart.duel_clock \
+  --trio --url http://127.0.0.1:8771/mcp \
+  --output artifacts/A_NEW_CLOCK_DIRECTORY --neutral-seconds 170.1
+```
+
+It performs four full controls, the parent pause, and a neutral-clock trace.
+Running it again creates new evidence; it does not expand the finite live release.
+Mock finish order is never a model result. Cloud latency, rescues and failures
+belong in the result even if they make the demo less tidy.

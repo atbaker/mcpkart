@@ -24,7 +24,7 @@ ordered gates, rescue rules, native wheel/pedal choices, and real-time inference
 delays remain the basis. Each kart holds its previous input while its model
 responds. Faster drivers never wait for slower drivers. Ghost mode removes
 collision luck and avoids implementing a new three-body swept-contact solver.
-Ghost mode is agreed scope; it has not yet been implemented.
+Ghost mode is implemented on this branch with an explicit trio schema.
 
 Use identical goal-only prompt construction for all three models, extended to
 describe two opponents. Leave the experimental geometry, motion, and timing
@@ -117,8 +117,8 @@ Activities call the adapter through `InvokeAgentRuntime`; the broker authorizes
 each provider dispatch and stores its evidence. A conventional worker and the
 broker can share the same Linux host, while physics stays in a separate process.
 The broker/physics service must be reachable from its callers. A cloud worker
-cannot reach this Mac's localhost; use a separate Linux host and an authenticated
-endpoint or private network. The model handler in the ordinary integration needs
+cannot reach this Mac's localhost; the demo uses an isolated Docker Linux host with a loopback spectator port and
+local MCP. A remote deployment would need an authenticated endpoint or private network. The model handler in the ordinary integration needs
 only the provided question packet, not direct access to the physics service.
 
 `RaceWorkflow` owns readiness, a stable logical race ID, three concurrent child

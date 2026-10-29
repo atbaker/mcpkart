@@ -446,7 +446,7 @@ class DuelSimulation:
         if self.racer_ids == TRIO_RACERS:
             raw = self._observation_with_opponent(rid, next(r for r in self.racer_ids if r != rid))
             raw["competition"]["opponents"] = [
-                self._observation_with_opponent(rid, r)["competition"]["opponent"]
+                self._opponent_facts(rid, r)
                 for r in self.racer_ids if r != rid
             ]
             del raw["competition"]["opponent"]
@@ -455,12 +455,8 @@ class DuelSimulation:
 
     def _observation_with_opponent(self, rid, other_id):
         k = self.karts[rid]
-        other = self.karts[other_id]
         raw = k.observation()
         raw.update(tick=self.tick, time=round(self.elapsed, 4), finished=k.finished)
-        dx, dy = other.x - k.x, other.y - k.y
-        fx, fy = math.cos(k.heading), math.sin(k.heading)
-        dvx, dvy = other.vx - k.vx, other.vy - k.vy
         raw["body"] = {
             "radius_m": self.radius,
             "phased": self.phased(rid),
@@ -471,23 +467,30 @@ class DuelSimulation:
             "racer_id": rid,
             "leader": self.leader(),
             "progress_m": round(self.progress_m(rid), 4),
-            "opponent": {
-                "racer_id": other_id,
-                "ego_x_m": round(dx * fx + dy * fy, 4),
-                "ego_y_m": round(-dx * fy + dy * fx, 4),
-                "relative_forward_velocity_m_s": round(dvx * fx + dvy * fy, 4),
-                "relative_left_velocity_m_s": round(-dvx * fy + dvy * fx, 4),
-                "speed_m_s": round(other.speed, 4),
-                "heading_relative_rad": round(wrap(other.heading - k.heading), 5),
-                "surface_gap_m": round(math.hypot(dx, dy) - 2 * self.radius, 4),
-                "phased": self.phased(other_id),
-                "finished": other.finished,
-                "checkpoints_passed": other.checkpoints_passed,
-                "progress_m": round(self.progress_m(other_id), 4),
-            },
+            "opponent": self._opponent_facts(rid, other_id),
             "contact_count": self.contact_count,
         }
         return raw
+
+    def _opponent_facts(self, rid, other_id):
+        k, other = self.karts[rid], self.karts[other_id]
+        dx, dy = other.x - k.x, other.y - k.y
+        fx, fy = math.cos(k.heading), math.sin(k.heading)
+        dvx, dvy = other.vx - k.vx, other.vy - k.vy
+        return {
+            "racer_id": other_id,
+            "ego_x_m": round(dx * fx + dy * fy, 4),
+            "ego_y_m": round(-dx * fy + dy * fx, 4),
+            "relative_forward_velocity_m_s": round(dvx * fx + dvy * fy, 4),
+            "relative_left_velocity_m_s": round(-dvx * fy + dvy * fx, 4),
+            "speed_m_s": round(other.speed, 4),
+            "heading_relative_rad": round(wrap(other.heading - k.heading), 5),
+            "surface_gap_m": round(math.hypot(dx, dy) - 2 * self.radius, 4),
+            "phased": self.phased(other_id),
+            "finished": other.finished,
+            "checkpoints_passed": other.checkpoints_passed,
+            "progress_m": round(self.progress_m(other_id), 4),
+        }
 
     def state(self):
         return {

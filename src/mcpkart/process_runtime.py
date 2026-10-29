@@ -147,7 +147,9 @@ async def _worker_loop(connection, session_id: str, watchdog: bool, native_sleep
             if outbox.failed.is_set():
                 stopping.set()
                 break
+            started, cpu = time.monotonic_ns(), time.process_time_ns()
             outbox.publish(runtime.state())
+            runtime.record_timing_span("publication_state", started, cpu)
             await asyncio.sleep(.05)
 
     publisher = asyncio.create_task(publish())
