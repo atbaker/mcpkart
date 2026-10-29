@@ -1,3 +1,42 @@
+# Current demo: REGULAR Activities / single manual 0089 entry, 29 October 2026
+
+User requested switching off Local Activities and seeing performance. Operator
+scripts/run_aws_demo.py stage now omits --local, requires a regular-Activity
+registration and root-reviewed qualification. Core runtime/workflow/physics/
+prompts/UI source is unchanged. Namespace mcpkart-dev.iuiaz, dedicated EC2
+i-0ae1c7dce47ee05ae/container mcpkart-demo/server8771 must stay alive. Complete
+same-source/boot/server clock revalidated; no restart or timing rerun needed.
+
+BOTH0088 Local Activity entries are CLOSED/consumed. The stage ran BEFORE the
+switch (22:58:55–23:01:53UTC), observed SSM exit0 and root-audited after discovery:
+8252frames/542native/1084budget transitions, maxlate2.999ms, 545outer attempts
+(544envelopes/1missing), no retry. Jev103.50s/2rescues, OpenAI136.78s/9rescues,
+Clef transportDNF after33requests/~59.88s/5rescues. Full uncertain reserve kept.
+Currentledger100603requests/$11.786845266002775/337074715tokens/74uncertainties,
+pendingempty. Caps$20/110k/500m and all floors unchanged. Never overwrite with
+the old100061 boundary; first regular review refused it, evidence preserved.
+
+0089 is a NEW single-entry release for one future manually invoked regular run:
+mcpkart-aws-regular-stage-20261029. NO paid setup rehearsal/new calls occurred.
+Release artifacts/aws-demo-regular-release-v1, Runtime7 (same adapter code/role/
+network/secret; only authorization digest changed), digest
+0fa7fbfb41711ad982f1a3ac2846f57fe866f0480e432c198947e4217c812e0d.
+Expires midnightPacific/15minfloor. Entry remains UNRUN; no retries/replacements.
+
+Two complete regular Cloud mock races passed all3 clean finishes:96.47/123.68s.
+Median request cadence381/382ms,p95419ms both; earlierLocal333/1203ms.
+This is sequential scripted evidence, not a general speedup/model ranking.
+All68 earlierLocal gaps>500ms aligned with every8-step marker-flush boundary.
+Final qualification:7422frames/782native/1564budget transitions,maxlate3.414ms;
+785exactAgentCore exchanges,0retries/missing. Regular Activity history events,
+noLocalmarkers; actualledger unchanged. Exact new interface path:
+artifacts/aws-demo-ec2-regular-free-v2/trial/interface-proof.json.
+See docs/experiments/0089-regular-activity-registration.md and 0088 comparison.
+Root must observe/audit the single next actual exit; no further entry exists.
+No delegation. Preserve all historical evidence/failures/charges/uncertainty.
+
+# Historical 0088 rehearsal checkpoint
+
 # Qualified demo / manual stage ready, 29 October 2026
 
 0088 rehearsal is CLOSED after root observed exit 0 and fully audited 9,112

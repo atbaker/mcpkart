@@ -1,0 +1,213 @@
+{
+  "local": {
+    "path": "artifacts/aws-demo-ec2-cloud-free-v1/trial",
+    "local_activities": true,
+    "all_finished": true,
+    "duration_s": 106.44999999999524,
+    "native_requests": 743,
+    "cadence": {
+      "n": 740,
+      "p50_ms": 333.45241699999997,
+      "p95_ms": 1203.0366292499998,
+      "max_ms": 1440.733023
+    },
+    "reply_to_next_request": {
+      "n": 740,
+      "p50_ms": 50.461524499999996,
+      "p95_ms": 906.870808299999,
+      "max_ms": 1093.083516
+    },
+    "api_latency": {
+      "n": 743,
+      "p50_ms": 279.388472,
+      "p95_ms": 315.0490503,
+      "max_ms": 494.523236
+    },
+    "regular_schedule_to_start": {
+      "n": 0
+    },
+    "child_history_event_counts": {
+      "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED": 3,
+      "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED": 94,
+      "EVENT_TYPE_WORKFLOW_TASK_STARTED": 94,
+      "EVENT_TYPE_WORKFLOW_TASK_COMPLETED": 94,
+      "EVENT_TYPE_MARKER_RECORDED": 743,
+      "EVENT_TYPE_TIMER_STARTED": 91,
+      "EVENT_TYPE_TIMER_FIRED": 91,
+      "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED": 3
+    },
+    "drivers": {
+      "red": {
+        "requests": 249,
+        "finish_s": 103.78333333333333,
+        "rescues": 4,
+        "cadence": {
+          "n": 248,
+          "p50_ms": 332.4748745,
+          "p95_ms": 1222.4957448499997,
+          "max_ms": 1346.497901
+        },
+        "reply_to_next_request": {
+          "n": 248,
+          "p50_ms": 49.451647,
+          "p95_ms": 942.6455161499997,
+          "max_ms": 1054.355464
+        }
+      },
+      "blue": {
+        "requests": 240,
+        "finish_s": 98.78333333333333,
+        "rescues": 2,
+        "cadence": {
+          "n": 239,
+          "p50_ms": 333.173984,
+          "p95_ms": 1201.2850449,
+          "max_ms": 1381.512292
+        },
+        "reply_to_next_request": {
+          "n": 239,
+          "p50_ms": 51.216844,
+          "p95_ms": 910.8961024999998,
+          "max_ms": 1093.083516
+        }
+      },
+      "green": {
+        "requests": 254,
+        "finish_s": 106.45,
+        "rescues": 4,
+        "cadence": {
+          "n": 253,
+          "p50_ms": 334.085639,
+          "p95_ms": 1128.6623631999998,
+          "max_ms": 1440.733023
+        },
+        "reply_to_next_request": {
+          "n": 253,
+          "p50_ms": 50.817441,
+          "p95_ms": 854.8123085999994,
+          "max_ms": 1064.236654
+        }
+      }
+    },
+    "wire_audit": {
+      "passed": true,
+      "outer_invocations": 746,
+      "native_calls": 743,
+      "native_statuses": {
+        "200": 743
+      },
+      "observed_sdk_retries": 0,
+      "missing_outer_responses": 0,
+      "exact_available_native_bytes": true
+    },
+    "source_unchanged": true
+  },
+  "regular": {
+    "path": "artifacts/aws-demo-ec2-regular-free-v1/trial",
+    "local_activities": false,
+    "all_finished": true,
+    "duration_s": 96.46666666666248,
+    "native_requests": 720,
+    "cadence": {
+      "n": 717,
+      "p50_ms": 381.362517,
+      "p95_ms": 419.32631419999996,
+      "max_ms": 558.348329
+    },
+    "reply_to_next_request": {
+      "n": 717,
+      "p50_ms": 104.862674,
+      "p95_ms": 128.87299439999998,
+      "max_ms": 237.036471
+    },
+    "api_latency": {
+      "n": 720,
+      "p50_ms": 272.7228485,
+      "p95_ms": 304.26885939999994,
+      "max_ms": 433.134679
+    },
+    "regular_schedule_to_start": {
+      "n": 720,
+      "p50_ms": 11.446000000000002,
+      "p95_ms": 13.77845,
+      "max_ms": 50.429
+    },
+    "child_history_event_counts": {
+      "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED": 3,
+      "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED": 723,
+      "EVENT_TYPE_WORKFLOW_TASK_STARTED": 723,
+      "EVENT_TYPE_WORKFLOW_TASK_COMPLETED": 723,
+      "EVENT_TYPE_ACTIVITY_TASK_SCHEDULED": 720,
+      "EVENT_TYPE_ACTIVITY_TASK_STARTED": 720,
+      "EVENT_TYPE_ACTIVITY_TASK_COMPLETED": 720,
+      "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED": 3
+    },
+    "drivers": {
+      "red": {
+        "requests": 244,
+        "finish_s": 94.11666666666666,
+        "rescues": 0,
+        "cadence": {
+          "n": 243,
+          "p50_ms": 381.708248,
+          "p95_ms": 421.3254937,
+          "max_ms": 506.009649
+        },
+        "reply_to_next_request": {
+          "n": 243,
+          "p50_ms": 104.874042,
+          "p95_ms": 132.3758106,
+          "max_ms": 159.485763
+        }
+      },
+      "blue": {
+        "requests": 223,
+        "finish_s": 86.83333333333333,
+        "rescues": 0,
+        "cadence": {
+          "n": 222,
+          "p50_ms": 384.64359449999995,
+          "p95_ms": 427.1811899,
+          "max_ms": 558.348329
+        },
+        "reply_to_next_request": {
+          "n": 222,
+          "p50_ms": 107.01072450000001,
+          "p95_ms": 133.27418795,
+          "max_ms": 237.036471
+        }
+      },
+      "green": {
+        "requests": 253,
+        "finish_s": 96.46666666666667,
+        "rescues": 0,
+        "cadence": {
+          "n": 252,
+          "p50_ms": 376.629751,
+          "p95_ms": 408.58632014999995,
+          "max_ms": 538.27324
+        },
+        "reply_to_next_request": {
+          "n": 252,
+          "p50_ms": 102.5782625,
+          "p95_ms": 123.05613550000001,
+          "max_ms": 147.812289
+        }
+      }
+    },
+    "wire_audit": {
+      "passed": true,
+      "outer_invocations": 723,
+      "native_calls": 720,
+      "native_statuses": {
+        "200": 720
+      },
+      "observed_sdk_retries": 0,
+      "missing_outer_responses": 0,
+      "exact_available_native_bytes": true
+    },
+    "source_unchanged": true
+  },
+  "real_model_calls": 0,
+  "limitation": "One earlier local and one later regular mock race; service load and trajectories can differ. Reply gaps include broker/filesystem/MCP overhead."
+}

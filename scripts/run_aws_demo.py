@@ -14,9 +14,9 @@ from pathlib import Path
 from demo_host import clients
 
 ROOT = Path(__file__).resolve().parents[1]
-RELEASE = "artifacts/aws-demo-dnf-release-v2"
+RELEASE = "artifacts/aws-demo-regular-release-v1"
 CLOCK = "artifacts/aws-demo-ec2-clock-v1/evidence/qualification.json"
-INTERFACE = "artifacts/aws-demo-ec2-cloud-free-v1/trial/interface-proof.json"
+INTERFACE = "artifacts/aws-demo-ec2-regular-free-v2/trial/interface-proof.json"
 
 
 def main():
@@ -24,8 +24,22 @@ def main():
     parser.add_argument("entry", choices=("rehearsal", "stage"))
     args = parser.parse_args()
     plan = json.loads((ROOT / RELEASE / "release.json").read_text())
-    identity = plan["entries"][0 if args.entry == "rehearsal" else 1]
-    output = "artifacts/aws-demo-dnf-live-" + args.entry + "-v1"
+    # Both original Local Activity entries are consumed. Only the new,
+    # single manually invoked regular-Activity entry may dispatch.
+    if args.entry == "rehearsal":
+        raise ValueError("The rehearsal is closed; only the unrun stage entry remains")
+    interface_registration = json.loads(
+        (ROOT / Path(INTERFACE).parent / "demo-registration.json").read_text()
+    )
+    if interface_registration.get("local_activities") is not False:
+        raise ValueError("The exact regular-Activity Cloud interface has not passed")
+    review = json.loads((ROOT / RELEASE / "qualification-review.json").read_text())
+    if not (review.get("passed") and review.get("regular_activities") and review.get("budget_unchanged")):
+        raise ValueError("Root must review the complete regular-Activity qualification")
+    if plan.get("activity_mode") != "regular" or len(plan["entries"]) != 1:
+        raise ValueError("Expected the single-entry regular-Activity release")
+    identity = plan["entries"][0]
+    output = "artifacts/aws-demo-regular-live-" + args.entry + "-v1"
     directory = ROOT / output
     ledger = ROOT / "artifacts/budget.json"
     writer = (ROOT / "artifacts/root-paid-writer.lock").open("a")
@@ -42,7 +56,7 @@ def main():
                  "sys.argv=['mcpkart.demo_run',*sys.argv[1:]];"
                  "runpy.run_module('mcpkart.demo_run',run_name='__main__')")
     command = ["docker", "exec", "mcpkart-demo", "python", "-c", bootstrap,
-               "--paid", "--local", "--retire-provider-errors", "--url", "http://127.0.0.1:8771/mcp",
+               "--paid", "--retire-provider-errors", "--url", "http://127.0.0.1:8771/mcp",
                "--release", RELEASE + "/release.json", "--clock-qualification", CLOCK,
                "--interface", INTERFACE, "--deployment", RELEASE + "/deployment.json",
                "--agentcore-arn", plan["agentcore_arn"], "--output", output + "/trial",

@@ -1,0 +1,103 @@
+{
+  "passed": true,
+  "observed_collector_exit": 0,
+  "regular_activities": true,
+  "complete_clock_revalidated": true,
+  "source_unchanged": true,
+  "interface_payload_hashes_verified": 2364,
+  "proof": {
+    "passed": true,
+    "failure_evidence_only": false,
+    "physics_frames": 7422,
+    "exact_queries": 782,
+    "budget_transitions": 1564,
+    "peak_pending": 3,
+    "max_sample_lateness_ms": 3.413761000003433,
+    "summary": {
+      "finished": true,
+      "elapsed": 123.6833333333276,
+      "ticks": 7421,
+      "winner_ids": [
+        "red"
+      ],
+      "finish_times_s": {
+        "red": 88.78333333333333,
+        "blue": 90.5,
+        "green": 123.68333333333334
+      },
+      "racers": {
+        "red": {
+          "seed": 0,
+          "finished": true,
+          "elapsed": 88.78333333332958,
+          "ticks": 5327,
+          "laps_completed": 3,
+          "checkpoints_passed": 120,
+          "lap_times": [
+            30.133333333332903,
+            28.699999999998372,
+            29.949999999998305
+          ],
+          "offroad_time": 0.0,
+          "distance": 1022.0168826297424,
+          "max_speed": 12.000000000000002,
+          "resets": 0,
+          "reset_events": []
+        },
+        "blue": {
+          "seed": 1,
+          "finished": true,
+          "elapsed": 90.49999999999615,
+          "ticks": 5430,
+          "laps_completed": 3,
+          "checkpoints_passed": 120,
+          "lap_times": [
+            29.68333333333293,
+            27.41666666666511,
+            33.39999999999811
+          ],
+          "offroad_time": 0.0,
+          "distance": 1034.031968632744,
+          "max_speed": 12.000000000000002,
+          "resets": 0,
+          "reset_events": []
+        },
+        "green": {
+          "seed": 2,
+          "finished": true,
+          "elapsed": 123.6833333333276,
+          "ticks": 7421,
+          "laps_completed": 3,
+          "checkpoints_passed": 120,
+          "lap_times": [
+            63.683333333331,
+            30.833333333331588,
+            29.16666666666501
+          ],
+          "offroad_time": 0.7500000000000007,
+          "distance": 1400.8949136149188,
+          "max_speed": 12.000000000000002,
+          "resets": 0,
+          "reset_events": []
+        }
+      },
+      "contacts": 0,
+      "lead_changes": 2
+    }
+  },
+  "budget_unchanged": true,
+  "budget": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 110000,
+    "max_tokens": 500000000,
+    "requests": 100603,
+    "charged_usd": 11.786845266002775,
+    "charged_tokens": 337074715,
+    "reported_cost_usd": 11.713150034002734,
+    "uncertain_requests": 74,
+    "pending": {}
+  },
+  "paid_calls": 0,
+  "stage_started": false
+}

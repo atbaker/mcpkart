@@ -1,5 +1,10 @@
 # 0088: live rehearsal with provider retirement
 
+Subsequent state: the separate stage also completed with Local Activities;
+see [its closed outcome](0088-aws-stage-outcome.md). Both entries are consumed.
+The next regular-Activity run has a new [0089 registration](0089-regular-activity-registration.md).
+The following report preserves the rehearsal checkpoint as recorded.
+
 The registered rehearsal is complete and CLOSED. The separate stage entry has
 not started and remains available for one manual launch after this root review.
 No request retry, replacement race, fallback control, model change or tuning

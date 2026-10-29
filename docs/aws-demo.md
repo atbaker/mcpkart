@@ -1,5 +1,10 @@
 # Three kart Temporal and AgentCore demo
 
+The next manually invoked demo run uses **regular Temporal Activities**. The
+[activity-mode amendment and comparison](experiments/0088-regular-activity-amendment.md)
+records the user's requested switch and the complete zero-model-call Cloud
+qualification. Both earlier 0088 live entries remain recorded as Local Activities and are closed.
+
 Work lives on `codex/aws-temporal-demo`. The agreed target is Jev, OpenAI
 Decisions and Clef through OpenRouter, conventional Temporal workers, MCP game
 tools, and three ghost karts. Physics runs at 60 Hz in a separate process.
@@ -11,8 +16,10 @@ records the initial scripted rehearsals. The first live attempt is closed after
 Clef's provider rejected a request; its charges and failure are retained in the
 [0087 outcome](experiments/0087-aws-live-demo-outcome.md). The user then approved
 retiring a provider-failed kart while the other drivers continue. The
-[0088 registration](experiments/0088-provider-dnf-registration.md) bounds one
-new rehearsal and one manually launched stage race. No request retries,
+[0088 registration](experiments/0088-provider-dnf-registration.md) bounded the
+now-completed rehearsal and stage race. The new
+[0089 registration](experiments/0089-regular-activity-registration.md) permits
+one manually launched regular-Activity run. No request retries,
 replacement races or fallback controls are allowed.
 
 ## Local free race
@@ -71,7 +78,7 @@ were not changed. Version 1 was mock-only. The live-capable versions can forward
 OpenRouter requests under a hash-bound, expiring release. Its role reads only
 this demo's dedicated Secrets Manager secret, code objects and logs; it has no
 Bedrock inference permission. The live deployment receipt is in
-`artifacts/aws-demo-live-release-v3/deployment.json`.
+`artifacts/aws-demo-regular-release-v1/deployment.json`.
 
 Pass that receipt's Runtime ARN to the same command:
 
@@ -159,9 +166,10 @@ ignored private file on the host.
 **The EC2 qualification and live rehearsal have passed root review.** Jev
 finished in 99.03 seconds, OpenAI in 151.52 seconds, and Clef retired after a
 transport failure. The [full result](experiments/0088-aws-demo-rehearsal.md)
-includes rescues, latency, accounting and limitations. The single stage entry
-is available for manual launch; it has not started. The previous Mac Docker
-gates do not qualify this host.
+includes rescues, latency, accounting and limitations. Both original entries
+have completed; see the [stage outcome](experiments/0088-aws-stage-outcome.md).
+The new 0089 regular-Activity entry is available for one manual launch and has
+not started. The previous Mac Docker gates do not qualify this host.
 
 To view the spectator, use Session Manager port forwarding with the task-local
 plugin, keeping the terminal open:
@@ -173,7 +181,7 @@ stage command. The saved rehearsal is available in the Saved race menu.
 Port forwarding is optional for the race itself. Keep the instance, container and server alive: restarting them
 invalidates the source/boot/server-bound clock evidence.
 
-After root's rehearsal review, launch the single stage entry from this repo:
+After the regular-Activity qualification review, launch the single new run from this repo:
 
     .venv/bin/python scripts/run_aws_demo.py stage
 
@@ -185,26 +193,27 @@ never retried. If the operator is interrupted, inspect the saved SSM command and
 reconcile its ledger before any further paid work. Never copy an older budget
 file onto the host.
 
-The worker uses namespace mcpkart-dev.iuiaz, Local Activities and the dedicated
-AgentCore Runtime. The two execution IDs are
-mcpkart-aws-dnf-rehearsal-20261029 and
-mcpkart-aws-dnf-stage-20261029, each with red/blue/green child workflows.
+The worker uses namespace mcpkart-dev.iuiaz, regular Activities and the dedicated
+AgentCore Runtime. The new execution ID is
+mcpkart-aws-regular-stage-20261029, with red/blue/green child workflows.
+Both older mcpkart-aws-dnf entries are consumed and cannot be reused.
 They are conventional operator-managed workers. AgentCore hosts the model
 adapter; inference comes from OpenRouter.
 
 The release expires at midnight Pacific on 29 October; starting requires fifteen
 minutes remaining. A consumed entry cannot be retried. Another model, start,
 prompt, extra race or renewed release requires new authorization and prospective
-registration. The recordings are under
-artifacts/aws-demo-dnf-live-rehearsal-v1/trial/ and
+registration. The new recording will be under
+artifacts/aws-demo-regular-live-stage-v1/trial/. Both older recordings remain
+under artifacts/aws-demo-dnf-live-rehearsal-v1/trial/ and
 artifacts/aws-demo-dnf-live-stage-v1/trial/. Mock budgets remain separate.
 
 MCP provides the actual start_duel, drive_duel and finish_duel operations.
 Native model wheel/pedal choices map directly to MCP controls. Physics runs
 independently, holding the previous input while a decision is pending. Temporal
-coordinates three independent drivers and saves step receipts. Local Activities
-reduce service scheduling round trips; durable broker receipts prevent duplicate
-dispatch during workflow-task replay. Restarting the broker cannot resume this
+coordinates three independent drivers and saves step receipts. Every driving
+step now uses a regular Activity with its own service history. Durable broker
+receipts prevent duplicate dispatch if a wrapper re-executes. Restarting the broker cannot resume this
 race or silently resend an unresolved operation.
 
 A provider failure retires only that driver's future requests. The kart keeps

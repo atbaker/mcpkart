@@ -89,3 +89,57 @@ def test_fetch_rejects_archive_escape_from_collected_directory(tmp_path, monkeyp
     with pytest.raises(ValueError, match="Unexpected evidence"):
         host.main()
     assert not (tmp_path / "artifacts/budget.json").exists()
+
+
+def load_operator(monkeypatch):
+    monkeypatch.syspath_prepend(str(SCRIPTS))
+    spec = importlib.util.spec_from_file_location("demo_operator_test", SCRIPTS / "run_aws_demo.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def operator_fixture(tmp_path, monkeypatch, local):
+    import json
+
+    operator = load_operator(monkeypatch)
+    monkeypatch.setattr(operator, "ROOT", tmp_path)
+    release = tmp_path / operator.RELEASE
+    release.mkdir(parents=True)
+    (release / "release.json").write_text(json.dumps({
+        "entries": ["unrun-stage"], "agentcore_arn": "own-runtime", "activity_mode": "regular",
+    }))
+    (release / "qualification-review.json").write_text(json.dumps({
+        "passed": True, "regular_activities": True, "budget_unchanged": True,
+    }))
+    interface = tmp_path / Path(operator.INTERFACE).parent
+    interface.mkdir(parents=True)
+    (interface / "demo-registration.json").write_text(json.dumps({"local_activities": local}))
+    (tmp_path / "artifacts/budget.json").write_text("{}")
+    monkeypatch.setattr(sys, "argv", ["run_aws_demo.py", "stage"])
+    return operator
+
+
+def test_operator_rejects_local_activity_qualification_for_regular_stage(tmp_path, monkeypatch):
+    operator = operator_fixture(tmp_path, monkeypatch, True)
+    with pytest.raises(ValueError, match="regular-Activity"):
+        operator.main()
+    assert not (tmp_path / "artifacts/aws-demo-regular-live-stage-v1").exists()
+
+
+def test_operator_submits_regular_stage_without_local_flag(tmp_path, monkeypatch):
+    operator = operator_fixture(tmp_path, monkeypatch, False)
+
+    class SubmissionInspected(Exception):
+        pass
+
+    def inspect_submission(command, **kwargs):
+        script = (tmp_path / "artifacts/aws-demo-regular-live-stage-v1/command.sh").read_text()
+        assert "--paid --retire-provider-errors" in script
+        assert "--local" not in script
+        assert "--race-id unrun-stage" in script
+        raise SubmissionInspected
+
+    monkeypatch.setattr(operator.subprocess, "run", inspect_submission)
+    with pytest.raises(SubmissionInspected):
+        operator.main()
