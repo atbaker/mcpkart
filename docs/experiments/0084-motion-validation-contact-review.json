@@ -1,0 +1,328 @@
+{
+  "passed": true,
+  "initial_pedal_questions_byte_identical_within_state": true,
+  "initial_wheel_questions_identical_within_state_and_profile": true,
+  "original_delayed_successes": 2,
+  "original_delayed_failures": 6,
+  "original_successes_all_first_brake_and_new_contact": true,
+  "original_failures_all_first_accelerate_and_no_new_contact": true,
+  "holdout2_delayed_successes_all_first_accelerate_and_no_new_contact": true,
+  "limits": "Associations, not isolatedmechanism; both activekarts receiveprofile, native timingvaries. Contact/brakepattern is specific to originalstate. Treatment differences can affect both nativeanswers even when pedalquestionunchanged.",
+  "episodes": [
+    {
+      "index": 0,
+      "case": "post_contact",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 720,
+      "pedal_question_sha256": "fcd16633245cb89a958c8b957cc2988db845027a2e884b833934fe9e74b98227"
+    },
+    {
+      "index": 1,
+      "case": "post_contact",
+      "profile": "motion",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 720,
+      "pedal_question_sha256": "fcd16633245cb89a958c8b957cc2988db845027a2e884b833934fe9e74b98227"
+    },
+    {
+      "index": 2,
+      "case": "holdout_1",
+      "profile": "motion",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_right_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 140,
+      "pedal_question_sha256": "9c360cd32b5d5c10afbe609815a731e9cc4059146fe7cb4ae1ce501e897fcee4"
+    },
+    {
+      "index": 3,
+      "case": "holdout_1",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_right_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 140,
+      "pedal_question_sha256": "9c360cd32b5d5c10afbe609815a731e9cc4059146fe7cb4ae1ce501e897fcee4"
+    },
+    {
+      "index": 4,
+      "case": "holdout_2",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "outcome": "credited",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 2146,
+      "pedal_question_sha256": "e5062d79353ea5a0c337aad464df1151e26ed9305d334e8d097a63b25a15627b"
+    },
+    {
+      "index": 5,
+      "case": "holdout_2",
+      "profile": "motion",
+      "added_delay_s": 1.0,
+      "outcome": "credited",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 2146,
+      "pedal_question_sha256": "e5062d79353ea5a0c337aad464df1151e26ed9305d334e8d097a63b25a15627b"
+    },
+    {
+      "index": 6,
+      "case": "holdout_2",
+      "profile": "motion",
+      "added_delay_s": 0.0,
+      "outcome": "credited",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 2146,
+      "pedal_question_sha256": "e5062d79353ea5a0c337aad464df1151e26ed9305d334e8d097a63b25a15627b"
+    },
+    {
+      "index": 7,
+      "case": "holdout_2",
+      "profile": "baseline",
+      "added_delay_s": 0.0,
+      "outcome": "credited",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 2146,
+      "pedal_question_sha256": "e5062d79353ea5a0c337aad464df1151e26ed9305d334e8d097a63b25a15627b"
+    },
+    {
+      "index": 8,
+      "case": "holdout_1",
+      "profile": "baseline",
+      "added_delay_s": 0.0,
+      "outcome": "credited",
+      "first_action": "hard_right_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 140,
+      "pedal_question_sha256": "9c360cd32b5d5c10afbe609815a731e9cc4059146fe7cb4ae1ce501e897fcee4"
+    },
+    {
+      "index": 9,
+      "case": "holdout_1",
+      "profile": "motion",
+      "added_delay_s": 0.0,
+      "outcome": "credited",
+      "first_action": "hard_right_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 140,
+      "pedal_question_sha256": "9c360cd32b5d5c10afbe609815a731e9cc4059146fe7cb4ae1ce501e897fcee4"
+    },
+    {
+      "index": 10,
+      "case": "post_contact",
+      "profile": "motion",
+      "added_delay_s": 0.0,
+      "outcome": "credited",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 720,
+      "pedal_question_sha256": "fcd16633245cb89a958c8b957cc2988db845027a2e884b833934fe9e74b98227"
+    },
+    {
+      "index": 11,
+      "case": "post_contact",
+      "profile": "baseline",
+      "added_delay_s": 0.0,
+      "outcome": "credited",
+      "first_action": "hard_left_brake",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 720,
+      "pedal_question_sha256": "fcd16633245cb89a958c8b957cc2988db845027a2e884b833934fe9e74b98227"
+    },
+    {
+      "index": 12,
+      "case": "holdout_2",
+      "profile": "motion",
+      "added_delay_s": 1.0,
+      "outcome": "credited",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 2146,
+      "pedal_question_sha256": "e5062d79353ea5a0c337aad464df1151e26ed9305d334e8d097a63b25a15627b"
+    },
+    {
+      "index": 13,
+      "case": "holdout_2",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "outcome": "credited",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 2146,
+      "pedal_question_sha256": "e5062d79353ea5a0c337aad464df1151e26ed9305d334e8d097a63b25a15627b"
+    },
+    {
+      "index": 14,
+      "case": "holdout_1",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_right_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 140,
+      "pedal_question_sha256": "9c360cd32b5d5c10afbe609815a731e9cc4059146fe7cb4ae1ce501e897fcee4"
+    },
+    {
+      "index": 15,
+      "case": "holdout_1",
+      "profile": "motion",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_right_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 140,
+      "pedal_question_sha256": "9c360cd32b5d5c10afbe609815a731e9cc4059146fe7cb4ae1ce501e897fcee4"
+    },
+    {
+      "index": 16,
+      "case": "post_contact",
+      "profile": "motion",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 720,
+      "pedal_question_sha256": "fcd16633245cb89a958c8b957cc2988db845027a2e884b833934fe9e74b98227"
+    },
+    {
+      "index": 17,
+      "case": "post_contact",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 720,
+      "pedal_question_sha256": "fcd16633245cb89a958c8b957cc2988db845027a2e884b833934fe9e74b98227"
+    },
+    {
+      "index": 18,
+      "case": "post_contact",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "outcome": "credited",
+      "first_action": "hard_left_brake",
+      "contacts": 1,
+      "contact_details": [
+        {
+          "type": "contact",
+          "tick": 962,
+          "time": 16.03333333333333,
+          "toi_fraction": 0.04662144526607763,
+          "normal": [
+            0.8190030323011873,
+            0.5737891887108544
+          ],
+          "closing_speed_m_s": 0.44725406401429896,
+          "impulse_m_s": 0.25717108680822187,
+          "onset": true,
+          "positions_at_contact": {
+            "red": [
+              2.245837453866973,
+              27.700916293675967
+            ],
+            "blue": [
+              3.8838435184693485,
+              28.848494671097676
+            ]
+          },
+          "separation_correction_m": 0.001191120729400641
+        }
+      ],
+      "initial_tick": 720,
+      "pedal_question_sha256": "fcd16633245cb89a958c8b957cc2988db845027a2e884b833934fe9e74b98227"
+    },
+    {
+      "index": 19,
+      "case": "post_contact",
+      "profile": "motion",
+      "added_delay_s": 1.0,
+      "outcome": "credited",
+      "first_action": "hard_left_brake",
+      "contacts": 1,
+      "contact_details": [
+        {
+          "type": "contact",
+          "tick": 893,
+          "time": 14.883333333333333,
+          "toi_fraction": 0.2285613356067671,
+          "normal": [
+            0.35534253418983663,
+            0.9347361571029253
+          ],
+          "closing_speed_m_s": 0.4763079513662202,
+          "impulse_m_s": 0.2738770720355766,
+          "onset": true,
+          "positions_at_contact": {
+            "red": [
+              12.144232309337008,
+              32.52756806733727
+            ],
+            "blue": [
+              12.854917377716681,
+              34.39704038154312
+            ]
+          },
+          "separation_correction_m": 0.0
+        }
+      ],
+      "initial_tick": 720,
+      "pedal_question_sha256": "fcd16633245cb89a958c8b957cc2988db845027a2e884b833934fe9e74b98227"
+    },
+    {
+      "index": 20,
+      "case": "post_contact",
+      "profile": "motion",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 720,
+      "pedal_question_sha256": "fcd16633245cb89a958c8b957cc2988db845027a2e884b833934fe9e74b98227"
+    },
+    {
+      "index": 21,
+      "case": "post_contact",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "initial_tick": 720,
+      "pedal_question_sha256": "fcd16633245cb89a958c8b957cc2988db845027a2e884b833934fe9e74b98227"
+    }
+  ],
+  "hash_encoding": "Exact existing native encoded() UTF8 serialization, insertion order preserved; no canonical sorting."
+}

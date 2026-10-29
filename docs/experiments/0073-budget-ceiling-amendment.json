@@ -1,0 +1,43 @@
+{
+  "user_instruction": "Go ahead and raise the request ceiling to 100k and proceed",
+  "approved_utc": "2026-10-21T19:58:46.824782+00:00",
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 74221,
+    "charged_usd": 8.778765218001775,
+    "charged_tokens": 272843669,
+    "reported_cost_usd": 8.717554594001733,
+    "uncertain_requests": 70,
+    "pending": {}
+  },
+  "budget_after_release": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 100000,
+    "max_tokens": 500000000,
+    "requests": 74221,
+    "charged_usd": 8.778765218001775,
+    "charged_tokens": 272843669,
+    "reported_cost_usd": 8.717554594001733,
+    "uncertain_requests": 70,
+    "pending": {}
+  },
+  "only_ledger_field_changed": "max_requests",
+  "prepared_ceiling": 78000,
+  "approved_ceiling": 100000,
+  "all_other_frozen_helpers_exact": true,
+  "common_admission_only_replacement": "78000 -> 100000 (two occurrences)",
+  "free_plan_sha256": "0b8a64abad61313cdba6d5c4641cd5e792eefa9060b0983cffa10acadea6028e",
+  "paid_protocol_sha256": "93a56ce8da29f1ddc53088790abbfd7b62adbf295b18fe6be336f05074f82bc6",
+  "budget_release_sha256": "330dd5f9442e46d05ea2e6e36f9fbc76f6d04a9c21eec61c8c878de7d5f92809",
+  "budget_only_amendment_sha256": "21012598119b5806ecd35e1311907e36d6eae5ae7fb4ba45c2f3102b2518100e",
+  "original_common_sha256": "9d1341c69da91e8af46b11a8bcf6dbc3996fa24f02348f61e3c3eaf9f74aa840",
+  "amended_common_sha256": "6e526fa8b99269df5ae1f7b07dc98d77c7dc091f40a6a303ef00409123c406f4",
+  "controller_core_prompts_facts_guide_physics_unchanged": true,
+  "four_fixed_entries_only": true,
+  "deadline_utc": "2026-10-21T21:28:46.824782+00:00",
+  "no_paid_outcome_at_registration": true
+}

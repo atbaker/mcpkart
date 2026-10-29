@@ -1,0 +1,454 @@
+{
+  "study": "0084-motion-only-recovery-validation",
+  "authorization": "User accepted the proposed22episode validation: Let\u2019s do it. Eight originaldelayed, eight additionaldelayed, six normalchecks. Existing caps retained.",
+  "created_utc": "2026-10-25T01:29:09.288839+00:00",
+  "window_end_utc": "2026-10-25T04:29:09.288849+00:00",
+  "source_sha256": {
+    "__init__.py": "c7cf29a796c0b9cbf6050c60b8825b0a266e38de3a18793c3492608ecc79ea60",
+    "bench.py": "9885a0e6792803f7314f2c83a812648811b53b8401a20428b0178443a80dbc92",
+    "decisions.py": "951fada04dd1fe8bda0c14d3017e02864473c82cdc29624abb51fc9188b4f0cf",
+    "duel.py": "26c8435e99f983de67d64aeb6bb43d0a0185e135caee1cebf08a3aafa5ac74ea",
+    "duel_bench.py": "fdc2f964212ee8e9e5482f220078a4a2b6b8e43a60d0f40d640c5b57c7c9e0a4",
+    "duel_clock.py": "8037af2f364462e9324d6fca3d2cff8c4d12188b0cda72b8508434f4e6ab6539",
+    "duel_decisions.py": "e2ee5e41abdf074520d832b10ce77ecdf07da6586fd7d7e311c7b71478124777",
+    "duel_process.py": "51de3f699a10de94b0f19a46e60113f9536321b24754f46cf57eaa2ac547d61c",
+    "duel_run.py": "523b2989a3c72f7a631c2a8edc7333c9b7c87cfafc4fc959b8b31ec91136d5d9",
+    "duel_runtime.py": "40c9ac547034c755008126752a74d21a9db8d2b43861f466bd949deb848a651b",
+    "duel_web.py": "3a5cb06ea82bb2070263b97c98e3ed518755793af93a639b971caba24c7721ef",
+    "duel_worker.py": "87315ff806407311cfed81c97eb4e964b584d5a399ba1bc8933fe34907b0131d",
+    "observations.py": "5febca57d1e474abc9268de49924fe7c8c418bd1a4f469e34ffa564ab1af3255",
+    "physics_worker.py": "cc478b1cb09fd1f3f4f2059a6e69dc1288379cd77d790e693d39f2d68cb32ea8",
+    "probe.py": "d288274877da8ef42f2c3442581de7857e390ffa580e0e7353d6634565a343e5",
+    "process_runtime.py": "2523a39a42645845b20bb6f87b81e5cd50747d1e395c8631ef23a592c08e282e",
+    "question_context.py": "7fdaa33028aac95e2610e251d21b4a6d3daab49c6136d5e27054cae8a03bd95d",
+    "question_context_driver.py": "60cb444bf7d2302c03f193317f018d60db97db5c8a6f59677b68b11af1334d7e",
+    "question_context_run.py": "eb9de8c56557ce8f3567aed694f79d679aa49e74d916fde7c6a4bbf013daeafc",
+    "runtime.py": "d19bba47418747b0c9b600ffc6f4e7a7b69d0046b54eb538d3aeebc5e962c695",
+    "rust_runtime.py": "a5b27ce28f559ca995362c7f9e81ae357da40f20898ca40333388200aa7cc427",
+    "scene.py": "855dcb4e5a337a137d57dba4345bbbece6df6e4f24121dfbd4c7bb1881bc92af",
+    "sim.py": "a6fef5437837d592adbdcec902fc112ef6206c639c051f1d952f6bbcd67f1ce5",
+    "telemetry.py": "44e1a97c6448ffdaf95b97767072e3f99341f3ed5a5092735f5343254788ed6d",
+    "web.py": "2d3bb6aa690c2624c17cb0abcb4bc711cba794b31f3701dbd29bdb3b30590965",
+    "static/duel.html": "a9529ef300f8e36a9b79e6a1f4e0e214ec9c439d2f92f0bd0950e674ec46b293"
+  },
+  "helper_sha256": "103ab8ae756ee34b827e9b056f64a0dfcdbab356a0c2a688b7d2d5182e11c222",
+  "input_sha256": {
+    "post_contact-state.json": "52184a336c43e80a85dce0c93e4a798dbc01b4430428e4e4399574ce44c3fb14",
+    "holdout_1-state.json": "e5697d121fe4c08291a999abc7f3b8806f476dbd8e92e2b338383912b7fbeef0",
+    "holdout_2-state.json": "b6f61422b03a2e5d9be346567e4b726e36f5c25d19e0045f06eca2d0609acb8b",
+    "selection.json": "3d53741697e0fa2bc70b5e11a99b858935422426a75b7b0d8ad5f72149279675",
+    "feasibility-summary.json": "de0d89c49354ca58bbdf0014f499ad5e87e107dd7c7b15cbf1d11da06d476e14",
+    "preservation-proof.json": "0fbb8e4c72d2e635d43fa166fab44f5ab31f1aa8ad38d462eaa52b8aa19fc9be",
+    "prepared-prompts.json": "10118b7fc4b250e86687fd38d1906cd709fb04f9df0937e67b2ef9ed729fa4a5"
+  },
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 110000,
+    "max_tokens": 500000000,
+    "requests": 98715,
+    "charged_usd": 11.443828922002771,
+    "charged_tokens": 331956791,
+    "reported_cost_usd": 11.381930170002729,
+    "uncertain_requests": 71,
+    "pending": {}
+  },
+  "caps": {
+    "cap_usd": 20.0,
+    "max_requests": 110000,
+    "max_tokens": 500000000
+  },
+  "routes": [
+    {
+      "model": "typesafe/jev-1.14",
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "canonical_version_available": true,
+      "canonical_version_pinned": false,
+      "provider": "typesafe",
+      "provider_name": "TypeSafe",
+      "endpoint_name": "TypeSafe | typesafe/jev-1.14-20261014",
+      "price_input_per_token": 4.2e-08,
+      "price_output_per_token": 0.0,
+      "price_per_request": 0.0,
+      "context_length": 262144,
+      "max_prompt_tokens": 262144,
+      "max_completion_tokens": 235929,
+      "catalog_observed_at": "2026-10-25T01:29:09.155780+00:00",
+      "catalog_entry": {
+        "id": "typesafe/jev-1.14",
+        "canonical_slug": "typesafe/jev-1.14-20261014",
+        "hugging_face_id": null,
+        "name": "TypeSafe: Jev 1.14",
+        "created": 1792021417,
+        "description": "Jev 1.14 is the latest version of Jev, TypeSafe's structured decision model and the first of its System One models. System One models make fast, structured decisions for software, returning...",
+        "context_length": 262144,
+        "architecture": {
+          "modality": "text+image->decisions",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "decisions"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000000042",
+          "completion": "0"
+        },
+        "top_provider": {
+          "context_length": 262144,
+          "max_completion_tokens": 235929,
+          "is_moderated": false
+        },
+        "per_request_limits": null,
+        "supported_parameters": [],
+        "default_parameters": {},
+        "supported_voices": null,
+        "knowledge_cutoff": null,
+        "expiration_date": null,
+        "links": {
+          "details": "/api/v1/models/typesafe/jev-1.14-20261014/endpoints"
+        }
+      },
+      "endpoint": {
+        "name": "TypeSafe | typesafe/jev-1.14-20261014",
+        "model_id": "typesafe/jev-1.14",
+        "model_name": "TypeSafe: Jev 1.14",
+        "context_length": 262144,
+        "pricing": {
+          "prompt": "0.000000042",
+          "completion": "0",
+          "discount": 0
+        },
+        "provider_name": "TypeSafe",
+        "tag": "typesafe",
+        "service_tier": null,
+        "quantization": "unknown",
+        "max_completion_tokens": 235929,
+        "max_prompt_tokens": 262144,
+        "supported_parameters": [],
+        "supports_tool_choice": {
+          "none": true,
+          "auto": true,
+          "required": true,
+          "function": true
+        },
+        "status": 0,
+        "uptime_last_30m": 100,
+        "uptime_last_5m": 100,
+        "uptime_last_1d": 100,
+        "supports_implicit_caching": false,
+        "native_tools": {},
+        "supports_voice_cloning": false,
+        "supports_multiple_audio_references": false,
+        "supports_image_reference": false,
+        "supports_diarization": false,
+        "latency_last_30m": null,
+        "throughput_last_30m": null
+      }
+    }
+  ],
+  "cases": {
+    "post_contact": {
+      "name": "post_contact",
+      "source": "artifacts/two-kart-session-v1/validation/race-9/race.json",
+      "source_sha256": "ba581110e041cdc1b41aa2793eab32ccc8d314a65b44f254a1ab8d2a36d3b8be",
+      "tick": 720,
+      "racer_id": "red",
+      "gate_credits": 5,
+      "seed": 413,
+      "deadline_s": 40.0,
+      "max_decisions": 200,
+      "exact_prefix_frames": 721,
+      "full_precision_continuation_frames": 120
+    },
+    "holdout_1": {
+      "name": "holdout_1",
+      "source": "artifacts/two-kart-session-v1/validation/race-1/race.json",
+      "source_sha256": "87b3d2d8f9cc4164303eef1412764d158c586cde0da2fbbedac0b146fe70d03d",
+      "tick": 140,
+      "racer_id": "blue",
+      "gate_credits": 5,
+      "seed": 402,
+      "deadline_s": 40.0,
+      "max_decisions": 200,
+      "exact_prefix_frames": 141,
+      "full_precision_continuation_frames": 120
+    },
+    "holdout_2": {
+      "name": "holdout_2",
+      "source": "artifacts/two-kart-session-v1/validation/race-4/race.json",
+      "source_sha256": "9500ca8e6145e9e43d20e6f3890a86dd3acb92405da48c62216d96d19bba10cc",
+      "tick": 2146,
+      "racer_id": "red",
+      "gate_credits": 5,
+      "seed": 405,
+      "deadline_s": 40.0,
+      "max_decisions": 200,
+      "exact_prefix_frames": 2147,
+      "full_precision_continuation_frames": 120
+    }
+  },
+  "entries": [
+    {
+      "index": 0,
+      "case": "post_contact",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 1,
+      "case": "post_contact",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 2,
+      "case": "holdout_1",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 3,
+      "case": "holdout_1",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 4,
+      "case": "holdout_2",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 5,
+      "case": "holdout_2",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 6,
+      "case": "holdout_2",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "normal_check"
+    },
+    {
+      "index": 7,
+      "case": "holdout_2",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "normal_check"
+    },
+    {
+      "index": 8,
+      "case": "holdout_1",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "normal_check"
+    },
+    {
+      "index": 9,
+      "case": "holdout_1",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "normal_check"
+    },
+    {
+      "index": 10,
+      "case": "post_contact",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "normal_check"
+    },
+    {
+      "index": 11,
+      "case": "post_contact",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "normal_check"
+    },
+    {
+      "index": 12,
+      "case": "holdout_2",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 13,
+      "case": "holdout_2",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 14,
+      "case": "holdout_1",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 15,
+      "case": "holdout_1",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 16,
+      "case": "post_contact",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 17,
+      "case": "post_contact",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 18,
+      "case": "post_contact",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 2,
+      "role": "primary"
+    },
+    {
+      "index": 19,
+      "case": "post_contact",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 2,
+      "role": "primary"
+    },
+    {
+      "index": 20,
+      "case": "post_contact",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 3,
+      "role": "primary"
+    },
+    {
+      "index": 21,
+      "case": "post_contact",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 3,
+      "role": "primary"
+    }
+  ],
+  "maximum_paid_episodes": 22,
+  "maximum_paid_requests": 8800,
+  "request_bound": "22episodes x200decisions/racer x2=8800calls; opening11285slots. Worst final admission11285-21x400=2885slots >=1000floor. Full dollar/token reservations and floors retained.",
+  "primary": "Five new target gatecredits before any new target rescue within40s; selected recovery episode, not fullrace finish.",
+  "secondary": [
+    "Time to fivecredits, newgrass/distance/rescues, contacts/closing speed, leadchanges",
+    "Firstnative pedal and wheel, firstnewcredit vs firstapplied targetinput",
+    "ActualAPI latency, observation-to-application ages, added waits and discarded replies"
+  ],
+  "intervention": "Baseline vs existingmotion-only: wheel gains measured speed,actualwheelangle,yaw,heldnativeinput,currentroadlateralvelocity and descriptiveunits. Gategeometry and explicitcontroltiming off. Entirepedal question,rules,criteria,menus and decoder fixed. Both active Jev racers receive same assignedprofile and actual0/1s addedwait. No suppliedactionrule, advice, repair, fallback or freewitness access.",
+  "fixed": "UnchangedPython60Hz physics/runtime/track24m/12m/s/.12radwheel/1mbody/contact/rescue/phase/gates,fullthreelapgoal,sameendpoint5credits. Native route pinned. Only existing optionalmotion flag differs. Defaults unchanged.",
+  "selection": "From existing descriptive contact screen:60ticks aftercontact,closing speed>=2.5m/s inheritedscreen,absheadingerror>=20deg,bodyclearance>=3m,speed>=8m/s; exclude originalrace9; numericraceorder thencontacttick thenracerID; firsteligible ineach of firsttwo distinctrecordings. Freeze before freefeasibility or newpaidoutcomes. No reselection based on feasibility; retainall failedwitnessattempts.",
+  "free_requirements": "Revalidate complete0083clock on same26sourcefiles/currentboot/currentserverPID/startticks, allsaved evidence hashes and rootobservedoriginalexit. No newclock claim. Twelveexact state/profile/delay native-interface controls with currentaudits and unchangedrealledger. Sixindependentlyreplayed offline200/1200ms legalinputwitnesses. Freeguide credited/rescued/deadline is taskoutcome,not modelperformance.",
+  "stop": "One actual episodeprocess per explicit root admission, rootobservedexit and completephysics/native/wire/reservation/accounting review before next. OnePOST/racer,2globally. Stop on native/provider/clock/accounting error; preserve allcharges/uncertainties; no retry/replacement/newstate/model/tuning. Rescue/deadline ordinary taskoutcome.",
+  "limits": "Originalstate fourdelayedrepeats/profile; twoadditionalrecordedstates twodelayedrepeats/profile; normal onecheck/state/profile. Jointtwokartprofile tests practicalreliability, cannot isolate wheelmechanism or causallycontrol contact/braking. Native latencyvariable. Recordedstateholdouts prospectivelyselected but originaltrajectorieshistorical. The holdout1 delayedphysicalwitness required an independentlycontrolled brakingopponent and29.22s/2.8sgrass; it proves existence of legaljointinputs, not success against any opponent or delayedfeedbackpolicy. No witness is supplied to Jev. Not fullrace reliability or generaltrackability. Earlier0074solomotionbenefitdidnotrepeat; no advantageassumed."
+}

@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "current_all26_source_and_helper_input_hashes_match": true,
+  "closed_budget_matches_snapshot": true,
+  "all28_observed_exits_and_audits_passed": true,
+  "all28_browser_start_end_privacy_checks": true,
+  "early_rescue_result_hidden": true,
+  "mobile_no_horizontal_overflow": true,
+  "loaded_embedded_replay_network_disabled": true,
+  "browser_exceptions": [],
+  "all133_measured_one_second_waits_verified": true,
+  "report_and_bundle_links_verified": 9,
+  "bundle": {
+    "passed": true,
+    "files": 95,
+    "bytes": 1903849,
+    "sha256": "756b035b3da416b7235b5ee4c808c0dd415699c69ddbca7465aedec9a7bb31c7",
+    "zip_crc_passed": true,
+    "manifest_payloads_verified": 94,
+    "index_links_verified": 34,
+    "actual_replays": 28
+  },
+  "browser_absent": true,
+  "temporary_http_terminated": 4002,
+  "server_8769_left_running": true,
+  "software_validation": "740tests passed;3optionalRustskips;Ruff and gitdiffcheck passed",
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 110000,
+    "max_tokens": 500000000,
+    "requests": 98715,
+    "charged_usd": 11.443828922002771,
+    "charged_tokens": 331956791,
+    "reported_cost_usd": 11.381930170002729,
+    "uncertain_requests": 71,
+    "pending": {}
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "study": "0082-harder-recovery-and-one-second-delay",
+  "created_utc": "2026-10-24T17:43:47.907914+00:00",
+  "authorization": "User: Let's do it, and feel free to raise the request ceiling by another 10k",
+  "only_ledger_change": {
+    "max_requests": {
+      "before": 100000,
+      "after": 110000
+    }
+  },
+  "all_charges_and_uncertainties_preserved": true,
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 100000,
+    "max_tokens": 500000000,
+    "requests": 97856,
+    "charged_usd": 11.346796826002786,
+    "charged_tokens": 329563859,
+    "reported_cost_usd": 11.284898074002744,
+    "uncertain_requests": 71,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 110000,
+    "max_tokens": 500000000,
+    "requests": 97856,
+    "charged_usd": 11.346796826002786,
+    "charged_tokens": 329563859,
+    "reported_cost_usd": 11.284898074002744,
+    "uncertain_requests": 71,
+    "pending": {}
+  },
+  "source_before_sha256": {
+    "__init__.py": "c7cf29a796c0b9cbf6050c60b8825b0a266e38de3a18793c3492608ecc79ea60",
+    "bench.py": "9885a0e6792803f7314f2c83a812648811b53b8401a20428b0178443a80dbc92",
+    "decisions.py": "951fada04dd1fe8bda0c14d3017e02864473c82cdc29624abb51fc9188b4f0cf",
+    "duel.py": "26c8435e99f983de67d64aeb6bb43d0a0185e135caee1cebf08a3aafa5ac74ea",
+    "duel_bench.py": "24bd28ca018fd8f26b863772c35efc2e15bf2ffed6be5d038a09d70c41e99c2d",
+    "duel_clock.py": "8037af2f364462e9324d6fca3d2cff8c4d12188b0cda72b8508434f4e6ab6539",
+    "duel_decisions.py": "020434ae95c498ba678e3d32add8c82277e6e4e367e13e1a8dd4b1287149349b",
+    "duel_process.py": "51de3f699a10de94b0f19a46e60113f9536321b24754f46cf57eaa2ac547d61c",
+    "duel_run.py": "a3ada9f7c6e2b47fb4641619a63bed46f5a7d394a38beeae86ec597876c69bf2",
+    "duel_runtime.py": "40c9ac547034c755008126752a74d21a9db8d2b43861f466bd949deb848a651b",
+    "duel_web.py": "3a5cb06ea82bb2070263b97c98e3ed518755793af93a639b971caba24c7721ef",
+    "duel_worker.py": "87315ff806407311cfed81c97eb4e964b584d5a399ba1bc8933fe34907b0131d",
+    "observations.py": "5febca57d1e474abc9268de49924fe7c8c418bd1a4f469e34ffa564ab1af3255",
+    "physics_worker.py": "cc478b1cb09fd1f3f4f2059a6e69dc1288379cd77d790e693d39f2d68cb32ea8",
+    "probe.py": "d288274877da8ef42f2c3442581de7857e390ffa580e0e7353d6634565a343e5",
+    "process_runtime.py": "2523a39a42645845b20bb6f87b81e5cd50747d1e395c8631ef23a592c08e282e",
+    "question_context.py": "7fdaa33028aac95e2610e251d21b4a6d3daab49c6136d5e27054cae8a03bd95d",
+    "question_context_driver.py": "60cb444bf7d2302c03f193317f018d60db97db5c8a6f59677b68b11af1334d7e",
+    "question_context_run.py": "eb9de8c56557ce8f3567aed694f79d679aa49e74d916fde7c6a4bbf013daeafc",
+    "runtime.py": "d19bba47418747b0c9b600ffc6f4e7a7b69d0046b54eb538d3aeebc5e962c695",
+    "rust_runtime.py": "a5b27ce28f559ca995362c7f9e81ae357da40f20898ca40333388200aa7cc427",
+    "scene.py": "855dcb4e5a337a137d57dba4345bbbece6df6e4f24121dfbd4c7bb1881bc92af",
+    "sim.py": "a6fef5437837d592adbdcec902fc112ef6206c639c051f1d952f6bbcd67f1ce5",
+    "telemetry.py": "44e1a97c6448ffdaf95b97767072e3f99341f3ed5a5092735f5343254788ed6d",
+    "web.py": "2d3bb6aa690c2624c17cb0abcb4bc711cba794b31f3701dbd29bdb3b30590965",
+    "static/duel.html": "a9529ef300f8e36a9b79e6a1f4e0e214ec9c439d2f92f0bd0950e674ec46b293"
+  },
+  "old_windows_remain_closed": true,
+  "paid_scope": "New finite prospectively registered comparison of harder recorded outward drift and post-contact error; baseline/gate geometry,0/+1s added wait, repeated balanced order. No paid calls before fresh full clock and exact-interface qualification."
+}

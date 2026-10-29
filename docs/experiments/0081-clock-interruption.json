@@ -1,0 +1,12 @@
+{
+  "created_utc": "2026-10-24T00:31:21.425078+00:00",
+  "reason": "Prior exec session52758 unavailable on resume; collector PID2010 absent; no observed exit status and no qualification produced. Cause unknown. Four-control gate is incomplete, not passed.",
+  "preserved": "clock-interrupted",
+  "completed_controls": 1,
+  "interrupted_control": 1,
+  "orphan_recording_saved": true,
+  "budget_unchanged": true,
+  "model_calls": 0,
+  "source_and_paid_plan_unchanged": true,
+  "next": "Repeat the entire free qualification in fresh clock/ directory; no paid admission without complete root-validated evidence."
+}

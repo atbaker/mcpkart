@@ -1,0 +1,181 @@
+{
+  "study": "0079-factual-next-gate-geometry",
+  "status": "PREPARATION; no paid admission until frozen release and free qualification",
+  "created_utc": "2026-10-22T05:15:58.325724+00:00",
+  "authorization": "User: Okay. I like your recommendations from the findings for what we could try next. Let\u2019s do it (typo corrected). New finite study; 0076\u20130078 windows remain closed.",
+  "runtime": "Python only; unchanged duel physics, rules, handling, native controls, timing and routing",
+  "model": "typesafe/jev-1.14",
+  "cases": [
+    {
+      "name": "feasible_misalignment",
+      "seed": 521,
+      "setup": {
+        "course": "stadium",
+        "grid": [
+          {
+            "distance_m": 0,
+            "offset_m": 10.5,
+            "heading_error_rad": -1.8
+          },
+          {
+            "distance_m": -8,
+            "offset_m": -4,
+            "heading_error_rad": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "prior_detour_grid",
+      "seed": 522,
+      "setup": {
+        "course": "stadium_clockwise",
+        "grid": [
+          {
+            "distance_m": -4,
+            "offset_m": -3,
+            "heading_error_rad": -0.025
+          },
+          {
+            "distance_m": 0,
+            "offset_m": 3,
+            "heading_error_rad": 0.025
+          }
+        ]
+      }
+    }
+  ],
+  "entries": [
+    {
+      "index": 0,
+      "case": 0,
+      "include_gate_geometry": false,
+      "name": "feasible_misalignment",
+      "seed": 521,
+      "setup": {
+        "course": "stadium",
+        "grid": [
+          {
+            "distance_m": 0,
+            "offset_m": 10.5,
+            "heading_error_rad": -1.8
+          },
+          {
+            "distance_m": -8,
+            "offset_m": -4,
+            "heading_error_rad": 0
+          }
+        ]
+      }
+    },
+    {
+      "index": 1,
+      "case": 0,
+      "include_gate_geometry": true,
+      "name": "feasible_misalignment",
+      "seed": 521,
+      "setup": {
+        "course": "stadium",
+        "grid": [
+          {
+            "distance_m": 0,
+            "offset_m": 10.5,
+            "heading_error_rad": -1.8
+          },
+          {
+            "distance_m": -8,
+            "offset_m": -4,
+            "heading_error_rad": 0
+          }
+        ]
+      }
+    },
+    {
+      "index": 2,
+      "case": 1,
+      "include_gate_geometry": true,
+      "name": "prior_detour_grid",
+      "seed": 522,
+      "setup": {
+        "course": "stadium_clockwise",
+        "grid": [
+          {
+            "distance_m": -4,
+            "offset_m": -3,
+            "heading_error_rad": -0.025
+          },
+          {
+            "distance_m": 0,
+            "offset_m": 3,
+            "heading_error_rad": 0.025
+          }
+        ]
+      }
+    },
+    {
+      "index": 3,
+      "case": 1,
+      "include_gate_geometry": false,
+      "name": "prior_detour_grid",
+      "seed": 522,
+      "setup": {
+        "course": "stadium_clockwise",
+        "grid": [
+          {
+            "distance_m": -4,
+            "offset_m": -3,
+            "heading_error_rad": -0.025
+          },
+          {
+            "distance_m": 0,
+            "offset_m": 3,
+            "heading_error_rad": 0.025
+          }
+        ]
+      }
+    }
+  ],
+  "deadline_s": 170.1,
+  "max_decisions_per_racer": 550,
+  "max_paid_requests": 4400,
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 100000,
+    "max_tokens": 500000000,
+    "requests": 94598,
+    "charged_usd": 10.983352472002839,
+    "charged_tokens": 320361620,
+    "reported_cost_usd": 10.922141848002797,
+    "uncertain_requests": 70,
+    "pending": {}
+  },
+  "treatment": "Only wheel_facts.next_gate.geometry: gate index, centre, both road-edge endpoints and forward unit normal in the current kart frame, plus coordinate definitions. No motion/road-frame option, target, chosen crossing point, predicted state or action policy.",
+  "unchanged": "Entire pedal question, all rules and criteria, native inverse, direct held inputs, 24m stadium/mirror, 1m bodies, 12m/s speed, .12rad wheel, three laps, contact and rescue.",
+  "design": "Both karts receive the same profile per duel. Matched fixed starts and seeds; arm order baseline/geometry then geometry/baseline. Two environments, one duel per arm per environment, no replacements. Karts within a duel are interacting, not independent replicates.",
+  "feasibility": "Untimed free screen tried four declared sharp poses; first listed -1.8rad/+10.5m pose completed cleanly under 200ms scripted controls. Exact-interface timed controls required separately. Historical 0078 race6 demonstrates a legal long unassisted gate recovery, not that short recovery is impossible. No arbitrary post-miss state injection or new mechanics.",
+  "primary": [
+    "First gate credit before initial rescue on misalignment red; first credit time and grass time",
+    "Finish and clean finish per racer; clean means zero offroad time and zero rescue",
+    "Rescue count, total distance relative to matched baseline, maximum adjacent gate-credit gap"
+  ],
+  "secondary": [
+    "Natural missed-gate episodes: next required gate plane becomes positive without credit; first later credit before another rescue, delay and travel. Conditional descriptions only; geometry may prevent exposure.",
+    "API latency and observation-to-application delay, descriptive; no latency intervention or causal attribution",
+    "Contacts and lead changes; neither establishes passing intent"
+  ],
+  "limits": "This first live pilot tests miss prevention and a physically feasible misaligned start. It cannot establish recovery from every already-passed gate pose. Exogenous matched post-miss restart would need a separately qualified harness. No significance or general reliability claim from two duel pairs.",
+  "free_requirements": [
+    "All prior 14,964 exact questions/facts rebuilt unchanged with default profile; treatment changes only wheel gate geometry on the same snapshots",
+    "Native choice inverse and malformed measurement checks before reservation/POST",
+    "Full current-source clock gate: four full duels, parent pause, >=170.1s neutral, strict existing timing bounds, real ledger unchanged",
+    "Four full exact-interface 200ms scripted controls, one per entry/profile, exact native/factual/physics/budget audit; misalignment first credit before rescue and both controls clean"
+  ],
+  "stop_policy": "One paid duel per explicit root process, observe exit and full audit before next. Stop new admission after infrastructure/native/route/accounting errors, new uncertainty, paid ceiling, time window, or saved admission floor. No retries, substitutions, tuning or additional study calls.",
+  "caps": {
+    "cap_usd": 20.0,
+    "max_requests": 100000,
+    "max_tokens": 500000000
+  },
+  "window_end_utc": "2026-10-22T08:30:00+00:00"
+}

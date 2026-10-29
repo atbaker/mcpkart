@@ -1,0 +1,221 @@
+{
+  "passed": true,
+  "bundle": {
+    "files": 77,
+    "bytes": 1578883,
+    "sha256": "83f236365b106d1baae56355ac4393e028c5ce50b0f9e895f79864a8333cb86c",
+    "zip_crc_passed": true,
+    "manifest_payloads": 76,
+    "replay_exports": 12
+  },
+  "browser": {
+    "passed": true,
+    "actual_paid_replays": [
+      {
+        "index": 0,
+        "initial": {
+          "clock": "0.00 s",
+          "result": "red recovery \u00b7 3 new gate credits before rescue",
+          "duration": 5.116666666666654,
+          "first": 0,
+          "tick": 0
+        },
+        "terminal": {
+          "clock": "5.12 s",
+          "result": "Recovery checkpoint reached"
+        },
+        "private_fields_absent": true
+      },
+      {
+        "index": 1,
+        "initial": {
+          "clock": "0.00 s",
+          "result": "blue recovery \u00b7 3 new gate credits before rescue",
+          "duration": 2.4499999999999917,
+          "first": 0,
+          "tick": 175
+        },
+        "terminal": {
+          "clock": "2.45 s",
+          "result": "Recovery checkpoint reached"
+        },
+        "private_fields_absent": true
+      },
+      {
+        "index": 2,
+        "initial": {
+          "clock": "0.00 s",
+          "result": "red recovery \u00b7 1 new gate credits before rescue",
+          "duration": 29.016666666665017,
+          "first": 0,
+          "tick": 5133
+        },
+        "terminal": {
+          "clock": "29.02 s",
+          "result": "Recovery checkpoint reached"
+        },
+        "private_fields_absent": true
+      },
+      {
+        "index": 3,
+        "initial": {
+          "clock": "0.00 s",
+          "result": "red recovery \u00b7 3 new gate credits before rescue",
+          "duration": 5.533333333333319,
+          "first": 0,
+          "tick": 0
+        },
+        "terminal": {
+          "clock": "5.53 s",
+          "result": "Recovery checkpoint reached"
+        },
+        "private_fields_absent": true
+      },
+      {
+        "index": 4,
+        "initial": {
+          "clock": "0.00 s",
+          "result": "red recovery \u00b7 3 new gate credits before rescue",
+          "duration": 5.18333333333332,
+          "first": 0,
+          "tick": 0
+        },
+        "terminal": {
+          "clock": "5.18 s",
+          "result": "Recovery checkpoint reached"
+        },
+        "private_fields_absent": true
+      },
+      {
+        "index": 5,
+        "initial": {
+          "clock": "0.00 s",
+          "result": "blue recovery \u00b7 3 new gate credits before rescue",
+          "duration": 2.316666666666659,
+          "first": 0,
+          "tick": 175
+        },
+        "terminal": {
+          "clock": "2.32 s",
+          "result": "Recovery checkpoint reached"
+        },
+        "private_fields_absent": true
+      },
+      {
+        "index": 6,
+        "initial": {
+          "clock": "0.00 s",
+          "result": "red recovery \u00b7 1 new gate credits before rescue",
+          "duration": 28.249999999998394,
+          "first": 0,
+          "tick": 5133
+        },
+        "terminal": {
+          "clock": "28.25 s",
+          "result": "Recovery checkpoint reached"
+        },
+        "private_fields_absent": true
+      },
+      {
+        "index": 7,
+        "initial": {
+          "clock": "0.00 s",
+          "result": "red recovery \u00b7 3 new gate credits before rescue",
+          "duration": 6.26666666666665,
+          "first": 0,
+          "tick": 0
+        },
+        "terminal": {
+          "clock": "6.27 s",
+          "result": "Recovery checkpoint reached"
+        },
+        "private_fields_absent": true
+      },
+      {
+        "index": 8,
+        "initial": {
+          "clock": "0.00 s",
+          "result": "red recovery \u00b7 3 new gate credits before rescue",
+          "duration": 6.3166666666666496,
+          "first": 0,
+          "tick": 0
+        },
+        "terminal": {
+          "clock": "6.32 s",
+          "result": "Recovery checkpoint reached"
+        },
+        "private_fields_absent": true
+      },
+      {
+        "index": 9,
+        "initial": {
+          "clock": "0.00 s",
+          "result": "red recovery \u00b7 3 new gate credits before rescue",
+          "duration": 5.449999999999986,
+          "first": 0,
+          "tick": 0
+        },
+        "terminal": {
+          "clock": "5.45 s",
+          "result": "Recovery checkpoint reached"
+        },
+        "private_fields_absent": true
+      },
+      {
+        "index": 10,
+        "initial": {
+          "clock": "0.00 s",
+          "result": "red recovery \u00b7 3 new gate credits before rescue",
+          "duration": 5.449999999999986,
+          "first": 0,
+          "tick": 0
+        },
+        "terminal": {
+          "clock": "5.45 s",
+          "result": "Recovery checkpoint reached"
+        },
+        "private_fields_absent": true
+      },
+      {
+        "index": 11,
+        "initial": {
+          "clock": "0.00 s",
+          "result": "red recovery \u00b7 3 new gate credits before rescue",
+          "duration": 4.699999999999989,
+          "first": 0,
+          "tick": 0
+        },
+        "terminal": {
+          "clock": "4.70 s",
+          "result": "Recovery checkpoint reached"
+        },
+        "private_fields_absent": true
+      }
+    ],
+    "offline_loaded_embedded_page_network_disabled": {
+      "clock": "13.05 s",
+      "mode": "replay",
+      "duration": 29.016666666665017
+    },
+    "mobile": {
+      "width": 420,
+      "scroll": 420
+    },
+    "browser_exceptions": []
+  },
+  "checks": {
+    "passed": true,
+    "current_all_26_source_hashes_match_registration": true,
+    "closed_budget_matches_snapshot": true,
+    "bundle_payload_hashes": 75,
+    "index_local_links": 18,
+    "report_local_links_passed": true,
+    "all_twelve_replays_browser_passed": true,
+    "browser_pid_absent": true,
+    "temporary_http_pid_terminated": 2765,
+    "main_8767_untouched": true
+  },
+  "source_unchanged_since_collection": true,
+  "software_validation": "636 passed; 3 optional Rust skips; Ruff and diff checks passed",
+  "paid_window_closed": true
+}

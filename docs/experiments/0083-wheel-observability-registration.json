@@ -1,0 +1,506 @@
+{
+  "study": "0083-factual-wheel-motion-and-control-timing",
+  "authorization": "User accepted factual wheel-own-motion and known control-delay experiment: Okay - I agree, let\u2019s do that next. Four profiles compare motion/timing separately and together on same frozen state bank; existing caps retained.",
+  "created_utc": "2026-10-24T18:46:33.330617+00:00",
+  "window_end_utc": "2026-10-24T21:46:33.330630+00:00",
+  "source_sha256": {
+    "__init__.py": "c7cf29a796c0b9cbf6050c60b8825b0a266e38de3a18793c3492608ecc79ea60",
+    "bench.py": "9885a0e6792803f7314f2c83a812648811b53b8401a20428b0178443a80dbc92",
+    "decisions.py": "951fada04dd1fe8bda0c14d3017e02864473c82cdc29624abb51fc9188b4f0cf",
+    "duel.py": "26c8435e99f983de67d64aeb6bb43d0a0185e135caee1cebf08a3aafa5ac74ea",
+    "duel_bench.py": "fdc2f964212ee8e9e5482f220078a4a2b6b8e43a60d0f40d640c5b57c7c9e0a4",
+    "duel_clock.py": "8037af2f364462e9324d6fca3d2cff8c4d12188b0cda72b8508434f4e6ab6539",
+    "duel_decisions.py": "e2ee5e41abdf074520d832b10ce77ecdf07da6586fd7d7e311c7b71478124777",
+    "duel_process.py": "51de3f699a10de94b0f19a46e60113f9536321b24754f46cf57eaa2ac547d61c",
+    "duel_run.py": "523b2989a3c72f7a631c2a8edc7333c9b7c87cfafc4fc959b8b31ec91136d5d9",
+    "duel_runtime.py": "40c9ac547034c755008126752a74d21a9db8d2b43861f466bd949deb848a651b",
+    "duel_web.py": "3a5cb06ea82bb2070263b97c98e3ed518755793af93a639b971caba24c7721ef",
+    "duel_worker.py": "87315ff806407311cfed81c97eb4e964b584d5a399ba1bc8933fe34907b0131d",
+    "observations.py": "5febca57d1e474abc9268de49924fe7c8c418bd1a4f469e34ffa564ab1af3255",
+    "physics_worker.py": "cc478b1cb09fd1f3f4f2059a6e69dc1288379cd77d790e693d39f2d68cb32ea8",
+    "probe.py": "d288274877da8ef42f2c3442581de7857e390ffa580e0e7353d6634565a343e5",
+    "process_runtime.py": "2523a39a42645845b20bb6f87b81e5cd50747d1e395c8631ef23a592c08e282e",
+    "question_context.py": "7fdaa33028aac95e2610e251d21b4a6d3daab49c6136d5e27054cae8a03bd95d",
+    "question_context_driver.py": "60cb444bf7d2302c03f193317f018d60db97db5c8a6f59677b68b11af1334d7e",
+    "question_context_run.py": "eb9de8c56557ce8f3567aed694f79d679aa49e74d916fde7c6a4bbf013daeafc",
+    "runtime.py": "d19bba47418747b0c9b600ffc6f4e7a7b69d0046b54eb538d3aeebc5e962c695",
+    "rust_runtime.py": "a5b27ce28f559ca995362c7f9e81ae357da40f20898ca40333388200aa7cc427",
+    "scene.py": "855dcb4e5a337a137d57dba4345bbbece6df6e4f24121dfbd4c7bb1881bc92af",
+    "sim.py": "a6fef5437837d592adbdcec902fc112ef6206c639c051f1d952f6bbcd67f1ce5",
+    "telemetry.py": "44e1a97c6448ffdaf95b97767072e3f99341f3ed5a5092735f5343254788ed6d",
+    "web.py": "2d3bb6aa690c2624c17cb0abcb4bc711cba794b31f3701dbd29bdb3b30590965",
+    "static/duel.html": "a9529ef300f8e36a9b79e6a1f4e0e214ec9c439d2f92f0bd0950e674ec46b293"
+  },
+  "helper_sha256": "f520596b69f288396afcbbeab1bcc355ec5d13e223832c2a95763673c4cc59e1",
+  "input_sha256": {
+    "outward_drift-state.json": "05881be327e1a4a23661d7c2ac08274b581d52e12696a2186a46bc71c5cbf693",
+    "post_contact-state.json": "52184a336c43e80a85dce0c93e4a798dbc01b4430428e4e4399574ce44c3fb14",
+    "feasibility-summary.json": "1f036b9de71fd36b965443dba6953c1549440d793daf3bcda221fe7adc0e4a09",
+    "preservation-proof.json": "91084f1964411f6efa57847c8cd846eaae6d4f8057249fde87b8099cf2d8b193",
+    "prepared-prompts.json": "6144e79b7f5b23fe5bda02ae2523f80d6a06bd15dc68b3eac748f58779fcf1cf",
+    "feasibility-reuse-proof.json": "3ce0cbe31186870a8c7445cd9fd69ac75b93e623d8fa3a37bf5f0757ff97a714"
+  },
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 110000,
+    "max_tokens": 500000000,
+    "requests": 98177,
+    "charged_usd": 11.382596324002778,
+    "charged_tokens": 330447089,
+    "reported_cost_usd": 11.320697572002736,
+    "uncertain_requests": 71,
+    "pending": {}
+  },
+  "caps": {
+    "cap_usd": 20.0,
+    "max_requests": 110000,
+    "max_tokens": 500000000
+  },
+  "routes": [
+    {
+      "model": "typesafe/jev-1.14",
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "canonical_version_available": true,
+      "canonical_version_pinned": false,
+      "provider": "typesafe",
+      "provider_name": "TypeSafe",
+      "endpoint_name": "TypeSafe | typesafe/jev-1.14-20261014",
+      "price_input_per_token": 4.2e-08,
+      "price_output_per_token": 0.0,
+      "price_per_request": 0.0,
+      "context_length": 262144,
+      "max_prompt_tokens": 262144,
+      "max_completion_tokens": 235929,
+      "catalog_observed_at": "2026-10-24T18:46:33.258864+00:00",
+      "catalog_entry": {
+        "id": "typesafe/jev-1.14",
+        "canonical_slug": "typesafe/jev-1.14-20261014",
+        "hugging_face_id": null,
+        "name": "TypeSafe: Jev 1.14",
+        "created": 1792021417,
+        "description": "Jev 1.14 is the latest version of Jev, TypeSafe's structured decision model and the first of its System One models. System One models make fast, structured decisions for software, returning...",
+        "context_length": 262144,
+        "architecture": {
+          "modality": "text+image->decisions",
+          "input_modalities": [
+            "text",
+            "image"
+          ],
+          "output_modalities": [
+            "decisions"
+          ],
+          "tokenizer": "Other",
+          "instruct_type": null
+        },
+        "pricing": {
+          "prompt": "0.000000042",
+          "completion": "0"
+        },
+        "top_provider": {
+          "context_length": 262144,
+          "max_completion_tokens": 235929,
+          "is_moderated": false
+        },
+        "per_request_limits": null,
+        "supported_parameters": [],
+        "default_parameters": {},
+        "supported_voices": null,
+        "knowledge_cutoff": null,
+        "expiration_date": null,
+        "links": {
+          "details": "/api/v1/models/typesafe/jev-1.14-20261014/endpoints"
+        }
+      },
+      "endpoint": {
+        "name": "TypeSafe | typesafe/jev-1.14-20261014",
+        "model_id": "typesafe/jev-1.14",
+        "model_name": "TypeSafe: Jev 1.14",
+        "context_length": 262144,
+        "pricing": {
+          "prompt": "0.000000042",
+          "completion": "0",
+          "discount": 0
+        },
+        "provider_name": "TypeSafe",
+        "tag": "typesafe",
+        "service_tier": null,
+        "quantization": "unknown",
+        "max_completion_tokens": 235929,
+        "max_prompt_tokens": 262144,
+        "supported_parameters": [],
+        "supports_tool_choice": {
+          "none": true,
+          "auto": true,
+          "required": true,
+          "function": true
+        },
+        "status": 0,
+        "uptime_last_30m": 100,
+        "uptime_last_5m": 100,
+        "uptime_last_1d": 100,
+        "supports_implicit_caching": false,
+        "native_tools": {},
+        "supports_voice_cloning": false,
+        "supports_multiple_audio_references": false,
+        "supports_image_reference": false,
+        "supports_diarization": false,
+        "latency_last_30m": null,
+        "throughput_last_30m": null
+      }
+    }
+  ],
+  "cases": {
+    "outward_drift": {
+      "name": "outward_drift",
+      "source": "artifacts/jev-gate-retry-v1/trial/race.json",
+      "source_sha256": "86767f918dc2e9abdfc74dcd386b3f72ffaa2a4fa8a80cd7e7fc3cbda27b11ee",
+      "tick": 199,
+      "racer_id": "blue",
+      "gate_credits": 5,
+      "seed": 522,
+      "deadline_s": 40.0,
+      "max_decisions": 200,
+      "exact_prefix_frames": 200,
+      "full_precision_continuation_frames": 120
+    },
+    "post_contact": {
+      "name": "post_contact",
+      "source": "artifacts/two-kart-session-v1/validation/race-9/race.json",
+      "source_sha256": "ba581110e041cdc1b41aa2793eab32ccc8d314a65b44f254a1ab8d2a36d3b8be",
+      "tick": 720,
+      "racer_id": "red",
+      "gate_credits": 5,
+      "seed": 413,
+      "deadline_s": 40.0,
+      "max_decisions": 200,
+      "exact_prefix_frames": 721,
+      "full_precision_continuation_frames": 120
+    }
+  },
+  "entries": [
+    {
+      "index": 0,
+      "case": "outward_drift",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 1,
+      "case": "post_contact",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 2,
+      "case": "outward_drift",
+      "profile": "timing",
+      "geometry": false,
+      "motion": false,
+      "timing": true,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 3,
+      "case": "outward_drift",
+      "profile": "both",
+      "geometry": false,
+      "motion": true,
+      "timing": true,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 4,
+      "case": "post_contact",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 5,
+      "case": "outward_drift",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 6,
+      "case": "outward_drift",
+      "profile": "timing",
+      "geometry": false,
+      "motion": false,
+      "timing": true,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 7,
+      "case": "post_contact",
+      "profile": "both",
+      "geometry": false,
+      "motion": true,
+      "timing": true,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 8,
+      "case": "outward_drift",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 9,
+      "case": "outward_drift",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 10,
+      "case": "post_contact",
+      "profile": "timing",
+      "geometry": false,
+      "motion": false,
+      "timing": true,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 11,
+      "case": "outward_drift",
+      "profile": "both",
+      "geometry": false,
+      "motion": true,
+      "timing": true,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary"
+    },
+    {
+      "index": 12,
+      "case": "post_contact",
+      "profile": "both",
+      "geometry": false,
+      "motion": true,
+      "timing": true,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "normal_check"
+    },
+    {
+      "index": 13,
+      "case": "post_contact",
+      "profile": "timing",
+      "geometry": false,
+      "motion": false,
+      "timing": true,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "normal_check"
+    },
+    {
+      "index": 14,
+      "case": "post_contact",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "normal_check"
+    },
+    {
+      "index": 15,
+      "case": "post_contact",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "normal_check"
+    },
+    {
+      "index": 16,
+      "case": "outward_drift",
+      "profile": "both",
+      "geometry": false,
+      "motion": true,
+      "timing": true,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 17,
+      "case": "post_contact",
+      "profile": "timing",
+      "geometry": false,
+      "motion": false,
+      "timing": true,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 18,
+      "case": "outward_drift",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 19,
+      "case": "outward_drift",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 20,
+      "case": "post_contact",
+      "profile": "both",
+      "geometry": false,
+      "motion": true,
+      "timing": true,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 21,
+      "case": "outward_drift",
+      "profile": "timing",
+      "geometry": false,
+      "motion": false,
+      "timing": true,
+      "added_delay_s": 0.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 22,
+      "case": "outward_drift",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 23,
+      "case": "post_contact",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 24,
+      "case": "outward_drift",
+      "profile": "both",
+      "geometry": false,
+      "motion": true,
+      "timing": true,
+      "added_delay_s": 0.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 25,
+      "case": "outward_drift",
+      "profile": "timing",
+      "geometry": false,
+      "motion": false,
+      "timing": true,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 26,
+      "case": "post_contact",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary"
+    },
+    {
+      "index": 27,
+      "case": "outward_drift",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 1,
+      "role": "primary"
+    }
+  ],
+  "maximum_paid_episodes": 28,
+  "maximum_paid_requests": 11200,
+  "request_bound": "28 episodes x200 decisions/racer x2=11200 maximum calls; opening11823 slots. Worst final admission has11823-27x400=1023 slots, above1000floor. Three previous failure strata x4profiles x2repeats=24; four normal post-contact checks have one/profile. All dollar/token/reservation floors retained.",
+  "primary": "Five new target gate credits before any new target rescue, within40s; episode not full race finish. Five avoids inherited held-input three-credit successes in post-contact screen.",
+  "secondary": [
+    "New grass, travel, contacts and lead changes as deltas from full-precision checkpoint",
+    "First new credit vs first newly applied target input, plus time to fifth credit",
+    "Native API latency, observation-to-application age, actual added waits and discarded replies"
+  ],
+  "intervention": "Four profiles: baseline, motion only, timing only, both. Motion adds current speed/actual steering/yaw/held native input plus existing pedal road-lateral velocity to wheel facts. Timing adds known post-response wait(0 or1s),60Hz and descriptive units stating inference is additional/variable/unknown for current reply. Only wheel factual packets change; full pedal question/rules/native menus identical. Gate geometry disabled throughout. Both active racers share assigned profile/wait. No future pose, action rules, advice, projection, repair, refreshed observation, retry or fallback.",
+  "fixed": "Python60Hz dynamics,24m road,12m/s,.12rad wheel,1m footprint, contacts/rescue/phase/gate mechanics, goal-only race objective, action menus and native inverse. Both active drivers use same profile/delay. Episode goal is not supplied to the model.",
+  "selection": "Exact0082state files reused byte-for-byte; no new state selection. Prior physical evidence: Outward drift:0080 blue tick199,5.714m body clearance,8.396m/s outward velocity,44.40deg heading error; earlier0081tick175 had8.876m clearance. Post-contact:0078race9 red tick720,one second after contacttick660,36.04deg heading error,8.659m clearance,4.893m/s outward velocity. Initialfeature scans and all failedguide/enumeration screens are retained. Selected before any new paid reply. Five new credits required because held-input post-contact controls pass three before later rescue. Simple1.2sguide failed both; retained native-input witnesses establish feasibility, including a bounded offlinebeam search for drift. No witness or search is available to paid collection or prompt.",
+  "free_requirements": "Current complete full clock gate on this boot/server/source; all16 unique state/profile/delay exact native-interface controls with strict physics/timing/accounting audits. Free controller outcome credited/rescued/deadline is an ordinary task result; qualification does not require guide success. Separate offline native-input witnesses establish legal recovery at200ms and1200ms response cadences in each state. Preserve all free candidate failures.",
+  "stop": "One actual process per explicit root admission, observed exit and full root plus wire/reservation review before next. Stop on native/provider/clock/accounting error; no retry or replacement. Rescue/deadline ordinary task outcomes. No other models, seeds or tuning.",
+  "limits": "Three previous failure strata have two repeats/profile, normal post-contact one check/profile. Two selected recorded states, one track family, not a general reliability estimate. Pedal head remains unchanged and does not receive new timing information; this isolates wheel-question observability. Native latency varies; only extra wait is known. Motion/timing additions are supplied measurements/mechanics, not action advice. Existing solo motion benefits did not repeat, so no benefit is assumed. Physics/runtime/UI unchanged; all new factual flags default off."
+}

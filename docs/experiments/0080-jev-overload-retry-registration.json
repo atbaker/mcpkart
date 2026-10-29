@@ -1,0 +1,195 @@
+{
+  "study": "0080-jev-provider-overload-retry",
+  "authorization": "User: Hmm - try again and see if the 529 has cleared up?",
+  "scope": "One fresh attempt at the interrupted 0079 clockwise-diagonal baseline duel. Preserve original529 and full uncertain reservation. No replacement of historical evidence; no further retries in this window.",
+  "created_utc": "2026-10-22T05:59:36.483691+00:00",
+  "window_end_utc": "2026-10-22T06:59:36.483702+00:00",
+  "source_sha256": {
+    "__init__.py": "c7cf29a796c0b9cbf6050c60b8825b0a266e38de3a18793c3492608ecc79ea60",
+    "bench.py": "9885a0e6792803f7314f2c83a812648811b53b8401a20428b0178443a80dbc92",
+    "decisions.py": "951fada04dd1fe8bda0c14d3017e02864473c82cdc29624abb51fc9188b4f0cf",
+    "duel.py": "182eaa3e42d138ef874797b25be7aa31c299edd688de46e4420968685bafe516",
+    "duel_bench.py": "d3d817084cbfe6b806e37e612acfa8ba1e5f42e8fbcc41d6a77508964c69bf15",
+    "duel_clock.py": "8037af2f364462e9324d6fca3d2cff8c4d12188b0cda72b8508434f4e6ab6539",
+    "duel_decisions.py": "020434ae95c498ba678e3d32add8c82277e6e4e367e13e1a8dd4b1287149349b",
+    "duel_process.py": "51de3f699a10de94b0f19a46e60113f9536321b24754f46cf57eaa2ac547d61c",
+    "duel_run.py": "a3ada9f7c6e2b47fb4641619a63bed46f5a7d394a38beeae86ec597876c69bf2",
+    "duel_runtime.py": "5592633c1feeb2f0770f4a64e218d7de3fff4f73f04af1dcf2bd5e91579b879a",
+    "duel_web.py": "3a5cb06ea82bb2070263b97c98e3ed518755793af93a639b971caba24c7721ef",
+    "duel_worker.py": "87315ff806407311cfed81c97eb4e964b584d5a399ba1bc8933fe34907b0131d",
+    "observations.py": "5febca57d1e474abc9268de49924fe7c8c418bd1a4f469e34ffa564ab1af3255",
+    "physics_worker.py": "cc478b1cb09fd1f3f4f2059a6e69dc1288379cd77d790e693d39f2d68cb32ea8",
+    "probe.py": "d288274877da8ef42f2c3442581de7857e390ffa580e0e7353d6634565a343e5",
+    "process_runtime.py": "2523a39a42645845b20bb6f87b81e5cd50747d1e395c8631ef23a592c08e282e",
+    "question_context.py": "7fdaa33028aac95e2610e251d21b4a6d3daab49c6136d5e27054cae8a03bd95d",
+    "question_context_driver.py": "60cb444bf7d2302c03f193317f018d60db97db5c8a6f59677b68b11af1334d7e",
+    "question_context_run.py": "eb9de8c56557ce8f3567aed694f79d679aa49e74d916fde7c6a4bbf013daeafc",
+    "runtime.py": "d19bba47418747b0c9b600ffc6f4e7a7b69d0046b54eb538d3aeebc5e962c695",
+    "rust_runtime.py": "a5b27ce28f559ca995362c7f9e81ae357da40f20898ca40333388200aa7cc427",
+    "scene.py": "855dcb4e5a337a137d57dba4345bbbece6df6e4f24121dfbd4c7bb1881bc92af",
+    "sim.py": "a6fef5437837d592adbdcec902fc112ef6206c639c051f1d952f6bbcd67f1ce5",
+    "telemetry.py": "44e1a97c6448ffdaf95b97767072e3f99341f3ed5a5092735f5343254788ed6d",
+    "web.py": "2d3bb6aa690c2624c17cb0abcb4bc711cba794b31f3701dbd29bdb3b30590965",
+    "static/duel.html": "ddd181be660b66e9ab5fc7e6305cbfae54602ffae3f5c6c7831d374aa0bda6eb"
+  },
+  "helper_sha256": "66848067572c0e3d84bb9a4f10c359d43d6f9b672b994cc6987f83913b1e551c",
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 100000,
+    "max_tokens": 500000000,
+    "requests": 96778,
+    "charged_usd": 11.228800136002755,
+    "charged_tokens": 326650735,
+    "reported_cost_usd": 11.166901384002713,
+    "uncertain_requests": 71,
+    "pending": {}
+  },
+  "caps": {
+    "cap_usd": 20.0,
+    "max_requests": 100000,
+    "max_tokens": 500000000
+  },
+  "route": {
+    "model": "typesafe/jev-1.14",
+    "resolved_model": "typesafe/jev-1.14-20261014",
+    "canonical_version_available": true,
+    "canonical_version_pinned": false,
+    "provider": "typesafe",
+    "provider_name": "TypeSafe",
+    "endpoint_name": "TypeSafe | typesafe/jev-1.14-20261014",
+    "price_input_per_token": 4.2e-08,
+    "price_output_per_token": 0.0,
+    "price_per_request": 0.0,
+    "context_length": 262144,
+    "max_prompt_tokens": 262144,
+    "max_completion_tokens": 235929,
+    "catalog_observed_at": "2026-10-22T05:59:36.420017+00:00",
+    "catalog_entry": {
+      "id": "typesafe/jev-1.14",
+      "canonical_slug": "typesafe/jev-1.14-20261014",
+      "hugging_face_id": null,
+      "name": "TypeSafe: Jev 1.14",
+      "created": 1792021417,
+      "description": "Jev 1.14 is the latest version of Jev, TypeSafe's structured decision model and the first of its System One models. System One models make fast, structured decisions for software, returning...",
+      "context_length": 262144,
+      "architecture": {
+        "modality": "text+image->decisions",
+        "input_modalities": [
+          "text",
+          "image"
+        ],
+        "output_modalities": [
+          "decisions"
+        ],
+        "tokenizer": "Other",
+        "instruct_type": null
+      },
+      "pricing": {
+        "prompt": "0.000000042",
+        "completion": "0"
+      },
+      "top_provider": {
+        "context_length": 262144,
+        "max_completion_tokens": 235929,
+        "is_moderated": false
+      },
+      "per_request_limits": null,
+      "supported_parameters": [],
+      "default_parameters": {},
+      "supported_voices": null,
+      "knowledge_cutoff": null,
+      "expiration_date": null,
+      "links": {
+        "details": "/api/v1/models/typesafe/jev-1.14-20261014/endpoints"
+      }
+    },
+    "endpoint": {
+      "name": "TypeSafe | typesafe/jev-1.14-20261014",
+      "model_id": "typesafe/jev-1.14",
+      "model_name": "TypeSafe: Jev 1.14",
+      "context_length": 262144,
+      "pricing": {
+        "prompt": "0.000000042",
+        "completion": "0",
+        "discount": 0
+      },
+      "provider_name": "TypeSafe",
+      "tag": "typesafe",
+      "service_tier": null,
+      "quantization": "unknown",
+      "max_completion_tokens": 235929,
+      "max_prompt_tokens": 262144,
+      "supported_parameters": [],
+      "supports_tool_choice": {
+        "none": true,
+        "auto": true,
+        "required": true,
+        "function": true
+      },
+      "status": 0,
+      "uptime_last_30m": 100,
+      "uptime_last_5m": 100,
+      "uptime_last_1d": 100,
+      "supports_implicit_caching": false,
+      "native_tools": {},
+      "supports_voice_cloning": false,
+      "supports_multiple_audio_references": false,
+      "supports_image_reference": false,
+      "supports_diarization": false,
+      "latency_last_30m": null,
+      "throughput_last_30m": null
+    }
+  },
+  "runtime": {
+    "backend": "process",
+    "protocol_version": 2,
+    "watchdog_enabled": false,
+    "clock_mode": "fixed_step_wall_clock",
+    "physics_hz": 60,
+    "process_pid": 23339,
+    "mode": "duel"
+  },
+  "setup": {
+    "course": "stadium_clockwise",
+    "grid": [
+      {
+        "distance_m": -4,
+        "offset_m": -3,
+        "heading_error_rad": -0.025
+      },
+      {
+        "distance_m": 0,
+        "offset_m": 3,
+        "heading_error_rad": 0.025
+      }
+    ]
+  },
+  "seed": 522,
+  "include_gate_geometry": false,
+  "deadline_s": 170.1,
+  "max_decisions_per_racer": 550,
+  "max_paid_requests": 1100,
+  "reused_qualification": "artifacts/jev-gate-geometry-v1/clock/qualification.json",
+  "qualification_sha256": "334cb058a693f40d787d9f69da7591ef2900aaa6635194ff398d2817310ea334",
+  "exact_start_free_proof": "artifacts/jev-gate-geometry-v1/free/race-3/proof.json",
+  "exact_start_free_proof_sha256": "0f37fcd382029d972845b6f186ee7297a41661bed079157a9d2acb1126b2a8bd",
+  "reuse_basis": "No source, boot, server PID/start ticks, instructions, physics, harness, route, controls or setup change. Current complete gate and exact-start free control revalidated. Software/native checks from0079 remain source-identical.",
+  "baseline_questions_proof_sha256": "20f9eda24f6101f951b4505f4d421673b424495b6f752e513f3ae0a60654558e",
+  "qualification_evidence_sha256": {
+    "plan.json": "a6ca37c2b826152978f632194cfb380190418bd2b3da2068057661b7deacbe74",
+    "control-0/proof.json": "0ccf44bc3d4c77b10877b0a538cd2759c0683a6d64748ed101a82ab5959c32bc",
+    "control-0/race.json": "97969b72a738699630282d431cb25d2738467916038965a9d3fbcff0f344c2ce",
+    "control-1/proof.json": "61762b36738e8ac4702b31f7fcdd529725322266251f15e4a580de5b1ca89df9",
+    "control-1/race.json": "261770469399c67a53c7a34178f4595effe50d19e5dfda7d60284a36097aa61c",
+    "control-2/proof.json": "50e0f81801f84c83f5c915e218ba764b3c7289904af6b8dc346e9072f9fcfb9f",
+    "control-2/race.json": "c23f52930192a69c1130e1a45e6e000958c64fe20309c2ae10c530088001e8c1",
+    "control-3/proof.json": "0f01ea7d570400e414010c3856d1f60ffc7961ba0db6f5db71c4e770818cc824",
+    "control-3/race.json": "5d9e566910d26bda090d9ac69d882b2bfd86e833f4f99c17b36eeeb73896f88c",
+    "long-clock.json.gz": "c61de249d679cccfc30b62bbc98348d0f54a1d5cfaf49be8b69c68a6fb4e0b98",
+    "long-proof.json": "01421583b90c1baa4ac7e4321601abe543ec50d2e0a9a271edc3565777ab910e",
+    "memory-samples.json": "50fe2cc6c6d4c57488b630705e83fb77be0313f7b081a880d63fed05efc79ad2"
+  },
+  "stop": "Stop on first provider/native/infrastructure/accounting failure; settle in-flight calls. No automatic retry, substitution, cap increase, policy change or response repair.",
+  "interpretation": "Availability check and one supplemental baseline duel, collected later than0079 geometry. Compare descriptively; retain original interrupted duel separately. A successful run cannot establish durable provider availability or recovery competence."
+}

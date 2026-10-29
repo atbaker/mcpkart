@@ -1,0 +1,449 @@
+{
+  "study": "0078-two-kart-nearby-grids",
+  "created_utc": "2026-10-22T01:52:40.393748+00:00",
+  "cases": [
+    {
+      "case": 0,
+      "name": "close_side",
+      "setup": {
+        "course": "stadium",
+        "grid": [
+          {
+            "distance_m": 0,
+            "offset_m": -1.4,
+            "heading_error_rad": 0.02
+          },
+          {
+            "distance_m": 0,
+            "offset_m": 1.4,
+            "heading_error_rad": -0.02
+          }
+        ]
+      }
+    },
+    {
+      "case": 1,
+      "name": "close_side_mirror",
+      "setup": {
+        "course": "stadium_clockwise",
+        "grid": [
+          {
+            "distance_m": 0,
+            "offset_m": 1.4,
+            "heading_error_rad": -0.02
+          },
+          {
+            "distance_m": 0,
+            "offset_m": -1.4,
+            "heading_error_rad": 0.02
+          }
+        ]
+      }
+    },
+    {
+      "case": 2,
+      "name": "near_tandem",
+      "setup": {
+        "course": "stadium",
+        "grid": [
+          {
+            "distance_m": 0,
+            "offset_m": 0.25,
+            "heading_error_rad": -0.015
+          },
+          {
+            "distance_m": -2.75,
+            "offset_m": -0.25,
+            "heading_error_rad": 0.015
+          }
+        ]
+      }
+    },
+    {
+      "case": 3,
+      "name": "near_tandem_mirror",
+      "setup": {
+        "course": "stadium_clockwise",
+        "grid": [
+          {
+            "distance_m": -2.75,
+            "offset_m": 0.25,
+            "heading_error_rad": -0.015
+          },
+          {
+            "distance_m": 0,
+            "offset_m": -0.25,
+            "heading_error_rad": 0.015
+          }
+        ]
+      }
+    },
+    {
+      "case": 4,
+      "name": "wide_diagonal",
+      "setup": {
+        "course": "stadium",
+        "grid": [
+          {
+            "distance_m": 0,
+            "offset_m": -3,
+            "heading_error_rad": 0.025
+          },
+          {
+            "distance_m": -4,
+            "offset_m": 3,
+            "heading_error_rad": -0.025
+          }
+        ]
+      }
+    },
+    {
+      "case": 5,
+      "name": "wide_diagonal_mirror",
+      "setup": {
+        "course": "stadium_clockwise",
+        "grid": [
+          {
+            "distance_m": -4,
+            "offset_m": -3,
+            "heading_error_rad": -0.025
+          },
+          {
+            "distance_m": 0,
+            "offset_m": 3,
+            "heading_error_rad": 0.025
+          }
+        ]
+      }
+    }
+  ],
+  "entries": [
+    {
+      "index": 0,
+      "case": 0,
+      "repeat": 0,
+      "seed": 401,
+      "setup": {
+        "course": "stadium",
+        "grid": [
+          {
+            "distance_m": 0,
+            "offset_m": -1.4,
+            "heading_error_rad": 0.02
+          },
+          {
+            "distance_m": 0,
+            "offset_m": 1.4,
+            "heading_error_rad": -0.02
+          }
+        ]
+      },
+      "name": "close_side"
+    },
+    {
+      "index": 1,
+      "case": 1,
+      "repeat": 0,
+      "seed": 402,
+      "setup": {
+        "course": "stadium_clockwise",
+        "grid": [
+          {
+            "distance_m": 0,
+            "offset_m": 1.4,
+            "heading_error_rad": -0.02
+          },
+          {
+            "distance_m": 0,
+            "offset_m": -1.4,
+            "heading_error_rad": 0.02
+          }
+        ]
+      },
+      "name": "close_side_mirror"
+    },
+    {
+      "index": 2,
+      "case": 2,
+      "repeat": 0,
+      "seed": 403,
+      "setup": {
+        "course": "stadium",
+        "grid": [
+          {
+            "distance_m": 0,
+            "offset_m": 0.25,
+            "heading_error_rad": -0.015
+          },
+          {
+            "distance_m": -2.75,
+            "offset_m": -0.25,
+            "heading_error_rad": 0.015
+          }
+        ]
+      },
+      "name": "near_tandem"
+    },
+    {
+      "index": 3,
+      "case": 3,
+      "repeat": 0,
+      "seed": 404,
+      "setup": {
+        "course": "stadium_clockwise",
+        "grid": [
+          {
+            "distance_m": -2.75,
+            "offset_m": 0.25,
+            "heading_error_rad": -0.015
+          },
+          {
+            "distance_m": 0,
+            "offset_m": -0.25,
+            "heading_error_rad": 0.015
+          }
+        ]
+      },
+      "name": "near_tandem_mirror"
+    },
+    {
+      "index": 4,
+      "case": 4,
+      "repeat": 0,
+      "seed": 405,
+      "setup": {
+        "course": "stadium",
+        "grid": [
+          {
+            "distance_m": 0,
+            "offset_m": -3,
+            "heading_error_rad": 0.025
+          },
+          {
+            "distance_m": -4,
+            "offset_m": 3,
+            "heading_error_rad": -0.025
+          }
+        ]
+      },
+      "name": "wide_diagonal"
+    },
+    {
+      "index": 5,
+      "case": 5,
+      "repeat": 0,
+      "seed": 406,
+      "setup": {
+        "course": "stadium_clockwise",
+        "grid": [
+          {
+            "distance_m": -4,
+            "offset_m": -3,
+            "heading_error_rad": -0.025
+          },
+          {
+            "distance_m": 0,
+            "offset_m": 3,
+            "heading_error_rad": 0.025
+          }
+        ]
+      },
+      "name": "wide_diagonal_mirror"
+    },
+    {
+      "index": 6,
+      "case": 5,
+      "repeat": 1,
+      "seed": 416,
+      "setup": {
+        "course": "stadium_clockwise",
+        "grid": [
+          {
+            "distance_m": -4,
+            "offset_m": -3,
+            "heading_error_rad": -0.025
+          },
+          {
+            "distance_m": 0,
+            "offset_m": 3,
+            "heading_error_rad": 0.025
+          }
+        ]
+      },
+      "name": "wide_diagonal_mirror"
+    },
+    {
+      "index": 7,
+      "case": 4,
+      "repeat": 1,
+      "seed": 415,
+      "setup": {
+        "course": "stadium",
+        "grid": [
+          {
+            "distance_m": 0,
+            "offset_m": -3,
+            "heading_error_rad": 0.025
+          },
+          {
+            "distance_m": -4,
+            "offset_m": 3,
+            "heading_error_rad": -0.025
+          }
+        ]
+      },
+      "name": "wide_diagonal"
+    },
+    {
+      "index": 8,
+      "case": 3,
+      "repeat": 1,
+      "seed": 414,
+      "setup": {
+        "course": "stadium_clockwise",
+        "grid": [
+          {
+            "distance_m": -2.75,
+            "offset_m": 0.25,
+            "heading_error_rad": -0.015
+          },
+          {
+            "distance_m": 0,
+            "offset_m": -0.25,
+            "heading_error_rad": 0.015
+          }
+        ]
+      },
+      "name": "near_tandem_mirror"
+    },
+    {
+      "index": 9,
+      "case": 2,
+      "repeat": 1,
+      "seed": 413,
+      "setup": {
+        "course": "stadium",
+        "grid": [
+          {
+            "distance_m": 0,
+            "offset_m": 0.25,
+            "heading_error_rad": -0.015
+          },
+          {
+            "distance_m": -2.75,
+            "offset_m": -0.25,
+            "heading_error_rad": 0.015
+          }
+        ]
+      },
+      "name": "near_tandem"
+    },
+    {
+      "index": 10,
+      "case": 1,
+      "repeat": 1,
+      "seed": 412,
+      "setup": {
+        "course": "stadium_clockwise",
+        "grid": [
+          {
+            "distance_m": 0,
+            "offset_m": 1.4,
+            "heading_error_rad": -0.02
+          },
+          {
+            "distance_m": 0,
+            "offset_m": -1.4,
+            "heading_error_rad": 0.02
+          }
+        ]
+      },
+      "name": "close_side_mirror"
+    },
+    {
+      "index": 11,
+      "case": 0,
+      "repeat": 1,
+      "seed": 411,
+      "setup": {
+        "course": "stadium",
+        "grid": [
+          {
+            "distance_m": 0,
+            "offset_m": -1.4,
+            "heading_error_rad": 0.02
+          },
+          {
+            "distance_m": 0,
+            "offset_m": 1.4,
+            "heading_error_rad": -0.02
+          }
+        ]
+      },
+      "name": "close_side"
+    }
+  ],
+  "source_sha256": {
+    "__init__.py": "c7cf29a796c0b9cbf6050c60b8825b0a266e38de3a18793c3492608ecc79ea60",
+    "bench.py": "9885a0e6792803f7314f2c83a812648811b53b8401a20428b0178443a80dbc92",
+    "decisions.py": "951fada04dd1fe8bda0c14d3017e02864473c82cdc29624abb51fc9188b4f0cf",
+    "duel.py": "182eaa3e42d138ef874797b25be7aa31c299edd688de46e4420968685bafe516",
+    "duel_bench.py": "26db9e6382d4f73f53621def4553a17b3627b246c7189446992afd2e6865bace",
+    "duel_decisions.py": "41f0d0e69bc3cbe942b5f1809cc149e651751db4a9faa226a6d6a0a5f1fdaa9a",
+    "duel_process.py": "a17cafd7ac33ce8b797fe412a2550bfbbc9d5aab32fd2e712e3d744d299a0387",
+    "duel_runtime.py": "0965b557ed3158af93f46a01f97b16911e73a3cf6f83c09abb1a1b3f41ad77a5",
+    "duel_web.py": "44f716c9140840f9a2a65c8d71e4369a99bc34d3849cc8e9b98e5d72f5bc7177",
+    "duel_worker.py": "87315ff806407311cfed81c97eb4e964b584d5a399ba1bc8933fe34907b0131d",
+    "observations.py": "5febca57d1e474abc9268de49924fe7c8c418bd1a4f469e34ffa564ab1af3255",
+    "physics_worker.py": "cc478b1cb09fd1f3f4f2059a6e69dc1288379cd77d790e693d39f2d68cb32ea8",
+    "probe.py": "d288274877da8ef42f2c3442581de7857e390ffa580e0e7353d6634565a343e5",
+    "process_runtime.py": "2523a39a42645845b20bb6f87b81e5cd50747d1e395c8631ef23a592c08e282e",
+    "question_context.py": "7fdaa33028aac95e2610e251d21b4a6d3daab49c6136d5e27054cae8a03bd95d",
+    "question_context_driver.py": "60cb444bf7d2302c03f193317f018d60db97db5c8a6f59677b68b11af1334d7e",
+    "question_context_run.py": "eb9de8c56557ce8f3567aed694f79d679aa49e74d916fde7c6a4bbf013daeafc",
+    "runtime.py": "d19bba47418747b0c9b600ffc6f4e7a7b69d0046b54eb538d3aeebc5e962c695",
+    "rust_runtime.py": "a5b27ce28f559ca995362c7f9e81ae357da40f20898ca40333388200aa7cc427",
+    "scene.py": "855dcb4e5a337a137d57dba4345bbbece6df6e4f24121dfbd4c7bb1881bc92af",
+    "sim.py": "a6fef5437837d592adbdcec902fc112ef6206c639c051f1d952f6bbcd67f1ce5",
+    "telemetry.py": "44e1a97c6448ffdaf95b97767072e3f99341f3ed5a5092735f5343254788ed6d",
+    "web.py": "2d3bb6aa690c2624c17cb0abcb4bc711cba794b31f3701dbd29bdb3b30590965",
+    "static/duel.html": "86de00404498ec79c7d78cfd5e7102116ed83d7c1440f2184f74340020675a8f"
+  },
+  "helper_sha256": "2ba6d5a6ce1410510ba1069f26e1b052db3747dfc8550a1fd2e1d13002201c82",
+  "routes_sha256": "ea23ba946b7a85b99897afc2f45c55d3521a6218369deb0b825d25ebc55a935b",
+  "clock_sha256": "a3815fbfad429cc480e58151151af73a1074bba70e930a62abb4b5400723e1cf",
+  "budget_start": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 100000,
+    "max_tokens": 500000000,
+    "requests": 87063,
+    "charged_usd": 10.170457508002935,
+    "charged_tokens": 300283312,
+    "reported_cost_usd": 10.109246884002893,
+    "uncertain_requests": 70,
+    "pending": {}
+  },
+  "caps": {
+    "cap_usd": 20.0,
+    "max_requests": 100000,
+    "max_tokens": 500000000
+  },
+  "session_end": "2026-10-22T05:08:57.955109+00:00",
+  "model": "typesafe/jev-1.14",
+  "deadline_s": 240.0,
+  "max_decisions_per_racer": 1100,
+  "primary": [
+    "each kart finishes",
+    "each clean finish",
+    "contacts",
+    "rescues",
+    "finish gap",
+    "lead changes"
+  ],
+  "scope": "Six declared nearby grids, two repeats each in reversed block order; no source/prompt/rule change or tuning.",
+  "seed_note": "Explicit stationary poses override initial random pose. Seeds label cases; repeated poses test API/control variability, not terrain variation.",
+  "free_admission": "Each case must first complete a full exact-interface 200ms mock duel with no grass/rescue, strict native/accounting/physics audit and unchanged real ledger.",
+  "stop_policy": "No paid retries or replacement outcomes. Preserve failed/unfinished runs; stop new paid admission after native/routing/accounting/timing errors or admission floor.",
+  "interpretation": "Exploratory nearby-grid reliability on the same track family; does not establish general recovery, strategy or intentional passing."
+}

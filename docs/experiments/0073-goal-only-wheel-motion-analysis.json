@@ -1,0 +1,385 @@
+{
+  "experiment": "0073",
+  "model_calls": 0,
+  "post_collection": true,
+  "rows": [
+    {
+      "index": 0,
+      "arm": "minimal",
+      "group": "recovery",
+      "first_forward_preview_query_s": 7.533333333333333,
+      "first_gate_credit_s": 9.150000000000034,
+      "first_rescue_s": 7.399999999999979,
+      "gates_before_first_rescue": 0,
+      "forward_preview_before_first_rescue": false,
+      "first_gate_before_first_rescue": false,
+      "offroad_intervals": [
+        {
+          "start_s": 4.416666666666656,
+          "end_s": 7.399999999999979,
+          "ended_by_rescue": true
+        }
+      ],
+      "spikes": [
+        {
+          "index": 0,
+          "observation_s": 0.0,
+          "latency_ms": 1131.064031,
+          "on_road_at_observation": true,
+          "offset_m": -10.0,
+          "speed_m_s": 0.0,
+          "held_input": "straight_coast",
+          "chosen_input": "hard_right_accelerate",
+          "next_observation_s": 1.15,
+          "on_road_at_next_observation": true,
+          "reset_during_step": false
+        },
+        {
+          "index": 71,
+          "observation_s": 19.0,
+          "latency_ms": 1114.046764,
+          "on_road_at_observation": true,
+          "offset_m": 2.2046,
+          "speed_m_s": 12.0,
+          "held_input": "right_accelerate",
+          "chosen_input": "left_accelerate",
+          "next_observation_s": 20.133333333333333,
+          "on_road_at_next_observation": true,
+          "reset_during_step": false
+        },
+        {
+          "index": 161,
+          "observation_s": 42.8,
+          "latency_ms": 1130.50042,
+          "on_road_at_observation": true,
+          "offset_m": -4.2527,
+          "speed_m_s": 12.0,
+          "held_input": "left_accelerate",
+          "chosen_input": "left_accelerate",
+          "next_observation_s": 43.95,
+          "on_road_at_next_observation": true,
+          "reset_during_step": false
+        }
+      ],
+      "input_tokens": {
+        "min": 1542,
+        "median": 1573,
+        "mean": 1572.3887240356082,
+        "max": 1582,
+        "sum": 529895
+      },
+      "first_action": "hard_right_accelerate",
+      "pedal_choices": {
+        "accelerate": 327,
+        "brake": 4,
+        "coast": 6
+      },
+      "physics_frames_exact": 5418
+    },
+    {
+      "index": 1,
+      "arm": "wheel_motion",
+      "group": "recovery",
+      "first_forward_preview_query_s": 8.666666666666666,
+      "first_gate_credit_s": 13.63333333333359,
+      "first_rescue_s": 8.466666666666667,
+      "gates_before_first_rescue": 0,
+      "forward_preview_before_first_rescue": false,
+      "first_gate_before_first_rescue": false,
+      "offroad_intervals": [
+        {
+          "start_s": 5.483333333333319,
+          "end_s": 8.466666666666667,
+          "ended_by_rescue": true
+        }
+      ],
+      "spikes": [
+        {
+          "index": 71,
+          "observation_s": 19.35,
+          "latency_ms": 1699.863317,
+          "on_road_at_observation": true,
+          "offset_m": -4.6911,
+          "speed_m_s": 12.0,
+          "held_input": "left_accelerate",
+          "chosen_input": "left_accelerate",
+          "next_observation_s": 21.083333333333332,
+          "on_road_at_next_observation": true,
+          "reset_during_step": false
+        },
+        {
+          "index": 342,
+          "observation_s": 95.1,
+          "latency_ms": 1136.229066,
+          "on_road_at_observation": true,
+          "offset_m": 0.4787,
+          "speed_m_s": 12.0,
+          "held_input": "left_accelerate",
+          "chosen_input": "left_accelerate",
+          "next_observation_s": null,
+          "on_road_at_next_observation": null,
+          "reset_during_step": false
+        }
+      ],
+      "input_tokens": {
+        "min": 1659,
+        "median": 1690,
+        "mean": 1689.5481049562682,
+        "max": 1703,
+        "sum": 579515
+      },
+      "first_action": "hard_left_accelerate",
+      "pedal_choices": {
+        "accelerate": 333,
+        "brake": 3,
+        "coast": 7
+      },
+      "physics_frames_exact": 5770
+    },
+    {
+      "index": 2,
+      "arm": "wheel_motion",
+      "group": "larger_errors",
+      "first_forward_preview_query_s": 0.0,
+      "first_gate_credit_s": 1.4666666666666663,
+      "first_rescue_s": null,
+      "gates_before_first_rescue": 120,
+      "forward_preview_before_first_rescue": true,
+      "first_gate_before_first_rescue": true,
+      "offroad_intervals": [],
+      "spikes": [],
+      "input_tokens": {
+        "min": 1656,
+        "median": 1690.0,
+        "mean": 1690.1797385620914,
+        "max": 1703,
+        "sum": 517195
+      },
+      "first_action": "hard_right_accelerate",
+      "pedal_choices": {
+        "accelerate": 306
+      },
+      "physics_frames_exact": 4988
+    },
+    {
+      "index": 3,
+      "arm": "minimal",
+      "group": "larger_errors",
+      "first_forward_preview_query_s": 0.0,
+      "first_gate_credit_s": 1.5166666666666662,
+      "first_rescue_s": 55.88333333333144,
+      "gates_before_first_rescue": 76,
+      "forward_preview_before_first_rescue": true,
+      "first_gate_before_first_rescue": true,
+      "offroad_intervals": [
+        {
+          "start_s": 52.89999999999828,
+          "end_s": 55.88333333333144,
+          "ended_by_rescue": true
+        },
+        {
+          "start_s": 72.5333333333305,
+          "end_s": 75.51666666666367,
+          "ended_by_rescue": true
+        },
+        {
+          "start_s": 81.89999999999664,
+          "end_s": 84.8833333333298,
+          "ended_by_rescue": true
+        }
+      ],
+      "spikes": [
+        {
+          "index": 90,
+          "observation_s": 24.416666666666668,
+          "latency_ms": 1267.418872,
+          "on_road_at_observation": true,
+          "offset_m": -2.9178,
+          "speed_m_s": 12.0,
+          "held_input": "left_accelerate",
+          "chosen_input": "left_accelerate",
+          "next_observation_s": 25.7,
+          "on_road_at_next_observation": true,
+          "reset_during_step": false
+        },
+        {
+          "index": 187,
+          "observation_s": 50.56666666666667,
+          "latency_ms": 1525.784727,
+          "on_road_at_observation": true,
+          "offset_m": -1.3193,
+          "speed_m_s": 12.0,
+          "held_input": "left_accelerate",
+          "chosen_input": "left_accelerate",
+          "next_observation_s": 52.11666666666667,
+          "on_road_at_next_observation": true,
+          "reset_during_step": false
+        },
+        {
+          "index": 192,
+          "observation_s": 53.11666666666667,
+          "latency_ms": 1083.941007,
+          "on_road_at_observation": false,
+          "offset_m": 13.3374,
+          "speed_m_s": 3.8042,
+          "held_input": "hard_right_brake",
+          "chosen_input": "hard_right_brake",
+          "next_observation_s": 54.21666666666667,
+          "on_road_at_next_observation": false,
+          "reset_during_step": false
+        },
+        {
+          "index": 194,
+          "observation_s": 54.45,
+          "latency_ms": 1408.924697,
+          "on_road_at_observation": false,
+          "offset_m": 13.5086,
+          "speed_m_s": 0.0608,
+          "held_input": "hard_right_accelerate",
+          "chosen_input": "hard_right_accelerate",
+          "next_observation_s": 55.88333333333333,
+          "on_road_at_next_observation": true,
+          "reset_during_step": true
+        },
+        {
+          "index": 196,
+          "observation_s": 56.11666666666667,
+          "latency_ms": 1038.368884,
+          "on_road_at_observation": true,
+          "offset_m": 0.0,
+          "speed_m_s": 0.1942,
+          "held_input": "straight_accelerate",
+          "chosen_input": "straight_accelerate",
+          "next_observation_s": 57.18333333333333,
+          "on_road_at_next_observation": true,
+          "reset_during_step": false
+        },
+        {
+          "index": 204,
+          "observation_s": 59.4,
+          "latency_ms": 1078.091364,
+          "on_road_at_observation": true,
+          "offset_m": 0.0072,
+          "speed_m_s": 12.0,
+          "held_input": "straight_accelerate",
+          "chosen_input": "straight_accelerate",
+          "next_observation_s": 60.5,
+          "on_road_at_next_observation": true,
+          "reset_during_step": false
+        },
+        {
+          "index": 215,
+          "observation_s": 62.833333333333336,
+          "latency_ms": 1112.733729,
+          "on_road_at_observation": true,
+          "offset_m": -0.4714,
+          "speed_m_s": 12.0,
+          "held_input": "hard_right_accelerate",
+          "chosen_input": "hard_right_accelerate",
+          "next_observation_s": 63.96666666666667,
+          "on_road_at_next_observation": true,
+          "reset_during_step": false
+        },
+        {
+          "index": 229,
+          "observation_s": 67.11666666666666,
+          "latency_ms": 1235.381833,
+          "on_road_at_observation": true,
+          "offset_m": 2.4525,
+          "speed_m_s": 12.0,
+          "held_input": "hard_right_accelerate",
+          "chosen_input": "hard_right_accelerate",
+          "next_observation_s": 68.36666666666666,
+          "on_road_at_next_observation": true,
+          "reset_during_step": false
+        },
+        {
+          "index": 237,
+          "observation_s": 70.23333333333333,
+          "latency_ms": 1156.095266,
+          "on_road_at_observation": true,
+          "offset_m": -7.5998,
+          "speed_m_s": 12.0,
+          "held_input": "left_accelerate",
+          "chosen_input": "left_accelerate",
+          "next_observation_s": 71.41666666666667,
+          "on_road_at_next_observation": true,
+          "reset_during_step": false
+        },
+        {
+          "index": 239,
+          "observation_s": 71.68333333333334,
+          "latency_ms": 1242.53174,
+          "on_road_at_observation": true,
+          "offset_m": 4.3043,
+          "speed_m_s": 12.0,
+          "held_input": "hard_right_accelerate",
+          "chosen_input": "hard_right_accelerate",
+          "next_observation_s": 72.95,
+          "on_road_at_next_observation": false,
+          "reset_during_step": false
+        },
+        {
+          "index": 245,
+          "observation_s": 74.43333333333334,
+          "latency_ms": 1328.278228,
+          "on_road_at_observation": false,
+          "offset_m": 14.5167,
+          "speed_m_s": 1.6721,
+          "held_input": "hard_right_accelerate",
+          "chosen_input": "hard_right_coast",
+          "next_observation_s": 75.76666666666667,
+          "on_road_at_next_observation": true,
+          "reset_during_step": false
+        },
+        {
+          "index": 261,
+          "observation_s": 79.46666666666667,
+          "latency_ms": 1426.728438,
+          "on_road_at_observation": true,
+          "offset_m": -1.3439,
+          "speed_m_s": 12.0,
+          "held_input": "left_accelerate",
+          "chosen_input": "left_accelerate",
+          "next_observation_s": 80.91666666666667,
+          "on_road_at_next_observation": true,
+          "reset_during_step": false
+        }
+      ],
+      "input_tokens": {
+        "min": 1541,
+        "median": 1574.0,
+        "mean": 1572.861635220126,
+        "max": 1582,
+        "sum": 500170
+      },
+      "first_action": "hard_right_accelerate",
+      "pedal_choices": {
+        "accelerate": 304,
+        "brake": 9,
+        "coast": 5
+      },
+      "physics_frames_exact": 5679
+    }
+  ],
+  "matched_initial_snapshots": [
+    {
+      "minimal_index": 0,
+      "motion_index": 1,
+      "first_raw_observation_exact": true,
+      "first_questions_exact_after_removing_only_motion": true,
+      "pedal_question_exact": true
+    },
+    {
+      "minimal_index": 3,
+      "motion_index": 2,
+      "first_raw_observation_exact": true,
+      "first_questions_exact_after_removing_only_motion": true,
+      "pedal_question_exact": true
+    }
+  ],
+  "paid_audit_sha256": "d240010aad4e1516c51b2861163dcc77c45084521d7b1870f945edbcc148a99b",
+  "full_saved_physics_frames_exact": 21855,
+  "bundle_causality_or_individual_field_effect_identified": false,
+  "latency_causality_identified": false
+}

@@ -1,30 +1,47 @@
 # Codex Cloud development
 
-Use the process-isolated Python engine with asyncio pacing for the solo PoC.
-The [progress checkpoint](experiments/2026-10-21-progress-checkpoint.md) records
-current driving results, limits and the latest budget. Individual historical
+For moving machines, use the [migration handoff](machine-handoff.md), including
+the separate archive for ignored recordings and audit evidence.
+
+Use the process-isolated Python engine with asyncio pacing for both modes.
+The [two-kart checkpoint](experiments/2026-10-22-two-kart-checkpoint.md) records
+the shared-track prototype; the [earlier checkpoint](experiments/2026-10-21-progress-checkpoint.md)
+covers solo driving through 0069. Current budget and operations are below. Historical
 runtime and model studies are indexed in [experiments](experiments/README.md).
 
-All paid experiment windows are closed. The present task is cleanup and
-publication of existing work; it makes no model calls. The latest ledger is
-71,160 requests / 267,423,949 tokens / $8.563495772000609, with 70 uncertainties
-and no pending reservations. Cumulative caps remain $10 / 75,000 requests /
-500 million tokens. A provider-account top-up does not raise these caps.
+All paid experiment windows through 0085 are closed. The latest ledger is
+99,403 requests / 333,848,829 charged tokens / $11.520516764002778, with 71
+uncertainties and no pending reservation. Caps are $20 / 110,000 requests /
+500 million tokens. The original [authorization](experiments/0076-two-kart-session-authorization.json)
+and [request amendment](experiments/0082-request-ceiling-amendment.json) preserve
+all charges. A provider-account top-up alone does not raise caps.
+
+For the current multiplayer mode, follow the [two-kart guide](two-kart-driver.md).
+It provides the port-8766 server, free practice command, complete free shared-
+clock qualifier and standalone replay export. A local address on this machine
+still needs forwarding to work in a remote browser. Embedded replay HTML and
+MP4 files allow review without a live model call or an exposed service.
 
 The current 15 m question-local driver passed repeated solo 24 m stadium and
 mirror runs. Its [run guide](question-context-driver.md) describes the opt-in
-CLI. It preserves saved budget caps. Older generic benchmark paid commands
-construct Budget with a 250-million-token default; do not use them against
-the expanded real ledger without reviewing that limit. Direct constructors
-must explicitly pass the authorized 500-million-token ceiling.
+CLI. It preserves saved budget caps within its historical $10 ceiling and
+rejects the expanded $20 ledger. Older generic benchmark paid commands
+construct Budget with $10 / 250-million-token defaults; do not use them against
+the expanded real ledger without reviewing both limits. Direct constructors
+must explicitly pass all authorized saved caps; the two-kart CLI does so.
 
 Clock qualifications are machine/source/boot/server-specific. A successful
-GCP or earlier Cloud gate does not qualify a fresh environment. The last gate
-in this workspace is `artifacts/jev-six-hour-v2/restart-clock-v2/qualification.json`;
+GCP or earlier Cloud gate does not qualify a fresh environment. The historical
+solo gate is `artifacts/jev-goal-challenge-v1/clock/qualification.json`;
 check its binding rather than assuming its PID or boot still applies. It
 passed three controls, a parent-pause independence check, a 170.1 s neutral
 check and exact replay. New candidates also need their exact-interface free
-controls and declared native checks before paid use.
+controls and declared native checks before paid use. Study 0072 ran a fresh
+complete engine gate after adding optional explicit stationary start poses
+and restarting the server. Three new exact-start free controls qualified.
+There are 10,597 request slots left at the current boundary. Remaining budget
+does not reopen any closed experiment; new collection still needs a finite
+prospective study and explicit scope within the user's authorization.
 
 ## Prepare the environment
 
@@ -181,7 +198,7 @@ the repository to bridge those phases. See the
 `artifacts/`, including the cumulative spending ledger and recordings, is
 ignored by Git. Setup initializes a missing `artifacts/budget.json` from the
 versioned [spending snapshot](experiments/model-budget-snapshot.json), whose
-current boundary is documented in the [progress checkpoint](experiments/2026-10-21-progress-checkpoint.md). Setup never
+current boundary is documented in the [migration handoff](machine-handoff.md). Setup never
 overwrites an existing ledger.
 This snapshot does not synchronize balances across machines:
 copy the latest ledger when switching environments after further paid work,

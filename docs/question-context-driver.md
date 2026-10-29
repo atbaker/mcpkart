@@ -1,5 +1,11 @@
 # Experimental Jev question-context driver
 
+This guide retains the historical solo interface. The current competitive
+mode and $20 cumulative ledger are covered by the [two-kart guide](two-kart-driver.md).
+The public solo CLI below enforces its former $10 ceiling and safely rejects
+the expanded ledger; it does not implicitly select the newer goal-only duel
+prompt. All earlier paid windows remain closed.
+
 The question-local prompt places the current wheel facts inside the wheel
 question and the current pedal facts inside the pedal question. Both questions
 are answered in one Decisions API POST. The wheel has five choices and the
@@ -23,6 +29,75 @@ comparison starts cleanly with this unchanged setup. See the
 [portable examples](experiments/current-driver-examples.json). All prior paid
 windows are closed; Clef is set aside after the separate 0069 timeout.
 
+## Goal-only driving
+
+Study [0070](experiments/0070-question-local-policy-ablation.md) adds optional
+`prompt_mode="goal"` to the Python client and recorded driver. It retains facts
+inside each question and physical menus while removing the supplied action
+policy and worked examples. Goal-only finished one of two starts cleanly;
+the other stopped under the unchanged forward-preview guard while still
+on-road after a 2.197-second reply.
+
+Study [0071](experiments/0071-goal-only-recovery-domain.md) adds explicit
+`extended_domain=True` for the goal-mode client and driver. It admits finite,
+nonzero preview vectors with `ego_x_m <= 0` and known uncredited gates with
+positive signed plane. It computes the same factual bearing and changes no
+prompt strings, measurements or actions. Four goal-only races finished
+cleanly in 79.52–81.63 seconds; none used the extended domain, so recovery
+remains untested. [Exact examples](experiments/0071-goal-only-recovery-domain-prompts.json)
+preserve the actual questions and native replies, including the 1.38-second
+latency event.
+
+Set both `prompt_mode="goal"` and `extended_domain=True` explicitly when
+constructing `QuestionContextDriver` under a new registered experiment.
+The extension rejects policy mode. The public CLI below retains the historical
+policy mode and guarded domain; it does not select goal mode implicitly.
+All paid windows are closed. No new application default is claimed.
+
+Study [0072](experiments/0072-goal-only-challenge.md) adds an optional recorded
+`start_pose={"offset_m": ..., "heading_error_rad": ...}` to `Simulation` and
+`race_setup`, for stationary starts at track distance zero. Default starts
+are unchanged. Both admitted challenge races finished with rescue; no clean
+or unassisted recovery result was established. All 3,582 prior question sets
+remained exact. [Actual challenge excerpts](experiments/0072-goal-only-challenge-prompts.json)
+include the behind-preview choices. The public CLI has no custom-pose flag.
+At the 0072 closure only 779 request slots remained, below its admission floor.
+
+Study [0073](experiments/0073-goal-only-wheel-motion.md) adds optional
+`include_wheel_motion=True` for projection, client and recorded driver, with
+`prompt_mode="goal"`. It adds only `wheel_facts.motion`: current speed in m/s,
+actual steering angle in rad, yaw rate in rad/s, held native input and units.
+The actual steering measurement is distinct from the held input target.
+Default questions, goal-rule text and the entire pedal question stay exact.
+All four new free interface controls qualified; all four actual Jev races
+finished and passed full audits. Motion was clean clockwise (83.12 s), while
+minimal used three rescues (94.63 s); both recovery arms used one rescue before
+their first gate. Natural API delays differed, so a causal improvement is not
+established. See [actual requests/replies](experiments/0073-goal-only-wheel-motion-responses.json).
+The comparison is closed. The public CLI retains its original guarded policy mode.
+
+Study [0074](experiments/0074-goal-only-wheel-motion-repeats.md) ran eight
+repeat races of the same comparison. All four clockwise runs were clean; all four recovery
+runs needed one rescue. Motion reduced no paired rescues and was slower in all
+four pairs. The pilot advantage did not reproduce; do not promote this option
+as a proven improvement. Both minimal recovery repeats obtained a forward
+preview before rescue but credited their first gate only afterward. No
+production source changed. The [geometry proposal](experiments/0075-wheel-road-geometry-proposal.md)
+was only a design at that checkpoint; the later execution is described below.
+
+Study [0075](experiments/0075-goal-only-wheel-road-geometry.md) implements explicit
+`include_wheel_road_frame=True` for projection, validation, question construction,
+client and recorded driver. Goal mode is required; defaults are false and the
+public CLI remains unchanged. It adds current raw road-minus-kart heading in
+radians and existing pedal edge clearances inside `wheel_facts.road_frame`,
+with descriptive units. Goal rules, pedal question, menus and native inputs
+remain exact; motion was disabled in both comparison arms. All four recovery
+races finished with rescue; zero earned a gate before rescue. No benefit was
+demonstrated. 534 tests/3 optional Rust skips, full old-question parity, 34
+native mocks, four new free controls and every actual race audit passed.
+The study is closed; [actual examples](experiments/0075-goal-only-wheel-road-geometry-responses.json)
+retain the real requests and native replies.
+
 ## Run one race
 
 Start the process-isolated Python spectator/MCP server as usual. Configure
@@ -36,7 +111,7 @@ qualified cloud checkout is:
 ```bash
 .venv/bin/python -m mcpkart.question_context_run \
   --seed 43 --course stadium \
-  --clock-qualification artifacts/jev-six-hour-v2/restart-clock-v2/qualification.json \
+  --clock-qualification artifacts/jev-goal-challenge-v1/clock/qualification.json \
   --output artifacts/jev-observed-race
 ```
 
@@ -68,8 +143,10 @@ records and budget transitions. Authentication headers are excluded. Source
 hashes for all three controller modules are separate from the existing core
 engine fingerprint, which does not include these new modules.
 
-A nonforward 15 m preview or a positive uncredited required gate ends the
-attempt as a quality failure, before a further model POST. Invalid native
+With the default guarded domain, a nonforward 15 m preview or a positive
+uncredited required gate ends the attempt before a further model POST.
+The explicit goal-only extension admits these poses; malformed, nonfinite
+or zero-range geometry still stops before spend. Invalid native
 answers, identity mismatches or uncertain accounting stop the driver without
 returning a control. A stopped driver cannot resume. The server's existing
 three-second off-road rescue remains part of the recorded game rules.

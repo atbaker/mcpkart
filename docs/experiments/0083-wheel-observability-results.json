@@ -1,0 +1,7085 @@
+{
+  "study": "0083-factual-wheel-motion-and-control-timing",
+  "collected_utc": "2026-10-24T19:07:09.848529+00:00",
+  "display_date_pacific": "2026-10-24",
+  "status": "CLOSED",
+  "paid_calls_allowed": false,
+  "episodes": 28,
+  "successes": 8,
+  "new_target_rescues": 20,
+  "new_rescues_all_racers": 21,
+  "new_contacts": 7,
+  "physics_frames": 7902,
+  "native_requests": 538,
+  "budget_transitions": 1076,
+  "max_sample_lateness_ms": 4.389345666666713,
+  "api_latency_ms": {
+    "n": 538,
+    "p50": 208.51795449999997,
+    "p95": 291.06393484999984,
+    "max": 1542.523658
+  },
+  "observation_to_application_ms": {
+    "n": 482,
+    "p50": 249.98353300000002,
+    "p95": 1300.29643425,
+    "max": 2081.982044
+  },
+  "added_wait_ms": {
+    "n": 133,
+    "p50": 1000.800981,
+    "p95": 1007.3108932,
+    "max": 1013.484649
+  },
+  "api_replies_at_least_1s": 5,
+  "all_http_200": true,
+  "new_uncertainties": 0,
+  "budget_added": {
+    "model_requests": 538,
+    "charged_usd_added": 0.06123259799999303,
+    "charged_tokens_added": 1509702
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 110000,
+    "max_tokens": 500000000,
+    "requests": 98715,
+    "charged_usd": 11.443828922002771,
+    "charged_tokens": 331956791,
+    "reported_cost_usd": 11.381930170002729,
+    "uncertain_requests": 71,
+    "pending": {}
+  },
+  "cells": [
+    {
+      "case": "outward_drift",
+      "profile": "baseline",
+      "added_delay_s": 0.0,
+      "role": "primary",
+      "n": 2,
+      "successes": 0,
+      "rescued": 2,
+      "outcomes": [
+        "rescued",
+        "rescued"
+      ],
+      "new_credits": [
+        1,
+        1
+      ],
+      "episode_indices": [
+        0,
+        27
+      ],
+      "endpoint_times_s": [
+        4.533333333333317,
+        4.633333333333317
+      ],
+      "successful_mean_s": null,
+      "target_offroad_s": [
+        2.9999999999999942,
+        2.9999999999999942
+      ],
+      "target_api_p95_ms": [
+        251.19509239999988,
+        367.980668
+      ],
+      "target_age_p95_ms": [
+        296.26550879999985,
+        374.109025
+      ]
+    },
+    {
+      "case": "outward_drift",
+      "profile": "motion",
+      "added_delay_s": 0.0,
+      "role": "primary",
+      "n": 2,
+      "successes": 0,
+      "rescued": 2,
+      "outcomes": [
+        "rescued",
+        "rescued"
+      ],
+      "new_credits": [
+        1,
+        1
+      ],
+      "episode_indices": [
+        9,
+        18
+      ],
+      "endpoint_times_s": [
+        4.9166666666666625,
+        4.683333333333318
+      ],
+      "successful_mean_s": null,
+      "target_offroad_s": [
+        2.9999999999999942,
+        2.9999999999999942
+      ],
+      "target_api_p95_ms": [
+        248.6619008000002,
+        306.74396344999985
+      ],
+      "target_age_p95_ms": [
+        310.7076746999994,
+        340.94746059999994
+      ]
+    },
+    {
+      "case": "outward_drift",
+      "profile": "timing",
+      "added_delay_s": 0.0,
+      "role": "primary",
+      "n": 2,
+      "successes": 0,
+      "rescued": 2,
+      "outcomes": [
+        "rescued",
+        "rescued"
+      ],
+      "new_credits": [
+        1,
+        1
+      ],
+      "episode_indices": [
+        6,
+        21
+      ],
+      "endpoint_times_s": [
+        4.616666666666651,
+        4.66666666666665
+      ],
+      "successful_mean_s": null,
+      "target_offroad_s": [
+        2.9999999999999942,
+        2.9999999999999942
+      ],
+      "target_api_p95_ms": [
+        446.53300264999814,
+        230.02986919999998
+      ],
+      "target_age_p95_ms": [
+        279.7976156,
+        271.8119599
+      ]
+    },
+    {
+      "case": "outward_drift",
+      "profile": "both",
+      "added_delay_s": 0.0,
+      "role": "primary",
+      "n": 2,
+      "successes": 0,
+      "rescued": 2,
+      "outcomes": [
+        "rescued",
+        "rescued"
+      ],
+      "new_credits": [
+        1,
+        1
+      ],
+      "episode_indices": [
+        3,
+        24
+      ],
+      "endpoint_times_s": [
+        4.549999999999985,
+        4.033333333333319
+      ],
+      "successful_mean_s": null,
+      "target_offroad_s": [
+        2.9999999999999942,
+        2.9999999999999942
+      ],
+      "target_api_p95_ms": [
+        236.92862109999996,
+        226.5830476
+      ],
+      "target_age_p95_ms": [
+        285.37891335,
+        270.22648599999997
+      ]
+    },
+    {
+      "case": "outward_drift",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "role": "primary",
+      "n": 2,
+      "successes": 0,
+      "rescued": 2,
+      "outcomes": [
+        "rescued",
+        "rescued"
+      ],
+      "new_credits": [
+        1,
+        1
+      ],
+      "episode_indices": [
+        8,
+        19
+      ],
+      "endpoint_times_s": [
+        3.7666666666666537,
+        3.7666666666666537
+      ],
+      "successful_mean_s": null,
+      "target_offroad_s": [
+        2.9999999999999942,
+        2.9999999999999942
+      ],
+      "target_api_p95_ms": [
+        220.94764619999998,
+        250.1229089
+      ],
+      "target_age_p95_ms": [
+        1282.4711295500001,
+        1315.1345644500002
+      ]
+    },
+    {
+      "case": "outward_drift",
+      "profile": "motion",
+      "added_delay_s": 1.0,
+      "role": "primary",
+      "n": 2,
+      "successes": 0,
+      "rescued": 2,
+      "outcomes": [
+        "rescued",
+        "rescued"
+      ],
+      "new_credits": [
+        1,
+        1
+      ],
+      "episode_indices": [
+        5,
+        22
+      ],
+      "endpoint_times_s": [
+        3.7666666666666537,
+        3.7666666666666537
+      ],
+      "successful_mean_s": null,
+      "target_offroad_s": [
+        2.9999999999999942,
+        2.9999999999999942
+      ],
+      "target_api_p95_ms": [
+        221.1474052,
+        233.785548
+      ],
+      "target_age_p95_ms": [
+        1293.6414263,
+        1299.3786849
+      ]
+    },
+    {
+      "case": "outward_drift",
+      "profile": "timing",
+      "added_delay_s": 1.0,
+      "role": "primary",
+      "n": 2,
+      "successes": 0,
+      "rescued": 2,
+      "outcomes": [
+        "rescued",
+        "rescued"
+      ],
+      "new_credits": [
+        1,
+        1
+      ],
+      "episode_indices": [
+        2,
+        25
+      ],
+      "endpoint_times_s": [
+        3.7666666666666537,
+        3.7666666666666537
+      ],
+      "successful_mean_s": null,
+      "target_offroad_s": [
+        2.9999999999999942,
+        2.9999999999999942
+      ],
+      "target_api_p95_ms": [
+        253.70412960000002,
+        235.66728129999998
+      ],
+      "target_age_p95_ms": [
+        1282.1106324500001,
+        1299.1109429
+      ]
+    },
+    {
+      "case": "outward_drift",
+      "profile": "both",
+      "added_delay_s": 1.0,
+      "role": "primary",
+      "n": 2,
+      "successes": 0,
+      "rescued": 2,
+      "outcomes": [
+        "rescued",
+        "rescued"
+      ],
+      "new_credits": [
+        1,
+        1
+      ],
+      "episode_indices": [
+        11,
+        16
+      ],
+      "endpoint_times_s": [
+        3.7666666666666537,
+        3.7666666666666537
+      ],
+      "successful_mean_s": null,
+      "target_offroad_s": [
+        2.9999999999999942,
+        2.9999999999999942
+      ],
+      "target_api_p95_ms": [
+        211.7898094,
+        206.55472325
+      ],
+      "target_age_p95_ms": [
+        1263.4964858,
+        1264.4193801
+      ]
+    },
+    {
+      "case": "post_contact",
+      "profile": "baseline",
+      "added_delay_s": 0.0,
+      "role": "normal_check",
+      "n": 1,
+      "successes": 1,
+      "rescued": 0,
+      "outcomes": [
+        "credited"
+      ],
+      "new_credits": [
+        5
+      ],
+      "episode_indices": [
+        15
+      ],
+      "endpoint_times_s": [
+        3.533333333333509
+      ],
+      "successful_mean_s": 3.533333333333509,
+      "target_offroad_s": [
+        0.0
+      ],
+      "target_api_p95_ms": [
+        226.76910709999999
+      ],
+      "target_age_p95_ms": [
+        262.81099315
+      ]
+    },
+    {
+      "case": "post_contact",
+      "profile": "motion",
+      "added_delay_s": 0.0,
+      "role": "normal_check",
+      "n": 1,
+      "successes": 1,
+      "rescued": 0,
+      "outcomes": [
+        "credited"
+      ],
+      "new_credits": [
+        5
+      ],
+      "episode_indices": [
+        14
+      ],
+      "endpoint_times_s": [
+        3.666666666666849
+      ],
+      "successful_mean_s": 3.666666666666849,
+      "target_offroad_s": [
+        0.0
+      ],
+      "target_api_p95_ms": [
+        254.465054
+      ],
+      "target_age_p95_ms": [
+        305.8082449
+      ]
+    },
+    {
+      "case": "post_contact",
+      "profile": "timing",
+      "added_delay_s": 0.0,
+      "role": "normal_check",
+      "n": 1,
+      "successes": 1,
+      "rescued": 0,
+      "outcomes": [
+        "credited"
+      ],
+      "new_credits": [
+        5
+      ],
+      "episode_indices": [
+        13
+      ],
+      "endpoint_times_s": [
+        4.166666666666854
+      ],
+      "successful_mean_s": 4.166666666666854,
+      "target_offroad_s": [
+        0.0
+      ],
+      "target_api_p95_ms": [
+        978.7792321
+      ],
+      "target_age_p95_ms": [
+        708.0841735
+      ]
+    },
+    {
+      "case": "post_contact",
+      "profile": "both",
+      "added_delay_s": 0.0,
+      "role": "normal_check",
+      "n": 1,
+      "successes": 1,
+      "rescued": 0,
+      "outcomes": [
+        "credited"
+      ],
+      "new_credits": [
+        5
+      ],
+      "episode_indices": [
+        12
+      ],
+      "endpoint_times_s": [
+        4.033333333333529
+      ],
+      "successful_mean_s": 4.033333333333529,
+      "target_offroad_s": [
+        0.0
+      ],
+      "target_api_p95_ms": [
+        241.52469624999998
+      ],
+      "target_age_p95_ms": [
+        305.32136660000003
+      ]
+    },
+    {
+      "case": "post_contact",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "role": "primary",
+      "n": 2,
+      "successes": 0,
+      "rescued": 2,
+      "outcomes": [
+        "rescued",
+        "rescued"
+      ],
+      "new_credits": [
+        3,
+        3
+      ],
+      "episode_indices": [
+        4,
+        23
+      ],
+      "endpoint_times_s": [
+        5.916666666666755,
+        5.916666666666755
+      ],
+      "successful_mean_s": null,
+      "target_offroad_s": [
+        2.9999999999999942,
+        2.9999999999999942
+      ],
+      "target_api_p95_ms": [
+        243.65039459999997,
+        241.9330832
+      ],
+      "target_age_p95_ms": [
+        1307.3937635,
+        1297.6948787
+      ]
+    },
+    {
+      "case": "post_contact",
+      "profile": "motion",
+      "added_delay_s": 1.0,
+      "role": "primary",
+      "n": 2,
+      "successes": 2,
+      "rescued": 0,
+      "outcomes": [
+        "credited",
+        "credited"
+      ],
+      "new_credits": [
+        5,
+        5
+      ],
+      "episode_indices": [
+        1,
+        26
+      ],
+      "endpoint_times_s": [
+        5.683333333333435,
+        4.916666666666812
+      ],
+      "successful_mean_s": 5.300000000000123,
+      "target_offroad_s": [
+        0.0,
+        0.0
+      ],
+      "target_api_p95_ms": [
+        916.4118407499998,
+        251.9335142
+      ],
+      "target_age_p95_ms": [
+        2002.2790142999997,
+        1300.7885086000001
+      ]
+    },
+    {
+      "case": "post_contact",
+      "profile": "timing",
+      "added_delay_s": 1.0,
+      "role": "primary",
+      "n": 2,
+      "successes": 1,
+      "rescued": 1,
+      "outcomes": [
+        "credited",
+        "rescued"
+      ],
+      "new_credits": [
+        5,
+        3
+      ],
+      "episode_indices": [
+        10,
+        17
+      ],
+      "endpoint_times_s": [
+        4.850000000000149,
+        8.316666666666618
+      ],
+      "successful_mean_s": 4.850000000000149,
+      "target_offroad_s": [
+        0.0,
+        2.9999999999999942
+      ],
+      "target_api_p95_ms": [
+        218.95826935,
+        325.2595491999999
+      ],
+      "target_age_p95_ms": [
+        1263.9734259,
+        1383.7308465
+      ]
+    },
+    {
+      "case": "post_contact",
+      "profile": "both",
+      "added_delay_s": 1.0,
+      "role": "primary",
+      "n": 2,
+      "successes": 1,
+      "rescued": 1,
+      "outcomes": [
+        "rescued",
+        "credited"
+      ],
+      "new_credits": [
+        3,
+        5
+      ],
+      "episode_indices": [
+        7,
+        20
+      ],
+      "endpoint_times_s": [
+        8.533333333333273,
+        4.9333333333334775
+      ],
+      "successful_mean_s": 4.9333333333334775,
+      "target_offroad_s": [
+        2.9999999999999942,
+        0.0
+      ],
+      "target_api_p95_ms": [
+        233.14509749999996,
+        272.09864095
+      ],
+      "target_age_p95_ms": [
+        1287.79125725,
+        1328.5350790999998
+      ]
+    }
+  ],
+  "episodes_results": [
+    {
+      "index": 0,
+      "case": "outward_drift",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "primary",
+      "target": "blue",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 4.533333333333317,
+      "first_new_gate_s": 0.6666666666666643,
+      "first_new_target_input_s": 0.36666666666666664,
+      "first_gate_preceded_new_target_input": false,
+      "target_deltas": {
+        "gates": 1,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 14.628073615917462
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 6,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 49.99292865699678
+        },
+        "blue": {
+          "gates": 1,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 14.628073615917462
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 19,
+        "p50": 199.089988,
+        "p95": 251.19509239999988,
+        "max": 301.781099
+      },
+      "target_observation_to_application_ms": {
+        "n": 18,
+        "p50": 233.04513350000002,
+        "p95": 296.26550879999985,
+        "max": 367.998379
+      },
+      "target_added_wait_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "requests": 35,
+      "target_requests": 19,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": -18.0599,
+        "y": -24.7141,
+        "heading": 2.36671,
+        "speed": 12.0,
+        "vx": -8.574,
+        "vy": 8.3956,
+        "yaw_rate": -0.06276,
+        "steering_angle": 0.02562
+      },
+      "final_target_pose": {
+        "x": -24.9731,
+        "y": -30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -5.2859,
+        "heading_error": 0.77488,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.698,
+            "y": 3.777,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -1.555,
+            "y": 5.876,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 0.589,
+            "y": 7.975,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 3.447,
+            "y": 10.773,
+            "curvature": -0.00154
+          },
+          {
+            "distance": 15,
+            "x": 7.129,
+            "y": 14.151,
+            "curvature": -0.03331
+          },
+          {
+            "distance": 22,
+            "x": 13.059,
+            "y": 17.84,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 32,
+            "x": 22.644,
+            "y": 20.52,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.462,
+            "y": 19.099,
+            "curvature": -0.03337
+          },
+          {
+            "distance": 60,
+            "x": 47.901,
+            "y": 11.0,
+            "curvature": -0.03338
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": -0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": -0.00118
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.021,
+            "curvature": -0.02648
+          },
+          {
+            "distance": 10,
+            "x": 9.977,
+            "y": -0.412,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 15,
+            "x": 14.817,
+            "y": -1.646,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 22,
+            "x": 21.11,
+            "y": -4.676,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 32,
+            "x": 28.507,
+            "y": -11.335,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 45,
+            "x": 34.178,
+            "y": -22.92,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 60,
+            "x": 33.999,
+            "y": -37.762,
+            "curvature": -0.03332
+          }
+        ]
+      },
+      "physics_frames": 273,
+      "exact_queries": 35,
+      "budget_transitions": 70,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 1.909748,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-0/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 301.781099
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 1,
+      "case": "post_contact",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary",
+      "target": "red",
+      "required_gate_credits": 5,
+      "outcome": "credited",
+      "duration_s": 5.683333333333435,
+      "first_new_gate_s": 0.6333333333333648,
+      "first_new_target_input_s": 1.2833333333333334,
+      "first_gate_preceded_new_target_input": true,
+      "target_deltas": {
+        "gates": 5,
+        "rescues": 0,
+        "offroad_s": 0.0,
+        "distance_m": 40.45321326505092
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 5,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 40.45321326505092
+        },
+        "blue": {
+          "gates": 4,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 40.08841165983151
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 1,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 4,
+        "p50": 210.3693685,
+        "p95": 916.4118407499998,
+        "max": 1037.804734
+      },
+      "target_observation_to_application_ms": {
+        "n": 3,
+        "p50": 1284.951747,
+        "p95": 2002.2790142999997,
+        "max": 2081.982044
+      },
+      "target_added_wait_ms": {
+        "n": 4,
+        "p50": 1000.7492235,
+        "p95": 1001.07965125,
+        "max": 1001.12812
+      },
+      "requests": 9,
+      "target_requests": 4,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": 30.109,
+        "y": 32.3408,
+        "heading": 2.50034,
+        "speed": 11.9262,
+        "vx": -10.8154,
+        "vy": 5.026,
+        "yaw_rate": 0.48593,
+        "steering_angle": 0.09811
+      },
+      "final_target_pose": {
+        "x": -7.7709,
+        "y": 28.5954,
+        "heading": 2.70939,
+        "speed": 12.0,
+        "vx": -10.8966,
+        "vy": 5.0264,
+        "yaw_rate": -0.80368,
+        "steering_angle": -0.11999
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -2.3414,
+        "heading_error": 0.62902,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -1.4,
+            "y": 1.877,
+            "curvature": 0.01812
+          },
+          {
+            "distance": 3,
+            "x": 1.005,
+            "y": 3.671,
+            "curvature": 5e-05
+          },
+          {
+            "distance": 6,
+            "x": 3.409,
+            "y": 5.466,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 6.614,
+            "y": 7.859,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 10.621,
+            "y": 10.85,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 16.23,
+            "y": 15.037,
+            "curvature": 0.0
+          },
+          {
+            "distance": 32,
+            "x": 24.244,
+            "y": 21.019,
+            "curvature": 0.0
+          },
+          {
+            "distance": 45,
+            "x": 34.661,
+            "y": 28.796,
+            "curvature": 0.0
+          },
+          {
+            "distance": 60,
+            "x": 46.681,
+            "y": 37.769,
+            "curvature": 0.01577
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 1.4046,
+        "heading_error": 0.4322,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": 0.588,
+            "y": -1.275,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.312,
+            "y": -0.019,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 6.037,
+            "y": 1.238,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 9.669,
+            "y": 2.913,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 14.209,
+            "y": 5.008,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 20.565,
+            "y": 7.94,
+            "curvature": 0.01444
+          },
+          {
+            "distance": 32,
+            "x": 28.83,
+            "y": 13.489,
+            "curvature": 0.03337
+          },
+          {
+            "distance": 45,
+            "x": 36.069,
+            "y": 24.165,
+            "curvature": 0.03336
+          },
+          {
+            "distance": 60,
+            "x": 37.985,
+            "y": 38.884,
+            "curvature": 0.03332
+          }
+        ]
+      },
+      "physics_frames": 342,
+      "exact_queries": 9,
+      "budget_transitions": 18,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.048875,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-1/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 228.518779
+      },
+      "new_contact_details": [
+        {
+          "type": "contact",
+          "tick": 881,
+          "time": 14.683333333333334,
+          "toi_fraction": 0.2533663294799839,
+          "normal": [
+            0.3181544146992201,
+            0.9480389065894906
+          ],
+          "closing_speed_m_s": 1.502023348387334,
+          "impulse_m_s": 0.863663425322717,
+          "onset": true,
+          "positions_at_contact": {
+            "red": [
+              12.956303790752305,
+              33.068140466879434
+            ],
+            "blue": [
+              13.592612620150746,
+              34.96421828005842
+            ]
+          },
+          "separation_correction_m": 0.0
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "case": "outward_drift",
+      "profile": "timing",
+      "geometry": false,
+      "motion": false,
+      "timing": true,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary",
+      "target": "blue",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 3.7666666666666537,
+      "first_new_gate_s": 0.5666666666666647,
+      "first_new_target_input_s": 1.2833333333333334,
+      "first_gate_preceded_new_target_input": true,
+      "target_deltas": {
+        "gates": 1,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 15.084982970421745
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 2,
+          "rescues": 0,
+          "offroad_s": 2.249999999999997,
+          "distance_m": 27.42134442004975
+        },
+        "blue": {
+          "gates": 1,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 15.084982970421745
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 3,
+        "p50": 216.682653,
+        "p95": 253.70412960000002,
+        "max": 257.817627
+      },
+      "target_observation_to_application_ms": {
+        "n": 2,
+        "p50": 1258.6382855000002,
+        "p95": 1282.1106324500001,
+        "max": 1284.718671
+      },
+      "target_added_wait_ms": {
+        "n": 3,
+        "p50": 1000.230512,
+        "p95": 1001.0308415000001,
+        "max": 1001.119767
+      },
+      "requests": 6,
+      "target_requests": 3,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": -18.0599,
+        "y": -24.7141,
+        "heading": 2.36671,
+        "speed": 12.0,
+        "vx": -8.574,
+        "vy": 8.3956,
+        "yaw_rate": -0.06276,
+        "steering_angle": 0.02562
+      },
+      "final_target_pose": {
+        "x": -24.0533,
+        "y": -30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -5.2859,
+        "heading_error": 0.77488,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.698,
+            "y": 3.777,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -1.555,
+            "y": 5.876,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 0.589,
+            "y": 7.975,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 3.447,
+            "y": 10.773,
+            "curvature": -0.00154
+          },
+          {
+            "distance": 15,
+            "x": 7.129,
+            "y": 14.151,
+            "curvature": -0.03331
+          },
+          {
+            "distance": 22,
+            "x": 13.059,
+            "y": 17.84,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 32,
+            "x": 22.644,
+            "y": 20.52,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.462,
+            "y": 19.099,
+            "curvature": -0.03337
+          },
+          {
+            "distance": 60,
+            "x": 47.901,
+            "y": 11.0,
+            "curvature": -0.03338
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": -5e-05
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.001,
+            "curvature": -0.01753
+          },
+          {
+            "distance": 10,
+            "x": 9.987,
+            "y": -0.278,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 15,
+            "x": 14.862,
+            "y": -1.362,
+            "curvature": -0.0334
+          },
+          {
+            "distance": 22,
+            "x": 21.244,
+            "y": -4.198,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 32,
+            "x": 28.843,
+            "y": -10.625,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 45,
+            "x": 34.863,
+            "y": -22.031,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 60,
+            "x": 35.144,
+            "y": -36.871,
+            "curvature": -0.03332
+          }
+        ]
+      },
+      "physics_frames": 227,
+      "exact_queries": 6,
+      "budget_transitions": 12,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.036551,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-2/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 216.682653
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 3,
+      "case": "outward_drift",
+      "profile": "both",
+      "geometry": false,
+      "motion": true,
+      "timing": true,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "primary",
+      "target": "blue",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 4.549999999999985,
+      "first_new_gate_s": 0.9833333333333303,
+      "first_new_target_input_s": 0.3,
+      "first_gate_preceded_new_target_input": false,
+      "target_deltas": {
+        "gates": 1,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 15.722060965939146
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 6,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 46.825214122980555
+        },
+        "blue": {
+          "gates": 1,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 15.722060965939146
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 19,
+        "p50": 200.691935,
+        "p95": 236.92862109999996,
+        "max": 257.263123
+      },
+      "target_observation_to_application_ms": {
+        "n": 18,
+        "p50": 233.40788500000002,
+        "p95": 285.37891335,
+        "max": 300.724175
+      },
+      "target_added_wait_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "requests": 35,
+      "target_requests": 19,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": -18.0599,
+        "y": -24.7141,
+        "heading": 2.36671,
+        "speed": 12.0,
+        "vx": -8.574,
+        "vy": 8.3956,
+        "yaw_rate": -0.06276,
+        "steering_angle": 0.02562
+      },
+      "final_target_pose": {
+        "x": -25.3813,
+        "y": -30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -5.2859,
+        "heading_error": 0.77488,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.698,
+            "y": 3.777,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -1.555,
+            "y": 5.876,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 0.589,
+            "y": 7.975,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 3.447,
+            "y": 10.773,
+            "curvature": -0.00154
+          },
+          {
+            "distance": 15,
+            "x": 7.129,
+            "y": 14.151,
+            "curvature": -0.03331
+          },
+          {
+            "distance": 22,
+            "x": 13.059,
+            "y": 17.84,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 32,
+            "x": 22.644,
+            "y": 20.52,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.462,
+            "y": 19.099,
+            "curvature": -0.03337
+          },
+          {
+            "distance": 60,
+            "x": 47.901,
+            "y": 11.0,
+            "curvature": -0.03338
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": -0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": -0.00289
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.033,
+            "curvature": -0.03007
+          },
+          {
+            "distance": 10,
+            "x": 9.971,
+            "y": -0.487,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 15,
+            "x": 14.793,
+            "y": -1.784,
+            "curvature": -0.03334
+          },
+          {
+            "distance": 22,
+            "x": 21.042,
+            "y": -4.901,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 32,
+            "x": 28.35,
+            "y": -11.657,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 45,
+            "x": 33.859,
+            "y": -23.318,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 60,
+            "x": 33.485,
+            "y": -38.157,
+            "curvature": -0.03332
+          }
+        ]
+      },
+      "physics_frames": 274,
+      "exact_queries": 35,
+      "budget_transitions": 70,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.057033,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-3/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 232.25978
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 4,
+      "case": "post_contact",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary",
+      "target": "red",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 5.916666666666755,
+      "first_new_gate_s": 0.6333333333333648,
+      "first_new_target_input_s": 1.3166666666666667,
+      "first_gate_preceded_new_target_input": true,
+      "target_deltas": {
+        "gates": 3,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 43.12036447764606
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 3,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 43.12036447764606
+        },
+        "blue": {
+          "gates": 5,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 44.44029965997615
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 2,
+      "target_api_latency_ms": {
+        "n": 5,
+        "p50": 198.741802,
+        "p95": 243.65039459999997,
+        "max": 249.408293
+      },
+      "target_observation_to_application_ms": {
+        "n": 4,
+        "p50": 1241.9097215,
+        "p95": 1307.3937635,
+        "max": 1317.65636
+      },
+      "target_added_wait_ms": {
+        "n": 5,
+        "p50": 1001.025344,
+        "p95": 1011.1412688,
+        "max": 1013.484649
+      },
+      "requests": 10,
+      "target_requests": 5,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": 30.109,
+        "y": 32.3408,
+        "heading": 2.50034,
+        "speed": 11.9262,
+        "vx": -10.8154,
+        "vy": 5.026,
+        "yaw_rate": 0.48593,
+        "steering_angle": 0.09811
+      },
+      "final_target_pose": {
+        "x": 6.2364,
+        "y": 30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -2.3414,
+        "heading_error": 0.62902,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -1.4,
+            "y": 1.877,
+            "curvature": 0.01812
+          },
+          {
+            "distance": 3,
+            "x": 1.005,
+            "y": 3.671,
+            "curvature": 5e-05
+          },
+          {
+            "distance": 6,
+            "x": 3.409,
+            "y": 5.466,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 6.614,
+            "y": 7.859,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 10.621,
+            "y": 10.85,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 16.23,
+            "y": 15.037,
+            "curvature": 0.0
+          },
+          {
+            "distance": 32,
+            "x": 24.244,
+            "y": 21.019,
+            "curvature": 0.0
+          },
+          {
+            "distance": 45,
+            "x": 34.661,
+            "y": 28.796,
+            "curvature": 0.0
+          },
+          {
+            "distance": 60,
+            "x": 46.681,
+            "y": 37.769,
+            "curvature": 0.01577
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": -0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 10.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 15.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 22.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 32,
+            "x": 32.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 45,
+            "x": 44.876,
+            "y": 1.274,
+            "curvature": 0.03341
+          },
+          {
+            "distance": 60,
+            "x": 57.589,
+            "y": 8.935,
+            "curvature": 0.03333
+          }
+        ]
+      },
+      "physics_frames": 356,
+      "exact_queries": 10,
+      "budget_transitions": 20,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.028061,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-4/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_accelerate",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "accelerate"
+        },
+        "latency_ms": 249.408293
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 5,
+      "case": "outward_drift",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary",
+      "target": "blue",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 3.7666666666666537,
+      "first_new_gate_s": 0.5666666666666647,
+      "first_new_target_input_s": 1.3,
+      "first_gate_preceded_new_target_input": true,
+      "target_deltas": {
+        "gates": 1,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 15.196749623747895
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 2,
+          "rescues": 0,
+          "offroad_s": 2.249999999999997,
+          "distance_m": 30.863903710161928
+        },
+        "blue": {
+          "gates": 1,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 15.196749623747895
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 3,
+        "p50": 206.422255,
+        "p95": 221.1474052,
+        "max": 222.783533
+      },
+      "target_observation_to_application_ms": {
+        "n": 3,
+        "p50": 1233.260141,
+        "p95": 1293.6414263,
+        "max": 1300.350458
+      },
+      "target_added_wait_ms": {
+        "n": 3,
+        "p50": 1001.030586,
+        "p95": 1001.1134319,
+        "max": 1001.122637
+      },
+      "requests": 6,
+      "target_requests": 3,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 0
+      },
+      "initial_target_pose": {
+        "x": -18.0599,
+        "y": -24.7141,
+        "heading": 2.36671,
+        "speed": 12.0,
+        "vx": -8.574,
+        "vy": 8.3956,
+        "yaw_rate": -0.06276,
+        "steering_angle": 0.02562
+      },
+      "final_target_pose": {
+        "x": -24.0533,
+        "y": -30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -5.2859,
+        "heading_error": 0.77488,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.698,
+            "y": 3.777,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -1.555,
+            "y": 5.876,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 0.589,
+            "y": 7.975,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 3.447,
+            "y": 10.773,
+            "curvature": -0.00154
+          },
+          {
+            "distance": 15,
+            "x": 7.129,
+            "y": 14.151,
+            "curvature": -0.03331
+          },
+          {
+            "distance": 22,
+            "x": 13.059,
+            "y": 17.84,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 32,
+            "x": 22.644,
+            "y": 20.52,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.462,
+            "y": 19.099,
+            "curvature": -0.03337
+          },
+          {
+            "distance": 60,
+            "x": 47.901,
+            "y": 11.0,
+            "curvature": -0.03338
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": -5e-05
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.001,
+            "curvature": -0.01753
+          },
+          {
+            "distance": 10,
+            "x": 9.987,
+            "y": -0.278,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 15,
+            "x": 14.862,
+            "y": -1.362,
+            "curvature": -0.0334
+          },
+          {
+            "distance": 22,
+            "x": 21.244,
+            "y": -4.198,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 32,
+            "x": 28.843,
+            "y": -10.625,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 45,
+            "x": 34.863,
+            "y": -22.031,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 60,
+            "x": 35.144,
+            "y": -36.871,
+            "curvature": -0.03332
+          }
+        ]
+      },
+      "physics_frames": 227,
+      "exact_queries": 6,
+      "budget_transitions": 12,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.075372,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-5/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 222.783533
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 6,
+      "case": "outward_drift",
+      "profile": "timing",
+      "geometry": false,
+      "motion": false,
+      "timing": true,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "primary",
+      "target": "blue",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 4.616666666666651,
+      "first_new_gate_s": 0.9166666666666639,
+      "first_new_target_input_s": 0.3333333333333333,
+      "first_gate_preceded_new_target_input": false,
+      "target_deltas": {
+        "gates": 1,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 13.543081714563673
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 7,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 53.066305595699745
+        },
+        "blue": {
+          "gates": 1,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 13.543081714563673
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 18,
+        "p50": 203.7724095,
+        "p95": 446.53300264999814,
+        "max": 1542.523658
+      },
+      "target_observation_to_application_ms": {
+        "n": 17,
+        "p50": 233.941725,
+        "p95": 279.7976156,
+        "max": 333.859494
+      },
+      "target_added_wait_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "requests": 34,
+      "target_requests": 18,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": -18.0599,
+        "y": -24.7141,
+        "heading": 2.36671,
+        "speed": 12.0,
+        "vx": -8.574,
+        "vy": 8.3956,
+        "yaw_rate": -0.06276,
+        "steering_angle": 0.02562
+      },
+      "final_target_pose": {
+        "x": -25.2404,
+        "y": -30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -5.2859,
+        "heading_error": 0.77488,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.698,
+            "y": 3.777,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -1.555,
+            "y": 5.876,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 0.589,
+            "y": 7.975,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 3.447,
+            "y": 10.773,
+            "curvature": -0.00154
+          },
+          {
+            "distance": 15,
+            "x": 7.129,
+            "y": 14.151,
+            "curvature": -0.03331
+          },
+          {
+            "distance": 22,
+            "x": 13.059,
+            "y": 17.84,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 32,
+            "x": 22.644,
+            "y": 20.52,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.462,
+            "y": 19.099,
+            "curvature": -0.03337
+          },
+          {
+            "distance": 60,
+            "x": 47.901,
+            "y": 11.0,
+            "curvature": -0.03338
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": -0.0023
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.028,
+            "curvature": -0.02905
+          },
+          {
+            "distance": 10,
+            "x": 9.973,
+            "y": -0.461,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 15,
+            "x": 14.801,
+            "y": -1.737,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 22,
+            "x": 21.065,
+            "y": -4.823,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 32,
+            "x": 28.404,
+            "y": -11.546,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 45,
+            "x": 33.969,
+            "y": -23.181,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 60,
+            "x": 33.662,
+            "y": -38.021,
+            "curvature": -0.03332
+          }
+        ]
+      },
+      "physics_frames": 278,
+      "exact_queries": 34,
+      "budget_transitions": 68,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 3.128179,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-6/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 253.122887
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 7,
+      "case": "post_contact",
+      "profile": "both",
+      "geometry": false,
+      "motion": true,
+      "timing": true,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary",
+      "target": "red",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 8.533333333333273,
+      "first_new_gate_s": 0.6333333333333648,
+      "first_new_target_input_s": 1.3,
+      "first_gate_preceded_new_target_input": true,
+      "target_deltas": {
+        "gates": 3,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 43.793747699149975
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 3,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 43.793747699149975
+        },
+        "blue": {
+          "gates": 6,
+          "rescues": 0,
+          "offroad_s": 2.166666666666664,
+          "distance_m": 59.25458023998445
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 2,
+      "target_api_latency_ms": {
+        "n": 7,
+        "p50": 204.549371,
+        "p95": 233.14509749999996,
+        "max": 243.177213
+      },
+      "target_observation_to_application_ms": {
+        "n": 6,
+        "p50": 1233.141842,
+        "p95": 1287.79125725,
+        "max": 1300.299784
+      },
+      "target_added_wait_ms": {
+        "n": 7,
+        "p50": 1000.628928,
+        "p95": 1001.3697387,
+        "max": 1001.616726
+      },
+      "requests": 14,
+      "target_requests": 7,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": 30.109,
+        "y": 32.3408,
+        "heading": 2.50034,
+        "speed": 11.9262,
+        "vx": -10.8154,
+        "vy": 5.026,
+        "yaw_rate": 0.48593,
+        "steering_angle": 0.09811
+      },
+      "final_target_pose": {
+        "x": 6.0718,
+        "y": 30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -2.3414,
+        "heading_error": 0.62902,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -1.4,
+            "y": 1.877,
+            "curvature": 0.01812
+          },
+          {
+            "distance": 3,
+            "x": 1.005,
+            "y": 3.671,
+            "curvature": 5e-05
+          },
+          {
+            "distance": 6,
+            "x": 3.409,
+            "y": 5.466,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 6.614,
+            "y": 7.859,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 10.621,
+            "y": 10.85,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 16.23,
+            "y": 15.037,
+            "curvature": 0.0
+          },
+          {
+            "distance": 32,
+            "x": 24.244,
+            "y": 21.019,
+            "curvature": 0.0
+          },
+          {
+            "distance": 45,
+            "x": 34.661,
+            "y": 28.796,
+            "curvature": 0.0
+          },
+          {
+            "distance": 60,
+            "x": 46.681,
+            "y": 37.769,
+            "curvature": 0.01577
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": -0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 10.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 15.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 22.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 32,
+            "x": 32.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 45,
+            "x": 44.868,
+            "y": 1.324,
+            "curvature": 0.0334
+          },
+          {
+            "distance": 60,
+            "x": 57.54,
+            "y": 9.052,
+            "curvature": 0.03332
+          }
+        ]
+      },
+      "physics_frames": 513,
+      "exact_queries": 14,
+      "budget_transitions": 28,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.088909,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-7/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_accelerate",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "accelerate"
+        },
+        "latency_ms": 243.177213
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 8,
+      "case": "outward_drift",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary",
+      "target": "blue",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 3.7666666666666537,
+      "first_new_gate_s": 0.5666666666666647,
+      "first_new_target_input_s": 1.2833333333333334,
+      "first_gate_preceded_new_target_input": true,
+      "target_deltas": {
+        "gates": 1,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 15.084982970421745
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 2,
+          "rescues": 0,
+          "offroad_s": 2.249999999999997,
+          "distance_m": 27.15868304178271
+        },
+        "blue": {
+          "gates": 1,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 15.084982970421745
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 3,
+        "p50": 213.20223,
+        "p95": 220.94764619999998,
+        "max": 221.808248
+      },
+      "target_observation_to_application_ms": {
+        "n": 2,
+        "p50": 1267.1064425,
+        "p95": 1282.4711295500001,
+        "max": 1284.178317
+      },
+      "target_added_wait_ms": {
+        "n": 3,
+        "p50": 1000.701941,
+        "p95": 1000.9288868,
+        "max": 1000.954103
+      },
+      "requests": 6,
+      "target_requests": 3,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": -18.0599,
+        "y": -24.7141,
+        "heading": 2.36671,
+        "speed": 12.0,
+        "vx": -8.574,
+        "vy": 8.3956,
+        "yaw_rate": -0.06276,
+        "steering_angle": 0.02562
+      },
+      "final_target_pose": {
+        "x": -24.0533,
+        "y": -30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -5.2859,
+        "heading_error": 0.77488,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.698,
+            "y": 3.777,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -1.555,
+            "y": 5.876,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 0.589,
+            "y": 7.975,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 3.447,
+            "y": 10.773,
+            "curvature": -0.00154
+          },
+          {
+            "distance": 15,
+            "x": 7.129,
+            "y": 14.151,
+            "curvature": -0.03331
+          },
+          {
+            "distance": 22,
+            "x": 13.059,
+            "y": 17.84,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 32,
+            "x": 22.644,
+            "y": 20.52,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.462,
+            "y": 19.099,
+            "curvature": -0.03337
+          },
+          {
+            "distance": 60,
+            "x": 47.901,
+            "y": 11.0,
+            "curvature": -0.03338
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": -5e-05
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.001,
+            "curvature": -0.01753
+          },
+          {
+            "distance": 10,
+            "x": 9.987,
+            "y": -0.278,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 15,
+            "x": 14.862,
+            "y": -1.362,
+            "curvature": -0.0334
+          },
+          {
+            "distance": 22,
+            "x": 21.244,
+            "y": -4.198,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 32,
+            "x": 28.843,
+            "y": -10.625,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 45,
+            "x": 34.863,
+            "y": -22.031,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 60,
+            "x": 35.144,
+            "y": -36.871,
+            "curvature": -0.03332
+          }
+        ]
+      },
+      "physics_frames": 227,
+      "exact_queries": 6,
+      "budget_transitions": 12,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.158904,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-8/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 221.808248
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 9,
+      "case": "outward_drift",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "primary",
+      "target": "blue",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 4.9166666666666625,
+      "first_new_gate_s": 1.3833333333333289,
+      "first_new_target_input_s": 0.2833333333333333,
+      "first_gate_preceded_new_target_input": false,
+      "target_deltas": {
+        "gates": 1,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 16.277662234171448
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 3,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 23.522043319037223
+        },
+        "blue": {
+          "gates": 1,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 16.277662234171448
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 20,
+        "p50": 201.37798,
+        "p95": 248.6619008000002,
+        "max": 509.46496
+      },
+      "target_observation_to_application_ms": {
+        "n": 19,
+        "p50": 233.546156,
+        "p95": 310.7076746999994,
+        "max": 549.200967
+      },
+      "target_added_wait_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "requests": 38,
+      "target_requests": 20,
+      "discarded_replies": {
+        "red": 2,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": -18.0599,
+        "y": -24.7141,
+        "heading": 2.36671,
+        "speed": 12.0,
+        "vx": -8.574,
+        "vy": 8.3956,
+        "yaw_rate": -0.06276,
+        "steering_angle": 0.02562
+      },
+      "final_target_pose": {
+        "x": -25.4653,
+        "y": -30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -5.2859,
+        "heading_error": 0.77488,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.698,
+            "y": 3.777,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -1.555,
+            "y": 5.876,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 0.589,
+            "y": 7.975,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 3.447,
+            "y": 10.773,
+            "curvature": -0.00154
+          },
+          {
+            "distance": 15,
+            "x": 7.129,
+            "y": 14.151,
+            "curvature": -0.03331
+          },
+          {
+            "distance": 22,
+            "x": 13.059,
+            "y": 17.84,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 32,
+            "x": 22.644,
+            "y": 20.52,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.462,
+            "y": 19.099,
+            "curvature": -0.03337
+          },
+          {
+            "distance": 60,
+            "x": 47.901,
+            "y": 11.0,
+            "curvature": -0.03338
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": -0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": -0.00324
+          },
+          {
+            "distance": 6,
+            "x": 5.999,
+            "y": -0.039,
+            "curvature": -0.0303
+          },
+          {
+            "distance": 10,
+            "x": 9.969,
+            "y": -0.503,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 15,
+            "x": 14.788,
+            "y": -1.813,
+            "curvature": -0.03334
+          },
+          {
+            "distance": 22,
+            "x": 21.028,
+            "y": -4.948,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 32,
+            "x": 28.318,
+            "y": -11.724,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 45,
+            "x": 33.793,
+            "y": -23.4,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 60,
+            "x": 33.379,
+            "y": -38.238,
+            "curvature": -0.03332
+          }
+        ]
+      },
+      "physics_frames": 296,
+      "exact_queries": 38,
+      "budget_transitions": 76,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.101201,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-9/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 216.325079
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 10,
+      "case": "post_contact",
+      "profile": "timing",
+      "geometry": false,
+      "motion": false,
+      "timing": true,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary",
+      "target": "red",
+      "required_gate_credits": 5,
+      "outcome": "credited",
+      "duration_s": 4.850000000000149,
+      "first_new_gate_s": 0.6333333333333648,
+      "first_new_target_input_s": 1.2666666666666666,
+      "first_gate_preceded_new_target_input": true,
+      "target_deltas": {
+        "gates": 5,
+        "rescues": 0,
+        "offroad_s": 0.0,
+        "distance_m": 40.2520808011071
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 5,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 40.2520808011071
+        },
+        "blue": {
+          "gates": 4,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 39.24223358715966
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 1,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 4,
+        "p50": 195.91337950000002,
+        "p95": 218.95826935,
+        "max": 222.580822
+      },
+      "target_observation_to_application_ms": {
+        "n": 3,
+        "p50": 1234.372047,
+        "p95": 1263.9734259,
+        "max": 1267.262468
+      },
+      "target_added_wait_ms": {
+        "n": 4,
+        "p50": 1001.2396575,
+        "p95": 1001.5804184,
+        "max": 1001.598461
+      },
+      "requests": 8,
+      "target_requests": 4,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": 30.109,
+        "y": 32.3408,
+        "heading": 2.50034,
+        "speed": 11.9262,
+        "vx": -10.8154,
+        "vy": 5.026,
+        "yaw_rate": 0.48593,
+        "steering_angle": 0.09811
+      },
+      "final_target_pose": {
+        "x": -7.8393,
+        "y": 28.9277,
+        "heading": 2.68695,
+        "speed": 12.0,
+        "vx": -10.9768,
+        "vy": 4.8488,
+        "yaw_rate": -0.80325,
+        "steering_angle": -0.12
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -2.3414,
+        "heading_error": 0.62902,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -1.4,
+            "y": 1.877,
+            "curvature": 0.01812
+          },
+          {
+            "distance": 3,
+            "x": 1.005,
+            "y": 3.671,
+            "curvature": 5e-05
+          },
+          {
+            "distance": 6,
+            "x": 3.409,
+            "y": 5.466,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 6.614,
+            "y": 7.859,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 10.621,
+            "y": 10.85,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 16.23,
+            "y": 15.037,
+            "curvature": 0.0
+          },
+          {
+            "distance": 32,
+            "x": 24.244,
+            "y": 21.019,
+            "curvature": 0.0
+          },
+          {
+            "distance": 45,
+            "x": 34.661,
+            "y": 28.796,
+            "curvature": 0.0
+          },
+          {
+            "distance": 60,
+            "x": 46.681,
+            "y": 37.769,
+            "curvature": 0.01577
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 1.0723,
+        "heading_error": 0.45464,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": 0.471,
+            "y": -0.963,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.166,
+            "y": 0.354,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 5.861,
+            "y": 1.672,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 9.455,
+            "y": 3.428,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 13.947,
+            "y": 5.624,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 20.236,
+            "y": 8.698,
+            "curvature": 0.01519
+          },
+          {
+            "distance": 32,
+            "x": 28.36,
+            "y": 14.45,
+            "curvature": 0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.335,
+            "y": 25.3,
+            "curvature": 0.03336
+          },
+          {
+            "distance": 60,
+            "x": 36.885,
+            "y": 40.062,
+            "curvature": 0.03332
+          }
+        ]
+      },
+      "physics_frames": 292,
+      "exact_queries": 8,
+      "budget_transitions": 16,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 1.883288,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-10/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 222.580822
+      },
+      "new_contact_details": [
+        {
+          "type": "contact",
+          "tick": 943,
+          "time": 15.716666666666667,
+          "toi_fraction": 0.0018396933186693252,
+          "normal": [
+            0.7000236944583571,
+            0.7141196168688217
+          ],
+          "closing_speed_m_s": 0.5019199107643297,
+          "impulse_m_s": 0.2886039486894896,
+          "onset": true,
+          "positions_at_contact": {
+            "red": [
+              5.616000808346783,
+              29.015352071432897
+            ],
+            "blue": [
+              7.016048197263496,
+              30.44359130517054
+            ]
+          },
+          "separation_correction_m": 0.0013333126210998136
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "case": "outward_drift",
+      "profile": "both",
+      "geometry": false,
+      "motion": true,
+      "timing": true,
+      "added_delay_s": 1.0,
+      "repeat": 0,
+      "role": "primary",
+      "target": "blue",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 3.7666666666666537,
+      "first_new_gate_s": 0.5666666666666647,
+      "first_new_target_input_s": 1.2666666666666666,
+      "first_gate_preceded_new_target_input": true,
+      "target_deltas": {
+        "gates": 1,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 14.982037572739852
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 2,
+          "rescues": 0,
+          "offroad_s": 2.249999999999997,
+          "distance_m": 27.069574657120256
+        },
+        "blue": {
+          "gates": 1,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 14.982037572739852
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 4,
+        "p50": 201.14243199999999,
+        "p95": 211.7898094,
+        "max": 212.185735
+      },
+      "target_observation_to_application_ms": {
+        "n": 3,
+        "p50": 1233.488459,
+        "p95": 1263.4964858,
+        "max": 1266.830711
+      },
+      "target_added_wait_ms": {
+        "n": 4,
+        "p50": 1000.849834,
+        "p95": 1000.9550505,
+        "max": 1000.962915
+      },
+      "requests": 8,
+      "target_requests": 4,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": -18.0599,
+        "y": -24.7141,
+        "heading": 2.36671,
+        "speed": 12.0,
+        "vx": -8.574,
+        "vy": 8.3956,
+        "yaw_rate": -0.06276,
+        "steering_angle": 0.02562
+      },
+      "final_target_pose": {
+        "x": -24.0533,
+        "y": -30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -5.2859,
+        "heading_error": 0.77488,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.698,
+            "y": 3.777,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -1.555,
+            "y": 5.876,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 0.589,
+            "y": 7.975,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 3.447,
+            "y": 10.773,
+            "curvature": -0.00154
+          },
+          {
+            "distance": 15,
+            "x": 7.129,
+            "y": 14.151,
+            "curvature": -0.03331
+          },
+          {
+            "distance": 22,
+            "x": 13.059,
+            "y": 17.84,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 32,
+            "x": 22.644,
+            "y": 20.52,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.462,
+            "y": 19.099,
+            "curvature": -0.03337
+          },
+          {
+            "distance": 60,
+            "x": 47.901,
+            "y": 11.0,
+            "curvature": -0.03338
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": -5e-05
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.001,
+            "curvature": -0.01753
+          },
+          {
+            "distance": 10,
+            "x": 9.987,
+            "y": -0.278,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 15,
+            "x": 14.862,
+            "y": -1.362,
+            "curvature": -0.0334
+          },
+          {
+            "distance": 22,
+            "x": 21.244,
+            "y": -4.198,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 32,
+            "x": 28.843,
+            "y": -10.625,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 45,
+            "x": 34.863,
+            "y": -22.031,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 60,
+            "x": 35.144,
+            "y": -36.871,
+            "curvature": -0.03332
+          }
+        ]
+      },
+      "physics_frames": 227,
+      "exact_queries": 8,
+      "budget_transitions": 16,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.08721,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-11/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 212.185735
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 12,
+      "case": "post_contact",
+      "profile": "both",
+      "geometry": false,
+      "motion": true,
+      "timing": true,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "normal_check",
+      "target": "red",
+      "required_gate_credits": 5,
+      "outcome": "credited",
+      "duration_s": 4.033333333333529,
+      "first_new_gate_s": 0.8166666666667073,
+      "first_new_target_input_s": 0.3,
+      "first_gate_preceded_new_target_input": false,
+      "target_deltas": {
+        "gates": 5,
+        "rescues": 0,
+        "offroad_s": 0.0,
+        "distance_m": 40.159845459905796
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 5,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 40.159845459905796
+        },
+        "blue": {
+          "gates": 5,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 40.83029660784845
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 1,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 16,
+        "p50": 207.360354,
+        "p95": 241.52469624999998,
+        "max": 271.437415
+      },
+      "target_observation_to_application_ms": {
+        "n": 15,
+        "p50": 250.128316,
+        "p95": 305.32136660000003,
+        "max": 316.369251
+      },
+      "target_added_wait_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "requests": 32,
+      "target_requests": 16,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": 30.109,
+        "y": 32.3408,
+        "heading": 2.50034,
+        "speed": 11.9262,
+        "vx": -10.8154,
+        "vy": 5.026,
+        "yaw_rate": 0.48593,
+        "steering_angle": 0.09811
+      },
+      "final_target_pose": {
+        "x": -7.8429,
+        "y": 29.2888,
+        "heading": 2.81424,
+        "speed": 12.0,
+        "vx": -11.3628,
+        "vy": 3.8585,
+        "yaw_rate": -0.00339,
+        "steering_angle": 0.03255
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -2.3414,
+        "heading_error": 0.62902,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -1.4,
+            "y": 1.877,
+            "curvature": 0.01812
+          },
+          {
+            "distance": 3,
+            "x": 1.005,
+            "y": 3.671,
+            "curvature": 5e-05
+          },
+          {
+            "distance": 6,
+            "x": 3.409,
+            "y": 5.466,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 6.614,
+            "y": 7.859,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 10.621,
+            "y": 10.85,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 16.23,
+            "y": 15.037,
+            "curvature": 0.0
+          },
+          {
+            "distance": 32,
+            "x": 24.244,
+            "y": 21.019,
+            "curvature": 0.0
+          },
+          {
+            "distance": 45,
+            "x": 34.661,
+            "y": 28.796,
+            "curvature": 0.0
+          },
+          {
+            "distance": 60,
+            "x": 46.681,
+            "y": 37.769,
+            "curvature": 0.01577
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 0.7112,
+        "heading_error": 0.32736,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": 0.229,
+            "y": -0.673,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.069,
+            "y": 0.291,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 5.91,
+            "y": 1.256,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 9.698,
+            "y": 2.542,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 14.432,
+            "y": 4.15,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 21.06,
+            "y": 6.401,
+            "curvature": 0.01523
+          },
+          {
+            "distance": 32,
+            "x": 29.848,
+            "y": 11.076,
+            "curvature": 0.03336
+          },
+          {
+            "distance": 45,
+            "x": 38.143,
+            "y": 20.954,
+            "curvature": 0.03336
+          },
+          {
+            "distance": 60,
+            "x": 41.553,
+            "y": 35.4,
+            "curvature": 0.03332
+          }
+        ]
+      },
+      "physics_frames": 243,
+      "exact_queries": 32,
+      "budget_transitions": 64,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.141632,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-12/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 231.55379
+      },
+      "new_contact_details": [
+        {
+          "type": "contact",
+          "tick": 847,
+          "time": 14.116666666666667,
+          "toi_fraction": 0.9339739353931807,
+          "normal": [
+            0.9885704201763416,
+            -0.1507598234025612
+          ],
+          "closing_speed_m_s": 7.782023299268527,
+          "impulse_m_s": 4.474663397079403,
+          "onset": true,
+          "positions_at_contact": {
+            "red": [
+              10.093569425972335,
+              31.26695463027703
+            ],
+            "blue": [
+              12.070710266325017,
+              30.96543498347191
+            ]
+          },
+          "separation_correction_m": 0.0
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "case": "post_contact",
+      "profile": "timing",
+      "geometry": false,
+      "motion": false,
+      "timing": true,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "normal_check",
+      "target": "red",
+      "required_gate_credits": 5,
+      "outcome": "credited",
+      "duration_s": 4.166666666666854,
+      "first_new_gate_s": 0.8166666666667073,
+      "first_new_target_input_s": 0.3,
+      "first_gate_preceded_new_target_input": false,
+      "target_deltas": {
+        "gates": 5,
+        "rescues": 0,
+        "offroad_s": 0.0,
+        "distance_m": 41.888119426612604
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 5,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 41.888119426612604
+        },
+        "blue": {
+          "gates": 5,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 42.866038407270764
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 2,
+      "target_api_latency_ms": {
+        "n": 12,
+        "p50": 209.9533285,
+        "p95": 978.7792321,
+        "max": 999.273584
+      },
+      "target_observation_to_application_ms": {
+        "n": 11,
+        "p50": 234.037061,
+        "p95": 708.0841735,
+        "max": 1031.983784
+      },
+      "target_added_wait_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "requests": 28,
+      "target_requests": 12,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": 30.109,
+        "y": 32.3408,
+        "heading": 2.50034,
+        "speed": 11.9262,
+        "vx": -10.8154,
+        "vy": 5.026,
+        "yaw_rate": 0.48593,
+        "steering_angle": 0.09811
+      },
+      "final_target_pose": {
+        "x": -7.7651,
+        "y": 23.3128,
+        "heading": -2.61411,
+        "speed": 9.1819,
+        "vx": -7.9339,
+        "vy": -4.6218,
+        "yaw_rate": -0.53304,
+        "steering_angle": -0.11994
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -2.3414,
+        "heading_error": 0.62902,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -1.4,
+            "y": 1.877,
+            "curvature": 0.01812
+          },
+          {
+            "distance": 3,
+            "x": 1.005,
+            "y": 3.671,
+            "curvature": 5e-05
+          },
+          {
+            "distance": 6,
+            "x": 3.409,
+            "y": 5.466,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 6.614,
+            "y": 7.859,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 10.621,
+            "y": 10.85,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 16.23,
+            "y": 15.037,
+            "curvature": 0.0
+          },
+          {
+            "distance": 32,
+            "x": 24.244,
+            "y": 21.019,
+            "curvature": 0.0
+          },
+          {
+            "distance": 45,
+            "x": 34.661,
+            "y": 28.796,
+            "curvature": 0.0
+          },
+          {
+            "distance": 60,
+            "x": 46.681,
+            "y": 37.769,
+            "curvature": 0.01577
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 6.6872,
+        "heading_error": -0.52748,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.366,
+            "y": -5.778,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -0.774,
+            "y": -7.288,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 1.818,
+            "y": -8.798,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 5.275,
+            "y": -10.812,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 9.595,
+            "y": -13.329,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 15.644,
+            "y": -16.852,
+            "curvature": 0.01438
+          },
+          {
+            "distance": 32,
+            "x": 24.93,
+            "y": -20.438,
+            "curvature": 0.03337
+          },
+          {
+            "distance": 45,
+            "x": 37.827,
+            "y": -20.244,
+            "curvature": 0.03336
+          },
+          {
+            "distance": 60,
+            "x": 50.983,
+            "y": -13.371,
+            "curvature": 0.03332
+          }
+        ]
+      },
+      "physics_frames": 251,
+      "exact_queries": 28,
+      "budget_transitions": 56,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.22856,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-13/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 247.52209
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 14,
+      "case": "post_contact",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "normal_check",
+      "target": "red",
+      "required_gate_credits": 5,
+      "outcome": "credited",
+      "duration_s": 3.666666666666849,
+      "first_new_gate_s": 0.6333333333333648,
+      "first_new_target_input_s": 0.31666666666666665,
+      "first_gate_preceded_new_target_input": false,
+      "target_deltas": {
+        "gates": 5,
+        "rescues": 0,
+        "offroad_s": 0.0,
+        "distance_m": 39.50284067489207
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 5,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 39.50284067489207
+        },
+        "blue": {
+          "gates": 4,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 38.21898338036749
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 2,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 16,
+        "p50": 192.6787825,
+        "p95": 254.465054,
+        "max": 270.880997
+      },
+      "target_observation_to_application_ms": {
+        "n": 15,
+        "p50": 233.306713,
+        "p95": 305.8082449,
+        "max": 318.522977
+      },
+      "target_added_wait_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "requests": 32,
+      "target_requests": 16,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": 30.109,
+        "y": 32.3408,
+        "heading": 2.50034,
+        "speed": 11.9262,
+        "vx": -10.8154,
+        "vy": 5.026,
+        "yaw_rate": 0.48593,
+        "steering_angle": 0.09811
+      },
+      "final_target_pose": {
+        "x": -7.8829,
+        "y": 29.4712,
+        "heading": 2.99038,
+        "speed": 12.0,
+        "vx": -11.8631,
+        "vy": 1.8077,
+        "yaw_rate": -0.40048,
+        "steering_angle": -0.06
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -2.3414,
+        "heading_error": 0.62902,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -1.4,
+            "y": 1.877,
+            "curvature": 0.01812
+          },
+          {
+            "distance": 3,
+            "x": 1.005,
+            "y": 3.671,
+            "curvature": 5e-05
+          },
+          {
+            "distance": 6,
+            "x": 3.409,
+            "y": 5.466,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 6.614,
+            "y": 7.859,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 10.621,
+            "y": 10.85,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 16.23,
+            "y": 15.037,
+            "curvature": 0.0
+          },
+          {
+            "distance": 32,
+            "x": 24.244,
+            "y": 21.019,
+            "curvature": 0.0
+          },
+          {
+            "distance": 45,
+            "x": 34.661,
+            "y": 28.796,
+            "curvature": 0.0
+          },
+          {
+            "distance": 60,
+            "x": 46.681,
+            "y": 37.769,
+            "curvature": 0.01577
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 0.5288,
+        "heading_error": 0.15122,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": 0.08,
+            "y": -0.523,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.045,
+            "y": -0.071,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 6.011,
+            "y": 0.381,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 9.966,
+            "y": 0.984,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 14.908,
+            "y": 1.737,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 21.829,
+            "y": 2.792,
+            "curvature": 0.01566
+          },
+          {
+            "distance": 32,
+            "x": 31.295,
+            "y": 5.868,
+            "curvature": 0.03336
+          },
+          {
+            "distance": 45,
+            "x": 41.182,
+            "y": 14.152,
+            "curvature": 0.03336
+          },
+          {
+            "distance": 60,
+            "x": 47.052,
+            "y": 27.785,
+            "curvature": 0.03332
+          }
+        ]
+      },
+      "physics_frames": 221,
+      "exact_queries": 32,
+      "budget_transitions": 64,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.120857,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-14/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_accelerate",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "accelerate"
+        },
+        "latency_ms": 248.993073
+      },
+      "new_contact_details": [
+        {
+          "type": "contact",
+          "tick": 789,
+          "time": 13.15,
+          "toi_fraction": 0.25642366902881997,
+          "normal": [
+            0.9737827715795426,
+            -0.22747991949810484
+          ],
+          "closing_speed_m_s": 3.5877681472433816,
+          "impulse_m_s": 2.062966684664944,
+          "onset": true,
+          "positions_at_contact": {
+            "red": [
+              18.892947040983827,
+              35.09133661468313
+            ],
+            "blue": [
+              20.840512584142914,
+              34.63637677568692
+            ]
+          },
+          "separation_correction_m": 0.0
+        },
+        {
+          "type": "contact",
+          "tick": 862,
+          "time": 14.366666666666667,
+          "toi_fraction": 0.6850877096289172,
+          "normal": [
+            0.870122730676664,
+            -0.49283509773532336
+          ],
+          "closing_speed_m_s": 3.6022065957375426,
+          "impulse_m_s": 2.0712687925490867,
+          "onset": true,
+          "positions_at_contact": {
+            "red": [
+              7.4389951328183175,
+              30.900107137110908
+            ],
+            "blue": [
+              9.179240594171645,
+              29.91443694164026
+            ]
+          },
+          "separation_correction_m": 0.0
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "case": "post_contact",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 0,
+      "role": "normal_check",
+      "target": "red",
+      "required_gate_credits": 5,
+      "outcome": "credited",
+      "duration_s": 3.533333333333509,
+      "first_new_gate_s": 0.6333333333333648,
+      "first_new_target_input_s": 0.2833333333333333,
+      "first_gate_preceded_new_target_input": false,
+      "target_deltas": {
+        "gates": 5,
+        "rescues": 0,
+        "offroad_s": 0.0,
+        "distance_m": 39.56589079598149
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 5,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 39.56589079598149
+        },
+        "blue": {
+          "gates": 4,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 36.27131065822164
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 15,
+        "p50": 199.707549,
+        "p95": 226.76910709999999,
+        "max": 232.693863
+      },
+      "target_observation_to_application_ms": {
+        "n": 14,
+        "p50": 249.8215095,
+        "p95": 262.81099315,
+        "max": 284.899377
+      },
+      "target_added_wait_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "requests": 29,
+      "target_requests": 15,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": 30.109,
+        "y": 32.3408,
+        "heading": 2.50034,
+        "speed": 11.9262,
+        "vx": -10.8154,
+        "vy": 5.026,
+        "yaw_rate": 0.48593,
+        "steering_angle": 0.09811
+      },
+      "final_target_pose": {
+        "x": -7.8757,
+        "y": 28.5828,
+        "heading": 3.09292,
+        "speed": 12.0,
+        "vx": -11.9858,
+        "vy": 0.5838,
+        "yaw_rate": -0.40044,
+        "steering_angle": -0.06
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -2.3414,
+        "heading_error": 0.62902,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -1.4,
+            "y": 1.877,
+            "curvature": 0.01812
+          },
+          {
+            "distance": 3,
+            "x": 1.005,
+            "y": 3.671,
+            "curvature": 5e-05
+          },
+          {
+            "distance": 6,
+            "x": 3.409,
+            "y": 5.466,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 6.614,
+            "y": 7.859,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 10.621,
+            "y": 10.85,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 16.23,
+            "y": 15.037,
+            "curvature": 0.0
+          },
+          {
+            "distance": 32,
+            "x": 24.244,
+            "y": 21.019,
+            "curvature": 0.0
+          },
+          {
+            "distance": 45,
+            "x": 34.661,
+            "y": 28.796,
+            "curvature": 0.0
+          },
+          {
+            "distance": 60,
+            "x": 46.681,
+            "y": 37.769,
+            "curvature": 0.01577
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 1.4172,
+        "heading_error": 0.04867,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": 0.069,
+            "y": -1.416,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.065,
+            "y": -1.27,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 6.062,
+            "y": -1.124,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 10.057,
+            "y": -0.929,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 15.051,
+            "y": -0.686,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 22.043,
+            "y": -0.345,
+            "curvature": 0.01559
+          },
+          {
+            "distance": 32,
+            "x": 31.775,
+            "y": 1.744,
+            "curvature": 0.03336
+          },
+          {
+            "distance": 45,
+            "x": 42.46,
+            "y": 8.97,
+            "curvature": 0.03336
+          },
+          {
+            "distance": 60,
+            "x": 49.698,
+            "y": 21.929,
+            "curvature": 0.03332
+          }
+        ]
+      },
+      "physics_frames": 213,
+      "exact_queries": 29,
+      "budget_transitions": 58,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 1.911643,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-15/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_accelerate",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "accelerate"
+        },
+        "latency_ms": 232.693863
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 16,
+      "case": "outward_drift",
+      "profile": "both",
+      "geometry": false,
+      "motion": true,
+      "timing": true,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary",
+      "target": "blue",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 3.7666666666666537,
+      "first_new_gate_s": 0.5666666666666647,
+      "first_new_target_input_s": 1.2666666666666666,
+      "first_gate_preceded_new_target_input": true,
+      "target_deltas": {
+        "gates": 1,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 14.972082985506912
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 2,
+          "rescues": 0,
+          "offroad_s": 2.249999999999997,
+          "distance_m": 26.97981445640714
+        },
+        "blue": {
+          "gates": 1,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 14.972082985506912
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 4,
+        "p50": 202.5998555,
+        "p95": 206.55472325,
+        "max": 206.881526
+      },
+      "target_observation_to_application_ms": {
+        "n": 3,
+        "p50": 1234.432038,
+        "p95": 1264.4193801,
+        "max": 1267.751307
+      },
+      "target_added_wait_ms": {
+        "n": 4,
+        "p50": 1000.6186215,
+        "p95": 1000.983486,
+        "max": 1001.016366
+      },
+      "requests": 8,
+      "target_requests": 4,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": -18.0599,
+        "y": -24.7141,
+        "heading": 2.36671,
+        "speed": 12.0,
+        "vx": -8.574,
+        "vy": 8.3956,
+        "yaw_rate": -0.06276,
+        "steering_angle": 0.02562
+      },
+      "final_target_pose": {
+        "x": -24.0533,
+        "y": -30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -5.2859,
+        "heading_error": 0.77488,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.698,
+            "y": 3.777,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -1.555,
+            "y": 5.876,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 0.589,
+            "y": 7.975,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 3.447,
+            "y": 10.773,
+            "curvature": -0.00154
+          },
+          {
+            "distance": 15,
+            "x": 7.129,
+            "y": 14.151,
+            "curvature": -0.03331
+          },
+          {
+            "distance": 22,
+            "x": 13.059,
+            "y": 17.84,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 32,
+            "x": 22.644,
+            "y": 20.52,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.462,
+            "y": 19.099,
+            "curvature": -0.03337
+          },
+          {
+            "distance": 60,
+            "x": 47.901,
+            "y": 11.0,
+            "curvature": -0.03338
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": -5e-05
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.001,
+            "curvature": -0.01753
+          },
+          {
+            "distance": 10,
+            "x": 9.987,
+            "y": -0.278,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 15,
+            "x": 14.862,
+            "y": -1.362,
+            "curvature": -0.0334
+          },
+          {
+            "distance": 22,
+            "x": 21.244,
+            "y": -4.198,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 32,
+            "x": 28.843,
+            "y": -10.625,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 45,
+            "x": 34.863,
+            "y": -22.031,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 60,
+            "x": 35.144,
+            "y": -36.871,
+            "curvature": -0.03332
+          }
+        ]
+      },
+      "physics_frames": 227,
+      "exact_queries": 8,
+      "budget_transitions": 16,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.279239,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-16/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 206.881526
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 17,
+      "case": "post_contact",
+      "profile": "timing",
+      "geometry": false,
+      "motion": false,
+      "timing": true,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary",
+      "target": "red",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 8.316666666666618,
+      "first_new_gate_s": 0.6333333333333648,
+      "first_new_target_input_s": 1.4333333333333333,
+      "first_gate_preceded_new_target_input": true,
+      "target_deltas": {
+        "gates": 3,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 41.72739912218006
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 3,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 41.72739912218006
+        },
+        "blue": {
+          "gates": 7,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 63.28879517194716
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 2,
+      "target_api_latency_ms": {
+        "n": 7,
+        "p50": 191.19932,
+        "p95": 325.2595491999999,
+        "max": 375.860134
+      },
+      "target_observation_to_application_ms": {
+        "n": 6,
+        "p50": 1233.2722305,
+        "p95": 1383.7308465,
+        "max": 1433.711906
+      },
+      "target_added_wait_ms": {
+        "n": 7,
+        "p50": 1000.990701,
+        "p95": 1001.9217774,
+        "max": 1001.960934
+      },
+      "requests": 14,
+      "target_requests": 7,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": 30.109,
+        "y": 32.3408,
+        "heading": 2.50034,
+        "speed": 11.9262,
+        "vx": -10.8154,
+        "vy": 5.026,
+        "yaw_rate": 0.48593,
+        "steering_angle": 0.09811
+      },
+      "final_target_pose": {
+        "x": 6.431,
+        "y": 30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -2.3414,
+        "heading_error": 0.62902,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -1.4,
+            "y": 1.877,
+            "curvature": 0.01812
+          },
+          {
+            "distance": 3,
+            "x": 1.005,
+            "y": 3.671,
+            "curvature": 5e-05
+          },
+          {
+            "distance": 6,
+            "x": 3.409,
+            "y": 5.466,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 6.614,
+            "y": 7.859,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 10.621,
+            "y": 10.85,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 16.23,
+            "y": 15.037,
+            "curvature": 0.0
+          },
+          {
+            "distance": 32,
+            "x": 24.244,
+            "y": 21.019,
+            "curvature": 0.0
+          },
+          {
+            "distance": 45,
+            "x": 34.661,
+            "y": 28.796,
+            "curvature": 0.0
+          },
+          {
+            "distance": 60,
+            "x": 46.681,
+            "y": 37.769,
+            "curvature": 0.01577
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": -0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 10.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 15.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 22.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 32,
+            "x": 32.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 45,
+            "x": 44.885,
+            "y": 1.216,
+            "curvature": 0.03342
+          },
+          {
+            "distance": 60,
+            "x": 57.646,
+            "y": 8.797,
+            "curvature": 0.03333
+          }
+        ]
+      },
+      "physics_frames": 500,
+      "exact_queries": 14,
+      "budget_transitions": 28,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.651403,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-17/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_accelerate",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "accelerate"
+        },
+        "latency_ms": 375.860134
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 18,
+      "case": "outward_drift",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 1,
+      "role": "primary",
+      "target": "blue",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 4.683333333333318,
+      "first_new_gate_s": 1.0666666666666633,
+      "first_new_target_input_s": 0.31666666666666665,
+      "first_gate_preceded_new_target_input": false,
+      "target_deltas": {
+        "gates": 1,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 16.995458374269862
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 7,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 53.8442467166487
+        },
+        "blue": {
+          "gates": 1,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 16.995458374269862
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 18,
+        "p50": 215.4703215,
+        "p95": 306.74396344999985,
+        "max": 402.751874
+      },
+      "target_observation_to_application_ms": {
+        "n": 17,
+        "p50": 250.130134,
+        "p95": 340.94746059999994,
+        "max": 433.210923
+      },
+      "target_added_wait_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "requests": 36,
+      "target_requests": 18,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": -18.0599,
+        "y": -24.7141,
+        "heading": 2.36671,
+        "speed": 12.0,
+        "vx": -8.574,
+        "vy": 8.3956,
+        "yaw_rate": -0.06276,
+        "steering_angle": 0.02562
+      },
+      "final_target_pose": {
+        "x": -25.3548,
+        "y": -30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -5.2859,
+        "heading_error": 0.77488,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.698,
+            "y": 3.777,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -1.555,
+            "y": 5.876,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 0.589,
+            "y": 7.975,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 3.447,
+            "y": 10.773,
+            "curvature": -0.00154
+          },
+          {
+            "distance": 15,
+            "x": 7.129,
+            "y": 14.151,
+            "curvature": -0.03331
+          },
+          {
+            "distance": 22,
+            "x": 13.059,
+            "y": 17.84,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 32,
+            "x": 22.644,
+            "y": 20.52,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.462,
+            "y": 19.099,
+            "curvature": -0.03337
+          },
+          {
+            "distance": 60,
+            "x": 47.901,
+            "y": 11.0,
+            "curvature": -0.03338
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": -0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": -0.00278
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.031,
+            "curvature": -0.02999
+          },
+          {
+            "distance": 10,
+            "x": 9.971,
+            "y": -0.482,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 15,
+            "x": 14.794,
+            "y": -1.775,
+            "curvature": -0.03334
+          },
+          {
+            "distance": 22,
+            "x": 21.046,
+            "y": -4.887,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 32,
+            "x": 28.36,
+            "y": -11.636,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 45,
+            "x": 33.879,
+            "y": -23.293,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 60,
+            "x": 33.518,
+            "y": -38.131,
+            "curvature": -0.03332
+          }
+        ]
+      },
+      "physics_frames": 282,
+      "exact_queries": 36,
+      "budget_transitions": 72,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.104593,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-18/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 249.330037
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 19,
+      "case": "outward_drift",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary",
+      "target": "blue",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 3.7666666666666537,
+      "first_new_gate_s": 0.5666666666666647,
+      "first_new_target_input_s": 1.3166666666666667,
+      "first_gate_preceded_new_target_input": true,
+      "target_deltas": {
+        "gates": 1,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 15.307405280008286
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 2,
+          "rescues": 0,
+          "offroad_s": 2.249999999999997,
+          "distance_m": 25.25023487133472
+        },
+        "blue": {
+          "gates": 1,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 15.307405280008286
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 3,
+        "p50": 236.730449,
+        "p95": 250.1229089,
+        "max": 251.61096
+      },
+      "target_observation_to_application_ms": {
+        "n": 2,
+        "p50": 1292.2100115,
+        "p95": 1315.1345644500002,
+        "max": 1317.681737
+      },
+      "target_added_wait_ms": {
+        "n": 3,
+        "p50": 1001.141445,
+        "p95": 1001.8254909,
+        "max": 1001.901496
+      },
+      "requests": 6,
+      "target_requests": 3,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": -18.0599,
+        "y": -24.7141,
+        "heading": 2.36671,
+        "speed": 12.0,
+        "vx": -8.574,
+        "vy": 8.3956,
+        "yaw_rate": -0.06276,
+        "steering_angle": 0.02562
+      },
+      "final_target_pose": {
+        "x": -24.0533,
+        "y": -30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -5.2859,
+        "heading_error": 0.77488,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.698,
+            "y": 3.777,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -1.555,
+            "y": 5.876,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 0.589,
+            "y": 7.975,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 3.447,
+            "y": 10.773,
+            "curvature": -0.00154
+          },
+          {
+            "distance": 15,
+            "x": 7.129,
+            "y": 14.151,
+            "curvature": -0.03331
+          },
+          {
+            "distance": 22,
+            "x": 13.059,
+            "y": 17.84,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 32,
+            "x": 22.644,
+            "y": 20.52,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.462,
+            "y": 19.099,
+            "curvature": -0.03337
+          },
+          {
+            "distance": 60,
+            "x": 47.901,
+            "y": 11.0,
+            "curvature": -0.03338
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": -5e-05
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.001,
+            "curvature": -0.01753
+          },
+          {
+            "distance": 10,
+            "x": 9.987,
+            "y": -0.278,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 15,
+            "x": 14.862,
+            "y": -1.362,
+            "curvature": -0.0334
+          },
+          {
+            "distance": 22,
+            "x": 21.244,
+            "y": -4.198,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 32,
+            "x": 28.843,
+            "y": -10.625,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 45,
+            "x": 34.863,
+            "y": -22.031,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 60,
+            "x": 35.144,
+            "y": -36.871,
+            "curvature": -0.03332
+          }
+        ]
+      },
+      "physics_frames": 227,
+      "exact_queries": 6,
+      "budget_transitions": 12,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.123723,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-19/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 251.61096
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 20,
+      "case": "post_contact",
+      "profile": "both",
+      "geometry": false,
+      "motion": true,
+      "timing": true,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary",
+      "target": "red",
+      "required_gate_credits": 5,
+      "outcome": "credited",
+      "duration_s": 4.9333333333334775,
+      "first_new_gate_s": 0.6333333333333648,
+      "first_new_target_input_s": 1.3333333333333333,
+      "first_gate_preceded_new_target_input": true,
+      "target_deltas": {
+        "gates": 5,
+        "rescues": 0,
+        "offroad_s": 0.0,
+        "distance_m": 40.489443166762754
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 5,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 40.489443166762754
+        },
+        "blue": {
+          "gates": 4,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 39.86865990553338
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 1,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 4,
+        "p50": 232.747159,
+        "p95": 272.09864095,
+        "max": 277.918135
+      },
+      "target_observation_to_application_ms": {
+        "n": 3,
+        "p50": 1283.967584,
+        "p95": 1328.5350790999998,
+        "max": 1333.487023
+      },
+      "target_added_wait_ms": {
+        "n": 4,
+        "p50": 1000.3438235,
+        "p95": 1000.7401219000001,
+        "max": 1000.807534
+      },
+      "requests": 8,
+      "target_requests": 4,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": 30.109,
+        "y": 32.3408,
+        "heading": 2.50034,
+        "speed": 11.9262,
+        "vx": -10.8154,
+        "vy": 5.026,
+        "yaw_rate": 0.48593,
+        "steering_angle": 0.09811
+      },
+      "final_target_pose": {
+        "x": -7.7856,
+        "y": 25.7348,
+        "heading": 3.11768,
+        "speed": 12.0,
+        "vx": -11.9966,
+        "vy": 0.2869,
+        "yaw_rate": -0.40048,
+        "steering_angle": -0.06
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -2.3414,
+        "heading_error": 0.62902,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -1.4,
+            "y": 1.877,
+            "curvature": 0.01812
+          },
+          {
+            "distance": 3,
+            "x": 1.005,
+            "y": 3.671,
+            "curvature": 5e-05
+          },
+          {
+            "distance": 6,
+            "x": 3.409,
+            "y": 5.466,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 6.614,
+            "y": 7.859,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 10.621,
+            "y": 10.85,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 16.23,
+            "y": 15.037,
+            "curvature": 0.0
+          },
+          {
+            "distance": 32,
+            "x": 24.244,
+            "y": 21.019,
+            "curvature": 0.0
+          },
+          {
+            "distance": 45,
+            "x": 34.661,
+            "y": 28.796,
+            "curvature": 0.0
+          },
+          {
+            "distance": 60,
+            "x": 46.681,
+            "y": 37.769,
+            "curvature": 0.01577
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 4.2652,
+        "heading_error": 0.02391,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": 0.102,
+            "y": -4.264,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.101,
+            "y": -4.192,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 6.1,
+            "y": -4.121,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 10.099,
+            "y": -4.025,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 15.098,
+            "y": -3.905,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 22.096,
+            "y": -3.737,
+            "curvature": 0.0146
+          },
+          {
+            "distance": 32,
+            "x": 31.883,
+            "y": -1.921,
+            "curvature": 0.03337
+          },
+          {
+            "distance": 45,
+            "x": 42.763,
+            "y": 5.008,
+            "curvature": 0.03336
+          },
+          {
+            "distance": 60,
+            "x": 50.359,
+            "y": 17.76,
+            "curvature": 0.03332
+          }
+        ]
+      },
+      "physics_frames": 297,
+      "exact_queries": 8,
+      "budget_transitions": 16,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.137996,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-20/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 277.918135
+      },
+      "new_contact_details": [
+        {
+          "type": "contact",
+          "tick": 945,
+          "time": 15.75,
+          "toi_fraction": 0.7014535146428813,
+          "normal": [
+            0.6115673717977301,
+            0.7911923595134225
+          ],
+          "closing_speed_m_s": 0.42342270124423004,
+          "impulse_m_s": 0.24346805321543225,
+          "onset": true,
+          "positions_at_contact": {
+            "red": [
+              6.030828300251994,
+              28.741771309963973
+            ],
+            "blue": [
+              7.253963043847453,
+              30.324156028990817
+            ]
+          },
+          "separation_correction_m": 0.00032727303734336743
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "case": "outward_drift",
+      "profile": "timing",
+      "geometry": false,
+      "motion": false,
+      "timing": true,
+      "added_delay_s": 0.0,
+      "repeat": 1,
+      "role": "primary",
+      "target": "blue",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 4.66666666666665,
+      "first_new_gate_s": 1.08333333333333,
+      "first_new_target_input_s": 0.3,
+      "first_gate_preceded_new_target_input": false,
+      "target_deltas": {
+        "gates": 1,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 15.485799538896227
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 7,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 50.930973716902585
+        },
+        "blue": {
+          "gates": 1,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 15.485799538896227
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 19,
+        "p50": 220.443359,
+        "p95": 230.02986919999998,
+        "max": 242.794787
+      },
+      "target_observation_to_application_ms": {
+        "n": 18,
+        "p50": 249.625311,
+        "p95": 271.8119599,
+        "max": 300.342147
+      },
+      "target_added_wait_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "requests": 38,
+      "target_requests": 19,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": -18.0599,
+        "y": -24.7141,
+        "heading": 2.36671,
+        "speed": 12.0,
+        "vx": -8.574,
+        "vy": 8.3956,
+        "yaw_rate": -0.06276,
+        "steering_angle": 0.02562
+      },
+      "final_target_pose": {
+        "x": -25.4822,
+        "y": -30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -5.2859,
+        "heading_error": 0.77488,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.698,
+            "y": 3.777,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -1.555,
+            "y": 5.876,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 0.589,
+            "y": 7.975,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 3.447,
+            "y": 10.773,
+            "curvature": -0.00154
+          },
+          {
+            "distance": 15,
+            "x": 7.129,
+            "y": 14.151,
+            "curvature": -0.03331
+          },
+          {
+            "distance": 22,
+            "x": 13.059,
+            "y": 17.84,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 32,
+            "x": 22.644,
+            "y": 20.52,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.462,
+            "y": 19.099,
+            "curvature": -0.03337
+          },
+          {
+            "distance": 60,
+            "x": 47.901,
+            "y": 11.0,
+            "curvature": -0.03338
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": -0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": -0.00331
+          },
+          {
+            "distance": 6,
+            "x": 5.999,
+            "y": -0.04,
+            "curvature": -0.03035
+          },
+          {
+            "distance": 10,
+            "x": 9.969,
+            "y": -0.506,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 15,
+            "x": 14.787,
+            "y": -1.819,
+            "curvature": -0.03334
+          },
+          {
+            "distance": 22,
+            "x": 21.025,
+            "y": -4.957,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 32,
+            "x": 28.311,
+            "y": -11.737,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 45,
+            "x": 33.78,
+            "y": -23.417,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 60,
+            "x": 33.358,
+            "y": -38.254,
+            "curvature": -0.03332
+          }
+        ]
+      },
+      "physics_frames": 281,
+      "exact_queries": 38,
+      "budget_transitions": 76,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.111672,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-21/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 242.794787
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 22,
+      "case": "outward_drift",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary",
+      "target": "blue",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 3.7666666666666537,
+      "first_new_gate_s": 0.5666666666666647,
+      "first_new_target_input_s": 1.3,
+      "first_gate_preceded_new_target_input": true,
+      "target_deltas": {
+        "gates": 1,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 15.196749623747895
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 2,
+          "rescues": 0,
+          "offroad_s": 2.249999999999997,
+          "distance_m": 27.421094207249908
+        },
+        "blue": {
+          "gates": 1,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 15.196749623747895
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 3,
+        "p50": 224.605827,
+        "p95": 233.785548,
+        "max": 234.805517
+      },
+      "target_observation_to_application_ms": {
+        "n": 2,
+        "p50": 1283.539098,
+        "p95": 1299.3786849,
+        "max": 1301.138639
+      },
+      "target_added_wait_ms": {
+        "n": 3,
+        "p50": 1000.683369,
+        "p95": 1000.9692648,
+        "max": 1001.001031
+      },
+      "requests": 6,
+      "target_requests": 3,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": -18.0599,
+        "y": -24.7141,
+        "heading": 2.36671,
+        "speed": 12.0,
+        "vx": -8.574,
+        "vy": 8.3956,
+        "yaw_rate": -0.06276,
+        "steering_angle": 0.02562
+      },
+      "final_target_pose": {
+        "x": -24.0533,
+        "y": -30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -5.2859,
+        "heading_error": 0.77488,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.698,
+            "y": 3.777,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -1.555,
+            "y": 5.876,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 0.589,
+            "y": 7.975,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 3.447,
+            "y": 10.773,
+            "curvature": -0.00154
+          },
+          {
+            "distance": 15,
+            "x": 7.129,
+            "y": 14.151,
+            "curvature": -0.03331
+          },
+          {
+            "distance": 22,
+            "x": 13.059,
+            "y": 17.84,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 32,
+            "x": 22.644,
+            "y": 20.52,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.462,
+            "y": 19.099,
+            "curvature": -0.03337
+          },
+          {
+            "distance": 60,
+            "x": 47.901,
+            "y": 11.0,
+            "curvature": -0.03338
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": -5e-05
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.001,
+            "curvature": -0.01753
+          },
+          {
+            "distance": 10,
+            "x": 9.987,
+            "y": -0.278,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 15,
+            "x": 14.862,
+            "y": -1.362,
+            "curvature": -0.0334
+          },
+          {
+            "distance": 22,
+            "x": 21.244,
+            "y": -4.198,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 32,
+            "x": 28.843,
+            "y": -10.625,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 45,
+            "x": 34.863,
+            "y": -22.031,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 60,
+            "x": 35.144,
+            "y": -36.871,
+            "curvature": -0.03332
+          }
+        ]
+      },
+      "physics_frames": 227,
+      "exact_queries": 6,
+      "budget_transitions": 12,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.509484,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-22/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 234.805517
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 23,
+      "case": "post_contact",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary",
+      "target": "red",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 5.916666666666755,
+      "first_new_gate_s": 0.6333333333333648,
+      "first_new_target_input_s": 1.3,
+      "first_gate_preceded_new_target_input": true,
+      "target_deltas": {
+        "gates": 3,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 43.21442027099911
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 3,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 43.21442027099911
+        },
+        "blue": {
+          "gates": 5,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 46.05782027913165
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 2,
+      "target_api_latency_ms": {
+        "n": 5,
+        "p50": 227.67837,
+        "p95": 241.9330832,
+        "max": 242.246732
+      },
+      "target_observation_to_application_ms": {
+        "n": 4,
+        "p50": 1274.9735395,
+        "p95": 1297.6948787,
+        "max": 1300.359851
+      },
+      "target_added_wait_ms": {
+        "n": 5,
+        "p50": 1000.684287,
+        "p95": 1001.6373114,
+        "max": 1001.866716
+      },
+      "requests": 10,
+      "target_requests": 5,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": 30.109,
+        "y": 32.3408,
+        "heading": 2.50034,
+        "speed": 11.9262,
+        "vx": -10.8154,
+        "vy": 5.026,
+        "yaw_rate": 0.48593,
+        "steering_angle": 0.09811
+      },
+      "final_target_pose": {
+        "x": 6.2379,
+        "y": 30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -2.3414,
+        "heading_error": 0.62902,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -1.4,
+            "y": 1.877,
+            "curvature": 0.01812
+          },
+          {
+            "distance": 3,
+            "x": 1.005,
+            "y": 3.671,
+            "curvature": 5e-05
+          },
+          {
+            "distance": 6,
+            "x": 3.409,
+            "y": 5.466,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 6.614,
+            "y": 7.859,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 10.621,
+            "y": 10.85,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 16.23,
+            "y": 15.037,
+            "curvature": 0.0
+          },
+          {
+            "distance": 32,
+            "x": 24.244,
+            "y": 21.019,
+            "curvature": 0.0
+          },
+          {
+            "distance": 45,
+            "x": 34.661,
+            "y": 28.796,
+            "curvature": 0.0
+          },
+          {
+            "distance": 60,
+            "x": 46.681,
+            "y": 37.769,
+            "curvature": 0.01577
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": -0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 10.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 15.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 22.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 32,
+            "x": 32.0,
+            "y": -0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 45,
+            "x": 44.876,
+            "y": 1.274,
+            "curvature": 0.03341
+          },
+          {
+            "distance": 60,
+            "x": 57.589,
+            "y": 8.934,
+            "curvature": 0.03333
+          }
+        ]
+      },
+      "physics_frames": 356,
+      "exact_queries": 10,
+      "budget_transitions": 20,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 1.981456,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-23/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_accelerate",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "accelerate"
+        },
+        "latency_ms": 242.246732
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 24,
+      "case": "outward_drift",
+      "profile": "both",
+      "geometry": false,
+      "motion": true,
+      "timing": true,
+      "added_delay_s": 0.0,
+      "repeat": 1,
+      "role": "primary",
+      "target": "blue",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 4.033333333333319,
+      "first_new_gate_s": 0.699999999999998,
+      "first_new_target_input_s": 0.2833333333333333,
+      "first_gate_preceded_new_target_input": false,
+      "target_deltas": {
+        "gates": 1,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 16.140641940937197
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 6,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 43.673688207336156
+        },
+        "blue": {
+          "gates": 1,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 16.140641940937197
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 17,
+        "p50": 213.553244,
+        "p95": 226.5830476,
+        "max": 233.796882
+      },
+      "target_observation_to_application_ms": {
+        "n": 16,
+        "p50": 249.4479445,
+        "p95": 270.22648599999997,
+        "max": 284.118244
+      },
+      "target_added_wait_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "requests": 34,
+      "target_requests": 17,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": -18.0599,
+        "y": -24.7141,
+        "heading": 2.36671,
+        "speed": 12.0,
+        "vx": -8.574,
+        "vy": 8.3956,
+        "yaw_rate": -0.06276,
+        "steering_angle": 0.02562
+      },
+      "final_target_pose": {
+        "x": -25.1874,
+        "y": -30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -5.2859,
+        "heading_error": 0.77488,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.698,
+            "y": 3.777,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -1.555,
+            "y": 5.876,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 0.589,
+            "y": 7.975,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 3.447,
+            "y": 10.773,
+            "curvature": -0.00154
+          },
+          {
+            "distance": 15,
+            "x": 7.129,
+            "y": 14.151,
+            "curvature": -0.03331
+          },
+          {
+            "distance": 22,
+            "x": 13.059,
+            "y": 17.84,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 32,
+            "x": 22.644,
+            "y": 20.52,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.462,
+            "y": 19.099,
+            "curvature": -0.03337
+          },
+          {
+            "distance": 60,
+            "x": 47.901,
+            "y": 11.0,
+            "curvature": -0.03338
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": -0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": -0.00208
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.026,
+            "curvature": -0.02854
+          },
+          {
+            "distance": 10,
+            "x": 9.974,
+            "y": -0.452,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 15,
+            "x": 14.804,
+            "y": -1.719,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 22,
+            "x": 21.074,
+            "y": -4.794,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 32,
+            "x": 28.425,
+            "y": -11.504,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 45,
+            "x": 34.01,
+            "y": -23.129,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 60,
+            "x": 33.729,
+            "y": -37.969,
+            "curvature": -0.03332
+          }
+        ]
+      },
+      "physics_frames": 243,
+      "exact_queries": 34,
+      "budget_transitions": 68,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.056032,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-24/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 224.779589
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 25,
+      "case": "outward_drift",
+      "profile": "timing",
+      "geometry": false,
+      "motion": false,
+      "timing": true,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary",
+      "target": "blue",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 3.7666666666666537,
+      "first_new_gate_s": 0.5666666666666647,
+      "first_new_target_input_s": 1.3,
+      "first_gate_preceded_new_target_input": true,
+      "target_deltas": {
+        "gates": 1,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 15.196749623747895
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 2,
+          "rescues": 0,
+          "offroad_s": 2.249999999999997,
+          "distance_m": 27.33471492878798
+        },
+        "blue": {
+          "gates": 1,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 15.196749623747895
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 3,
+        "p50": 227.791744,
+        "p95": 235.66728129999998,
+        "max": 236.542341
+      },
+      "target_observation_to_application_ms": {
+        "n": 2,
+        "p50": 1275.4788680000001,
+        "p95": 1299.1109429,
+        "max": 1301.736729
+      },
+      "target_added_wait_ms": {
+        "n": 3,
+        "p50": 1000.465305,
+        "p95": 1000.91121,
+        "max": 1000.960755
+      },
+      "requests": 6,
+      "target_requests": 3,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": -18.0599,
+        "y": -24.7141,
+        "heading": 2.36671,
+        "speed": 12.0,
+        "vx": -8.574,
+        "vy": 8.3956,
+        "yaw_rate": -0.06276,
+        "steering_angle": 0.02562
+      },
+      "final_target_pose": {
+        "x": -24.0533,
+        "y": -30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -5.2859,
+        "heading_error": 0.77488,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.698,
+            "y": 3.777,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -1.555,
+            "y": 5.876,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 0.589,
+            "y": 7.975,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 3.447,
+            "y": 10.773,
+            "curvature": -0.00154
+          },
+          {
+            "distance": 15,
+            "x": 7.129,
+            "y": 14.151,
+            "curvature": -0.03331
+          },
+          {
+            "distance": 22,
+            "x": 13.059,
+            "y": 17.84,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 32,
+            "x": 22.644,
+            "y": 20.52,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.462,
+            "y": 19.099,
+            "curvature": -0.03337
+          },
+          {
+            "distance": 60,
+            "x": 47.901,
+            "y": 11.0,
+            "curvature": -0.03338
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": -5e-05
+          },
+          {
+            "distance": 6,
+            "x": 6.0,
+            "y": -0.001,
+            "curvature": -0.01753
+          },
+          {
+            "distance": 10,
+            "x": 9.987,
+            "y": -0.278,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 15,
+            "x": 14.862,
+            "y": -1.362,
+            "curvature": -0.0334
+          },
+          {
+            "distance": 22,
+            "x": 21.244,
+            "y": -4.198,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 32,
+            "x": 28.843,
+            "y": -10.625,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 45,
+            "x": 34.863,
+            "y": -22.031,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 60,
+            "x": 35.144,
+            "y": -36.871,
+            "curvature": -0.03332
+          }
+        ]
+      },
+      "physics_frames": 227,
+      "exact_queries": 6,
+      "budget_transitions": 12,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 3.601733,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-25/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 236.542341
+      },
+      "new_contact_details": []
+    },
+    {
+      "index": 26,
+      "case": "post_contact",
+      "profile": "motion",
+      "geometry": false,
+      "motion": true,
+      "timing": false,
+      "added_delay_s": 1.0,
+      "repeat": 1,
+      "role": "primary",
+      "target": "red",
+      "required_gate_credits": 5,
+      "outcome": "credited",
+      "duration_s": 4.916666666666812,
+      "first_new_gate_s": 0.6333333333333648,
+      "first_new_target_input_s": 1.3,
+      "first_gate_preceded_new_target_input": true,
+      "target_deltas": {
+        "gates": 5,
+        "rescues": 0,
+        "offroad_s": 0.0,
+        "distance_m": 40.76918723888298
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 5,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 40.76918723888298
+        },
+        "blue": {
+          "gates": 4,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 40.01152302983721
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 1,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 4,
+        "p50": 227.95110799999998,
+        "p95": 251.9335142,
+        "max": 253.86191
+      },
+      "target_observation_to_application_ms": {
+        "n": 3,
+        "p50": 1299.358189,
+        "p95": 1300.7885086000001,
+        "max": 1300.947433
+      },
+      "target_added_wait_ms": {
+        "n": 4,
+        "p50": 1000.817523,
+        "p95": 1001.180661,
+        "max": 1001.219205
+      },
+      "requests": 8,
+      "target_requests": 4,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": 30.109,
+        "y": 32.3408,
+        "heading": 2.50034,
+        "speed": 11.9262,
+        "vx": -10.8154,
+        "vy": 5.026,
+        "yaw_rate": 0.48593,
+        "steering_angle": 0.09811
+      },
+      "final_target_pose": {
+        "x": -7.7557,
+        "y": 34.051,
+        "heading": 2.35005,
+        "speed": 12.0,
+        "vx": -8.433,
+        "vy": 8.5373,
+        "yaw_rate": -0.80386,
+        "steering_angle": -0.12
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -2.3414,
+        "heading_error": 0.62902,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -1.4,
+            "y": 1.877,
+            "curvature": 0.01812
+          },
+          {
+            "distance": 3,
+            "x": 1.005,
+            "y": 3.671,
+            "curvature": 5e-05
+          },
+          {
+            "distance": 6,
+            "x": 3.409,
+            "y": 5.466,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 6.614,
+            "y": 7.859,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 10.621,
+            "y": 10.85,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 16.23,
+            "y": 15.037,
+            "curvature": 0.0
+          },
+          {
+            "distance": 32,
+            "x": 24.244,
+            "y": 21.019,
+            "curvature": 0.0
+          },
+          {
+            "distance": 45,
+            "x": 34.661,
+            "y": 28.796,
+            "curvature": 0.0
+          },
+          {
+            "distance": 60,
+            "x": 46.681,
+            "y": 37.769,
+            "curvature": 0.01577
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": -4.051,
+        "heading_error": 0.79154,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -2.882,
+            "y": 2.847,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -0.774,
+            "y": 4.981,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 1.334,
+            "y": 7.115,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 4.145,
+            "y": 9.961,
+            "curvature": 0.0
+          },
+          {
+            "distance": 15,
+            "x": 7.659,
+            "y": 13.518,
+            "curvature": 0.0
+          },
+          {
+            "distance": 22,
+            "x": 12.578,
+            "y": 18.499,
+            "curvature": 0.01427
+          },
+          {
+            "distance": 32,
+            "x": 18.367,
+            "y": 26.597,
+            "curvature": 0.03337
+          },
+          {
+            "distance": 45,
+            "x": 21.396,
+            "y": 39.135,
+            "curvature": 0.03336
+          },
+          {
+            "distance": 60,
+            "x": 18.021,
+            "y": 53.589,
+            "curvature": 0.03332
+          }
+        ]
+      },
+      "physics_frames": 296,
+      "exact_queries": 8,
+      "budget_transitions": 16,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.133439,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-26/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 241.005938
+      },
+      "new_contact_details": [
+        {
+          "type": "contact",
+          "tick": 908,
+          "time": 15.133333333333333,
+          "toi_fraction": 0.4945513866659115,
+          "normal": [
+            0.46544583611471796,
+            0.8850763659953141
+          ],
+          "closing_speed_m_s": 0.4548213296165455,
+          "impulse_m_s": 0.2615222645295136,
+          "onset": true,
+          "positions_at_contact": {
+            "red": [
+              11.101630575456872,
+              31.862398002402045
+            ],
+            "blue": [
+              12.032522247686307,
+              33.63255073439267
+            ]
+          },
+          "separation_correction_m": 0.0
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "case": "outward_drift",
+      "profile": "baseline",
+      "geometry": false,
+      "motion": false,
+      "timing": false,
+      "added_delay_s": 0.0,
+      "repeat": 1,
+      "role": "primary",
+      "target": "blue",
+      "required_gate_credits": 5,
+      "outcome": "rescued",
+      "duration_s": 4.633333333333317,
+      "first_new_gate_s": 1.0999999999999965,
+      "first_new_target_input_s": 0.2833333333333333,
+      "first_gate_preceded_new_target_input": false,
+      "target_deltas": {
+        "gates": 1,
+        "rescues": 1,
+        "offroad_s": 2.9999999999999942,
+        "distance_m": 15.542421772694997
+      },
+      "all_racer_deltas": {
+        "red": {
+          "gates": 7,
+          "rescues": 0,
+          "offroad_s": 0.0,
+          "distance_m": 50.869399230422346
+        },
+        "blue": {
+          "gates": 1,
+          "rescues": 1,
+          "offroad_s": 2.9999999999999942,
+          "distance_m": 15.542421772694997
+        }
+      },
+      "first_onroad_s": 0.0,
+      "new_contacts": 0,
+      "new_lead_changes": 1,
+      "target_api_latency_ms": {
+        "n": 17,
+        "p50": 214.952956,
+        "p95": 367.980668,
+        "max": 411.617416
+      },
+      "target_observation_to_application_ms": {
+        "n": 16,
+        "p50": 249.73749,
+        "p95": 374.109025,
+        "max": 449.714176
+      },
+      "target_added_wait_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "requests": 34,
+      "target_requests": 17,
+      "discarded_replies": {
+        "red": 1,
+        "blue": 1
+      },
+      "initial_target_pose": {
+        "x": -18.0599,
+        "y": -24.7141,
+        "heading": 2.36671,
+        "speed": 12.0,
+        "vx": -8.574,
+        "vy": 8.3956,
+        "yaw_rate": -0.06276,
+        "steering_angle": 0.02562
+      },
+      "final_target_pose": {
+        "x": -25.4645,
+        "y": -30.0,
+        "heading": -3.14159,
+        "speed": 0.0,
+        "vx": 0.0,
+        "vy": 0.0,
+        "yaw_rate": 0.0,
+        "steering_angle": 0.0
+      },
+      "initial_target_track": {
+        "width": 24.0,
+        "offset": -5.2859,
+        "heading_error": 0.77488,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -3.698,
+            "y": 3.777,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": -1.555,
+            "y": 5.876,
+            "curvature": 0.0
+          },
+          {
+            "distance": 6,
+            "x": 0.589,
+            "y": 7.975,
+            "curvature": 0.0
+          },
+          {
+            "distance": 10,
+            "x": 3.447,
+            "y": 10.773,
+            "curvature": -0.00154
+          },
+          {
+            "distance": 15,
+            "x": 7.129,
+            "y": 14.151,
+            "curvature": -0.03331
+          },
+          {
+            "distance": 22,
+            "x": 13.059,
+            "y": 17.84,
+            "curvature": -0.03335
+          },
+          {
+            "distance": 32,
+            "x": 22.644,
+            "y": 20.52,
+            "curvature": -0.03336
+          },
+          {
+            "distance": 45,
+            "x": 35.462,
+            "y": 19.099,
+            "curvature": -0.03337
+          },
+          {
+            "distance": 60,
+            "x": 47.901,
+            "y": 11.0,
+            "curvature": -0.03338
+          }
+        ]
+      },
+      "final_target_track": {
+        "width": 24.0,
+        "offset": 0.0,
+        "heading_error": 0.0,
+        "on_road": true,
+        "lookahead": [
+          {
+            "distance": 0,
+            "x": -0.0,
+            "y": 0.0,
+            "curvature": 0.0
+          },
+          {
+            "distance": 3,
+            "x": 3.0,
+            "y": -0.0,
+            "curvature": -0.00324
+          },
+          {
+            "distance": 6,
+            "x": 5.999,
+            "y": -0.039,
+            "curvature": -0.0303
+          },
+          {
+            "distance": 10,
+            "x": 9.969,
+            "y": -0.502,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 15,
+            "x": 14.788,
+            "y": -1.813,
+            "curvature": -0.03334
+          },
+          {
+            "distance": 22,
+            "x": 21.028,
+            "y": -4.947,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 32,
+            "x": 28.318,
+            "y": -11.723,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 45,
+            "x": 33.794,
+            "y": -23.4,
+            "curvature": -0.03332
+          },
+          {
+            "distance": 60,
+            "x": 33.38,
+            "y": -38.237,
+            "curvature": -0.03332
+          }
+        ]
+      },
+      "physics_frames": 279,
+      "exact_queries": 34,
+      "budget_transitions": 68,
+      "infrastructure_valid": true,
+      "max_lateness_ms": 2.875763,
+      "recording": "artifacts/jev-wheel-observability-v1/paid/episode-27/race.json",
+      "initial_target_reply": {
+        "action": "hard_left_brake",
+        "choices": {
+          "wheel": "hard_left",
+          "pedal": "brake"
+        },
+        "latency_ms": 214.952956
+      },
+      "new_contact_details": []
+    }
+  ],
+  "limits": "Three previous failure strata have two repeats/profile, normal post-contact one check/profile. Two selected recorded states, one track family, not a general reliability estimate. Pedal head remains unchanged and does not receive new timing information; this isolates wheel-question observability. Native latency varies; only extra wait is known. Motion/timing additions are supplied measurements/mechanics, not action advice. Existing solo motion benefits did not repeat, so no benefit is assumed. Physics/runtime/UI unchanged; all new factual flags default off."
+}

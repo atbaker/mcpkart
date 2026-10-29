@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "archive": "mcpkart-transfer-2026-10-29.tar.zst",
+  "archive_bytes": 722668043,
+  "archive_sha256": "9088641bba1916f8d9aed9e4d8862a67e540b57a7076a937852320c3e002e09d",
+  "artifact_files": 187373,
+  "archive_regular_files": 187374,
+  "uncompressed_artifact_bytes": 11368207183,
+  "every_artifact_file_hash_verified": true,
+  "manifest_sha256": "c33d2c5fbc00e2c5ea1950f9077a7db71d33042eeb45b7157ab6e8e492d157cb",
+  "budget": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 110000,
+    "max_tokens": 500000000,
+    "requests": 99403,
+    "charged_usd": 11.520516764002778,
+    "charged_tokens": 333848829,
+    "reported_cost_usd": 11.458618012002736,
+    "uncertain_requests": 71,
+    "pending": {}
+  },
+  "credential_scan": "Passed; public OpenAPI example values explicitly allowed in one saved schema file.",
+  "closed_paid_windows_through": "0085"
+}

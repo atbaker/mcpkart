@@ -38,7 +38,7 @@ snapshot = Path("docs/experiments/model-budget-snapshot.json")
 payload = snapshot.read_bytes()
 state = json.loads(payload)
 assert state["schema_version"] == 1 and state["pending"] == {}
-assert 0 <= state["charged_usd"] <= state["cap_usd"] <= 10
+assert 0 <= state["charged_usd"] <= state["cap_usd"] <= 20
 ledger = Path("artifacts/budget.json")
 ledger.parent.mkdir(exist_ok=True)
 try:

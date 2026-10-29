@@ -1,0 +1,76 @@
+{
+  "passed": true,
+  "checked_utc": "2026-10-25T02:24:27.265860+00:00",
+  "only_declared_source_changes": [
+    "duel_bench.py",
+    "duel_decisions.py"
+  ],
+  "physics_runtime_ui_sources_byte_identical": true,
+  "registered_inputs_and_helper_unchanged": true,
+  "closed_episode_proof_hashes_verified": 66,
+  "requests": 347,
+  "frames": 7198,
+  "budget_transitions": 694,
+  "budget_and_snapshot_match": true,
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 110000,
+    "max_tokens": 500000000,
+    "requests": 99403,
+    "charged_usd": 11.520516764002778,
+    "charged_tokens": 333848829,
+    "reported_cost_usd": 11.458618012002736,
+    "uncertain_requests": 71,
+    "pending": {}
+  },
+  "all168_added_waits_at_least1s": true,
+  "applied_waits_with_at_least59_physics_samples": 136,
+  "minimum_added_wait_ms": 1000.151616,
+  "all22_actual_replays_browser_passed": true,
+  "figure_visually_reviewed_by_root": true,
+  "report_links_verified": 8,
+  "clock": {
+    "runtime": {
+      "backend": "process",
+      "protocol_version": 2,
+      "watchdog_enabled": false,
+      "clock_mode": "fixed_step_wall_clock",
+      "physics_hz": 60,
+      "process_pid": 7804,
+      "mode": "duel"
+    },
+    "fresh_complete_not_reused": true,
+    "server_start_ticks": 2983491,
+    "boot_id": "15b7b2f8-94f2-45dc-a071-ebcc134280e5",
+    "evidence_files": 12
+  },
+  "temporary_services_closed": {
+    "preview_pid": 8759,
+    "preview_exec_session": 75233,
+    "preview_observed_exit": 143,
+    "browser_exec_session": 73140,
+    "browser_observed_exit": 0,
+    "node_check_exec_session": 35541,
+    "node_check_observed_exit": 0
+  },
+  "paid_calls_allowed": false,
+  "final_checked_utc": "2026-10-25T02:25:09.063092+00:00",
+  "bundle": {
+    "passed": true,
+    "files": 92,
+    "payload_hashes_verified": 91,
+    "index_links_verified": 28,
+    "actual_replays": 22,
+    "bytes": 1740796,
+    "sha256": "613d90134b7aa0677641e104cb26525c001df3de3650317852d1d5742d1c0b6b",
+    "zip_crc_passed": true
+  },
+  "bundle_sha256_reverified": true,
+  "report_links_exist_in_repo_and_bundle": 8,
+  "main_qualified_server_preserved": true,
+  "report_sha256": "0a3b52492ffe31eab8e2666727e6697371b23d61f0909f5b9f5ebb576696794f",
+  "results_sha256": "5c6278df04f12f13099041d04384eae6eaed0e279d36da92f2db9f0e61331a00",
+  "native_excerpts_sha256": "73b879184502a1cf4fd406dac6857d1b08b07aa54a474bed0a56db53fa5298ae",
+  "figure_sha256": "02fce84c2f9cd61aa4f0f6f62ed91ef27912882e3e55c3fe480b30e4b239180d"
+}

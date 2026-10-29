@@ -1,0 +1,204 @@
+{
+  "experiment": "0073",
+  "status": "free_qualified_awaiting_request_ceiling_approval",
+  "ready_for_paid_only_after_budget_approval": true,
+  "paid_attempts": 0,
+  "model_requests": 0,
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 74221,
+    "charged_usd": 8.778765218001775,
+    "charged_tokens": 272843669,
+    "reported_cost_usd": 8.717554594001733,
+    "uncertain_requests": 70,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 74221,
+    "charged_usd": 8.778765218001775,
+    "charged_tokens": 272843669,
+    "reported_cost_usd": 8.717554594001733,
+    "uncertain_requests": 70,
+    "pending": {}
+  },
+  "budget_unchanged": true,
+  "proposed_request_ceiling": 78000,
+  "request_ceiling_increase_approved": false,
+  "financial_cap_usd_unchanged": 10,
+  "token_cap_unchanged": 500000000,
+  "paid_admission_blocked": "Awaiting explicit user authorization to raise the request ceiling to 78000",
+  "single_treatment": "wheel_facts.motion with current speed, actual steering, yaw rate, held input and descriptive units",
+  "goal_rules_and_pedal_question_unchanged": true,
+  "software_checks": {
+    "passed_tests": 509,
+    "optional_rust_skips": 3,
+    "ruff_passed": true
+  },
+  "prior_questions_exact": 4249,
+  "goal_questions_exact": 2420,
+  "treatment_isolated_on_saved_snapshots": 4249,
+  "native_mock_calls": 34,
+  "engine_gate_reused_and_reverified": true,
+  "source_fingerprint": "793bf26aa6b9257d0eab60f726c2578cbd74a5276aef70e8a2addfa233029253",
+  "controller_sources_sha256": {
+    "/workspace/mcpkart/src/mcpkart/question_context.py": "4b41f8620ab2721b9ca97e8ebc01d8e3d29b4ace5e868c1d39abb254fa93963e",
+    "/workspace/mcpkart/src/mcpkart/question_context_driver.py": "cb86de105194421682f6f30473a7f8a35655273534e71edf20d0726a4276d6bb",
+    "/workspace/mcpkart/src/mcpkart/question_context_run.py": "eb9de8c56557ce8f3567aed694f79d679aa49e74d916fde7c6a4bbf013daeafc"
+  },
+  "free_controls": [
+    {
+      "entry": {
+        "index": 0,
+        "group": "recovery",
+        "seed": 201,
+        "course": "stadium",
+        "start_pose": {
+          "offset_m": -10.0,
+          "heading_error_rad": 2.1642082724729685
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_accelerate",
+        "reference_s": 107.98333333332849,
+        "include_wheel_motion": false,
+        "arm": "minimal"
+      },
+      "qualified": true,
+      "clean": false,
+      "elapsed_s": 108.13333333332848,
+      "rescues": 0,
+      "grass_s": 2.933333333333328,
+      "api_mock_latency_ms": {
+        "n": 481,
+        "p50": 201.004593,
+        "p95": 201.814758,
+        "p99": null,
+        "max": 203.642047
+      },
+      "physics_frames_exact": 6489,
+      "queries_exact": 481,
+      "trial_sha256": "43a15d4496b9cfb5d0de681f0e99a09eb4716f80ea2a8e4f37b76a15f2889555",
+      "receipt_sha256": "377f980af21644c0816414ae383472b3087b3ea37abff369c04c6ed3e0edda58"
+    },
+    {
+      "entry": {
+        "index": 1,
+        "group": "recovery",
+        "seed": 201,
+        "course": "stadium",
+        "start_pose": {
+          "offset_m": -10.0,
+          "heading_error_rad": 2.1642082724729685
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_accelerate",
+        "reference_s": 107.98333333332849,
+        "include_wheel_motion": true,
+        "arm": "wheel_motion"
+      },
+      "qualified": true,
+      "clean": false,
+      "elapsed_s": 107.79999999999517,
+      "rescues": 0,
+      "grass_s": 2.9499999999999944,
+      "api_mock_latency_ms": {
+        "n": 478,
+        "p50": 200.9772515,
+        "p95": 201.37368435000002,
+        "p99": null,
+        "max": 204.59558
+      },
+      "physics_frames_exact": 6469,
+      "queries_exact": 478,
+      "trial_sha256": "73bd17865c99fc5927f591409979ad9ebac5ba05fa5d1c234e4293c8cb74b607",
+      "receipt_sha256": "74f16f5cc5b44487ab58bbb1be333393cb16dff117d750a66951d499612b3e75"
+    },
+    {
+      "entry": {
+        "index": 2,
+        "group": "larger_errors",
+        "seed": 202,
+        "course": "stadium_clockwise",
+        "start_pose": {
+          "offset_m": 6.0,
+          "heading_error_rad": 0.6108652381980153
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_edge",
+        "reference_s": 78.64999999999682,
+        "include_wheel_motion": true,
+        "arm": "wheel_motion"
+      },
+      "qualified": true,
+      "clean": true,
+      "elapsed_s": 78.61666666666349,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "api_mock_latency_ms": {
+        "n": 354,
+        "p50": 200.94739950000002,
+        "p95": 201.34572225,
+        "p99": null,
+        "max": 203.186242
+      },
+      "physics_frames_exact": 4718,
+      "queries_exact": 354,
+      "trial_sha256": "f22d2a29e1fe48a9600b953b0398d83fde821bd21727904cf2a4fd50a8ab49c1",
+      "receipt_sha256": "b55a87abb425da87ab668ee9fa760dcb197c1c014b94e4c590b58248f3e73784"
+    },
+    {
+      "entry": {
+        "index": 3,
+        "group": "larger_errors",
+        "seed": 202,
+        "course": "stadium_clockwise",
+        "start_pose": {
+          "offset_m": 6.0,
+          "heading_error_rad": 0.6108652381980153
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_edge",
+        "reference_s": 78.64999999999682,
+        "include_wheel_motion": false,
+        "arm": "minimal"
+      },
+      "qualified": true,
+      "clean": true,
+      "elapsed_s": 78.68333333333015,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "api_mock_latency_ms": {
+        "n": 356,
+        "p50": 200.9391965,
+        "p95": 201.836951,
+        "p99": null,
+        "max": 203.395313
+      },
+      "physics_frames_exact": 4722,
+      "queries_exact": 356,
+      "trial_sha256": "85cf0054893ff1ae70fd1197ab611ede9d09fd235130adf7e677eff57795da69",
+      "receipt_sha256": "25eb45b0f084a6efd4f65fb769e82683b779cf030ebc9a8041fd6d1560f67f70"
+    }
+  ],
+  "free_qualification_sha256": "12025288d7c5daf3b0543e6bd68e2b53b093506d1a8faea874d16786a1702a55",
+  "free_plan_sha256": "0b8a64abad61313cdba6d5c4641cd5e792eefa9060b0983cffa10acadea6028e",
+  "created_utc": "2026-10-21T19:52:20.780623+00:00"
+}

@@ -1,0 +1,1666 @@
+[
+  {
+    "index": 0,
+    "case": "feasible_misalignment",
+    "racer": "red",
+    "profile": "baseline",
+    "observation_time_s": 0.0,
+    "questions": {
+      "wheel": {
+        "type": "choice",
+        "instructions": {
+          "rules": "This is a two-kart race. Finish three laps, crossing all 120 required checkpoint gates in order, before the opponent and as quickly as possible while staying on the road. Gates require a forward crossing with the whole circular kart inside the road span. Each kart has a 1 metre radius. Physical contact between equal-mass karts slows or deflects them with normal restitution 0.15; speed is capped at 12 m/s, including after contact. Physics continues at 60 Hz while each driver independently requests decisions. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds with the body outside the road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Rescued karts are non-colliding for at least one second and until separated. Finished karts stop and become non-colliding. Same-tick finishes tie. Edge clearances refer to the body boundary. Opponent ego_x_m is forward and ego_y_m is left of your current nose; relative velocities are opponent minus your velocity in that same frame. A negative surface_gap_m means overlap; phased means non-colliding. Choose the next input using the current measurements and physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+          "current_facts": {
+            "wheel_facts": {
+              "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+              "road": {
+                "preview_15m_bearing_deg": 68.1411,
+                "preview_columns": [
+                  "ahead_m",
+                  "ego_x_m",
+                  "ego_y_m"
+                ],
+                "preview": [
+                  [
+                    15.0,
+                    6.817,
+                    16.993
+                  ]
+                ]
+              },
+              "next_gate": {
+                "known": true,
+                "signed_plane_m": -7.712
+              },
+              "body": {
+                "radius_m": 1.0,
+                "phased": false,
+                "left_edge_clearance_m": 0.5,
+                "right_edge_clearance_m": 21.5
+              },
+              "competition": {
+                "racer_id": "red",
+                "leader": null,
+                "progress_m": 0.0,
+                "opponent": {
+                  "racer_id": "blue",
+                  "ego_x_m": 15.9384,
+                  "ego_y_m": -4.4964,
+                  "relative_forward_velocity_m_s": -0.0,
+                  "relative_left_velocity_m_s": 0.0,
+                  "speed_m_s": 0.0,
+                  "heading_relative_rad": 1.8,
+                  "surface_gap_m": 14.5605,
+                  "phased": false,
+                  "finished": false,
+                  "checkpoints_passed": 0,
+                  "progress_m": 0.0
+                },
+                "contact_count": 0
+              },
+              "race": {
+                "lap": 1,
+                "laps_completed": 0,
+                "laps": 3,
+                "checkpoint": 1,
+                "checkpoints_passed": 0,
+                "checkpoints_per_lap": 40,
+                "resets": 0,
+                "track_distance": 0.0,
+                "finished": false,
+                "time_s": 0.0
+              }
+            }
+          }
+        },
+        "criteria": {
+          "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+          "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+          "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+          "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+          "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+        }
+      },
+      "pedal": {
+        "type": "choice",
+        "instructions": {
+          "rules": "This is a two-kart race. Finish three laps, crossing all 120 required checkpoint gates in order, before the opponent and as quickly as possible while staying on the road. Gates require a forward crossing with the whole circular kart inside the road span. Each kart has a 1 metre radius. Physical contact between equal-mass karts slows or deflects them with normal restitution 0.15; speed is capped at 12 m/s, including after contact. Physics continues at 60 Hz while each driver independently requests decisions. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds with the body outside the road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Rescued karts are non-colliding for at least one second and until separated. Finished karts stop and become non-colliding. Same-tick finishes tie. Edge clearances refer to the body boundary. Opponent ego_x_m is forward and ego_y_m is left of your current nose; relative velocities are opponent minus your velocity in that same frame. A negative surface_gap_m means overlap; phased means non-colliding. Choose the next input using the current measurements and physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+          "current_facts": {
+            "pedal_facts": {
+              "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+              "kart": {
+                "speed_m_s": 0.0
+              },
+              "road": {
+                "on_road": true,
+                "offset_m": 10.5,
+                "left_edge_clearance_m": 0.5,
+                "right_edge_clearance_m": 21.5
+              },
+              "current_road_frame": {
+                "velocity_left_m_s": 0.0,
+                "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+              },
+              "next_gate": {
+                "known": true,
+                "signed_plane_m": -7.712
+              },
+              "body": {
+                "radius_m": 1.0,
+                "phased": false,
+                "left_edge_clearance_m": 0.5,
+                "right_edge_clearance_m": 21.5
+              },
+              "competition": {
+                "racer_id": "red",
+                "leader": null,
+                "progress_m": 0.0,
+                "opponent": {
+                  "racer_id": "blue",
+                  "ego_x_m": 15.9384,
+                  "ego_y_m": -4.4964,
+                  "relative_forward_velocity_m_s": -0.0,
+                  "relative_left_velocity_m_s": 0.0,
+                  "speed_m_s": 0.0,
+                  "heading_relative_rad": 1.8,
+                  "surface_gap_m": 14.5605,
+                  "phased": false,
+                  "finished": false,
+                  "checkpoints_passed": 0,
+                  "progress_m": 0.0
+                },
+                "contact_count": 0
+              },
+              "race": {
+                "lap": 1,
+                "laps_completed": 0,
+                "laps": 3,
+                "checkpoint": 1,
+                "checkpoints_passed": 0,
+                "checkpoints_per_lap": 40,
+                "resets": 0,
+                "track_distance": 0.0,
+                "finished": false,
+                "time_s": 0.0
+              }
+            }
+          }
+        },
+        "criteria": {
+          "accelerate": "ACCELERATE: throttle 1, brake 0.",
+          "coast": "COAST: throttle 0, brake 0.",
+          "brake": "BRAKE: throttle 0, brake 1."
+        }
+      }
+    },
+    "request_sha256": "6c7490a5562552c12d97bef63974137ffd2dae5de66662cecdccf3057c1ea807",
+    "response": {
+      "model": "typesafe/jev-1.14-20261014",
+      "answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "hard_left",
+          "probabilities": {
+            "hard_right": 0.06,
+            "right": 0.05,
+            "straight": 0.04,
+            "left": 0.28,
+            "hard_left": 0.56
+          },
+          "confidence": 0.45
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.87,
+            "coast": 0.11,
+            "brake": 0.02
+          },
+          "confidence": 0.8
+        }
+      },
+      "usage": {
+        "input_tokens": 2447,
+        "output_tokens": 97,
+        "cost": 0.000102774
+      },
+      "id": "gen-dec-1792647439-L2fqbLHERIqeCQyVraUi",
+      "provider": "TypeSafe"
+    },
+    "actual_application": {
+      "applied": true,
+      "applied_tick": 27,
+      "applied_ns": 152302069275143,
+      "action": "hard_left_accelerate",
+      "latency_ms": 395.964137
+    },
+    "actual_not_constructed": true
+  },
+  {
+    "index": 0,
+    "case": "feasible_misalignment",
+    "racer": "blue",
+    "profile": "baseline",
+    "observation_time_s": 0.0,
+    "questions": {
+      "wheel": {
+        "type": "choice",
+        "instructions": {
+          "rules": "This is a two-kart race. Finish three laps, crossing all 120 required checkpoint gates in order, before the opponent and as quickly as possible while staying on the road. Gates require a forward crossing with the whole circular kart inside the road span. Each kart has a 1 metre radius. Physical contact between equal-mass karts slows or deflects them with normal restitution 0.15; speed is capped at 12 m/s, including after contact. Physics continues at 60 Hz while each driver independently requests decisions. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds with the body outside the road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Rescued karts are non-colliding for at least one second and until separated. Finished karts stop and become non-colliding. Same-tick finishes tie. Edge clearances refer to the body boundary. Opponent ego_x_m is forward and ego_y_m is left of your current nose; relative velocities are opponent minus your velocity in that same frame. A negative surface_gap_m means overlap; phased means non-colliding. Choose the next input using the current measurements and physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+          "current_facts": {
+            "wheel_facts": {
+              "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+              "road": {
+                "preview_15m_bearing_deg": 14.9314,
+                "preview_columns": [
+                  "ahead_m",
+                  "ego_x_m",
+                  "ego_y_m"
+                ],
+                "preview": [
+                  [
+                    15.0,
+                    15.0,
+                    4.0
+                  ]
+                ]
+              },
+              "next_gate": {
+                "known": true,
+                "signed_plane_m": -15.712
+              },
+              "body": {
+                "radius_m": 1.0,
+                "phased": false,
+                "left_edge_clearance_m": 15.0,
+                "right_edge_clearance_m": 7.0
+              },
+              "competition": {
+                "racer_id": "blue",
+                "leader": null,
+                "progress_m": 0.0,
+                "opponent": {
+                  "racer_id": "red",
+                  "ego_x_m": 8.0,
+                  "ego_y_m": 14.5,
+                  "relative_forward_velocity_m_s": 0.0,
+                  "relative_left_velocity_m_s": 0.0,
+                  "speed_m_s": 0.0,
+                  "heading_relative_rad": -1.8,
+                  "surface_gap_m": 14.5605,
+                  "phased": false,
+                  "finished": false,
+                  "checkpoints_passed": 0,
+                  "progress_m": 0.0
+                },
+                "contact_count": 0
+              },
+              "race": {
+                "lap": 1,
+                "laps_completed": 0,
+                "laps": 3,
+                "checkpoint": 1,
+                "checkpoints_passed": 0,
+                "checkpoints_per_lap": 40,
+                "resets": 0,
+                "track_distance": 300.481,
+                "finished": false,
+                "time_s": 0.0
+              }
+            }
+          }
+        },
+        "criteria": {
+          "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+          "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+          "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+          "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+          "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+        }
+      },
+      "pedal": {
+        "type": "choice",
+        "instructions": {
+          "rules": "This is a two-kart race. Finish three laps, crossing all 120 required checkpoint gates in order, before the opponent and as quickly as possible while staying on the road. Gates require a forward crossing with the whole circular kart inside the road span. Each kart has a 1 metre radius. Physical contact between equal-mass karts slows or deflects them with normal restitution 0.15; speed is capped at 12 m/s, including after contact. Physics continues at 60 Hz while each driver independently requests decisions. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds with the body outside the road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Rescued karts are non-colliding for at least one second and until separated. Finished karts stop and become non-colliding. Same-tick finishes tie. Edge clearances refer to the body boundary. Opponent ego_x_m is forward and ego_y_m is left of your current nose; relative velocities are opponent minus your velocity in that same frame. A negative surface_gap_m means overlap; phased means non-colliding. Choose the next input using the current measurements and physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+          "current_facts": {
+            "pedal_facts": {
+              "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+              "kart": {
+                "speed_m_s": 0.0
+              },
+              "road": {
+                "on_road": true,
+                "offset_m": -4.0,
+                "left_edge_clearance_m": 15.0,
+                "right_edge_clearance_m": 7.0
+              },
+              "current_road_frame": {
+                "velocity_left_m_s": 0.0,
+                "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+              },
+              "next_gate": {
+                "known": true,
+                "signed_plane_m": -15.712
+              },
+              "body": {
+                "radius_m": 1.0,
+                "phased": false,
+                "left_edge_clearance_m": 15.0,
+                "right_edge_clearance_m": 7.0
+              },
+              "competition": {
+                "racer_id": "blue",
+                "leader": null,
+                "progress_m": 0.0,
+                "opponent": {
+                  "racer_id": "red",
+                  "ego_x_m": 8.0,
+                  "ego_y_m": 14.5,
+                  "relative_forward_velocity_m_s": 0.0,
+                  "relative_left_velocity_m_s": 0.0,
+                  "speed_m_s": 0.0,
+                  "heading_relative_rad": -1.8,
+                  "surface_gap_m": 14.5605,
+                  "phased": false,
+                  "finished": false,
+                  "checkpoints_passed": 0,
+                  "progress_m": 0.0
+                },
+                "contact_count": 0
+              },
+              "race": {
+                "lap": 1,
+                "laps_completed": 0,
+                "laps": 3,
+                "checkpoint": 1,
+                "checkpoints_passed": 0,
+                "checkpoints_per_lap": 40,
+                "resets": 0,
+                "track_distance": 300.481,
+                "finished": false,
+                "time_s": 0.0
+              }
+            }
+          }
+        },
+        "criteria": {
+          "accelerate": "ACCELERATE: throttle 1, brake 0.",
+          "coast": "COAST: throttle 0, brake 0.",
+          "brake": "BRAKE: throttle 0, brake 1."
+        }
+      }
+    },
+    "request_sha256": "d7badde165d22b4ddfdf4b7e3c64401e2343c7319ca3b920e479be3cbf11f6ce",
+    "response": {
+      "model": "typesafe/jev-1.14-20261014",
+      "answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "left",
+          "probabilities": {
+            "hard_right": 0.08,
+            "right": 0.26,
+            "straight": 0.05,
+            "left": 0.43,
+            "hard_left": 0.18
+          },
+          "confidence": 0.29
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.93,
+            "coast": 0.06,
+            "brake": 0.01
+          },
+          "confidence": 0.89
+        }
+      },
+      "usage": {
+        "input_tokens": 2423,
+        "output_tokens": 96,
+        "cost": 0.000101766
+      },
+      "id": "gen-dec-1792647439-R0J12QvAr2Gh3TRE7XmC",
+      "provider": "TypeSafe"
+    },
+    "actual_application": {
+      "applied": true,
+      "applied_tick": 25,
+      "applied_ns": 152302034868645,
+      "action": "left_accelerate",
+      "latency_ms": 359.146738
+    },
+    "actual_not_constructed": true
+  },
+  {
+    "index": 1,
+    "case": "feasible_misalignment",
+    "racer": "red",
+    "profile": "geometry",
+    "observation_time_s": 0.0,
+    "questions": {
+      "wheel": {
+        "type": "choice",
+        "instructions": {
+          "rules": "This is a two-kart race. Finish three laps, crossing all 120 required checkpoint gates in order, before the opponent and as quickly as possible while staying on the road. Gates require a forward crossing with the whole circular kart inside the road span. Each kart has a 1 metre radius. Physical contact between equal-mass karts slows or deflects them with normal restitution 0.15; speed is capped at 12 m/s, including after contact. Physics continues at 60 Hz while each driver independently requests decisions. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds with the body outside the road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Rescued karts are non-colliding for at least one second and until separated. Finished karts stop and become non-colliding. Same-tick finishes tie. Edge clearances refer to the body boundary. Opponent ego_x_m is forward and ego_y_m is left of your current nose; relative velocities are opponent minus your velocity in that same frame. A negative surface_gap_m means overlap; phased means non-colliding. Choose the next input using the current measurements and physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+          "current_facts": {
+            "wheel_facts": {
+              "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+              "road": {
+                "preview_15m_bearing_deg": 68.1411,
+                "preview_columns": [
+                  "ahead_m",
+                  "ego_x_m",
+                  "ego_y_m"
+                ],
+                "preview": [
+                  [
+                    15.0,
+                    6.817,
+                    16.993
+                  ]
+                ]
+              },
+              "next_gate": {
+                "known": true,
+                "signed_plane_m": -7.712,
+                "geometry": {
+                  "index": 1,
+                  "centre_ego_m": [
+                    8.4732,
+                    9.896
+                  ],
+                  "left_endpoint_ego_m": [
+                    -3.213,
+                    7.1695
+                  ],
+                  "right_endpoint_ego_m": [
+                    20.1594,
+                    12.6224
+                  ],
+                  "forward_normal_ego": [
+                    -0.227202,
+                    0.973848
+                  ],
+                  "units": "Coordinates [x,y] are metres from the current kart centre: x forward along its nose, y left. Endpoints are the road edges at the required gate; left/right follow the gate's forward direction. forward_normal_ego is the dimensionless unit normal in the gate's forward crossing direction."
+                }
+              },
+              "body": {
+                "radius_m": 1.0,
+                "phased": false,
+                "left_edge_clearance_m": 0.5,
+                "right_edge_clearance_m": 21.5
+              },
+              "competition": {
+                "racer_id": "red",
+                "leader": null,
+                "progress_m": 0.0,
+                "opponent": {
+                  "racer_id": "blue",
+                  "ego_x_m": 15.9384,
+                  "ego_y_m": -4.4964,
+                  "relative_forward_velocity_m_s": -0.0,
+                  "relative_left_velocity_m_s": 0.0,
+                  "speed_m_s": 0.0,
+                  "heading_relative_rad": 1.8,
+                  "surface_gap_m": 14.5605,
+                  "phased": false,
+                  "finished": false,
+                  "checkpoints_passed": 0,
+                  "progress_m": 0.0
+                },
+                "contact_count": 0
+              },
+              "race": {
+                "lap": 1,
+                "laps_completed": 0,
+                "laps": 3,
+                "checkpoint": 1,
+                "checkpoints_passed": 0,
+                "checkpoints_per_lap": 40,
+                "resets": 0,
+                "track_distance": 0.0,
+                "finished": false,
+                "time_s": 0.0
+              }
+            }
+          }
+        },
+        "criteria": {
+          "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+          "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+          "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+          "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+          "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+        }
+      },
+      "pedal": {
+        "type": "choice",
+        "instructions": {
+          "rules": "This is a two-kart race. Finish three laps, crossing all 120 required checkpoint gates in order, before the opponent and as quickly as possible while staying on the road. Gates require a forward crossing with the whole circular kart inside the road span. Each kart has a 1 metre radius. Physical contact between equal-mass karts slows or deflects them with normal restitution 0.15; speed is capped at 12 m/s, including after contact. Physics continues at 60 Hz while each driver independently requests decisions. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds with the body outside the road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Rescued karts are non-colliding for at least one second and until separated. Finished karts stop and become non-colliding. Same-tick finishes tie. Edge clearances refer to the body boundary. Opponent ego_x_m is forward and ego_y_m is left of your current nose; relative velocities are opponent minus your velocity in that same frame. A negative surface_gap_m means overlap; phased means non-colliding. Choose the next input using the current measurements and physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+          "current_facts": {
+            "pedal_facts": {
+              "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+              "kart": {
+                "speed_m_s": 0.0
+              },
+              "road": {
+                "on_road": true,
+                "offset_m": 10.5,
+                "left_edge_clearance_m": 0.5,
+                "right_edge_clearance_m": 21.5
+              },
+              "current_road_frame": {
+                "velocity_left_m_s": 0.0,
+                "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+              },
+              "next_gate": {
+                "known": true,
+                "signed_plane_m": -7.712
+              },
+              "body": {
+                "radius_m": 1.0,
+                "phased": false,
+                "left_edge_clearance_m": 0.5,
+                "right_edge_clearance_m": 21.5
+              },
+              "competition": {
+                "racer_id": "red",
+                "leader": null,
+                "progress_m": 0.0,
+                "opponent": {
+                  "racer_id": "blue",
+                  "ego_x_m": 15.9384,
+                  "ego_y_m": -4.4964,
+                  "relative_forward_velocity_m_s": -0.0,
+                  "relative_left_velocity_m_s": 0.0,
+                  "speed_m_s": 0.0,
+                  "heading_relative_rad": 1.8,
+                  "surface_gap_m": 14.5605,
+                  "phased": false,
+                  "finished": false,
+                  "checkpoints_passed": 0,
+                  "progress_m": 0.0
+                },
+                "contact_count": 0
+              },
+              "race": {
+                "lap": 1,
+                "laps_completed": 0,
+                "laps": 3,
+                "checkpoint": 1,
+                "checkpoints_passed": 0,
+                "checkpoints_per_lap": 40,
+                "resets": 0,
+                "track_distance": 0.0,
+                "finished": false,
+                "time_s": 0.0
+              }
+            }
+          }
+        },
+        "criteria": {
+          "accelerate": "ACCELERATE: throttle 1, brake 0.",
+          "coast": "COAST: throttle 0, brake 0.",
+          "brake": "BRAKE: throttle 0, brake 1."
+        }
+      }
+    },
+    "request_sha256": "818e77f900af079338121301aec9c6fc082dbf280a57f48f194ab26e18cf8cfc",
+    "response": {
+      "model": "typesafe/jev-1.14-20261014",
+      "answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "hard_left",
+          "probabilities": {
+            "hard_right": 0.05,
+            "right": 0.05,
+            "straight": 0.06,
+            "left": 0.32,
+            "hard_left": 0.52
+          },
+          "confidence": 0.4
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.86,
+            "coast": 0.12,
+            "brake": 0.02
+          },
+          "confidence": 0.79
+        }
+      },
+      "usage": {
+        "input_tokens": 2629,
+        "output_tokens": 97,
+        "cost": 0.000110418
+      },
+      "id": "gen-dec-1792647601-hnCDYvuSAT59EIPhTrZj",
+      "provider": "TypeSafe"
+    },
+    "actual_application": {
+      "applied": true,
+      "applied_tick": 24,
+      "applied_ns": 152464458700514,
+      "action": "hard_left_accelerate",
+      "latency_ms": 334.391946
+    },
+    "actual_not_constructed": true
+  },
+  {
+    "index": 1,
+    "case": "feasible_misalignment",
+    "racer": "blue",
+    "profile": "geometry",
+    "observation_time_s": 0.0,
+    "questions": {
+      "wheel": {
+        "type": "choice",
+        "instructions": {
+          "rules": "This is a two-kart race. Finish three laps, crossing all 120 required checkpoint gates in order, before the opponent and as quickly as possible while staying on the road. Gates require a forward crossing with the whole circular kart inside the road span. Each kart has a 1 metre radius. Physical contact between equal-mass karts slows or deflects them with normal restitution 0.15; speed is capped at 12 m/s, including after contact. Physics continues at 60 Hz while each driver independently requests decisions. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds with the body outside the road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Rescued karts are non-colliding for at least one second and until separated. Finished karts stop and become non-colliding. Same-tick finishes tie. Edge clearances refer to the body boundary. Opponent ego_x_m is forward and ego_y_m is left of your current nose; relative velocities are opponent minus your velocity in that same frame. A negative surface_gap_m means overlap; phased means non-colliding. Choose the next input using the current measurements and physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+          "current_facts": {
+            "wheel_facts": {
+              "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+              "road": {
+                "preview_15m_bearing_deg": 14.9314,
+                "preview_columns": [
+                  "ahead_m",
+                  "ego_x_m",
+                  "ego_y_m"
+                ],
+                "preview": [
+                  [
+                    15.0,
+                    15.0,
+                    4.0
+                  ]
+                ]
+              },
+              "next_gate": {
+                "known": true,
+                "signed_plane_m": -15.712,
+                "geometry": {
+                  "index": 1,
+                  "centre_ego_m": [
+                    15.712,
+                    4.0
+                  ],
+                  "left_endpoint_ego_m": [
+                    15.712,
+                    16.0
+                  ],
+                  "right_endpoint_ego_m": [
+                    15.712,
+                    -8.0
+                  ],
+                  "forward_normal_ego": [
+                    1.0,
+                    0.0
+                  ],
+                  "units": "Coordinates [x,y] are metres from the current kart centre: x forward along its nose, y left. Endpoints are the road edges at the required gate; left/right follow the gate's forward direction. forward_normal_ego is the dimensionless unit normal in the gate's forward crossing direction."
+                }
+              },
+              "body": {
+                "radius_m": 1.0,
+                "phased": false,
+                "left_edge_clearance_m": 15.0,
+                "right_edge_clearance_m": 7.0
+              },
+              "competition": {
+                "racer_id": "blue",
+                "leader": null,
+                "progress_m": 0.0,
+                "opponent": {
+                  "racer_id": "red",
+                  "ego_x_m": 8.0,
+                  "ego_y_m": 14.5,
+                  "relative_forward_velocity_m_s": 0.0,
+                  "relative_left_velocity_m_s": 0.0,
+                  "speed_m_s": 0.0,
+                  "heading_relative_rad": -1.8,
+                  "surface_gap_m": 14.5605,
+                  "phased": false,
+                  "finished": false,
+                  "checkpoints_passed": 0,
+                  "progress_m": 0.0
+                },
+                "contact_count": 0
+              },
+              "race": {
+                "lap": 1,
+                "laps_completed": 0,
+                "laps": 3,
+                "checkpoint": 1,
+                "checkpoints_passed": 0,
+                "checkpoints_per_lap": 40,
+                "resets": 0,
+                "track_distance": 300.481,
+                "finished": false,
+                "time_s": 0.0
+              }
+            }
+          }
+        },
+        "criteria": {
+          "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+          "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+          "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+          "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+          "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+        }
+      },
+      "pedal": {
+        "type": "choice",
+        "instructions": {
+          "rules": "This is a two-kart race. Finish three laps, crossing all 120 required checkpoint gates in order, before the opponent and as quickly as possible while staying on the road. Gates require a forward crossing with the whole circular kart inside the road span. Each kart has a 1 metre radius. Physical contact between equal-mass karts slows or deflects them with normal restitution 0.15; speed is capped at 12 m/s, including after contact. Physics continues at 60 Hz while each driver independently requests decisions. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds with the body outside the road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Rescued karts are non-colliding for at least one second and until separated. Finished karts stop and become non-colliding. Same-tick finishes tie. Edge clearances refer to the body boundary. Opponent ego_x_m is forward and ego_y_m is left of your current nose; relative velocities are opponent minus your velocity in that same frame. A negative surface_gap_m means overlap; phased means non-colliding. Choose the next input using the current measurements and physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+          "current_facts": {
+            "pedal_facts": {
+              "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+              "kart": {
+                "speed_m_s": 0.0
+              },
+              "road": {
+                "on_road": true,
+                "offset_m": -4.0,
+                "left_edge_clearance_m": 15.0,
+                "right_edge_clearance_m": 7.0
+              },
+              "current_road_frame": {
+                "velocity_left_m_s": 0.0,
+                "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+              },
+              "next_gate": {
+                "known": true,
+                "signed_plane_m": -15.712
+              },
+              "body": {
+                "radius_m": 1.0,
+                "phased": false,
+                "left_edge_clearance_m": 15.0,
+                "right_edge_clearance_m": 7.0
+              },
+              "competition": {
+                "racer_id": "blue",
+                "leader": null,
+                "progress_m": 0.0,
+                "opponent": {
+                  "racer_id": "red",
+                  "ego_x_m": 8.0,
+                  "ego_y_m": 14.5,
+                  "relative_forward_velocity_m_s": 0.0,
+                  "relative_left_velocity_m_s": 0.0,
+                  "speed_m_s": 0.0,
+                  "heading_relative_rad": -1.8,
+                  "surface_gap_m": 14.5605,
+                  "phased": false,
+                  "finished": false,
+                  "checkpoints_passed": 0,
+                  "progress_m": 0.0
+                },
+                "contact_count": 0
+              },
+              "race": {
+                "lap": 1,
+                "laps_completed": 0,
+                "laps": 3,
+                "checkpoint": 1,
+                "checkpoints_passed": 0,
+                "checkpoints_per_lap": 40,
+                "resets": 0,
+                "track_distance": 300.481,
+                "finished": false,
+                "time_s": 0.0
+              }
+            }
+          }
+        },
+        "criteria": {
+          "accelerate": "ACCELERATE: throttle 1, brake 0.",
+          "coast": "COAST: throttle 0, brake 0.",
+          "brake": "BRAKE: throttle 0, brake 1."
+        }
+      }
+    },
+    "request_sha256": "ffac6532df83e2b5d4e910fb2c262c26899edb9c9625f7dd788da004aee83a1c",
+    "response": {
+      "model": "typesafe/jev-1.14-20261014",
+      "answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "left",
+          "probabilities": {
+            "hard_right": 0.06,
+            "right": 0.16,
+            "straight": 0.16,
+            "left": 0.46,
+            "hard_left": 0.16
+          },
+          "confidence": 0.33
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.93,
+            "coast": 0.06,
+            "brake": 0.01
+          },
+          "confidence": 0.89
+        }
+      },
+      "usage": {
+        "input_tokens": 2576,
+        "output_tokens": 96,
+        "cost": 0.000108192
+      },
+      "id": "gen-dec-1792647601-i4Gbz2L9GoLqlRJsIeL2",
+      "provider": "TypeSafe"
+    },
+    "actual_application": {
+      "applied": true,
+      "applied_tick": 25,
+      "applied_ns": 152464475355965,
+      "action": "left_accelerate",
+      "latency_ms": 347.191983
+    },
+    "actual_not_constructed": true
+  },
+  {
+    "index": 2,
+    "case": "prior_detour_grid",
+    "racer": "red",
+    "profile": "geometry",
+    "observation_time_s": 0.0,
+    "questions": {
+      "wheel": {
+        "type": "choice",
+        "instructions": {
+          "rules": "This is a two-kart race. Finish three laps, crossing all 120 required checkpoint gates in order, before the opponent and as quickly as possible while staying on the road. Gates require a forward crossing with the whole circular kart inside the road span. Each kart has a 1 metre radius. Physical contact between equal-mass karts slows or deflects them with normal restitution 0.15; speed is capped at 12 m/s, including after contact. Physics continues at 60 Hz while each driver independently requests decisions. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds with the body outside the road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Rescued karts are non-colliding for at least one second and until separated. Finished karts stop and become non-colliding. Same-tick finishes tie. Edge clearances refer to the body boundary. Opponent ego_x_m is forward and ego_y_m is left of your current nose; relative velocities are opponent minus your velocity in that same frame. A negative surface_gap_m means overlap; phased means non-colliding. Choose the next input using the current measurements and physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+          "current_facts": {
+            "wheel_facts": {
+              "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+              "road": {
+                "preview_15m_bearing_deg": 12.7425,
+                "preview_columns": [
+                  "ahead_m",
+                  "ego_x_m",
+                  "ego_y_m"
+                ],
+                "preview": [
+                  [
+                    15.0,
+                    14.92,
+                    3.374
+                  ]
+                ]
+              },
+              "next_gate": {
+                "known": true,
+                "signed_plane_m": -11.712,
+                "geometry": {
+                  "index": 1,
+                  "centre_ego_m": [
+                    11.6334,
+                    3.2919
+                  ],
+                  "left_endpoint_ego_m": [
+                    11.3334,
+                    15.2881
+                  ],
+                  "right_endpoint_ego_m": [
+                    11.9334,
+                    -8.7044
+                  ],
+                  "forward_normal_ego": [
+                    0.999687,
+                    0.025
+                  ],
+                  "units": "Coordinates [x,y] are metres from the current kart centre: x forward along its nose, y left. Endpoints are the road edges at the required gate; left/right follow the gate's forward direction. forward_normal_ego is the dimensionless unit normal in the gate's forward crossing direction."
+                }
+              },
+              "body": {
+                "radius_m": 1.0,
+                "phased": false,
+                "left_edge_clearance_m": 14.0,
+                "right_edge_clearance_m": 8.0
+              },
+              "competition": {
+                "racer_id": "red",
+                "leader": null,
+                "progress_m": 0.0,
+                "opponent": {
+                  "racer_id": "blue",
+                  "ego_x_m": 3.8488,
+                  "ego_y_m": 6.0981,
+                  "relative_forward_velocity_m_s": 0.0,
+                  "relative_left_velocity_m_s": -0.0,
+                  "speed_m_s": 0.0,
+                  "heading_relative_rad": 0.05,
+                  "surface_gap_m": 5.2111,
+                  "phased": false,
+                  "finished": false,
+                  "checkpoints_passed": 0,
+                  "progress_m": 0.0
+                },
+                "contact_count": 0
+              },
+              "race": {
+                "lap": 1,
+                "laps_completed": 0,
+                "laps": 3,
+                "checkpoint": 1,
+                "checkpoints_passed": 0,
+                "checkpoints_per_lap": 40,
+                "resets": 0,
+                "track_distance": 304.481,
+                "finished": false,
+                "time_s": 0.0
+              }
+            }
+          }
+        },
+        "criteria": {
+          "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+          "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+          "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+          "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+          "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+        }
+      },
+      "pedal": {
+        "type": "choice",
+        "instructions": {
+          "rules": "This is a two-kart race. Finish three laps, crossing all 120 required checkpoint gates in order, before the opponent and as quickly as possible while staying on the road. Gates require a forward crossing with the whole circular kart inside the road span. Each kart has a 1 metre radius. Physical contact between equal-mass karts slows or deflects them with normal restitution 0.15; speed is capped at 12 m/s, including after contact. Physics continues at 60 Hz while each driver independently requests decisions. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds with the body outside the road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Rescued karts are non-colliding for at least one second and until separated. Finished karts stop and become non-colliding. Same-tick finishes tie. Edge clearances refer to the body boundary. Opponent ego_x_m is forward and ego_y_m is left of your current nose; relative velocities are opponent minus your velocity in that same frame. A negative surface_gap_m means overlap; phased means non-colliding. Choose the next input using the current measurements and physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+          "current_facts": {
+            "pedal_facts": {
+              "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+              "kart": {
+                "speed_m_s": 0.0
+              },
+              "road": {
+                "on_road": true,
+                "offset_m": -3.0,
+                "left_edge_clearance_m": 14.0,
+                "right_edge_clearance_m": 8.0
+              },
+              "current_road_frame": {
+                "velocity_left_m_s": 0.0,
+                "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+              },
+              "next_gate": {
+                "known": true,
+                "signed_plane_m": -11.712
+              },
+              "body": {
+                "radius_m": 1.0,
+                "phased": false,
+                "left_edge_clearance_m": 14.0,
+                "right_edge_clearance_m": 8.0
+              },
+              "competition": {
+                "racer_id": "red",
+                "leader": null,
+                "progress_m": 0.0,
+                "opponent": {
+                  "racer_id": "blue",
+                  "ego_x_m": 3.8488,
+                  "ego_y_m": 6.0981,
+                  "relative_forward_velocity_m_s": 0.0,
+                  "relative_left_velocity_m_s": -0.0,
+                  "speed_m_s": 0.0,
+                  "heading_relative_rad": 0.05,
+                  "surface_gap_m": 5.2111,
+                  "phased": false,
+                  "finished": false,
+                  "checkpoints_passed": 0,
+                  "progress_m": 0.0
+                },
+                "contact_count": 0
+              },
+              "race": {
+                "lap": 1,
+                "laps_completed": 0,
+                "laps": 3,
+                "checkpoint": 1,
+                "checkpoints_passed": 0,
+                "checkpoints_per_lap": 40,
+                "resets": 0,
+                "track_distance": 304.481,
+                "finished": false,
+                "time_s": 0.0
+              }
+            }
+          }
+        },
+        "criteria": {
+          "accelerate": "ACCELERATE: throttle 1, brake 0.",
+          "coast": "COAST: throttle 0, brake 0.",
+          "brake": "BRAKE: throttle 0, brake 1."
+        }
+      }
+    },
+    "request_sha256": "8d940c8eb735b223fa1e41c39d5aefb4ef983e0956f762b8e9c268247fc087cc",
+    "response": {
+      "model": "typesafe/jev-1.14-20261014",
+      "answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "left",
+          "probabilities": {
+            "hard_right": 0.08,
+            "right": 0.2,
+            "straight": 0.14,
+            "left": 0.42,
+            "hard_left": 0.16
+          },
+          "confidence": 0.27
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.91,
+            "coast": 0.08,
+            "brake": 0.01
+          },
+          "confidence": 0.86
+        }
+      },
+      "usage": {
+        "input_tokens": 2624,
+        "output_tokens": 96,
+        "cost": 0.000110208
+      },
+      "id": "gen-dec-1792647713-N49EcgaKUY4mgVdDGn3h",
+      "provider": "TypeSafe"
+    },
+    "actual_application": {
+      "applied": true,
+      "applied_tick": 20,
+      "applied_ns": 152575878118179,
+      "action": "left_accelerate",
+      "latency_ms": 242.485794
+    },
+    "actual_not_constructed": true
+  },
+  {
+    "index": 2,
+    "case": "prior_detour_grid",
+    "racer": "blue",
+    "profile": "geometry",
+    "observation_time_s": 0.0,
+    "questions": {
+      "wheel": {
+        "type": "choice",
+        "instructions": {
+          "rules": "This is a two-kart race. Finish three laps, crossing all 120 required checkpoint gates in order, before the opponent and as quickly as possible while staying on the road. Gates require a forward crossing with the whole circular kart inside the road span. Each kart has a 1 metre radius. Physical contact between equal-mass karts slows or deflects them with normal restitution 0.15; speed is capped at 12 m/s, including after contact. Physics continues at 60 Hz while each driver independently requests decisions. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds with the body outside the road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Rescued karts are non-colliding for at least one second and until separated. Finished karts stop and become non-colliding. Same-tick finishes tie. Edge clearances refer to the body boundary. Opponent ego_x_m is forward and ego_y_m is left of your current nose; relative velocities are opponent minus your velocity in that same frame. A negative surface_gap_m means overlap; phased means non-colliding. Choose the next input using the current measurements and physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+          "current_facts": {
+            "wheel_facts": {
+              "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+              "road": {
+                "preview_15m_bearing_deg": -12.7425,
+                "preview_columns": [
+                  "ahead_m",
+                  "ego_x_m",
+                  "ego_y_m"
+                ],
+                "preview": [
+                  [
+                    15.0,
+                    14.92,
+                    -3.374
+                  ]
+                ]
+              },
+              "next_gate": {
+                "known": true,
+                "signed_plane_m": -7.712,
+                "geometry": {
+                  "index": 1,
+                  "centre_ego_m": [
+                    7.6346,
+                    -3.1919
+                  ],
+                  "left_endpoint_ego_m": [
+                    7.9346,
+                    8.8044
+                  ],
+                  "right_endpoint_ego_m": [
+                    7.3346,
+                    -15.1881
+                  ],
+                  "forward_normal_ego": [
+                    0.999687,
+                    -0.025
+                  ],
+                  "units": "Coordinates [x,y] are metres from the current kart centre: x forward along its nose, y left. Endpoints are the road edges at the required gate; left/right follow the gate's forward direction. forward_normal_ego is the dimensionless unit normal in the gate's forward crossing direction."
+                }
+              },
+              "body": {
+                "radius_m": 1.0,
+                "phased": false,
+                "left_edge_clearance_m": 8.0,
+                "right_edge_clearance_m": 14.0
+              },
+              "competition": {
+                "racer_id": "blue",
+                "leader": null,
+                "progress_m": 0.0,
+                "opponent": {
+                  "racer_id": "red",
+                  "ego_x_m": -4.1487,
+                  "ego_y_m": -5.8981,
+                  "relative_forward_velocity_m_s": -0.0,
+                  "relative_left_velocity_m_s": 0.0,
+                  "speed_m_s": 0.0,
+                  "heading_relative_rad": -0.05,
+                  "surface_gap_m": 5.2111,
+                  "phased": false,
+                  "finished": false,
+                  "checkpoints_passed": 0,
+                  "progress_m": 0.0
+                },
+                "contact_count": 0
+              },
+              "race": {
+                "lap": 1,
+                "laps_completed": 0,
+                "laps": 3,
+                "checkpoint": 1,
+                "checkpoints_passed": 0,
+                "checkpoints_per_lap": 40,
+                "resets": 0,
+                "track_distance": 0.0,
+                "finished": false,
+                "time_s": 0.0
+              }
+            }
+          }
+        },
+        "criteria": {
+          "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+          "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+          "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+          "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+          "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+        }
+      },
+      "pedal": {
+        "type": "choice",
+        "instructions": {
+          "rules": "This is a two-kart race. Finish three laps, crossing all 120 required checkpoint gates in order, before the opponent and as quickly as possible while staying on the road. Gates require a forward crossing with the whole circular kart inside the road span. Each kart has a 1 metre radius. Physical contact between equal-mass karts slows or deflects them with normal restitution 0.15; speed is capped at 12 m/s, including after contact. Physics continues at 60 Hz while each driver independently requests decisions. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds with the body outside the road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Rescued karts are non-colliding for at least one second and until separated. Finished karts stop and become non-colliding. Same-tick finishes tie. Edge clearances refer to the body boundary. Opponent ego_x_m is forward and ego_y_m is left of your current nose; relative velocities are opponent minus your velocity in that same frame. A negative surface_gap_m means overlap; phased means non-colliding. Choose the next input using the current measurements and physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+          "current_facts": {
+            "pedal_facts": {
+              "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+              "kart": {
+                "speed_m_s": 0.0
+              },
+              "road": {
+                "on_road": true,
+                "offset_m": 3.0,
+                "left_edge_clearance_m": 8.0,
+                "right_edge_clearance_m": 14.0
+              },
+              "current_road_frame": {
+                "velocity_left_m_s": 0.0,
+                "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+              },
+              "next_gate": {
+                "known": true,
+                "signed_plane_m": -7.712
+              },
+              "body": {
+                "radius_m": 1.0,
+                "phased": false,
+                "left_edge_clearance_m": 8.0,
+                "right_edge_clearance_m": 14.0
+              },
+              "competition": {
+                "racer_id": "blue",
+                "leader": null,
+                "progress_m": 0.0,
+                "opponent": {
+                  "racer_id": "red",
+                  "ego_x_m": -4.1487,
+                  "ego_y_m": -5.8981,
+                  "relative_forward_velocity_m_s": -0.0,
+                  "relative_left_velocity_m_s": 0.0,
+                  "speed_m_s": 0.0,
+                  "heading_relative_rad": -0.05,
+                  "surface_gap_m": 5.2111,
+                  "phased": false,
+                  "finished": false,
+                  "checkpoints_passed": 0,
+                  "progress_m": 0.0
+                },
+                "contact_count": 0
+              },
+              "race": {
+                "lap": 1,
+                "laps_completed": 0,
+                "laps": 3,
+                "checkpoint": 1,
+                "checkpoints_passed": 0,
+                "checkpoints_per_lap": 40,
+                "resets": 0,
+                "track_distance": 0.0,
+                "finished": false,
+                "time_s": 0.0
+              }
+            }
+          }
+        },
+        "criteria": {
+          "accelerate": "ACCELERATE: throttle 1, brake 0.",
+          "coast": "COAST: throttle 0, brake 0.",
+          "brake": "BRAKE: throttle 0, brake 1."
+        }
+      }
+    },
+    "request_sha256": "4e3105600ff6fb6f8b1f45b0a3364bb93bc7a5a0f86d6963e82ba6015f9bf693",
+    "response": {
+      "model": "typesafe/jev-1.14-20261014",
+      "answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "right",
+          "probabilities": {
+            "hard_right": 0.38,
+            "right": 0.41,
+            "straight": 0.12,
+            "left": 0.06,
+            "hard_left": 0.03
+          },
+          "confidence": 0.26
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.92,
+            "coast": 0.07,
+            "brake": 0.01
+          },
+          "confidence": 0.88
+        }
+      },
+      "usage": {
+        "input_tokens": 2616,
+        "output_tokens": 96,
+        "cost": 0.000109872
+      },
+      "id": "gen-dec-1792647713-dAgnYSISC4Z4zAGMNicH",
+      "provider": "TypeSafe"
+    },
+    "actual_application": {
+      "applied": true,
+      "applied_tick": 20,
+      "applied_ns": 152575878118179,
+      "action": "right_accelerate",
+      "latency_ms": 256.502986
+    },
+    "actual_not_constructed": true
+  },
+  {
+    "index": 3,
+    "case": "prior_detour_grid",
+    "racer": "red",
+    "profile": "baseline",
+    "observation_time_s": 0.0,
+    "questions": {
+      "wheel": {
+        "type": "choice",
+        "instructions": {
+          "rules": "This is a two-kart race. Finish three laps, crossing all 120 required checkpoint gates in order, before the opponent and as quickly as possible while staying on the road. Gates require a forward crossing with the whole circular kart inside the road span. Each kart has a 1 metre radius. Physical contact between equal-mass karts slows or deflects them with normal restitution 0.15; speed is capped at 12 m/s, including after contact. Physics continues at 60 Hz while each driver independently requests decisions. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds with the body outside the road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Rescued karts are non-colliding for at least one second and until separated. Finished karts stop and become non-colliding. Same-tick finishes tie. Edge clearances refer to the body boundary. Opponent ego_x_m is forward and ego_y_m is left of your current nose; relative velocities are opponent minus your velocity in that same frame. A negative surface_gap_m means overlap; phased means non-colliding. Choose the next input using the current measurements and physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+          "current_facts": {
+            "wheel_facts": {
+              "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+              "road": {
+                "preview_15m_bearing_deg": 12.7425,
+                "preview_columns": [
+                  "ahead_m",
+                  "ego_x_m",
+                  "ego_y_m"
+                ],
+                "preview": [
+                  [
+                    15.0,
+                    14.92,
+                    3.374
+                  ]
+                ]
+              },
+              "next_gate": {
+                "known": true,
+                "signed_plane_m": -11.712
+              },
+              "body": {
+                "radius_m": 1.0,
+                "phased": false,
+                "left_edge_clearance_m": 14.0,
+                "right_edge_clearance_m": 8.0
+              },
+              "competition": {
+                "racer_id": "red",
+                "leader": null,
+                "progress_m": 0.0,
+                "opponent": {
+                  "racer_id": "blue",
+                  "ego_x_m": 3.8488,
+                  "ego_y_m": 6.0981,
+                  "relative_forward_velocity_m_s": 0.0,
+                  "relative_left_velocity_m_s": -0.0,
+                  "speed_m_s": 0.0,
+                  "heading_relative_rad": 0.05,
+                  "surface_gap_m": 5.2111,
+                  "phased": false,
+                  "finished": false,
+                  "checkpoints_passed": 0,
+                  "progress_m": 0.0
+                },
+                "contact_count": 0
+              },
+              "race": {
+                "lap": 1,
+                "laps_completed": 0,
+                "laps": 3,
+                "checkpoint": 1,
+                "checkpoints_passed": 0,
+                "checkpoints_per_lap": 40,
+                "resets": 0,
+                "track_distance": 304.481,
+                "finished": false,
+                "time_s": 0.0
+              }
+            }
+          }
+        },
+        "criteria": {
+          "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+          "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+          "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+          "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+          "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+        }
+      },
+      "pedal": {
+        "type": "choice",
+        "instructions": {
+          "rules": "This is a two-kart race. Finish three laps, crossing all 120 required checkpoint gates in order, before the opponent and as quickly as possible while staying on the road. Gates require a forward crossing with the whole circular kart inside the road span. Each kart has a 1 metre radius. Physical contact between equal-mass karts slows or deflects them with normal restitution 0.15; speed is capped at 12 m/s, including after contact. Physics continues at 60 Hz while each driver independently requests decisions. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds with the body outside the road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Rescued karts are non-colliding for at least one second and until separated. Finished karts stop and become non-colliding. Same-tick finishes tie. Edge clearances refer to the body boundary. Opponent ego_x_m is forward and ego_y_m is left of your current nose; relative velocities are opponent minus your velocity in that same frame. A negative surface_gap_m means overlap; phased means non-colliding. Choose the next input using the current measurements and physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+          "current_facts": {
+            "pedal_facts": {
+              "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+              "kart": {
+                "speed_m_s": 0.0
+              },
+              "road": {
+                "on_road": true,
+                "offset_m": -3.0,
+                "left_edge_clearance_m": 14.0,
+                "right_edge_clearance_m": 8.0
+              },
+              "current_road_frame": {
+                "velocity_left_m_s": 0.0,
+                "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+              },
+              "next_gate": {
+                "known": true,
+                "signed_plane_m": -11.712
+              },
+              "body": {
+                "radius_m": 1.0,
+                "phased": false,
+                "left_edge_clearance_m": 14.0,
+                "right_edge_clearance_m": 8.0
+              },
+              "competition": {
+                "racer_id": "red",
+                "leader": null,
+                "progress_m": 0.0,
+                "opponent": {
+                  "racer_id": "blue",
+                  "ego_x_m": 3.8488,
+                  "ego_y_m": 6.0981,
+                  "relative_forward_velocity_m_s": 0.0,
+                  "relative_left_velocity_m_s": -0.0,
+                  "speed_m_s": 0.0,
+                  "heading_relative_rad": 0.05,
+                  "surface_gap_m": 5.2111,
+                  "phased": false,
+                  "finished": false,
+                  "checkpoints_passed": 0,
+                  "progress_m": 0.0
+                },
+                "contact_count": 0
+              },
+              "race": {
+                "lap": 1,
+                "laps_completed": 0,
+                "laps": 3,
+                "checkpoint": 1,
+                "checkpoints_passed": 0,
+                "checkpoints_per_lap": 40,
+                "resets": 0,
+                "track_distance": 304.481,
+                "finished": false,
+                "time_s": 0.0
+              }
+            }
+          }
+        },
+        "criteria": {
+          "accelerate": "ACCELERATE: throttle 1, brake 0.",
+          "coast": "COAST: throttle 0, brake 0.",
+          "brake": "BRAKE: throttle 0, brake 1."
+        }
+      }
+    },
+    "request_sha256": "8956a1e8d53ddfadf18f271a41f1ba99b6e2fd7bb7149dca1d13b2afeff04cab",
+    "response": {
+      "model": "typesafe/jev-1.14-20261014",
+      "answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "left",
+          "probabilities": {
+            "hard_right": 0.1,
+            "right": 0.22,
+            "straight": 0.07,
+            "left": 0.43,
+            "hard_left": 0.18
+          },
+          "confidence": 0.29
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.91,
+            "coast": 0.08,
+            "brake": 0.01
+          },
+          "confidence": 0.86
+        }
+      },
+      "usage": {
+        "input_tokens": 2442,
+        "output_tokens": 96,
+        "cost": 0.000102564
+      },
+      "id": "gen-dec-1792647830-5wdvRA0Q4RQxQ9SjjEjN",
+      "provider": "TypeSafe"
+    },
+    "actual_application": {
+      "applied": true,
+      "applied_tick": 17,
+      "applied_ns": 152692912831321,
+      "action": "left_accelerate",
+      "latency_ms": 238.059649
+    },
+    "actual_not_constructed": true
+  },
+  {
+    "index": 3,
+    "case": "prior_detour_grid",
+    "racer": "blue",
+    "profile": "baseline",
+    "observation_time_s": 0.0,
+    "questions": {
+      "wheel": {
+        "type": "choice",
+        "instructions": {
+          "rules": "This is a two-kart race. Finish three laps, crossing all 120 required checkpoint gates in order, before the opponent and as quickly as possible while staying on the road. Gates require a forward crossing with the whole circular kart inside the road span. Each kart has a 1 metre radius. Physical contact between equal-mass karts slows or deflects them with normal restitution 0.15; speed is capped at 12 m/s, including after contact. Physics continues at 60 Hz while each driver independently requests decisions. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds with the body outside the road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Rescued karts are non-colliding for at least one second and until separated. Finished karts stop and become non-colliding. Same-tick finishes tie. Edge clearances refer to the body boundary. Opponent ego_x_m is forward and ego_y_m is left of your current nose; relative velocities are opponent minus your velocity in that same frame. A negative surface_gap_m means overlap; phased means non-colliding. Choose the next input using the current measurements and physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+          "current_facts": {
+            "wheel_facts": {
+              "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+              "road": {
+                "preview_15m_bearing_deg": -12.7425,
+                "preview_columns": [
+                  "ahead_m",
+                  "ego_x_m",
+                  "ego_y_m"
+                ],
+                "preview": [
+                  [
+                    15.0,
+                    14.92,
+                    -3.374
+                  ]
+                ]
+              },
+              "next_gate": {
+                "known": true,
+                "signed_plane_m": -7.712
+              },
+              "body": {
+                "radius_m": 1.0,
+                "phased": false,
+                "left_edge_clearance_m": 8.0,
+                "right_edge_clearance_m": 14.0
+              },
+              "competition": {
+                "racer_id": "blue",
+                "leader": null,
+                "progress_m": 0.0,
+                "opponent": {
+                  "racer_id": "red",
+                  "ego_x_m": -4.1487,
+                  "ego_y_m": -5.8981,
+                  "relative_forward_velocity_m_s": -0.0,
+                  "relative_left_velocity_m_s": 0.0,
+                  "speed_m_s": 0.0,
+                  "heading_relative_rad": -0.05,
+                  "surface_gap_m": 5.2111,
+                  "phased": false,
+                  "finished": false,
+                  "checkpoints_passed": 0,
+                  "progress_m": 0.0
+                },
+                "contact_count": 0
+              },
+              "race": {
+                "lap": 1,
+                "laps_completed": 0,
+                "laps": 3,
+                "checkpoint": 1,
+                "checkpoints_passed": 0,
+                "checkpoints_per_lap": 40,
+                "resets": 0,
+                "track_distance": 0.0,
+                "finished": false,
+                "time_s": 0.0
+              }
+            }
+          }
+        },
+        "criteria": {
+          "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+          "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+          "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+          "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+          "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+        }
+      },
+      "pedal": {
+        "type": "choice",
+        "instructions": {
+          "rules": "This is a two-kart race. Finish three laps, crossing all 120 required checkpoint gates in order, before the opponent and as quickly as possible while staying on the road. Gates require a forward crossing with the whole circular kart inside the road span. Each kart has a 1 metre radius. Physical contact between equal-mass karts slows or deflects them with normal restitution 0.15; speed is capped at 12 m/s, including after contact. Physics continues at 60 Hz while each driver independently requests decisions. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds with the body outside the road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Rescued karts are non-colliding for at least one second and until separated. Finished karts stop and become non-colliding. Same-tick finishes tie. Edge clearances refer to the body boundary. Opponent ego_x_m is forward and ego_y_m is left of your current nose; relative velocities are opponent minus your velocity in that same frame. A negative surface_gap_m means overlap; phased means non-colliding. Choose the next input using the current measurements and physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+          "current_facts": {
+            "pedal_facts": {
+              "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+              "kart": {
+                "speed_m_s": 0.0
+              },
+              "road": {
+                "on_road": true,
+                "offset_m": 3.0,
+                "left_edge_clearance_m": 8.0,
+                "right_edge_clearance_m": 14.0
+              },
+              "current_road_frame": {
+                "velocity_left_m_s": 0.0,
+                "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+              },
+              "next_gate": {
+                "known": true,
+                "signed_plane_m": -7.712
+              },
+              "body": {
+                "radius_m": 1.0,
+                "phased": false,
+                "left_edge_clearance_m": 8.0,
+                "right_edge_clearance_m": 14.0
+              },
+              "competition": {
+                "racer_id": "blue",
+                "leader": null,
+                "progress_m": 0.0,
+                "opponent": {
+                  "racer_id": "red",
+                  "ego_x_m": -4.1487,
+                  "ego_y_m": -5.8981,
+                  "relative_forward_velocity_m_s": -0.0,
+                  "relative_left_velocity_m_s": 0.0,
+                  "speed_m_s": 0.0,
+                  "heading_relative_rad": -0.05,
+                  "surface_gap_m": 5.2111,
+                  "phased": false,
+                  "finished": false,
+                  "checkpoints_passed": 0,
+                  "progress_m": 0.0
+                },
+                "contact_count": 0
+              },
+              "race": {
+                "lap": 1,
+                "laps_completed": 0,
+                "laps": 3,
+                "checkpoint": 1,
+                "checkpoints_passed": 0,
+                "checkpoints_per_lap": 40,
+                "resets": 0,
+                "track_distance": 0.0,
+                "finished": false,
+                "time_s": 0.0
+              }
+            }
+          }
+        },
+        "criteria": {
+          "accelerate": "ACCELERATE: throttle 1, brake 0.",
+          "coast": "COAST: throttle 0, brake 0.",
+          "brake": "BRAKE: throttle 0, brake 1."
+        }
+      }
+    },
+    "request_sha256": "00950edfafe07caad65bd47beb8a19d149ea4a8384bb042727b2cf09b5f28580",
+    "response": {
+      "model": "typesafe/jev-1.14-20261014",
+      "answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "hard_right",
+          "probabilities": {
+            "hard_right": 0.42,
+            "right": 0.37,
+            "straight": 0.08,
+            "left": 0.08,
+            "hard_left": 0.05
+          },
+          "confidence": 0.27
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.92,
+            "coast": 0.07,
+            "brake": 0.01
+          },
+          "confidence": 0.88
+        }
+      },
+      "usage": {
+        "input_tokens": 2435,
+        "output_tokens": 97,
+        "cost": 0.00010227
+      },
+      "id": "gen-dec-1792647830-Bk89I0LXYm1wTJFdkO61",
+      "provider": "TypeSafe"
+    },
+    "actual_application": {
+      "applied": true,
+      "applied_tick": 21,
+      "applied_ns": 152692979556005,
+      "action": "hard_right_accelerate",
+      "latency_ms": 282.419031
+    },
+    "actual_not_constructed": true
+  }
+]

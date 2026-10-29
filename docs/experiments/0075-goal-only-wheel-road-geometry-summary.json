@@ -1,0 +1,1329 @@
+{
+  "experiment": "0075",
+  "study_closed": true,
+  "technical_audit_passed": true,
+  "entries": [
+    {
+      "entry": {
+        "index": 0,
+        "group": "recovery",
+        "seed": 201,
+        "course": "stadium",
+        "start_pose": {
+          "offset_m": -10.0,
+          "heading_error_rad": 2.1642082724729685
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_accelerate",
+        "reference_s": 107.98333333332849,
+        "include_wheel_motion": false,
+        "arm": "minimal",
+        "include_wheel_road_frame": false
+      },
+      "attempted": true,
+      "finished": true,
+      "clean": false,
+      "useful": true,
+      "elapsed_s": 89.29999999999622,
+      "reference_s": 107.98333333332849,
+      "time_ratio": 0.8269794721407645,
+      "gates": 120,
+      "rescues": 1,
+      "grass_s": 2.9999999999999942,
+      "study_stop": null,
+      "domain_stop": null,
+      "request_errors": 0,
+      "requests": 340,
+      "cost_usd": 0.022455846,
+      "latency_ms": {
+        "n": 340,
+        "p50": 215.156654,
+        "p95": 353.99701895000004,
+        "p99": null,
+        "max": 1575.165914
+      },
+      "observation_age_ms": {
+        "n": 338,
+        "p50": 233.4388165,
+        "p95": 383.067686,
+        "p99": null,
+        "max": 1601.962925
+      },
+      "extended_domain_query_count": 5,
+      "extended_domain_events": [
+        {
+          "index": 0,
+          "observation_s": 0.0,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -90.3115,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -7.712
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 1,
+          "observation_s": 0.5166666666666667,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -90.3178,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -7.7138
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 15,
+          "observation_s": 6.0,
+          "kinds": [
+            "passed_uncredited_required_gate"
+          ],
+          "bearing_deg": -53.6029,
+          "gate": {
+            "known": true,
+            "signed_plane_m": 0.3711
+          },
+          "native_action": "hard_right_brake"
+        },
+        {
+          "index": 16,
+          "observation_s": 6.383333333333334,
+          "kinds": [
+            "passed_uncredited_required_gate"
+          ],
+          "bearing_deg": -51.0942,
+          "gate": {
+            "known": true,
+            "signed_plane_m": 1.0004
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 17,
+          "observation_s": 6.75,
+          "kinds": [
+            "passed_uncredited_required_gate"
+          ],
+          "bearing_deg": -50.4892,
+          "gate": {
+            "known": true,
+            "signed_plane_m": 1.0104
+          },
+          "native_action": "hard_right_accelerate"
+        }
+      ],
+      "finished_after_entering_extended_domain": true,
+      "spikes_at_least_1s": [
+        {
+          "index": 1,
+          "observation_s": 0.5166666666666667,
+          "latency_ms": 1575.165914,
+          "held_at_observation": "hard_right_accelerate",
+          "returned_native_action": "hard_right_accelerate",
+          "applied": true,
+          "reset_during_step": false
+        },
+        {
+          "index": 280,
+          "observation_s": 73.25,
+          "latency_ms": 1058.932397,
+          "held_at_observation": "left_accelerate",
+          "returned_native_action": "left_accelerate",
+          "applied": true,
+          "reset_during_step": false
+        }
+      ],
+      "wheel_choices": {
+        "hard_right": 24,
+        "straight": 8,
+        "left": 224,
+        "right": 66,
+        "hard_left": 18
+      },
+      "pedal_choices": {
+        "accelerate": 334,
+        "brake": 5,
+        "coast": 1
+      },
+      "trial_sha256": "3de201c10c8c5f75d0e9ec5658a41fc8f73157ac33104c2f0bc83fcbee454e58",
+      "audit_sha256": "7243aa42281043ffc043c63ccd39d27c63522bd14f6083903a0889026e39c2b6"
+    },
+    {
+      "entry": {
+        "index": 1,
+        "group": "recovery",
+        "seed": 201,
+        "course": "stadium",
+        "start_pose": {
+          "offset_m": -10.0,
+          "heading_error_rad": 2.1642082724729685
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_accelerate",
+        "reference_s": 107.98333333332849,
+        "include_wheel_motion": false,
+        "arm": "road_geometry",
+        "include_wheel_road_frame": true
+      },
+      "attempted": true,
+      "finished": true,
+      "clean": false,
+      "useful": true,
+      "elapsed_s": 95.54999999999586,
+      "reference_s": 107.98333333332849,
+      "time_ratio": 0.8848587745022394,
+      "gates": 120,
+      "rescues": 2,
+      "grass_s": 5.999999999999984,
+      "study_stop": null,
+      "domain_stop": null,
+      "request_errors": 0,
+      "requests": 354,
+      "cost_usd": 0.024935526,
+      "latency_ms": {
+        "n": 354,
+        "p50": 216.401202,
+        "p95": 330.2810674999997,
+        "p99": null,
+        "max": 2197.210233
+      },
+      "observation_age_ms": {
+        "n": 351,
+        "p50": 234.39899,
+        "p95": 358.06759950000003,
+        "p99": null,
+        "max": 2217.06199
+      },
+      "extended_domain_query_count": 15,
+      "extended_domain_events": [
+        {
+          "index": 0,
+          "observation_s": 0.0,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -90.3115,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -7.712
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 1,
+          "observation_s": 0.4166666666666667,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -90.3178,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -7.7138
+          },
+          "native_action": "hard_left_accelerate"
+        },
+        {
+          "index": 2,
+          "observation_s": 0.6833333333333333,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -90.7306,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -7.9865
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 3,
+          "observation_s": 2.9,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": 165.219,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -27.968
+          },
+          "native_action": "hard_left_accelerate"
+        },
+        {
+          "index": 4,
+          "observation_s": 3.1166666666666667,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": 166.6898,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -30.2868
+          },
+          "native_action": "hard_left_accelerate"
+        },
+        {
+          "index": 5,
+          "observation_s": 3.3666666666666667,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": 169.9354,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -32.9581
+          },
+          "native_action": "hard_left_accelerate"
+        },
+        {
+          "index": 6,
+          "observation_s": 3.783333333333333,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": 162.9921,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -36.9549
+          },
+          "native_action": "hard_left_brake"
+        },
+        {
+          "index": 7,
+          "observation_s": 4.1,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": 156.2379,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -39.2459
+          },
+          "native_action": "hard_left_brake"
+        },
+        {
+          "index": 8,
+          "observation_s": 4.416666666666667,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": 148.5283,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -40.1723
+          },
+          "native_action": "hard_left_coast"
+        },
+        {
+          "index": 9,
+          "observation_s": 4.683333333333334,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": 146.4127,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -40.2029
+          },
+          "native_action": "hard_left_accelerate"
+        },
+        {
+          "index": 10,
+          "observation_s": 5.016666666666667,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": 146.2373,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -40.2032
+          },
+          "native_action": "hard_left_accelerate"
+        },
+        {
+          "index": 11,
+          "observation_s": 5.383333333333334,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": 146.1405,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -40.2721
+          },
+          "native_action": "hard_left_coast"
+        },
+        {
+          "index": 12,
+          "observation_s": 5.65,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": 145.6408,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -40.3751
+          },
+          "native_action": "hard_left_coast"
+        },
+        {
+          "index": 13,
+          "observation_s": 6.8,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": 143.3613,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -40.5735
+          },
+          "native_action": "hard_left_accelerate"
+        },
+        {
+          "index": 14,
+          "observation_s": 7.016666666666667,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": 143.2397,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -40.5802
+          },
+          "native_action": "hard_left_accelerate"
+        }
+      ],
+      "finished_after_entering_extended_domain": true,
+      "spikes_at_least_1s": [
+        {
+          "index": 2,
+          "observation_s": 0.6833333333333333,
+          "latency_ms": 2197.210233,
+          "held_at_observation": "hard_left_accelerate",
+          "returned_native_action": "hard_right_accelerate",
+          "applied": true,
+          "reset_during_step": false
+        },
+        {
+          "index": 12,
+          "observation_s": 5.65,
+          "latency_ms": 1135.471631,
+          "held_at_observation": "hard_left_coast",
+          "returned_native_action": "hard_left_coast",
+          "applied": true,
+          "reset_during_step": false
+        },
+        {
+          "index": 147,
+          "observation_s": 40.416666666666664,
+          "latency_ms": 1718.904247,
+          "held_at_observation": "left_accelerate",
+          "returned_native_action": "hard_left_accelerate",
+          "applied": true,
+          "reset_during_step": false
+        },
+        {
+          "index": 348,
+          "observation_s": 92.83333333333333,
+          "latency_ms": 1730.430253,
+          "held_at_observation": "right_accelerate",
+          "returned_native_action": "right_accelerate",
+          "applied": true,
+          "reset_during_step": false
+        }
+      ],
+      "wheel_choices": {
+        "hard_right": 3,
+        "hard_left": 15,
+        "left": 264,
+        "straight": 7,
+        "right": 65
+      },
+      "pedal_choices": {
+        "accelerate": 341,
+        "brake": 5,
+        "coast": 8
+      },
+      "trial_sha256": "28de8d9fd161cf4b78f72932d94c91532d1582098b4eaf13bf159fe5bd2207d3",
+      "audit_sha256": "83111805ecb57c731ec225bde9850770d48eae7638f92bd386bc188ef197f0f9"
+    },
+    {
+      "entry": {
+        "index": 2,
+        "group": "recovery",
+        "seed": 201,
+        "course": "stadium",
+        "start_pose": {
+          "offset_m": -10.0,
+          "heading_error_rad": 2.1642082724729685
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_accelerate",
+        "reference_s": 107.98333333332849,
+        "include_wheel_motion": false,
+        "arm": "road_geometry",
+        "include_wheel_road_frame": true
+      },
+      "attempted": true,
+      "finished": true,
+      "clean": false,
+      "useful": true,
+      "elapsed_s": 89.56666666666287,
+      "reference_s": 107.98333333332849,
+      "time_ratio": 0.8294489890415208,
+      "gates": 120,
+      "rescues": 1,
+      "grass_s": 2.9999999999999942,
+      "study_stop": null,
+      "domain_stop": null,
+      "request_errors": 0,
+      "requests": 375,
+      "cost_usd": 0.026395656,
+      "latency_ms": {
+        "n": 375,
+        "p50": 200.567899,
+        "p95": 263.8575902,
+        "p99": null,
+        "max": 2194.215756
+      },
+      "observation_age_ms": {
+        "n": 373,
+        "p50": 217.908658,
+        "p95": 299.6263512,
+        "p99": null,
+        "max": 2217.056343
+      },
+      "extended_domain_query_count": 25,
+      "extended_domain_events": [
+        {
+          "index": 0,
+          "observation_s": 0.0,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -90.3115,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -7.712
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 1,
+          "observation_s": 0.25,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -90.3178,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -7.7138
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 2,
+          "observation_s": 0.5,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -90.7135,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -7.9563
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 3,
+          "observation_s": 0.7333333333333333,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -90.4621,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -8.5188
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 7,
+          "observation_s": 1.6333333333333333,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -97.8703,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -11.0456
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 8,
+          "observation_s": 1.85,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -107.5821,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -11.4415
+          },
+          "native_action": "hard_right_brake"
+        },
+        {
+          "index": 9,
+          "observation_s": 2.066666666666667,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -109.8333,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -11.649
+          },
+          "native_action": "hard_right_brake"
+        },
+        {
+          "index": 10,
+          "observation_s": 2.3,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -107.6551,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -11.5344
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 11,
+          "observation_s": 2.6666666666666665,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -104.22,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -11.4265
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 12,
+          "observation_s": 2.933333333333333,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -104.4697,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -11.3107
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 13,
+          "observation_s": 3.1666666666666665,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -104.3469,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -11.0095
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 14,
+          "observation_s": 3.4,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -103.0911,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -10.4119
+          },
+          "native_action": "hard_left_brake"
+        },
+        {
+          "index": 15,
+          "observation_s": 3.6333333333333333,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -99.9745,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -9.4095
+          },
+          "native_action": "hard_right_brake"
+        },
+        {
+          "index": 16,
+          "observation_s": 3.8333333333333335,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -99.1513,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -8.8316
+          },
+          "native_action": "hard_right_brake"
+        },
+        {
+          "index": 17,
+          "observation_s": 4.116666666666666,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -99.3165,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -8.7706
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 18,
+          "observation_s": 4.35,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -99.3133,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -8.77
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 19,
+          "observation_s": 4.566666666666666,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -99.3105,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -8.7163
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 20,
+          "observation_s": 4.783333333333333,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -99.0595,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -8.5879
+          },
+          "native_action": "hard_left_coast"
+        },
+        {
+          "index": 21,
+          "observation_s": 5.0,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -98.5276,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -8.3979
+          },
+          "native_action": "hard_right_coast"
+        },
+        {
+          "index": 22,
+          "observation_s": 5.266666666666667,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -98.8401,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -8.1835
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 23,
+          "observation_s": 5.483333333333333,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -99.2393,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -8.0599
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 24,
+          "observation_s": 5.7,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -99.0296,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -7.9088
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 25,
+          "observation_s": 5.933333333333334,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -98.3805,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -7.6772
+          },
+          "native_action": "hard_right_coast"
+        },
+        {
+          "index": 26,
+          "observation_s": 6.133333333333334,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -97.5652,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -7.4297
+          },
+          "native_action": "hard_right_coast"
+        },
+        {
+          "index": 27,
+          "observation_s": 6.366666666666666,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -96.4359,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -7.1671
+          },
+          "native_action": "hard_right_accelerate"
+        }
+      ],
+      "finished_after_entering_extended_domain": true,
+      "spikes_at_least_1s": [
+        {
+          "index": 346,
+          "observation_s": 80.56666666666666,
+          "latency_ms": 2194.215756,
+          "held_at_observation": "left_accelerate",
+          "returned_native_action": "left_accelerate",
+          "applied": true,
+          "reset_during_step": false
+        }
+      ],
+      "wheel_choices": {
+        "hard_right": 25,
+        "hard_left": 3,
+        "straight": 16,
+        "left": 264,
+        "right": 67
+      },
+      "pedal_choices": {
+        "accelerate": 366,
+        "brake": 5,
+        "coast": 4
+      },
+      "trial_sha256": "119c6d1fdd9606f07f683cf3d6b9163ce578501ede7096f8fc136d36aa5cf8a9",
+      "audit_sha256": "e899fd4176ed22b19fbd8853aac10e504609e5fe4e0d1f4bf72904e9ca7fb0df"
+    },
+    {
+      "entry": {
+        "index": 3,
+        "group": "recovery",
+        "seed": 201,
+        "course": "stadium",
+        "start_pose": {
+          "offset_m": -10.0,
+          "heading_error_rad": 2.1642082724729685
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_accelerate",
+        "reference_s": 107.98333333332849,
+        "include_wheel_motion": false,
+        "arm": "minimal",
+        "include_wheel_road_frame": false
+      },
+      "attempted": true,
+      "finished": true,
+      "clean": false,
+      "useful": true,
+      "elapsed_s": 90.59999999999614,
+      "reference_s": 107.98333333332849,
+      "time_ratio": 0.8390183670319513,
+      "gates": 120,
+      "rescues": 1,
+      "grass_s": 2.9999999999999942,
+      "study_stop": null,
+      "domain_stop": null,
+      "request_errors": 0,
+      "requests": 356,
+      "cost_usd": 0.02351769,
+      "latency_ms": {
+        "n": 356,
+        "p50": 216.5180715,
+        "p95": 292.86892975,
+        "p99": null,
+        "max": 1189.734594
+      },
+      "observation_age_ms": {
+        "n": 354,
+        "p50": 234.3355365,
+        "p95": 317.0186316,
+        "p99": null,
+        "max": 1217.138339
+      },
+      "extended_domain_query_count": 25,
+      "extended_domain_events": [
+        {
+          "index": 0,
+          "observation_s": 0.0,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -90.3115,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -7.712
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 1,
+          "observation_s": 0.48333333333333334,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -90.3178,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -7.7138
+          },
+          "native_action": "hard_left_accelerate"
+        },
+        {
+          "index": 2,
+          "observation_s": 0.95,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -90.5203,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -8.4695
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 3,
+          "observation_s": 1.2,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -94.8304,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -9.3645
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 4,
+          "observation_s": 1.45,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -100.8848,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -10.6429
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 5,
+          "observation_s": 1.7,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -101.8355,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -11.9282
+          },
+          "native_action": "hard_left_accelerate"
+        },
+        {
+          "index": 6,
+          "observation_s": 1.9333333333333333,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -101.7504,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -12.6862
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 7,
+          "observation_s": 2.183333333333333,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -110.7419,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -13.1235
+          },
+          "native_action": "hard_right_brake"
+        },
+        {
+          "index": 8,
+          "observation_s": 2.4166666666666665,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -119.9783,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -13.5797
+          },
+          "native_action": "hard_right_brake"
+        },
+        {
+          "index": 9,
+          "observation_s": 2.6666666666666665,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -119.3532,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -13.7624
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 10,
+          "observation_s": 3.1333333333333333,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -116.1999,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -13.7578
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 11,
+          "observation_s": 3.4,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -116.5782,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -13.7237
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 12,
+          "observation_s": 3.6333333333333333,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -116.4122,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -13.6056
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 13,
+          "observation_s": 3.8666666666666667,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -115.1111,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -13.289
+          },
+          "native_action": "hard_right_brake"
+        },
+        {
+          "index": 14,
+          "observation_s": 4.166666666666667,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -110.8521,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -12.5343
+          },
+          "native_action": "hard_right_brake"
+        },
+        {
+          "index": 15,
+          "observation_s": 4.45,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -106.7278,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -12.2159
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 16,
+          "observation_s": 4.766666666666667,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -106.0908,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -12.2154
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 17,
+          "observation_s": 5.0,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -106.0487,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -12.1621
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 18,
+          "observation_s": 5.233333333333333,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -105.7312,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -12.0341
+          },
+          "native_action": "hard_right_coast"
+        },
+        {
+          "index": 19,
+          "observation_s": 5.55,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -104.7921,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -11.762
+          },
+          "native_action": "hard_right_coast"
+        },
+        {
+          "index": 20,
+          "observation_s": 5.783333333333333,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -103.8301,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -11.5631
+          },
+          "native_action": "hard_right_coast"
+        },
+        {
+          "index": 21,
+          "observation_s": 6.016666666666667,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -103.0256,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -11.4135
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 22,
+          "observation_s": 6.266666666666667,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -102.3936,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -11.2977
+          },
+          "native_action": "hard_right_accelerate"
+        },
+        {
+          "index": 23,
+          "observation_s": 6.533333333333333,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -101.8489,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -11.1264
+          },
+          "native_action": "hard_right_coast"
+        },
+        {
+          "index": 24,
+          "observation_s": 6.766666666666667,
+          "kinds": [
+            "nonforward_preview"
+          ],
+          "bearing_deg": -101.0941,
+          "gate": {
+            "known": true,
+            "signed_plane_m": -10.8984
+          },
+          "native_action": "hard_right_coast"
+        }
+      ],
+      "finished_after_entering_extended_domain": true,
+      "spikes_at_least_1s": [
+        {
+          "index": 27,
+          "observation_s": 7.483333333333333,
+          "latency_ms": 1189.734594,
+          "held_at_observation": "straight_accelerate",
+          "returned_native_action": "straight_accelerate",
+          "applied": true,
+          "reset_during_step": false
+        }
+      ],
+      "wheel_choices": {
+        "hard_right": 27,
+        "hard_left": 19,
+        "straight": 10,
+        "left": 231,
+        "right": 69
+      },
+      "pedal_choices": {
+        "accelerate": 347,
+        "brake": 4,
+        "coast": 5
+      },
+      "trial_sha256": "f3e1a659a30d00d60ba3f21431a1bc49ed90588ee3d8ecaf813f24b42d14c464",
+      "audit_sha256": "b0578136748fd904ef5f78f452ec7b4eca394e6b88ac0a29a356cc1fd9211b67"
+    }
+  ],
+  "attempts": 4,
+  "unrun": 0,
+  "finished": 4,
+  "clean": 0,
+  "useful": 4,
+  "actual_extended_domain_queries": 70,
+  "finishes_after_entering_extended_domain": 4,
+  "spike_count_at_least_1s": 8,
+  "latency_ms": {
+    "n": 1425,
+    "p50": 211.871177,
+    "p95": 309.6172054,
+    "p99": 553.1238519599997,
+    "max": 2197.210233
+  },
+  "source_fingerprint": "793bf26aa6b9257d0eab60f726c2578cbd74a5276aef70e8a2addfa233029253",
+  "controller_sources_sha256": {
+    "/workspace/mcpkart/src/mcpkart/question_context.py": "7fdaa33028aac95e2610e251d21b4a6d3daab49c6136d5e27054cae8a03bd95d",
+    "/workspace/mcpkart/src/mcpkart/question_context_driver.py": "60cb444bf7d2302c03f193317f018d60db97db5c8a6f59677b68b11af1334d7e",
+    "/workspace/mcpkart/src/mcpkart/question_context_run.py": "eb9de8c56557ce8f3567aed694f79d679aa49e74d916fde7c6a4bbf013daeafc"
+  },
+  "protocol_sha256": "c149bb7c9dab2288d6932ede0e86dbaca03786a701533a09b7768bacc6b7c4b4",
+  "only_wheel_road_geometry_facts_changed": true,
+  "goal_rules_pedal_question_handling_native_controls_unchanged": true,
+  "spike_origin_or_causal_effect_identified": false,
+  "engine_clock_gate_reused_and_reverified": true,
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 100000,
+    "max_tokens": 500000000,
+    "requests": 78209,
+    "charged_usd": 9.051934310003073,
+    "charged_tokens": 279731476,
+    "reported_cost_usd": 8.990723686003031,
+    "uncertain_requests": 70,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 100000,
+    "max_tokens": 500000000,
+    "requests": 79634,
+    "charged_usd": 9.149239028003063,
+    "charged_tokens": 282185152,
+    "reported_cost_usd": 9.08802840400302,
+    "uncertain_requests": 70,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 1425,
+    "charged_tokens": 2453676,
+    "charged_usd": 0.09730471799998952,
+    "uncertain_requests": 0
+  },
+  "new_paid_native_probes": 0,
+  "model_requests_by_report": 0,
+  "root_only_review": true,
+  "created_utc": "2026-10-22T00:26:24.343640+00:00"
+}

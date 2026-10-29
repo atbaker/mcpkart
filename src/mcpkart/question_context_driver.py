@@ -12,7 +12,10 @@ from pathlib import Path
 from .decisions import DecisionClient
 from .question_context import (
     COMMON_DEFINITIONS,
+    GOAL_DEFINITIONS,
+    GOAL_INSTRUCTION_STYLE,
     INSTRUCTION_STYLE,
+    PROMPT_MODES,
     PromptDomainError,
     QuestionContextClient,
     build_questions,
@@ -110,7 +113,20 @@ class QuestionContextDriver:
     """
 
     def __init__(self, *, budget, http, capture: WireCapture, route: dict,
-                 config: dict, output: Path, api_key=None, admission=None):
+                 config: dict, output: Path, api_key=None, admission=None, prompt_mode="policy",
+                 extended_domain=False, include_wheel_motion=False, include_wheel_road_frame=False):
+        if prompt_mode not in PROMPT_MODES:
+            raise ValueError(f"Unknown question-local prompt mode: {prompt_mode}")
+        if extended_domain and prompt_mode != "goal":
+            raise ValueError("Extended pose domain requires the goal-only prompt")
+        if include_wheel_motion and prompt_mode != "goal":
+            raise ValueError("Wheel motion facts require the goal-only prompt")
+        if include_wheel_road_frame and prompt_mode != "goal":
+            raise ValueError("Wheel road-frame facts require the goal-only prompt")
+        self.prompt_mode = prompt_mode
+        self.extended_domain = extended_domain
+        self.include_wheel_motion = include_wheel_motion
+        self.include_wheel_road_frame = include_wheel_road_frame
         self.budget, self.http, self.capture = budget, http, capture
         self.route, self.config = copy.deepcopy(route), copy.deepcopy(config)
         self.output, self.admission = Path(output), admission
@@ -122,11 +138,16 @@ class QuestionContextDriver:
             handling=config["handling"], max_input_tokens=16384,
             control_language="geometry", decision_layout="factored",
         )
-        self._header.instructions = COMMON_DEFINITIONS
-        self._header.instruction_style = INSTRUCTION_STYLE
+        self._header.instructions = COMMON_DEFINITIONS if prompt_mode == "policy" else GOAL_DEFINITIONS
+        self._header.instruction_style = INSTRUCTION_STYLE if prompt_mode == "policy" else GOAL_INSTRUCTION_STYLE
         canonical = Simulation.from_config(config).observation()
         self._templates = build_questions(
-            self._header.component_criteria, project_facts(canonical, config=config),
+            self._header.component_criteria,
+            project_facts(canonical, config=config, extended_domain=extended_domain,
+                          include_wheel_motion=include_wheel_motion,
+                          include_wheel_road_frame=include_wheel_road_frame),
+            prompt_mode=prompt_mode, extended_domain=extended_domain, include_wheel_motion=include_wheel_motion,
+            include_wheel_road_frame=include_wheel_road_frame,
         )
         for question in self._templates.values():
             question["instructions"].pop("current_facts")
@@ -153,7 +174,9 @@ class QuestionContextDriver:
             self._stopped = True
             raise RuntimeError("Route or shared budget changed before POST")
         try:
-            facts = project_facts(observation, config=self.config)
+            facts = project_facts(observation, config=self.config, extended_domain=self.extended_domain,
+                                  include_wheel_motion=self.include_wheel_motion,
+                                  include_wheel_road_frame=self.include_wheel_road_frame)
         except PromptDomainError as error:
             self._stopped = True
             _write_new(self.output / "domain-stop.json", {
@@ -167,6 +190,10 @@ class QuestionContextDriver:
         api = QuestionContextClient(
             current_facts=facts, budget=self.budget, http_client=self.http,
             handling=self.config["handling"], api_key=self.api_key,
+            prompt_mode=self.prompt_mode,
+            extended_domain=self.extended_domain,
+            include_wheel_motion=self.include_wheel_motion,
+            include_wheel_road_frame=self.include_wheel_road_frame,
         )
         questions = api.questions
         query = {"index": self.count, "physical_packet": facts,

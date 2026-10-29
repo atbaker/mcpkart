@@ -1,0 +1,39 @@
+{
+  "explicit_user_authorization": {
+    "models": "Start Jev vs Jev, then Jev vs OpenAI once working",
+    "contact": "Simple physical contact that slows or deflects karts",
+    "budget": "You can go up to $20"
+  },
+  "recorded_utc": "2026-10-22T00:38:57.955109+00:00",
+  "work_target_end_utc": "2026-10-22T05:08:57.955109+00:00",
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 100000,
+    "max_tokens": 500000000,
+    "requests": 79634,
+    "charged_usd": 9.149239028003063,
+    "charged_tokens": 282185152,
+    "reported_cost_usd": 9.08802840400302,
+    "uncertain_requests": 70,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 100000,
+    "max_tokens": 500000000,
+    "requests": 79634,
+    "charged_usd": 9.149239028003063,
+    "charged_tokens": 282185152,
+    "reported_cost_usd": 9.08802840400302,
+    "uncertain_requests": 70,
+    "pending": {}
+  },
+  "only_ledger_field_changed": "cap_usd",
+  "previous_ledger_sha256": "e9eef986144572d4372ce2aa881a70a025e5025fe29999ce7eca8ff259e6677d",
+  "max_requests_preserved": 100000,
+  "max_tokens_preserved": 500000000,
+  "all_70_uncertainties_preserved": true,
+  "paid_requests_at_amendment": 0
+}

@@ -1,0 +1,307 @@
+{
+  "study": "0080-jev-provider-overload-retry",
+  "authorization": "User: Hmm - try again and see if the 529 has cleared up?",
+  "one_fresh_baseline_attempt": true,
+  "original_interrupted_attempt_preserved": true,
+  "provider529_count": 0,
+  "all_http200_requests": 575,
+  "summary": {
+    "finished": true,
+    "elapsed": 110.24999999999503,
+    "ticks": 6615,
+    "winner_ids": [
+      "red"
+    ],
+    "finish_times_s": {
+      "red": 97.46666666666667,
+      "blue": 110.25
+    },
+    "racers": {
+      "red": {
+        "seed": 522,
+        "finished": true,
+        "elapsed": 97.46666666666242,
+        "ticks": 5848,
+        "laps_completed": 3,
+        "checkpoints_passed": 120,
+        "lap_times": [
+          42.283333333332216,
+          28.199999999998404,
+          26.9833333333318
+        ],
+        "offroad_time": 5.999999999999984,
+        "distance": 961.8777355852476,
+        "max_speed": 12.000000000000002,
+        "resets": 2,
+        "reset_events": [
+          {
+            "tick": 816,
+            "time": 13.600000000000255,
+            "departure_s": 68.68551748415163,
+            "respawn_s": 67.68551748415163,
+            "x": -58.52482405421873,
+            "y": -9.279600266272618,
+            "heading": 1.885255869134534,
+            "offroad_elapsed": 2.9999999999999942,
+            "previous_action": "hard_right_brake",
+            "control": "straight_coast"
+          },
+          {
+            "tick": 1502,
+            "time": 25.033333333333193,
+            "departure_s": 146.42028951748804,
+            "respawn_s": 145.42028951748804,
+            "x": -8.82032700109741,
+            "y": 30.0,
+            "heading": 0.0,
+            "offroad_elapsed": 2.9999999999999942,
+            "previous_action": "hard_left_brake",
+            "control": "straight_coast"
+          }
+        ]
+      },
+      "blue": {
+        "seed": 523,
+        "finished": true,
+        "elapsed": 110.24999999999503,
+        "ticks": 6615,
+        "laps_completed": 3,
+        "checkpoints_passed": 120,
+        "lap_times": [
+          45.09999999999872,
+          31.59999999999821,
+          33.54999999999809
+        ],
+        "offroad_time": 9.000000000000027,
+        "distance": 1004.2857426202414,
+        "max_speed": 12.000000000000002,
+        "resets": 3,
+        "reset_events": [
+          {
+            "tick": 425,
+            "time": 7.0833333333333135,
+            "departure_s": 25.05325262142364,
+            "respawn_s": 24.05325262142364,
+            "x": -24.05325262142364,
+            "y": -30.0,
+            "heading": -3.141592653589793,
+            "offroad_elapsed": 2.9999999999999942,
+            "previous_action": "hard_left_accelerate",
+            "control": "straight_coast"
+          },
+          {
+            "tick": 1520,
+            "time": 25.333333333333176,
+            "departure_s": 127.37550113820292,
+            "respawn_s": 126.37550113820292,
+            "x": -27.865115380382534,
+            "y": 30.0,
+            "heading": 3.0294635074756826e-05,
+            "offroad_elapsed": 2.9999999999999942,
+            "previous_action": "hard_right_coast",
+            "control": "straight_coast"
+          },
+          {
+            "tick": 5942,
+            "time": 99.033333333329,
+            "departure_s": 196.15558743604296,
+            "respawn_s": 195.15558743604296,
+            "x": 40.676059052543344,
+            "y": 28.034674554978846,
+            "heading": -0.3639377283550491,
+            "offroad_elapsed": 2.9999999999999942,
+            "previous_action": "hard_right_coast",
+            "control": "straight_coast"
+          }
+        ]
+      }
+    },
+    "contacts": 0,
+    "lead_changes": 3
+  },
+  "api_latency": {
+    "red": {
+      "requests": 270,
+      "p50_ms": 244.28004950000002,
+      "p95_ms": 885.7602696999991,
+      "p99_ms": 1634.7479438900007,
+      "max_ms": 3209.65401,
+      "at_least_1s": 13,
+      "at_least_2s": 1,
+      "at_least_3s": 1
+    },
+    "blue": {
+      "requests": 305,
+      "p50_ms": 239.906787,
+      "p95_ms": 809.3900532000001,
+      "p99_ms": 1336.301658319997,
+      "max_ms": 3722.014786,
+      "at_least_1s": 9,
+      "at_least_2s": 2,
+      "at_least_3s": 2
+    }
+  },
+  "audit": {
+    "passed": true,
+    "physics_frames": 6616,
+    "exact_queries": 575,
+    "budget_transitions": 1150,
+    "peak_pending": 2,
+    "max_sample_lateness_ms": 7.3087089999971795,
+    "root_exit_observed": true,
+    "reviewed_utc": "2026-10-22T06:02:28.767294+00:00"
+  },
+  "wire_reservation_audit_passed": true,
+  "source_sha256": {
+    "__init__.py": "c7cf29a796c0b9cbf6050c60b8825b0a266e38de3a18793c3492608ecc79ea60",
+    "bench.py": "9885a0e6792803f7314f2c83a812648811b53b8401a20428b0178443a80dbc92",
+    "decisions.py": "951fada04dd1fe8bda0c14d3017e02864473c82cdc29624abb51fc9188b4f0cf",
+    "duel.py": "182eaa3e42d138ef874797b25be7aa31c299edd688de46e4420968685bafe516",
+    "duel_bench.py": "d3d817084cbfe6b806e37e612acfa8ba1e5f42e8fbcc41d6a77508964c69bf15",
+    "duel_clock.py": "8037af2f364462e9324d6fca3d2cff8c4d12188b0cda72b8508434f4e6ab6539",
+    "duel_decisions.py": "020434ae95c498ba678e3d32add8c82277e6e4e367e13e1a8dd4b1287149349b",
+    "duel_process.py": "51de3f699a10de94b0f19a46e60113f9536321b24754f46cf57eaa2ac547d61c",
+    "duel_run.py": "a3ada9f7c6e2b47fb4641619a63bed46f5a7d394a38beeae86ec597876c69bf2",
+    "duel_runtime.py": "5592633c1feeb2f0770f4a64e218d7de3fff4f73f04af1dcf2bd5e91579b879a",
+    "duel_web.py": "3a5cb06ea82bb2070263b97c98e3ed518755793af93a639b971caba24c7721ef",
+    "duel_worker.py": "87315ff806407311cfed81c97eb4e964b584d5a399ba1bc8933fe34907b0131d",
+    "observations.py": "5febca57d1e474abc9268de49924fe7c8c418bd1a4f469e34ffa564ab1af3255",
+    "physics_worker.py": "cc478b1cb09fd1f3f4f2059a6e69dc1288379cd77d790e693d39f2d68cb32ea8",
+    "probe.py": "d288274877da8ef42f2c3442581de7857e390ffa580e0e7353d6634565a343e5",
+    "process_runtime.py": "2523a39a42645845b20bb6f87b81e5cd50747d1e395c8631ef23a592c08e282e",
+    "question_context.py": "7fdaa33028aac95e2610e251d21b4a6d3daab49c6136d5e27054cae8a03bd95d",
+    "question_context_driver.py": "60cb444bf7d2302c03f193317f018d60db97db5c8a6f59677b68b11af1334d7e",
+    "question_context_run.py": "eb9de8c56557ce8f3567aed694f79d679aa49e74d916fde7c6a4bbf013daeafc",
+    "runtime.py": "d19bba47418747b0c9b600ffc6f4e7a7b69d0046b54eb538d3aeebc5e962c695",
+    "rust_runtime.py": "a5b27ce28f559ca995362c7f9e81ae357da40f20898ca40333388200aa7cc427",
+    "scene.py": "855dcb4e5a337a137d57dba4345bbbece6df6e4f24121dfbd4c7bb1881bc92af",
+    "sim.py": "a6fef5437837d592adbdcec902fc112ef6206c639c051f1d952f6bbcd67f1ce5",
+    "telemetry.py": "44e1a97c6448ffdaf95b97767072e3f99341f3ed5a5092735f5343254788ed6d",
+    "web.py": "2d3bb6aa690c2624c17cb0abcb4bc711cba794b31f3701dbd29bdb3b30590965",
+    "static/duel.html": "ddd181be660b66e9ab5fc7e6305cbfae54602ffae3f5c6c7831d374aa0bda6eb"
+  },
+  "route": {
+    "model": "typesafe/jev-1.14",
+    "resolved_model": "typesafe/jev-1.14-20261014",
+    "canonical_version_available": true,
+    "canonical_version_pinned": false,
+    "provider": "typesafe",
+    "provider_name": "TypeSafe",
+    "endpoint_name": "TypeSafe | typesafe/jev-1.14-20261014",
+    "price_input_per_token": 4.2e-08,
+    "price_output_per_token": 0.0,
+    "price_per_request": 0.0,
+    "context_length": 262144,
+    "max_prompt_tokens": 262144,
+    "max_completion_tokens": 235929,
+    "catalog_observed_at": "2026-10-22T05:59:36.420017+00:00",
+    "catalog_entry": {
+      "id": "typesafe/jev-1.14",
+      "canonical_slug": "typesafe/jev-1.14-20261014",
+      "hugging_face_id": null,
+      "name": "TypeSafe: Jev 1.14",
+      "created": 1792021417,
+      "description": "Jev 1.14 is the latest version of Jev, TypeSafe's structured decision model and the first of its System One models. System One models make fast, structured decisions for software, returning...",
+      "context_length": 262144,
+      "architecture": {
+        "modality": "text+image->decisions",
+        "input_modalities": [
+          "text",
+          "image"
+        ],
+        "output_modalities": [
+          "decisions"
+        ],
+        "tokenizer": "Other",
+        "instruct_type": null
+      },
+      "pricing": {
+        "prompt": "0.000000042",
+        "completion": "0"
+      },
+      "top_provider": {
+        "context_length": 262144,
+        "max_completion_tokens": 235929,
+        "is_moderated": false
+      },
+      "per_request_limits": null,
+      "supported_parameters": [],
+      "default_parameters": {},
+      "supported_voices": null,
+      "knowledge_cutoff": null,
+      "expiration_date": null,
+      "links": {
+        "details": "/api/v1/models/typesafe/jev-1.14-20261014/endpoints"
+      }
+    },
+    "endpoint": {
+      "name": "TypeSafe | typesafe/jev-1.14-20261014",
+      "model_id": "typesafe/jev-1.14",
+      "model_name": "TypeSafe: Jev 1.14",
+      "context_length": 262144,
+      "pricing": {
+        "prompt": "0.000000042",
+        "completion": "0",
+        "discount": 0
+      },
+      "provider_name": "TypeSafe",
+      "tag": "typesafe",
+      "service_tier": null,
+      "quantization": "unknown",
+      "max_completion_tokens": 235929,
+      "max_prompt_tokens": 262144,
+      "supported_parameters": [],
+      "supports_tool_choice": {
+        "none": true,
+        "auto": true,
+        "required": true,
+        "function": true
+      },
+      "status": 0,
+      "uptime_last_30m": 100,
+      "uptime_last_5m": 100,
+      "uptime_last_1d": 100,
+      "supports_implicit_caching": false,
+      "native_tools": {},
+      "supports_voice_cloning": false,
+      "supports_multiple_audio_references": false,
+      "supports_image_reference": false,
+      "supports_diarization": false,
+      "latency_last_30m": null,
+      "throughput_last_30m": null
+    }
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 100000,
+    "max_tokens": 500000000,
+    "requests": 97353,
+    "charged_usd": 11.290856144002776,
+    "charged_tokens": 328183549,
+    "reported_cost_usd": 11.228957392002734,
+    "uncertain_requests": 71,
+    "pending": {}
+  },
+  "added": {
+    "requests": 575,
+    "charged_tokens": 1532814,
+    "charged_usd": 0.06205600800002031,
+    "uncertain_requests": 0
+  },
+  "comparison_geometry": {
+    "study": "0079",
+    "run": "paid/race-2",
+    "red_finish_s": 82.48333333333333,
+    "blue_finish_s": 83.3,
+    "clean": 2,
+    "rescues": 0,
+    "red_api_p95_ms": 303.44467360000004,
+    "blue_api_p95_ms": 297.0147504,
+    "max_api_ms": 549.879465
+  },
+  "interpretation": "The overload did not recur during this575-request attempt. Both baseline karts finished with rescue. Provider/API latency was substantially worse than in the earlier geometry duel, so the performance difference cannot be attributed confidently to gate facts. No controlled delay intervention or durable availability claim.",
+  "closed": true,
+  "no_paid_calls_active": true,
+  "report": "docs/experiments/0080-jev-overload-retry.md"
+}

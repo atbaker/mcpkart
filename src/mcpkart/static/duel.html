@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MCP Kart · Head to head</title>
+<style>
+:root{color-scheme:dark;font:15px system-ui,sans-serif;background:#0b101a;color:#e9eff8}*{box-sizing:border-box}body{margin:0}header{display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-bottom:1px solid #263045}h1{font-size:20px;margin:0;letter-spacing:.03em}small,.muted{color:#a3b0c4}.badge{border:1px solid #39465d;border-radius:20px;padding:6px 12px;font-size:12px}main{max-width:1440px;margin:auto;padding:24px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px}.stage{background:#101927;border:1px solid #263045;border-radius:16px;overflow:hidden}canvas{display:block;width:100%;height:min(65vh,680px)}.toolbar{padding:16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;border-top:1px solid #263045}button,select,.upload{font:inherit;background:#1c2b41;color:#e9eff8;border:1px solid #39465d;padding:8px 12px;border-radius:7px;cursor:pointer}button:hover,.upload:hover{background:#2a3d58}input[type=range]{width:100%;accent-color:#70dcca}.timeline{padding:0 16px 16px}.card{border:1px solid #263045;border-radius:14px;padding:18px;margin-bottom:14px;background:#111a29}.driver{border-top:3px solid var(--color)}.row{display:flex;justify-content:space-between;gap:12px;margin:10px 0}.name{font-size:18px;font-weight:650;color:var(--color)}.value{font-variant-numeric:tabular-nums}.big{font-size:28px}.events{max-height:180px;overflow:auto;font-size:13px;line-height:1.7}.foot{padding:0 24px 24px;max-width:1440px;margin:auto;color:#a3b0c4;font-size:13px}#title{max-width:65ch;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#file{display:none}@media(max-width:850px){main{grid-template-columns:1fr}aside{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{margin:0}canvas{height:55vh}.wide{grid-column:span 2}header{padding:16px}main{padding:12px}}
+button:disabled,select:disabled,input:disabled{opacity:.45;cursor:default}button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid #70dcca;outline-offset:3px}.markers{height:18px;position:relative;margin:0 6px 6px}.marker{position:absolute;top:3px;transform:translateX(-50%);width:6px;height:10px;min-width:0;padding:0;border:0;border-radius:2px;background:#a3b0c4}.marker.contact{background:#f7d56b}.marker.rescue{background:#ff9770}.marker.lead_change{background:#70dcca}.marker.finish{background:#f2f6fb}.marker:hover{height:16px;top:0}.event{display:block;text-align:left;width:100%;font-size:13px;border:0;background:transparent;padding:5px 2px;color:#b8c5d9}.source{display:block;margin-top:6px;color:#879bb2;font-size:11px}
+</style>
+<header><div><h1>MCP KART <span class="muted">/ HEAD TO HEAD</span></h1><small id="title">Two drivers. One track.</small></div><span class="badge" id="status">Connecting</span></header>
+<main><section class="stage"><canvas id="track" aria-label="Overhead view of both racing karts"></canvas><div class="toolbar"><button id="live">Live</button><select id="saved" aria-label="Saved race"><option value="">Saved races</option></select><label class="upload" for="file">Open replay</label><input id="file" type="file" accept=".json,application/json"><button id="play">Pause</button><select id="rate" aria-label="Replay speed"><option value=".5">½×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option></select><span class="value" id="clock">0.00 s</span></div><div class="timeline"><input id="seek" type="range" min="0" max="1000" value="0" aria-label="Replay position"><div id="markers" class="markers" aria-label="Race events"></div><small id="result">Waiting for a race</small><small id="source" class="source"></small></div></section>
+<aside><div class="card driver" style="--color:#ff776d" id="red"></div><div class="card driver" style="--color:#70b7ff" id="blue"></div><div class="card wide"><div class="row"><span>Contacts</span><strong id="contacts">0</strong></div><div class="row"><span>Leader</span><strong id="leader">—</strong></div><div class="events" id="events"></div></div></aside></main>
+<div class="foot">Each model controls its own steering and pedals. The race continues while decisions are in flight. Dotted karts are temporarily non-colliding after rescue or finishing. Replay files also work offline.</div>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const canvas = $('track'), ctx = canvas.getContext('2d');
+const colors = {red: '#ff776d', blue: '#70b7ff'};
+let mode = 'live', recording = null, state = null, playing = true;
+let replayTime = 0, sampleIndex = 0, last = performance.now(), polling = false, loadGeneration = 0;
+const text = (id, value) => { $(id).textContent = value; };
+function playbackControls() {
+  const replay = mode === 'replay';
+  for (const id of ['play', 'seek', 'rate']) $(id).disabled = !replay;
+  $('play').textContent = replay && playing ? 'Pause' : 'Play';
+  $('markers').hidden = !replay;
+}
+function duration() { return recording?.samples.at(-1).time || 0; }
+function indexAt(samples, time) {
+  let lo = 0, hi = samples.length - 1;
+  while (lo < hi) {
+    const mid = Math.ceil((lo + hi) / 2);
+    if (samples[mid].time <= time) lo = mid; else hi = mid - 1;
+  }
+  return lo;
+}
+function loadRace(value) {
+  let race = value.race || value;
+  if (!race.samples?.length || !race.track?.points?.length) throw Error('Choose a two-kart recording');
+  const origin = race.episode_origin?.time_s;
+  if (Number.isFinite(origin) && origin > 0) {
+    race = structuredClone(race);
+    for (const sample of race.samples) sample.time -= origin;
+    race.events = (race.events || []).filter(e => e.time >= origin).map(e => ({...e, time: e.time - origin}));
+    if (race.summary?.finish_times_s) {
+      for (const rid of ['red', 'blue']) {
+        const finish = race.summary.finish_times_s[rid];
+        if (Number.isFinite(finish)) race.summary.finish_times_s[rid] = Math.max(0, finish - origin);
+      }
+    }
+  }
+  let previous = -Infinity;
+  for (const sample of race.samples) {
+    if (!Number.isFinite(sample.time) || sample.time < previous) throw Error('Replay times must be ordered');
+    for (const rid of ['red', 'blue']) {
+      const kart = sample.racers?.[rid]?.kart;
+      if (!kart || !['x', 'y', 'heading', 'speed'].every(k => Number.isFinite(kart[k])))
+        throw Error('Choose a complete two-kart recording');
+    }
+    previous = sample.time;
+  }
+  recording = race; mode = 'replay'; replayTime = 0; playing = true;
+  buildMarkers(); playbackControls(); showReplay();
+}
+function seek(time, play = false) {
+  if (!recording) return;
+  replayTime = Math.max(0, Math.min(duration(), time)); playing = play;
+  playbackControls(); showReplay();
+}
+function metricAt(rid, sample) {
+  const rows = recording.driver_timeline?.[rid];
+  if (!rows?.length) return recording.driver_metrics?.[rid] || {};
+  const time = sample.wall_ns && recording.started_ns ? (sample.wall_ns - recording.started_ns) / 1e9 : sample.time;
+  let lo = 0, hi = rows.length;
+  while (lo < hi) { const mid = (lo + hi) >> 1; if (rows[mid].request_s <= time) lo = mid + 1; else hi = mid; }
+  if (!lo) return {};
+  const call = rows[lo - 1];
+  return {thinking: time < call.response_s, last_latency_ms: call.latency_ms};
+}
+function showReplay() {
+  if (!recording) return;
+  sampleIndex = indexAt(recording.samples, replayTime);
+  const sample = recording.samples[sampleIndex];
+  state = {status: 'replay', label: recording.label, track: recording.track, observation: sample,
+    events: (recording.events || []).filter(e => e.time <= sample.time).slice(-16),
+    summary: recording.summary, driver_labels: recording.driver_labels,
+    driver_metrics: Object.fromEntries(['red', 'blue'].map(r => [r, metricAt(r, sample)]))};
+  $('seek').value = duration() ? replayTime / duration() * 1000 : 0;
+  render();
+}
+function eventName(event) {
+  if (event.type === 'lead_change') return `${event.to} takes the lead`;
+  return event.type.replaceAll('_', ' ') + (event.racer_id ? ' · ' + event.racer_id : '');
+}
+function buildMarkers() {
+  $('markers').replaceChildren();
+  for (const event of recording.events || []) {
+    if (!['contact', 'rescue', 'lead_change', 'finish'].includes(event.type)) continue;
+    const button = document.createElement('button');
+    button.className = 'marker ' + event.type;
+    button.style.left = `${duration() ? event.time / duration() * 100 : 0}%`;
+    button.title = `${event.time.toFixed(2)} s · ${eventName(event)}`;
+    button.setAttribute('aria-label', button.title);
+    button.onclick = () => seek(event.time - 1.5, true);
+    $('markers').append(button);
+  }
+}
+const cards = {}; let eventSignature = '';
+function renderCard(rid, racer) {
+  if (!cards[rid]) {
+    const card = $(rid), title = document.createElement('div'), cells = {};
+    card.replaceChildren(); title.className = 'name'; card.append(title);
+    for (const name of ['Speed', 'Reply', 'Lap', 'Gates', 'Rescues', 'Input', 'State']) {
+      const row = document.createElement('div'), label = document.createElement('span'), value = document.createElement('strong');
+      row.className = 'row'; label.textContent = name; value.className = 'value';
+      row.append(label, value); card.append(row); cells[name] = {label, value};
+    }
+    cards[rid] = {title, cells};
+  }
+  const {title, cells} = cards[rid], p = racer.progress || {}, metric = state.driver_metrics?.[rid] || {};
+  title.textContent = state.driver_labels?.[rid] || rid[0].toUpperCase() + rid.slice(1);
+  const median = metric.last_latency_ms == null && metric.api_latency_ms?.p50 != null;
+  const latency = metric.last_latency_ms ?? metric.api_latency_ms?.p50;
+  cells.Reply.label.textContent = median ? 'Median reply' : 'Reply';
+  const values = {Speed: `${racer.kart.speed.toFixed(1)} m/s`,
+    Reply: metric.thinking ? 'Thinking' : latency != null ? `${Math.round(latency)} ms` : '—',
+    Lap: `${p.lap || 1} / ${p.laps || 3}`,
+    Gates: `${p.checkpoints_passed || 0} / ${(p.laps || 3) * (p.checkpoints_per_lap || 40)}`,
+    Rescues: racer.rescue?.count || 0, Input: racer.control?.replaceAll('_', ' ') || '—',
+    State: racer.finished ? 'Finished' : racer.body?.phased ? 'Rejoining' : racer.track?.on_road ? 'Racing' : 'Off road'};
+  for (const [name, value] of Object.entries(values)) cells[name].value.textContent = value;
+}
+function render() {
+  if (!state) return;
+  const observation = state.observation || {}, racers = observation.racers || {};
+  const statusNames = {idle: 'Waiting for a race', admitting: 'Starting', running: 'Live race', completed: 'Finished', stopped: 'Stopped'};
+  const badge = mode === 'replay' ? replayTime >= duration() ? 'Replay finished' : playing ? 'Replay' : 'Replay paused'
+    : statusNames[state.status] || (state.reason === 'deadline' ? 'Time limit reached' : 'Race interrupted');
+  text('status', badge); text('title', state.label || 'Two drivers. One track.');
+  text('clock', `${(observation.time || 0).toFixed(2)} s`);
+  text('leader', observation.leader || 'Level');
+  text('contacts', racers.red?.competition?.contact_count || 0);
+  for (const rid of ['red', 'blue']) if (racers[rid]) renderCard(rid, racers[rid]);
+  const events = (state.events || []).filter(e => ['contact', 'rescue', 'lead_change', 'finish'].includes(e.type));
+  const signature = mode + '|' + (state.race_id || recording?.race_id || '') + '|' + events.map(e => `${e.type}:${e.tick}:${e.racer_id || e.to || ''}`).join('|');
+  if (signature !== eventSignature) {
+    eventSignature = signature; $('events').replaceChildren();
+    for (const event of [...events].reverse()) {
+      const line = document.createElement(mode === 'replay' ? 'button' : 'div');
+      line.className = 'event'; line.textContent = `${event.time.toFixed(2)} s · ${eventName(event)}`;
+      if (mode === 'replay') line.onclick = () => seek(event.time - 1.5, true);
+      $('events').append(line);
+    }
+  }
+  let result = 'Independent drivers · three laps · shared track';
+  if (mode === 'replay' && recording.episode) {
+    result = `${recording.episode.racer_id} recovery · ${recording.episode.gate_credits} new gate credits before rescue`;
+    if (replayTime >= duration()) {
+      const outcome = recording.episode.outcome;
+      result = outcome === 'credited' ? 'Recovery checkpoint reached'
+        : outcome === 'rescued' ? 'Rescue required' : 'Recovery episode ended · ' + outcome;
+    }
+  } else if (mode === 'replay') {
+    const winners = recording.summary?.winner_ids || [];
+    const finish = Math.min(...winners.map(r => recording.summary.finish_times_s[r]));
+    if (winners.length && observation.time >= finish - .0001) {
+      result = winners.length === 2 ? `Same-tick tie · ${finish.toFixed(2)} s`
+        : `${recording.driver_labels?.[winners[0]] || winners[0]} wins · ${finish.toFixed(2)} s`;
+    } else if (replayTime >= duration()) result = 'Race ended without a finisher';
+    else result = 'Recorded race · seek an event to watch contact or a lead change';
+  } else if (state.episode) {
+    result = state.status === 'running'
+      ? `${state.episode.racer_id} recovery · ${state.episode.gate_credits} new gate credits before rescue`
+      : state.episode.outcome === 'credited' ? 'Recovery checkpoint reached'
+      : state.episode.outcome === 'rescued' ? 'Rescue required' : 'Recovery episode ended';
+  } else if (Object.values(racers).some(racer => racer.finished)) {
+    const winner = observation.leader;
+    result = winner ? `${state.driver_labels?.[winner] || winner} wins` : 'Same-tick tie';
+    if (!observation.finished) result += ' · race continues';
+  }
+  text('result', result);
+  const hz = recording?.visualization?.sample_rate_hz;
+  text('source', mode === 'replay' ? `${hz ? hz + ' fps · ' : ''}Replay controls do not change the recorded inputs` : 'Physics continues while each driver waits for its next reply');
+  draw();
+}
+function draw() {
+  const rect = canvas.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+  canvas.width = rect.width * dpr; canvas.height = rect.height * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const w = rect.width, h = rect.height; ctx.fillStyle = '#10251f'; ctx.fillRect(0, 0, w, h);
+  if (!state?.track) return;
+  const track = state.track, points = track.points, checkpoints = track.checkpoints || [];
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  for (const [x, y] of points) { minX = Math.min(minX, x); maxX = Math.max(maxX, x); minY = Math.min(minY, y); maxY = Math.max(maxY, y); }
+  const margin = track.width + 8, scale = Math.min(w / (maxX - minX + margin * 2), h / (maxY - minY + margin * 2));
+  const cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
+  const pos = (x, y) => [w / 2 + (x - cx) * scale, h / 2 - (y - cy) * scale];
+  function roadPath() {
+    ctx.beginPath(); points.forEach(([x, y], i) => i ? ctx.lineTo(...pos(x, y)) : ctx.moveTo(...pos(x, y))); ctx.closePath();
+  }
+  ctx.lineJoin = 'round'; roadPath(); ctx.strokeStyle = '#d3dce0'; ctx.lineWidth = (track.width + .6) * scale; ctx.stroke();
+  roadPath(); ctx.strokeStyle = '#303d49'; ctx.lineWidth = track.width * scale; ctx.stroke();
+  roadPath(); ctx.setLineDash([4 * scale, 5 * scale]); ctx.strokeStyle = '#617080'; ctx.lineWidth = .15 * scale; ctx.stroke(); ctx.setLineDash([]);
+  function gateLine(gate, color, width) {
+    const nx = -Math.sin(gate.heading), ny = Math.cos(gate.heading);
+    ctx.beginPath(); ctx.moveTo(...pos(gate.x + nx * track.width / 2, gate.y + ny * track.width / 2));
+    ctx.lineTo(...pos(gate.x - nx * track.width / 2, gate.y - ny * track.width / 2)); ctx.strokeStyle = color; ctx.lineWidth = width; ctx.stroke();
+  }
+  checkpoints.forEach((g, i) => gateLine(g, i === 0 ? '#f1eee3' : '#77889835', i === 0 ? 2 * scale : .13 * scale));
+  if (checkpoints[0]) {
+    const g = checkpoints[0]; ctx.save(); ctx.translate(...pos(g.x, g.y)); ctx.rotate(-g.heading);
+    const tile = track.width * scale / 12;
+    for (let row = 0; row < 2; row++) for (let i = 0; i < 12; i++) {
+      ctx.fillStyle = (row + i) % 2 ? '#f1eee3' : '#253342';
+      ctx.fillRect((row - 1) * tile, (i - 6) * tile, tile, tile);
+    }
+    ctx.restore();
+  }
+  for (const rid of ['red', 'blue']) {
+    const racer = state.observation?.racers?.[rid]; if (!racer) continue;
+    const gate = checkpoints[racer.progress?.checkpoint];
+    if (gate && !racer.finished) { ctx.setLineDash(rid === 'red' ? [4, 4] : [2, 6]); gateLine(gate, colors[rid] + '99', 1.2); ctx.setLineDash([]); }
+    let trail = state.trail?.[rid]?.slice(-50) || [];
+    if (mode === 'replay') {
+      const start = indexAt(recording.samples, Math.max(0, replayTime - 2.5));
+      const stride = Math.max(1, Math.floor((sampleIndex - start) / 70)); trail = [];
+      for (let i = start; i <= sampleIndex; i += stride) {
+        const s = recording.samples[i];
+        if (s.tick >= (racer.rescue?.last_reset_tick || 0)) trail.push([s.racers[rid].kart.x, s.racers[rid].kart.y]);
+      }
+    }
+    if (trail.length > 1) {
+      ctx.beginPath(); trail.forEach(([x, y], i) => i ? ctx.lineTo(...pos(x, y)) : ctx.moveTo(...pos(x, y)));
+      ctx.strokeStyle = colors[rid] + '70'; ctx.lineWidth = 1.5; ctx.stroke();
+    }
+    const [x, y] = pos(racer.kart.x, racer.kart.y), radius = (racer.body?.radius_m || 1) * scale;
+    const recentContact = (state.events || []).some(e => e.type === 'contact' && state.observation.time - e.time >= 0 && state.observation.time - e.time < .4);
+    ctx.save(); ctx.translate(x, y); ctx.rotate(-racer.kart.heading);
+    ctx.globalAlpha = racer.body?.phased ? .6 : 1;
+    ctx.beginPath(); ctx.arc(0, 0, radius, 0, Math.PI * 2);
+    ctx.strokeStyle = recentContact ? '#fff4ba' : colors[rid] + 'aa'; ctx.lineWidth = recentContact ? 2.5 : 1;
+    ctx.setLineDash(racer.body?.phased ? [3, 3] : []); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = '#080d15';
+    for (const axle of [-.45, .45]) for (const side of [-.55, .55]) {
+      ctx.save(); ctx.translate(axle * scale, side * scale);
+      if (axle > 0) ctx.rotate(-(racer.kart.steering_angle || 0));
+      ctx.fillRect(-.22 * scale, -.11 * scale, .44 * scale, .22 * scale); ctx.restore();
+    }
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(-.75 * scale, -.42 * scale, 1.5 * scale, .84 * scale, .16 * scale);
+    else ctx.rect(-.75 * scale, -.42 * scale, 1.5 * scale, .84 * scale);
+    ctx.fillStyle = colors[rid]; ctx.fill(); ctx.strokeStyle = '#f7f9fb'; ctx.lineWidth = .7; ctx.stroke();
+    ctx.fillStyle = '#183044'; ctx.fillRect(-.2 * scale, -.25 * scale, .35 * scale, .5 * scale);
+    ctx.restore(); ctx.fillStyle = colors[rid]; ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(rid.toUpperCase(), x, y + (rid === 'red' ? 2 * scale + 10 : -2 * scale - 6));
+  }
+}
+async function poll() {
+  if (mode !== 'live' || polling) return;
+  polling = true;
+  try {
+    const response = await fetch('/api/state', {cache: 'no-store'});
+    if (!response.ok) throw Error('Spectator disconnected');
+    const value = await response.json();
+    if (mode === 'live') { state = value; render(); }
+  } catch { text('status', 'Offline · open a replay'); }
+  finally { polling = false; }
+}
+async function loadSaved(id) {
+  if (!id) return;
+  const generation = ++loadGeneration;
+  try {
+    const response = await fetch('/api/replays/' + encodeURIComponent(id));
+    if (!response.ok) throw Error('Replay unavailable');
+    const race = await response.json();
+    if (generation === loadGeneration) loadRace(race);
+  } catch (error) { if (generation === loadGeneration) text('result', error.message); }
+}
+$('live').onclick = () => { loadGeneration++; mode = 'live'; recording = null; playbackControls(); poll(); };
+$('play').onclick = () => {
+  if (!recording) return;
+  if (replayTime >= duration()) { replayTime = 0; playing = true; } else playing = !playing;
+  playbackControls(); showReplay();
+};
+$('seek').oninput = () => { if (recording) seek(Number($('seek').value) / 1000 * duration(), playing); };
+$('file').onchange = async () => {
+  const file = $('file').files[0]; if (!file) return;
+  const generation = ++loadGeneration;
+  try { const value = JSON.parse(await file.text()); if (generation === loadGeneration) loadRace(value); }
+  catch (error) { if (generation === loadGeneration) text('result', error.message); }
+};
+$('saved').onchange = () => loadSaved($('saved').value);
+async function list() {
+  try {
+    const response = await fetch('/api/replays'), data = await response.json();
+    for (const item of data.replays) {
+      const option = document.createElement('option'); option.value = item.id; option.textContent = item.label; $('saved').append(option);
+    }
+    const requested = new URLSearchParams(location.search).get('replay');
+    if (requested) { const item = data.replays.find(r => requested === 'featured' ? r.featured : r.id === requested);
+      if (item) { $('saved').value = item.id; await loadSaved(item.id); } }
+  } catch { /* Offline files have their own embedded recording. */ }
+}
+function animate(now) {
+  const dt = (now - last) / 1000; last = now;
+  if (mode === 'replay' && recording && playing) {
+    replayTime = Math.min(duration(), replayTime + dt * Number($('rate').value));
+    if (replayTime >= duration()) { playing = false; playbackControls(); }
+    showReplay();
+  }
+  requestAnimationFrame(animate);
+}
+window.addEventListener('resize', draw); playbackControls();
+if (window.EMBEDDED_RACE) loadRace(window.EMBEDDED_RACE); else { poll(); list(); }
+setInterval(poll, 100); requestAnimationFrame(animate);
+
+</script></html>

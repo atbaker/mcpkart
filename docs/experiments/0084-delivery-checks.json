@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "checked_utc": "2026-10-25T01:42:49.152855+00:00",
+  "source26_byte_identical_to0083": true,
+  "registered_inputs_and_helper_unchanged": true,
+  "closed_episode_proof_hashes_verified": 66,
+  "requests": 341,
+  "frames": 7351,
+  "budget_transitions": 682,
+  "budget_and_snapshot_match": true,
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 110000,
+    "max_tokens": 500000000,
+    "requests": 99056,
+    "charged_usd": 11.481907970002775,
+    "charged_tokens": 332896219,
+    "reported_cost_usd": 11.420009218002733,
+    "uncertain_requests": 71,
+    "pending": {}
+  },
+  "all168_added_waits_at_least_1s": true,
+  "applied_waits_with_at_least59_physics_samples": 136,
+  "minimum_added_wait_ms": 1000.142514,
+  "all22_actual_replays_browser_passed": true,
+  "figure_visually_reviewed_by_root": true,
+  "report_links_verified": 9,
+  "clock": {
+    "runtime": {
+      "backend": "process",
+      "protocol_version": 2,
+      "watchdog_enabled": false,
+      "clock_mode": "fixed_step_wall_clock",
+      "physics_hz": 60,
+      "process_pid": 2774,
+      "mode": "duel"
+    },
+    "reused_not_rerun": true,
+    "evidence_files": 12
+  },
+  "paid_calls_allowed": false,
+  "final_checked_utc": "2026-10-25T01:43:25.479436+00:00",
+  "bundle": {
+    "passed": true,
+    "files": 104,
+    "payload_hashes_verified": 103,
+    "index_links_verified": 28,
+    "actual_replays": 22,
+    "bytes": 1756706,
+    "sha256": "2571d80d3d3a3f061733a132f8d626939d5bbdd039d806f4d57a7f7b0095d665",
+    "zip_crc_passed": true
+  },
+  "bundle_sha256_reverified": true,
+  "temporary_services_closed": {
+    "preview_pid": 6872,
+    "preview_exec_session": 63120,
+    "preview_observed_exit": 143,
+    "browser_exec_session": 31013,
+    "browser_observed_exit": 0,
+    "node_check_exec_session": 63885,
+    "node_check_observed_exit": 0
+  },
+  "main_qualified_server_preserved": true,
+  "report_links_exist_in_repo_and_bundle": 9,
+  "native_excerpts_sha256": "34710c27377b53330d5f8853ea5c2919f7945d55adbc7467a57b6dba0a1525d6",
+  "report_sha256": "cb877306800739749001c74fbff534985bdf250f87d3e6d41fe9c2af3f139fe8",
+  "results_sha256": "35f67c18b6527befce81d04d1342dd90300fc7f0ffa8a86f9d55770f9348e9ea",
+  "figure_sha256": "b8a6fa0144f80a3117e82c65c4f0c1e413e1f00bc5c51a48fb320882c83f6e93"
+}

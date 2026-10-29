@@ -1,0 +1,106 @@
+{
+  "initial_pedal_questions_byte_identical_across_profiles_and_delays": true,
+  "pedal_question_sha256": {
+    "outward_drift": "75d114da5e2a5dec0fdaa344a69e6ae132f28935efac4da5dfc9db480ce185ba",
+    "post_contact": "fcd16633245cb89a958c8b957cc2988db845027a2e884b833934fe9e74b98227"
+  },
+  "delayed_post_contact": [
+    {
+      "index": 1,
+      "profile": "motion",
+      "outcome": "credited",
+      "new_contacts": 1,
+      "first_choices": {
+        "wheel": "hard_left",
+        "pedal": "brake"
+      },
+      "first_api_latency_ms": 228.518779,
+      "new_grass_s": 0.0
+    },
+    {
+      "index": 4,
+      "profile": "baseline",
+      "outcome": "rescued",
+      "new_contacts": 0,
+      "first_choices": {
+        "wheel": "hard_left",
+        "pedal": "accelerate"
+      },
+      "first_api_latency_ms": 249.408293,
+      "new_grass_s": 2.9999999999999942
+    },
+    {
+      "index": 7,
+      "profile": "both",
+      "outcome": "rescued",
+      "new_contacts": 0,
+      "first_choices": {
+        "wheel": "hard_left",
+        "pedal": "accelerate"
+      },
+      "first_api_latency_ms": 243.177213,
+      "new_grass_s": 2.9999999999999942
+    },
+    {
+      "index": 10,
+      "profile": "timing",
+      "outcome": "credited",
+      "new_contacts": 1,
+      "first_choices": {
+        "wheel": "hard_left",
+        "pedal": "brake"
+      },
+      "first_api_latency_ms": 222.580822,
+      "new_grass_s": 0.0
+    },
+    {
+      "index": 17,
+      "profile": "timing",
+      "outcome": "rescued",
+      "new_contacts": 0,
+      "first_choices": {
+        "wheel": "hard_left",
+        "pedal": "accelerate"
+      },
+      "first_api_latency_ms": 375.860134,
+      "new_grass_s": 2.9999999999999942
+    },
+    {
+      "index": 20,
+      "profile": "both",
+      "outcome": "credited",
+      "new_contacts": 1,
+      "first_choices": {
+        "wheel": "hard_left",
+        "pedal": "brake"
+      },
+      "first_api_latency_ms": 277.918135,
+      "new_grass_s": 0.0
+    },
+    {
+      "index": 23,
+      "profile": "baseline",
+      "outcome": "rescued",
+      "new_contacts": 0,
+      "first_choices": {
+        "wheel": "hard_left",
+        "pedal": "accelerate"
+      },
+      "first_api_latency_ms": 242.246732,
+      "new_grass_s": 2.9999999999999942
+    },
+    {
+      "index": 26,
+      "profile": "motion",
+      "outcome": "credited",
+      "new_contacts": 1,
+      "first_choices": {
+        "wheel": "hard_left",
+        "pedal": "brake"
+      },
+      "first_api_latency_ms": 241.005938,
+      "new_grass_s": 0.0
+    }
+  ],
+  "interpretation": "All four no-rescue delayed recoveries had a new contact and first native pedal brake. All four delayed failures had no new contact and first native pedal accelerate. Both drivers received the profile; this does not isolate a steering-only mechanism or intentional collision behavior."
+}

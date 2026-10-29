@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="921.6pt" height="756pt" viewBox="0 0 921.6 756" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-25T01:38:42.030318</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 756 
+L 921.6 756 
+L 921.6 0 
+L 0 0 
+z
+" style="fill: #f7f8fb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 297.12384 220.8654 
+L 542.8224 220.8654 
+Q 554.25024 220.8654 554.25024 217.9926 
+L 554.25024 161.2548 
+Q 554.25024 158.382 542.8224 158.382 
+L 297.12384 158.382 
+Q 285.696 158.382 285.696 161.2548 
+L 285.696 217.9926 
+Q 285.696 220.8654 297.12384 220.8654 
+z
+" clip-path="url(#p4ffa3598fa)" style="fill: #f7e8c8"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 582.81984 220.8654 
+L 828.5184 220.8654 
+Q 839.94624 220.8654 839.94624 217.9926 
+L 839.94624 161.2548 
+Q 839.94624 158.382 828.5184 158.382 
+L 582.81984 158.382 
+Q 571.392 158.382 571.392 161.2548 
+L 571.392 217.9926 
+Q 571.392 220.8654 582.81984 220.8654 
+z
+" clip-path="url(#p4ffa3598fa)" style="fill: #f7e8c8"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 297.12384 292.6854 
+L 542.8224 292.6854 
+Q 554.25024 292.6854 554.25024 289.8126 
+L 554.25024 233.0748 
+Q 554.25024 230.202 542.8224 230.202 
+L 297.12384 230.202 
+Q 285.696 230.202 285.696 233.0748 
+L 285.696 289.8126 
+Q 285.696 292.6854 297.12384 292.6854 
+z
+" clip-path="url(#p4ffa3598fa)" style="fill: #f2dfe1"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 582.81984 292.6854 
+L 828.5184 292.6854 
+Q 839.94624 292.6854 839.94624 289.8126 
+L 839.94624 233.0748 
+Q 839.94624 230.202 828.5184 230.202 
+L 582.81984 230.202 
+Q 571.392 230.202 571.392 233.0748 
+L 571.392 289.8126 
+Q 571.392 292.6854 582.81984 292.6854 
+z
+" clip-path="url(#p4ffa3598fa)" style="fill: #f2dfe1"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 297.12384 364.5054 
+L 542.8224 364.5054 
+Q 554.25024 364.5054 554.25024 361.6326 
+L 554.25024 304.8948 
+Q 554.25024 302.022 542.8224 302.022 
+L 297.12384 302.022 
+Q 285.696 302.022 285.696 304.8948 
+L 285.696 361.6326 
+Q 285.696 364.5054 297.12384 364.5054 
+z
+" clip-path="url(#p4ffa3598fa)" style="fill: #d7eee4"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 582.81984 364.5054 
+L 828.5184 364.5054 
+Q 839.94624 364.5054 839.94624 361.6326 
+L 839.94624 304.8948 
+Q 839.94624 302.022 828.5184 302.022 
+L 582.81984 302.022 
+Q 571.392 302.022 571.392 304.8948 
+L 571.392 361.6326 
+Q 571.392 364.5054 582.81984 364.5054 
+z
+" clip-path="url(#p4ffa3598fa)" style="fill: #d7eee4"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 297.12384 436.3254 
+L 542.8224 436.3254 
+Q 554.25024 436.3254 554.25024 433.4526 
+L 554.25024 376.7148 
+Q 554.25024 373.842 542.8224 373.842 
+L 297.12384 373.842 
+Q 285.696 373.842 285.696 376.7148 
+L 285.696 433.4526 
+Q 285.696 436.3254 297.12384 436.3254 
+z
+" clip-path="url(#p4ffa3598fa)" style="fill: #d7eee4"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 582.81984 436.3254 
+L 828.5184 436.3254 
+Q 839.94624 436.3254 839.94624 433.4526 
+L 839.94624 376.7148 
+Q 839.94624 373.842 828.5184 373.842 
+L 582.81984 373.842 
+Q 571.392 373.842 571.392 376.7148 
+L 571.392 433.4526 
+Q 571.392 436.3254 582.81984 436.3254 
+z
+" clip-path="url(#p4ffa3598fa)" style="fill: #d7eee4"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 297.12384 508.1454 
+L 542.8224 508.1454 
+Q 554.25024 508.1454 554.25024 505.2726 
+L 554.25024 448.5348 
+Q 554.25024 445.662 542.8224 445.662 
+L 297.12384 445.662 
+Q 285.696 445.662 285.696 448.5348 
+L 285.696 505.2726 
+Q 285.696 508.1454 297.12384 508.1454 
+z
+" clip-path="url(#p4ffa3598fa)" style="fill: #d7eee4"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 582.81984 508.1454 
+L 828.5184 508.1454 
+Q 839.94624 508.1454 839.94624 505.2726 
+L 839.94624 448.5348 
+Q 839.94624 445.662 828.5184 445.662 
+L 582.81984 445.662 
+Q 571.392 445.662 571.392 448.5348 
+L 571.392 505.2726 
+Q 571.392 508.1454 582.81984 508.1454 
+z
+" clip-path="url(#p4ffa3598fa)" style="fill: #d7eee4"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 297.12384 579.9654 
+L 542.8224 579.9654 
+Q 554.25024 579.9654 554.25024 577.0926 
+L 554.25024 520.3548 
+Q 554.25024 517.482 542.8224 517.482 
+L 297.12384 517.482 
+Q 285.696 517.482 285.696 520.3548 
+L 285.696 577.0926 
+Q 285.696 579.9654 297.12384 579.9654 
+z
+" clip-path="url(#p4ffa3598fa)" style="fill: #d7eee4"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 582.81984 579.9654 
+L 828.5184 579.9654 
+Q 839.94624 579.9654 839.94624 577.0926 
+L 839.94624 520.3548 
+Q 839.94624 517.482 828.5184 517.482 
+L 582.81984 517.482 
+Q 571.392 517.482 571.392 520.3548 
+L 571.392 577.0926 
+Q 571.392 579.9654 582.81984 579.9654 
+z
+" clip-path="url(#p4ffa3598fa)" style="fill: #d7eee4"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #182536" x="419.97312" y="135.871069" transform="rotate(-0 419.97312 135.871069)">Baseline</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 15px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #182536" x="705.66912" y="135.753881" transform="rotate(-0 705.66912 135.753881)">Motion only</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #855b13" x="419.97312" y="190.084787" transform="rotate(-0 419.97312 190.084787)">1 / 4</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #855b13" x="419.97312" y="209.536713" transform="rotate(-0 419.97312 209.536713)">no-rescue recoveries</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #855b13" x="705.66912" y="190.084787" transform="rotate(-0 705.66912 190.084787)">1 / 4</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #855b13" x="705.66912" y="209.536713" transform="rotate(-0 705.66912 209.536713)">no-rescue recoveries</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(139.774155 183.315337)">Original post-contact</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(170.51478 200.399962)">+1,000 ms wait</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8d3144" x="419.97312" y="261.904787" transform="rotate(-0 419.97312 261.904787)">0 / 2</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8d3144" x="419.97312" y="281.356712" transform="rotate(-0 419.97312 281.356712)">no-rescue recoveries</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8d3144" x="705.66912" y="261.904787" transform="rotate(-0 705.66912 261.904787)">0 / 2</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8d3144" x="705.66912" y="281.356712" transform="rotate(-0 705.66912 281.356712)">no-rescue recoveries</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(122.41353 255.135337)">Additional state 1 · blue</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(170.51478 272.219963)">+1,000 ms wait</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="419.97312" y="333.724788" transform="rotate(-0 419.97312 333.724788)">2 / 2</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="419.97312" y="353.176713" transform="rotate(-0 419.97312 353.176713)">no-rescue recoveries</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="705.66912" y="333.724788" transform="rotate(-0 705.66912 333.724788)">2 / 2</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="705.66912" y="353.176713" transform="rotate(-0 705.66912 353.176713)">no-rescue recoveries</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(128.689155 326.955338)">Additional state 2 · red</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(170.51478 344.039963)">+1,000 ms wait</text>
+   </g>
+   <g id="text_18">
+    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="419.97312" y="405.544787" transform="rotate(-0 419.97312 405.544787)">1 / 1</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="419.97312" y="424.996713" transform="rotate(-0 419.97312 424.996713)">no-rescue recoveries</text>
+   </g>
+   <g id="text_20">
+    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="705.66912" y="405.544787" transform="rotate(-0 705.66912 405.544787)">1 / 1</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="705.66912" y="424.996713" transform="rotate(-0 705.66912 424.996713)">no-rescue recoveries</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(139.774155 398.775337)">Original post-contact</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(92.966655 415.859962)">Ordinary latency · one check</text>
+   </g>
+   <g id="text_23">
+    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="419.97312" y="477.364788" transform="rotate(-0 419.97312 477.364788)">1 / 1</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="419.97312" y="496.816712" transform="rotate(-0 419.97312 496.816712)">no-rescue recoveries</text>
+   </g>
+   <g id="text_25">
+    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="705.66912" y="477.364788" transform="rotate(-0 705.66912 477.364788)">1 / 1</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="705.66912" y="496.816712" transform="rotate(-0 705.66912 496.816712)">no-rescue recoveries</text>
+   </g>
+   <g id="text_27">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(122.41353 470.595338)">Additional state 1 · blue</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(92.966655 487.679963)">Ordinary latency · one check</text>
+   </g>
+   <g id="text_28">
+    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="419.97312" y="549.184787" transform="rotate(-0 419.97312 549.184787)">1 / 1</text>
+   </g>
+   <g id="text_29">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="419.97312" y="568.636713" transform="rotate(-0 419.97312 568.636713)">no-rescue recoveries</text>
+   </g>
+   <g id="text_30">
+    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="705.66912" y="549.184787" transform="rotate(-0 705.66912 549.184787)">1 / 1</text>
+   </g>
+   <g id="text_31">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="705.66912" y="568.636713" transform="rotate(-0 705.66912 568.636713)">no-rescue recoveries</text>
+   </g>
+   <g id="text_32">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(128.689155 542.415337)">Additional state 2 · red</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(92.966655 559.499963)">Ordinary latency · one check</text>
+   </g>
+  </g>
+  <g id="text_33">
+   <text style="font-weight: 700; font-size: 23px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #182536" x="46.08" y="45.36" transform="rotate(-0 46.08 45.36)">Motion-only and baseline tied in this validation</text>
+  </g>
+  <g id="text_34">
+   <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526277" x="46.08" y="79.38" transform="rotate(-0 46.08 79.38)">22 actual episodes · 12 no-rescue recoveries · 341 native replies</text>
+  </g>
+  <g id="text_35">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #182536" x="46.08" y="635.04" transform="rotate(-0 46.08 635.04)">Success = five new checkpoint credits before automatic rescue, within 40 seconds. Physical kart contact stays enabled.</text>
+  </g>
+  <g id="text_36">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #526277" transform="translate(46.08 660.959094)">Both Jev racers received the assigned profile. Physics, goals, pedal questions and controls stayed fixed.</text>
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #526277" transform="translate(46.08 676.62)">Different repeat counts are shown explicitly; these selected recovery episodes do not measure full-race reliability.</text>
+  </g>
+  <g id="text_37">
+   <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526277" x="46.08" y="721.98" transform="rotate(-0 46.08 721.98)">Study 0084 · 24 Oct 2026 (Pacific) · 2 new contacts · 10 target rescues · native latency varied</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p4ffa3598fa">
+   <rect x="285.696" y="151.2" width="571.392" height="430.92"/>
+  </clipPath>
+ </defs>
+</svg>

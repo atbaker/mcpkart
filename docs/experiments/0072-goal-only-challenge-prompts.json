@@ -1,0 +1,1740 @@
+{
+  "experiment": "0072",
+  "kind": "curated exact request and response excerpts",
+  "model_calls": 0,
+  "prompt_mode": "goal",
+  "extended_domain": true,
+  "same_prompt_as_0071": true,
+  "note": "Generation IDs and authentication headers excluded. Each example preserves exact questions and native response answers; full raw evidence remains in artifacts/.",
+  "examples": [
+    {
+      "entry": {
+        "index": 0,
+        "group": "recovery",
+        "seed": 201,
+        "course": "stadium",
+        "start_pose": {
+          "offset_m": -10.0,
+          "heading_error_rad": 2.1642082724729685
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_accelerate",
+        "reference_s": 107.98333333332849
+      },
+      "request_index": 0,
+      "observation_s": 0.0,
+      "actual_wire_state": {},
+      "actual_wire_questions": {
+        "wheel": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+            "current_facts": {
+              "wheel_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "road": {
+                  "preview_15m_bearing_deg": -90.3115,
+                  "preview_columns": [
+                    "ahead_m",
+                    "ego_x_m",
+                    "ego_y_m"
+                  ],
+                  "preview": [
+                    [
+                      15.0,
+                      -0.098,
+                      -18.027
+                    ]
+                  ]
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -7.712
+                }
+              }
+            }
+          },
+          "criteria": {
+            "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+            "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+            "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+          }
+        },
+        "pedal": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+            "current_facts": {
+              "pedal_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "kart": {
+                  "speed_m_s": 0.0
+                },
+                "road": {
+                  "on_road": true,
+                  "offset_m": -10.0,
+                  "left_edge_clearance_m": 22.0,
+                  "right_edge_clearance_m": 2.0
+                },
+                "current_road_frame": {
+                  "velocity_left_m_s": 0.0,
+                  "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -7.712
+                }
+              }
+            }
+          },
+          "criteria": {
+            "accelerate": "ACCELERATE: throttle 1, brake 0.",
+            "coast": "COAST: throttle 0, brake 0.",
+            "brake": "BRAKE: throttle 0, brake 1."
+          }
+        }
+      },
+      "actual_response_answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "hard_left",
+          "probabilities": {
+            "hard_right": 0.29,
+            "right": 0.1,
+            "straight": 0.13,
+            "left": 0.18,
+            "hard_left": 0.3
+          },
+          "confidence": 0.12
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.9,
+            "coast": 0.09,
+            "brake": 0.01
+          },
+          "confidence": 0.85
+        }
+      },
+      "actual_usage": {
+        "input_tokens": 1557,
+        "output_tokens": 97,
+        "cost": 6.5394e-05
+      },
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "TypeSafe",
+      "native_action": "hard_left_accelerate",
+      "held_at_observation": "straight_coast",
+      "latency_ms": 552.455714,
+      "applied": true,
+      "reset_during_step": false,
+      "source_trial": "artifacts/jev-goal-challenge-v1/paid-0/trial.json",
+      "source_trial_sha256": "98e832efbd0684a65bffe59bd7399434ff99592edda9f6281fa7f295422147c3",
+      "wire_payload_sha256": "9e82d248de6b80d7bc8f6935d83dab5fe248386436f6bb351efb36152755f850",
+      "wire_response_body_sha256": "4f77ccaded2143e22e4b674c48c028d637d2d5d9dbeccaddc1c5880560299c28"
+    },
+    {
+      "entry": {
+        "index": 0,
+        "group": "recovery",
+        "seed": 201,
+        "course": "stadium",
+        "start_pose": {
+          "offset_m": -10.0,
+          "heading_error_rad": 2.1642082724729685
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_accelerate",
+        "reference_s": 107.98333333332849
+      },
+      "request_index": 1,
+      "observation_s": 0.5666666666666667,
+      "actual_wire_state": {},
+      "actual_wire_questions": {
+        "wheel": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+            "current_facts": {
+              "wheel_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "road": {
+                  "preview_15m_bearing_deg": -90.3178,
+                  "preview_columns": [
+                    "ahead_m",
+                    "ego_x_m",
+                    "ego_y_m"
+                  ],
+                  "preview": [
+                    [
+                      15.0,
+                      -0.1,
+                      -18.026
+                    ]
+                  ]
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -7.7138
+                }
+              }
+            }
+          },
+          "criteria": {
+            "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+            "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+            "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+          }
+        },
+        "pedal": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+            "current_facts": {
+              "pedal_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "kart": {
+                  "speed_m_s": 0.1942
+                },
+                "road": {
+                  "on_road": true,
+                  "offset_m": -9.997,
+                  "left_edge_clearance_m": 21.997,
+                  "right_edge_clearance_m": 2.003
+                },
+                "current_road_frame": {
+                  "velocity_left_m_s": 0.161,
+                  "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -7.7138
+                }
+              }
+            }
+          },
+          "criteria": {
+            "accelerate": "ACCELERATE: throttle 1, brake 0.",
+            "coast": "COAST: throttle 0, brake 0.",
+            "brake": "BRAKE: throttle 0, brake 1."
+          }
+        }
+      },
+      "actual_response_answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "hard_right",
+          "probabilities": {
+            "hard_right": 0.33,
+            "right": 0.12,
+            "straight": 0.12,
+            "left": 0.17,
+            "hard_left": 0.26
+          },
+          "confidence": 0.16
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.87,
+            "coast": 0.1,
+            "brake": 0.03
+          },
+          "confidence": 0.8
+        }
+      },
+      "actual_usage": {
+        "input_tokens": 1577,
+        "output_tokens": 97,
+        "cost": 6.6234e-05
+      },
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "TypeSafe",
+      "native_action": "hard_right_accelerate",
+      "held_at_observation": "hard_left_accelerate",
+      "latency_ms": 236.019124,
+      "applied": true,
+      "reset_during_step": false,
+      "source_trial": "artifacts/jev-goal-challenge-v1/paid-0/trial.json",
+      "source_trial_sha256": "98e832efbd0684a65bffe59bd7399434ff99592edda9f6281fa7f295422147c3",
+      "wire_payload_sha256": "b93caef5bb452cd5ba212f348d1367d627333bf60c2595a97a0976d4e0f578c4",
+      "wire_response_body_sha256": "839eb0e87f55bbd6129d2599d7dda54434a96a6d0908f365a98e8fcbae4404aa"
+    },
+    {
+      "entry": {
+        "index": 0,
+        "group": "recovery",
+        "seed": 201,
+        "course": "stadium",
+        "start_pose": {
+          "offset_m": -10.0,
+          "heading_error_rad": 2.1642082724729685
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_accelerate",
+        "reference_s": 107.98333333332849
+      },
+      "request_index": 15,
+      "observation_s": 4.266666666666667,
+      "actual_wire_state": {},
+      "actual_wire_questions": {
+        "wheel": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+            "current_facts": {
+              "wheel_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "road": {
+                  "preview_15m_bearing_deg": -96.9886,
+                  "preview_columns": [
+                    "ahead_m",
+                    "ego_x_m",
+                    "ego_y_m"
+                  ],
+                  "preview": [
+                    [
+                      15.0,
+                      -2.44,
+                      -19.905
+                    ]
+                  ]
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -7.3564
+                }
+              }
+            }
+          },
+          "criteria": {
+            "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+            "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+            "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+          }
+        },
+        "pedal": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+            "current_facts": {
+              "pedal_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "kart": {
+                  "speed_m_s": 5.1105
+                },
+                "road": {
+                  "on_road": false,
+                  "offset_m": 13.311,
+                  "left_edge_clearance_m": -1.311,
+                  "right_edge_clearance_m": 25.311
+                },
+                "current_road_frame": {
+                  "velocity_left_m_s": 4.2068,
+                  "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -7.3564
+                }
+              }
+            }
+          },
+          "criteria": {
+            "accelerate": "ACCELERATE: throttle 1, brake 0.",
+            "coast": "COAST: throttle 0, brake 0.",
+            "brake": "BRAKE: throttle 0, brake 1."
+          }
+        }
+      },
+      "actual_response_answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "hard_right",
+          "probabilities": {
+            "hard_right": 0.34,
+            "right": 0.13,
+            "straight": 0.06,
+            "left": 0.17,
+            "hard_left": 0.3
+          },
+          "confidence": 0.18
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "brake",
+          "probabilities": {
+            "accelerate": 0.18,
+            "coast": 0.33,
+            "brake": 0.49
+          },
+          "confidence": 0.23
+        }
+      },
+      "actual_usage": {
+        "input_tokens": 1580,
+        "output_tokens": 96,
+        "cost": 6.636e-05
+      },
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "TypeSafe",
+      "native_action": "hard_right_brake",
+      "held_at_observation": "hard_right_brake",
+      "latency_ms": 247.972765,
+      "applied": true,
+      "reset_during_step": false,
+      "source_trial": "artifacts/jev-goal-challenge-v1/paid-0/trial.json",
+      "source_trial_sha256": "98e832efbd0684a65bffe59bd7399434ff99592edda9f6281fa7f295422147c3",
+      "wire_payload_sha256": "06639b61b6fae6816a5c54569eafb4393dad25852c95dd1940dd29f5ecc708cb",
+      "wire_response_body_sha256": "7168ff049fbd83d3e9845973472cbdcd94456226b46472863354d2aeadb7276a"
+    },
+    {
+      "entry": {
+        "index": 0,
+        "group": "recovery",
+        "seed": 201,
+        "course": "stadium",
+        "start_pose": {
+          "offset_m": -10.0,
+          "heading_error_rad": 2.1642082724729685
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_accelerate",
+        "reference_s": 107.98333333332849
+      },
+      "request_index": 27,
+      "observation_s": 7.083333333333333,
+      "actual_wire_state": {},
+      "actual_wire_questions": {
+        "wheel": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+            "current_facts": {
+              "wheel_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "road": {
+                  "preview_15m_bearing_deg": 0.0,
+                  "preview_columns": [
+                    "ahead_m",
+                    "ego_x_m",
+                    "ego_y_m"
+                  ],
+                  "preview": [
+                    [
+                      15.0,
+                      15.0,
+                      0.0
+                    ]
+                  ]
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -9.1868
+                }
+              }
+            }
+          },
+          "criteria": {
+            "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+            "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+            "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+          }
+        },
+        "pedal": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+            "current_facts": {
+              "pedal_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "kart": {
+                  "speed_m_s": 0.0
+                },
+                "road": {
+                  "on_road": true,
+                  "offset_m": 0.0,
+                  "left_edge_clearance_m": 12.0,
+                  "right_edge_clearance_m": 12.0
+                },
+                "current_road_frame": {
+                  "velocity_left_m_s": 0.0,
+                  "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -9.1868
+                }
+              }
+            }
+          },
+          "criteria": {
+            "accelerate": "ACCELERATE: throttle 1, brake 0.",
+            "coast": "COAST: throttle 0, brake 0.",
+            "brake": "BRAKE: throttle 0, brake 1."
+          }
+        }
+      },
+      "actual_response_answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "straight",
+          "probabilities": {
+            "hard_right": 0.08,
+            "right": 0.08,
+            "straight": 0.69,
+            "left": 0.09,
+            "hard_left": 0.06
+          },
+          "confidence": 0.61
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.89,
+            "coast": 0.1,
+            "brake": 0.01
+          },
+          "confidence": 0.83
+        }
+      },
+      "actual_usage": {
+        "input_tokens": 1541,
+        "output_tokens": 96,
+        "cost": 6.4722e-05
+      },
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "TypeSafe",
+      "native_action": "straight_accelerate",
+      "held_at_observation": "straight_coast",
+      "latency_ms": 219.499981,
+      "applied": true,
+      "reset_during_step": false,
+      "source_trial": "artifacts/jev-goal-challenge-v1/paid-0/trial.json",
+      "source_trial_sha256": "98e832efbd0684a65bffe59bd7399434ff99592edda9f6281fa7f295422147c3",
+      "wire_payload_sha256": "89670a46e03309ffd4c6b22e6b178b345fcaebebb465e23ce55fc13d46c1f687",
+      "wire_response_body_sha256": "c1dd84090b90689cf7780c827d5e4a1ddc3f6417c61d229aa5785e618cca7c61"
+    },
+    {
+      "entry": {
+        "index": 0,
+        "group": "recovery",
+        "seed": 201,
+        "course": "stadium",
+        "start_pose": {
+          "offset_m": -10.0,
+          "heading_error_rad": 2.1642082724729685
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_accelerate",
+        "reference_s": 107.98333333332849
+      },
+      "request_index": 83,
+      "observation_s": 20.716666666666665,
+      "actual_wire_state": {},
+      "actual_wire_questions": {
+        "wheel": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+            "current_facts": {
+              "wheel_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "road": {
+                  "preview_15m_bearing_deg": -3.4419,
+                  "preview_columns": [
+                    "ahead_m",
+                    "ego_x_m",
+                    "ego_y_m"
+                  ],
+                  "preview": [
+                    [
+                      15.0,
+                      14.997,
+                      -0.902
+                    ]
+                  ]
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -4.6664
+                }
+              }
+            }
+          },
+          "criteria": {
+            "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+            "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+            "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+          }
+        },
+        "pedal": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+            "current_facts": {
+              "pedal_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "kart": {
+                  "speed_m_s": 12.0
+                },
+                "road": {
+                  "on_road": true,
+                  "offset_m": 0.847,
+                  "left_edge_clearance_m": 11.153,
+                  "right_edge_clearance_m": 12.847
+                },
+                "current_road_frame": {
+                  "velocity_left_m_s": 0.0438,
+                  "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -4.6664
+                }
+              }
+            }
+          },
+          "criteria": {
+            "accelerate": "ACCELERATE: throttle 1, brake 0.",
+            "coast": "COAST: throttle 0, brake 0.",
+            "brake": "BRAKE: throttle 0, brake 1."
+          }
+        }
+      },
+      "actual_response_answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "right",
+          "probabilities": {
+            "hard_right": 0.11,
+            "right": 0.49,
+            "straight": 0.12,
+            "left": 0.24,
+            "hard_left": 0.04
+          },
+          "confidence": 0.36
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.75,
+            "coast": 0.1,
+            "brake": 0.15
+          },
+          "confidence": 0.62
+        }
+      },
+      "actual_usage": {
+        "input_tokens": 1574,
+        "output_tokens": 96,
+        "cost": 6.6108e-05
+      },
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "TypeSafe",
+      "native_action": "right_accelerate",
+      "held_at_observation": "right_accelerate",
+      "latency_ms": 1792.409841,
+      "applied": true,
+      "reset_during_step": false,
+      "source_trial": "artifacts/jev-goal-challenge-v1/paid-0/trial.json",
+      "source_trial_sha256": "98e832efbd0684a65bffe59bd7399434ff99592edda9f6281fa7f295422147c3",
+      "wire_payload_sha256": "5865b9b905a10d3931a9c59595479875de4780a612b1e21f44971ec4c8b29e72",
+      "wire_response_body_sha256": "bf6767003acc85e7a055a84a91674897d6d9d4dea2d4ea00dd552096868b99da"
+    },
+    {
+      "entry": {
+        "index": 0,
+        "group": "recovery",
+        "seed": 201,
+        "course": "stadium",
+        "start_pose": {
+          "offset_m": -10.0,
+          "heading_error_rad": 2.1642082724729685
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_accelerate",
+        "reference_s": 107.98333333332849
+      },
+      "request_index": 84,
+      "observation_s": 22.533333333333335,
+      "actual_wire_state": {},
+      "actual_wire_questions": {
+        "wheel": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+            "current_facts": {
+              "wheel_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "road": {
+                  "preview_15m_bearing_deg": 65.6469,
+                  "preview_columns": [
+                    "ahead_m",
+                    "ego_x_m",
+                    "ego_y_m"
+                  ],
+                  "preview": [
+                    [
+                      15.0,
+                      6.78,
+                      14.979
+                    ]
+                  ]
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -0.1608
+                }
+              }
+            }
+          },
+          "criteria": {
+            "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+            "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+            "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+          }
+        },
+        "pedal": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+            "current_facts": {
+              "pedal_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "kart": {
+                  "speed_m_s": 12.0
+                },
+                "road": {
+                  "on_road": true,
+                  "offset_m": -6.733,
+                  "left_edge_clearance_m": 18.733,
+                  "right_edge_clearance_m": 5.267
+                },
+                "current_road_frame": {
+                  "velocity_left_m_s": -7.9475,
+                  "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -0.1608
+                }
+              }
+            }
+          },
+          "criteria": {
+            "accelerate": "ACCELERATE: throttle 1, brake 0.",
+            "coast": "COAST: throttle 0, brake 0.",
+            "brake": "BRAKE: throttle 0, brake 1."
+          }
+        }
+      },
+      "actual_response_answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "hard_left",
+          "probabilities": {
+            "hard_right": 0.04,
+            "right": 0.06,
+            "straight": 0.05,
+            "left": 0.34,
+            "hard_left": 0.51
+          },
+          "confidence": 0.39
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.54,
+            "coast": 0.19,
+            "brake": 0.27
+          },
+          "confidence": 0.31
+        }
+      },
+      "actual_usage": {
+        "input_tokens": 1573,
+        "output_tokens": 97,
+        "cost": 6.6066e-05
+      },
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "TypeSafe",
+      "native_action": "hard_left_accelerate",
+      "held_at_observation": "right_accelerate",
+      "latency_ms": 200.249273,
+      "applied": true,
+      "reset_during_step": false,
+      "source_trial": "artifacts/jev-goal-challenge-v1/paid-0/trial.json",
+      "source_trial_sha256": "98e832efbd0684a65bffe59bd7399434ff99592edda9f6281fa7f295422147c3",
+      "wire_payload_sha256": "61fe01e0ee77c2edb51408b17b4813c28f15ec96d0849a40ad84ba9a3d436c34",
+      "wire_response_body_sha256": "00dd3a61cc14567ac948bf913d40b03d868e60e4739e26ac7fa354bb1ef53e4d"
+    },
+    {
+      "entry": {
+        "index": 1,
+        "group": "larger_errors",
+        "seed": 202,
+        "course": "stadium_clockwise",
+        "start_pose": {
+          "offset_m": 6.0,
+          "heading_error_rad": 0.6108652381980153
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_edge",
+        "reference_s": 78.64999999999682
+      },
+      "request_index": 0,
+      "observation_s": 0.0,
+      "actual_wire_state": {},
+      "actual_wire_questions": {
+        "wheel": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+            "current_facts": {
+              "wheel_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "road": {
+                  "preview_15m_bearing_deg": -56.8017,
+                  "preview_columns": [
+                    "ahead_m",
+                    "ego_x_m",
+                    "ego_y_m"
+                  ],
+                  "preview": [
+                    [
+                      15.0,
+                      8.846,
+                      -13.519
+                    ]
+                  ]
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -7.712
+                }
+              }
+            }
+          },
+          "criteria": {
+            "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+            "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+            "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+          }
+        },
+        "pedal": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+            "current_facts": {
+              "pedal_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "kart": {
+                  "speed_m_s": 0.0
+                },
+                "road": {
+                  "on_road": true,
+                  "offset_m": 6.0,
+                  "left_edge_clearance_m": 6.0,
+                  "right_edge_clearance_m": 18.0
+                },
+                "current_road_frame": {
+                  "velocity_left_m_s": 0.0,
+                  "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -7.712
+                }
+              }
+            }
+          },
+          "criteria": {
+            "accelerate": "ACCELERATE: throttle 1, brake 0.",
+            "coast": "COAST: throttle 0, brake 0.",
+            "brake": "BRAKE: throttle 0, brake 1."
+          }
+        }
+      },
+      "actual_response_answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "hard_right",
+          "probabilities": {
+            "hard_right": 0.5,
+            "right": 0.18,
+            "straight": 0.04,
+            "left": 0.13,
+            "hard_left": 0.15
+          },
+          "confidence": 0.37
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.88,
+            "coast": 0.11,
+            "brake": 0.01
+          },
+          "confidence": 0.82
+        }
+      },
+      "actual_usage": {
+        "input_tokens": 1554,
+        "output_tokens": 97,
+        "cost": 6.5268e-05
+      },
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "TypeSafe",
+      "native_action": "hard_right_accelerate",
+      "held_at_observation": "straight_coast",
+      "latency_ms": 267.588339,
+      "applied": true,
+      "reset_during_step": false,
+      "source_trial": "artifacts/jev-goal-challenge-v1/paid-1/trial.json",
+      "source_trial_sha256": "2f6dac06592635f84c1cda3dc8157552a7cc6f9a9bbf7fceae0e5351d6645186",
+      "wire_payload_sha256": "788d1d62d7cb1808ff96b12d3bc577c35111b3475982c6863b1916d3518cbe43",
+      "wire_response_body_sha256": "e25a322cf495fb5d9f6bb4ed9d932deb5f4af170f9d2c537e24d6e7137c9f7a6"
+    },
+    {
+      "entry": {
+        "index": 1,
+        "group": "larger_errors",
+        "seed": 202,
+        "course": "stadium_clockwise",
+        "start_pose": {
+          "offset_m": 6.0,
+          "heading_error_rad": 0.6108652381980153
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_edge",
+        "reference_s": 78.64999999999682
+      },
+      "request_index": 1,
+      "observation_s": 0.3,
+      "actual_wire_state": {},
+      "actual_wire_questions": {
+        "wheel": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+            "current_facts": {
+              "wheel_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "road": {
+                  "preview_15m_bearing_deg": -56.8066,
+                  "preview_columns": [
+                    "ahead_m",
+                    "ego_x_m",
+                    "ego_y_m"
+                  ],
+                  "preview": [
+                    [
+                      15.0,
+                      8.845,
+                      -13.52
+                    ]
+                  ]
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -7.7093
+                }
+              }
+            }
+          },
+          "criteria": {
+            "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+            "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+            "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+          }
+        },
+        "pedal": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+            "current_facts": {
+              "pedal_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "kart": {
+                  "speed_m_s": 0.1942
+                },
+                "road": {
+                  "on_road": true,
+                  "offset_m": 6.002,
+                  "left_edge_clearance_m": 5.998,
+                  "right_edge_clearance_m": 18.002
+                },
+                "current_road_frame": {
+                  "velocity_left_m_s": 0.1114,
+                  "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -7.7093
+                }
+              }
+            }
+          },
+          "criteria": {
+            "accelerate": "ACCELERATE: throttle 1, brake 0.",
+            "coast": "COAST: throttle 0, brake 0.",
+            "brake": "BRAKE: throttle 0, brake 1."
+          }
+        }
+      },
+      "actual_response_answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "hard_right",
+          "probabilities": {
+            "hard_right": 0.53,
+            "right": 0.17,
+            "straight": 0.04,
+            "left": 0.14,
+            "hard_left": 0.11
+          },
+          "confidence": 0.41
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.87,
+            "coast": 0.09,
+            "brake": 0.04
+          },
+          "confidence": 0.8
+        }
+      },
+      "actual_usage": {
+        "input_tokens": 1577,
+        "output_tokens": 97,
+        "cost": 6.6234e-05
+      },
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "TypeSafe",
+      "native_action": "hard_right_accelerate",
+      "held_at_observation": "hard_right_accelerate",
+      "latency_ms": 211.252349,
+      "applied": true,
+      "reset_during_step": false,
+      "source_trial": "artifacts/jev-goal-challenge-v1/paid-1/trial.json",
+      "source_trial_sha256": "2f6dac06592635f84c1cda3dc8157552a7cc6f9a9bbf7fceae0e5351d6645186",
+      "wire_payload_sha256": "1d981320c0b928aa45d4f5d10343c4b19b85e1bf0fb565fb85e44faca6c6cc09",
+      "wire_response_body_sha256": "e535312a729f2850acc80c82c916ddaec6f1cf5013170cbc82ac1fda385cb0fd"
+    },
+    {
+      "entry": {
+        "index": 1,
+        "group": "larger_errors",
+        "seed": 202,
+        "course": "stadium_clockwise",
+        "start_pose": {
+          "offset_m": 6.0,
+          "heading_error_rad": 0.6108652381980153
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_edge",
+        "reference_s": 78.64999999999682
+      },
+      "request_index": 37,
+      "observation_s": 10.666666666666666,
+      "actual_wire_state": {},
+      "actual_wire_questions": {
+        "wheel": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+            "current_facts": {
+              "wheel_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "road": {
+                  "preview_15m_bearing_deg": -65.8757,
+                  "preview_columns": [
+                    "ahead_m",
+                    "ego_x_m",
+                    "ego_y_m"
+                  ],
+                  "preview": [
+                    [
+                      15.0,
+                      8.726,
+                      -19.485
+                    ]
+                  ]
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -6.1334
+                }
+              }
+            }
+          },
+          "criteria": {
+            "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+            "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+            "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+          }
+        },
+        "pedal": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+            "current_facts": {
+              "pedal_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "kart": {
+                  "speed_m_s": 11.5787
+                },
+                "road": {
+                  "on_road": false,
+                  "offset_m": 12.033,
+                  "left_edge_clearance_m": -0.033,
+                  "right_edge_clearance_m": 24.033
+                },
+                "current_road_frame": {
+                  "velocity_left_m_s": 3.6735,
+                  "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -6.1334
+                }
+              }
+            }
+          },
+          "criteria": {
+            "accelerate": "ACCELERATE: throttle 1, brake 0.",
+            "coast": "COAST: throttle 0, brake 0.",
+            "brake": "BRAKE: throttle 0, brake 1."
+          }
+        }
+      },
+      "actual_response_answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "hard_right",
+          "probabilities": {
+            "hard_right": 0.52,
+            "right": 0.17,
+            "straight": 0.05,
+            "left": 0.11,
+            "hard_left": 0.15
+          },
+          "confidence": 0.4
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "brake",
+          "probabilities": {
+            "accelerate": 0.16,
+            "coast": 0.25,
+            "brake": 0.59
+          },
+          "confidence": 0.38
+        }
+      },
+      "actual_usage": {
+        "input_tokens": 1581,
+        "output_tokens": 96,
+        "cost": 6.6402e-05
+      },
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "TypeSafe",
+      "native_action": "hard_right_brake",
+      "held_at_observation": "hard_right_brake",
+      "latency_ms": 226.105552,
+      "applied": true,
+      "reset_during_step": false,
+      "source_trial": "artifacts/jev-goal-challenge-v1/paid-1/trial.json",
+      "source_trial_sha256": "2f6dac06592635f84c1cda3dc8157552a7cc6f9a9bbf7fceae0e5351d6645186",
+      "wire_payload_sha256": "5b1a8e51579e323c15d275a187c19776961902c6c0d61e511a19cdc69b30321d",
+      "wire_response_body_sha256": "4f4aba758989e8c0314165a3c6a4d9c0ca5ed5fb23298be20bf670e250924ac0"
+    },
+    {
+      "entry": {
+        "index": 1,
+        "group": "larger_errors",
+        "seed": 202,
+        "course": "stadium_clockwise",
+        "start_pose": {
+          "offset_m": 6.0,
+          "heading_error_rad": 0.6108652381980153
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_edge",
+        "reference_s": 78.64999999999682
+      },
+      "request_index": 44,
+      "observation_s": 12.483333333333333,
+      "actual_wire_state": {},
+      "actual_wire_questions": {
+        "wheel": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+            "current_facts": {
+              "wheel_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "road": {
+                  "preview_15m_bearing_deg": -54.3968,
+                  "preview_columns": [
+                    "ahead_m",
+                    "ego_x_m",
+                    "ego_y_m"
+                  ],
+                  "preview": [
+                    [
+                      15.0,
+                      12.778,
+                      -17.846
+                    ]
+                  ]
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -3.0366
+                }
+              }
+            }
+          },
+          "criteria": {
+            "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+            "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+            "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+          }
+        },
+        "pedal": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+            "current_facts": {
+              "pedal_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "kart": {
+                  "speed_m_s": 1.2072
+                },
+                "road": {
+                  "on_road": false,
+                  "offset_m": 12.698,
+                  "left_edge_clearance_m": -0.698,
+                  "right_edge_clearance_m": 24.698
+                },
+                "current_road_frame": {
+                  "velocity_left_m_s": 0.1295,
+                  "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -3.0366
+                }
+              }
+            }
+          },
+          "criteria": {
+            "accelerate": "ACCELERATE: throttle 1, brake 0.",
+            "coast": "COAST: throttle 0, brake 0.",
+            "brake": "BRAKE: throttle 0, brake 1."
+          }
+        }
+      },
+      "actual_response_answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "hard_right",
+          "probabilities": {
+            "hard_right": 0.44,
+            "right": 0.19,
+            "straight": 0.04,
+            "left": 0.18,
+            "hard_left": 0.15
+          },
+          "confidence": 0.3
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "coast",
+          "probabilities": {
+            "accelerate": 0.36,
+            "coast": 0.43,
+            "brake": 0.21
+          },
+          "confidence": 0.14
+        }
+      },
+      "actual_usage": {
+        "input_tokens": 1581,
+        "output_tokens": 96,
+        "cost": 6.6402e-05
+      },
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "TypeSafe",
+      "native_action": "hard_right_coast",
+      "held_at_observation": "hard_right_coast",
+      "latency_ms": 1118.545604,
+      "applied": true,
+      "reset_during_step": false,
+      "source_trial": "artifacts/jev-goal-challenge-v1/paid-1/trial.json",
+      "source_trial_sha256": "2f6dac06592635f84c1cda3dc8157552a7cc6f9a9bbf7fceae0e5351d6645186",
+      "wire_payload_sha256": "066ba2945c46b5cefc7ef0a0e03a93c206afad260cf66867179d065b35435c2e",
+      "wire_response_body_sha256": "5ea7ab07fa90d9ebf5651bf95245daecb8c7f86a792acc70b3487fc91dc52247"
+    },
+    {
+      "entry": {
+        "index": 1,
+        "group": "larger_errors",
+        "seed": 202,
+        "course": "stadium_clockwise",
+        "start_pose": {
+          "offset_m": 6.0,
+          "heading_error_rad": 0.6108652381980153
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_edge",
+        "reference_s": 78.64999999999682
+      },
+      "request_index": 45,
+      "observation_s": 13.633333333333333,
+      "actual_wire_state": {},
+      "actual_wire_questions": {
+        "wheel": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+            "current_facts": {
+              "wheel_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "road": {
+                  "preview_15m_bearing_deg": -52.7416,
+                  "preview_columns": [
+                    "ahead_m",
+                    "ego_x_m",
+                    "ego_y_m"
+                  ],
+                  "preview": [
+                    [
+                      15.0,
+                      13.125,
+                      -17.255
+                    ]
+                  ]
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -2.4293
+                }
+              }
+            }
+          },
+          "criteria": {
+            "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+            "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+            "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+          }
+        },
+        "pedal": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+            "current_facts": {
+              "pedal_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "kart": {
+                  "speed_m_s": 0.1062
+                },
+                "road": {
+                  "on_road": false,
+                  "offset_m": 12.75,
+                  "left_edge_clearance_m": -0.75,
+                  "right_edge_clearance_m": 24.75
+                },
+                "current_road_frame": {
+                  "velocity_left_m_s": 0.0064,
+                  "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -2.4293
+                }
+              }
+            }
+          },
+          "criteria": {
+            "accelerate": "ACCELERATE: throttle 1, brake 0.",
+            "coast": "COAST: throttle 0, brake 0.",
+            "brake": "BRAKE: throttle 0, brake 1."
+          }
+        }
+      },
+      "actual_response_answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "hard_right",
+          "probabilities": {
+            "hard_right": 0.51,
+            "right": 0.2,
+            "straight": 0.05,
+            "left": 0.13,
+            "hard_left": 0.11
+          },
+          "confidence": 0.39
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.51,
+            "coast": 0.42,
+            "brake": 0.07
+          },
+          "confidence": 0.27
+        }
+      },
+      "actual_usage": {
+        "input_tokens": 1578,
+        "output_tokens": 97,
+        "cost": 6.6276e-05
+      },
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "TypeSafe",
+      "native_action": "hard_right_accelerate",
+      "held_at_observation": "hard_right_coast",
+      "latency_ms": 237.297408,
+      "applied": false,
+      "reset_during_step": false,
+      "source_trial": "artifacts/jev-goal-challenge-v1/paid-1/trial.json",
+      "source_trial_sha256": "2f6dac06592635f84c1cda3dc8157552a7cc6f9a9bbf7fceae0e5351d6645186",
+      "wire_payload_sha256": "53c6ea1098ef883c5e8a6adbbdba75b390f941b5c198af4d83640bf20c8332fe",
+      "wire_response_body_sha256": "e798edaad47a5d97c73831ac3607564a10b4e36468776a1f0b9a99b6328904ea"
+    },
+    {
+      "entry": {
+        "index": 1,
+        "group": "larger_errors",
+        "seed": 202,
+        "course": "stadium_clockwise",
+        "start_pose": {
+          "offset_m": 6.0,
+          "heading_error_rad": 0.6108652381980153
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_edge",
+        "reference_s": 78.64999999999682
+      },
+      "request_index": 150,
+      "observation_s": 42.81666666666667,
+      "actual_wire_state": {},
+      "actual_wire_questions": {
+        "wheel": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+            "current_facts": {
+              "wheel_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "road": {
+                  "preview_15m_bearing_deg": 9.3389,
+                  "preview_columns": [
+                    "ahead_m",
+                    "ego_x_m",
+                    "ego_y_m"
+                  ],
+                  "preview": [
+                    [
+                      15.0,
+                      14.685,
+                      2.415
+                    ]
+                  ]
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -2.9083
+                }
+              }
+            }
+          },
+          "criteria": {
+            "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+            "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+            "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+          }
+        },
+        "pedal": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+            "current_facts": {
+              "pedal_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "kart": {
+                  "speed_m_s": 12.0
+                },
+                "road": {
+                  "on_road": true,
+                  "offset_m": -1.275,
+                  "left_edge_clearance_m": 13.275,
+                  "right_edge_clearance_m": 10.725
+                },
+                "current_road_frame": {
+                  "velocity_left_m_s": -2.2775,
+                  "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -2.9083
+                }
+              }
+            }
+          },
+          "criteria": {
+            "accelerate": "ACCELERATE: throttle 1, brake 0.",
+            "coast": "COAST: throttle 0, brake 0.",
+            "brake": "BRAKE: throttle 0, brake 1."
+          }
+        }
+      },
+      "actual_response_answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "left",
+          "probabilities": {
+            "hard_right": 0.04,
+            "right": 0.18,
+            "straight": 0.11,
+            "left": 0.57,
+            "hard_left": 0.1
+          },
+          "confidence": 0.46
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.67,
+            "coast": 0.17,
+            "brake": 0.16
+          },
+          "confidence": 0.51
+        }
+      },
+      "actual_usage": {
+        "input_tokens": 1574,
+        "output_tokens": 96,
+        "cost": 6.6108e-05
+      },
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "TypeSafe",
+      "native_action": "left_accelerate",
+      "held_at_observation": "left_accelerate",
+      "latency_ms": 1448.488326,
+      "applied": true,
+      "reset_during_step": false,
+      "source_trial": "artifacts/jev-goal-challenge-v1/paid-1/trial.json",
+      "source_trial_sha256": "2f6dac06592635f84c1cda3dc8157552a7cc6f9a9bbf7fceae0e5351d6645186",
+      "wire_payload_sha256": "766a333a5178e7a60bb40abc11c89999701d1a0fccdc6a06682c20d1e05bb89e",
+      "wire_response_body_sha256": "911101e9d7f105195d7722dc47d21921ea47245b8ab017e0ceb5941b71e990f0"
+    },
+    {
+      "entry": {
+        "index": 1,
+        "group": "larger_errors",
+        "seed": 202,
+        "course": "stadium_clockwise",
+        "start_pose": {
+          "offset_m": 6.0,
+          "heading_error_rad": 0.6108652381980153
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_edge",
+        "reference_s": 78.64999999999682
+      },
+      "request_index": 151,
+      "observation_s": 44.28333333333333,
+      "actual_wire_state": {},
+      "actual_wire_questions": {
+        "wheel": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. wheel_facts.road.preview contains the road centreline point 15 metres of centreline arc ahead of the nearest road projection. Its ego_x_m is forward and ego_y_m is left of the current kart nose. preview_15m_bearing_deg is degrees(atan2(ego_y_m,ego_x_m)) from those rounded coordinates: positive is left of the nose, negative is right. Select one absolute wheel setting to hold next. The pedal is selected in the other question in this same request. Return only the wheel choice.",
+            "current_facts": {
+              "wheel_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "road": {
+                  "preview_15m_bearing_deg": -22.4759,
+                  "preview_columns": [
+                    "ahead_m",
+                    "ego_x_m",
+                    "ego_y_m"
+                  ],
+                  "preview": [
+                    [
+                      15.0,
+                      13.862,
+                      -5.735
+                    ]
+                  ]
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -0.9719
+                }
+              }
+            }
+          },
+          "criteria": {
+            "hard_right": "Hold wheels RIGHT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients.",
+            "right": "Hold wheels RIGHT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "straight": "Hold wheels STRAIGHT at 0.00 degrees; a straight nominal path before grip/response transients.",
+            "left": "Hold wheels LEFT at 3.44 degrees; a nominal bicycle turn radius of 30.0 metres before grip/response transients.",
+            "hard_left": "Hold wheels LEFT at 6.88 degrees; a nominal bicycle turn radius of 14.9 metres before grip/response transients."
+          }
+        },
+        "pedal": {
+          "type": "choice",
+          "instructions": {
+            "rules": "This is a solo kart-racing game. Complete three laps by crossing all 120 required checkpoint gates in order, as quickly as possible while staying on the road. Gates require a forward crossing within their road span. Physics continues in real time while the next decision is requested. Both selected settings form one direct input held until another input is applied. Wheel settings are absolute angles, not increments. After three continuous seconds off-road, rescue returns the kart near its departure point, stopped and coasting, with no checkpoint credit. Choose the next input using the current measurements and the physical control descriptions. pedal_facts.kart.speed_m_s is current speed. Road offset is positive left of the road centre. Edge clearances are in metres; negative clearance is outside that edge. current_road_frame.velocity_left_m_s is lateral velocity relative to the current road tangent, positive left and negative right. Select one pedal setting to hold next. The wheel is selected in the other question in this same request. Return only the pedal choice.",
+            "current_facts": {
+              "pedal_facts": {
+                "units": "m,s; display angles deg, handling angles rad. Positive steering/yaw/curvature/ego y/offset are LEFT; ego x forward. Wheel angle is actual; control is held input. road_vs_kart=road tangent minus kart heading. road_turn=future tangent minus current ROAD tangent. Preview distances are centreline arc from nearest projection. Edge clearance<0 is outside. Need=v\u00b2\u00d7|curvature|; grip ratio>1 exceeds current surface grip. Grip radius excludes steering limits/transients.",
+                "kart": {
+                  "speed_m_s": 12.0
+                },
+                "road": {
+                  "on_road": true,
+                  "offset_m": 0.24,
+                  "left_edge_clearance_m": 11.76,
+                  "right_edge_clearance_m": 12.24
+                },
+                "current_road_frame": {
+                  "velocity_left_m_s": 4.4099,
+                  "units": "Angles are degrees and velocities are m/s in the CURRENT ROAD frame. Positive nose_vs_road_deg and velocity_vs_road_deg mean LEFT of the current road tangent. Positive velocity_left_m_s means LEFT; positive velocity_forward_m_s means FORWARD along that tangent."
+                },
+                "next_gate": {
+                  "known": true,
+                  "signed_plane_m": -0.9719
+                }
+              }
+            }
+          },
+          "criteria": {
+            "accelerate": "ACCELERATE: throttle 1, brake 0.",
+            "coast": "COAST: throttle 0, brake 0.",
+            "brake": "BRAKE: throttle 0, brake 1."
+          }
+        }
+      },
+      "actual_response_answers": {
+        "wheel": {
+          "type": "choice",
+          "choice": "hard_right",
+          "probabilities": {
+            "hard_right": 0.4,
+            "right": 0.35,
+            "straight": 0.05,
+            "left": 0.14,
+            "hard_left": 0.06
+          },
+          "confidence": 0.25
+        },
+        "pedal": {
+          "type": "choice",
+          "choice": "accelerate",
+          "probabilities": {
+            "accelerate": 0.61,
+            "coast": 0.17,
+            "brake": 0.22
+          },
+          "confidence": 0.41
+        }
+      },
+      "actual_usage": {
+        "input_tokens": 1572,
+        "output_tokens": 97,
+        "cost": 6.6024e-05
+      },
+      "resolved_model": "typesafe/jev-1.14-20261014",
+      "provider": "TypeSafe",
+      "native_action": "hard_right_accelerate",
+      "held_at_observation": "left_accelerate",
+      "latency_ms": 207.84219,
+      "applied": true,
+      "reset_during_step": false,
+      "source_trial": "artifacts/jev-goal-challenge-v1/paid-1/trial.json",
+      "source_trial_sha256": "2f6dac06592635f84c1cda3dc8157552a7cc6f9a9bbf7fceae0e5351d6645186",
+      "wire_payload_sha256": "9915463b766ab84f4a5f78dee5db153aa6676ae5f6a2fe36e0b506bfd4226438",
+      "wire_response_body_sha256": "17d731d27b286d23a9371e03bda0b306449b32878ca121e5e9485ce178dcdd35"
+    }
+  ]
+}

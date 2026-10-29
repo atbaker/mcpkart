@@ -1,0 +1,2110 @@
+{
+  "model_requests": 0,
+  "ledger_unchanged": true,
+  "both_response_cadences_have_legal_witnesses": true,
+  "selection": "Outward drift:0080 blue tick199,5.714m body clearance,8.396m/s outward velocity,44.40deg heading error; earlier0081tick175 had8.876m clearance. Post-contact:0078race9 red tick720,one second after contacttick660,36.04deg heading error,8.659m clearance,4.893m/s outward velocity. Initialfeature scans and all failedguide/enumeration screens are retained. Selected before any new paid reply. Five new credits required because held-input post-contact controls pass three before later rescue. Simple1.2sguide failed both; retained native-input witnesses establish feasibility, including a bounded offlinebeam search for drift. No witness or search is available to paid collection or prompt.",
+  "cases": [
+    {
+      "name": "outward_drift",
+      "held": {
+        "mode": "held",
+        "delay_s": null,
+        "model_requests": 0,
+        "outcome": "rescued",
+        "duration_s": 3.7666666666666537,
+        "first_gate_s": 0.5666666666666647,
+        "new_gate_credits": 1,
+        "new_rescues": 1,
+        "new_offroad_s": 2.9999999999999942,
+        "distance_m": 26.099396167147457,
+        "final_tick": 425,
+        "controls": [],
+        "initial_state_exact": true
+      },
+      "nominal_200ms": {
+        "mode": "guide",
+        "delay_s": 0.2,
+        "model_requests": 0,
+        "outcome": "credited",
+        "duration_s": 32.416666666665925,
+        "first_gate_s": 0.5666666666666647,
+        "new_gate_credits": 5,
+        "new_rescues": 0,
+        "new_offroad_s": 2.749999999999995,
+        "distance_m": 348.23368430745535,
+        "final_tick": 2144,
+        "controls": [
+          {
+            "tick": 211,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 211,
+            "racer_id": "blue",
+            "action_id": "hard_left_accelerate"
+          },
+          {
+            "tick": 223,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 223,
+            "racer_id": "blue",
+            "action_id": "hard_left_accelerate"
+          },
+          {
+            "tick": 235,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 235,
+            "racer_id": "blue",
+            "action_id": "hard_left_brake"
+          },
+          {
+            "tick": 247,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 247,
+            "racer_id": "blue",
+            "action_id": "hard_left_brake"
+          },
+          {
+            "tick": 259,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 259,
+            "racer_id": "blue",
+            "action_id": "hard_left_brake"
+          },
+          {
+            "tick": 271,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 271,
+            "racer_id": "blue",
+            "action_id": "hard_left_accelerate"
+          },
+          {
+            "tick": 283,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 283,
+            "racer_id": "blue",
+            "action_id": "hard_left_accelerate"
+          },
+          {
+            "tick": 295,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 295,
+            "racer_id": "blue",
+            "action_id": "hard_left_coast"
+          },
+          {
+            "tick": 307,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 307,
+            "racer_id": "blue",
+            "action_id": "hard_left_coast"
+          },
+          {
+            "tick": 319,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 319,
+            "racer_id": "blue",
+            "action_id": "hard_left_coast"
+          },
+          {
+            "tick": 331,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 331,
+            "racer_id": "blue",
+            "action_id": "hard_left_coast"
+          },
+          {
+            "tick": 343,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 343,
+            "racer_id": "blue",
+            "action_id": "hard_left_accelerate"
+          },
+          {
+            "tick": 355,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 355,
+            "racer_id": "blue",
+            "action_id": "hard_left_accelerate"
+          },
+          {
+            "tick": 367,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 367,
+            "racer_id": "blue",
+            "action_id": "hard_left_accelerate"
+          },
+          {
+            "tick": 379,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 379,
+            "racer_id": "blue",
+            "action_id": "hard_left_coast"
+          },
+          {
+            "tick": 391,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 391,
+            "racer_id": "blue",
+            "action_id": "hard_left_coast"
+          },
+          {
+            "tick": 403,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 403,
+            "racer_id": "blue",
+            "action_id": "hard_left_accelerate"
+          },
+          {
+            "tick": 415,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 415,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 427,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 427,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 439,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 439,
+            "racer_id": "blue",
+            "action_id": "left_coast"
+          },
+          {
+            "tick": 451,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 451,
+            "racer_id": "blue",
+            "action_id": "left_coast"
+          },
+          {
+            "tick": 463,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 463,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 475,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 475,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 487,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 487,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 499,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 499,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 511,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 511,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 523,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 523,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 535,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 535,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 547,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 547,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 559,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 559,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 571,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 571,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 583,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 583,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 595,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 595,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 607,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 607,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 619,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 619,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 631,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 631,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 643,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 643,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 655,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 655,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 667,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 667,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 679,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 679,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 691,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 691,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 703,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 703,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 715,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 715,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 727,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 727,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 739,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 739,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 751,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 751,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 763,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 763,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 775,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 775,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 787,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 787,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 799,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 799,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 811,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 811,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 823,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 823,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 835,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 835,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 847,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 847,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 859,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 859,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 871,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 871,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 883,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 883,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 895,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 895,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 907,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 907,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 919,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 919,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 931,
+            "racer_id": "red",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 931,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 943,
+            "racer_id": "red",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 943,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 955,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 955,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 967,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 967,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 979,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 979,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 991,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 991,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1003,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1003,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1015,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1015,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1027,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1027,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 1039,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1039,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 1051,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1051,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 1063,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1063,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1075,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1075,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1087,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1087,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1099,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1099,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1111,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1111,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1123,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1123,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1135,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1135,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1147,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1147,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1159,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1159,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1171,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1171,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1183,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1183,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1195,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1195,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 1207,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1207,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 1219,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1219,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 1231,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1231,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1243,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1243,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1255,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1255,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1267,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1267,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1279,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1279,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1291,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1291,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1303,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1303,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1315,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1315,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1327,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1327,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1339,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1339,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1351,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1351,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1363,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1363,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1375,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1375,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1387,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1387,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1399,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1399,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1411,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1411,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1423,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1423,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1435,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1435,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1447,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1447,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1459,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1459,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1471,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1471,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1483,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1483,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1495,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1495,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1507,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1507,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1519,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1519,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1531,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1531,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1543,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1543,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1555,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1555,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1567,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1567,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1579,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1579,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1591,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1591,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1603,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1603,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1615,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1615,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1627,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1627,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1639,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1639,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1651,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1651,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1663,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1663,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1675,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1675,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1687,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1687,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1699,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1699,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1711,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1711,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1723,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1723,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1735,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1735,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1747,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1747,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1759,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1759,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1771,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1771,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 1783,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1783,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 1795,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1795,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 1807,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1807,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1819,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1819,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1831,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1831,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1843,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1843,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1855,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1855,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1867,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1867,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1879,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1879,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1891,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1891,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1903,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1903,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1915,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1915,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1927,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1927,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1939,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1939,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1951,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1951,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1963,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1963,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1975,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1975,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1987,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1987,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1999,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1999,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 2011,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 2011,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 2023,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 2023,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 2035,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 2035,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 2047,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 2047,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 2059,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 2059,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 2071,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 2071,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 2083,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 2083,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 2095,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 2095,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 2107,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 2107,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 2119,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 2119,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 2131,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 2131,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 2143,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 2143,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          }
+        ],
+        "initial_state_exact": true
+      },
+      "delayed_1200ms": {
+        "outcome": "credited",
+        "duration_s": 25.7,
+        "new_gates": 5,
+        "new_rescues": 0,
+        "new_offroad_s": 2.633333333333329,
+        "controls": [
+          {
+            "tick": 271,
+            "racer_id": "blue",
+            "action_id": "hard_left_accelerate"
+          },
+          {
+            "tick": 271,
+            "racer_id": "red",
+            "action_id": "hard_right_brake"
+          },
+          {
+            "tick": 343,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 343,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 415,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 415,
+            "racer_id": "red",
+            "action_id": "hard_right_coast"
+          },
+          {
+            "tick": 487,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 487,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 559,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 559,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 631,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 631,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 703,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 703,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 775,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 775,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 847,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 847,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 919,
+            "racer_id": "blue",
+            "action_id": "left_coast"
+          },
+          {
+            "tick": 919,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 991,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 991,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1063,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1063,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1135,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1135,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1207,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1207,
+            "racer_id": "red",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 1279,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1279,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1351,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1351,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1423,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 1423,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1495,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1495,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1567,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 1567,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1639,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1639,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 1711,
+            "racer_id": "blue",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 1711,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          }
+        ]
+      },
+      "witnesses_independently_replayed": true
+    },
+    {
+      "name": "post_contact",
+      "held": {
+        "mode": "held",
+        "delay_s": null,
+        "model_requests": 0,
+        "outcome": "rescued",
+        "duration_s": 5.916666666666755,
+        "first_gate_s": 0.6333333333333648,
+        "new_gate_credits": 3,
+        "new_rescues": 1,
+        "new_offroad_s": 2.9999999999999942,
+        "distance_m": 51.84853936756443,
+        "final_tick": 1075,
+        "controls": [],
+        "initial_state_exact": true
+      },
+      "nominal_200ms": {
+        "mode": "guide",
+        "delay_s": 0.2,
+        "model_requests": 0,
+        "outcome": "credited",
+        "duration_s": 3.300000000000164,
+        "first_gate_s": 0.6333333333333648,
+        "new_gate_credits": 5,
+        "new_rescues": 0,
+        "new_offroad_s": 0.0,
+        "distance_m": 39.57484847464437,
+        "final_tick": 918,
+        "controls": [
+          {
+            "tick": 732,
+            "racer_id": "red",
+            "action_id": "hard_left_accelerate"
+          },
+          {
+            "tick": 732,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 744,
+            "racer_id": "red",
+            "action_id": "hard_left_accelerate"
+          },
+          {
+            "tick": 744,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 756,
+            "racer_id": "red",
+            "action_id": "hard_left_accelerate"
+          },
+          {
+            "tick": 756,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 768,
+            "racer_id": "red",
+            "action_id": "hard_left_accelerate"
+          },
+          {
+            "tick": 768,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 780,
+            "racer_id": "red",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 780,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 792,
+            "racer_id": "red",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 792,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 804,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 804,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 816,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 816,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 828,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 828,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 840,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 840,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 852,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 852,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 864,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 864,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 876,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 876,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 888,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 888,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 900,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 900,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 912,
+            "racer_id": "red",
+            "action_id": "right_accelerate"
+          },
+          {
+            "tick": 912,
+            "racer_id": "blue",
+            "action_id": "straight_accelerate"
+          }
+        ],
+        "initial_state_exact": true
+      },
+      "delayed_1200ms": {
+        "sequence": [
+          "hard_right_accelerate"
+        ],
+        "outcome": "credited",
+        "duration_s": 3.3666666666666667,
+        "new_gates": 5,
+        "new_rescues": 0,
+        "new_offroad_s": 0.0,
+        "controls": [
+          {
+            "tick": 792,
+            "racer_id": "red",
+            "action_id": "hard_right_accelerate"
+          },
+          {
+            "tick": 792,
+            "racer_id": "blue",
+            "action_id": "left_accelerate"
+          },
+          {
+            "tick": 864,
+            "racer_id": "red",
+            "action_id": "straight_accelerate"
+          },
+          {
+            "tick": 864,
+            "racer_id": "blue",
+            "action_id": "right_accelerate"
+          }
+        ]
+      },
+      "witnesses_independently_replayed": true
+    }
+  ],
+  "search_limits": "Legal witnesses show existence, not optimality, general recoverability or that the model can infer them. Native API jitter may make actual response age exceed1.2s. Search runs are free physical controls, never model results."
+}

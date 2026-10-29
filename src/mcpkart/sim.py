@@ -168,7 +168,8 @@ class Simulation:
     def __init__(self, seed: int = 0, laps: int = 3,
                  reset_after_s: float | None = 3.0, *, course: str = "winding",
                  road_width: float = 9.0, max_speed: float = 24.0,
-                 max_steering_angle: float = 0.32) -> None:
+                 max_steering_angle: float = 0.32,
+                 start_pose: dict | None = None) -> None:
         if laps < 1:
             raise ValueError("laps must be positive")
         if reset_after_s is not None and (
@@ -189,6 +190,21 @@ class Simulation:
         offset = rng.uniform(-0.35, 0.35)
         self.x, self.y = x - math.sin(heading)*offset, y + math.cos(heading)*offset
         self.heading = heading + rng.uniform(-0.025, 0.025)
+        self.start_pose = None
+        if start_pose is not None:
+            if (not isinstance(start_pose, dict)
+                    or set(start_pose) != {"offset_m", "heading_error_rad"}):
+                raise ValueError("start_pose requires offset_m and heading_error_rad")
+            for name, value, limit in (("offset_m", start_pose["offset_m"], self.track.width/2),
+                                       ("heading_error_rad", start_pose["heading_error_rad"], math.pi)):
+                if (isinstance(value, bool) or not isinstance(value, (int, float))
+                        or not math.isfinite(value) or abs(value) > limit):
+                    raise ValueError(f"start_pose {name} must be finite and within +/-{limit}")
+            self.start_pose = {name: float(start_pose[name])
+                               for name in ("offset_m", "heading_error_rad")}
+            offset = self.start_pose["offset_m"]
+            self.x, self.y = x-math.sin(heading)*offset, y+math.cos(heading)*offset
+            self.heading = wrap(heading+self.start_pose["heading_error_rad"])
         self.vx = self.vy = self.steering = self.yaw_rate = 0.0
         self.tick, self.elapsed = 0, 0.0
         self.finished = False
@@ -211,7 +227,8 @@ class Simulation:
             sim = cls(seed=seed, laps=config["laps"], reset_after_s=config["rescue"]["after_s"],
                       course=config["track"].get("course", "winding"),
                       road_width=config["track"]["width"], max_speed=config["handling"]["max_speed"],
-                      max_steering_angle=config["handling"]["max_steering_angle"])
+                      max_steering_angle=config["handling"]["max_steering_angle"],
+                      start_pose=config.get("start_conditions", {}).get("pose"))
         except (KeyError, TypeError, ValueError) as exc:
             raise ValueError("Saved simulation configuration is invalid") from exc
         if sim.config() != config:
@@ -239,7 +256,7 @@ class Simulation:
         cross_x = old_x + (self.x-old_x)*fraction
         cross_y = old_y + (self.y-old_y)*fraction
         lateral = -(cross_x-gx)*ty + (cross_y-gy)*tx
-        if abs(lateral) > self.track.width/2:
+        if abs(lateral) > self._road_half_width():
             return
         self.checkpoints_passed += 1
         self.next_checkpoint = (self.next_checkpoint+1) % len(self.track.checkpoints)
@@ -249,13 +266,23 @@ class Simulation:
             self.finished = self.laps_completed == self.laps
 
     def step(self, dt: float = DT) -> None:
+        context = self._advance_dynamics(dt)
+        if context is not None:
+            self._complete_step(context)
+
+    def _road_half_width(self) -> float:
+        """Allowed centre offset; multiplayer footprints override this margin."""
+        return self.track.width/2
+
+    def _advance_dynamics(self, dt: float = DT) -> tuple | None:
+        """Integrate a tick; a shared world can resolve contact before progress."""
         if dt <= 0 or dt > DT*1.000001:
             raise ValueError("physics step must be positive and no larger than DT")
         if self.finished:
             return
         old_x, old_y, old_s = self.x, self.y, self.s
         h, action = self.handling, ACTIONS[self.action_id]
-        onroad = abs(self.offset) <= self.track.width/2
+        onroad = abs(self.offset) <= self._road_half_width()
         if not onroad:
             self.offroad_time += dt
             self.offroad_elapsed += dt
@@ -296,17 +323,28 @@ class Simulation:
         self.y += self.vy*dt
         self.tick += 1
         self.elapsed += dt
-        self.distance_travelled += math.dist((old_x, old_y), (self.x, self.y))
+        return old_x, old_y, old_s, onroad
+
+    def _complete_step(self, context: tuple, path: list[tuple[float, float]] | None = None) -> None:
+        old_x, old_y, old_s, onroad = context
+        points = [(old_x, old_y), (self.x, self.y)] if path is None else path
+        self.distance_travelled += sum(math.dist(a, b) for a, b in pairwise(points))
         self.max_speed_seen = max(self.max_speed_seen, self.speed)
         self.s, self.offset, _ = self.track.project(self.x, self.y)
-        self._check_progress(old_x, old_y)
-        if abs(self.offset) <= self.track.width/2:
+        final_x, final_y = self.x, self.y
+        for a, b in pairwise(points):
+            self.x, self.y = b
+            self._check_progress(*a)
+            if self.finished:
+                break
+        self.x, self.y = final_x, final_y
+        if abs(self.offset) <= self._road_half_width():
             self.offroad_elapsed = 0.0
         elif onroad:
             # The last position on the road is a departure anchor, even if the
             # kart subsequently travels across grass to a different section.
             self.departure_s = old_s
-        if (not self.finished and abs(self.offset) > self.track.width/2
+        if (not self.finished and abs(self.offset) > self._road_half_width()
                 and self.reset_after_s is not None
                 and self.offroad_elapsed + 1e-9 >= self.reset_after_s):
             self._rescue()
@@ -346,7 +384,7 @@ class Simulation:
                          "yaw_rate": round(self.yaw_rate, 5), "steering_angle": round(self.steering, 5)},
                 "track": {"width": self.track.width, "offset": round(self.offset, 4),
                           "heading_error": round(wrap(track_heading-self.heading), 5),
-                          "on_road": abs(self.offset) <= self.track.width/2,
+                          "on_road": abs(self.offset) <= self._road_half_width(),
                           "lookahead": lookahead},
                 "progress": {"lap": min(self.laps_completed+1, self.laps),
                              "laps_completed": self.laps_completed, "laps": self.laps,
@@ -369,6 +407,9 @@ class Simulation:
                 "reset_events": [event.copy() for event in self.reset_events]}
 
     def config(self) -> dict:
+        start = ({"pose": self.start_pose.copy(), "stationary": True, "track_distance_m": 0.0}
+                 if self.start_pose is not None else
+                 {"lateral_uniform": [-0.35, 0.35], "heading_uniform": [-0.025, 0.025]})
         return {"version": VERSION, "dt": DT, "laps": self.laps,
                 "handling": asdict(self.handling), "track": self.track.as_dict(),
                 "actions": ACTIONS,
@@ -376,7 +417,7 @@ class Simulation:
                            "control_after": "straight_coast", "speed_after": 0.0,
                            "checkpoint_credit": False},
                 "coordinates": "metres, seconds, radians; heading/steer positive left; ego x ahead y left",
-                "start_conditions": {"lateral_uniform": [-0.35, 0.35], "heading_uniform": [-0.025, 0.025]}}
+                "start_conditions": start}
 
 
 def scripted_action(observation: dict, *, max_steering_angle: float = 0.32) -> str:

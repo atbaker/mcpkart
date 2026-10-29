@@ -1,0 +1,334 @@
+{
+  "cohorts": {
+    "jev-jev": {
+      "duels": 4,
+      "kart_attempts": 8,
+      "finished": 8,
+      "clean": 7,
+      "rescued_attempts": 1,
+      "offroad_without_rescue": 0,
+      "rescues": 1,
+      "contacts": 10,
+      "lead_changes": 7,
+      "requests": 2472,
+      "cost_usd": 0.266525784,
+      "finish_time_s": {
+        "min": 79.33333333333333,
+        "median": 85.25833333333333,
+        "max": 93.68333333333334
+      }
+    },
+    "jev-openai": {
+      "duels": 8,
+      "kart_attempts": 16,
+      "finished": 16,
+      "clean": 8,
+      "rescued_attempts": 8,
+      "offroad_without_rescue": 0,
+      "rescues": 18,
+      "contacts": 13,
+      "lead_changes": 12,
+      "requests": 4957,
+      "cost_usd": 0.754692696,
+      "finish_time_s": {
+        "min": 80.18333333333334,
+        "median": 90.0,
+        "max": 128.38333333333333
+      }
+    },
+    "validation": {
+      "duels": 12,
+      "kart_attempts": 24,
+      "finished": 24,
+      "clean": 15,
+      "rescued_attempts": 8,
+      "offroad_without_rescue": 1,
+      "rescues": 11,
+      "contacts": 29,
+      "lead_changes": 17,
+      "requests": 7535,
+      "cost_usd": 0.812894964,
+      "finish_time_s": {
+        "min": 81.71666666666667,
+        "median": 87.04166666666667,
+        "max": 136.1
+      }
+    }
+  },
+  "api_latency_ms": {
+    "jev-jev:typesafe/jev-1.14": {
+      "n": 2472,
+      "p50": 232.82058,
+      "p95": 328.41862409999993,
+      "p99": 460.27505246999965,
+      "max": 1637.0942,
+      "at_least_1s": 5,
+      "at_least_2s": 0,
+      "at_least_3s": 0
+    },
+    "jev-openai:typesafe/jev-1.14": {
+      "n": 2501,
+      "p50": 224.187333,
+      "p95": 320.258721,
+      "p99": 469.843668,
+      "max": 1888.138452,
+      "at_least_1s": 11,
+      "at_least_2s": 0,
+      "at_least_3s": 0
+    },
+    "jev-openai:openai/gpt-6-luna-decisions": {
+      "n": 2456,
+      "p50": 262.9093715,
+      "p95": 526.55610475,
+      "p99": 949.0812465499964,
+      "max": 1980.247994,
+      "at_least_1s": 22,
+      "at_least_2s": 0,
+      "at_least_3s": 0
+    },
+    "validation:typesafe/jev-1.14": {
+      "n": 7535,
+      "p50": 226.114072,
+      "p95": 393.24756089999966,
+      "p99": 706.5260286999982,
+      "max": 3214.981311,
+      "at_least_1s": 55,
+      "at_least_2s": 7,
+      "at_least_3s": 2
+    }
+  },
+  "extended_domain_queries": {
+    "jev-jev:typesafe/jev-1.14": {
+      "positive_gate_queries": 0,
+      "nonforward_preview_queries": 0
+    },
+    "jev-openai:typesafe/jev-1.14": {
+      "positive_gate_queries": 0,
+      "nonforward_preview_queries": 0
+    },
+    "jev-openai:openai/gpt-6-luna-decisions": {
+      "positive_gate_queries": 75,
+      "nonforward_preview_queries": 44
+    },
+    "validation:typesafe/jev-1.14": {
+      "positive_gate_queries": 101,
+      "nonforward_preview_queries": 62
+    }
+  },
+  "verification": {
+    "passed": true,
+    "exact_current_questions_and_raw_bodies": 14964,
+    "unique_response_ids": 14964,
+    "physics_frames_already_audited": 138401,
+    "budget_transitions_already_audited": 29928,
+    "physics_and_prompt_source_bytes_unchanged": true,
+    "all_model_windows_closed": true,
+    "rows": [
+      {
+        "cohort": "jev-jev",
+        "race": 0,
+        "exact_current_questions_and_raw_bodies": 594,
+        "physics_frames_already_audited": 5622,
+        "max_sample_lateness_ms": 4.898493333330407,
+        "budget_transitions_already_audited": 1188
+      },
+      {
+        "cohort": "jev-jev",
+        "race": 1,
+        "exact_current_questions_and_raw_bodies": 604,
+        "physics_frames_already_audited": 5159,
+        "max_sample_lateness_ms": 24.15705433333278,
+        "budget_transitions_already_audited": 1208
+      },
+      {
+        "cohort": "jev-jev",
+        "race": 2,
+        "exact_current_questions_and_raw_bodies": 652,
+        "physics_frames_already_audited": 5104,
+        "max_sample_lateness_ms": 8.171885999996448,
+        "budget_transitions_already_audited": 1304
+      },
+      {
+        "cohort": "jev-jev",
+        "race": 3,
+        "exact_current_questions_and_raw_bodies": 622,
+        "physics_frames_already_audited": 5129,
+        "max_sample_lateness_ms": 27.31474000000162,
+        "budget_transitions_already_audited": 1244
+      },
+      {
+        "cohort": "jev-openai",
+        "race": 0,
+        "exact_current_questions_and_raw_bodies": 616,
+        "physics_frames_already_audited": 5568,
+        "max_sample_lateness_ms": 7.343033666664269,
+        "budget_transitions_already_audited": 1232
+      },
+      {
+        "cohort": "jev-openai",
+        "race": 1,
+        "exact_current_questions_and_raw_bodies": 629,
+        "physics_frames_already_audited": 6156,
+        "max_sample_lateness_ms": 21.812515333333067,
+        "budget_transitions_already_audited": 1258
+      },
+      {
+        "cohort": "jev-openai",
+        "race": 2,
+        "exact_current_questions_and_raw_bodies": 604,
+        "physics_frames_already_audited": 5395,
+        "max_sample_lateness_ms": 4.860372333332634,
+        "budget_transitions_already_audited": 1208
+      },
+      {
+        "cohort": "jev-openai",
+        "race": 3,
+        "exact_current_questions_and_raw_bodies": 607,
+        "physics_frames_already_audited": 6096,
+        "max_sample_lateness_ms": 8.830102333333343,
+        "budget_transitions_already_audited": 1214
+      },
+      {
+        "cohort": "jev-openai",
+        "race": 4,
+        "exact_current_questions_and_raw_bodies": 724,
+        "physics_frames_already_audited": 7704,
+        "max_sample_lateness_ms": 7.0506696666707285,
+        "budget_transitions_already_audited": 1448
+      },
+      {
+        "cohort": "jev-openai",
+        "race": 5,
+        "exact_current_questions_and_raw_bodies": 597,
+        "physics_frames_already_audited": 6051,
+        "max_sample_lateness_ms": 21.76280399999814,
+        "budget_transitions_already_audited": 1194
+      },
+      {
+        "cohort": "jev-openai",
+        "race": 6,
+        "exact_current_questions_and_raw_bodies": 558,
+        "physics_frames_already_audited": 5401,
+        "max_sample_lateness_ms": 9.378516666663927,
+        "budget_transitions_already_audited": 1116
+      },
+      {
+        "cohort": "jev-openai",
+        "race": 7,
+        "exact_current_questions_and_raw_bodies": 622,
+        "physics_frames_already_audited": 6726,
+        "max_sample_lateness_ms": 8.300488666674937,
+        "budget_transitions_already_audited": 1244
+      },
+      {
+        "cohort": "validation",
+        "race": 0,
+        "exact_current_questions_and_raw_bodies": 605,
+        "physics_frames_already_audited": 5447,
+        "max_sample_lateness_ms": 11.743748000000778,
+        "budget_transitions_already_audited": 1210
+      },
+      {
+        "cohort": "validation",
+        "race": 1,
+        "exact_current_questions_and_raw_bodies": 588,
+        "physics_frames_already_audited": 5110,
+        "max_sample_lateness_ms": 7.211454333337315,
+        "budget_transitions_already_audited": 1176
+      },
+      {
+        "cohort": "validation",
+        "race": 2,
+        "exact_current_questions_and_raw_bodies": 600,
+        "physics_frames_already_audited": 4988,
+        "max_sample_lateness_ms": 7.457178333330376,
+        "budget_transitions_already_audited": 1200
+      },
+      {
+        "cohort": "validation",
+        "race": 3,
+        "exact_current_questions_and_raw_bodies": 583,
+        "physics_frames_already_audited": 6369,
+        "max_sample_lateness_ms": 18.86680133333357,
+        "budget_transitions_already_audited": 1166
+      },
+      {
+        "cohort": "validation",
+        "race": 4,
+        "exact_current_questions_and_raw_bodies": 618,
+        "physics_frames_already_audited": 5330,
+        "max_sample_lateness_ms": 9.964334333333682,
+        "budget_transitions_already_audited": 1236
+      },
+      {
+        "cohort": "validation",
+        "race": 5,
+        "exact_current_questions_and_raw_bodies": 615,
+        "physics_frames_already_audited": 5084,
+        "max_sample_lateness_ms": 21.898976333337487,
+        "budget_transitions_already_audited": 1230
+      },
+      {
+        "cohort": "validation",
+        "race": 6,
+        "exact_current_questions_and_raw_bodies": 701,
+        "physics_frames_already_audited": 8167,
+        "max_sample_lateness_ms": 7.875466333352961,
+        "budget_transitions_already_audited": 1402
+      },
+      {
+        "cohort": "validation",
+        "race": 7,
+        "exact_current_questions_and_raw_bodies": 652,
+        "physics_frames_already_audited": 5838,
+        "max_sample_lateness_ms": 4.231391666675336,
+        "budget_transitions_already_audited": 1304
+      },
+      {
+        "cohort": "validation",
+        "race": 8,
+        "exact_current_questions_and_raw_bodies": 629,
+        "physics_frames_already_audited": 5582,
+        "max_sample_lateness_ms": 13.405895999996574,
+        "budget_transitions_already_audited": 1258
+      },
+      {
+        "cohort": "validation",
+        "race": 9,
+        "exact_current_questions_and_raw_bodies": 676,
+        "physics_frames_already_audited": 5421,
+        "max_sample_lateness_ms": 32.99634433333449,
+        "budget_transitions_already_audited": 1352
+      },
+      {
+        "cohort": "validation",
+        "race": 10,
+        "exact_current_questions_and_raw_bodies": 639,
+        "physics_frames_already_audited": 5637,
+        "max_sample_lateness_ms": 6.101219999996829,
+        "budget_transitions_already_audited": 1278
+      },
+      {
+        "cohort": "validation",
+        "race": 11,
+        "exact_current_questions_and_raw_bodies": 629,
+        "physics_frames_already_audited": 5317,
+        "max_sample_lateness_ms": 15.562829666669131,
+        "budget_transitions_already_audited": 1258
+      }
+    ]
+  },
+  "ledger": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 100000,
+    "max_tokens": 500000000,
+    "requests": 94598,
+    "charged_usd": 10.983352472002839,
+    "charged_tokens": 320361620,
+    "reported_cost_usd": 10.922141848002797,
+    "uncertain_requests": 70,
+    "pending": {}
+  },
+  "latency_note": "Wall-time association is not a causal delay intervention or a diagnosis of provider/network origin."
+}

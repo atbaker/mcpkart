@@ -1,0 +1,300 @@
+{
+  "experiment": "0071",
+  "study_closed": true,
+  "technical_audit_passed": true,
+  "entries": [
+    {
+      "entry": {
+        "index": 0,
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "seed": 102,
+        "course": "stadium_clockwise",
+        "prompt_mode": "goal",
+        "extended_domain": true
+      },
+      "attempted": true,
+      "finished": true,
+      "clean": true,
+      "useful": true,
+      "elapsed_s": 79.86666666666342,
+      "reference_s": 77.28333333333023,
+      "time_ratio": 1.0334267845589815,
+      "gates": 120,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "study_stop": null,
+      "domain_stop": null,
+      "request_errors": 0,
+      "requests": 323,
+      "cost_usd": 0.02135301,
+      "latency_ms": {
+        "n": 323,
+        "p50": 216.206359,
+        "p95": 286.8045115999998,
+        "p99": null,
+        "max": 875.23224
+      },
+      "observation_age_ms": {
+        "n": 322,
+        "p50": 233.668644,
+        "p95": 300.68070065,
+        "p99": null,
+        "max": 900.971057
+      },
+      "extended_domain_query_count": 0,
+      "extended_domain_events": [],
+      "finished_after_entering_extended_domain": false,
+      "spikes_at_least_1s": [],
+      "wheel_choices": {
+        "left": 101,
+        "right": 138,
+        "hard_right": 79,
+        "straight": 5
+      },
+      "pedal_choices": {
+        "accelerate": 323
+      },
+      "trial_sha256": "c8becbeee306806372b44bd8e3f5fdc390fcaa34dca8101879e223deb36225e6",
+      "audit_sha256": "afe8f44bd49eb4829d1a57518ac6e53ab902b992bc630ca64566f186f3526884"
+    },
+    {
+      "entry": {
+        "index": 1,
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "seed": 101,
+        "course": "stadium",
+        "prompt_mode": "goal",
+        "extended_domain": true
+      },
+      "attempted": true,
+      "finished": true,
+      "clean": true,
+      "useful": true,
+      "elapsed_s": 80.93333333333003,
+      "reference_s": 77.1999999999969,
+      "time_ratio": 1.0483592400690838,
+      "gates": 120,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "study_stop": null,
+      "domain_stop": null,
+      "request_errors": 0,
+      "requests": 311,
+      "cost_usd": 0.020545686,
+      "latency_ms": {
+        "n": 311,
+        "p50": 224.340864,
+        "p95": 305.332441,
+        "p99": null,
+        "max": 1377.090662
+      },
+      "observation_age_ms": {
+        "n": 310,
+        "p50": 249.77617550000002,
+        "p95": 333.088008,
+        "p99": null,
+        "max": 1399.613949
+      },
+      "extended_domain_query_count": 0,
+      "extended_domain_events": [],
+      "finished_after_entering_extended_domain": false,
+      "spikes_at_least_1s": [
+        {
+          "index": 85,
+          "observation_s": 22.133333333333333,
+          "latency_ms": 1377.090662,
+          "held_at_observation": "left_accelerate",
+          "returned_native_action": "left_accelerate",
+          "applied": true,
+          "reset_during_step": false
+        }
+      ],
+      "wheel_choices": {
+        "left": 240,
+        "right": 56,
+        "hard_left": 5,
+        "straight": 3,
+        "hard_right": 7
+      },
+      "pedal_choices": {
+        "accelerate": 311
+      },
+      "trial_sha256": "0cb1fa26d1ee1e7176b53c4804d3437857a096f5519403594dd02302911d7ded",
+      "audit_sha256": "4a2eb94637445140d5c618cb8a55e6cee7e7ce8bcb1463e38d1566228b823018"
+    },
+    {
+      "entry": {
+        "index": 2,
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "seed": 103,
+        "course": "stadium",
+        "prompt_mode": "goal",
+        "extended_domain": true
+      },
+      "attempted": true,
+      "finished": true,
+      "clean": true,
+      "useful": true,
+      "elapsed_s": 81.63333333332999,
+      "reference_s": 77.28333333333023,
+      "time_ratio": 1.0562863920638335,
+      "gates": 120,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "study_stop": null,
+      "domain_stop": null,
+      "request_errors": 0,
+      "requests": 317,
+      "cost_usd": 0.020940654,
+      "latency_ms": {
+        "n": 317,
+        "p50": 223.989254,
+        "p95": 292.0431528,
+        "p99": null,
+        "max": 635.772428
+      },
+      "observation_age_ms": {
+        "n": 317,
+        "p50": 249.734421,
+        "p95": 316.8231518,
+        "p99": null,
+        "max": 649.686679
+      },
+      "extended_domain_query_count": 0,
+      "extended_domain_events": [],
+      "finished_after_entering_extended_domain": false,
+      "spikes_at_least_1s": [],
+      "wheel_choices": {
+        "right": 66,
+        "straight": 7,
+        "left": 238,
+        "hard_left": 5,
+        "hard_right": 1
+      },
+      "pedal_choices": {
+        "accelerate": 317
+      },
+      "trial_sha256": "2a82e1969210b6adcbe790655f523b1a0a6b19cb5226604c985ce597b6b49d44",
+      "audit_sha256": "9ed92ffcfca0bf415d5fb6b085cf6b3e67a84867e35d70a2ef2619504ce840b1"
+    },
+    {
+      "entry": {
+        "index": 3,
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "seed": 104,
+        "course": "stadium_clockwise",
+        "prompt_mode": "goal",
+        "extended_domain": true
+      },
+      "attempted": true,
+      "finished": true,
+      "clean": true,
+      "useful": true,
+      "elapsed_s": 79.51666666666344,
+      "reference_s": 77.33333333333023,
+      "time_ratio": 1.0282327586206892,
+      "gates": 120,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "study_stop": null,
+      "domain_stop": null,
+      "request_errors": 0,
+      "requests": 290,
+      "cost_usd": 0.01917027,
+      "latency_ms": {
+        "n": 290,
+        "p50": 239.13681300000002,
+        "p95": 331.5186656,
+        "p99": null,
+        "max": 568.198432
+      },
+      "observation_age_ms": {
+        "n": 289,
+        "p50": 266.3684,
+        "p95": 365.9665644,
+        "p99": null,
+        "max": 582.721753
+      },
+      "extended_domain_query_count": 0,
+      "extended_domain_events": [],
+      "finished_after_entering_extended_domain": false,
+      "spikes_at_least_1s": [],
+      "wheel_choices": {
+        "right": 124,
+        "left": 93,
+        "hard_right": 70,
+        "straight": 2,
+        "hard_left": 1
+      },
+      "pedal_choices": {
+        "accelerate": 290
+      },
+      "trial_sha256": "0c62cd88a06540dc98e7c56f95561e5b71e4dad8a15a91f25589ad79eb28afd0",
+      "audit_sha256": "84e141ffa3d38ebd31ec1f8d6ced94ad6b549fdc6e846b3262f392261045f2f6"
+    }
+  ],
+  "attempts": 4,
+  "unrun": 0,
+  "finished": 4,
+  "clean": 4,
+  "useful": 4,
+  "actual_extended_domain_queries": 0,
+  "finishes_after_entering_extended_domain": 0,
+  "spike_count_at_least_1s": 1,
+  "latency_ms": {
+    "n": 1241,
+    "p50": 226.2066,
+    "p95": 304.938432,
+    "p99": 430.92370179999733,
+    "max": 1377.090662
+  },
+  "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+  "controller_sources_sha256": {
+    "/workspace/mcpkart/src/mcpkart/question_context.py": "dd057fdc5e5147ae806340f16b3fe3ce45f35d3aaf73782a57e3c58d8d8d426b",
+    "/workspace/mcpkart/src/mcpkart/question_context_driver.py": "cd4d590b880ea9e3540fa3dbc5467924be1a4cccbe7fd77af38e11505a9e3b1a",
+    "/workspace/mcpkart/src/mcpkart/question_context_run.py": "eb9de8c56557ce8f3567aed694f79d679aa49e74d916fde7c6a4bbf013daeafc"
+  },
+  "protocol_sha256": "7109a2a1ef5c881a336af2f014780f006bb4dcd8a5e7d45ea52c56eb4f663c6e",
+  "only_pose_domain_validation_changed": true,
+  "prompt_game_native_controls_unchanged": true,
+  "spike_origin_or_causal_effect_identified": false,
+  "clock_gate_reused_not_newly_run": true,
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 72313,
+    "charged_usd": 8.652693944000976,
+    "charged_tokens": 269658511,
+    "reported_cost_usd": 8.591483320000934,
+    "uncertain_requests": 70,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 73554,
+    "charged_usd": 8.734703564001506,
+    "charged_tokens": 271730425,
+    "reported_cost_usd": 8.673492940001465,
+    "uncertain_requests": 70,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 1241,
+    "charged_tokens": 2071914,
+    "charged_usd": 0.08200962000053025,
+    "uncertain_requests": 0
+  },
+  "new_paid_native_probes": 0,
+  "model_requests_by_report": 0,
+  "root_only_review": true,
+  "created_utc": "2026-10-21T06:21:02.757711+00:00"
+}

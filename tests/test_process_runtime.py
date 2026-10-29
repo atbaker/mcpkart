@@ -11,6 +11,33 @@ from mcpkart.sim import Simulation
 
 
 @pytest.mark.asyncio
+async def test_declared_start_pose_reaches_worker_and_replays_exactly():
+    setup = {"course": "stadium", "road_width": 24, "max_speed": 12,
+             "max_steering_angle": .12,
+             "start_pose": {"offset_m": -4, "heading_error_rad": 1.92}}
+    runtime = ProcessRaceRuntime()
+    try:
+        initial = await runtime.start(seed=201, deadline=2, race_setup=setup)
+        expected = Simulation(seed=201, **setup)
+        assert initial["kart"] == expected.observation()["kart"]
+        assert initial["progress"]["checkpoints_passed"] == 0
+        await runtime.drive(initial["race_id"], "hard_right_accelerate", initial["tick"], 0)
+        await asyncio.sleep(.12)
+        result = await runtime.finish()
+        sim = Simulation.from_config(result["config"], seed=201)
+        commands = {c["applied_tick"]: c["action_id"] for c in result["commands"]}
+        for sample in result["samples"]:
+            if sample["tick"]:
+                if sample["tick"] in commands:
+                    sim.set_control(commands[sample["tick"]])
+                sim.step()
+            raw = sim.observation()
+            assert all(raw[k] == sample[k] for k in ("kart", "progress", "control", "rescue"))
+    finally:
+        await runtime.close()
+
+
+@pytest.mark.asyncio
 @pytest.mark.parametrize("native_sleeper", [False, True])
 async def test_child_clock_survives_parent_loop_block_and_acknowledges_real_application(native_sleeper):
     # Omitting the flag must retain the old asyncio process default.

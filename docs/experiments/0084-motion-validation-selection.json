@@ -1,0 +1,111 @@
+{
+  "created_utc": "2026-10-25T01:17:26.964506+00:00",
+  "authorization": "User accepted the proposed22episode baseline vs motion-only validation: Let\u2019s do it.",
+  "model_requests": 0,
+  "feature_source": "artifacts/jev-recovery-delay-v2/contact-feature-screen.json",
+  "feature_source_sha256": "0feeac75b1a99bcbbcc50aa53bb32f4a52157a0f22780ed7f7cd89b2268468bf",
+  "selection": "From existing descriptive contact screen:60ticks aftercontact,closing speed>=2.5m/s inheritedscreen,absheadingerror>=20deg,bodyclearance>=3m,speed>=8m/s; exclude originalrace9; numericraceorder thencontacttick thenracerID; firsteligible ineach of firsttwo distinctrecordings. Freeze before freefeasibility or newpaidoutcomes. No reselection based on feasibility; retainall failedwitnessattempts.",
+  "eligible_features": [
+    {
+      "source": "artifacts/two-kart-session-v1/validation/race-1/race.json",
+      "contact_tick": 80,
+      "closing_speed": 3.205946506474895,
+      "tick": 140,
+      "lag_ticks": 60,
+      "racer_id": "blue",
+      "clearance": 10.0557,
+      "offset": -0.9443,
+      "heading_error_deg": -29.757136047914436,
+      "speed": 11.9917,
+      "outward_velocity": -0.24626818584574134,
+      "action": "left_accelerate"
+    },
+    {
+      "source": "artifacts/two-kart-session-v1/validation/race-4/race.json",
+      "contact_tick": 2086,
+      "closing_speed": 4.378996848828416,
+      "tick": 2146,
+      "lag_ticks": 60,
+      "racer_id": "red",
+      "clearance": 9.7129,
+      "offset": -1.2871,
+      "heading_error_deg": 23.348603109376178,
+      "speed": 9.6439,
+      "outward_velocity": 3.8221238563636697,
+      "action": "left_accelerate"
+    },
+    {
+      "source": "artifacts/two-kart-session-v1/validation/race-5/race.json",
+      "contact_tick": 2419,
+      "closing_speed": 3.729784848589188,
+      "tick": 2479,
+      "lag_ticks": 60,
+      "racer_id": "blue",
+      "clearance": 10.1763,
+      "offset": -0.8237,
+      "heading_error_deg": -21.239545465499617,
+      "speed": 12.0,
+      "outward_velocity": -4.3472,
+      "action": "right_accelerate"
+    },
+    {
+      "source": "artifacts/two-kart-session-v1/validation/race-5/race.json",
+      "contact_tick": 2566,
+      "closing_speed": 2.6662937284879655,
+      "tick": 2626,
+      "lag_ticks": 60,
+      "racer_id": "blue",
+      "clearance": 9.7198,
+      "offset": 1.2802,
+      "heading_error_deg": 21.499668304489013,
+      "speed": 11.569,
+      "outward_velocity": -3.4118,
+      "action": "left_coast"
+    },
+    {
+      "source": "artifacts/two-kart-session-v1/validation/race-10/race.json",
+      "contact_tick": 275,
+      "closing_speed": 2.5772525052674,
+      "tick": 335,
+      "lag_ticks": 60,
+      "racer_id": "red",
+      "clearance": 10.7865,
+      "offset": -0.2135,
+      "heading_error_deg": 24.504258982155047,
+      "speed": 12.0,
+      "outward_velocity": 4.97721055439014,
+      "action": "hard_right_accelerate"
+    }
+  ],
+  "selected_features": [
+    {
+      "source": "artifacts/two-kart-session-v1/validation/race-1/race.json",
+      "contact_tick": 80,
+      "closing_speed": 3.205946506474895,
+      "tick": 140,
+      "lag_ticks": 60,
+      "racer_id": "blue",
+      "clearance": 10.0557,
+      "offset": -0.9443,
+      "heading_error_deg": -29.757136047914436,
+      "speed": 11.9917,
+      "outward_velocity": -0.24626818584574134,
+      "action": "left_accelerate"
+    },
+    {
+      "source": "artifacts/two-kart-session-v1/validation/race-4/race.json",
+      "contact_tick": 2086,
+      "closing_speed": 4.378996848828416,
+      "tick": 2146,
+      "lag_ticks": 60,
+      "racer_id": "red",
+      "clearance": 9.7129,
+      "offset": -1.2871,
+      "heading_error_deg": 23.348603109376178,
+      "speed": 9.6439,
+      "outward_velocity": 3.8221238563636697,
+      "action": "left_accelerate"
+    }
+  ],
+  "limits": "Prospectively selected recorded-state holdouts; original trajectories were historical model runs, not wholly unseen driving. No causal attribution to contact or braking."
+}

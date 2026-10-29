@@ -1,0 +1,16 @@
+{
+  "study": "0079",
+  "racer": "red",
+  "query_index": 112,
+  "observation_time_s": 31.9333,
+  "http_status": 529,
+  "raw_response_utf8": "{\"error\":{\"message\":\"HTTP 529: {\\\"detail\\\":{\\\"error_type\\\":\\\"system_overloaded\\\",\\\"message\\\":\\\"We are currently experiencing high traffic and cannot process your request. Please try again later.\\\"}}\",\"code\":529}}",
+  "request_sha256": "c369ff68a077cfd162498cd22bd6c4919bfba534efd5033270849d7ee11edec8",
+  "response_sha256": "d4e36dbf03a005f20556f3be2f9b3f63210e6d7a3912b0628ee6ac4d437eb490",
+  "input_applied": false,
+  "action": null,
+  "full_reserved_usd": 0.000688128,
+  "full_reserved_tokens": 252313,
+  "billing_uncertain": true,
+  "no_retry_or_replacement": true
+}

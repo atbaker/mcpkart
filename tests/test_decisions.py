@@ -349,7 +349,7 @@ def test_budget_reopening_preserves_authorized_request_limit_and_history(tmp_pat
 def test_new_budget_keeps_default_request_limit_and_hard_dollar_cap(tmp_path):
     assert Budget(tmp_path / "budget.json").summary()["max_requests"] == 25_000
     with pytest.raises(ValueError, match="at most"):
-        Budget(tmp_path / "over-budget.json", cap_usd=10.01)
+        Budget(tmp_path / "over-budget.json", cap_usd=20.01)
 
 
 def test_two_ledger_instances_cannot_over_reserve_concurrently(tmp_path):
@@ -446,3 +446,15 @@ def test_key_loading_does_not_mutate_env_or_print(tmp_path, monkeypatch, capsys)
     assert not capsys.readouterr().out
     monkeypatch.setenv("OPENROUTER_API_KEY", "fake-from-env")
     assert load_api_key(path) == "fake-from-env"
+
+
+def test_twenty_dollar_authorization_preserves_charges_and_old_saved_cap(tmp_path):
+    path = tmp_path / 'budget20.json'
+    budget = Budget(path, cap_usd=20, max_requests=100000, max_tokens=500000000)
+    reservation = budget.reserve(.002, 123, model='test', provider='test')
+    budget.commit(reservation)
+    before = budget.summary()
+    assert Budget(path, cap_usd=20, max_requests=100000, max_tokens=500000000).summary() == before
+    assert before['cap_usd'] == 20 and before['uncertain_requests'] == 1
+    old = Budget(tmp_path / 'budget10.json', cap_usd=10)
+    assert Budget(old.path, cap_usd=20).summary()['cap_usd'] == 10

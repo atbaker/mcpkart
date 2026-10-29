@@ -1,0 +1,373 @@
+{
+  "passed": true,
+  "all347_actual_question_sets_verified_timing_only": true,
+  "both_heads_match_actual_scheduled_wait": true,
+  "baseline_rules_criteria_and_other_facts_exact_after_packet_removal": true,
+  "initial_questions_byte_identical_within_state_profile_delay": true,
+  "no_motion_or_geometry": true,
+  "original_delayed_baseline_first_brake": 2,
+  "original_delayed_timing_first_brake": 0,
+  "original_delayed_successes_all_first_brake_and_contact": true,
+  "original_delayed_failures_all_first_accelerate_no_new_contact": true,
+  "limits": "Descriptive associations, smallsample, bothdrivers treated. Identical initialquestions can yield differentchoices. No isolatedcausal attribution to braking/contact or timingmetadata, no universalactionrule.",
+  "episodes": [
+    {
+      "index": 0,
+      "case": "post_contact",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "2d196ac269ac6f4498e2e09429816d7dd2e06f9de025e71fa5fca4564d05fe7d",
+        "pedal": "fcd16633245cb89a958c8b957cc2988db845027a2e884b833934fe9e74b98227"
+      }
+    },
+    {
+      "index": 1,
+      "case": "post_contact",
+      "profile": "both_timing",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "4ded811d394c12045fba4ad571dd11a0ccc427cb711446da4aadc7f703fd4b44",
+        "pedal": "10496abcff0ee4adfa54721f8175366ee44fcfc27e72e0d83eca3331064e0207"
+      }
+    },
+    {
+      "index": 2,
+      "case": "holdout_1",
+      "profile": "both_timing",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_right_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "b4e76dde94e66b3785663218e8f9515b837ab467ed4056dd1836251f3cccff47",
+        "pedal": "a71a11737686f5db0a63f3e9e3992ff2301ee85f474c8876bc8ce2c2c956c967"
+      }
+    },
+    {
+      "index": 3,
+      "case": "holdout_1",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_right_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "500c059dd852ca2f6f65a1a0899db52f65d8212433ee784ca1249cefbd6226b1",
+        "pedal": "9c360cd32b5d5c10afbe609815a731e9cc4059146fe7cb4ae1ce501e897fcee4"
+      }
+    },
+    {
+      "index": 4,
+      "case": "holdout_2",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "outcome": "credited",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "c4d470bfbc9387754fd19d125b1932bffe482edef7f8b7b43a37263189281261",
+        "pedal": "e5062d79353ea5a0c337aad464df1151e26ed9305d334e8d097a63b25a15627b"
+      }
+    },
+    {
+      "index": 5,
+      "case": "holdout_2",
+      "profile": "both_timing",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "0b4b46235faca9f0cba8d9771f643fcc257a2f8607fc5ae2c6e5e391e4981b74",
+        "pedal": "4e19fb811463d8c090f193de06438909994fb6c242d7db904d14504f23f7dad3"
+      }
+    },
+    {
+      "index": 6,
+      "case": "holdout_2",
+      "profile": "both_timing",
+      "added_delay_s": 0.0,
+      "outcome": "credited",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "73c581fa6790fc504e5d9a24e60111161194ac4c3f9c49dec283ffbef3290901",
+        "pedal": "5fda6d8749b4011c49d0eb835d27431e2824d0e6327f9f608b893cd243f5b459"
+      }
+    },
+    {
+      "index": 7,
+      "case": "holdout_2",
+      "profile": "baseline",
+      "added_delay_s": 0.0,
+      "outcome": "credited",
+      "first_action": "left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "c4d470bfbc9387754fd19d125b1932bffe482edef7f8b7b43a37263189281261",
+        "pedal": "e5062d79353ea5a0c337aad464df1151e26ed9305d334e8d097a63b25a15627b"
+      }
+    },
+    {
+      "index": 8,
+      "case": "holdout_1",
+      "profile": "baseline",
+      "added_delay_s": 0.0,
+      "outcome": "credited",
+      "first_action": "hard_right_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "500c059dd852ca2f6f65a1a0899db52f65d8212433ee784ca1249cefbd6226b1",
+        "pedal": "9c360cd32b5d5c10afbe609815a731e9cc4059146fe7cb4ae1ce501e897fcee4"
+      }
+    },
+    {
+      "index": 9,
+      "case": "holdout_1",
+      "profile": "both_timing",
+      "added_delay_s": 0.0,
+      "outcome": "credited",
+      "first_action": "hard_right_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "c37266fe8ea308c063a10a266a08158edd2ec62dd87a5965ca9e276ba514aacf",
+        "pedal": "44c8bc2d9497fa44726c03e01f17b3dc9c7e552b38f8fddceb72b02dd74dae7e"
+      }
+    },
+    {
+      "index": 10,
+      "case": "post_contact",
+      "profile": "both_timing",
+      "added_delay_s": 0.0,
+      "outcome": "credited",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "40a35c954dce8455619f5e3d89f4ea88b7481e7ea30e1b22d0521f9dfac86a90",
+        "pedal": "6daed545c8c1615ba564fd5748382ea256cb47167635ef49c4b95d1c90dd5c8b"
+      }
+    },
+    {
+      "index": 11,
+      "case": "post_contact",
+      "profile": "baseline",
+      "added_delay_s": 0.0,
+      "outcome": "credited",
+      "first_action": "hard_left_brake",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "2d196ac269ac6f4498e2e09429816d7dd2e06f9de025e71fa5fca4564d05fe7d",
+        "pedal": "fcd16633245cb89a958c8b957cc2988db845027a2e884b833934fe9e74b98227"
+      }
+    },
+    {
+      "index": 12,
+      "case": "holdout_2",
+      "profile": "both_timing",
+      "added_delay_s": 1.0,
+      "outcome": "credited",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "0b4b46235faca9f0cba8d9771f643fcc257a2f8607fc5ae2c6e5e391e4981b74",
+        "pedal": "4e19fb811463d8c090f193de06438909994fb6c242d7db904d14504f23f7dad3"
+      }
+    },
+    {
+      "index": 13,
+      "case": "holdout_2",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "outcome": "credited",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "c4d470bfbc9387754fd19d125b1932bffe482edef7f8b7b43a37263189281261",
+        "pedal": "e5062d79353ea5a0c337aad464df1151e26ed9305d334e8d097a63b25a15627b"
+      }
+    },
+    {
+      "index": 14,
+      "case": "holdout_1",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_right_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "500c059dd852ca2f6f65a1a0899db52f65d8212433ee784ca1249cefbd6226b1",
+        "pedal": "9c360cd32b5d5c10afbe609815a731e9cc4059146fe7cb4ae1ce501e897fcee4"
+      }
+    },
+    {
+      "index": 15,
+      "case": "holdout_1",
+      "profile": "both_timing",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_right_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "b4e76dde94e66b3785663218e8f9515b837ab467ed4056dd1836251f3cccff47",
+        "pedal": "a71a11737686f5db0a63f3e9e3992ff2301ee85f474c8876bc8ce2c2c956c967"
+      }
+    },
+    {
+      "index": 16,
+      "case": "post_contact",
+      "profile": "both_timing",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "4ded811d394c12045fba4ad571dd11a0ccc427cb711446da4aadc7f703fd4b44",
+        "pedal": "10496abcff0ee4adfa54721f8175366ee44fcfc27e72e0d83eca3331064e0207"
+      }
+    },
+    {
+      "index": 17,
+      "case": "post_contact",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "outcome": "credited",
+      "first_action": "hard_left_brake",
+      "contacts": 1,
+      "contact_details": [
+        {
+          "type": "contact",
+          "tick": 909,
+          "time": 15.15,
+          "toi_fraction": 0.8116931992262939,
+          "normal": [
+            0.3283954176510308,
+            0.9445403377653095
+          ],
+          "closing_speed_m_s": 0.26686959764315543,
+          "impulse_m_s": 0.15345001864481436,
+          "onset": true,
+          "positions_at_contact": {
+            "red": [
+              10.880006529864941,
+              31.57013184286244
+            ],
+            "blue": [
+              11.536797365167002,
+              33.45921251839306
+            ]
+          },
+          "separation_correction_m": 0.0
+        }
+      ],
+      "first_question_sha256": {
+        "wheel": "2d196ac269ac6f4498e2e09429816d7dd2e06f9de025e71fa5fca4564d05fe7d",
+        "pedal": "fcd16633245cb89a958c8b957cc2988db845027a2e884b833934fe9e74b98227"
+      }
+    },
+    {
+      "index": 18,
+      "case": "post_contact",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "outcome": "credited",
+      "first_action": "hard_left_brake",
+      "contacts": 1,
+      "contact_details": [
+        {
+          "type": "contact",
+          "tick": 891,
+          "time": 14.85,
+          "toi_fraction": 0.690857813405809,
+          "normal": [
+            0.3582139530469698,
+            0.9336395256427735
+          ],
+          "closing_speed_m_s": 1.2660642596521883,
+          "impulse_m_s": 0.7279869493000082,
+          "onset": true,
+          "positions_at_contact": {
+            "red": [
+              12.205321375742699,
+              32.58874686238331
+            ],
+            "blue": [
+              12.92174928183664,
+              34.45602591366886
+            ]
+          },
+          "separation_correction_m": 0.0
+        }
+      ],
+      "first_question_sha256": {
+        "wheel": "2d196ac269ac6f4498e2e09429816d7dd2e06f9de025e71fa5fca4564d05fe7d",
+        "pedal": "fcd16633245cb89a958c8b957cc2988db845027a2e884b833934fe9e74b98227"
+      }
+    },
+    {
+      "index": 19,
+      "case": "post_contact",
+      "profile": "both_timing",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "4ded811d394c12045fba4ad571dd11a0ccc427cb711446da4aadc7f703fd4b44",
+        "pedal": "10496abcff0ee4adfa54721f8175366ee44fcfc27e72e0d83eca3331064e0207"
+      }
+    },
+    {
+      "index": 20,
+      "case": "post_contact",
+      "profile": "both_timing",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "4ded811d394c12045fba4ad571dd11a0ccc427cb711446da4aadc7f703fd4b44",
+        "pedal": "10496abcff0ee4adfa54721f8175366ee44fcfc27e72e0d83eca3331064e0207"
+      }
+    },
+    {
+      "index": 21,
+      "case": "post_contact",
+      "profile": "baseline",
+      "added_delay_s": 1.0,
+      "outcome": "rescued",
+      "first_action": "hard_left_accelerate",
+      "contacts": 0,
+      "contact_details": [],
+      "first_question_sha256": {
+        "wheel": "2d196ac269ac6f4498e2e09429816d7dd2e06f9de025e71fa5fca4564d05fe7d",
+        "pedal": "fcd16633245cb89a958c8b957cc2988db845027a2e884b833934fe9e74b98227"
+      }
+    }
+  ]
+}

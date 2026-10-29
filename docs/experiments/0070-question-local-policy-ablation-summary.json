@@ -1,0 +1,295 @@
+{
+  "experiment": "0070",
+  "complete": true,
+  "technical_audit_passed": true,
+  "protocol_sha256": "a0609dcf2c5a359c3d366173a3a5ed986ac8f86021f5228c160144a90f86c7a1",
+  "source_fingerprint": "1f2670f72c1c9c12ef77db117f55453f1b6067b8c8a7e94b197379c209f88feb",
+  "controller_sources_sha256": {
+    "/workspace/mcpkart/src/mcpkart/question_context.py": "ba32ecc7877f331aa45886a6a46657df964651667f0f6d6a3feb807864cd51ee",
+    "/workspace/mcpkart/src/mcpkart/question_context_driver.py": "f21a707657f9dfef267d2c6c5c3bc98e298f0ed72146a2628679a95f51f6be61",
+    "/workspace/mcpkart/src/mcpkart/question_context_run.py": "eb9de8c56557ce8f3567aed694f79d679aa49e74d916fde7c6a4bbf013daeafc"
+  },
+  "rows": [
+    {
+      "index": 0,
+      "seed": 101,
+      "course": "stadium",
+      "prompt_mode": "goal",
+      "finished": true,
+      "clean": true,
+      "useful": true,
+      "elapsed_s": 82.83333333332992,
+      "reference_s": 77.1999999999969,
+      "time_ratio": 1.072970639032814,
+      "gates": 120,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "domain_stop": null,
+      "study_stop": null,
+      "request_errors": 0,
+      "requests": 346,
+      "cost_usd": 0.022858374,
+      "latency_ms": {
+        "n": 346,
+        "p50": 210.0525925,
+        "p95": 257.27831625,
+        "p99": null,
+        "max": 496.87158
+      },
+      "observation_age_ms": {
+        "n": 345,
+        "p50": 233.452109,
+        "p95": 283.111724,
+        "p99": null,
+        "max": 516.250026
+      },
+      "wheel_choices": {
+        "left": 258,
+        "right": 69,
+        "hard_left": 10,
+        "hard_right": 7,
+        "straight": 2
+      },
+      "pedal_choices": {
+        "accelerate": 346
+      },
+      "trial_sha256": "c13c38d74dcb8fb33a49ddf48fe2712e83c3b427c0a0ec4611466cb56e345c44",
+      "audit_sha256": "4df29f13ef4446ad493f16bbf552af488734727265cb130aae05fd8ea8aa6b93"
+    },
+    {
+      "index": 1,
+      "seed": 101,
+      "course": "stadium",
+      "prompt_mode": "policy",
+      "finished": true,
+      "clean": true,
+      "useful": true,
+      "elapsed_s": 78.44999999999683,
+      "reference_s": 77.1999999999969,
+      "time_ratio": 1.0161917098445594,
+      "gates": 120,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "domain_stop": null,
+      "study_stop": null,
+      "request_errors": 0,
+      "requests": 322,
+      "cost_usd": 0.027805260000000002,
+      "latency_ms": {
+        "n": 322,
+        "p50": 212.27567349999998,
+        "p95": 282.78947904999995,
+        "p99": null,
+        "max": 438.652821
+      },
+      "observation_age_ms": {
+        "n": 321,
+        "p50": 233.394238,
+        "p95": 301.933287,
+        "p99": null,
+        "max": 467.042738
+      },
+      "wheel_choices": {
+        "straight": 126,
+        "left": 152,
+        "right": 15,
+        "hard_left": 29
+      },
+      "pedal_choices": {
+        "accelerate": 321,
+        "brake": 1
+      },
+      "trial_sha256": "8fd301fe12ff79431e3b73b59bd94372acd74aeaaabad0f055e75d35674acbcd",
+      "audit_sha256": "935e3f0d1827babe9b1cf47e50536bea9007324a1b7c5bccc364e086b6b61e61"
+    },
+    {
+      "index": 2,
+      "seed": 102,
+      "course": "stadium_clockwise",
+      "prompt_mode": "policy",
+      "finished": true,
+      "clean": true,
+      "useful": true,
+      "elapsed_s": 79.59999999999677,
+      "reference_s": 77.28333333333023,
+      "time_ratio": 1.0299762777657964,
+      "gates": 120,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "domain_stop": null,
+      "study_stop": null,
+      "request_errors": 0,
+      "requests": 319,
+      "cost_usd": 0.027562542,
+      "latency_ms": {
+        "n": 319,
+        "p50": 215.589642,
+        "p95": 306.58646099999964,
+        "p99": null,
+        "max": 648.933553
+      },
+      "observation_age_ms": {
+        "n": 318,
+        "p50": 233.4745675,
+        "p95": 333.00473525,
+        "p99": null,
+        "max": 666.591537
+      },
+      "wheel_choices": {
+        "straight": 116,
+        "right": 148,
+        "left": 22,
+        "hard_right": 33
+      },
+      "pedal_choices": {
+        "accelerate": 317,
+        "brake": 2
+      },
+      "trial_sha256": "51f540ead75b99f2ae605f559ea42ab93c94ee2eec4d58d979af25eaa1b7fbd5",
+      "audit_sha256": "8a057e567bc12cfdfc8e82a7b174451be5cac8e53caeffd55eadd09175bc87bf"
+    },
+    {
+      "index": 3,
+      "seed": 102,
+      "course": "stadium_clockwise",
+      "prompt_mode": "goal",
+      "finished": false,
+      "clean": false,
+      "useful": false,
+      "elapsed_s": 41.933333333332236,
+      "reference_s": 77.28333333333023,
+      "time_ratio": null,
+      "gates": 62,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "domain_stop": "15m_preview_not_forward",
+      "study_stop": null,
+      "request_errors": 0,
+      "requests": 166,
+      "cost_usd": 0.010971996,
+      "latency_ms": {
+        "n": 166,
+        "p50": 211.0981295,
+        "p95": 285.58914275,
+        "p99": null,
+        "max": 2196.974936
+      },
+      "observation_age_ms": {
+        "n": 166,
+        "p50": 233.295731,
+        "p95": 300.433076,
+        "p99": null,
+        "max": 2216.413489
+      },
+      "wheel_choices": {
+        "left": 47,
+        "straight": 2,
+        "right": 85,
+        "hard_right": 32
+      },
+      "pedal_choices": {
+        "accelerate": 166
+      },
+      "trial_sha256": "2a2d3908633f13acdfb5f28edb0556af990d0f75c25a7f0a41125516b5e7de4b",
+      "audit_sha256": "8e22ca6650b04910102a1f678d98be543095f3420c16c0359faadec9cde601b8"
+    }
+  ],
+  "arms": [
+    {
+      "prompt_mode": "policy",
+      "races": 2,
+      "finished": 2,
+      "clean": 2,
+      "useful": 2,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "requests": 641,
+      "cost_usd": 0.055367802,
+      "latency_ms": {
+        "n": 641,
+        "p50": 213.485422,
+        "p95": 294.485727,
+        "p99": null,
+        "max": 648.933553
+      },
+      "wheel_choices": {
+        "straight": 242,
+        "left": 174,
+        "right": 163,
+        "hard_left": 29,
+        "hard_right": 33
+      },
+      "pedal_choices": {
+        "accelerate": 638,
+        "brake": 3
+      }
+    },
+    {
+      "prompt_mode": "goal",
+      "races": 2,
+      "finished": 1,
+      "clean": 1,
+      "useful": 1,
+      "rescues": 0,
+      "grass_s": 0.0,
+      "requests": 512,
+      "cost_usd": 0.03383037,
+      "latency_ms": {
+        "n": 512,
+        "p50": 210.328758,
+        "p95": 266.39780694999996,
+        "p99": null,
+        "max": 2196.974936
+      },
+      "wheel_choices": {
+        "left": 305,
+        "right": 154,
+        "hard_left": 10,
+        "hard_right": 39,
+        "straight": 4
+      },
+      "pedal_choices": {
+        "accelerate": 512
+      }
+    }
+  ],
+  "paired_starts": 2,
+  "only_racing_prompt_treatment": true,
+  "game_facts_runtime_menu_decoder_unchanged": true,
+  "no_model_specific_tuning": true,
+  "goal_no_action_policy_or_examples": true,
+  "budget_before": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 71160,
+    "charged_usd": 8.563495772000609,
+    "charged_tokens": 267423949,
+    "reported_cost_usd": 8.502285148000567,
+    "uncertain_requests": 70,
+    "pending": {}
+  },
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 75000,
+    "max_tokens": 500000000,
+    "requests": 72313,
+    "charged_usd": 8.652693944000976,
+    "charged_tokens": 269658511,
+    "reported_cost_usd": 8.591483320000934,
+    "uncertain_requests": 70,
+    "pending": {}
+  },
+  "deltas": {
+    "requests": 1153,
+    "charged_tokens": 2234562,
+    "charged_usd": 0.08919817200036739,
+    "uncertain_requests": 0
+  },
+  "new_paid_native_probes": 0,
+  "model_requests_by_report": 0,
+  "root_only_review": true,
+  "created_utc": "2026-10-21T05:51:09.435123+00:00"
+}

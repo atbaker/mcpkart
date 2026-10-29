@@ -82,6 +82,41 @@ def test_replaying_actions_reproduces_every_state_exactly():
     assert Simulation(seed=8).observation() != Simulation(seed=7).observation()
 
 
+def test_declared_start_pose_roundtrips_without_progress_or_runtime_assistance():
+    pose = {"offset_m": -4.0, "heading_error_rad": math.radians(110)}
+    sim = Simulation(seed=201, course="stadium", road_width=24, max_speed=12,
+                     max_steering_angle=.12, start_pose=pose)
+    pose["offset_m"] = 9  # The caller cannot change the recorded contract.
+    assert sim.offset == pytest.approx(-4)
+    assert sim.speed == sim.steering == sim.yaw_rate == 0
+    assert sim.next_checkpoint == 1 and sim.checkpoints_passed == sim.tick == 0
+    assert sim.action_id == "straight_coast" and not sim.reset_events
+    target = next(p for p in sim.observation()["track"]["lookahead"] if p["distance"] == 15)
+    assert target["x"] < 0
+    replay = Simulation.from_config(sim.config(), seed=201)
+    for _ in range(90):
+        sim.set_control("hard_right_accelerate")
+        replay.set_control("hard_right_accelerate")
+        sim.step()
+        replay.step()
+        assert sim.observation() == replay.observation()
+    assert sim.config() == replay.config()
+    assert sim.config()["start_conditions"]["pose"]["offset_m"] == -4
+
+
+@pytest.mark.parametrize("pose", [
+    {}, {"offset_m": 0, "heading_error_rad": 0, "speed": 12},
+    {"offset_m": 13, "heading_error_rad": 0},
+    {"offset_m": 0, "heading_error_rad": math.pi+.01},
+    {"offset_m": math.nan, "heading_error_rad": 0},
+    {"offset_m": 0, "heading_error_rad": True},
+    {"offset_m": "0", "heading_error_rad": 0},
+])
+def test_start_pose_rejects_invalid_or_outside_road_values(pose):
+    with pytest.raises(ValueError, match="start_pose"):
+        Simulation(course="stadium", road_width=24, start_pose=pose)
+
+
 @pytest.mark.parametrize("seed", range(10))
 def test_reference_completes_three_laps_and_uses_brakes(seed):
     sim = Simulation(seed=seed)

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="979.2pt" height="568.8pt" viewBox="0 0 979.2 568.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-24T18:15:23.620452</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 568.8 
+L 979.2 568.8 
+L 979.2 0 
+L 0 0 
+z
+" style="fill: #f7f8fb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 232.36416 285.9642 
+L 386.0496 285.9642 
+Q 393.19776 285.9642 393.19776 280.845 
+L 393.19776 175.9014 
+Q 393.19776 170.7822 386.0496 170.7822 
+L 232.36416 170.7822 
+Q 225.216 170.7822 225.216 175.9014 
+L 225.216 280.845 
+Q 225.216 285.9642 232.36416 285.9642 
+z
+" clip-path="url(#pfa8f91de32)" style="fill: #f2dfe1"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 411.06816 285.9642 
+L 564.7536 285.9642 
+Q 571.90176 285.9642 571.90176 280.845 
+L 571.90176 175.9014 
+Q 571.90176 170.7822 564.7536 170.7822 
+L 411.06816 170.7822 
+Q 403.92 170.7822 403.92 175.9014 
+L 403.92 280.845 
+Q 403.92 285.9642 411.06816 285.9642 
+z
+" clip-path="url(#pfa8f91de32)" style="fill: #f2dfe1"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 589.77216 285.9642 
+L 743.4576 285.9642 
+Q 750.60576 285.9642 750.60576 280.845 
+L 750.60576 175.9014 
+Q 750.60576 170.7822 743.4576 170.7822 
+L 589.77216 170.7822 
+Q 582.624 170.7822 582.624 175.9014 
+L 582.624 280.845 
+Q 582.624 285.9642 589.77216 285.9642 
+z
+" clip-path="url(#pfa8f91de32)" style="fill: #f2dfe1"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 768.47616 285.9642 
+L 922.1616 285.9642 
+Q 929.30976 285.9642 929.30976 280.845 
+L 929.30976 175.9014 
+Q 929.30976 170.7822 922.1616 170.7822 
+L 768.47616 170.7822 
+Q 761.328 170.7822 761.328 175.9014 
+L 761.328 280.845 
+Q 761.328 285.9642 768.47616 285.9642 
+z
+" clip-path="url(#pfa8f91de32)" style="fill: #f2dfe1"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 232.36416 413.9442 
+L 386.0496 413.9442 
+Q 393.19776 413.9442 393.19776 408.825 
+L 393.19776 303.8814 
+Q 393.19776 298.7622 386.0496 298.7622 
+L 232.36416 298.7622 
+Q 225.216 298.7622 225.216 303.8814 
+L 225.216 408.825 
+Q 225.216 413.9442 232.36416 413.9442 
+z
+" clip-path="url(#pfa8f91de32)" style="fill: #d7eee4"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 411.06816 413.9442 
+L 564.7536 413.9442 
+Q 571.90176 413.9442 571.90176 408.825 
+L 571.90176 303.8814 
+Q 571.90176 298.7622 564.7536 298.7622 
+L 411.06816 298.7622 
+Q 403.92 298.7622 403.92 303.8814 
+L 403.92 408.825 
+Q 403.92 413.9442 411.06816 413.9442 
+z
+" clip-path="url(#pfa8f91de32)" style="fill: #d7eee4"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 589.77216 413.9442 
+L 743.4576 413.9442 
+Q 750.60576 413.9442 750.60576 408.825 
+L 750.60576 303.8814 
+Q 750.60576 298.7622 743.4576 298.7622 
+L 589.77216 298.7622 
+Q 582.624 298.7622 582.624 303.8814 
+L 582.624 408.825 
+Q 582.624 413.9442 589.77216 413.9442 
+z
+" clip-path="url(#pfa8f91de32)" style="fill: #f2dfe1"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 768.47616 413.9442 
+L 922.1616 413.9442 
+Q 929.30976 413.9442 929.30976 408.825 
+L 929.30976 303.8814 
+Q 929.30976 298.7622 922.1616 298.7622 
+L 768.47616 298.7622 
+Q 761.328 298.7622 761.328 303.8814 
+L 761.328 408.825 
+Q 761.328 413.9442 768.47616 413.9442 
+z
+" clip-path="url(#pfa8f91de32)" style="fill: #f2dfe1"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(280.48938 119.20695)">Baseline</text>
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(260.365943 136.291575)">No added wait</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(437.36463 119.1132)">Gate geometry</text>
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(439.069942 136.291575)">No added wait</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(637.89738 119.20695)">Baseline</text>
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(607.605817 136.291575)">+1,000 ms added</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(794.77263 119.1132)">Gate geometry</text>
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(786.309817 136.291575)">+1,000 ms added</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 30px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8d3144" x="309.20688" y="222.573525" transform="rotate(-0 309.20688 222.573525)">0 / 2</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8d3144" x="309.20688" y="255.724713" transform="rotate(-0 309.20688 255.724713)">1 new gate each</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 30px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8d3144" x="487.91088" y="222.573525" transform="rotate(-0 487.91088 222.573525)">0 / 2</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8d3144" x="487.91088" y="255.724713" transform="rotate(-0 487.91088 255.724713)">1 new gate each</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 30px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8d3144" x="666.61488" y="222.573525" transform="rotate(-0 666.61488 222.573525)">0 / 2</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8d3144" x="666.61488" y="255.724713" transform="rotate(-0 666.61488 255.724713)">1 new gate each</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 30px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8d3144" x="845.31888" y="222.573525" transform="rotate(-0 845.31888 222.573525)">0 / 2</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8d3144" x="845.31888" y="255.724713" transform="rotate(-0 845.31888 255.724713)">1 new gate each</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(57.464775 220.535663)">Severe outward drift</text>
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(45.2454 237.620288)">5.71 m body clearance</text>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 30px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="309.20688" y="350.553525" transform="rotate(-0 309.20688 350.553525)">2 / 2</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="309.20688" y="383.704713" transform="rotate(-0 309.20688 383.704713)">5 new gates each</text>
+   </g>
+   <g id="text_16">
+    <text style="font-weight: 700; font-size: 30px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="487.91088" y="350.553525" transform="rotate(-0 487.91088 350.553525)">2 / 2</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #17654d" x="487.91088" y="383.704713" transform="rotate(-0 487.91088 383.704713)">5 new gates each</text>
+   </g>
+   <g id="text_18">
+    <text style="font-weight: 700; font-size: 30px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8d3144" x="666.61488" y="350.553525" transform="rotate(-0 666.61488 350.553525)">0 / 2</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8d3144" x="666.61488" y="383.704713" transform="rotate(-0 666.61488 383.704713)">3 new gates each</text>
+   </g>
+   <g id="text_20">
+    <text style="font-weight: 700; font-size: 30px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8d3144" x="845.31888" y="350.553525" transform="rotate(-0 845.31888 350.553525)">0 / 2</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8d3144" x="845.31888" y="383.704713" transform="rotate(-0 845.31888 383.704713)">3 new gates each</text>
+   </g>
+   <g id="text_22">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(77.441025 348.515663)">After kart contact</text>
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; fill: #182536" transform="translate(78.6054 365.600288)">36° heading error</text>
+   </g>
+  </g>
+  <g id="text_23">
+   <text style="font-weight: 700; font-size: 21px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #182536" x="48.96" y="39.816" transform="rotate(-0 48.96 39.816)">Harder recoveries exposed the same limits in both profiles</text>
+  </g>
+  <g id="text_24">
+   <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526277" x="48.96" y="71.1" transform="rotate(-0 48.96 71.1)">4 / 16 successful episodes · 12 target rescues · 321 valid native replies</text>
+  </g>
+  <g id="text_25">
+   <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #182536" x="48.96" y="466.416" transform="rotate(-0 48.96 466.416)">Success = five new target gate credits before rescue. Two repeats per state, profile and delay condition.</text>
+  </g>
+  <g id="text_26">
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #526277" transform="translate(48.96 482.039094)">Every state had a separately replayed legal recovery at 200 ms and 1,200 ms response cadences.</text>
+   <text style="font-size: 11px; font-family: 'DejaVu Sans'; fill: #526277" transform="translate(48.96 497.7)">Free witnesses were never supplied to the model or used as a paid fallback.</text>
+  </g>
+  <g id="text_27">
+   <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #526277" transform="translate(48.96 528.966813)">The earlier +500 ms timing advantage did not establish a general geometry benefit. Small, selected state bank;</text>
+   <text style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #526277" transform="translate(48.96 543.204)">native API latency varied. These are recovery episodes, not full races. Study 0082 · 24 Oct 2026 (Pacific)</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pfa8f91de32">
+   <rect x="225.216" y="159.264" width="714.816" height="255.96"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -1,0 +1,205 @@
+{
+  "experiment": "0075",
+  "primary_endpoint": "First required gate credit before any rescue",
+  "primary_successes": 0,
+  "primary_successes_by_arm": {
+    "minimal": 0,
+    "road_geometry": 0
+  },
+  "rows": [
+    {
+      "entry": {
+        "index": 0,
+        "group": "recovery",
+        "seed": 201,
+        "course": "stadium",
+        "start_pose": {
+          "offset_m": -10.0,
+          "heading_error_rad": 2.1642082724729685
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_accelerate",
+        "reference_s": 107.98333333332849,
+        "include_wheel_motion": false,
+        "arm": "minimal",
+        "include_wheel_road_frame": false
+      },
+      "elapsed_s": 89.29999999999622,
+      "rescues": 1,
+      "grass_s": 2.9999999999999942,
+      "first_gate_before_rescue": false,
+      "first_gate_credit_s": 8.399999999999997,
+      "first_rescue_s": 6.983333333333314,
+      "first_forward_query_s": 2.1166666666666667,
+      "forward_query_before_rescue": true,
+      "input_token_median": 1573.0,
+      "latency_ms": {
+        "n": 340,
+        "p50": 215.156654,
+        "p95": 353.99701895000004,
+        "p99": null,
+        "max": 1575.165914
+      },
+      "spikes_at_least_1s": 2,
+      "initial_offroad_s": 3.9999999999999907,
+      "trial_sha256": "3de201c10c8c5f75d0e9ec5658a41fc8f73157ac33104c2f0bc83fcbee454e58"
+    },
+    {
+      "entry": {
+        "index": 1,
+        "group": "recovery",
+        "seed": 201,
+        "course": "stadium",
+        "start_pose": {
+          "offset_m": -10.0,
+          "heading_error_rad": 2.1642082724729685
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_accelerate",
+        "reference_s": 107.98333333332849,
+        "include_wheel_motion": false,
+        "arm": "road_geometry",
+        "include_wheel_road_frame": true
+      },
+      "elapsed_s": 95.54999999999586,
+      "rescues": 2,
+      "grass_s": 5.999999999999984,
+      "first_gate_before_rescue": false,
+      "first_gate_credit_s": 11.350000000000144,
+      "first_rescue_s": 7.216666666666646,
+      "first_forward_query_s": 7.233333333333333,
+      "forward_query_before_rescue": false,
+      "input_token_median": 1677.0,
+      "latency_ms": {
+        "n": 354,
+        "p50": 216.401202,
+        "p95": 330.2810674999997,
+        "p99": null,
+        "max": 2197.210233
+      },
+      "spikes_at_least_1s": 4,
+      "initial_offroad_s": 4.233333333333324,
+      "trial_sha256": "28de8d9fd161cf4b78f72932d94c91532d1582098b4eaf13bf159fe5bd2207d3"
+    },
+    {
+      "entry": {
+        "index": 2,
+        "group": "recovery",
+        "seed": 201,
+        "course": "stadium",
+        "start_pose": {
+          "offset_m": -10.0,
+          "heading_error_rad": 2.1642082724729685
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_accelerate",
+        "reference_s": 107.98333333332849,
+        "include_wheel_motion": false,
+        "arm": "road_geometry",
+        "include_wheel_road_frame": true
+      },
+      "elapsed_s": 89.56666666666287,
+      "rescues": 1,
+      "grass_s": 2.9999999999999942,
+      "first_gate_before_rescue": false,
+      "first_gate_credit_s": 8.216666666666654,
+      "first_rescue_s": 6.5333333333333155,
+      "first_forward_query_s": 0.95,
+      "forward_query_before_rescue": true,
+      "input_token_median": 1677,
+      "latency_ms": {
+        "n": 375,
+        "p50": 200.567899,
+        "p95": 263.8575902,
+        "p99": null,
+        "max": 2194.215756
+      },
+      "spikes_at_least_1s": 1,
+      "initial_offroad_s": 3.5499999999999923,
+      "trial_sha256": "119c6d1fdd9606f07f683cf3d6b9163ce578501ede7096f8fc136d36aa5cf8a9"
+    },
+    {
+      "entry": {
+        "index": 3,
+        "group": "recovery",
+        "seed": 201,
+        "course": "stadium",
+        "start_pose": {
+          "offset_m": -10.0,
+          "heading_error_rad": 2.1642082724729685
+        },
+        "model_index": 0,
+        "model": "typesafe/jev-1.14",
+        "prompt_mode": "goal",
+        "extended_domain": true,
+        "guide_mode": "bearing_accelerate",
+        "reference_s": 107.98333333332849,
+        "include_wheel_motion": false,
+        "arm": "minimal",
+        "include_wheel_road_frame": false
+      },
+      "elapsed_s": 90.59999999999614,
+      "rescues": 1,
+      "grass_s": 2.9999999999999942,
+      "first_gate_before_rescue": false,
+      "first_gate_credit_s": 8.933333333333357,
+      "first_rescue_s": 6.899999999999981,
+      "first_forward_query_s": 6.983333333333333,
+      "forward_query_before_rescue": false,
+      "input_token_median": 1573.0,
+      "latency_ms": {
+        "n": 356,
+        "p50": 216.5180715,
+        "p95": 292.86892975,
+        "p99": null,
+        "max": 1189.734594
+      },
+      "spikes_at_least_1s": 1,
+      "initial_offroad_s": 3.9166666666666576,
+      "trial_sha256": "f3e1a659a30d00d60ba3f21431a1bc49ed90588ee3d8ecaf813f24b42d14c464"
+    }
+  ],
+  "paired_geometry_minus_minimal": [
+    {
+      "baseline": 0,
+      "geometry": 1,
+      "elapsed_s": 6.249999999999645,
+      "rescues": 1
+    },
+    {
+      "baseline": 3,
+      "geometry": 2,
+      "elapsed_s": -1.0333333333332746,
+      "rescues": 0
+    }
+  ],
+  "useful_finishes": 4,
+  "clean_finishes": 0,
+  "motion_disabled_both_arms": true,
+  "only_factual_road_geometry_added": true,
+  "primary_endpoint_improvement_demonstrated": false,
+  "latency_causality_established": false,
+  "frozen_final_audit_sha256": "764846378c279b0fee03168d962c59570eaee08053995098f9fb24fcbc9ece2f",
+  "model_calls_by_analysis": 0,
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 10.0,
+    "max_requests": 100000,
+    "max_tokens": 500000000,
+    "requests": 79634,
+    "charged_usd": 9.149239028003063,
+    "charged_tokens": 282185152,
+    "reported_cost_usd": 9.08802840400302,
+    "uncertain_requests": 70,
+    "pending": {}
+  }
+}

@@ -68,8 +68,9 @@ class _Outbox:
             self.condition.notify()
 
 
-async def _worker_loop(connection, session_id: str, watchdog: bool, native_sleeper: bool) -> None:
-    runtime = RaceRuntime(watchdog=watchdog, native_sleeper=native_sleeper)
+async def _worker_loop(connection, session_id: str, watchdog: bool, native_sleeper: bool,
+                       runtime_factory=RaceRuntime) -> None:
+    runtime = runtime_factory(watchdog=watchdog, native_sleeper=native_sleeper)
     # Initialize the immutable track/handling and interpreter paths before any
     # race epoch. HTTP/MCP/application metadata is absent from this process.
     preview = runtime.state()
@@ -181,8 +182,9 @@ class _WorkerProcess:
     child module graph minimal on both supported targets: macOS and Linux.
     """
 
-    def __init__(self, fd: int, session_id: str, watchdog: bool, native_sleeper: bool) -> None:
-        self.arguments = [sys.executable, "-m", "mcpkart.physics_worker", "--worker-fd", str(fd), "--session", session_id]
+    def __init__(self, fd: int, session_id: str, watchdog: bool, native_sleeper: bool,
+                 module: str = "mcpkart.physics_worker") -> None:
+        self.arguments = [sys.executable, "-m", module, "--worker-fd", str(fd), "--session", session_id]
         if watchdog:
             self.arguments.append("--watchdog")
         if native_sleeper:
@@ -250,6 +252,8 @@ class _Session:
 
 class ProcessRaceRuntime:
     """Async race commands; synchronous spectator reads use complete cached state."""
+
+    worker_module = "mcpkart.physics_worker"
 
     def __init__(self, *, watchdog: bool = False, native_sleeper: bool = False) -> None:
         self.watchdog = watchdog
@@ -392,7 +396,8 @@ class ProcessRaceRuntime:
         identity = uuid.uuid4().hex
         native_sleeper = self.native_sleeper
         expected_clock_mode = NATIVE_CLOCK_MODE if native_sleeper else ASYNCIO_CLOCK_MODE
-        process = _WorkerProcess(child.fileno(), identity, self.watchdog, native_sleeper)
+        process = _WorkerProcess(child.fileno(), identity, self.watchdog, native_sleeper,
+                                 module=self.worker_module)
         session = _Session(identity, process, connection, loop, loop.create_future(), time.monotonic_ns(),
                            parent_spans=self._parent_spans)
         self._session = session

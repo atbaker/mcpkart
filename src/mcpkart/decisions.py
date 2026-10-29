@@ -317,8 +317,8 @@ class Budget:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.lock_path = self.path.with_suffix(self.path.suffix + ".lock")
         cap_usd = _nonnegative(cap_usd, "budget cap")
-        if cap_usd > 10:
-            raise ValueError("The authorized experiment budget is at most $10")
+        if cap_usd > 20:
+            raise ValueError("The authorized experiment budget is at most $20")
         if (max_requests is not None and max_requests < 1) or max_tokens < 1:
             raise ValueError("Request and token ceilings must be positive")
         with self._locked():

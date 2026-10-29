@@ -1,0 +1,3253 @@
+{
+  "outward_drift": {
+    "name": "outward_drift",
+    "source": "artifacts/jev-gate-retry-v1/trial/race.json",
+    "tick": 199,
+    "racer_id": "blue",
+    "gate_credits": 5,
+    "deadline_s": 40.0,
+    "max_decisions": 200,
+    "seed": 522,
+    "source_sha256": "86767f918dc2e9abdfc74dcd386b3f72ffaa2a4fa8a80cd7e7fc3cbda27b11ee",
+    "setup": {
+      "course": "stadium_clockwise",
+      "road_width": 24.0,
+      "max_speed": 12.0,
+      "max_steering_angle": 0.12,
+      "laps": 3,
+      "reset_after_s": 3,
+      "radius": 1.0,
+      "restitution": 0.15,
+      "phase_s": 1.0,
+      "contact": "solid",
+      "grid": [
+        {
+          "distance_m": -4.0,
+          "offset_m": -3.0,
+          "heading_error_rad": -0.025
+        },
+        {
+          "distance_m": 0.0,
+          "offset_m": 3.0,
+          "heading_error_rad": 0.025
+        }
+      ],
+      "checkpoint": {
+        "version": "duel-checkpoint-v1",
+        "base_config_sha256": "ac892cc15dec763c5b4bd053d877aba80df1f2b348bf62f81493668e44e5389d",
+        "world": {
+          "tick": 199,
+          "elapsed": 3.3166666666666598,
+          "finish_ticks": {
+            "red": null,
+            "blue": null
+          },
+          "phase_until": {
+            "red": 0,
+            "blue": 0
+          },
+          "contacts": [],
+          "contact_count": 0,
+          "events": [],
+          "_touching": false,
+          "_leader": "blue"
+        },
+        "karts": {
+          "red": {
+            "x": -15.244451248735606,
+            "y": -32.20938903748611,
+            "heading": -2.6359075396437817,
+            "vx": -10.49811366998883,
+            "vy": -5.812883051635705,
+            "steering": 0.0016213077023071007,
+            "yaw_rate": 0.03641141462199968,
+            "tick": 199,
+            "elapsed": 3.3166666666666598,
+            "finished": false,
+            "action_id": "straight_accelerate",
+            "next_checkpoint": 2,
+            "checkpoints_passed": 1,
+            "laps_completed": 0,
+            "lap_times": [],
+            "offroad_time": 0.0,
+            "distance_travelled": 20.242497843344808,
+            "max_speed_seen": 12.000000000000002,
+            "s": 15.244451248735606,
+            "offset": 2.209389037486112,
+            "departure_s": 304.48123303717085,
+            "offroad_elapsed": 0.0,
+            "last_reset_tick": null,
+            "reset_events": []
+          },
+          "blue": {
+            "x": -18.059921343578733,
+            "y": -24.7141028931665,
+            "heading": 2.366710903542531,
+            "vx": -8.57404524544422,
+            "vy": 8.395579082414468,
+            "steering": 0.02561839518806071,
+            "yaw_rate": -0.06275832565802048,
+            "tick": 199,
+            "elapsed": 3.3166666666666598,
+            "finished": false,
+            "action_id": "left_accelerate",
+            "next_checkpoint": 3,
+            "checkpoints_passed": 2,
+            "laps_completed": 0,
+            "lap_times": [],
+            "offroad_time": 0.0,
+            "distance_travelled": 20.440649470859537,
+            "max_speed_seen": 12.000000000000002,
+            "s": 18.059921343578733,
+            "offset": -5.285897106833499,
+            "departure_s": 3.67394039744206e-16,
+            "offroad_elapsed": 0.0,
+            "last_reset_tick": null,
+            "reset_events": []
+          }
+        }
+      },
+      "episode": {
+        "racer_id": "blue",
+        "gate_credits": 5
+      }
+    },
+    "initial_observation": {
+      "tick": 199,
+      "time": 3.3166666666666598,
+      "racers": {
+        "red": {
+          "tick": 199,
+          "time": 3.3167,
+          "kart": {
+            "x": -15.2445,
+            "y": -32.2094,
+            "heading": -2.63591,
+            "speed": 12.0,
+            "vx": -10.4981,
+            "vy": -5.8129,
+            "yaw_rate": 0.03641,
+            "steering_angle": 0.00162
+          },
+          "track": {
+            "width": 24.0,
+            "offset": 2.2094,
+            "heading_error": -0.50569,
+            "on_road": true,
+            "lookahead": [
+              {
+                "distance": 0,
+                "x": -1.07,
+                "y": -1.933,
+                "curvature": 0.0
+              },
+              {
+                "distance": 3,
+                "x": 1.554,
+                "y": -3.386,
+                "curvature": 0.0
+              },
+              {
+                "distance": 6,
+                "x": 4.179,
+                "y": -4.839,
+                "curvature": 0.0
+              },
+              {
+                "distance": 10,
+                "x": 7.678,
+                "y": -6.777,
+                "curvature": 0.0
+              },
+              {
+                "distance": 15,
+                "x": 12.051,
+                "y": -9.202,
+                "curvature": -0.01946
+              },
+              {
+                "distance": 22,
+                "x": 17.692,
+                "y": -13.319,
+                "curvature": -0.03336
+              },
+              {
+                "distance": 32,
+                "x": 23.769,
+                "y": -21.202,
+                "curvature": -0.03332
+              },
+              {
+                "distance": 45,
+                "x": 27.257,
+                "y": -33.62,
+                "curvature": -0.03332
+              },
+              {
+                "distance": 60,
+                "x": 24.403,
+                "y": -48.187,
+                "curvature": -0.03334
+              }
+            ]
+          },
+          "progress": {
+            "lap": 1,
+            "laps_completed": 0,
+            "laps": 3,
+            "checkpoint": 2,
+            "checkpoints_passed": 1,
+            "checkpoints_per_lap": 40,
+            "resets": 0,
+            "track_distance": 15.244,
+            "finished": false
+          },
+          "rescue": {
+            "after_s": 3,
+            "offroad_elapsed": 0.0,
+            "count": 0,
+            "last_reset_tick": null
+          },
+          "control": "straight_accelerate",
+          "finished": false,
+          "body": {
+            "radius_m": 1.0,
+            "phased": false,
+            "left_edge_clearance_m": 8.7906,
+            "right_edge_clearance_m": 13.2094
+          },
+          "competition": {
+            "racer_id": "red",
+            "leader": "blue",
+            "progress_m": 15.2445,
+            "opponent": {
+              "racer_id": "blue",
+              "ego_x_m": -1.1677,
+              "ego_y_m": -7.921,
+              "relative_forward_velocity_m_s": -8.5659,
+              "relative_left_velocity_m_s": -11.4981,
+              "speed_m_s": 12.0,
+              "heading_relative_rad": -1.28057,
+              "surface_gap_m": 6.0066,
+              "phased": false,
+              "finished": false,
+              "checkpoints_passed": 2,
+              "progress_m": 18.0599
+            },
+            "contact_count": 0
+          }
+        },
+        "blue": {
+          "tick": 199,
+          "time": 3.3167,
+          "kart": {
+            "x": -18.0599,
+            "y": -24.7141,
+            "heading": 2.36671,
+            "speed": 12.0,
+            "vx": -8.574,
+            "vy": 8.3956,
+            "yaw_rate": -0.06276,
+            "steering_angle": 0.02562
+          },
+          "track": {
+            "width": 24.0,
+            "offset": -5.2859,
+            "heading_error": 0.77488,
+            "on_road": true,
+            "lookahead": [
+              {
+                "distance": 0,
+                "x": -3.698,
+                "y": 3.777,
+                "curvature": 0.0
+              },
+              {
+                "distance": 3,
+                "x": -1.555,
+                "y": 5.876,
+                "curvature": 0.0
+              },
+              {
+                "distance": 6,
+                "x": 0.589,
+                "y": 7.975,
+                "curvature": 0.0
+              },
+              {
+                "distance": 10,
+                "x": 3.447,
+                "y": 10.773,
+                "curvature": -0.00154
+              },
+              {
+                "distance": 15,
+                "x": 7.129,
+                "y": 14.151,
+                "curvature": -0.03331
+              },
+              {
+                "distance": 22,
+                "x": 13.059,
+                "y": 17.84,
+                "curvature": -0.03335
+              },
+              {
+                "distance": 32,
+                "x": 22.644,
+                "y": 20.52,
+                "curvature": -0.03336
+              },
+              {
+                "distance": 45,
+                "x": 35.462,
+                "y": 19.099,
+                "curvature": -0.03337
+              },
+              {
+                "distance": 60,
+                "x": 47.901,
+                "y": 11.0,
+                "curvature": -0.03338
+              }
+            ]
+          },
+          "progress": {
+            "lap": 1,
+            "laps_completed": 0,
+            "laps": 3,
+            "checkpoint": 3,
+            "checkpoints_passed": 2,
+            "checkpoints_per_lap": 40,
+            "resets": 0,
+            "track_distance": 18.06,
+            "finished": false
+          },
+          "rescue": {
+            "after_s": 3,
+            "offroad_elapsed": 0.0,
+            "count": 0,
+            "last_reset_tick": null
+          },
+          "control": "left_accelerate",
+          "finished": false,
+          "body": {
+            "radius_m": 1.0,
+            "phased": false,
+            "left_edge_clearance_m": 16.2859,
+            "right_edge_clearance_m": 5.7141
+          },
+          "competition": {
+            "racer_id": "blue",
+            "leader": "blue",
+            "progress_m": 18.0599,
+            "opponent": {
+              "racer_id": "red",
+              "ego_x_m": -7.2556,
+              "ego_y_m": 3.3856,
+              "relative_forward_velocity_m_s": -8.5659,
+              "relative_left_velocity_m_s": 11.4981,
+              "speed_m_s": 12.0,
+              "heading_relative_rad": 1.28057,
+              "surface_gap_m": 6.0066,
+              "phased": false,
+              "finished": false,
+              "checkpoints_passed": 1,
+              "progress_m": 15.2445
+            },
+            "contact_count": 0
+          }
+        }
+      },
+      "leader": "blue",
+      "finished": false
+    },
+    "exact_prefix_frames": 200,
+    "full_precision_continuation_frames": 120
+  },
+  "post_contact": {
+    "name": "post_contact",
+    "source": "artifacts/two-kart-session-v1/validation/race-9/race.json",
+    "tick": 720,
+    "racer_id": "red",
+    "gate_credits": 5,
+    "deadline_s": 40.0,
+    "max_decisions": 200,
+    "seed": 413,
+    "source_sha256": "ba581110e041cdc1b41aa2793eab32ccc8d314a65b44f254a1ab8d2a36d3b8be",
+    "setup": {
+      "course": "stadium",
+      "road_width": 24.0,
+      "max_speed": 12.0,
+      "max_steering_angle": 0.12,
+      "laps": 3,
+      "reset_after_s": 3,
+      "radius": 1.0,
+      "restitution": 0.15,
+      "phase_s": 1.0,
+      "contact": "solid",
+      "grid": [
+        {
+          "distance_m": 0.0,
+          "offset_m": 0.25,
+          "heading_error_rad": -0.015
+        },
+        {
+          "distance_m": -2.75,
+          "offset_m": -0.25,
+          "heading_error_rad": 0.015
+        }
+      ],
+      "checkpoint": {
+        "version": "duel-checkpoint-v1",
+        "base_config_sha256": "518acb551a0d31e092172cdfdf9bccc4b0602e226d2ee1b75ecaa69460652f6c",
+        "world": {
+          "tick": 720,
+          "elapsed": 12.000000000000176,
+          "finish_ticks": {
+            "red": null,
+            "blue": null
+          },
+          "phase_until": {
+            "red": 0,
+            "blue": 0
+          },
+          "contacts": [
+            {
+              "tick": 364,
+              "time": 6.066666666666666,
+              "toi_fraction": 0.6258335584978321,
+              "normal": [
+                -0.5049848988079542,
+                0.8631281781843995
+              ],
+              "closing_speed_m_s": 3.606144426783624,
+              "impulse_m_s": 2.0735330454005836,
+              "onset": true,
+              "positions_at_contact": {
+                "red": [
+                  57.831939994093474,
+                  -18.503037184933945
+                ],
+                "blue": [
+                  56.821970196477565,
+                  -16.776780828565144
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 365,
+              "time": 6.083333333333333,
+              "toi_fraction": 0.8559753293500177,
+              "normal": [
+                -0.4972832725524292,
+                0.8675882357659919
+              ],
+              "closing_speed_m_s": 0.1476990789270255,
+              "impulse_m_s": 0.08492697038303966,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  57.96823181811392,
+                  -18.319210095515214
+                ],
+                "blue": [
+                  56.97366527300906,
+                  -16.584033623983228
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 366,
+              "time": 6.1,
+              "toi_fraction": 0.006857931883270246,
+              "normal": [
+                -0.49633766545105845,
+                0.8681295536120132
+              ],
+              "closing_speed_m_s": 0.4747222588957313,
+              "impulse_m_s": 0.27296529886504545,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  57.98496094364565,
+                  -18.296617777840222
+                ],
+                "blue": [
+                  56.99228561274354,
+                  -16.560358670616196
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 367,
+              "time": 6.116666666666666,
+              "toi_fraction": 0.14151121125946156,
+              "normal": [
+                -0.48946414916973713,
+                0.8720234209455302
+              ],
+              "closing_speed_m_s": 0.4323210621313598,
+              "impulse_m_s": 0.24858461072553187,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  58.1111115166926,
+                  -18.12587299157075
+                ],
+                "blue": [
+                  57.13218321835313,
+                  -16.381826149679686
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 368,
+              "time": 6.133333333333333,
+              "toi_fraction": 0.09415390798909595,
+              "normal": [
+                -0.48392693239495055,
+                0.875108407057556
+              ],
+              "closing_speed_m_s": 0.445721694146388,
+              "impulse_m_s": 0.2562899741341731,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  58.217252284507225,
+                  -17.981932494222235
+                ],
+                "blue": [
+                  57.24939841971732,
+                  -16.231715680107122
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 369,
+              "time": 6.15,
+              "toi_fraction": 0.0976643253834291,
+              "normal": [
+                -0.47833577022836626,
+                0.8781770270964936
+              ],
+              "closing_speed_m_s": 0.44626027178167954,
+              "impulse_m_s": 0.25659965627446574,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  58.32926473204968,
+                  -17.82972251863448
+                ],
+                "blue": [
+                  57.37259319159295,
+                  -16.073368464441494
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 370,
+              "time": 6.166666666666667,
+              "toi_fraction": 0.09344239322913915,
+              "normal": [
+                -0.47300288923041867,
+                0.8810608757513162
+              ],
+              "closing_speed_m_s": 0.4478307398279494,
+              "impulse_m_s": 0.2575026754010709,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  58.44057117167286,
+                  -17.678145359101187
+                ],
+                "blue": [
+                  57.49456539321202,
+                  -15.916023607598556
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 371,
+              "time": 6.183333333333334,
+              "toi_fraction": 0.09029759295972684,
+              "normal": [
+                -0.46785704711849324,
+                0.8838041544717722
+              ],
+              "closing_speed_m_s": 0.44917436873800737,
+              "impulse_m_s": 0.2582752620243542,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  58.552111586855915,
+                  -17.52590122345922
+                ],
+                "blue": [
+                  57.61639749261893,
+                  -15.758292914515676
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 372,
+              "time": 6.2,
+              "toi_fraction": 0.08705148742695201,
+              "normal": [
+                -0.462881580312693,
+                0.8864201275959521
+              ],
+              "closing_speed_m_s": 0.45042907480010735,
+              "impulse_m_s": 0.2589967180100617,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  58.66371083720825,
+                  -17.373205704387576
+                ],
+                "blue": [
+                  57.73794767658286,
+                  -15.600365449195671
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 373,
+              "time": 6.216666666666667,
+              "toi_fraction": 0.08384319253323778,
+              "normal": [
+                -0.45805278747594286,
+                0.88892499339681
+              ],
+              "closing_speed_m_s": 0.45158807451633326,
+              "impulse_m_s": 0.2596631428468916,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  58.77534148582926,
+                  -17.220072361791654
+                ],
+                "blue": [
+                  57.85923591087737,
+                  -15.442222374998035
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 374,
+              "time": 6.233333333333333,
+              "toi_fraction": 0.08128380712522201,
+              "normal": [
+                -0.45331911159393434,
+                0.8913482950360572
+              ],
+              "closing_speed_m_s": 0.44910722456582564,
+              "impulse_m_s": 0.25823665412534974,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  58.88702807559302,
+                  -17.066438252281092
+                ],
+                "blue": [
+                  57.98038985240515,
+                  -15.283741662208977
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 375,
+              "time": 6.25,
+              "toi_fraction": 0.04155009394729695,
+              "normal": [
+                -0.4488315058144217,
+                0.8936164050577623
+              ],
+              "closing_speed_m_s": 0.46663560239274005,
+              "impulse_m_s": 0.2683154713758255,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  58.99455047169931,
+                  -16.918291128012797
+                ],
+                "blue": [
+                  58.09688746007047,
+                  -15.131058317897272
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 376,
+              "time": 6.266666666666667,
+              "toi_fraction": 0.04254694531702266,
+              "normal": [
+                -0.44420831779233755,
+                0.8959235293283135
+              ],
+              "closing_speed_m_s": 0.46562393626594445,
+              "impulse_m_s": 0.26773376335291804,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  59.1065849697783,
+                  -16.7636252877908
+                ],
+                "blue": [
+                  58.21816833419362,
+                  -14.97177822913417
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 377,
+              "time": 6.283333333333333,
+              "toi_fraction": 0.03969991832073748,
+              "normal": [
+                -0.4396344833655015,
+                0.8981767760502096
+              ],
+              "closing_speed_m_s": 0.4655678591085763,
+              "impulse_m_s": 0.26770151898743133,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  59.21809348323099,
+                  -16.609342293072455
+                ],
+                "blue": [
+                  58.33882451649998,
+                  -14.812988740972033
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 378,
+              "time": 6.3,
+              "toi_fraction": 0.03714390354552968,
+              "normal": [
+                -0.43506835264883087,
+                0.9003974280968557
+              ],
+              "closing_speed_m_s": 0.46538718030781034,
+              "impulse_m_s": 0.26759762867699094,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  59.32949161165924,
+                  -16.454825436236966
+                ],
+                "blue": [
+                  58.45935490636158,
+                  -14.654030580043257
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 379,
+              "time": 6.316666666666666,
+              "toi_fraction": 0.034566461416493,
+              "normal": [
+                -0.43048851156274254,
+                0.9025960566125327
+              ],
+              "closing_speed_m_s": 0.46514818458636087,
+              "impulse_m_s": 0.2674602061371575,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  59.440697225878544,
+                  -16.300144739477993
+                ],
+                "blue": [
+                  58.57972020275306,
+                  -14.494952626252926
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 380,
+              "time": 6.333333333333333,
+              "toi_fraction": 0.03197855412153021,
+              "normal": [
+                -0.42587178290754646,
+                0.9047835235696701
+              ],
+              "closing_speed_m_s": 0.46484815930954726,
+              "impulse_m_s": 0.26728769160298965,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  59.55166422818139,
+                  -16.145319635332687
+                ],
+                "blue": [
+                  58.699920662366296,
+                  -14.33575258819335
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 381,
+              "time": 6.35,
+              "toi_fraction": 0.02937038854284937,
+              "normal": [
+                -0.4211947468111747,
+                0.9069702229173076
+              ],
+              "closing_speed_m_s": 0.4644877096908885,
+              "impulse_m_s": 0.26708043307226087,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  59.662343990053465,
+                  -15.990372280722942
+                ],
+                "blue": [
+                  58.819954496431116,
+                  -14.176431834888328
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 382,
+              "time": 6.366666666666666,
+              "toi_fraction": 0.026733491698245893,
+              "normal": [
+                -0.41643358003134506,
+                0.9091661418147274
+              ],
+              "closing_speed_m_s": 0.4640663696622372,
+              "impulse_m_s": 0.26683816255578635,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  59.772687725572744,
+                  -15.835324178869968
+                ],
+                "blue": [
+                  58.939820565510054,
+                  -14.016991895240512
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 383,
+              "time": 6.383333333333333,
+              "toi_fraction": 0.024059444674826014,
+              "normal": [
+                -0.4115639966125003,
+                0.9113808625883835
+              ],
+              "closing_speed_m_s": 0.46358280587481665,
+              "impulse_m_s": 0.26656011337801955,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  59.882646255036086,
+                  -15.680196408319995
+                ],
+                "blue": [
+                  59.059518261811085,
+                  -13.857434683143229
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 384,
+              "time": 6.4,
+              "toi_fraction": 0.021339997067000214,
+              "normal": [
+                -0.4065611765319484,
+                0.9136235601914816
+              ],
+              "closing_speed_m_s": 0.4630347403947974,
+              "impulse_m_s": 0.2662449757270085,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  59.99216991796021,
+                  -15.525009627638003
+                ],
+                "blue": [
+                  59.179047564896315,
+                  -13.69776250725504
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 385,
+              "time": 6.416666666666667,
+              "toi_fraction": 0.01856711453422148,
+              "normal": [
+                -0.4013996886750061,
+                0.9159029915507474
+              ],
+              "closing_speed_m_s": 0.46241887481494726,
+              "impulse_m_s": 0.26589085301859466,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  60.10120847381824,
+                  -15.369784079606205
+                ],
+                "blue": [
+                  59.29840909646823,
+                  -13.537978096504709
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 386,
+              "time": 6.433333333333334,
+              "toi_fraction": 0.01573304149874507,
+              "normal": [
+                -0.39605340738662775,
+                0.918227476444395
+              ],
+              "closing_speed_m_s": 0.4617307980729907,
+              "impulse_m_s": 0.26549520889196965,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  60.20971099921904,
+                  -15.21453958134296
+                ],
+                "blue": [
+                  59.417604184445786,
+                  -13.37808462845417
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 387,
+              "time": 6.45,
+              "toi_fraction": 0.012830378175015707,
+              "normal": [
+                -0.39049542216862376,
+                0.920604869238344
+              ],
+              "closing_speed_m_s": 0.46096487658224095,
+              "impulse_m_s": 0.26505480403478854,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  60.317625780987825,
+                  -15.05929549942037
+                ],
+                "blue": [
+                  59.53663493665058,
+                  -13.218085760943685
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 388,
+              "time": 6.466666666666667,
+              "toi_fraction": 0.0098521761390125,
+              "normal": [
+                -0.38469794000043195,
+                0.9230425206670729
+              ],
+              "closing_speed_m_s": 0.4601141239483043,
+              "impulse_m_s": 0.26456562127027494,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  60.42490020511615,
+                  -14.904070708054075
+                ],
+                "blue": [
+                  59.65550432511529,
+                  -13.057985666719928
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 389,
+              "time": 6.483333333333333,
+              "toi_fraction": 0.007697399959673003,
+              "normal": [
+                -0.37862748318122624,
+                0.9255491499536102
+              ],
+              "closing_speed_m_s": 0.40515957728164687,
+              "impulse_m_s": 0.23296675693694693,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  60.53157525771532,
+                  -14.748738963179479
+                ],
+                "blue": [
+                  59.774320291352865,
+                  -12.897640663272258
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 390,
+              "time": 6.5,
+              "toi_fraction": 0.0024545569781581115,
+              "normal": [
+                -0.372422351743065,
+                0.9280633555540079
+              ],
+              "closing_speed_m_s": 0.38727023686729156,
+              "impulse_m_s": 0.22268038619869263,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  60.63699242091822,
+                  -14.593461350523114
+                ],
+                "blue": [
+                  59.89214771743209,
+                  -12.737334639415097
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 391,
+              "time": 6.516666666666667,
+              "toi_fraction": 0.02612169665733713,
+              "normal": [
+                -0.36593425157052517,
+                0.9306407059265781
+              ],
+              "closing_speed_m_s": 0.36869958937270625,
+              "impulse_m_s": 0.21200226388930607,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  60.74433209999319,
+                  -14.432977633630728
+                ],
+                "blue": [
+                  60.012463596852136,
+                  -12.57169622177757
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 392,
+              "time": 6.533333333333333,
+              "toi_fraction": 0.020396181901824257,
+              "normal": [
+                -0.35952716181662236,
+                0.9331346204680674
+              ],
+              "closing_speed_m_s": 0.36074652831161824,
+              "impulse_m_s": 0.20742925377918048,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  60.84743648318844,
+                  -14.276400262585557
+                ],
+                "blue": [
+                  60.128382159555194,
+                  -12.410131021649423
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 393,
+              "time": 6.55,
+              "toi_fraction": 0.014990425840547179,
+              "normal": [
+                -0.35301236126223023,
+                0.9356186577853525
+              ],
+              "closing_speed_m_s": 0.35709389783776074,
+              "impulse_m_s": 0.20532899125671242,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  60.949347584881224,
+                  -14.119025301522777
+                ],
+                "blue": [
+                  60.24332286235676,
+                  -12.24778798595207
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 394,
+              "time": 6.566666666666666,
+              "toi_fraction": 0.009201304133704478,
+              "normal": [
+                -0.34638153657816806,
+                0.9380937219264114
+              ],
+              "closing_speed_m_s": 0.3551907872269923,
+              "impulse_m_s": 0.20423470265552057,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  61.0499356976512,
+                  -13.960956510887158
+                ],
+                "blue": [
+                  60.357172624494865,
+                  -12.084769067034337
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 395,
+              "time": 6.583333333333333,
+              "toi_fraction": 0.0031600358938168424,
+              "normal": [
+                -0.33961565056888054,
+                0.9405643039626137
+              ],
+              "closing_speed_m_s": 0.35395048062087303,
+              "impulse_m_s": 0.20352152635700196,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  61.14916287968179,
+                  -13.802181030090994
+                ],
+                "blue": [
+                  60.46993157854403,
+                  -11.921052422165765
+                ]
+              },
+              "separation_correction_m": 9.048407366374356e-06
+            },
+            {
+              "tick": 396,
+              "time": 6.6,
+              "toi_fraction": 0.0,
+              "normal": [
+                -0.3326697282649308,
+                0.9430433987341924
+              ],
+              "closing_speed_m_s": 0.35288399792037123,
+              "impulse_m_s": 0.20290829880421343,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  61.24728323346061,
+                  -13.642205951458413
+                ],
+                "blue": [
+                  60.58194377709447,
+                  -11.75611915445416
+                ]
+              },
+              "separation_correction_m": 2.7824430184009152e-05
+            },
+            {
+              "tick": 397,
+              "time": 6.616666666666666,
+              "toi_fraction": 0.0,
+              "normal": [
+                -0.3255154725802242,
+                0.9455367137826397
+              ],
+              "closing_speed_m_s": 0.35179610021734853,
+              "impulse_m_s": 0.20228275762497538,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  61.34425969623591,
+                  -13.480992954967627
+                ],
+                "blue": [
+                  60.69322875159536,
+                  -11.589919528912528
+                ]
+              },
+              "separation_correction_m": 4.6796143494787223e-05
+            },
+            {
+              "tick": 398,
+              "time": 6.633333333333333,
+              "toi_fraction": 0.0,
+              "normal": [
+                -0.31815095428204904,
+                0.9480400678713014
+              ],
+              "closing_speed_m_s": 0.35062715205294825,
+              "impulse_m_s": 0.20161061243044523,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  61.43972951939576,
+                  -13.319063672034417
+                ],
+                "blue": [
+                  60.80342761173249,
+                  -11.42298353897613
+                ]
+              },
+              "separation_correction_m": 6.58363049610422e-05
+            },
+            {
+              "tick": 399,
+              "time": 6.6499999999999995,
+              "toi_fraction": 0.0,
+              "normal": [
+                -0.31055159521838077,
+                0.9505565247302861
+              ],
+              "closing_speed_m_s": 0.3493225289419917,
+              "impulse_m_s": 0.2008604541416452,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  61.53364025007951,
+                  -13.156431791707208
+                ],
+                "blue": [
+                  60.91253706095304,
+                  -11.255318746257275
+                ]
+              },
+              "separation_correction_m": 8.489207628437079e-05
+            },
+            {
+              "tick": 400,
+              "time": 6.666666666666667,
+              "toi_fraction": 0.0,
+              "normal": [
+                -0.30269211138371915,
+                0.9530883934379151
+              ],
+              "closing_speed_m_s": 0.3478511218849681,
+              "impulse_m_s": 0.20001439508385663,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  61.6259384959307,
+                  -12.993109796143514
+                ],
+                "blue": [
+                  61.02055427491542,
+                  -11.086933014784721
+                ]
+              },
+              "separation_correction_m": 0.00010391013261978888
+            },
+            {
+              "tick": 401,
+              "time": 6.683333333333334,
+              "toi_fraction": 0.0,
+              "normal": [
+                -0.29454652073877846,
+                0.955637141974233
+              ],
+              "closing_speed_m_s": 0.34619093411986285,
+              "impulse_m_s": 0.1990597871189211,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  61.716569786514405,
+                  -12.829108676373355
+                ],
+                "blue": [
+                  61.127476747266655,
+                  -10.917834399659354
+                ]
+              },
+              "separation_correction_m": 0.00012283095861531645
+            },
+            {
+              "tick": 402,
+              "time": 6.7,
+              "toi_fraction": 0.0,
+              "normal": [
+                -0.28608812171475356,
+                0.9582033117317662
+              ],
+              "closing_speed_m_s": 0.3443228005660751,
+              "impulse_m_s": 0.19798561032549317,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  61.8054784698804,
+                  -12.664437720328264
+                ],
+                "blue": [
+                  61.233302229196745,
+                  -10.7480311060615
+                ]
+              },
+              "separation_correction_m": 0.00014158545397846556
+            },
+            {
+              "tick": 403,
+              "time": 6.716666666666667,
+              "toi_fraction": 0.0,
+              "normal": [
+                -0.27728945995229154,
+                0.9607864254866253
+              ],
+              "closing_speed_m_s": 0.3285642446031831,
+              "impulse_m_s": 0.18892444064683028,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  61.89260762552587,
+                  -12.499104318376501
+                ],
+                "blue": [
+                  61.3380287089231,
+                  -10.57753147884377
+                ]
+              },
+              "separation_correction_m": 0.0002617527738890679
+            },
+            {
+              "tick": 404,
+              "time": 6.733333333333333,
+              "toi_fraction": 0.0,
+              "normal": [
+                -0.268089866813172,
+                0.9633939086957607
+              ],
+              "closing_speed_m_s": 0.33379023559390397,
+              "impulse_m_s": 0.19192938546649477,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  61.977890867583874,
+                  -12.33308562965095
+                ],
+                "blue": [
+                  61.441711140375254,
+                  -10.406297835321833
+                ]
+              },
+              "separation_correction_m": 0.00028895539259832237
+            },
+            {
+              "tick": 405,
+              "time": 6.75,
+              "toi_fraction": 0.0,
+              "normal": [
+                -0.2585090325127193,
+                0.9660088405958498
+              ],
+              "closing_speed_m_s": 0.3344066183729655,
+              "impulse_m_s": 0.19228380556445512,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  62.06126229518724,
+                  -12.166365703105171
+                ],
+                "blue": [
+                  61.54424423753137,
+                  -10.234348049452434
+                ]
+              },
+              "separation_correction_m": 0.0003118302050360011
+            },
+            {
+              "tick": 406,
+              "time": 6.766666666666667,
+              "toi_fraction": 0.0,
+              "normal": [
+                -0.24850692832060725,
+                0.968630118557469
+              ],
+              "closing_speed_m_s": 0.33287472961131637,
+              "impulse_m_s": 0.1914029695265069,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  62.14266801435587,
+                  -11.998971100364253
+                ],
+                "blue": [
+                  61.64565416600215,
+                  -10.061710895552316
+                ]
+              },
+              "separation_correction_m": 0.00033232839147856463
+            },
+            {
+              "tick": 407,
+              "time": 6.783333333333333,
+              "toi_fraction": 0.0,
+              "normal": [
+                -0.23804834303122602,
+                0.9712533070111462
+              ],
+              "closing_speed_m_s": 0.3302297202780211,
+              "impulse_m_s": 0.18988208915986213,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  62.22204823633799,
+                  -11.830910425628772
+                ],
+                "blue": [
+                  61.7459515594762,
+                  -9.888403849145789
+                ]
+              },
+              "separation_correction_m": 0.00035126455546630186
+            },
+            {
+              "tick": 408,
+              "time": 6.8,
+              "toi_fraction": 0.0,
+              "normal": [
+                -0.22709960730939993,
+                0.973871535860822
+              ],
+              "closing_speed_m_s": 0.3268961029757654,
+              "impulse_m_s": 0.18796525921106508,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  62.29933981281207,
+                  -11.662182735110234
+                ],
+                "blue": [
+                  61.84514060830633,
+                  -9.714439706756432
+                ]
+              },
+              "separation_correction_m": 0.00036890807888989574
+            },
+            {
+              "tick": 409,
+              "time": 6.816666666666666,
+              "toi_fraction": 0.0,
+              "normal": [
+                -0.21562718153833038,
+                0.9764757644620966
+              ],
+              "closing_speed_m_s": 0.3230358937567071,
+              "impulse_m_s": 0.18574563891010656,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  62.37447726423711,
+                  -11.49278089033925
+                ],
+                "blue": [
+                  61.943222912173646,
+                  -9.53982941128874
+                ]
+              },
+              "separation_correction_m": 0.0003852588580990357
+            },
+            {
+              "tick": 410,
+              "time": 6.833333333333333,
+              "toi_fraction": 0.0,
+              "normal": [
+                -0.2035970534135759,
+                0.9790547685606303
+              ],
+              "closing_speed_m_s": 0.13698095878155966,
+              "impulse_m_s": 0.0787640512993968,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  62.44739320344762,
+                  -11.322692748313509
+                ],
+                "blue": [
+                  62.04019910849855,
+                  -9.36458326831141
+                ]
+              },
+              "separation_correction_m": 0.00010700782255945729
+            },
+            {
+              "tick": 411,
+              "time": 6.85,
+              "toi_fraction": 0.0,
+              "normal": [
+                -0.18987719543036705,
+                0.9818078481329726
+              ],
+              "closing_speed_m_s": 0.05035828634932071,
+              "impulse_m_s": 0.028956014650859407,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  62.51686786003658,
+                  -11.153155952377356
+                ],
+                "blue": [
+                  62.13711347315488,
+                  -9.189540276686044
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 660,
+              "time": 11.0,
+              "toi_fraction": 0.4172866821615792,
+              "normal": [
+                0.268729366557036,
+                0.9632157222293738
+              ],
+              "closing_speed_m_s": 5.9553989489878765,
+              "impulse_m_s": 3.4243543956680287,
+              "onset": true,
+              "positions_at_contact": {
+                "red": [
+                  40.77419274199546,
+                  27.015910912328792
+                ],
+                "blue": [
+                  41.311651475109535,
+                  28.942342356787538
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 663,
+              "time": 11.05,
+              "toi_fraction": 0.7969938701982975,
+              "normal": [
+                0.2441972070729932,
+                0.9697255921433392
+              ],
+              "closing_speed_m_s": 0.7257315701020846,
+              "impulse_m_s": 0.41729565280869857,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  40.219377152113275,
+                  27.30621999448308
+                ],
+                "blue": [
+                  40.70777156625926,
+                  29.245671178769758
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 664,
+              "time": 11.066666666666666,
+              "toi_fraction": 0.04227586604458055,
+              "normal": [
+                0.24259718376492145,
+                0.9701271083880343
+              ],
+              "closing_speed_m_s": 0.4346178876936188,
+              "impulse_m_s": 0.2499052854238308,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  40.178753036158156,
+                  27.32745823441233
+                ],
+                "blue": [
+                  40.663947403688,
+                  29.267712451188398
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 665,
+              "time": 11.083333333333334,
+              "toi_fraction": 0.11388724216996547,
+              "normal": [
+                0.2360909374740104,
+                0.9717309654645379
+              ],
+              "closing_speed_m_s": 0.46811023036625427,
+              "impulse_m_s": 0.2691633824605962,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  40.0003419805882,
+                  27.420630383121182
+                ],
+                "blue": [
+                  40.472523855536224,
+                  29.364092314050257
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 666,
+              "time": 11.1,
+              "toi_fraction": 0.11113723974837941,
+              "normal": [
+                0.23050335873134745,
+                0.9730715295462958
+              ],
+              "closing_speed_m_s": 0.4665492166818004,
+              "impulse_m_s": 0.2682657995920352,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  39.833411982548725,
+                  27.507710339763438
+                ],
+                "blue": [
+                  40.29441870001142,
+                  29.45385339885603
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 667,
+              "time": 11.116666666666667,
+              "toi_fraction": 0.10871591406528784,
+              "normal": [
+                0.22536606285184385,
+                0.9742741594205702
+              ],
+              "closing_speed_m_s": 0.46875640208300895,
+              "impulse_m_s": 0.26953493119773014,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  39.66555684514919,
+                  27.595163566441695
+                ],
+                "blue": [
+                  40.11628897085288,
+                  29.543711885282836
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 668,
+              "time": 11.133333333333333,
+              "toi_fraction": 0.10738815508801958,
+              "normal": [
+                0.22066496802545288,
+                0.975349666471633
+              ],
+              "closing_speed_m_s": 0.4703707010655633,
+              "impulse_m_s": 0.27046315311269886,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  39.49666704778335,
+                  27.683035011497783
+                ],
+                "blue": [
+                  39.93799698383425,
+                  29.63373434444105
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 669,
+              "time": 11.15,
+              "toi_fraction": 0.10593240180334045,
+              "normal": [
+                0.21639568553305452,
+                0.9763057447760304
+              ],
+              "closing_speed_m_s": 0.4719324919775433,
+              "impulse_m_s": 0.2713611828870874,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  39.32696800703849,
+                  27.771196256317015
+                ],
+                "blue": [
+                  39.7597593781046,
+                  29.723807745869077
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 670,
+              "time": 11.166666666666666,
+              "toi_fraction": 0.10464062170393905,
+              "normal": [
+                0.21254720577090688,
+                0.9771507996819015
+              ],
+              "closing_speed_m_s": 0.4733771886948017,
+              "impulse_m_s": 0.27219188349951096,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  39.15642796298532,
+                  27.859653475223663
+                ],
+                "blue": [
+                  39.58152237452713,
+                  29.813955074587465
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 671,
+              "time": 11.183333333333334,
+              "toi_fraction": 0.10346031040707207,
+              "normal": [
+                0.20911079611338937,
+                0.9778919546395831
+              ],
+              "closing_speed_m_s": 0.4747183350405285,
+              "impulse_m_s": 0.2729630426483039,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  38.98507191964877,
+                  27.948384007853164
+                ],
+                "blue": [
+                  39.403293511875546,
+                  29.90416791713233
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 672,
+              "time": 11.2,
+              "toi_fraction": 0.10240099348654282,
+              "normal": [
+                0.20607821280491498,
+                0.9785355232218871
+              ],
+              "closing_speed_m_s": 0.47595853697451196,
+              "impulse_m_s": 0.27367615876034435,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  38.812912687851664,
+                  28.03737213412767
+                ],
+                "blue": [
+                  39.225069113461494,
+                  29.99444318057144
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 673,
+              "time": 11.216666666666667,
+              "toi_fraction": 0.10146185221519102,
+              "normal": [
+                0.20344199850984176,
+                0.9790869998331719
+              ],
+              "closing_speed_m_s": 0.4771013886999087,
+              "impulse_m_s": 0.2743332985024475,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  38.639963232055806,
+                  28.126602610744182
+                ],
+                "blue": [
+                  39.04684722907549,
+                  30.084776610410525
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 674,
+              "time": 11.233333333333333,
+              "toi_fraction": 0.10064344661975638,
+              "normal": [
+                0.20119544487748783,
+                0.9795511180946861
+              ],
+              "closing_speed_m_s": 0.4781498986549263,
+              "impulse_m_s": 0.2749361917265826,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  38.46623467507536,
+                  28.21606165590453
+                ],
+                "blue": [
+                  38.86862556483034,
+                  30.175163892093902
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 675,
+              "time": 11.25,
+              "toi_fraction": 0.09994595612808742,
+              "normal": [
+                0.19933260193715802,
+                0.9799318924317968
+              ],
+              "closing_speed_m_s": 0.47910671852117487,
+              "impulse_m_s": 0.2754863631496755,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  38.291736612060404,
+                  28.305736744055277
+                ],
+                "blue": [
+                  38.69040181593472,
+                  30.26560052891887
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 676,
+              "time": 11.266666666666666,
+              "toi_fraction": 0.09936946017279451,
+              "normal": [
+                0.19784827996166862,
+                0.9802326550958242
+              ],
+              "closing_speed_m_s": 0.47997412961152164,
+              "impulse_m_s": 0.27598512452662494,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  38.116477072810696,
+                  28.395616588434464
+                ],
+                "blue": [
+                  38.51217363273403,
+                  30.356081898626112
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 677,
+              "time": 11.283333333333333,
+              "toi_fraction": 0.098913921327801,
+              "normal": [
+                0.19673805126996755,
+                0.9804560873300219
+              ],
+              "closing_speed_m_s": 0.4807540575380867,
+              "impulse_m_s": 0.2764335830843998,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  37.940462534663396,
+                  28.48569110313075
+                ],
+                "blue": [
+                  38.33393863720333,
+                  30.446603277790796
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 678,
+              "time": 11.3,
+              "toi_fraction": 0.09987500224168375,
+              "normal": [
+                0.19598022162050913,
+                0.9806078485988047
+              ],
+              "closing_speed_m_s": 0.4751994506439957,
+              "impulse_m_s": 0.27323968412029753,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  37.76350064460723,
+                  28.576056927484473
+                ],
+                "blue": [
+                  38.155461087848245,
+                  30.537272624682082
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 679,
+              "time": 11.316666666666666,
+              "toi_fraction": 0.09952159361197849,
+              "normal": [
+                0.19539729666518818,
+                0.9807241694054125
+              ],
+              "closing_speed_m_s": 0.46991768685143664,
+              "impulse_m_s": 0.27020266993957603,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  37.58640726398148,
+                  28.666342914914274
+                ],
+                "blue": [
+                  37.977201857311854,
+                  30.6277912537251
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 680,
+              "time": 11.333333333333334,
+              "toi_fraction": 0.09821071940817543,
+              "normal": [
+                0.1948204725877894,
+                0.9808389182025101
+              ],
+              "closing_speed_m_s": 0.47084330283696746,
+              "impulse_m_s": 0.27073489913125626,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  37.409431952250365,
+                  28.75646567832411
+                ],
+                "blue": [
+                  37.799072897425944,
+                  30.718143514729128
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 681,
+              "time": 11.35,
+              "toi_fraction": 0.09840979418872331,
+              "normal": [
+                0.1942413255927562,
+                0.9809537743604277
+              ],
+              "closing_speed_m_s": 0.471368929313847,
+              "impulse_m_s": 0.271037134355462,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  37.232148743463156,
+                  28.846639523964093
+                ],
+                "blue": [
+                  37.62063139464867,
+                  30.80854707268495
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 682,
+              "time": 11.366666666666667,
+              "toi_fraction": 0.09836115002565746,
+              "normal": [
+                0.19366136726698707,
+                0.981068435343978
+              ],
+              "closing_speed_m_s": 0.47190772118324215,
+              "impulse_m_s": 0.2713469396803642,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  37.054866511519435,
+                  28.936702772524143
+                ],
+                "blue": [
+                  37.44218924605341,
+                  30.8988396432121
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 683,
+              "time": 11.383333333333333,
+              "toi_fraction": 0.09834969421507603,
+              "normal": [
+                0.19308045996001852,
+                0.9811829268702283
+              ],
+              "closing_speed_m_s": 0.47243381434915066,
+              "impulse_m_s": 0.2716494432507616,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  36.87753306534261,
+                  29.026677775119605
+                ],
+                "blue": [
+                  37.26369398526265,
+                  30.989043628860063
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 684,
+              "time": 11.4,
+              "toi_fraction": 0.09833829671424131,
+              "normal": [
+                0.19249868062875902,
+                0.9812972322167157
+              ],
+              "closing_speed_m_s": 0.47294905894367284,
+              "impulse_m_s": 0.2719457088926119,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  36.700153302194096,
+                  29.11655797503397
+                ],
+                "blue": [
+                  37.085150663451614,
+                  31.079152439467403
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 685,
+              "time": 11.416666666666666,
+              "toi_fraction": 0.09833126629798986,
+              "normal": [
+                0.19191607913773376,
+                0.9814113401466273
+              ],
+              "closing_speed_m_s": 0.4734535156534757,
+              "impulse_m_s": 0.2722357715007485,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  36.52272483222337,
+                  29.206340639696514
+                ],
+                "blue": [
+                  36.906556990498835,
+                  31.169163319989767
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 686,
+              "time": 11.433333333333334,
+              "toi_fraction": 0.0983279831391296,
+              "normal": [
+                0.19133270715363065,
+                0.9815252391931972
+              ],
+              "closing_speed_m_s": 0.47394735661024145,
+              "impulse_m_s": 0.2725197300508888,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  36.34524619530876,
+                  29.296022686065985
+                ],
+                "blue": [
+                  36.72791160961602,
+                  31.25907316445238
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 687,
+              "time": 11.45,
+              "toi_fraction": 0.09832839353496778,
+              "normal": [
+                0.19074861483631608,
+                0.9816389183085736
+              ],
+              "closing_speed_m_s": 0.4744307398654612,
+              "impulse_m_s": 0.27279767542264016,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  36.167715885894935,
+                  29.38560117317376
+                ],
+                "blue": [
+                  36.54921311556757,
+                  31.34887900979091
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 688,
+              "time": 11.466666666666667,
+              "toi_fraction": 0.0983323811521188,
+              "normal": [
+                0.19016385122547072,
+                0.981752366784566
+              ],
+              "closing_speed_m_s": 0.47490381879024635,
+              "impulse_m_s": 0.2730696958043916,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  35.990132463635035,
+                  29.475073244123344
+                ],
+                "blue": [
+                  36.37046016608598,
+                  31.438577977692475
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 689,
+              "time": 11.483333333333333,
+              "toi_fraction": 0.09833983777500446,
+              "normal": [
+                0.1895784642104629,
+                0.9818655742552553
+              ],
+              "closing_speed_m_s": 0.4753667419385638,
+              "impulse_m_s": 0.2733358766146742,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  35.81249453995572,
+                  29.56443613094942
+                ],
+                "blue": [
+                  36.19165146837665,
+                  31.528167279459932
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 690,
+              "time": 11.5,
+              "toi_fraction": 0.09835065548124386,
+              "normal": [
+                0.18899250054639807,
+                0.9819785306905746
+              ],
+              "closing_speed_m_s": 0.4758196535478455,
+              "impulse_m_s": 0.2735963007900111,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  35.634800778566664,
+                  29.6536871524547
+                ],
+                "blue": [
+                  36.01278577965946,
+                  31.61764421383585
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 691,
+              "time": 11.516666666666666,
+              "toi_fraction": 0.09836472755985147,
+              "normal": [
+                0.18840600586486275,
+                0.9820912263909343
+              ],
+              "closing_speed_m_s": 0.47626269392088927,
+              "impulse_m_s": 0.2738510490045113,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  35.45704989442119,
+                  29.742823712857646
+                ],
+                "blue": [
+                  35.833861906150915,
+                  31.707006165639516
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 692,
+              "time": 11.533333333333333,
+              "toi_fraction": 0.09838194845532003,
+              "normal": [
+                0.18781902468505512,
+                0.9822036519817846
+              ],
+              "closing_speed_m_s": 0.4766959997605437,
+              "impulse_m_s": 0.2741001998623126,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  35.279240652853474,
+                  29.83184330037991
+                ],
+                "blue": [
+                  35.654878702223584,
+                  31.796250604343477
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 693,
+              "time": 11.55,
+              "toi_fraction": 0.09840221381088225,
+              "normal": [
+                0.18723160042474524,
+                0.982315798408225
+              ],
+              "closing_speed_m_s": 0.4771197044590114,
+              "impulse_m_s": 0.27434383006393154,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  35.10137186870214,
+                  29.92074348586906
+                ],
+                "blue": [
+                  35.47583506955163,
+                  31.88537508268551
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 694,
+              "time": 11.566666666666666,
+              "toi_fraction": 0.09842542050164062,
+              "normal": [
+                0.18664377541118415,
+                0.9824276569296384
+              ],
+              "closing_speed_m_s": 0.4775339383487321,
+              "impulse_m_s": 0.27458201455052095,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  34.92344240544023,
+                  30.00952192144649
+                ],
+                "blue": [
+                  35.296729956262595,
+                  31.974377235305766
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 695,
+              "time": 11.583333333333334,
+              "toi_fraction": 0.098451466657394,
+              "normal": [
+                0.18605559089193593,
+                0.982539219114358
+              ],
+              "closing_speed_m_s": 0.4779388289202341,
+              "impulse_m_s": 0.2748148266291346,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  34.74545117431213,
+                  30.098176339180043
+                ],
+                "blue": [
+                  35.117562356096,
+                  32.06325477740876
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 696,
+              "time": 11.6,
+              "toi_fraction": 0.09848025168828127,
+              "normal": [
+                0.18546708704571926,
+                0.9826504768343501
+              ],
+              "closing_speed_m_s": 0.47833450101166347,
+              "impulse_m_s": 0.27504233808170647,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  34.56739713347548,
+                  30.186704549782217
+                ],
+                "blue": [
+                  34.93833130756692,
+                  32.152005503450916
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 697,
+              "time": 11.616666666666667,
+              "toi_fraction": 0.09851468072640036,
+              "normal": [
+                0.1848783032579499,
+                0.982761422210122
+              ],
+              "closing_speed_m_s": 0.4787064773741574,
+              "impulse_m_s": 0.2752562244901405,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  34.389278742585596,
+                  30.275104696555537
+                ],
+                "blue": [
+                  34.759035349101495,
+                  32.24062754097578
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 698,
+              "time": 11.633333333333333,
+              "toi_fraction": 0.09855341405179407,
+              "normal": [
+                0.1842892999905029,
+                0.9828720435077043
+              ],
+              "closing_speed_m_s": 0.47904532924713816,
+              "impulse_m_s": 0.2754510643171044,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  34.21109516569143,
+                  30.36337451363919
+                ],
+                "blue": [
+                  34.57967376567244,
+                  32.3291186006546
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 699,
+              "time": 11.65,
+              "toi_fraction": 0.09859615834411696,
+              "normal": [
+                0.1837001505602556,
+                0.9829823267404858
+              ],
+              "closing_speed_m_s": 0.4793445317198688,
+              "impulse_m_s": 0.2756231057389245,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  34.03284529994825,
+                  30.45151171186655
+                ],
+                "blue": [
+                  34.40024560106876,
+                  32.417476365347525
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 700,
+              "time": 11.666666666666666,
+              "toi_fraction": 0.09864272538068217,
+              "normal": [
+                0.1831109387771052,
+                0.9830922561490184
+              ],
+              "closing_speed_m_s": 0.47959985313428294,
+              "impulse_m_s": 0.27576991555221264,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  33.85452792266606,
+                  30.53951383947703
+                ],
+                "blue": [
+                  34.22074980022027,
+                  32.50569835177507
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 701,
+              "time": 11.683333333333334,
+              "toi_fraction": 0.09869309148885304,
+              "normal": [
+                0.1825217565057184,
+                0.9832018146861138
+              ],
+              "closing_speed_m_s": 0.4798087977423413,
+              "impulse_m_s": 0.27589005870184624,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  33.67614166895061,
+                  30.62737825104427
+                ],
+                "blue": [
+                  34.04118518196205,
+                  32.59378188041649
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 702,
+              "time": 11.7,
+              "toi_fraction": 0.09874734078896225,
+              "normal": [
+                0.1819327017933004,
+                0.983310984388047
+              ],
+              "closing_speed_m_s": 0.47997017126278096,
+              "impulse_m_s": 0.27598284847609905,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  33.4976850364521,
+                  30.715102081051135
+                ],
+                "blue": [
+                  33.8615504400387,
+                  32.68172404982723
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 703,
+              "time": 11.716666666666667,
+              "toi_fraction": 0.09880563307067457,
+              "normal": [
+                0.18134387737698535,
+                0.983419746668675
+              ],
+              "closing_speed_m_s": 0.48008374197023423,
+              "impulse_m_s": 0.27604815163288465,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  33.31915639041501,
+                  30.802682230727573
+                ],
+                "blue": [
+                  33.68184414516898,
+                  32.76952172406492
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 704,
+              "time": 11.733333333333333,
+              "toi_fraction": 0.09886817768166818,
+              "normal": [
+                0.18075538950109438,
+                0.9835280825509294
+              ],
+              "closing_speed_m_s": 0.4801499788346201,
+              "impulse_m_s": 0.27608623782990654,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  33.14055397102022,
+                  30.89011536353907
+                ],
+                "blue": [
+                  33.502064750022406,
+                  32.857171528640926
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 705,
+              "time": 11.75,
+              "toi_fraction": 0.09893521385372812,
+              "normal": [
+                0.18016734697792083,
+                0.9836359728491721
+              ],
+              "closing_speed_m_s": 0.4801698506851174,
+              "impulse_m_s": 0.2760976641439425,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  32.961875901931776,
+                  30.97739790707362
+                ],
+                "blue": [
+                  33.32221059588762,
+                  32.944669852771966
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 706,
+              "time": 11.766666666666666,
+              "toi_fraction": 0.09900699592556403,
+              "normal": [
+                0.17957986044008567,
+                0.983743398312954
+              ],
+              "closing_speed_m_s": 0.48014467322125653,
+              "impulse_m_s": 0.27608318710222246,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  32.78312019955774,
+                  31.06452605944178
+                ],
+                "blue": [
+                  33.142279920437915,
+                  33.03201285606769
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 707,
+              "time": 11.783333333333333,
+              "toi_fraction": 0.09908378241750684,
+              "normal": [
+                0.17899304174309133,
+                0.9838503397405298
+              ],
+              "closing_speed_m_s": 0.48007599323176003,
+              "impulse_m_s": 0.276043696108262,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  32.604284782636476,
+                  31.15149579877098
+                ],
+                "blue": [
+                  32.96227086612266,
+                  33.119196478252036
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 708,
+              "time": 11.8,
+              "toi_fraction": 0.09916582810148547,
+              "normal": [
+                0.17840700348581268,
+                0.9839567780686371
+              ],
+              "closing_speed_m_s": 0.479965501563061,
+              "impulse_m_s": 0.2759801633987601,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  32.42536748187294,
+                  31.238302894720636
+                ],
+                "blue": [
+                  32.782181488844564,
+                  33.20621645085791
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 709,
+              "time": 11.816666666666666,
+              "toi_fraction": 0.09925337834515688,
+              "normal": [
+                0.17782185862364525,
+                0.9840626944436175
+              ],
+              "closing_speed_m_s": 0.4798149681910531,
+              "impulse_m_s": 0.2758936067098555,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  32.246366049437725,
+                  31.324942921210088
+                ],
+                "blue": [
+                  32.602009766685015,
+                  33.29306831009732
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 710,
+              "time": 11.833333333333334,
+              "toi_fraction": 0.09934666518602436,
+              "normal": [
+                0.17723772015478217,
+                0.9841680702778033
+              ],
+              "closing_speed_m_s": 0.4796261942197258,
+              "impulse_m_s": 0.2757850616763423,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  32.06727816819533,
+                  31.411411269761725
+                ],
+                "blue": [
+                  32.42175360850489,
+                  33.37974741031733
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 711,
+              "time": 11.85,
+              "toi_fraction": 0.0994459047295545,
+              "normal": [
+                0.1766547008644018,
+                0.9842728872942244
+              ],
+              "closing_speed_m_s": 0.47940097680235166,
+              "impulse_m_s": 0.2756555616613522,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  31.888101460568482,
+                  31.497703163022496
+                ],
+                "blue": [
+                  32.241410862297286,
+                  33.46624893761095
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 712,
+              "time": 11.866666666666667,
+              "toi_fraction": 0.09955129552327638,
+              "normal": [
+                0.1760729131149771,
+                0.9843771275619958
+              ],
+              "closing_speed_m_s": 0.479141083903063,
+              "impulse_m_s": 0.2755061232442612,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  31.708833496984308,
+                  31.583813668145247
+                ],
+                "blue": [
+                  32.06097932321426,
+                  33.55256792326924
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 713,
+              "time": 11.883333333333333,
+              "toi_fraction": 0.09966627818880196,
+              "normal": [
+                0.17549246896040477,
+                0.984480773473094
+              ],
+              "closing_speed_m_s": 0.47883257129288204,
+              "impulse_m_s": 0.27532872849340717,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  31.52947120901324,
+                  31.66973797837285
+                ],
+                "blue": [
+                  31.88045614693405,
+                  33.63869952531904
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 714,
+              "time": 11.9,
+              "toi_fraction": 0.09978978829268866,
+              "normal": [
+                0.1749135031158742,
+                0.9845838036590553
+              ],
+              "closing_speed_m_s": 0.47846634899101653,
+              "impulse_m_s": 0.27511815066983447,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  31.350012193998758,
+                  31.75547065127668
+                ],
+                "blue": [
+                  31.699839200230507,
+                  33.724638258594794
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 715,
+              "time": 11.916666666666666,
+              "toi_fraction": 0.09992183244753203,
+              "normal": [
+                0.1743361647593658,
+                0.9846861945091925
+              ],
+              "closing_speed_m_s": 0.47803601643961896,
+              "impulse_m_s": 0.27487070945278086,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  31.170453690158695,
+                  31.841006008643603
+                ],
+                "blue": [
+                  31.519126019677426,
+                  33.810378397661985
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 716,
+              "time": 11.933333333333334,
+              "toi_fraction": 0.10006248959156237,
+              "normal": [
+                0.17376061535998114,
+                0.9847879205949475
+              ],
+              "closing_speed_m_s": 0.4775373311049286,
+              "impulse_m_s": 0.2745839653853339,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  30.99079273767472,
+                  31.926337994853416
+                ],
+                "blue": [
+                  31.338313968394683,
+                  33.89591383604331
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 717,
+              "time": 11.95,
+              "toi_fraction": 0.10021198475939877,
+              "normal": [
+                0.17318702630887395,
+                0.9848889551204691
+              ],
+              "closing_speed_m_s": 0.47696770995469406,
+              "impulse_m_s": 0.27425643322394905,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  30.81102615572195,
+                  32.011460145848545
+                ],
+                "blue": [
+                  31.1574002083397,
+                  33.98123805608948
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 718,
+              "time": 11.966666666666667,
+              "toi_fraction": 0.10037063381474315,
+              "normal": [
+                0.1726155770518181,
+                0.984989270276112
+              ],
+              "closing_speed_m_s": 0.47632584430484637,
+              "impulse_m_s": 0.27388736047528667,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  30.631150548765437,
+                  32.09636556113842
+                ],
+                "blue": [
+                  30.976381702869073,
+                  34.066344101690646
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 719,
+              "time": 11.983333333333333,
+              "toi_fraction": 0.10053881369964363,
+              "normal": [
+                0.17204645353788264,
+                0.9850888375294065
+              ],
+              "closing_speed_m_s": 0.4756114001113322,
+              "impulse_m_s": 0.27347655506401597,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  30.451162312920985,
+                  32.18104688870196
+                ],
+                "blue": [
+                  30.79525521999675,
+                  34.15122456376077
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "tick": 720,
+              "time": 12.0,
+              "toi_fraction": 0.10071693764172569,
+              "normal": [
+                0.17147984692454463,
+                0.9851876278652381
+              ],
+              "closing_speed_m_s": 0.47482478617694357,
+              "impulse_m_s": 0.2730242520517425,
+              "onset": false,
+              "positions_at_contact": {
+                "red": [
+                  30.27105764492476,
+                  32.26549631839648
+                ],
+                "blue": [
+                  30.61401733877385,
+                  34.23587157412695
+                ]
+              },
+              "separation_correction_m": 0.0
+            }
+          ],
+          "contact_count": 2,
+          "events": [
+            {
+              "type": "lead_change",
+              "from": "red",
+              "to": "blue",
+              "tick": 334,
+              "time": 5.566666666666652,
+              "rescue_this_tick": false
+            },
+            {
+              "type": "contact",
+              "tick": 364,
+              "time": 6.066666666666666,
+              "toi_fraction": 0.6258335584978321,
+              "normal": [
+                -0.5049848988079542,
+                0.8631281781843995
+              ],
+              "closing_speed_m_s": 3.606144426783624,
+              "impulse_m_s": 2.0735330454005836,
+              "onset": true,
+              "positions_at_contact": {
+                "red": [
+                  57.831939994093474,
+                  -18.503037184933945
+                ],
+                "blue": [
+                  56.821970196477565,
+                  -16.776780828565144
+                ]
+              },
+              "separation_correction_m": 0.0
+            },
+            {
+              "type": "contact",
+              "tick": 660,
+              "time": 11.0,
+              "toi_fraction": 0.4172866821615792,
+              "normal": [
+                0.268729366557036,
+                0.9632157222293738
+              ],
+              "closing_speed_m_s": 5.9553989489878765,
+              "impulse_m_s": 3.4243543956680287,
+              "onset": true,
+              "positions_at_contact": {
+                "red": [
+                  40.77419274199546,
+                  27.015910912328792
+                ],
+                "blue": [
+                  41.311651475109535,
+                  28.942342356787538
+                ]
+              },
+              "separation_correction_m": 0.0
+            }
+          ],
+          "_touching": true,
+          "_leader": "blue"
+        },
+        "karts": {
+          "red": {
+            "x": 30.1089554444435,
+            "y": 32.340826557412655,
+            "heading": 2.5003387653938507,
+            "vx": -10.815428907745545,
+            "vy": 5.026019648493718,
+            "steering": 0.09810781701383275,
+            "yaw_rate": 0.48592973213949336,
+            "tick": 720,
+            "elapsed": 12.000000000000176,
+            "finished": false,
+            "action_id": "hard_left_accelerate",
+            "next_checkpoint": 17,
+            "checkpoints_passed": 16,
+            "laps_completed": 0,
+            "lap_times": [],
+            "offroad_time": 0.0,
+            "distance_travelled": 130.78182883345997,
+            "max_speed_seen": 12.000000000000002,
+            "s": 124.13280988108654,
+            "offset": -2.34140902878602,
+            "departure_s": 0.0,
+            "offroad_elapsed": 0.0,
+            "last_reset_tick": null,
+            "reset_events": []
+          },
+          "blue": {
+            "x": 30.451135329172416,
+            "y": 34.31214641924629,
+            "heading": -2.9914198269022836,
+            "vx": -10.86745762836614,
+            "vy": 5.089043593413854,
+            "steering": 0.06000000000000002,
+            "yaw_rate": 0.3395629398424459,
+            "tick": 720,
+            "elapsed": 12.000000000000176,
+            "finished": false,
+            "action_id": "left_accelerate",
+            "next_checkpoint": 17,
+            "checkpoints_passed": 16,
+            "laps_completed": 0,
+            "lap_times": [],
+            "offroad_time": 0.0,
+            "distance_travelled": 134.23733257471002,
+            "max_speed_seen": 12.000000000000002,
+            "s": 123.89459664914126,
+            "offset": -4.319365606055171,
+            "departure_s": 305.73123303717085,
+            "offroad_elapsed": 0.0,
+            "last_reset_tick": null,
+            "reset_events": []
+          }
+        }
+      },
+      "episode": {
+        "racer_id": "red",
+        "gate_credits": 5
+      }
+    },
+    "initial_observation": {
+      "tick": 720,
+      "time": 12.000000000000176,
+      "racers": {
+        "red": {
+          "tick": 720,
+          "time": 12.0,
+          "kart": {
+            "x": 30.109,
+            "y": 32.3408,
+            "heading": 2.50034,
+            "speed": 11.9262,
+            "vx": -10.8154,
+            "vy": 5.026,
+            "yaw_rate": 0.48593,
+            "steering_angle": 0.09811
+          },
+          "track": {
+            "width": 24.0,
+            "offset": -2.3414,
+            "heading_error": 0.62902,
+            "on_road": true,
+            "lookahead": [
+              {
+                "distance": 0,
+                "x": -1.4,
+                "y": 1.877,
+                "curvature": 0.01812
+              },
+              {
+                "distance": 3,
+                "x": 1.005,
+                "y": 3.671,
+                "curvature": 5e-05
+              },
+              {
+                "distance": 6,
+                "x": 3.409,
+                "y": 5.466,
+                "curvature": 0.0
+              },
+              {
+                "distance": 10,
+                "x": 6.614,
+                "y": 7.859,
+                "curvature": 0.0
+              },
+              {
+                "distance": 15,
+                "x": 10.621,
+                "y": 10.85,
+                "curvature": 0.0
+              },
+              {
+                "distance": 22,
+                "x": 16.23,
+                "y": 15.037,
+                "curvature": 0.0
+              },
+              {
+                "distance": 32,
+                "x": 24.244,
+                "y": 21.019,
+                "curvature": 0.0
+              },
+              {
+                "distance": 45,
+                "x": 34.661,
+                "y": 28.796,
+                "curvature": 0.0
+              },
+              {
+                "distance": 60,
+                "x": 46.681,
+                "y": 37.769,
+                "curvature": 0.01577
+              }
+            ]
+          },
+          "progress": {
+            "lap": 1,
+            "laps_completed": 0,
+            "laps": 3,
+            "checkpoint": 17,
+            "checkpoints_passed": 16,
+            "checkpoints_per_lap": 40,
+            "resets": 0,
+            "track_distance": 124.133,
+            "finished": false
+          },
+          "rescue": {
+            "after_s": 3,
+            "offroad_elapsed": 0.0,
+            "count": 0,
+            "last_reset_tick": null
+          },
+          "control": "hard_left_accelerate",
+          "finished": false,
+          "body": {
+            "radius_m": 1.0,
+            "phased": false,
+            "left_edge_clearance_m": 13.3414,
+            "right_edge_clearance_m": 8.6586
+          },
+          "competition": {
+            "racer_id": "red",
+            "leader": null,
+            "progress_m": 124.1328,
+            "opponent": {
+              "racer_id": "blue",
+              "ego_x_m": 0.905,
+              "ego_y_m": -1.7844,
+              "relative_forward_velocity_m_s": 0.0794,
+              "relative_left_velocity_m_s": -0.0194,
+              "speed_m_s": 12.0,
+              "heading_relative_rad": 0.79143,
+              "surface_gap_m": 0.0008,
+              "phased": false,
+              "finished": false,
+              "checkpoints_passed": 16,
+              "progress_m": 123.8946
+            },
+            "contact_count": 2
+          }
+        },
+        "blue": {
+          "tick": 720,
+          "time": 12.0,
+          "kart": {
+            "x": 30.4511,
+            "y": 34.3121,
+            "heading": -2.99142,
+            "speed": 12.0,
+            "vx": -10.8675,
+            "vy": 5.089,
+            "yaw_rate": 0.33956,
+            "steering_angle": 0.06
+          },
+          "track": {
+            "width": 24.0,
+            "offset": -4.3194,
+            "heading_error": -0.16842,
+            "on_road": true,
+            "lookahead": [
+              {
+                "distance": 0,
+                "x": 0.75,
+                "y": 4.254,
+                "curvature": 0.02044
+              },
+              {
+                "distance": 3,
+                "x": 3.715,
+                "y": 3.799,
+                "curvature": 7e-05
+              },
+              {
+                "distance": 6,
+                "x": 6.682,
+                "y": 3.35,
+                "curvature": 0.0
+              },
+              {
+                "distance": 10,
+                "x": 10.637,
+                "y": 2.752,
+                "curvature": 0.0
+              },
+              {
+                "distance": 15,
+                "x": 15.58,
+                "y": 2.004,
+                "curvature": 0.0
+              },
+              {
+                "distance": 22,
+                "x": 22.501,
+                "y": 0.956,
+                "curvature": 0.0
+              },
+              {
+                "distance": 32,
+                "x": 32.389,
+                "y": -0.54,
+                "curvature": 0.0
+              },
+              {
+                "distance": 45,
+                "x": 45.243,
+                "y": -2.485,
+                "curvature": 0.0
+              },
+              {
+                "distance": 60,
+                "x": 60.074,
+                "y": -4.728,
+                "curvature": 0.01316
+              }
+            ]
+          },
+          "progress": {
+            "lap": 1,
+            "laps_completed": 0,
+            "laps": 3,
+            "checkpoint": 17,
+            "checkpoints_passed": 16,
+            "checkpoints_per_lap": 40,
+            "resets": 0,
+            "track_distance": 123.895,
+            "finished": false
+          },
+          "rescue": {
+            "after_s": 3,
+            "offroad_elapsed": 0.0,
+            "count": 0,
+            "last_reset_tick": null
+          },
+          "control": "left_accelerate",
+          "finished": false,
+          "body": {
+            "radius_m": 1.0,
+            "phased": false,
+            "left_edge_clearance_m": 15.3194,
+            "right_edge_clearance_m": 6.6806
+          },
+          "competition": {
+            "racer_id": "blue",
+            "leader": null,
+            "progress_m": 123.8946,
+            "opponent": {
+              "racer_id": "red",
+              "ego_x_m": 0.6333,
+              "ego_y_m": 1.8979,
+              "relative_forward_velocity_m_s": -0.042,
+              "relative_left_velocity_m_s": 0.0701,
+              "speed_m_s": 11.9262,
+              "heading_relative_rad": -0.79143,
+              "surface_gap_m": 0.0008,
+              "phased": false,
+              "finished": false,
+              "checkpoints_passed": 16,
+              "progress_m": 124.1328
+            },
+            "contact_count": 2
+          }
+        }
+      },
+      "leader": null,
+      "finished": false
+    },
+    "exact_prefix_frames": 721,
+    "full_precision_continuation_frames": 120
+  }
+}
