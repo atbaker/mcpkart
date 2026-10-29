@@ -1,0 +1,458 @@
+{
+  "release_sha256": "01a1b8bb2da63fcf076d3a45169552a67a074595ca65923b8ad1541328f8f13d",
+  "observed_exit_and_audited": true,
+  "observed_ssm_exit_code": 0,
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 110000,
+    "max_tokens": 500000000,
+    "requests": 100061,
+    "charged_usd": 11.680947340002783,
+    "charged_tokens": 335629288,
+    "reported_cost_usd": 11.611184268002742,
+    "uncertain_requests": 73,
+    "pending": {}
+  },
+  "only_provider_errors_or_none": true,
+  "source_sha256": {
+    "__init__.py": "c7cf29a796c0b9cbf6050c60b8825b0a266e38de3a18793c3492608ecc79ea60",
+    "bench.py": "9885a0e6792803f7314f2c83a812648811b53b8401a20428b0178443a80dbc92",
+    "decisions.py": "951fada04dd1fe8bda0c14d3017e02864473c82cdc29624abb51fc9188b4f0cf",
+    "demo_admission.py": "ec519008740688021bc6b5801985982c3de65acdaf053e0ebf0f3347fc03d760",
+    "demo_agentcore.py": "5d7509622661590a2f4e2d515154d17b95eb4ffd257c76cbb000995673b1a926",
+    "demo_broker.py": "09339f1224ae9034331210451b3cd091b5b6e39ac7f1ea950aa9670f8aaa3fe1",
+    "demo_contract.py": "f0a70462b35c186bd962d1a87a2e28037708d5c140c787e962705d8648ae425d",
+    "demo_mock.py": "f66ca3a84860b578ab7dd6cd22bca324770a0cb2a2557ec95058f18b161a6159",
+    "demo_run.py": "511a92682d741242b79c498bf02ffa6960e6c7a4291c85d165b02b28e59bca1d",
+    "demo_transport.py": "ae47a62ce5dde7af807407b1980e40891f8637984688a5e1d7c191623286f6db",
+    "demo_workflows.py": "c05b7194175bcdbe51b7ab87c50d0da6b41761090bd7c75a6d8d41b64c6f9dfd",
+    "duel.py": "2bf76625ef13d94cd7825acfeed0e685d8c5f7beaa9acc6dcdc698cc7f77fcd2",
+    "duel_bench.py": "cb271dbdd3ced34a1e4498c6f4f6f7367a1905d95cf5fb4ab73dff4ee2a03089",
+    "duel_clock.py": "cd418546b334ec562e352a396165fdceae299b2b7c9324b68c0542a9cdeb7afd",
+    "duel_decisions.py": "6e264230ccfe6a4c69235961204b9dc0ff9e51e32cee093801a90c5a1069b74d",
+    "duel_process.py": "57d6c8bcb2e087b21f05dd18ed10e50aa95210c3bafcc72b3f98070629ef2d7f",
+    "duel_run.py": "93bfb14406a75a57000dc4c5a4ab843d32c0d95716d44add3f6d27af1340562d",
+    "duel_runtime.py": "6a9a7cd2baf9cc8776fef36422cdc11c6df3756b2d783413185cc12de08222f5",
+    "duel_web.py": "e59217ab3a933dddeccd01e262af0b28634e584a55771acd00c33f1c2cec9d2c",
+    "duel_worker.py": "aa3bb106b87e1a005241ccd381f5142d697daf658e4865793a4623180e28500a",
+    "observations.py": "5febca57d1e474abc9268de49924fe7c8c418bd1a4f469e34ffa564ab1af3255",
+    "physics_worker.py": "cc478b1cb09fd1f3f4f2059a6e69dc1288379cd77d790e693d39f2d68cb32ea8",
+    "probe.py": "d288274877da8ef42f2c3442581de7857e390ffa580e0e7353d6634565a343e5",
+    "process_runtime.py": "49aa4e562892c127800022a4aa7d7bd44a4600f74e660416d493c604f240a3ec",
+    "question_context.py": "7fdaa33028aac95e2610e251d21b4a6d3daab49c6136d5e27054cae8a03bd95d",
+    "question_context_driver.py": "60cb444bf7d2302c03f193317f018d60db97db5c8a6f59677b68b11af1334d7e",
+    "question_context_run.py": "eb9de8c56557ce8f3567aed694f79d679aa49e74d916fde7c6a4bbf013daeafc",
+    "runtime.py": "d19bba47418747b0c9b600ffc6f4e7a7b69d0046b54eb538d3aeebc5e962c695",
+    "rust_runtime.py": "a5b27ce28f559ca995362c7f9e81ae357da40f20898ca40333388200aa7cc427",
+    "scene.py": "855dcb4e5a337a137d57dba4345bbbece6df6e4f24121dfbd4c7bb1881bc92af",
+    "sim.py": "a6fef5437837d592adbdcec902fc112ef6206c639c051f1d952f6bbcd67f1ce5",
+    "telemetry.py": "44e1a97c6448ffdaf95b97767072e3f99341f3ed5a5092735f5343254788ed6d",
+    "trio_worker.py": "ef6efbb62dbcdb9ff5cd1e696e652bb2e8d6a5036ac728b4d5d86623ef6d9184",
+    "web.py": "2d3bb6aa690c2624c17cb0abcb4bc711cba794b31f3701dbd29bdb3b30590965",
+    "static/duel.html": "b999fe6a798bd632b0e517ddbbf2d85124b037549d154dd60946d7ac44615a3f"
+  },
+  "physics_audit": {
+    "passed": true,
+    "failure_evidence_only": true,
+    "physics_frames": 9112,
+    "exact_queries": 651,
+    "budget_transitions": 1302,
+    "peak_pending": 3,
+    "max_sample_lateness_ms": 6.413459999996121,
+    "summary": {
+      "finished": false,
+      "elapsed": 151.85000000001298,
+      "ticks": 9111,
+      "winner_ids": [
+        "red"
+      ],
+      "finish_times_s": {
+        "red": 99.03333333333333,
+        "blue": 151.51666666666665,
+        "green": null
+      },
+      "racers": {
+        "red": {
+          "seed": 0,
+          "finished": true,
+          "elapsed": 99.033333333329,
+          "ticks": 5942,
+          "laps_completed": 3,
+          "checkpoints_passed": 120,
+          "lap_times": [
+            38.4499999999991,
+            33.16666666666479,
+            27.416666666665108
+          ],
+          "offroad_time": 5.999999999999984,
+          "distance": 1009.2423664415144,
+          "max_speed": 12.000000000000002,
+          "resets": 2,
+          "reset_events": [
+            {
+              "tick": 1875,
+              "time": 31.249999999999506,
+              "departure_s": 244.61561118082702,
+              "respawn_s": 243.61561118082702,
+              "x": -57.52808229517947,
+              "y": -11.91614805222095,
+              "heading": -1.162325427722833,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_left_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 2780,
+              "time": 46.333333333331986,
+              "departure_s": 48.25609646355817,
+              "respawn_s": 47.25609646355817,
+              "x": 46.318824264015134,
+              "y": -25.168026333665907,
+              "heading": 0.5752036053614238,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_left_accelerate",
+              "control": "straight_coast"
+            }
+          ]
+        },
+        "blue": {
+          "seed": 1,
+          "finished": true,
+          "elapsed": 151.51666666667938,
+          "ticks": 9091,
+          "laps_completed": 3,
+          "checkpoints_passed": 120,
+          "lap_times": [
+            54.61666666666485,
+            47.44999999999731,
+            49.450000000017226
+          ],
+          "offroad_time": 35.99999999999924,
+          "distance": 1157.866597921223,
+          "max_speed": 12.000000000000002,
+          "resets": 12,
+          "reset_events": [
+            {
+              "tick": 787,
+              "time": 13.116666666666898,
+              "departure_s": 81.66887312829964,
+              "respawn_s": 80.66887312829964,
+              "x": 59.788775735702494,
+              "y": 3.5403821994738838,
+              "heading": 1.6891457030773136,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_left_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 1644,
+              "time": 27.399999999999725,
+              "departure_s": 173.79703640425805,
+              "respawn_s": 172.79703640425805,
+              "x": -18.556419885672597,
+              "y": 30.0,
+              "heading": -3.141592653589793,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_right_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 2174,
+              "time": 36.23333333333256,
+              "departure_s": 225.3360663945119,
+              "respawn_s": 224.3360663945119,
+              "x": -59.1774390551379,
+              "y": 6.960504017278754,
+              "heading": -1.80496467546402,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_left_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 2672,
+              "time": 44.53333333333209,
+              "departure_s": 261.89895781636466,
+              "respawn_s": 260.89895781636466,
+              "x": -46.59047282755972,
+              "y": -24.98747263084012,
+              "heading": -0.5860708216823438,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_right_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 3159,
+              "time": 52.64999999999829,
+              "departure_s": 298.84113079375544,
+              "respawn_s": 297.84113079375544,
+              "x": -10.640102243415413,
+              "y": -30.0,
+              "heading": 0.0,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_right_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 4279,
+              "time": 71.3166666666639,
+              "departure_s": 123.63800245132056,
+              "respawn_s": 122.63800245132056,
+              "x": 31.60169315838023,
+              "y": 29.95259338539734,
+              "heading": 3.088147455366398,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_right_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 5476,
+              "time": 91.26666666666277,
+              "departure_s": 253.0503973983177,
+              "respawn_s": 252.0503973983177,
+              "x": -53.14016936329883,
+              "y": -19.08677718819318,
+              "heading": -0.8811216388752263,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_right_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 5933,
+              "time": 98.883333333329,
+              "departure_s": 282.1014010534896,
+              "respawn_s": 281.1014010534896,
+              "x": -27.379831983681242,
+              "y": -30.0,
+              "heading": 0.0,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_right_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 6812,
+              "time": 113.53333333332817,
+              "departure_s": 93.38395054883249,
+              "respawn_s": 92.38395054883249,
+              "x": 56.19459201349237,
+              "y": 14.611866667340834,
+              "heading": 2.079699835243634,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_right_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 7382,
+              "time": 123.03333333332763,
+              "departure_s": 139.90134050520066,
+              "respawn_s": 138.90134050520066,
+              "x": 15.33927601338479,
+              "y": 30.0,
+              "heading": -3.141592653589793,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_left_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 8258,
+              "time": 137.633333333335,
+              "departure_s": 241.0006840964806,
+              "respawn_s": 240.0006840964806,
+              "x": -58.76069500699076,
+              "y": -8.520363866641746,
+              "heading": -1.2828246493692363,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_right_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 8951,
+              "time": 149.1833333333442,
+              "departure_s": 304.3443457309996,
+              "respawn_s": 303.3443457309996,
+              "x": -5.136887306171275,
+              "y": -30.0,
+              "heading": 0.0,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_right_accelerate",
+              "control": "straight_coast"
+            }
+          ]
+        },
+        "green": {
+          "seed": 2,
+          "finished": false,
+          "elapsed": 151.85000000001298,
+          "ticks": 9111,
+          "laps_completed": 2,
+          "checkpoints_passed": 80,
+          "lap_times": [
+            65.34999999999758,
+            54.51666666666357
+          ],
+          "offroad_time": 32.99999999999941,
+          "distance": 846.6994223050033,
+          "max_speed": 12.000000000000002,
+          "resets": 11,
+          "reset_events": [
+            {
+              "tick": 529,
+              "time": 8.816666666666684,
+              "departure_s": 37.56068271993341,
+              "respawn_s": 36.56068271993341,
+              "x": 36.50776461641632,
+              "y": -29.279873357722483,
+              "heading": 0.21862144990342225,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "left_brake",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 1040,
+              "time": 17.33333333333363,
+              "departure_s": 71.09544987592655,
+              "respawn_s": 70.09544987592655,
+              "x": 59.177439055137924,
+              "y": -6.960504017278695,
+              "heading": 1.3366279781257777,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "left_brake",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 1781,
+              "time": 29.68333333333293,
+              "departure_s": 148.2657052217392,
+              "respawn_s": 147.2657052217392,
+              "x": 6.974911296846244,
+              "y": 30.0,
+              "heading": -3.141592653589793,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "straight_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 2388,
+              "time": 39.799999999999024,
+              "departure_s": 209.08375489807028,
+              "respawn_s": 208.08375489807028,
+              "x": -51.408466346861616,
+              "y": 21.008295039019583,
+              "heading": -2.3466846437540485,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "left_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 3009,
+              "time": 50.149999999998435,
+              "departure_s": 233.77087869961946,
+              "respawn_s": 232.77087869961946,
+              "x": -59.96330462718429,
+              "y": -1.4093351260721447,
+              "heading": -1.5236983054461313,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "left_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 3592,
+              "time": 59.86666666666455,
+              "departure_s": 273.5349283335291,
+              "respawn_s": 272.5349283335291,
+              "x": -35.907205135750424,
+              "y": -29.408921524869804,
+              "heading": -0.19815234879806587,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "left_brake",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 4144,
+              "time": 69.06666666666403,
+              "departure_s": 5.716883531155273,
+              "respawn_s": 4.716883531155273,
+              "x": 4.716883531155273,
+              "y": -30.0,
+              "heading": 0.0,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "left_brake",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 5496,
+              "time": 91.59999999999609,
+              "departure_s": 136.96143293406377,
+              "respawn_s": 135.96143293406377,
+              "x": 18.27918358452169,
+              "y": 30.0,
+              "heading": -3.141592653589793,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "straight_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 6186,
+              "time": 103.09999999999543,
+              "departure_s": 207.26150972786235,
+              "respawn_s": 206.26150972786235,
+              "x": -50.09489396272419,
+              "y": 22.270745053973187,
+              "heading": -2.407463667549601,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "left_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 6652,
+              "time": 110.86666666666166,
+              "departure_s": 236.62538822555976,
+              "respawn_s": 235.62538822555976,
+              "x": -59.6910727726889,
+              "y": -4.249533415526852,
+              "heading": -1.4285955260521683,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "left_accelerate",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 7377,
+              "time": 122.9499999999943,
+              "departure_s": 0.289598562930487,
+              "respawn_s": 307.77083160010136,
+              "x": -0.7104014370694927,
+              "y": -30.0,
+              "heading": 0.0,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "left_accelerate",
+              "control": "straight_coast"
+            }
+          ]
+        }
+      },
+      "contacts": 0,
+      "lead_changes": 4
+    }
+  },
+  "outer_wire_audit": {
+    "passed": true,
+    "outer_invocations": 654,
+    "native_calls": 651,
+    "native_statuses": {
+      "200": 650,
+      "no_reply": 1
+    },
+    "observed_sdk_retries": 0,
+    "missing_outer_responses": 1,
+    "exact_available_native_bytes": true
+  },
+  "histories_completed": {
+    "temporal-history.json": 44,
+    "temporal-history-red.json": 422,
+    "temporal-history-blue.json": 465,
+    "temporal-history-green.json": 191
+  },
+  "fresh_runtime_binding_verified": true,
+  "unknown_reservation_fully_retained": true,
+  "no_retry": true
+}

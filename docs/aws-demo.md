@@ -7,13 +7,13 @@ The [design and research](research/2026-10-29-temporal-agentcore-demo.md) explai
 the boundaries and prospective paid gates.
 
 The [free preparation checkpoint](experiments/0086-aws-demo-preparation.md)
-records two complete audited scripted rehearsals. The
-[latest checkpoint](experiments/0087-aws-live-demo-checkpoint.md) records the
-final Linux qualification and remaining live checks. Live driving is separately
-bounded by the [0087 registration](experiments/0087-aws-live-demo-registration.md):
-one rehearsal and one manually launched stage race, with no retries or
-replacement races. Admission requires fresh Linux timing and exact Cloud
-interface evidence. No historical experiment window is reused.
+records the initial scripted rehearsals. The first live attempt is closed after
+Clef's provider rejected a request; its charges and failure are retained in the
+[0087 outcome](experiments/0087-aws-live-demo-outcome.md). The user then approved
+retiring a provider-failed kart while the other drivers continue. The
+[0088 registration](experiments/0088-provider-dnf-registration.md) bounds one
+new rehearsal and one manually launched stage race. No request retries,
+replacement races or fallback controls are allowed.
 
 ## Local free race
 
@@ -148,62 +148,98 @@ dispatch state remains unresolved rather than being retried.
 
 ## Tonight's operator path
 
-**Live admission is currently blocked.** The rehearsal stopped on Clef provider
-HTTP 429 and added one fully reserved uncertainty. See the
-[closed outcome](experiments/0087-aws-live-demo-outcome.md). The stage command
-will refuse admission until a new explicitly approved finite release exists.
+The conventional worker, broker, MCP server and separate 60 Hz physics process
+run on this demo's dedicated Linux EC2 host, i-0ae1c7dce47ee05ae, in us-west-2.
+The dedicated VPC, subnet, role and security group use the
+mcpkart-aws-demo-20261029 prefix. There are no inbound ports. Other demos'
+resources are unchanged. Instance credentials refresh through its own IAM role;
+Temporal credentials live in this demo's scoped Secrets Manager secret and an
+ignored private file on the host.
 
+**The EC2 qualification and live rehearsal have passed root review.** Jev
+finished in 99.03 seconds, OpenAI in 151.52 seconds, and Clef retired after a
+transport failure. The [full result](experiments/0088-aws-demo-rehearsal.md)
+includes rescues, latency, accounting and limitations. The single stage entry
+is available for manual launch; it has not started. The previous Mac Docker
+gates do not qualify this host.
 
-The preserved Linux container is `mcpkart-demo-linux-20261029`. Its physics and
-conventional Temporal worker share one Linux clock; the Mac exposes only the
-spectator at [localhost:8773](http://127.0.0.1:8773/). Keep this container and
-server running: recreating them invalidates the saved timing qualification.
-The server process is held awake by `caffeinate` while it runs.
+To view the spectator, use Session Manager port forwarding with the task-local
+plugin, keeping the terminal open:
 
-After the rehearsal's observed exit and full root audit, launch the one stage
-entry from the repo root:
+    PATH="$PWD/artifacts/aws-demo-ssm-plugin/sessionmanager-bundle/bin:$PATH" aws ssm start-session --region us-west-2 --target i-0ae1c7dce47ee05ae --document-name AWS-StartPortForwardingSession --parameters '{"portNumber":["8771"],"localPortNumber":["17773"]}'
 
-```sh
-.venv/bin/python scripts/run_aws_demo.py stage
-```
+Open [the spectator](http://127.0.0.1:17773/). Click Live before starting the
+stage command. The saved rehearsal is available in the Saved race menu.
+Port forwarding is optional for the race itself. Keep the instance, container and server alive: restarting them
+invalidates the source/boot/server-bound clock evidence.
 
-This refreshes only the demo's private AWS credential file and starts the
-registered conventional worker against `mcpkart-dev.iuiaz`, using Local
-Activities and the dedicated AgentCore Runtime. It refuses an already consumed
-entry, changed source/evidence, expired release, changed server or new ledger
-uncertainty. No secrets enter command arguments or Temporal history.
+After root's rehearsal review, launch the single stage entry from this repo:
+
+    .venv/bin/python scripts/run_aws_demo.py stage
+
+This submits one SSM command to the dedicated host. It holds the local paid
+writer lock, verifies the remote ledger matches before dispatch, observes the
+remote exit, retrieves the explicit evidence directories and atomically copies
+the cumulative ledger back to artifacts/budget.json. Unknown submissions are
+never retried. If the operator is interrupted, inspect the saved SSM command and
+reconcile its ledger before any further paid work. Never copy an older budget
+file onto the host.
+
+The worker uses namespace mcpkart-dev.iuiaz, Local Activities and the dedicated
+AgentCore Runtime. The two execution IDs are
+mcpkart-aws-dnf-rehearsal-20261029 and
+mcpkart-aws-dnf-stage-20261029, each with red/blue/green child workflows.
+They are conventional operator-managed workers. AgentCore hosts the model
+adapter; inference comes from OpenRouter.
 
 The release expires at midnight Pacific on 29 October; starting requires fifteen
-minutes remaining. A failed entry is preserved and cannot be retried. Another
-model, start, prompt, extra race or renewed release requires new authorization
-and prospective registration. The real model ledger remains
-`artifacts/budget.json`; mock budgets are separate.
+minutes remaining. A consumed entry cannot be retried. Another model, start,
+prompt, extra race or renewed release requires new authorization and prospective
+registration. The recordings are under
+artifacts/aws-demo-dnf-live-rehearsal-v1/trial/ and
+artifacts/aws-demo-dnf-live-stage-v1/trial/. Mock budgets remain separate.
 
-The rehearsal and stage recordings are saved under
-`artifacts/aws-demo-live-rehearsal-v1/trial/` and
-`artifacts/aws-demo-live-stage-v1/trial/`. Watch Temporal Cloud's execution list
-for `mcpkart-aws-demo-rehearsal-20261029` or
-`mcpkart-aws-demo-stage-20261029` and their three children. These are conventional
-operator-managed workers, not Temporal serverless workers.
+MCP provides the actual start_duel, drive_duel and finish_duel operations.
+Native model wheel/pedal choices map directly to MCP controls. Physics runs
+independently, holding the previous input while a decision is pending. Temporal
+coordinates three independent drivers and saves step receipts. Local Activities
+reduce service scheduling round trips; durable broker receipts prevent duplicate
+dispatch during workflow-task replay. Restarting the broker cannot resume this
+race or silently resend an unresolved operation.
 
-MCP provides the actual `start_duel`, `drive_duel` and `finish_duel` operations.
-Native model wheel/pedal choices map directly to MCP controls. AgentCore runs the
-model adapter; OpenRouter supplies inference. Physics runs independently at
-60 Hz, holding each kart's previous input while its next decision is pending.
-Temporal coordinates the three independent drivers and saves step receipts.
-Local Activities reduce service scheduling round trips; broker receipts prevent
-duplicate dispatch during workflow-task replay. Restarting the broker cannot
-resume this live race and never silently resends an unresolved operation.
+A provider failure retires only that driver's future requests. The kart keeps
+its last model-selected input under unchanged physics and rescue rules. It has
+no host-selected replacement controls. The UI marks the provider DNF; the
+remaining drivers continue. Missing usage keeps the full reserved charge and
+increments uncertainty. Invalid native answers and application errors still
+stop the entire race. A provider DNF is an infrastructure result, not evidence
+of a worse driving policy.
 
-The full Linux qualifier is:
+The full EC2 clock gate runs four complete free controls, pauses the HTTP parent
+while physics continues, then records 170.1 seconds of neutral physics.
+The exact Cloud interface check uses real Temporal, AgentCore and MCP with
+scripted replies and zero model calls. Every paid result retains exact native
+bytes, all physics frames, timing and the full budget transition chain.
 
-```sh
-docker exec mcpkart-demo-linux-20261029 python -m mcpkart.duel_clock \
-  --trio --url http://127.0.0.1:8771/mcp \
-  --output artifacts/A_NEW_CLOCK_DIRECTORY --neutral-seconds 170.1
-```
+The root .env reset investigation is documented in
+[the investigation](env-file-investigation.md). No writer was conclusively
+identified. The private demo snapshot protects the run from another root
+.env reset. No other process was stopped or security setting changed.
 
-It performs four full controls, the parent pause, and a neutral-clock trace.
-Running it again creates new evidence; it does not expand the finite live release.
-Mock finish order is never a model result. Cloud latency, rescues and failures
-belong in the result even if they make the demo less tidy.
+## Recorded fallback
+
+The actual rehearsal is also packaged as a standalone HTML file at
+artifacts/aws-demo-delivery-v3/replay.html. It embeds the data and needs no
+AWS, Temporal or model connection. The display export is 20 fps; all 3,038
+visual frames preserve every displayed original value. The complete 9,112-frame
+audit master remains unchanged. Unused model-observation facts were omitted
+only from this presentation export.
+
+A local-only fallback server is running at
+[the recorded replay](http://127.0.0.1:17875/replay.html), paused at the start.
+Click Play. To recreate that server after closing its terminal:
+
+    .venv/bin/python -m http.server 17875 --bind 127.0.0.1 --directory artifacts/aws-demo-delivery-v3
+
+Keep the dedicated EC2 host and its server alive for the stage qualification.
+The local fallback server and SSM tunnel may be restarted independently.

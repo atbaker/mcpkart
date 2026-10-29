@@ -1,73 +1,98 @@
-"""Run one registered demo entry on the already-qualified Linux server.
-
-Refreshes only this demo's ignored AWS credential file; never restarts the server.
-"""
+"""Run one registered race on EC2, locking and reconciling the local ledger."""
 
 import argparse
+import fcntl
+import hashlib
 import json
 import os
+import shlex
 import subprocess
+import sys
+import time
 from pathlib import Path
 
-import boto3
-from dotenv import dotenv_values
+from demo_host import clients
 
 ROOT = Path(__file__).resolve().parents[1]
 RELEASE = "artifacts/aws-demo-dnf-release-v2"
-CONTAINER = "mcpkart-demo-linux-20261029"
-
-
-def credentials():
-    frozen = boto3.Session().get_credentials().get_frozen_credentials()
-    path = ROOT / "artifacts/aws-demo-linux-credentials"
-    # The directory is private and ignored; credentials never enter argv or logs.
-    descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
-    with os.fdopen(descriptor, "w") as stream:
-        stream.write("[default]\naws_access_key_id=" + frozen.access_key
-                     + "\naws_secret_access_key=" + frozen.secret_key
-                     + "\naws_session_token=" + (frozen.token or "") + "\n")
-    path.chmod(0o600)
-    snapshot_temporal()
-
-
-def snapshot_temporal():
-    values = dotenv_values(ROOT / ".env")
-    target = ROOT / "artifacts/aws-demo-temporal-private.json"
-    if all(values.get(k) for k in ("TEMPORAL_API_KEY", "TEMPORAL_ADDRESS")):
-        selected = {k: values[k] for k in ("TEMPORAL_NAMESPACE", "TEMPORAL_ADDRESS", "TEMPORAL_API_KEY")}
-        descriptor = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
-        with os.fdopen(descriptor, "w") as stream:
-            json.dump(selected, stream)
-        target.chmod(0o600)
-    return target.is_file()
+CLOCK = "artifacts/aws-demo-ec2-clock-v1/evidence/qualification.json"
+INTERFACE = "artifacts/aws-demo-ec2-cloud-free-v1/trial/interface-proof.json"
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("entry", choices=("rehearsal", "stage", "credentials"))
+    parser.add_argument("entry", choices=("rehearsal", "stage"))
     args = parser.parse_args()
-    credentials()
-    if args.entry == "credentials":
-        print("Dedicated demo credential file refreshed; no model requests")
-        return
     plan = json.loads((ROOT / RELEASE / "release.json").read_text())
     identity = plan["entries"][0 if args.entry == "rehearsal" else 1]
-    if not snapshot_temporal():
-        raise ValueError("Restore Temporal settings in .env; private demo copy is missing")
-    # Only the file path appears in argv. Keys enter the worker environment inside
-    # the container, without shell expansion or command-line secret values.
+    output = "artifacts/aws-demo-dnf-live-" + args.entry + "-v1"
+    directory = ROOT / output
+    ledger = ROOT / "artifacts/budget.json"
+    writer = (ROOT / "artifacts/root-paid-writer.lock").open("a")
+    fcntl.flock(writer.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    before = ledger.read_bytes()
+    directory.mkdir(exist_ok=False)  # Unknown submissions cannot be retried.
+    (directory / "ledger-transfer.json").write_text(json.dumps({
+        "local_before_sha256": hashlib.sha256(before).hexdigest(),
+        "budget_before": json.loads(before), "logical_id": identity,
+        "local_writer_locked": True, "no_retry": True,
+    }, indent=2))
     bootstrap = ("import json,os,runpy,sys;"
                  "os.environ.update(json.load(open('artifacts/aws-demo-temporal-private.json')));"
                  "sys.argv=['mcpkart.demo_run',*sys.argv[1:]];"
                  "runpy.run_module('mcpkart.demo_run',run_name='__main__')")
-    command = ["docker", "exec", CONTAINER, "python", "-c", bootstrap, "--paid", "--local", "--retire-provider-errors",
-               "--url", "http://127.0.0.1:8771/mcp", "--release", RELEASE + "/release.json",
-               "--clock-qualification", "artifacts/aws-demo-linux-clock-v6/qualification.json",
-               "--interface", "artifacts/aws-demo-dnf-cloud-free-v1/trial/interface-proof.json",
-               "--deployment", RELEASE + "/deployment.json", "--agentcore-arn", plan["agentcore_arn"],
-               "--output", "artifacts/aws-demo-dnf-live-" + args.entry + "-v1/trial", "--race-id", identity,
-               "--live-status", "artifacts/aws-demo-free-v1/live-status.json"]
-    raise SystemExit(subprocess.call(command, cwd=ROOT))
+    command = ["docker", "exec", "mcpkart-demo", "python", "-c", bootstrap,
+               "--paid", "--local", "--retire-provider-errors", "--url", "http://127.0.0.1:8771/mcp",
+               "--release", RELEASE + "/release.json", "--clock-qualification", CLOCK,
+               "--interface", INTERFACE, "--deployment", RELEASE + "/deployment.json",
+               "--agentcore-arn", plan["agentcore_arn"], "--output", output + "/trial",
+               "--race-id", identity, "--live-status", "artifacts/aws-demo-free-v1/live-status.json"]
+    check = ("import hashlib;assert hashlib.sha256(open('artifacts/budget.json','rb').read()).hexdigest()=="
+             + repr(hashlib.sha256(before).hexdigest()))
+    script = "set -e\ndocker exec mcpkart-demo python -c " + shlex.quote(check) + "\nset +e\n"
+    script += shlex.join(command) + "\nresult=$?\n"
+    script += "cp artifacts/budget.json " + shlex.quote(output + "/budget-after.json") + "\n"
+    script += 'exit "$result"\n'
+    path = directory / "command.sh"
+    path.write_text(script)
+    helper = [sys.executable, str(ROOT / "scripts/demo_host.py")]
+    subprocess.run([*helper, "submit", directory.name, "--script", str(path), "--collect", RELEASE],
+                   cwd=ROOT, check=True)
+    host, ssm, _ = clients()
+    receipt = json.loads((directory / "ssm-command.json").read_text())
+    while True:
+        time.sleep(15)
+        result = ssm.get_command_invocation(CommandId=receipt["command"], InstanceId=host["instance"])
+        status = result["Status"]
+        print(json.dumps({"remote_status": status, "logical_id": identity}), flush=True)
+        if status not in ("Pending", "InProgress", "Delayed"):
+            break
+    (directory / "observed-exit.json").write_text(json.dumps({
+        "status": status, "response_code": result["ResponseCode"],
+        "started": result.get("ExecutionStartDateTime"), "ended": result.get("ExecutionEndDateTime"),
+    }, indent=2))
+    subprocess.run([*helper, "fetch", directory.name], cwd=ROOT, check=True)
+    after = (directory / "budget-after.json").read_bytes()
+    state, old = json.loads(after), json.loads(before)
+    if ledger.read_bytes() != before:
+        raise RuntimeError("Local ledger changed despite writer lock; preserve both for root review")
+    for key in ("requests", "charged_usd", "charged_tokens", "uncertain_requests"):
+        if state[key] < old[key]:
+            raise RuntimeError("Remote ledger regressed; preserve evidence and stop")
+    for key in ("cap_usd", "max_requests", "max_tokens"):
+        if state[key] != old[key]:
+            raise RuntimeError("Remote budget caps changed; preserve evidence and stop")
+    temporary = ledger.with_name("budget-remote-handoff.tmp")
+    with temporary.open("xb") as stream:
+        stream.write(after)
+        stream.flush()
+        os.fsync(stream.fileno())
+    temporary.replace(ledger)
+    print(json.dumps({"observed_remote_exit": result["ResponseCode"], "ledger_reconciled": True,
+                      "requests": state["requests"], "charged_usd": state["charged_usd"],
+                      "charged_tokens": state["charged_tokens"], "uncertainties": state["uncertain_requests"],
+                      "root_audit_required_before_next_entry": True}), flush=True)
+    raise SystemExit(0 if status == "Success" else 1)
 
 
 if __name__ == "__main__":

@@ -1,3 +1,66 @@
+# Qualified demo / manual stage ready, 29 October 2026
+
+0088 rehearsal is CLOSED after root observed exit 0 and fully audited 9,112
+frames / 651 native requests / 1,302 budget transitions. Jev finished first
+99.03s (2 rescues), OpenAI 151.52s (12 rescues); Clef retired at 118.14s after
+request109 returned RuntimeClientError/no native reply. Full $0.00393216 /
+75,366-token reservation retained. Other karts continued. No retry/replacement.
+All four Temporal histories COMPLETED, no failed/timed-out events. All 654
+AgentCore attempts audited (653 envelopes/1 missing); source/current server
+binding exact; max derived lateness6.413ms. See
+docs/experiments/0088-aws-demo-rehearsal.md and 0088-root-audit.json.
+
+Ledger is now 100,061 requests / $11.680947340002783 / 335,629,288 charged tokens /
+73 uncertainties, no pending. Caps $20 / 110k / 500m unchanged. Root's review
+enables ONLY mcpkart-aws-dnf-stage-20261029, manually launched once via
+scripts/run_aws_demo.py stage. It is UNRUN. Expiry midnight Pacific, 15min floor.
+No further rehearsal/retry/tuning/other paid call is authorized. Preserve every
+historical failure/charge/uncertainty. No delegation.
+
+Dedicated EC2 i-0ae1c7dce47ee05ae / container mcpkart-demo / HTTP8771 must remain
+alive to preserve qualification. Local SSM forward17773 supplies the spectator.
+Own VPC/subnet/SG/role only, no ingress; leave other demos untouched. Release
+artifacts/aws-demo-dnf-release-v2, Runtime6, pinned Python3.14.8, current source
+digest01a1b8bb2da63fcf076d3a45169552a67a074595ca65923b8ad1541328f8f13d.
+Fresh complete clock + full DNF mock + exact Cloud interface passed and were
+independently reviewed. Real Temporal Cloud / Local Activities / MCP / AgentCore,
+OpenRouter inference. Never seed the host with an old ledger; launcher locks
+local writer, verifies exact initial hash, observes exit and reconciles full
+remote accounting. Unknown SSM submissions cannot be retried. Stage needs
+root's exact ledger review file. No historical paid window reopens.
+
+# Historical demo preparation checkpoint, 29 October 2026
+
+The user explicitly approved retiring a provider-failed kart while the other
+drivers continue. Study 0088 is the NEW finite release; see
+docs/experiments/0088-provider-dnf-registration.md. It permits exactly one
+rehearsal and one manually launched stage race, without retries, replacements,
+fallback controls, model/prompt/physics changes or reopened historical windows.
+The rehearsal requires a fresh COMPLETE clock, full free provider-DNF control
+and exact Temporal Cloud / AgentCore / MCP free interface. Stage additionally
+requires root's observed exit, full audit and exact reviewed cumulative ledger.
+No 0088 paid entry has yet been consumed at this checkpoint.
+
+The Mac Docker VM had repeated unqualified late ticks and an independently
+observed desktop UI quit; preserve all failed/interrupted evidence. This demo's
+new dedicated EC2 host is i-0ae1c7dce47ee05ae in us-west-2, own
+mcpkart-aws-demo-20261029 network/role/security group, zero inbound ports.
+Do not change other demos' resources. Conventional worker + broker + MCP +
+isolated Python physics run there in container mcpkart-demo. Python 3.14.8 and
+the source release digest 01a1b8bb2da63fcf076d3a45169552a67a074595ca65923b8ad1541328f8f13d
+were verified. Fresh EC2 clock artifacts: artifacts/aws-demo-ec2-clock-v1.
+Keep its server alive after qualification. Runtime version 6 and namespace
+mcpkart-dev.iuiaz remain fixed. OpenRouter inference; real MCP; Local Activities.
+
+Ledger unchanged: 99,410 requests / $11.525691428002778 / 333,938,714 tokens /
+72 uncertainties / no pending. Caps $20 / 110k / 500m, admission floors unchanged.
+The EC2 launcher must hold the local writer lock, compare exact pre-run ledgers,
+observe remote exit and reconcile the full remote cumulative ledger verbatim.
+Never overwrite the host ledger with an old copy. Unknown SSM submissions
+cannot be resubmitted. Only one paid process. Root audits before next admission.
+All historical paid windows stay closed. No delegation. Preserve dirty work,
+all historical failures/charges/uncertainty and all interrupted evidence.
+
 # Demo branch checkpoint, 29 October 2026
 
 Study 0087 live rehearsal is CLOSED after seven actual native requests. Clef's

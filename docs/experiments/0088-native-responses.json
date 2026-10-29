@@ -1,0 +1,374 @@
+{
+  "study": 88,
+  "logical_id": "mcpkart-aws-dnf-rehearsal-20261029",
+  "examples": [
+    {
+      "kind": "actual_collected_request",
+      "racer_id": "red",
+      "query_index": 0,
+      "payload_sha256": "9a17417026029e07cae33989855c9401a98b79d216f326d8d34e3c86e4ffa17d",
+      "native_replies": [
+        {
+          "status": 200,
+          "json": {
+            "model": "typesafe/jev-1.14-20261014",
+            "answers": {
+              "wheel": {
+                "type": "choice",
+                "choice": "left",
+                "probabilities": {
+                  "hard_right": 0.08,
+                  "right": 0.17,
+                  "straight": 0.07,
+                  "left": 0.48,
+                  "hard_left": 0.2
+                },
+                "confidence": 0.35
+              },
+              "pedal": {
+                "type": "choice",
+                "choice": "accelerate",
+                "probabilities": {
+                  "accelerate": 0.94,
+                  "coast": 0.05,
+                  "brake": 0.01
+                },
+                "confidence": 0.91
+              }
+            },
+            "usage": {
+              "input_tokens": 2575,
+              "output_tokens": 96,
+              "cost": 0.00010815
+            },
+            "id": "gen-dec-1793313615-5eA5BRP7R9rtDxGK7sky",
+            "provider": "TypeSafe"
+          },
+          "body_utf8": "{\"model\":\"typesafe/jev-1.14-20261014\",\"answers\":{\"wheel\":{\"type\":\"choice\",\"choice\":\"left\",\"probabilities\":{\"hard_right\":0.08,\"right\":0.17,\"straight\":0.07,\"left\":0.48,\"hard_left\":0.2},\"confidence\":0.35},\"pedal\":{\"type\":\"choice\",\"choice\":\"accelerate\",\"probabilities\":{\"accelerate\":0.94,\"coast\":0.05,\"brake\":0.01},\"confidence\":0.91}},\"usage\":{\"input_tokens\":2575,\"output_tokens\":96,\"cost\":0.00010815},\"id\":\"gen-dec-1793313615-5eA5BRP7R9rtDxGK7sky\",\"provider\":\"TypeSafe\"}",
+          "body_sha256": "780a0028324129ee164335a26366e067426290a6d88575fc274bf85c253cd32a"
+        }
+      ],
+      "record": {
+        "ok": true,
+        "action": "left_accelerate",
+        "requested_model": "typesafe/jev-1.14",
+        "requested_provider": "typesafe",
+        "resolved_model": "typesafe/jev-1.14-20261014",
+        "model": "typesafe/jev-1.14-20261014",
+        "provider": "TypeSafe",
+        "id": "gen-dec-1793313615-5eA5BRP7R9rtDxGK7sky",
+        "request_started_ns": 1465993326307,
+        "response_received_ns": 1466369343831,
+        "latency_ms": 376.017524,
+        "usage": {
+          "input_tokens": 2575,
+          "output_tokens": 96,
+          "cost": 0.00010815
+        },
+        "cost": 0.00010815,
+        "cost_source": "reported",
+        "error": null,
+        "error_detail": null,
+        "reservation_id": "f27f7093abbb4c27830eeefccf00d776",
+        "payload_bytes": 7825,
+        "input_token_ceiling": 16384,
+        "input_byte_bound": 8339,
+        "control_language": "geometry",
+        "instruction_style": "trio_goal_only_v1",
+        "choice_probabilities": null,
+        "choice_confidence": null,
+        "decision_layout": "factored",
+        "component_choices": {
+          "wheel": "left",
+          "pedal": "accelerate"
+        },
+        "component_errors": null,
+        "component_probabilities": {
+          "wheel": {
+            "hard_right": 0.08,
+            "right": 0.17,
+            "straight": 0.07,
+            "left": 0.48,
+            "hard_left": 0.2
+          },
+          "pedal": {
+            "accelerate": 0.94,
+            "coast": 0.05,
+            "brake": 0.01
+          }
+        },
+        "component_confidence": {
+          "wheel": 0.35,
+          "pedal": 0.91
+        },
+        "http_status": 200,
+        "racer_id": "red",
+        "query_index": 0,
+        "wire_payload_sha256": "9a17417026029e07cae33989855c9401a98b79d216f326d8d34e3c86e4ffa17d"
+      },
+      "raw_artifact": "artifacts/aws-demo-dnf-live-rehearsal-v1/trial/red/calls/00000.json"
+    },
+    {
+      "kind": "actual_collected_request",
+      "racer_id": "blue",
+      "query_index": 0,
+      "payload_sha256": "2b6a00b4962b9337b9826d9290267f5012b1d7081867f1df7b64cad8581ac3cd",
+      "native_replies": [
+        {
+          "status": 200,
+          "json": {
+            "model": "openai/gpt-6-luna-decisions-20261006",
+            "answers": {
+              "wheel": {
+                "type": "choice",
+                "choice": "straight",
+                "probabilities": {
+                  "hard_right": 0.01,
+                  "right": 0.01,
+                  "straight": 0.97,
+                  "left": 0,
+                  "hard_left": 0.01
+                },
+                "confidence": 0.96
+              },
+              "pedal": {
+                "type": "choice",
+                "choice": "accelerate",
+                "probabilities": {
+                  "accelerate": 1,
+                  "coast": 0,
+                  "brake": 0
+                },
+                "confidence": 1
+              }
+            },
+            "usage": {
+              "input_tokens": 2017,
+              "output_tokens": 0,
+              "cost": 0.0002017
+            },
+            "id": "gen-dec-1793313615-DhILxzieLNzVmMzsKB6d",
+            "provider": "OpenAI"
+          },
+          "body_utf8": "{\"model\":\"openai/gpt-6-luna-decisions-20261006\",\"answers\":{\"wheel\":{\"type\":\"choice\",\"choice\":\"straight\",\"probabilities\":{\"hard_right\":0.01,\"right\":0.01,\"straight\":0.97,\"left\":0,\"hard_left\":0.01},\"confidence\":0.96},\"pedal\":{\"type\":\"choice\",\"choice\":\"accelerate\",\"probabilities\":{\"accelerate\":1,\"coast\":0,\"brake\":0},\"confidence\":1}},\"usage\":{\"input_tokens\":2017,\"output_tokens\":0,\"cost\":0.0002017},\"id\":\"gen-dec-1793313615-DhILxzieLNzVmMzsKB6d\",\"provider\":\"OpenAI\"}",
+          "body_sha256": "47fed9cd9eccfabf6a327bf74c542246238afa9e4373a3160c949e0908f535c5"
+        }
+      ],
+      "record": {
+        "ok": true,
+        "action": "straight_accelerate",
+        "requested_model": "openai/gpt-6-luna-decisions",
+        "requested_provider": "openai",
+        "resolved_model": "openai/gpt-6-luna-decisions-20261006",
+        "model": "openai/gpt-6-luna-decisions-20261006",
+        "provider": "OpenAI",
+        "id": "gen-dec-1793313615-DhILxzieLNzVmMzsKB6d",
+        "request_started_ns": 1466282797687,
+        "response_received_ns": 1466778922736,
+        "latency_ms": 496.125049,
+        "usage": {
+          "input_tokens": 2017,
+          "output_tokens": 0,
+          "cost": 0.0002017
+        },
+        "cost": 0.0002017,
+        "cost_source": "reported",
+        "error": null,
+        "error_detail": null,
+        "reservation_id": "6788228de22c4f6db0e9b5d5f0d2c8c2",
+        "payload_bytes": 7833,
+        "input_token_ceiling": 16384,
+        "input_byte_bound": 8347,
+        "control_language": "geometry",
+        "instruction_style": "trio_goal_only_v1",
+        "choice_probabilities": null,
+        "choice_confidence": null,
+        "decision_layout": "factored",
+        "component_choices": {
+          "wheel": "straight",
+          "pedal": "accelerate"
+        },
+        "component_errors": null,
+        "component_probabilities": {
+          "wheel": {
+            "hard_right": 0.01,
+            "right": 0.01,
+            "straight": 0.97,
+            "left": 0,
+            "hard_left": 0.01
+          },
+          "pedal": {
+            "accelerate": 1,
+            "coast": 0,
+            "brake": 0
+          }
+        },
+        "component_confidence": {
+          "wheel": 0.96,
+          "pedal": 1
+        },
+        "http_status": 200,
+        "racer_id": "blue",
+        "query_index": 0,
+        "wire_payload_sha256": "2b6a00b4962b9337b9826d9290267f5012b1d7081867f1df7b64cad8581ac3cd"
+      },
+      "raw_artifact": "artifacts/aws-demo-dnf-live-rehearsal-v1/trial/blue/calls/00000.json"
+    },
+    {
+      "kind": "actual_collected_request",
+      "racer_id": "green",
+      "query_index": 0,
+      "payload_sha256": "1b2a91b8b122e6dd5cd701761f262de64c55e03cc14d64da098b18513027feeb",
+      "native_replies": [
+        {
+          "status": 200,
+          "json": {
+            "model": "cloudflare/clef",
+            "answers": {
+              "wheel": {
+                "type": "choice",
+                "choice": "straight",
+                "probabilities": {
+                  "hard_right": 0.1238,
+                  "right": 0.1068,
+                  "straight": 0.5862,
+                  "left": 0.1303,
+                  "hard_left": 0.0529
+                },
+                "confidence": 0.4828
+              },
+              "pedal": {
+                "type": "choice",
+                "choice": "accelerate",
+                "probabilities": {
+                  "accelerate": 0.9092,
+                  "coast": 0.0723,
+                  "brake": 0.0184
+                },
+                "confidence": 0.8638
+              }
+            },
+            "usage": {
+              "input_tokens": 2050,
+              "output_tokens": 0,
+              "cost": 0.000492
+            },
+            "id": "gen-dec-1793313615-MRzwmcQfDtupuAci9yzJ",
+            "provider": "PrimeIntellect"
+          },
+          "body_utf8": "{\"model\":\"cloudflare/clef\",\"answers\":{\"wheel\":{\"type\":\"choice\",\"choice\":\"straight\",\"probabilities\":{\"hard_right\":0.1238,\"right\":0.1068,\"straight\":0.5862,\"left\":0.1303,\"hard_left\":0.0529},\"confidence\":0.4828},\"pedal\":{\"type\":\"choice\",\"choice\":\"accelerate\",\"probabilities\":{\"accelerate\":0.9092,\"coast\":0.0723,\"brake\":0.0184},\"confidence\":0.8638}},\"usage\":{\"input_tokens\":2050,\"output_tokens\":0,\"cost\":0.000492},\"id\":\"gen-dec-1793313615-MRzwmcQfDtupuAci9yzJ\",\"provider\":\"PrimeIntellect\"}",
+          "body_sha256": "8cb8ed52fca403b23c3e3fad4b7566b0983a7568644aaa0a36902755e70faf7d"
+        }
+      ],
+      "record": {
+        "ok": true,
+        "action": "straight_accelerate",
+        "requested_model": "cloudflare/clef",
+        "requested_provider": "primeintellect",
+        "resolved_model": "cloudflare/clef",
+        "model": "cloudflare/clef",
+        "provider": "PrimeIntellect",
+        "id": "gen-dec-1793313615-MRzwmcQfDtupuAci9yzJ",
+        "request_started_ns": 1466308493963,
+        "response_received_ns": 1466897277903,
+        "latency_ms": 588.78394,
+        "usage": {
+          "input_tokens": 2050,
+          "output_tokens": 0,
+          "cost": 0.000492
+        },
+        "cost": 0.000492,
+        "cost_source": "reported",
+        "error": null,
+        "error_detail": null,
+        "reservation_id": "a633d2897de74b4db4ef75b411fb7612",
+        "payload_bytes": 7834,
+        "input_token_ceiling": 16384,
+        "input_byte_bound": 8348,
+        "control_language": "geometry",
+        "instruction_style": "trio_goal_only_v1",
+        "choice_probabilities": null,
+        "choice_confidence": null,
+        "decision_layout": "factored",
+        "component_choices": {
+          "wheel": "straight",
+          "pedal": "accelerate"
+        },
+        "component_errors": null,
+        "component_probabilities": {
+          "wheel": {
+            "hard_right": 0.1238,
+            "right": 0.1068,
+            "straight": 0.5862,
+            "left": 0.1303,
+            "hard_left": 0.0529
+          },
+          "pedal": {
+            "accelerate": 0.9092,
+            "coast": 0.0723,
+            "brake": 0.0184
+          }
+        },
+        "component_confidence": {
+          "wheel": 0.4828,
+          "pedal": 0.8638
+        },
+        "http_status": 200,
+        "racer_id": "green",
+        "query_index": 0,
+        "wire_payload_sha256": "1b2a91b8b122e6dd5cd701761f262de64c55e03cc14d64da098b18513027feeb"
+      },
+      "raw_artifact": "artifacts/aws-demo-dnf-live-rehearsal-v1/trial/green/calls/00000.json"
+    },
+    {
+      "kind": "actual_collected_request",
+      "racer_id": "green",
+      "query_index": 108,
+      "payload_sha256": "fef38bdd63d510741399b4c29172b3692551721d2c9c246f9b9898a3dd903634",
+      "native_replies": [],
+      "record": {
+        "ok": false,
+        "action": null,
+        "requested_model": "cloudflare/clef",
+        "requested_provider": "primeintellect",
+        "resolved_model": "cloudflare/clef",
+        "model": null,
+        "provider": null,
+        "id": null,
+        "request_started_ns": 1578348488121,
+        "response_received_ns": 1583448169899,
+        "latency_ms": 5099.681778,
+        "usage": {},
+        "cost": 0.00393216,
+        "cost_source": "reservation",
+        "error": "duel_guard_failure",
+        "error_detail": null,
+        "reservation_id": "dd97ea728e7b45d58c4c5c522769b2e5",
+        "payload_bytes": 8016,
+        "input_token_ceiling": 16384,
+        "input_byte_bound": 8530,
+        "control_language": "geometry",
+        "instruction_style": "trio_goal_only_v1",
+        "choice_probabilities": null,
+        "choice_confidence": null,
+        "decision_layout": "factored",
+        "component_choices": {
+          "wheel": null,
+          "pedal": null
+        },
+        "component_errors": null,
+        "component_probabilities": null,
+        "component_confidence": null,
+        "unapplied_reply_action": null,
+        "wrapper_failures": [
+          "missing_single_raw_reply",
+          "uncertain_accounting"
+        ],
+        "racer_id": "green",
+        "query_index": 108,
+        "wire_payload_sha256": "fef38bdd63d510741399b4c29172b3692551721d2c9c246f9b9898a3dd903634"
+      },
+      "raw_artifact": "artifacts/aws-demo-dnf-live-rehearsal-v1/trial/green/calls/00108.json"
+    }
+  ]
+}
