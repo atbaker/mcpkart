@@ -3,10 +3,10 @@
   "cap_usd": 20.0,
   "max_requests": 110000,
   "max_tokens": 500000000,
-  "requests": 99403,
-  "charged_usd": 11.520516764002778,
-  "charged_tokens": 333848829,
-  "reported_cost_usd": 11.458618012002736,
-  "uncertain_requests": 71,
+  "requests": 99410,
+  "charged_usd": 11.525691428002778,
+  "charged_tokens": 333938714,
+  "reported_cost_usd": 11.459860516002736,
+  "uncertain_requests": 72,
   "pending": {}
 }

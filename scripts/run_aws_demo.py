@@ -13,7 +13,7 @@ import boto3
 from dotenv import dotenv_values
 
 ROOT = Path(__file__).resolve().parents[1]
-RELEASE = "artifacts/aws-demo-live-release-v3"
+RELEASE = "artifacts/aws-demo-dnf-release-v1"
 CONTAINER = "mcpkart-demo-linux-20261029"
 
 
@@ -60,12 +60,12 @@ def main():
                  "os.environ.update(json.load(open('artifacts/aws-demo-temporal-private.json')));"
                  "sys.argv=['mcpkart.demo_run',*sys.argv[1:]];"
                  "runpy.run_module('mcpkart.demo_run',run_name='__main__')")
-    command = ["docker", "exec", CONTAINER, "python", "-c", bootstrap, "--paid", "--local",
+    command = ["docker", "exec", CONTAINER, "python", "-c", bootstrap, "--paid", "--local", "--retire-provider-errors",
                "--url", "http://127.0.0.1:8771/mcp", "--release", RELEASE + "/release.json",
-               "--clock-qualification", "artifacts/aws-demo-linux-clock-v4/qualification.json",
-               "--interface", "artifacts/aws-demo-cloud-interface-v1/trial/interface-proof.json",
+               "--clock-qualification", "artifacts/aws-demo-linux-clock-v6/qualification.json",
+               "--interface", "artifacts/aws-demo-dnf-cloud-free-v1/trial/interface-proof.json",
                "--deployment", RELEASE + "/deployment.json", "--agentcore-arn", plan["agentcore_arn"],
-               "--output", "artifacts/aws-demo-live-" + args.entry + "-v1/trial", "--race-id", identity,
+               "--output", "artifacts/aws-demo-dnf-live-" + args.entry + "-v1/trial", "--race-id", identity,
                "--live-status", "artifacts/aws-demo-free-v1/live-status.json"]
     raise SystemExit(subprocess.call(command, cwd=ROOT))
 

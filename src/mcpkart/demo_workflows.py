@@ -20,7 +20,8 @@ class KartDriverWorkflow:
                 schedule_to_close_timeout=timedelta(seconds=15), retry_policy=NO_RETRY,
             )
             if receipt["done"]:
-                return {"racer_id": config["racer_id"], "decisions": seq}
+                return {"racer_id": config["racer_id"], "decisions": seq,
+                        "retired": receipt.get("retired", False)}
             # Flush bounded batches of local markers and allow signals/cancellation.
             if config["local"] and seq % 8 == 7:
                 await workflow.sleep(.001)

@@ -78,6 +78,7 @@ async def run(args):
             url=args.url, output=args.output, logical_id=args.race_id, deadline=args.deadline,
             max_decisions=args.max_decisions, transport_factory=factory,
             live_status_path=args.live_status, paid=args.paid, admission=admission,
+            retire_provider_errors=args.retire_provider_errors,
             clock_path=args.clock_qualification, interface_path=args.interface, deployment_path=args.deployment,
         ) as broker:
             (Path(args.output) / "demo-registration.json").write_text(json.dumps({
@@ -85,7 +86,8 @@ async def run(args):
                 "task_queue": args.race_id, "local_activities": args.local,
                 "agentcore_runtime_arn": args.agentcore_arn, "region": args.region,
                 "max_decisions_per_racer": args.max_decisions, "deadline_s": args.deadline,
-                "models": broker.routes, "model_requests_enabled": args.paid, "release_sha256": digest,
+                "models": broker.routes, "model_requests_enabled": args.paid,
+                "retire_provider_errors": args.retire_provider_errors, "release_sha256": digest,
             }, indent=2))
             activities = BrokerActivities(broker)
             async with Worker(
@@ -128,6 +130,8 @@ def main():
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--free", action="store_true", help="Scripted mocks; no model calls")
     mode.add_argument("--paid", action="store_true", help="One registered live race; never retries")
+    parser.add_argument("--retire-provider-errors", action="store_true",
+                        help="Mark provider failure DNF and let other karts finish; never retries")
     parser.add_argument("--release", help="Prospective finite demo release JSON")
     parser.add_argument("--ledger", default="artifacts/budget.json")
     parser.add_argument("--clock-qualification")

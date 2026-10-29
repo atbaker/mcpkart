@@ -22,8 +22,8 @@ def freeze(output, resources, routes):
     discovered = json.loads(routes.read_text())
     by_model = {r["model"]: r for r in discovered}
     plan = {
-        "study": "0087", "scope": "One rehearsal and one manually admitted stage race; no retries or replacements",
-        "entries": ["mcpkart-aws-demo-rehearsal-20261029", "mcpkart-aws-demo-stage-20261029"],
+        "study": "0088", "scope": "One rehearsal and one manually admitted stage race; no retries or replacements",
+        "entries": ["mcpkart-aws-dnf-rehearsal-20261029", "mcpkart-aws-dnf-stage-20261029"],
         "namespace": "mcpkart-dev.iuiaz", "region": "us-west-2",
         "agentcore_arn": state["resources"]["runtime"],
         "expires_utc": "2026-10-30T07:00:00+00:00", "deadline_s": 180, "max_decisions": 1100,
@@ -33,6 +33,10 @@ def freeze(output, resources, routes):
         "profiles": {"geometry": False, "motion": False, "timing_facts": False, "prompt": "goal-only"},
         "gate": "Four complete trio controls, parent pause, 170.1s neutral; exact cloud mock interface",
         "root_review_between_entries": True,
+        "provider_error_policy": "retire",
+        "allow_fully_reserved_provider_dnfs_after_root_review": True,
+        "authorization": "User approved retiring provider-failed kart while others finish, after 0087 audit",
+        "no_retry_or_fallback_controls": True,
     }
     write(output / "release.json", plan)
     print(json.dumps({"release_sha256": release_digest(plan), "model_calls": 0}), flush=True)

@@ -32,11 +32,16 @@ class Admission:
             fcntl.flock(self.writer.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
             self.budget = existing_budget(ledger)
             state = json.loads(Path(ledger).read_text())
-            if state["uncertain_requests"] != self.plan["budget_boundary"]["uncertain_requests"]:
-                raise ValueError("New uncertainty blocks any further demo admission")
             index = self.plan["entries"].index(logical_id)
             if index:
                 review = json.loads((self.path.parent / (self.plan["entries"][index - 1] + "-review.json")).read_text())
+                reviewed_provider_uncertainty = (
+                    self.plan.get("provider_error_policy") == "retire"
+                    and self.plan.get("allow_fully_reserved_provider_dnfs_after_root_review") is True
+                    and review.get("only_provider_errors_or_none") is True
+                )
+                if state["uncertain_requests"] != self.plan["budget_boundary"]["uncertain_requests"] and not reviewed_provider_uncertainty:
+                    raise ValueError("Unreviewed uncertainty blocks further admission")
                 if (review.get("release_sha256") != self.digest or not review.get("observed_exit_and_audited")
                         or review.get("budget_after") != state):
                     raise ValueError("Root must observe and audit the earlier entry before another admission")

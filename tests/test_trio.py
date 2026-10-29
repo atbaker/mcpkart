@@ -185,3 +185,58 @@ def test_trio_builds_own_telemetry_once_and_preserves_opponent_packets(monkeypat
     for actual in observation["competition"]["opponents"]:
         expected = sim._observation_with_opponent("red", actual["racer_id"])["competition"]["opponent"]
         assert actual == expected
+
+
+async def test_provider_dnf_stops_only_failed_racer_without_new_controls(tmp_path):
+    import httpx
+
+    from mcpkart.demo_mock import free_choices
+
+    counts = dict.fromkeys(TRIO_RACERS, 0)
+
+    def transport(rid):
+        async def reply(request):
+            counts[rid] += 1
+            await asyncio.sleep(.02)
+            packet = json.loads(request.content)
+            if rid == "green" and counts[rid] == 2:
+                return httpx.Response(429, json={"error": {"message": "injected provider concurrency limit"}})
+            facts = {h + "_facts": packet["questions"][h]["instructions"]["current_facts"][h + "_facts"]
+                     for h in ("wheel", "pedal")}
+            wheel, pedal = free_choices(facts)
+            return httpx.Response(200, json={"id": f"mock-{rid}-{counts[rid]}",
+                "model": packet["model"] + "-mock",
+                "provider": {"red": "TypeSafe", "blue": "OpenAI", "green": "Prime Intellect"}[rid],
+                "answers": {"wheel": {"type": "choice", "choice": wheel},
+                            "pedal": {"type": "choice", "choice": pedal}},
+                "usage": {"input_tokens": 0, "output_tokens": 0, "cost": 0}})
+        return httpx.MockTransport(reply)
+
+    app = create_app(trio=True, replay_root=tmp_path)
+    try:
+        async with DemoBroker(url=app.state.mcp_server, output=tmp_path / "trial",
+                              logical_id="mcpkart-provider-dnf", deadline=.8,
+                              retire_provider_errors=True) as broker:
+            for rid in TRIO_RACERS:
+                broker.drivers[rid].http._transport = transport(rid)
+            await broker.start()
+
+            async def drive(rid):
+                for seq in range(100):
+                    if (await broker.step(rid, seq))["done"]:
+                        return
+                pytest.fail("Driver did not stop")
+
+            await asyncio.gather(*(drive(r) for r in TRIO_RACERS))
+            assert counts["green"] == 2 and counts["red"] > 2 and counts["blue"] > 2
+            assert (await broker.step("green", 1))["retired"]  # Replayed marker never dispatches again.
+            assert counts["green"] == 2
+            receipt = await broker.finish()
+            assert receipt["audit"]["provider_dnfs"] == ["green"]
+            race = json.loads((tmp_path / "trial/race.json").read_text())
+            green = [c for c in race["commands"] if c["racer_id"] == "green"]
+            assert len(green) == 1  # The rejected reply supplies no replacement control.
+            assert race["driver_metrics"]["green"]["retirement_reason"] == "HTTP 429"
+            assert broker.journal.check()["uncertain_requests"] == 1
+    finally:
+        await app.state.race_runtime.close()

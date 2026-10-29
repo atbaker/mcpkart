@@ -71,10 +71,16 @@ class Receipts:
 class DemoBroker:
     def __init__(self, *, url, output, logical_id, deadline=180, max_decisions=1100,
                  mock_delay=.2, transport_factory=None, live_status_path=None, paid=False, admission=None,
-                 clock_path=None, interface_path=None, deployment_path=None):
+                 clock_path=None, interface_path=None, deployment_path=None, retire_provider_errors=False):
         if paid and (admission is None or transport_factory is None):
             raise ValueError("Paid demo admission needs a new finite registration and complete clock gate")
+        if not isinstance(retire_provider_errors, bool):
+            raise TypeError("Provider retirement requires an explicit boolean")
+        self.retire_provider_errors = retire_provider_errors
+        self.retired = {}
         self.paid, self.admission = paid, admission
+        if paid and retire_provider_errors != (admission.plan.get("provider_error_policy") == "retire"):
+            raise ValueError("Provider retirement differs from the prospective release")
         self.clock_path, self.interface_path, self.deployment_path = clock_path, interface_path, deployment_path
         if paid and (deadline != admission.plan["deadline_s"] or max_decisions != admission.plan["max_decisions"]):
             raise ValueError("Live limits differ from the prospective registration")
@@ -180,7 +186,7 @@ class DemoBroker:
             _write_new(self.output / "prewarm-receipts.json", await asyncio.gather(*(warm(r) for r in TRIO_RACERS)))
         _write_new(self.output / "collection-start.json", {
             "source_sha256": self.frozen, "routes": self.routes, "setup": self.setup, "seed": 0,
-            "free": not self.paid, "budget_before": self.before, "max_decisions_per_racer": self.max_decisions,
+            "free": not self.paid, "retire_provider_errors": self.retire_provider_errors, "budget_before": self.before, "max_decisions_per_racer": self.max_decisions,
         })
         return self
 
@@ -241,6 +247,8 @@ class DemoBroker:
             if sources() != self.frozen:
                 raise RuntimeError("Source changed during collection")
             observation = self.observations[rid]
+            if rid in self.retired:
+                return {"done": True, "seq": seq, "retired": True}
             if self.stop or observation["finished"] or observation["status"] != "running":
                 return {"done": True, "seq": seq}
             if seq >= self.max_decisions:
@@ -256,7 +264,24 @@ class DemoBroker:
                            "reason": "invalid_native_reply" if not record["ok"] else "stopped_before_apply"}
                 self.samples[rid].append(pending)
                 if not record["ok"]:
-                    raise RuntimeError("Invalid native model reply")
+                    status = record.get("http_status")
+                    provider_error = status in (408, 429, 500, 502, 503, 504, 529) or (
+                        status is None and "missing_single_raw_reply" in record.get("wrapper_failures", [])
+                    )
+                    if not self.retire_provider_errors or not provider_error:
+                        raise RuntimeError("Invalid native model reply")
+                    # No new control is supplied. The kart holds its last native
+                    # input and remains subject to the unchanged rescue rules.
+                    reason = "HTTP " + str(status) if status is not None else "Transport failure"
+                    self.retired[rid] = reason
+                    self.errors.append({"racer_id": rid, "type": "provider_error", "http_status": status})
+                    self.metrics[rid].update(thinking=False, requests=self.drivers[rid].count,
+                                             retired=True, retirement_reason=reason,
+                                             retired_at_s=(record["response_received_ns"] - self.initial["started_ns"]) / 1e9)
+                    self.publish()
+                    receipt = {"done": True, "seq": seq, "applied": False, "retired": True, "reason": reason}
+                    self.receipts.complete(identity, receipt)
+                    return receipt
                 if self.stop:
                     receipt = {"done": True, "seq": seq, "applied": False}
                     self.receipts.complete(identity, receipt)
@@ -302,13 +327,19 @@ class DemoBroker:
             self.receipts.begin(identity)
             race = await tool(self.mcp, "finish_duel", {
                 "race_id": self.initial["race_id"], "owner_token": self.initial["owner_token"],
-                "reason": "driver_error" if self.errors else "drivers_finished",
+                "reason": ("provider_error_dnf" if self.retired and all(e["type"] == "provider_error" for e in self.errors)
+                           else "driver_error" if self.errors else "drivers_finished"),
             })
             metrics = {r: {"requests": self.drivers[r].count,
                            "api_latency_ms": percentiles([s["latency_ms"] for s in self.samples[r]]),
                            "cost_usd": sum(s["cost"] for s in self.samples[r]),
                            "discarded": sum(not s["applied"] for s in self.samples[r])}
                        for r in TRIO_RACERS}
+            for rid in self.retired:
+                metrics[rid].update({k: self.metrics[rid][k] for k in (
+                    "retired", "retirement_reason", "retired_at_s",
+                )})
+                metrics[rid]["retired"] = not race["summary"]["racers"][rid]["finished"]
             race.update(driver_labels={r: LABELS[r] + ("" if self.paid else " · scripted mock") for r in TRIO_RACERS},
                         driver_metrics=metrics)
             _write_new(self.output / "race.json", race)
@@ -318,7 +349,18 @@ class DemoBroker:
                 "budget_before": self.before, "budget_after": self.journal.check(),
                 "source_unchanged": sources() == self.frozen, "collection_complete": True,
             })
-            proof = audit_duel(self.output) if not self.errors and race["timing"]["infrastructure_valid"] else None
+            expected_dnfs = bool(self.retired) and self.retire_provider_errors and all(
+                e["type"] == "provider_error" for e in self.errors
+            )
+            if race["timing"]["infrastructure_valid"] and (not self.errors or expected_dnfs):
+                proof = audit_duel(self.output, allow_failures=expected_dnfs)
+                if expected_dnfs:
+                    if proof["max_sample_lateness_ms"] > 100:
+                        raise RuntimeError("DNF recording exceeds the unchanged sample timing limit")
+                    proof.update(provider_dnfs=sorted(r for r in self.retired if metrics[r]["retired"]),
+                                 execution_audited=True)
+            else:
+                proof = None
             if proof:
                 _write_new(self.output / "proof.json", proof)
             else:

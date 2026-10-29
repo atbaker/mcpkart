@@ -67,14 +67,15 @@ function seek(time, play = false) {
   playbackControls(); showReplay();
 }
 function metricAt(rid, sample) {
-  const rows = recording.driver_timeline?.[rid];
-  if (!rows?.length) return recording.driver_metrics?.[rid] || {};
+  const rows = recording.driver_timeline?.[rid], terminal = recording.driver_metrics?.[rid] || {};
   const time = sample.wall_ns && recording.started_ns ? (sample.wall_ns - recording.started_ns) / 1e9 : sample.time;
+  if (!rows?.length) return terminal.retired && time < terminal.retired_at_s ? {...terminal, retired:false} : terminal;
   let lo = 0, hi = rows.length;
   while (lo < hi) { const mid = (lo + hi) >> 1; if (rows[mid].request_s <= time) lo = mid + 1; else hi = mid; }
   if (!lo) return {};
   const call = rows[lo - 1];
-  return {thinking: time < call.response_s, last_latency_ms: call.latency_ms};
+  const metric = {thinking: time < call.response_s, last_latency_ms: call.latency_ms};
+  return terminal.retired && time >= terminal.retired_at_s ? {...metric, ...terminal, thinking:false} : metric;
 }
 function showReplay() {
   if (!recording) return;
@@ -133,7 +134,7 @@ function renderCard(rid, racer) {
     Lap: `${p.lap || 1} / ${p.laps || 3}`,
     Gates: `${p.checkpoints_passed || 0} / ${(p.laps || 3) * (p.checkpoints_per_lap || 40)}`,
     Rescues: racer.rescue?.count || 0, Input: racer.control?.replaceAll('_', ' ') || '—',
-    State: racer.finished ? 'Finished' : racer.body?.phased ? 'Rejoining' : racer.track?.on_road ? 'Racing' : 'Off road'};
+    State: racer.finished ? 'Finished' : metric.retired ? `DNF · ${metric.retirement_reason || 'Provider error'}` : racer.body?.phased ? 'Rejoining' : racer.track?.on_road ? 'Racing' : 'Off road'};
   for (const [name, value] of Object.entries(values)) cells[name].value.textContent = value;
 }
 function render() {
@@ -147,6 +148,7 @@ function render() {
     : originalFoot;
   const statusNames = {idle: 'Waiting for a race', admitting: 'Starting', running: 'Live race', completed: 'Finished', stopped: 'Stopped'};
   const badge = mode === 'replay' ? replayTime >= duration() ? 'Replay finished' : playing ? 'Replay' : 'Replay paused'
+    : state.reason === 'provider_error_dnf' ? 'Race ended · provider DNF'
     : statusNames[state.status] || (state.reason === 'deadline' ? 'Time limit reached' : 'Race interrupted');
   text('status', badge); text('title', state.label || `${racerIds(observation).length || 2} drivers. One track.`);
   for (const rid of Object.keys(colors)) if ($(rid)) $(rid).hidden = !racers[rid];
@@ -189,8 +191,10 @@ function render() {
   } else if (Object.values(racers).some(racer => racer.finished)) {
     const winner = observation.leader;
     result = winner ? `${state.driver_labels?.[winner] || winner} wins` : 'Same-tick tie';
-    if (!observation.finished) result += ' · race continues';
+    if (!observation.finished && state.status === 'running') result += ' · race continues';
   }
+  const dnfs = Object.entries(state.driver_metrics || {}).filter(([, metric]) => metric.retired).map(([rid]) => state.driver_labels?.[rid] || rid);
+  if (dnfs.length) result += ` · DNF: ${dnfs.join(', ')}`;
   text('result', result);
   const hz = recording?.visualization?.sample_rate_hz;
   text('source', mode === 'replay' ? `${hz ? hz + ' fps · ' : ''}Replay controls do not change the recorded inputs` : 'Physics continues while each driver waits for its next reply');

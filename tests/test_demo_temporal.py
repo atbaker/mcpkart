@@ -95,3 +95,29 @@ async def test_worker_task_replay_reexecutes_local_wrapper_without_second_model_
                 assert len(broker.samples["red"]) == 1
     finally:
         await app.state.race_runtime.close()
+
+
+async def test_real_temporal_provider_dnf_other_children_continue(tmp_path):
+    import httpx
+    app = create_app(trio=True, replay_root=tmp_path)
+    try:
+        async with await WorkflowEnvironment.start_local(
+            dev_server_existing_path=shutil.which("temporal"),
+        ) as env, DemoBroker(url=app.state.mcp_server, output=tmp_path / "trial",
+                            logical_id="mcpkart-temporal-dnf", deadline=1.5,
+                            retire_provider_errors=True, mock_delay=.02) as broker:
+            broker.drivers["green"].http._transport = httpx.MockTransport(
+                lambda _: httpx.Response(429, json={"error": {"message": "injected provider limit"}}),
+            )
+            activities = BrokerActivities(broker)
+            async with Worker(env.client, task_queue="mcpkart-dnf", workflows=[KartRaceWorkflow, KartDriverWorkflow],
+                              activities=[activities.start, activities.step, activities.finish]):
+                result = await asyncio.wait_for(env.client.execute_workflow(
+                    KartRaceWorkflow.run, {"local": True, "max_decisions": 1100},
+                    id="mcpkart-dnf", task_queue="mcpkart-dnf",
+                ), 45)
+                assert result["audit"]["provider_dnfs"] == ["green"]
+                assert broker.drivers["green"].count == 1
+                assert broker.drivers["red"].count > 1 and broker.drivers["blue"].count > 1
+    finally:
+        await app.state.race_runtime.close()

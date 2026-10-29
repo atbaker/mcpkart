@@ -1,3 +1,18 @@
+# Demo branch checkpoint, 29 October 2026
+
+Study 0087 live rehearsal is CLOSED after seven actual native requests. Clef's
+second request returned provider HTTP 429 (hosted-model concurrency), stopping
+the race at 1.8833 s. No ranking, retry or replacement. Root observed exit 1;
+all seven requests/replies, ten AWS invocations, 114 frames and fourteen budget
+transitions audited. Full unknown Clef reservation $0.00393216 / 75,366 tokens
+retained. Ledger now 99,410 requests / $11.525691428002778 / 333,938,714 tokens /
+72 uncertainties / no pending; caps $20 / 110k / 500m unchanged. Stage admission
+is blocked by the new uncertainty. No new paid work is admitted by this closure.
+See docs/experiments/0087-aws-live-demo-outcome.md. The v5 complete free clock
+and exact Cloud interface passed before that attempt; preserve their evidence.
+A proposed per-kart provider-DNF change is preparation only and needs a fresh
+finite live release. All older closed studies and charges below stay intact.
+
 # Working on MCP Kart
 
 ## Current checkpoint

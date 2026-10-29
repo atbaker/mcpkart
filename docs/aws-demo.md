@@ -148,6 +148,12 @@ dispatch state remains unresolved rather than being retried.
 
 ## Tonight's operator path
 
+**Live admission is currently blocked.** The rehearsal stopped on Clef provider
+HTTP 429 and added one fully reserved uncertainty. See the
+[closed outcome](experiments/0087-aws-live-demo-outcome.md). The stage command
+will refuse admission until a new explicitly approved finite release exists.
+
+
 The preserved Linux container is `mcpkart-demo-linux-20261029`. Its physics and
 conventional Temporal worker share one Linux clock; the Mac exposes only the
 spectator at [localhost:8773](http://127.0.0.1:8773/). Keep this container and
