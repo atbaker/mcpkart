@@ -10,6 +10,7 @@ import subprocess
 from pathlib import Path
 
 import boto3
+from dotenv import dotenv_values
 
 ROOT = Path(__file__).resolve().parents[1]
 RELEASE = "artifacts/aws-demo-live-release-v3"
@@ -26,6 +27,19 @@ def credentials():
                      + "\naws_secret_access_key=" + frozen.secret_key
                      + "\naws_session_token=" + (frozen.token or "") + "\n")
     path.chmod(0o600)
+    snapshot_temporal()
+
+
+def snapshot_temporal():
+    values = dotenv_values(ROOT / ".env")
+    target = ROOT / "artifacts/aws-demo-temporal-private.json"
+    if all(values.get(k) for k in ("TEMPORAL_API_KEY", "TEMPORAL_ADDRESS")):
+        selected = {k: values[k] for k in ("TEMPORAL_NAMESPACE", "TEMPORAL_ADDRESS", "TEMPORAL_API_KEY")}
+        descriptor = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+        with os.fdopen(descriptor, "w") as stream:
+            json.dump(selected, stream)
+        target.chmod(0o600)
+    return target.is_file()
 
 
 def main():
@@ -38,7 +52,15 @@ def main():
         return
     plan = json.loads((ROOT / RELEASE / "release.json").read_text())
     identity = plan["entries"][0 if args.entry == "rehearsal" else 1]
-    command = ["docker", "exec", CONTAINER, "python", "-m", "mcpkart.demo_run", "--paid", "--local",
+    if not snapshot_temporal():
+        raise ValueError("Restore Temporal settings in .env; private demo copy is missing")
+    # Only the file path appears in argv. Keys enter the worker environment inside
+    # the container, without shell expansion or command-line secret values.
+    bootstrap = ("import json,os,runpy,sys;"
+                 "os.environ.update(json.load(open('artifacts/aws-demo-temporal-private.json')));"
+                 "sys.argv=['mcpkart.demo_run',*sys.argv[1:]];"
+                 "runpy.run_module('mcpkart.demo_run',run_name='__main__')")
+    command = ["docker", "exec", CONTAINER, "python", "-c", bootstrap, "--paid", "--local",
                "--url", "http://127.0.0.1:8771/mcp", "--release", RELEASE + "/release.json",
                "--clock-qualification", "artifacts/aws-demo-linux-clock-v4/qualification.json",
                "--interface", "artifacts/aws-demo-cloud-interface-v1/trial/interface-proof.json",

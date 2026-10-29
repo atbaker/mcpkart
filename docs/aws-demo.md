@@ -7,7 +7,9 @@ The [design and research](research/2026-10-29-temporal-agentcore-demo.md) explai
 the boundaries and prospective paid gates.
 
 The [free preparation checkpoint](experiments/0086-aws-demo-preparation.md)
-records two complete audited scripted rehearsals. Live driving is separately
+records two complete audited scripted rehearsals. The
+[latest checkpoint](experiments/0087-aws-live-demo-checkpoint.md) records the
+final Linux qualification and remaining live checks. Live driving is separately
 bounded by the [0087 registration](experiments/0087-aws-live-demo-registration.md):
 one rehearsal and one manually launched stage race, with no retries or
 replacement races. Admission requires fresh Linux timing and exact Cloud
@@ -102,8 +104,12 @@ its maximum session lifetime is thirty minutes.
 
 To target `mcpkart-dev.iuiaz`, add `TEMPORAL_API_KEY` and the exact
 `TEMPORAL_ADDRESS` from its connection settings to the repo-root `.env`.
-That file also holds `OPENROUTER_API_KEY`. The demo command reads the Temporal
-settings from `.env`; environment variables take precedence. Explicit local
+That file initially holds `OPENROUTER_API_KEY`, which the live Runtime reads
+from this demo's dedicated AWS secret. The operator helper preserves restored
+Temporal settings in ignored `artifacts/aws-demo-temporal-private.json` (0600),
+because the root `.env` unexpectedly reverted during preparation. It loads that
+copy inside the worker without putting keys in argv. The generic demo command
+reads Temporal settings from `.env`; environment variables take precedence. Explicit local
 namespace overrides do not inherit the Cloud key. Do not put keys in arguments,
 Git or the runbook.
 The same command runs a conventional worker; it does not provision a serverless
