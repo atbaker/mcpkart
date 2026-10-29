@@ -1,15 +1,18 @@
 """Duel RPC adapter reusing the isolated, bounded publication transport."""
 
-from .duel import RACERS, DuelSimulation
+from .duel import RACERS, TRIO_RACERS, DuelSimulation
 from .process_runtime import ProcessRaceRuntime
 
 
 class ProcessDuelRuntime(ProcessRaceRuntime):
     worker_module = "mcpkart.duel_worker"
 
-    def __init__(self, *, watchdog=False):
+    def __init__(self, *, watchdog=False, trio=False):
+        self.racers = TRIO_RACERS if trio else RACERS
+        if trio:
+            self.worker_module = "mcpkart.trio_worker"
         super().__init__(watchdog=watchdog)
-        preview = DuelSimulation()
+        preview = DuelSimulation(**({"racer_ids": list(self.racers), "contact": "ghost"} if trio else {}))
         self._idle = {
             "status": "idle",
             "track": preview.track.as_dict(),
@@ -18,11 +21,12 @@ class ProcessDuelRuntime(ProcessRaceRuntime):
         }
 
     def runtime_info(self):
-        return {**super().runtime_info(), "protocol_version": 2, "mode": "duel"}
+        return {**super().runtime_info(), "protocol_version": 3 if len(self.racers) == 3 else 2,
+                "mode": "trio" if len(self.racers) == 3 else "duel"}
 
     async def observe(self, race_id=None, racer_id=None):
         self._check_race(race_id)
-        if racer_id is not None and racer_id not in RACERS:
+        if racer_id is not None and racer_id not in self.racers:
             raise ValueError("Unknown racer")
         if self._session is None:
             if self._result is None:

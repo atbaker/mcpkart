@@ -75,18 +75,21 @@ class _DuelRace:
 
 
 class DuelRuntime:
-    def __init__(self, *, watchdog=False, native_sleeper=False):
+    def __init__(self, *, watchdog=False, native_sleeper=False, trio=False):
+        from .duel import TRIO_RACERS
+        self.racers = TRIO_RACERS if trio else RACERS
+        self.default_setup = {"racer_ids": list(self.racers), "contact": "ghost"} if trio else {}
         if native_sleeper:
             raise ValueError("Duel runtime uses asyncio pacing")
         self.current = None
         self.watchdog = watchdog
-        self._preview = DuelSimulation()
+        self._preview = DuelSimulation(**self.default_setup)
 
     def runtime_info(self):
         return {
             "backend": "event_loop",
-            "protocol_version": 2,
-            "mode": "duel",
+            "protocol_version": 3 if len(self.racers) == 3 else 2,
+            "mode": "trio" if len(self.racers) == 3 else "duel",
             "watchdog_enabled": self.watchdog,
             "clock_mode": ASYNCIO_CLOCK_MODE,
             "physics_hz": round(1 / DT),
@@ -103,7 +106,9 @@ class DuelRuntime:
             raise ValueError("Duel deadline must be finite, positive and at most 600 seconds")
         if self.current is not None and self.current.status == "running":
             raise ValueError("A duel is already running")
-        setup = dict(race_setup or {})
+        setup = {**self.default_setup, **(race_setup or {})}
+        if tuple(setup.get("racer_ids", RACERS)) != self.racers:
+            raise ValueError("Race setup differs from server racer identities")
         if "reset_after_s" in setup and setup["reset_after_s"] != reset_after_s:
             raise ValueError("Conflicting rescue settings in checkpoint setup")
         setup.setdefault("reset_after_s", reset_after_s)
@@ -117,11 +122,13 @@ class DuelRuntime:
             float(deadline),
             label,
             time.monotonic_ns(),
-            {r: secrets.token_urlsafe(24) for r in RACERS},
+            {r: secrets.token_urlsafe(24) for r in self.racers},
             secrets.token_urlsafe(24),
             origin_tick=sim.tick,
             origin_elapsed=sim.elapsed,
             diagnostics=TimingDiagnostics(watchdog_enabled=self.watchdog),
+            last_command_seq={r: -1 for r in self.racers},
+            last_observed_ns={r: None for r in self.racers},
         )
         self.current = race
         race.diagnostics.start(race.started_ns)
@@ -144,7 +151,7 @@ class DuelRuntime:
                     "driver_token": race.tokens[r],
                     "observation": self.observe(race.race_id, r),
                 }
-                for r in RACERS
+                for r in self.racers
             },
         }
 
@@ -160,7 +167,7 @@ class DuelRuntime:
         now = time.monotonic_ns()
         if racer_id is None:
             return {**race.sim.state(), "race_id": race.race_id, "status": race.status, "observed_ns": now}
-        if racer_id not in RACERS:
+        if racer_id not in self.racers:
             raise ValueError("Unknown racer")
         race.last_observed_ns[racer_id] = now
         return {
@@ -174,7 +181,7 @@ class DuelRuntime:
     async def drive(self, race_id, racer_id, driver_token, action_id, observation_tick, command_seq):
         race = self._require_race(race_id)
         if (
-            racer_id not in RACERS
+            racer_id not in self.racers
             or not isinstance(driver_token, str)
             or not secrets.compare_digest(driver_token, race.tokens[racer_id])
         ):
@@ -227,7 +234,7 @@ class DuelRuntime:
                 late = max(0.0, (wake - target) / 1e6)
                 race.diagnostics.wake(race.sim.tick + 1, wake, late)
                 pending, race.pending = race.pending, {}
-                reset_before = {r: race.sim.karts[r].last_reset_tick for r in RACERS}
+                reset_before = {r: race.sim.karts[r].last_reset_tick for r in self.racers}
                 accepted = {}
                 for rid, (record, future) in pending.items():
                     k = race.sim.karts[rid]
@@ -374,15 +381,15 @@ class DuelRuntime:
             "track": race.sim.track.as_dict(),
             "timing": self._timing(race),
             "events": race.sim.events[-16:],
-            "command_count": {r: race.last_command_seq[r] + 1 for r in RACERS},
-            "pending": {r: r in race.pending for r in RACERS},
+            "command_count": {r: race.last_command_seq[r] + 1 for r in self.racers},
+            "pending": {r: r in race.pending for r in self.racers},
             "trail": {
                 r: [
                     [s["racers"][r]["kart"]["x"], s["racers"][r]["kart"]["y"]]
                     for s in race.samples[-600::3]
                     if s["tick"] >= (race.sim.karts[r].last_reset_tick or 0)
                 ]
-                for r in RACERS
+                for r in self.racers
             },
         }
         if race.sim.episode is not None:

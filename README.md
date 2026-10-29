@@ -117,6 +117,12 @@ Original application defaults and the joint `damped` baseline remain available.
 
 ## Run locally
 
+The `codex/aws-temporal-demo` branch adds an opt-in three-ghost-kart demo with
+conventional Temporal workers, Local Activities, MCP controls, and an AgentCore
+mock adapter. See the [demo runbook](docs/aws-demo.md). Its executable path is
+currently scripted mocks; paid trio admission remains closed pending the new
+deployment-specific qualification and registration.
+
 Install [uv](https://docs.astral.sh/uv/), then:
 
 ```sh

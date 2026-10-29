@@ -12,12 +12,12 @@ from fastmcp import Client
 
 from .bench import tool
 from .decisions import Budget, discover_routes, load_api_key
-from .duel import DuelSimulation
+from .duel import RACERS, TRIO_RACERS, DuelSimulation
 from .duel_bench import audit_duel, collect_duel, sources
 from .duel_clock import mock_routes, validate_qualification
 from .question_context_driver import _read, _safe, _write_new
 
-MODELS = ("typesafe/jev-1.14", "openai/gpt-6-luna-decisions")
+MODELS = ("typesafe/jev-1.14", "openai/gpt-6-luna-decisions", "cloudflare/clef")
 DEFAULT_REPLAY_ROOT = Path(__file__).resolve().parents[2] / "artifacts" / "two-kart-session-v1"
 
 
@@ -59,13 +59,22 @@ async def run(args):
     output = Path(args.output)
     output.mkdir(parents=True, exist_ok=False)
     source = sources()
+    racers = TRIO_RACERS if len(args.models) == 3 else RACERS
     race_setup = setup(args.course, args.grid)
+    if racers == TRIO_RACERS:
+        sign = 1 if args.course == "stadium" else -1
+        race_setup.update(racer_ids=list(racers), contact="ghost", grid=[
+            {"distance_m": 0.0, "offset_m": sign * o, "heading_error_rad": 0.0}
+            for o in (-4.0, 0.0, 4.0)
+        ])
+        if not args.free:
+            raise ValueError("Paid trio admission requires the new demo qualification and registration")
     DuelSimulation(seed=args.seed, **race_setup)
     key, writer = None, None
     try:
         if args.free:
             budget = Budget(output / "mock-budget.json")
-            routes = mock_routes(args.models)
+            routes = mock_routes(args.models, racers)
         else:
             if args.clock_qualification is None:
                 raise ValueError("Paid mode requires --clock-qualification")
@@ -79,7 +88,7 @@ async def run(args):
             qualification = validate_qualification(args.clock_qualification, runtime)
             pinned = await discover_routes(models=list(dict.fromkeys(args.models)))
             by_model = {route["model"]: route for route in pinned}
-            routes = {r: by_model[m] for r, m in zip(("red", "blue"), args.models, strict=True)}
+            routes = {r: by_model[m] for r, m in zip(racers, args.models, strict=True)}
             files = [Path(args.clock_qualification)] + [
                 Path(args.clock_qualification).parent / name for name in qualification["evidence_sha256"]
             ]
@@ -122,7 +131,7 @@ async def run(args):
             deadline=args.deadline,
             max_decisions=args.max_decisions,
             admission=admit,
-            label="Scripted practice" if args.free else f"{args.models[0]} vs {args.models[1]}",
+            label="Scripted practice" if args.free else " vs ".join(args.models),
             live_status_path=args.live_status,
         )
         proof = (
@@ -175,10 +184,10 @@ def parser():
     )
     p.add_argument(
         "--models",
-        nargs=2,
+        nargs="+",
         default=("jev", "jev"),
-        choices=("jev", "openai", *MODELS),
-        metavar=("RED", "BLUE"),
+        choices=("jev", "openai", "clef", *MODELS),
+        metavar="MODEL",
     )
     p.add_argument("--url", default="http://127.0.0.1:8766/mcp")
     p.add_argument("--output", type=Path, required=True)
@@ -207,7 +216,9 @@ def main():
         p.error("Deadline must be positive and at most 600 seconds")
     if not 1 <= args.max_decisions <= 5000:
         p.error("Decision ceiling must be between 1 and 5000 per racer")
-    aliases = {"jev": MODELS[0], "openai": MODELS[1]}
+    if len(args.models) not in (2, 3):
+        p.error("--models requires two or three models")
+    aliases = {"jev": MODELS[0], "openai": MODELS[1], "clef": MODELS[2]}
     args.models = tuple(aliases.get(model, model) for model in args.models)
     raise SystemExit(asyncio.run(run(args)))
 

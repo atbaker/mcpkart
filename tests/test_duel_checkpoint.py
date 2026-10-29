@@ -40,7 +40,7 @@ def test_full_precision_checkpoint_continuation_and_default_config():
     assert set(vars(sim.karts["red"])) == set(KART_FIELDS) | static_kart
     static_world = {
         "grid", "seed", "radius", "restitution", "contact", "phase_s", "karts", "track",
-        "_checkpoint_input", "episode", "_episode_baseline",
+        "_checkpoint_input", "episode", "_episode_baseline", "racer_ids",
     }
     assert set(vars(sim)) == set(WORLD_FIELDS) | static_world
     for tick in range(240):

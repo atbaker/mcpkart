@@ -57,6 +57,8 @@ def test_paid_admission_rejects_invalid_or_insufficient_ledger_without_reset(tmp
 
 
 def qualification(tmp_path, monkeypatch):
+    if not Path("/proc/sys/kernel/random/boot_id").is_file():
+        pytest.skip("Clock qualification fixture requires Linux /proc")
     runtime = {"process_pid": os.getpid(), "backend": "process", "mode": "duel"}
     source = {"engine.py": "frozen"}
     monkeypatch.setattr(duel_clock, "sources", lambda: source)

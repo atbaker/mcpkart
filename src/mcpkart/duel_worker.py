@@ -9,7 +9,7 @@ from .duel_runtime import DuelRuntime
 from .process_runtime import _worker_loop
 
 
-def main():
+def main(runtime_factory=DuelRuntime):
     parser = argparse.ArgumentParser()
     parser.add_argument("--worker-fd", type=int, required=True)
     parser.add_argument("--session", required=True)
@@ -26,7 +26,7 @@ def main():
     try:
         asyncio.run(
             _worker_loop(
-                connection, args.session, args.watchdog, args.native_sleeper, runtime_factory=DuelRuntime
+                connection, args.session, args.watchdog, args.native_sleeper, runtime_factory=runtime_factory
             )
         )
     finally:

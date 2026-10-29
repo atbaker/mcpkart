@@ -10,7 +10,7 @@ import time
 from pathlib import Path
 
 from .decisions import DecisionClient
-from .duel import RACERS, DuelSimulation
+from .duel import RACERS, TRIO_RACERS, DuelSimulation
 from .question_context import GOAL_COMPONENT_DEFINITIONS, PromptDomainError, project_facts
 from .question_context_driver import _number, _read, _safe, _write_new, encoded
 from .sim import ACTIONS
@@ -31,6 +31,14 @@ DUEL_RULES = (
     "of your current nose; relative velocities are opponent minus your velocity in that same frame. "
     "A negative surface_gap_m means overlap; phased means non-colliding. "
     "Choose the next input using the current measurements and physical control descriptions. "
+)
+TRIO_RULES = DUEL_RULES.replace("two-kart", "three-kart").replace(
+    "before the opponent", "before the opponents"
+).replace(
+    "Physical contact between equal-mass karts slows or deflects them "
+    "with normal restitution 0.15; speed is capped at 12 m/s, including after contact. ",
+    "All karts are ghosts: overlapping karts do not collide or change one another. "
+    "Speed is capped at 12 m/s. "
 )
 PROMPT_VERSION = "duel_goal_only_v1"
 
@@ -113,6 +121,8 @@ def duel_facts(
         raise TypeError("Pedal timing requires an explicit boolean profile")
     if include_pedal_timing and control_timing_s is None:
         raise PromptDomainError("Pedal timing requires declared control timing")
+    racers = tuple(config.get("racer_ids", RACERS))
+    trio = racers == TRIO_RACERS
     timing = control_timing_facts(control_timing_s, config) if control_timing_s is not None else None
     for key, expected in {
         "radius": 1.0,
@@ -123,11 +133,11 @@ def duel_facts(
         "reset_after_s": 3.0,
         "restitution": 0.15,
         "phase_s": 1.0,
-        "contact": "solid",
+        "contact": "ghost" if trio else "solid",
     }.items():
         if config["parameters"].get(key) != expected:
             raise PromptDomainError("Game configuration differs from the declared multiplayer rules")
-    if racer_id not in RACERS or raw.get("competition", {}).get("racer_id") != racer_id:
+    if racer_id not in racers or raw.get("competition", {}).get("racer_id") != racer_id:
         raise PromptDomainError("Observation belongs to another racer")
     solo_config = DuelSimulation.from_config(config).karts[racer_id].config()
     facts = project_facts(
@@ -155,17 +165,19 @@ def duel_facts(
             if not _number(abs(body[key])) or abs(body[key] - expected) > 0.0002:
                 raise PromptDomainError("Invalid body edge measurement")
             facts["pedal_facts"]["road"][key] = body[key]
-        opponent = competition["opponent"]
-        if opponent["racer_id"] != next(r for r in RACERS if r != racer_id):
+        opponents = competition["opponents"] if trio else [competition["opponent"]]
+        if not isinstance(opponents, list) or [o["racer_id"] for o in opponents] != [
+            r for r in racers if r != racer_id
+        ]:
             raise PromptDomainError("Invalid opponent identity")
-        if competition["leader"] not in (*RACERS, None):
+        if competition["leader"] not in (*racers, None):
             raise PromptDomainError("Invalid leader")
 
         def finite_tree(value):
             if isinstance(value, float) and not math.isfinite(value):
                 raise PromptDomainError("Nonfinite opponent measurement")
-            if isinstance(value, dict):
-                for item in value.values():
+            if isinstance(value, (dict, list)):
+                for item in value.values() if isinstance(value, dict) else value:
                     finite_tree(item)
 
         finite_tree(competition)
@@ -179,7 +191,7 @@ def duel_facts(
             "surface_gap_m",
             "progress_m",
         ):
-            if not isinstance(opponent[key], (float, int)) or isinstance(opponent[key], bool):
+            if any(not isinstance(o[key], (float, int)) or isinstance(o[key], bool) for o in opponents):
                 raise PromptDomainError("Invalid opponent geometry")
         for head in ("wheel", "pedal"):
             facts[head + "_facts"]["body"] = copy.deepcopy(body)
@@ -204,7 +216,11 @@ class DuelDecisionClient(DecisionClient):
             **kwargs,
         )
         self.instruction_style = PROMPT_VERSION
-        self.instructions = DUEL_RULES
+        self.instructions = (
+            TRIO_RULES if "opponents" in self.facts["wheel_facts"].get("competition", {}) else DUEL_RULES
+        )
+        if self.instructions == TRIO_RULES:
+            self.instruction_style = "trio_goal_only_v1"
 
     @property
     def questions(self):
@@ -212,7 +228,7 @@ class DuelDecisionClient(DecisionClient):
             head: {
                 "type": "choice",
                 "instructions": {
-                    "rules": DUEL_RULES + GOAL_COMPONENT_DEFINITIONS[head],
+                    "rules": self.instructions + GOAL_COMPONENT_DEFINITIONS[head],
                     "current_facts": {head + "_facts": copy.deepcopy(self.facts[head + "_facts"])},
                 },
                 "criteria": copy.deepcopy(self.component_criteria[head]),

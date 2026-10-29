@@ -78,8 +78,8 @@ class DuelReplays:
         self.entries = entries
 
 
-def create_app(runtime=None, replay_root=None):
-    runtime = runtime if runtime is not None else ProcessDuelRuntime()
+def create_app(runtime=None, replay_root=None, *, trio=False):
+    runtime = runtime if runtime is not None else ProcessDuelRuntime(trio=trio)
     root = replay_root or Path(__file__).resolve().parents[2] / "artifacts" / "two-kart-session-v1"
     admitting = False
     mcp = FastMCP("MCP Kart — two-kart racing")
@@ -213,11 +213,12 @@ def main():
     import uvicorn
 
     parser = argparse.ArgumentParser(description="Two-kart Python race and spectator")
+    parser.add_argument("--trio", action="store_true", help="Three ghost karts on the shared clock")
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8766)
     parser.add_argument("--replay-root", type=Path)
     args = parser.parse_args()
-    uvicorn.run(create_app(replay_root=args.replay_root), host=args.host, port=args.port, log_level="warning")
+    uvicorn.run(create_app(replay_root=args.replay_root, trio=args.trio), host=args.host, port=args.port, log_level="warning")
 
 
 if __name__ == "__main__":

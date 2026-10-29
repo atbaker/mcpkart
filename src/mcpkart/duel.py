@@ -15,6 +15,8 @@ from dataclasses import asdict
 from .sim import DT, Simulation, clamp, wrap
 
 RACERS = ("red", "blue")
+TRIO_RACERS = (*RACERS, "green")
+TRIO_VERSION = "trio-v1-ghost"
 DUEL_VERSION = "duel-v1-discs"
 CHECKPOINT_VERSION = "duel-checkpoint-v1"
 WORLD_FIELDS = (
@@ -65,7 +67,13 @@ class DuelSimulation:
         grid=None,
         checkpoint=None,
         episode=None,
+        racer_ids=None,
     ):
+        self.racer_ids = tuple(RACERS if racer_ids is None else racer_ids)
+        if self.racer_ids not in (RACERS, TRIO_RACERS):
+            raise ValueError("Supported racers are red/blue or red/blue/green")
+        if self.racer_ids == TRIO_RACERS and contact != "ghost":
+            raise ValueError("Three-kart races require ghost contact")
         if not _finite(radius) or not 0 < radius <= 3 or not _finite(road_width) or road_width <= radius * 2:
             raise ValueError("Kart radius must fit inside the road")
         if not _finite(restitution) or not 0 <= restitution <= 1:
@@ -79,12 +87,14 @@ class DuelSimulation:
         if not isinstance(laps, int) or isinstance(laps, bool) or not 1 <= laps <= 10:
             raise ValueError("Laps must be an integer from one to ten")
         if grid is None:
+            offsets = (-2.0, 2.0) if self.racer_ids == RACERS else (-4.0, 0.0, 4.0)
             grid = [
-                {"distance_m": 0.0, "offset_m": -2.0, "heading_error_rad": 0.0},
-                {"distance_m": 0.0, "offset_m": 2.0, "heading_error_rad": 0.0},
+                {"distance_m": 0.0, "offset_m": offset, "heading_error_rad": 0.0}
+                for offset in offsets
             ]
-        if not isinstance(grid, list) or len(grid) != 2:
-            raise ValueError("Exactly two grid positions are required")
+        if not isinstance(grid, list) or len(grid) != len(self.racer_ids):
+            raise ValueError("Exactly two grid positions are required" if self.racer_ids == RACERS
+                             else "Exactly three grid positions are required")
         self.grid = []
         for item in grid:
             if not isinstance(item, dict) or set(item) != {"distance_m", "offset_m", "heading_error_rad"}:
@@ -113,14 +123,14 @@ class DuelSimulation:
                 laps=laps,
                 reset_after_s=reset_after_s,
             )
-            for i, (rid, g) in enumerate(zip(RACERS, self.grid, strict=True))
+            for i, (rid, g) in enumerate(zip(self.racer_ids, self.grid, strict=True))
         }
         self.track = self.karts["red"].track
         if math.dist(self._position("red"), self._position("blue")) < self.radius * 2:
             raise ValueError("Starting footprints must not overlap")
         self.tick, self.elapsed = 0, 0.0
-        self.finish_ticks = {rid: None for rid in RACERS}
-        self.phase_until = {rid: 0 for rid in RACERS}
+        self.finish_ticks = {rid: None for rid in self.racer_ids}
+        self.phase_until = {rid: 0 for rid in self.racer_ids}
         self.contacts: list[dict] = []
         self.contact_count = 0
         self.events: list[dict] = []
@@ -134,7 +144,7 @@ class DuelSimulation:
         if episode is not None:
             if (
                 not isinstance(episode, dict) or set(episode) != {"racer_id", "gate_credits"}
-                or episode["racer_id"] not in RACERS
+                or episode["racer_id"] not in self.racer_ids
                 or isinstance(episode["gate_credits"], bool)
                 or not isinstance(episode["gate_credits"], int)
                 or not 1 <= episode["gate_credits"] <= 5
@@ -185,7 +195,7 @@ class DuelSimulation:
                 or checkpoint["version"] != CHECKPOINT_VERSION
                 or checkpoint["base_config_sha256"] != self._base_config_hash()
                 or set(checkpoint["world"]) != set(WORLD_FIELDS)
-                or set(checkpoint["karts"]) != set(RACERS)
+                or set(checkpoint["karts"]) != set(self.racer_ids)
                 or len(json.dumps(checkpoint, allow_nan=False)) > 1024 * 1024
             ):
                 raise ValueError("Checkpoint schema or game configuration differs")
@@ -197,16 +207,16 @@ class DuelSimulation:
             if (
                 not integer(world["tick"]) or not _finite(world["elapsed"])
                 or abs(world["elapsed"] - world["tick"] * DT) > 1e-6
-                or not isinstance(world["_touching"], bool) or world["_leader"] not in (*RACERS, None)
+                or not isinstance(world["_touching"], bool) or world["_leader"] not in (*self.racer_ids, None)
                 or not integer(world["contact_count"])
                 or not isinstance(world["contacts"], list) or not isinstance(world["events"], list)
-                or set(world["finish_ticks"]) != set(RACERS) or set(world["phase_until"]) != set(RACERS)
+                or set(world["finish_ticks"]) != set(self.racer_ids) or set(world["phase_until"]) != set(self.racer_ids)
             ):
                 raise ValueError("Invalid checkpoint world clock or contact state")
             numeric = set(KART_FIELDS) - {
                 "finished", "action_id", "lap_times", "last_reset_tick", "reset_events"
             }
-            for r in RACERS:
+            for r in self.racer_ids:
                 state = checkpoint["karts"][r]
                 if set(state) != set(KART_FIELDS) or not all(_finite(state[key]) for key in numeric):
                     raise ValueError("Checkpoint kart fields must be complete and finite")
@@ -242,7 +252,7 @@ class DuelSimulation:
                     raise ValueError("Checkpoint road projection differs from position")
             for key in WORLD_FIELDS:
                 setattr(self, key, copy.deepcopy(world[key]))
-            for r in RACERS:
+            for r in self.racer_ids:
                 for key in KART_FIELDS:
                     setattr(self.karts[r], key, copy.deepcopy(checkpoint["karts"][r][key]))
         except (KeyError, TypeError, OverflowError) as error:
@@ -262,7 +272,7 @@ class DuelSimulation:
 
     @classmethod
     def from_config(cls, config):
-        if config.get("version") != DUEL_VERSION:
+        if config.get("version") not in (DUEL_VERSION, TRIO_VERSION):
             raise ValueError("Unsupported duel configuration")
         sim = cls(**config["parameters"])
         if sim.config() != config:
@@ -281,17 +291,17 @@ class DuelSimulation:
         return self.karts[rid].finished or self.phase_until[rid] > 0
 
     def set_control(self, rid, action_id):
-        if rid not in RACERS:
+        if rid not in self.racer_ids:
             raise ValueError("Unknown racer")
         if self.karts[rid].finished:
             raise ValueError("Racer has already finished")
         self.karts[rid].set_control(action_id)
 
     def _contact(self, old):
-        a, b = (self.karts[rid] for rid in RACERS)
-        if self.contact == "ghost" or any(self.phased(rid) for rid in RACERS):
+        if self.contact == "ghost" or any(self.phased(rid) for rid in self.racer_ids):
             self._touching = False
             return {}
+        a, b = (self.karts[rid] for rid in self.racer_ids)
         ax, ay = old["red"]
         bx, by = old["blue"]
         px, py = bx - ax, by - ay
@@ -364,14 +374,16 @@ class DuelSimulation:
     def step(self):
         if self.finished:
             return
-        separated = math.dist(self._position("red"), self._position("blue")) >= self.radius * 2 + 0.001
-        for rid in RACERS:
+        separated = len(self.racer_ids) == 3 or (
+            math.dist(self._position("red"), self._position("blue")) >= self.radius * 2 + 0.001
+        )
+        for rid in self.racer_ids:
             if self.phase_until[rid] and self.tick >= self.phase_until[rid] and separated:
                 self.phase_until[rid] = 0
                 self.events.append(
                     {"type": "phase_end", "racer_id": rid, "tick": self.tick, "time": self.elapsed}
                 )
-        old = {rid: self._position(rid) for rid in RACERS}
+        old = {rid: self._position(rid) for rid in self.racer_ids}
         resets = {rid: len(k.reset_events) for rid, k in self.karts.items()}
         contexts = {rid: k._advance_dynamics() for rid, k in self.karts.items()}
         paths = self._contact(old)
@@ -419,19 +431,30 @@ class DuelSimulation:
         return (k.checkpoints_passed + clamp(delta / segment, 0.0, 0.999999)) * segment
 
     def leader(self):
-        finished = [r for r in RACERS if self.finish_ticks[r] is not None]
+        finished = [r for r in self.racer_ids if self.finish_ticks[r] is not None]
         if finished:
             earliest = min(self.finish_ticks[r] for r in finished)
             winners = [r for r in finished if self.finish_ticks[r] == earliest]
             return winners[0] if len(winners) == 1 else None
-        scores = {r: self.progress_m(r) for r in RACERS}
-        return None if abs(scores["red"] - scores["blue"]) < 0.5 else max(scores, key=scores.get)
+        scores = {r: self.progress_m(r) for r in self.racer_ids}
+        ordered = sorted(scores, key=scores.get, reverse=True)
+        return None if scores[ordered[0]] - scores[ordered[1]] < 0.5 else ordered[0]
 
     def observation(self, rid):
-        if rid not in RACERS:
+        if rid not in self.racer_ids:
             raise ValueError("Unknown racer")
+        if self.racer_ids == TRIO_RACERS:
+            raw = self._observation_with_opponent(rid, next(r for r in self.racer_ids if r != rid))
+            raw["competition"]["opponents"] = [
+                self._observation_with_opponent(rid, r)["competition"]["opponent"]
+                for r in self.racer_ids if r != rid
+            ]
+            del raw["competition"]["opponent"]
+            return raw
+        return self._observation_with_opponent(rid, next(r for r in self.racer_ids if r != rid))
+
+    def _observation_with_opponent(self, rid, other_id):
         k = self.karts[rid]
-        other_id = next(r for r in RACERS if r != rid)
         other = self.karts[other_id]
         raw = k.observation()
         raw.update(tick=self.tick, time=round(self.elapsed, 4), finished=k.finished)
@@ -470,20 +493,20 @@ class DuelSimulation:
         return {
             "tick": self.tick,
             "time": self.elapsed,
-            "racers": {r: self.observation(r) for r in RACERS},
+            "racers": {r: self.observation(r) for r in self.racer_ids},
             "leader": self.leader(),
             "finished": self.finished,
         }
 
     def summary(self):
-        finished = [r for r in RACERS if self.finish_ticks[r] is not None]
+        finished = [r for r in self.racer_ids if self.finish_ticks[r] is not None]
         first = min((self.finish_ticks[r] for r in finished), default=None)
         return {
             "finished": self.finished,
             "elapsed": self.elapsed,
             "ticks": self.tick,
             "winner_ids": [r for r in finished if self.finish_ticks[r] == first],
-            "finish_times_s": {r: self.finish_ticks[r] * DT if r in finished else None for r in RACERS},
+            "finish_times_s": {r: self.finish_ticks[r] * DT if r in finished else None for r in self.racer_ids},
             "racers": {r: k.summary() for r, k in self.karts.items()},
             "contacts": self.contact_count,
             "lead_changes": sum(e["type"] == "lead_change" for e in self.events),
@@ -492,7 +515,7 @@ class DuelSimulation:
     def config(self):
         k = self.karts["red"]
         result = {
-            "version": DUEL_VERSION,
+            "version": DUEL_VERSION if self.racer_ids == RACERS else TRIO_VERSION,
             "dt": DT,
             "parameters": {
                 "seed": self.seed,
@@ -510,12 +533,15 @@ class DuelSimulation:
             },
             "handling": asdict(k.handling),
             "track": self.track.as_dict(),
-            "racer_ids": list(RACERS),
+            "racer_ids": list(self.racer_ids),
             "finish_ties": "same_physics_tick",
             "boundary": "full_circle",
             "contact_solver": "swept_equal_mass_normal_impulse",
             "speed_cap": "motor_and_after_contact_impulse",
         }
+        if self.racer_ids == TRIO_RACERS:
+            result["parameters"]["racer_ids"] = list(self.racer_ids)
+            result["contact_solver"] = "none_ghost"
         if self._checkpoint_input is not None:
             result["parameters"]["checkpoint"] = copy.deepcopy(self._checkpoint_input)
         if self.episode is not None:

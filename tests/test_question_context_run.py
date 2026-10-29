@@ -32,6 +32,8 @@ def test_pending_ledger_is_rejected_without_a_write(tmp_path):
 
 
 def clock_fixture(tmp_path, monkeypatch):
+    if not Path("/proc/sys/kernel/random/boot_id").is_file():
+        pytest.skip("Clock qualification fixture requires Linux /proc")
     from mcpkart import question_context_run as cli
     evidence = tmp_path / 'free-evidence.json';evidence.write_text('{}')
     runtime = {'backend': 'process', 'protocol_version': 1, 'watchdog_enabled': False,

@@ -15,8 +15,8 @@ import httpx
 from fastmcp import Client
 
 from .bench import tool
-from .decisions import Budget
-from .duel import DuelSimulation
+from .decisions import DEFAULT_PROVIDERS, Budget
+from .duel import TRIO_RACERS, DuelSimulation
 from .duel_bench import audit_duel, collect_duel, sources
 from .question_context_driver import _read, _write_new
 from .question_context_run import start_ticks
@@ -30,20 +30,22 @@ def sha(path):
     return digest.hexdigest()
 
 
-def mock_routes(models=("typesafe/jev-1.14", "typesafe/jev-1.14")):
+def mock_routes(models=("typesafe/jev-1.14", "typesafe/jev-1.14"), racers=("red", "blue")):
     return {
         rid: {
             "model": model,
             "resolved_model": model + "-mock",
-            "provider": "typesafe" if model.startswith("typesafe/") else "openai",
-            "provider_name": "TypeSafe" if model.startswith("typesafe/") else "OpenAI",
+            "provider": DEFAULT_PROVIDERS[model],
+            "provider_name": {"typesafe": "TypeSafe", "openai": "OpenAI", "primeintellect": "Prime Intellect"}[
+                DEFAULT_PROVIDERS[model]
+            ],
             "price_input_per_token": 0,
             "price_output_per_token": 0,
             "price_per_request": 0,
             "context_length": 262144,
             "max_completion_tokens": 235929,
         }
-        for rid, model in zip(("red", "blue"), models, strict=True)
+        for rid, model in zip(racers, models, strict=True)
     }
 
 
@@ -81,12 +83,14 @@ def _local_server(url, runtime):
     if (
         urlparse(url).hostname not in ("127.0.0.1", "localhost", "::1")
         or runtime.get("backend") != "process"
-        or runtime.get("mode") != "duel"
+        or runtime.get("mode") not in ("duel", "trio")
     ):
         raise ValueError("Clock qualification requires the local process-isolated duel server")
     command = Path(f"/proc/{runtime['process_pid']}/cmdline").read_bytes().split(b"\0")
     if not any(b"mcpkart.duel_web" in value for value in command):
         raise ValueError("Use the standard python -m mcpkart.duel_web server for the parent-pause check")
+    if runtime.get("mode") == "trio" and b"--trio" not in command:
+        raise ValueError("Trio qualification requires the standard --trio server")
 
 
 def _worker_memory(parent_pid):
@@ -158,8 +162,19 @@ async def run(args):
             ],
         },
     ]
+    trio = getattr(args, "trio", False)
+    if trio:
+        for index, setup in enumerate(setups):
+            sign = -1 if setup["course"].endswith("clockwise") else 1
+            setup.update(racer_ids=list(TRIO_RACERS), contact="ghost", grid=[
+                {"distance_m": float(-3 * i if index >= 2 else 0),
+                 "offset_m": sign * offset, "heading_error_rad": 0.0}
+                for i, offset in enumerate((-4.0, 0.0, 4.0))
+            ])
     async with Client(args.url, timeout=45) as mcp:
         runtime = await tool(mcp, "runtime_info")
+        if runtime.get("mode") != ("trio" if trio else "duel"):
+            raise ValueError("Clock qualification mode differs from the selected server")
         _local_server(args.url, runtime)
     plan = {
         "source_sha256": frozen,
@@ -180,7 +195,9 @@ async def run(args):
         directory = output / f"control-{index}"
         result = await collect_duel(
             url=args.url,
-            routes=mock_routes(),
+            routes=mock_routes(
+                ("typesafe/jev-1.14", "openai/gpt-6-luna-decisions", "cloudflare/clef"), TRIO_RACERS,
+            ) if trio else mock_routes(),
             setup=setup,
             seed=301 + index,
             output=directory,
@@ -309,6 +326,7 @@ async def run(args):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--url", default="http://127.0.0.1:8766/mcp")
+    parser.add_argument("--trio", action="store_true", help="Qualify four complete three-ghost-kart controls")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--ledger", type=Path, default=Path("artifacts/budget.json"))
     parser.add_argument("--neutral-seconds", type=float, default=170.1)

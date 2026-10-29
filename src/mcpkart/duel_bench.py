@@ -20,7 +20,8 @@ import httpx
 from fastmcp import Client
 
 from .bench import percentiles, tool
-from .duel import RACERS, DuelSimulation
+from .demo_mock import free_choices
+from .duel import DuelSimulation
 from .duel_decisions import BudgetJournal, DuelDecisionClient, DuelDriver, duel_facts
 from .question_context_driver import WireCapture, _read, _write_new, encoded
 
@@ -29,36 +30,6 @@ def sources():
     root = Path(__file__).parent
     paths = sorted(root.glob("*.py")) + [root / "static" / "duel.html"]
     return {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
-
-
-def free_choices(facts):
-    """Free infrastructure control only; never used in actual model collection."""
-    theta = facts["wheel_facts"]["road"]["preview_15m_bearing_deg"]
-    wheel = (
-        "hard_right"
-        if theta < -22
-        else "right"
-        if theta < -7
-        else "straight"
-        if theta <= 7
-        else "left"
-        if theta <= 22
-        else "hard_left"
-    )
-    p = facts["pedal_facts"]
-    road = p["road"]
-    speed = p["kart"]["speed_m_s"]
-    lateral = p["current_road_frame"]["velocity_left_m_s"]
-    outside = (
-        not road["on_road"]
-        or road["offset_m"] > 0
-        and road["left_edge_clearance_m"] <= 3
-        and lateral >= 0.5
-        or road["offset_m"] < 0
-        and road["right_edge_clearance_m"] <= 3
-        and lateral <= -0.5
-    )
-    return wheel, "accelerate" if speed < 2 or not outside else "brake" if speed > 6 else "coast"
 
 
 async def collect_duel(
@@ -98,10 +69,13 @@ async def collect_duel(
     output = Path(output)
     output.mkdir(parents=True, exist_ok=False)
     config = DuelSimulation(seed=seed, **setup).config()
+    racers = tuple(config["racer_ids"])
+    if set(routes) != set(racers):
+        raise ValueError("Routes must match every racer")
     frozen = sources()
     ledger_before = _read(budget.path)
     journal = BudgetJournal(budget, output / "budget-events.jsonl")
-    seen_ids, stop, samples = set(), asyncio.Event(), {r: [] for r in RACERS}
+    seen_ids, stop, samples = set(), asyncio.Event(), {r: [] for r in racers}
     errors, pause, in_flight, max_in_flight = [], {}, set(), 0
     spectator_warnings = []
     _write_new(
@@ -126,10 +100,10 @@ async def collect_duel(
         try:
             mcp = await stack.enter_async_context(Client(url, timeout=45))
             runtime = await tool(mcp, "runtime_info")
-            if runtime.get("mode") != "duel" or runtime.get("backend") != "process":
+            if runtime.get("mode") != ("trio" if len(racers) == 3 else "duel") or runtime.get("backend") != "process":
                 raise ValueError("A process-isolated duel runtime is required")
             captures, drivers = {}, {}
-            for rid in RACERS:
+            for rid in racers:
                 capture = captures[rid] = WireCapture()
 
                 async def mock(request, rid=rid):
@@ -193,14 +167,14 @@ async def collect_duel(
                 mcp, "start_duel", {"seed": seed, "deadline": deadline, "label": label, "race_setup": setup}
             )
             race_id = initial["race_id"]
-            live_metrics = {r: {"requests": 0, "thinking": False, "last_latency_ms": None} for r in RACERS}
+            live_metrics = {r: {"requests": 0, "thinking": False, "last_latency_ms": None} for r in racers}
             driver_labels = {
                 r: (
-                    "Scripted control" if free else "Jev" if routes[r]["provider"] == "typesafe" else "OpenAI"
+                    "Scripted control" if free else {"typesafe": "Jev", "openai": "OpenAI", "primeintellect": "Clef"}[routes[r]["provider"]]
                 )
                 + " · "
                 + r
-                for r in RACERS
+                for r in racers
             }
 
             def publish_live():
@@ -317,7 +291,7 @@ async def collect_duel(
 
             background = [asyncio.create_task(spectator()), asyncio.create_task(pause_once())]
             try:
-                await asyncio.gather(*(drive(r) for r in RACERS))
+                await asyncio.gather(*(drive(r) for r in racers))
             finally:
                 stop.set()
                 for task in background:
@@ -334,11 +308,11 @@ async def collect_duel(
                 )
             race["driver_labels"] = {
                 r: (
-                    "Scripted control" if free else "Jev" if routes[r]["provider"] == "typesafe" else "OpenAI"
+                    "Scripted control" if free else {"typesafe": "Jev", "openai": "OpenAI", "primeintellect": "Clef"}[routes[r]["provider"]]
                 )
                 + " · "
                 + r
-                for r in RACERS
+                for r in racers
             }
             metrics = {
                 r: {
@@ -347,7 +321,7 @@ async def collect_duel(
                     "cost_usd": sum(x["cost"] for x in samples[r]),
                     "discarded": sum(not x["applied"] for x in samples[r]),
                 }
-                for r in RACERS
+                for r in racers
             }
             race["driver_metrics"] = metrics
             _write_new(output / "race.json", race)
@@ -382,13 +356,14 @@ def audit_duel(directory):
     start = _read(directory / "collection-start.json")
     decisions = _read(directory / "decisions.json")
     sim = DuelSimulation.from_config(race["config"])
+    racers = sim.racer_ids
     commands = {}
     for c in race["commands"]:
         commands.setdefault(c["applied_tick"], []).append(c)
-    queries = {r: {} for r in RACERS}
+    queries = {r: {} for r in racers}
     calls = 0
     response_ids, reservations = set(), {}
-    for rid in RACERS:
+    for rid in racers:
         for path in sorted((directory / rid).glob("query-*.json")):
             query = _read(path)
             queries[rid].setdefault(query["raw_observation"]["tick"], []).append(query)
@@ -397,7 +372,7 @@ def audit_duel(directory):
         nonlocal calls
         assert sim.state()["racers"] == sample["racers"], ("physics", sample["tick"])
         assert sim.leader() == sample["leader"]
-        for rid in RACERS:
+        for rid in racers:
             for query in queries[rid].pop(sample["tick"], []):
                 raw = query["raw_observation"]
                 expected = sim.observation(rid)
@@ -480,7 +455,7 @@ def audit_duel(directory):
         reservation = event["reservation_id"]
         rid = event["racer_id"]
         if event["kind"] == "reserve":
-            assert rid not in owners.values() and len(owners) < 2
+            assert rid not in owners.values() and len(owners) < len(racers)
             owners[reservation] = rid
             expected["requests"] += 1
             item = event["after"]["pending"][reservation]
@@ -503,7 +478,7 @@ def audit_duel(directory):
         current = expected
         peak = max(peak, len(owners))
     assert not owners and current == collection["budget_after"]
-    applied = {(r, c["command_seq"]): c for r in RACERS for c in decisions[r] if c["applied"]}
+    applied = {(r, c["command_seq"]): c for r in racers for c in decisions[r] if c["applied"]}
     assert len(applied) == len(race["commands"])
     for command in race["commands"]:
         actual = applied[(command["racer_id"], command["command_seq"])]

@@ -54,7 +54,7 @@ def visual_recording(recording, stride=3):
                 }
                 for c in calls.get(rid, [])
             ]
-            for rid in ("red", "blue")
+            for rid in race["samples"][0]["racers"]
         }
     return visual
 
