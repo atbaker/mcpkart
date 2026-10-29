@@ -69,7 +69,7 @@ were not changed. Version 1 was mock-only. The live-capable versions can forward
 OpenRouter requests under a hash-bound, expiring release. Its role reads only
 this demo's dedicated Secrets Manager secret, code objects and logs; it has no
 Bedrock inference permission. The live deployment receipt is in
-`artifacts/aws-demo-live-release-v2/deployment.json`.
+`artifacts/aws-demo-live-release-v3/deployment.json`.
 
 Pass that receipt's Runtime ARN to the same command:
 

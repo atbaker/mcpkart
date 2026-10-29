@@ -53,9 +53,10 @@ class Admission:
         remaining = (datetime.fromisoformat(self.plan["expires_utc"]) - datetime.now(UTC)).total_seconds()
         if remaining <= 0:
             raise RuntimeError("Live release expired")
-        for path, digest in getattr(self, "bound", {}).items():
-            if sha(path) != digest:
-                raise RuntimeError("Bound qualification or interface evidence changed")
+        for path, identity in getattr(self, "bound", {}).items():
+            stat = path.stat()
+            if (stat.st_ino, stat.st_size, stat.st_mtime_ns) != identity:
+                raise RuntimeError("Bound qualification or interface manifest changed")
 
     def qualify(self, runtime, clock_path, interface_path, deployment_path):
         self.check()
@@ -74,6 +75,12 @@ class Admission:
         deployment = json.loads(Path(deployment_path).read_text())
         if deployment.get("release_sha256") != self.digest or deployment.get("runtime_arn") != self.plan["agentcore_arn"]:
             raise ValueError("AgentCore deployment differs from the frozen release")
+        # Verify all payload hashes once before the physics epoch. The hot path
+        # checks the three frozen manifests, never rehashes recording archives.
+        for name, expected in interface["evidence_sha256"].items():
+            payload = Path(interface_path).parent / name
+            if not payload.resolve().is_relative_to(Path(interface_path).parent.resolve()) or sha(payload) != expected:
+                raise ValueError("Cloud interface payload changed: " + name)
         # Read current configuration; an old receipt alone cannot establish the active version.
         import boto3
         from botocore.config import Config
@@ -86,9 +93,10 @@ class Admission:
         ) != self.digest:
             raise ValueError("Active AgentCore release/version is not ready or changed")
         paths = [Path(clock_path), Path(interface_path), Path(deployment_path)]
-        paths += [Path(clock_path).parent / name for name in q["evidence_sha256"]]
-        paths += [Path(interface_path).parent / name for name in interface["evidence_sha256"]]
-        self.bound = {p: sha(p) for p in paths}
+        self.bound = {}
+        for path in paths:
+            stat = path.stat()
+            self.bound[path] = (stat.st_ino, stat.st_size, stat.st_mtime_ns)
         # Claim exactly once, before starting physics or performing live effects.
         _write_new(self.path.parent / (self.logical_id + "-claimed.json"), {
             "release_sha256": self.digest, "logical_id": self.logical_id,
