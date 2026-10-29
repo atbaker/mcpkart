@@ -43,13 +43,15 @@ class KartRaceWorkflow:
                     id=workflow.info().workflow_id + "-" + rid,
                 ))
             await asyncio.gather(*children)
+        except Exception as error:  # noqa: BLE001 - native errors are recorded by the broker
+            workflow.logger.warning("Driver stopped; draining broker: %s", type(error).__name__)
         finally:
+            # Stop admission and drain native replies before cancelling wrappers.
+            receipt = await asyncio.shield(workflow.execute_activity(
+                "kart_finish", start_to_close_timeout=timedelta(seconds=60), retry_policy=NO_RETRY,
+            ))
             for child in children:
                 if not child.done():
                     child.cancel()
             await asyncio.gather(*children, return_exceptions=True)
-            # Cleanup drains native replies; it never retries paid work.
-            receipt = await asyncio.shield(workflow.execute_activity(
-                "kart_finish", start_to_close_timeout=timedelta(seconds=60), retry_policy=NO_RETRY,
-            ))
         return receipt

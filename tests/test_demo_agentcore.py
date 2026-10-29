@@ -47,5 +47,43 @@ async def test_agentcore_bridge_preserves_native_bytes_and_omits_authorization()
 
 
 async def test_agentcore_adapter_cannot_enable_paid_inference():
-    with pytest.raises(ValueError, match="free mocks"):
+    with pytest.raises(ValueError, match="release"):
         await invoke({"mode": "paid"})
+
+
+async def test_live_adapter_forwards_exact_bytes_once_without_policy(monkeypatch):
+    import hashlib
+
+    import mcpkart.demo_agentcore as adapter
+
+    monkeypatch.setenv("MCPKART_RELEASE_SHA256", "a" * 64)
+    monkeypatch.setenv("MCPKART_EXPIRES_UTC", "2099-01-01T00:00:00+00:00")
+    monkeypatch.setattr(adapter, "key", lambda: "private-test-key")
+    monkeypatch.setattr(adapter, "_seen", set())
+    calls = []
+    native = b'{"error":"test infrastructure failure","usage":{"cost":0}}'
+
+    async def wire(request):
+        calls.append(request.content)
+        assert request.headers["Authorization"] == "Bearer private-test-key"
+        return httpx.Response(503, content=native)
+
+    original_client = httpx.AsyncClient
+    monkeypatch.setattr(adapter.httpx, "AsyncClient", lambda **kwargs: original_client(
+        transport=httpx.MockTransport(wire), **kwargs,
+    ))
+    original = json.dumps({"model": "cloudflare/clef", "state": {},
+                           "questions": {"wheel": {}, "pedal": {}},
+                           "provider": {"only": ["primeintellect"], "allow_fallbacks": False}}).encode()
+    packet = {"mode": "paid", "release_sha256": "a" * 64, "operation_id": "mcpkart-test:green:0",
+              "request_b64": base64.b64encode(original).decode(),
+              "request_sha256": hashlib.sha256(original).hexdigest()}
+    result = await invoke(packet)
+    assert result["status"] == 503 and base64.b64decode(result["response_b64"]) == native
+    with pytest.raises(ValueError, match="Duplicate"):
+        await invoke(packet)
+    assert calls == [original]
+    monkeypatch.setenv("MCPKART_EXPIRES_UTC", "2000-01-01T00:00:00+00:00")
+    with pytest.raises(ValueError, match="expired"):
+        await invoke({**packet, "operation_id": "mcpkart-test:green:1"})
+    assert calls == [original]

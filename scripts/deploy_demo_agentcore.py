@@ -40,7 +40,7 @@ def prepare(output):
     subprocess.run([
         "uv", "pip", "install", "--python-platform", "aarch64-manylinux2014",
         "--python-version", "3.12", "--only-binary", ":all:",
-        "--target", str(package), "-c", str(output / "requirements.txt"), "bedrock-agentcore",
+        "--target", str(package), "-c", str(output / "requirements.txt"), "bedrock-agentcore", "httpx",
     ], check=True, cwd=ROOT, env={**os.environ, "UV_CACHE_DIR": "/tmp/mcpkart-uv-cache"})
     archive = output / "deployment.zip"
     with zipfile.ZipFile(archive, "x", zipfile.ZIP_DEFLATED) as target:

@@ -349,7 +349,7 @@ async def collect_duel(
             journal.close()
 
 
-def audit_duel(directory):
+def audit_duel(directory, *, allow_failures=False):
     directory = Path(directory)
     race = _read(directory / "race.json")
     collection = _read(directory / "collection.json")
@@ -408,10 +408,17 @@ def audit_duel(directory):
                 assert len(wire) == 1 and wire[0]["body_utf8"].encode() == encoded(payload)
                 assert wire[0]["body_sha256"] == hashlib.sha256(encoded(payload)).hexdigest()
                 replies = capture["wire"]["responses"]
+                record = capture["record"]
+                route = start["routes"][rid]
+                reservations[record["reservation_id"]] = (rid, record)
+                for reply in replies:
+                    assert hashlib.sha256(reply["body_utf8"].encode()).hexdigest() == reply["body_sha256"]
+                if allow_failures and not record["ok"]:
+                    assert not any(d["applied"] and d["query_index"] == query["index"] for d in decisions[rid])
+                    calls += 1
+                    continue
                 assert len(replies) == 1 and replies[0]["status"] == 200
                 body = replies[0]["json"]
-                route = start["routes"][rid]
-                record = capture["record"]
                 assert body["model"] == route["resolved_model"] and body["provider"] == route["provider_name"]
                 assert record["ok"] and record["id"] == body["id"] and record["usage"] == body["usage"]
                 assert isinstance(body["id"], str) and body["id"].strip() and body["id"] not in response_ids
@@ -461,12 +468,22 @@ def audit_duel(directory):
             item = event["after"]["pending"][reservation]
             assert item["cost"] == event["cost"] and item["tokens"] == event["tokens"]
             assert item["model"] == event["model"] and item["provider"] == event["provider"]
+            route = start["routes"][rid]
+            _, record = reservations[reservation]
+            maximum = int(route.get("max_completion_tokens") or route.get("context_length") or 1000000)
+            assert item["tokens"] == record["input_token_ceiling"] + maximum
+            assert item["cost"] == (record["input_token_ceiling"] * route["price_input_per_token"]
+                                    + maximum * route["price_output_per_token"] + route.get("price_per_request", 0))
             expected["pending"][reservation] = item
         else:
             assert owners.pop(reservation) == rid
             owner, record = reservations[reservation]
-            assert owner == rid and event["cost"] == record["usage"]["cost"]
-            assert event["tokens"] == record["usage"]["input_tokens"] + record["usage"]["output_tokens"]
+            assert owner == rid
+            usage = record.get("usage", {})
+            assert event["cost"] == usage.get("cost")
+            tokens = (usage["input_tokens"] + usage["output_tokens"]
+                      if all(isinstance(usage.get(k), int) for k in ("input_tokens", "output_tokens")) else None)
+            assert event["tokens"] == tokens
             item = expected["pending"].pop(reservation)
             expected["charged_usd"] += item["cost"] if event["cost"] is None else event["cost"]
             expected["charged_tokens"] += item["tokens"] if event["tokens"] is None else event["tokens"]
@@ -490,15 +507,17 @@ def audit_duel(directory):
             assert actual["delay_ended_ns"] - actual["delay_started_ns"] >= start["added_delay_s"] * 1e9
     assert calls == sum(m["requests"] for m in collection["metrics"].values()) == len(events) // 2
     assert (
-        race["timing"]["infrastructure_valid"] and collection["source_unchanged"] and not collection["errors"]
+        collection["source_unchanged"] and (allow_failures or (
+            race["timing"]["infrastructure_valid"] and not collection["errors"]))
     )
     sample_lateness = [
         (s["wall_ns"] - race["started_ns"]) / 1e6 - (s["tick"] - origin_tick) * 1000 / 60
         for s in race["samples"][1:]
     ]
-    assert max(sample_lateness, default=0) <= 100
+    assert allow_failures or max(sample_lateness, default=0) <= 100
     return {
         "passed": True,
+        "failure_evidence_only": allow_failures,
         "physics_frames": len(race["samples"]),
         "exact_queries": calls,
         "budget_transitions": len(events),

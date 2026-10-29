@@ -124,3 +124,46 @@ async def test_local_activity_reexecution_returns_same_broker_receipt_without_ch
 def test_paid_demo_cannot_bypass_new_registration(tmp_path):
     with pytest.raises(ValueError, match="registration"):
         DemoBroker(url="unused", output=tmp_path, logical_id="mcpkart-paid", paid=True)
+
+
+async def test_failed_reply_stops_other_controls_and_keeps_all_reservations(tmp_path):
+    import httpx
+
+    from mcpkart.demo_mock import free_choices
+
+    def transport(rid):
+        async def reply(request):
+            packet = json.loads(request.content)
+            if rid == "red":
+                await asyncio.sleep(.05)
+                return httpx.Response(503, json={"error": "injected failure"})
+            await asyncio.sleep(.1)
+            facts = {h + "_facts": packet["questions"][h]["instructions"]["current_facts"][h + "_facts"]
+                     for h in ("wheel", "pedal")}
+            wheel, pedal = free_choices(facts)
+            return httpx.Response(200, json={"id": "mock-" + rid, "model": packet["model"] + "-mock",
+                "provider": {"blue": "OpenAI", "green": "Prime Intellect"}[rid],
+                "answers": {"wheel": {"type": "choice", "choice": wheel},
+                            "pedal": {"type": "choice", "choice": pedal}},
+                "usage": {"input_tokens": 0, "output_tokens": 0, "cost": 0}})
+        return httpx.MockTransport(reply)
+
+    app = create_app(trio=True, replay_root=tmp_path)
+    try:
+        async with DemoBroker(url=app.state.mcp_server, output=tmp_path / "trial",
+                              logical_id="mcpkart-failed-reply", mock_delay=.01) as broker:
+            # Install after prepare to avoid prewarming the intentionally failed route.
+            for rid in TRIO_RACERS:
+                broker.drivers[rid].http._transport = transport(rid)
+            await broker.start()
+            await asyncio.gather(*(broker.step(r, 0) for r in TRIO_RACERS), return_exceptions=True)
+            receipt = await broker.finish()
+            assert receipt["audit"] is None
+            assert all(not s["applied"] for rows in broker.samples.values() for s in rows)
+            budget = broker.journal.check()
+            assert budget["uncertain_requests"] == 1 and not budget["pending"] and budget["requests"] == 3
+            assert budget["charged_tokens"] == 16384 + 235929
+            proof = json.loads((tmp_path / "trial/failure-audit.json").read_text())
+            assert proof["passed"] and proof["exact_queries"] == 3
+    finally:
+        await app.state.race_runtime.close()

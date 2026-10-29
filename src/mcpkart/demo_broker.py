@@ -1,7 +1,7 @@
 """Single-writer MCP race broker with durable step receipts for Temporal replay.
 
-Only free/mock admission is implemented here. Paid admission deliberately fails
-closed until a new deployment-specific clock gate and registration exist.
+Live admission requires a finite release, the authoritative ledger and complete
+source/server-bound timing and interface evidence.
 """
 
 from __future__ import annotations
@@ -70,9 +70,14 @@ class Receipts:
 
 class DemoBroker:
     def __init__(self, *, url, output, logical_id, deadline=180, max_decisions=1100,
-                 mock_delay=.2, transport_factory=None, live_status_path=None, paid=False):
-        if paid:
+                 mock_delay=.2, transport_factory=None, live_status_path=None, paid=False, admission=None,
+                 clock_path=None, interface_path=None, deployment_path=None):
+        if paid and (admission is None or transport_factory is None):
             raise ValueError("Paid demo admission needs a new finite registration and complete clock gate")
+        self.paid, self.admission = paid, admission
+        self.clock_path, self.interface_path, self.deployment_path = clock_path, interface_path, deployment_path
+        if paid and (deadline != admission.plan["deadline_s"] or max_decisions != admission.plan["max_decisions"]):
+            raise ValueError("Live limits differ from the prospective registration")
         if not isinstance(logical_id, str) or not logical_id.startswith("mcpkart-"):
             raise ValueError("Use a dedicated mcpkart- logical race ID")
         if not 0 < deadline <= 600 or not 1 <= max_decisions <= 1100 or not 0 <= mock_delay <= 2:
@@ -87,10 +92,10 @@ class DemoBroker:
         self.initial = None
         self.stop = False
         self.frozen = sources()
-        self.routes = mock_routes(MODELS, TRIO_RACERS)
+        self.routes = admission.plan["routes"] if paid else mock_routes(MODELS, TRIO_RACERS)
         self.setup = {"racer_ids": list(TRIO_RACERS), "contact": "ghost"}
         self.config = DuelSimulation(**self.setup).config()
-        self.budget = Budget(self.output / "mock-budget.json", max_tokens=500000000)
+        self.budget = admission.budget if paid else Budget(self.output / "mock-budget.json", max_tokens=500000000)
         self.before = json.loads(self.budget.path.read_text())
         self.journal = BudgetJournal(self.budget, self.output / "budget-events.jsonl")
         self.locks = {r: asyncio.Lock() for r in TRIO_RACERS}
@@ -116,6 +121,9 @@ class DemoBroker:
         self.runtime = await tool(self.mcp, "runtime_info")
         if self.runtime.get("backend") != "process":
             raise ValueError("The demo requires process-isolated physics")
+        if self.paid:
+            self.admission.qualify(self.runtime, self.clock_path, self.interface_path, self.deployment_path)
+        seen_ids = set()
         for rid in TRIO_RACERS:
             capture = WireCapture()
             route = self.routes[rid]
@@ -142,7 +150,8 @@ class DemoBroker:
             self.http[rid] = http
             self.drivers[rid] = DuelDriver(
                 racer_id=rid, config=self.config, route=route, budget=self.journal.view(rid),
-                http=http, capture=capture, output=self.output / rid, api_key="free-demo-placeholder",
+                http=http, capture=capture, output=self.output / rid, api_key="agentcore-private-credential",
+                admission=self.admission.check if self.paid else None, seen_ids=seen_ids,
             )
         if self.transport_factory:
             # Mock-only initialization: complete cloud session startup before
@@ -155,13 +164,14 @@ class DemoBroker:
                     handling=self.config["handling"], budget=None,
                     http_client=object(), api_key="free-placeholder",
                 )
+                route = mock_routes(MODELS, TRIO_RACERS)[rid]
                 response = await self.http[rid].post("https://openrouter.ai/api/alpha/decisions", content=encoded({
                     "model": self.routes[rid]["model"], "state": {}, "questions": api.questions,
                     "provider": {"only": [self.routes[rid]["provider"]], "allow_fallbacks": False},
-                }))
+                }), extensions={"mcpkart_mock": True})
                 response.raise_for_status()
                 native = response.json()
-                if native.get("model") != self.routes[rid]["resolved_model"] or native.get("usage") != {
+                if native.get("model") != route["resolved_model"] or native.get("usage") != {
                     "input_tokens": 0, "output_tokens": 0, "cost": 0,
                 }:
                     raise ValueError("Cloud mock warmup did not return the expected free route")
@@ -170,7 +180,7 @@ class DemoBroker:
             _write_new(self.output / "prewarm-receipts.json", await asyncio.gather(*(warm(r) for r in TRIO_RACERS)))
         _write_new(self.output / "collection-start.json", {
             "source_sha256": self.frozen, "routes": self.routes, "setup": self.setup, "seed": 0,
-            "free": True, "budget_before": self.before, "max_decisions_per_racer": self.max_decisions,
+            "free": not self.paid, "budget_before": self.before, "max_decisions_per_racer": self.max_decisions,
         })
         return self
 
@@ -191,7 +201,7 @@ class DemoBroker:
         temporary = path.with_suffix(".tmp")
         temporary.write_text(json.dumps({
             "race_id": self.initial["race_id"],
-            "driver_labels": {r: LABELS[r] + " · scripted mock" for r in TRIO_RACERS},
+            "driver_labels": {r: LABELS[r] + ("" if self.paid else " · scripted mock") for r in TRIO_RACERS},
             "driver_metrics": self.metrics,
         }))
         temporary.replace(path)
@@ -205,7 +215,7 @@ class DemoBroker:
             self.receipts.begin(identity)
             self.initial = await tool(self.mcp, "start_duel", {
                 "deadline": self.deadline,
-                "label": "Three-kart scripted mock · Temporal + MCP" + (
+                "label": ("Jev vs OpenAI Decisions vs Clef" if self.paid else "Three-kart scripted mock") + " · Temporal + MCP" + (
                     " + AgentCore" if self.transport_factory else ""
                 ),
                 "race_setup": self.setup,
@@ -242,8 +252,15 @@ class DemoBroker:
             self.publish()
             try:
                 record = await self.drivers[rid].decide(observation)
+                pending = {**record, "applied": False, "command_seq": None, "observation_tick": observation["tick"],
+                           "reason": "invalid_native_reply" if not record["ok"] else "stopped_before_apply"}
+                self.samples[rid].append(pending)
                 if not record["ok"]:
                     raise RuntimeError("Invalid native model reply")
+                if self.stop:
+                    receipt = {"done": True, "seq": seq, "applied": False}
+                    self.receipts.complete(identity, receipt)
+                    return receipt
                 command_seq = sum(bool(s["applied"]) for s in self.samples[rid])
                 ack = await tool(self.mcp, "drive_duel", {
                     "race_id": self.initial["race_id"], "racer_id": rid,
@@ -251,8 +268,8 @@ class DemoBroker:
                     "action_id": record["action"], "observation_tick": observation["tick"],
                     "command_seq": command_seq,
                 })
-                self.samples[rid].append({
-                    **record, "command_seq": command_seq, "observation_tick": observation["tick"],
+                pending.update({
+                    "command_seq": command_seq, "observation_tick": observation["tick"],
                     "applied": ack["applied"], "applied_tick": ack.get("applied_tick"),
                     "applied_ns": ack.get("applied_ns"), "reason": ack.get("reason"),
                     "observe_to_apply_ms": (ack.get("applied_ns", time.monotonic_ns())
@@ -292,16 +309,20 @@ class DemoBroker:
                            "cost_usd": sum(s["cost"] for s in self.samples[r]),
                            "discarded": sum(not s["applied"] for s in self.samples[r])}
                        for r in TRIO_RACERS}
-            race.update(driver_labels={r: LABELS[r] + " · scripted mock" for r in TRIO_RACERS},
+            race.update(driver_labels={r: LABELS[r] + ("" if self.paid else " · scripted mock") for r in TRIO_RACERS},
                         driver_metrics=metrics)
             _write_new(self.output / "race.json", race)
             _write_new(self.output / "decisions.json", self.samples)
             _write_new(self.output / "collection.json", {
-                "free": True, "errors": self.errors, "metrics": metrics,
+                "free": not self.paid, "errors": self.errors, "metrics": metrics,
                 "budget_before": self.before, "budget_after": self.journal.check(),
                 "source_unchanged": sources() == self.frozen, "collection_complete": True,
             })
             proof = audit_duel(self.output) if not self.errors and race["timing"]["infrastructure_valid"] else None
+            if proof:
+                _write_new(self.output / "proof.json", proof)
+            else:
+                _write_new(self.output / "failure-audit.json", audit_duel(self.output, allow_failures=True))
             receipt = {"summary": race["summary"], "audit": proof, "recording": str(self.output / "race.json")}
             _write_new(self.output / "receipt.json", receipt)
             self.receipts.complete(identity, receipt)
