@@ -1,7 +1,7 @@
 # Three model racing demo with Temporal and AWS AgentCore
 
 Finalized implementation plan for 29 October 2026. Branch:
-`codex/aws-temporal-demo`. Target Temporal Cloud namespace: `agent-kart.iuiaz`
+`codex/aws-temporal-demo`. Target Temporal Cloud namespace: `mcpkart-dev.iuiaz`
 (user reports us-west-2). AWS target: the user's company sandbox, with
 us-west-2 proposed for colocation. Another demo uses that sandbox; all new
 resources have a dedicated prefix. Implementation is proceeding on this branch.
@@ -62,7 +62,7 @@ must remain usable. A solid-contact trio is a separate physics project.
 ## Conventional Temporal workers and AgentCore Runtime
 
 Run an ordinary, operator-managed Python Temporal worker connected to
-`agent-kart.iuiaz`. It polls its dedicated task queue continuously during the
+`mcpkart-dev.iuiaz`. It polls its dedicated task queue continuously during the
 demo. Do not use Temporal's serverless-worker integration, preview access,
 Worker Controller setup or automatic AgentCore worker provisioning. AgentCore
 Runtime remains the compute for the model adapter, invoked explicitly by our
@@ -97,7 +97,7 @@ Use Secrets Manager for runtime credentials and a dedicated execution role.
 
 ```mermaid
 flowchart TB
-    O[Operator CLI] --> T[Temporal Cloud agent-kart.iuiaz]
+    O[Operator CLI] --> T[Temporal Cloud mcpkart-dev.iuiaz]
     T --> R[RaceWorkflow]
     R --> J[DriverWorkflow Jev]
     R --> A[DriverWorkflow OpenAI]

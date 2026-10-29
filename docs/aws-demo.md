@@ -97,9 +97,12 @@ Their exact identities are in `aws-resources.json`; delete only those resources
 when the demo is no longer needed. The runtime idle timeout is five minutes and
 its maximum session lifetime is thirty minutes.
 
-To target `agent-kart.iuiaz`, configure `TEMPORAL_NAMESPACE`, the exact
-`TEMPORAL_ADDRESS` from its connection settings, and `TEMPORAL_API_KEY` in a
-local secret environment. Do not put keys in arguments, Git or the runbook.
+To target `mcpkart-dev.iuiaz`, add `TEMPORAL_API_KEY` and the exact
+`TEMPORAL_ADDRESS` from its connection settings to the repo-root `.env`.
+That file also holds `OPENROUTER_API_KEY`. The demo command reads the Temporal
+settings from `.env`; environment variables take precedence. Explicit local
+namespace overrides do not inherit the Cloud key. Do not put keys in arguments,
+Git or the runbook.
 The same command runs a conventional worker; it does not provision a serverless
 Temporal worker or change namespace settings.
 

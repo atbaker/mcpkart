@@ -9,6 +9,7 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
+from dotenv import dotenv_values
 from temporalio import activity
 from temporalio.client import Client
 from temporalio.worker import Worker
@@ -34,13 +35,24 @@ class BrokerActivities:
         return await self.broker.finish()
 
 
-async def connect():
-    key = os.environ.get("TEMPORAL_API_KEY")
-    address = os.environ.get("TEMPORAL_ADDRESS", "localhost:7233")
-    namespace = os.environ.get("TEMPORAL_NAMESPACE", "default")
+def temporal_settings(env_path=None):
+    path = env_path or Path(__file__).resolve().parents[2] / ".env"
+    values = dotenv_values(path)
+    namespace = os.environ.get("TEMPORAL_NAMESPACE", values.get("TEMPORAL_NAMESPACE")) or "default"
+    address = os.environ.get("TEMPORAL_ADDRESS", values.get("TEMPORAL_ADDRESS"))
+    # Local development overrides must never inherit a Cloud key from .env.
+    file_key = values.get("TEMPORAL_API_KEY") if namespace == values.get("TEMPORAL_NAMESPACE") else None
+    key = os.environ.get("TEMPORAL_API_KEY", file_key if namespace != "default" else None)
     if namespace != "default" and not key:
-        raise ValueError("Configure the namespace's Temporal API key in the environment")
-    return await Client.connect(address, namespace=namespace, api_key=key, tls=bool(key))
+        raise ValueError("Configure TEMPORAL_API_KEY in the repo-root .env or environment")
+    if namespace != "default" and not address:
+        raise ValueError("Copy TEMPORAL_ADDRESS from the namespace connection settings into .env")
+    return {"target_host": address or "localhost:7233", "namespace": namespace,
+            "api_key": key or None, "tls": bool(key)}
+
+
+async def connect():
+    return await Client.connect(**temporal_settings())
 
 
 async def run(args):
