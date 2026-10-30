@@ -1,0 +1,154 @@
+{
+  "passed": true,
+  "regular_activities": true,
+  "descriptive_step_results": true,
+  "budget_unchanged": true,
+  "budget": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 110000,
+    "max_tokens": 500000000,
+    "requests": 100603,
+    "charged_usd": 11.786845266002775,
+    "charged_tokens": 337074715,
+    "reported_cost_usd": 11.713150034002734,
+    "uncertain_requests": 74,
+    "pending": {}
+  },
+  "same_manual_entry_unstarted": true,
+  "clock_complete": true,
+  "physics_audit": {
+    "passed": true,
+    "failure_evidence_only": false,
+    "physics_frames": 7487,
+    "exact_queries": 800,
+    "budget_transitions": 1600,
+    "peak_pending": 3,
+    "max_sample_lateness_ms": 4.1800249999942025,
+    "summary": {
+      "finished": true,
+      "elapsed": 124.76666666666087,
+      "ticks": 7486,
+      "winner_ids": [
+        "red"
+      ],
+      "finish_times_s": {
+        "red": 96.51666666666667,
+        "blue": 100.56666666666666,
+        "green": 124.76666666666667
+      },
+      "racers": {
+        "red": {
+          "seed": 0,
+          "finished": true,
+          "elapsed": 96.51666666666247,
+          "ticks": 5791,
+          "laps_completed": 3,
+          "checkpoints_passed": 120,
+          "lap_times": [
+            32.59999999999943,
+            31.583333333331545,
+            32.333333333331495
+          ],
+          "offroad_time": 2.9999999999999942,
+          "distance": 1065.9248894561727,
+          "max_speed": 12.000000000000002,
+          "resets": 1,
+          "reset_events": [
+            {
+              "tick": 4359,
+              "time": 72.64999999999716,
+              "departure_s": 55.226015558487035,
+              "respawn_s": 54.226015558487035,
+              "x": 51.678603975996886,
+              "y": -20.73696405405903,
+              "heading": 0.8076641887989187,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_left_coast",
+              "control": "straight_coast"
+            }
+          ]
+        },
+        "blue": {
+          "seed": 1,
+          "finished": true,
+          "elapsed": 100.56666666666224,
+          "ticks": 6034,
+          "laps_completed": 3,
+          "checkpoints_passed": 120,
+          "lap_times": [
+            33.76666666666603,
+            33.39999999999811,
+            33.3999999999981
+          ],
+          "offroad_time": 6.849999999999981,
+          "distance": 1055.7852234796878,
+          "max_speed": 12.000000000000002,
+          "resets": 2,
+          "reset_events": [
+            {
+              "tick": 1375,
+              "time": 22.916666666666647,
+              "departure_s": 199.99732809263705,
+              "respawn_s": 198.99732809263705,
+              "x": -44.16817597574726,
+              "y": 26.439792842150545,
+              "heading": -2.6496605680384757,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_left_coast",
+              "control": "straight_coast"
+            },
+            {
+              "tick": 4547,
+              "time": 75.78333333333032,
+              "departure_s": 56.57453047510025,
+              "respawn_s": 55.57453047510025,
+              "x": 52.5866132517121,
+              "y": -19.740102654400474,
+              "heading": 0.8525923007983018,
+              "offroad_elapsed": 2.9999999999999942,
+              "previous_action": "hard_left_accelerate",
+              "control": "straight_coast"
+            }
+          ]
+        },
+        "green": {
+          "seed": 2,
+          "finished": true,
+          "elapsed": 124.76666666666087,
+          "ticks": 7486,
+          "laps_completed": 3,
+          "checkpoints_passed": 120,
+          "lap_times": [
+            32.53333333333277,
+            63.88333333332971,
+            28.34999999999839
+          ],
+          "offroad_time": 0.9000000000000011,
+          "distance": 1402.7373758308424,
+          "max_speed": 12.000000000000002,
+          "resets": 0,
+          "reset_events": []
+        }
+      },
+      "contacts": 0,
+      "lead_changes": 6
+    }
+  },
+  "wire_audit": {
+    "passed": true,
+    "outer_invocations": 803,
+    "native_calls": 800,
+    "native_statuses": {
+      "200": 800
+    },
+    "observed_sdk_retries": 0,
+    "missing_outer_responses": 0,
+    "exact_available_native_bytes": true
+  },
+  "exact_factual_receipts": 800,
+  "max_receipt_bytes": 1158,
+  "activity_summaries_verified": true,
+  "receipt_cache_exact": true,
+  "new_model_calls": 0
+}

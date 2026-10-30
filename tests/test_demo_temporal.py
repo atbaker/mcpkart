@@ -46,6 +46,21 @@ async def test_actual_temporal_concurrent_children_and_mcp_recording(tmp_path, l
                 assert result["audit"]["passed"]
                 assert all(result["audit"]["summary"]["racers"][r] for r in ("red", "blue", "green"))
                 assert result["audit"]["exact_queries"] >= 3
+                if not local:
+                    import base64
+                    import json
+                    history = await env.client.get_workflow_handle("mcpkart-test-red").fetch_history()
+                    events = json.loads(history.to_json())["events"]
+                    steps = [e for e in events if e["eventType"] == "EVENT_TYPE_ACTIVITY_TASK_SCHEDULED"]
+                    first = steps[0]
+                    assert first["activityTaskScheduledEventAttributes"]["activityId"] == "red-decision-0001"
+                    summary = json.loads(base64.b64decode(first["userMetadata"]["summary"]["data"]))
+                    assert summary == "Jev: choose steering and pedals - decision 1"
+                    completed = next(e for e in events if e["eventType"] == "EVENT_TYPE_ACTIVITY_TASK_COMPLETED")
+                    payload = completed["activityTaskCompletedEventAttributes"]["result"]["payloads"][0]
+                    details = json.loads(base64.b64decode(payload["data"]))
+                    assert details["driver"] == "Jev" and details["model_chose"]["steering"]
+                    assert "model_saw" in details and "game_acknowledgement" in details
     finally:
         await app.state.race_runtime.close()
 

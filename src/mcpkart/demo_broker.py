@@ -234,6 +234,64 @@ class DemoBroker:
             self.receipts.complete(identity, receipt)
             return receipt
 
+    def describe_step(self, rid, seq, observation, record, *, ack=None, reason=None):
+        """Small UI receipt from actual model facts and the native acknowledgement.
+
+        This never enters the model prompt or supplies a control. The state at
+        acknowledgement is descriptive, not a claim that the new input caused it.
+        """
+        facts = duel_facts(observation, self.config, rid)
+        wheel, pedal = facts["wheel_facts"], facts["pedal_facts"]
+        race, road = pedal["race"], pedal["road"]
+        saw = {
+            "simulation_time_s": race["time_s"],
+            "lap": race["lap"], "total_laps": race["laps"],
+            "gates_passed": race["checkpoints_passed"],
+            "total_gates": race["laps"] * race["checkpoints_per_lap"],
+            "speed_m_s": pedal["kart"]["speed_m_s"], "on_road": road["on_road"],
+            "offset_m_left_positive": road["offset_m"],
+            "left_edge_clearance_m": road["left_edge_clearance_m"],
+            "right_edge_clearance_m": road["right_edge_clearance_m"],
+            "road_preview_15m_bearing_deg_left_positive": wheel["road"]["preview_15m_bearing_deg"],
+            "next_gate_signed_plane_m": pedal["next_gate"]["signed_plane_m"],
+            "rescues": race["resets"],
+        }
+        choices = record.get("component_choices") or {}
+        chose = ({"steering": choices["wheel"], "pedal": choices["pedal"],
+                  "held_input": record["action"]} if record["ok"] else None)
+        result = {
+            "driver": LABELS[rid], "kart": rid, "decision_number": seq + 1,
+            "model": self.routes[rid]["model"], "model_saw": saw, "model_chose": chose,
+            "model_response": {"valid_decision": record["ok"], "http_status": record.get("http_status"),
+                               "latency_ms": round(record["latency_ms"], 2)},
+        }
+        if ack:
+            state = ack["observation"]
+            result["game_acknowledgement"] = {
+                "applied": ack["applied"], "reason": ack.get("reason"),
+                "applied_tick": ack.get("applied_tick"),
+                "state_when_acknowledged": {
+                    "simulation_time_s": state["time"], "speed_m_s": state["kart"]["speed"],
+                    "on_road": state["track"]["on_road"],
+                    "gates_passed": state["progress"]["checkpoints_passed"],
+                    "rescues": state["rescue"]["count"], "finished": state["finished"],
+                },
+                "gates_since_observation": state["progress"]["checkpoints_passed"] - saw["gates_passed"],
+                "rescued_since_observation": state["rescue"]["count"] > saw["rescues"],
+            }
+        else:
+            result["game_acknowledgement"] = {"applied": False, "reason": reason}
+        if chose:
+            outcome = "applied" if ack and ack["applied"] else reason or (ack or {}).get("reason") or "not applied"
+            result["summary"] = (
+                f"{LABELS[rid]}: lap {saw['lap']}/{saw['total_laps']}, "
+                f"{saw['gates_passed']}/{saw['total_gates']} gates, {saw['speed_m_s']:.1f} m/s; "
+                f"{choices['wheel'].replace('_', ' ')} + {choices['pedal']} ({outcome})"
+            )
+        else:
+            result["summary"] = f"{LABELS[rid]}: provider DNF ({reason}); no replacement control"
+        return result
+
     async def step(self, rid, seq):
         if rid not in TRIO_RACERS or isinstance(seq, bool) or not isinstance(seq, int) or seq < 0:
             raise ValueError("Invalid racer or decision sequence")
@@ -280,10 +338,12 @@ class DemoBroker:
                                              retired_at_s=(record["response_received_ns"] - self.initial["started_ns"]) / 1e9)
                     self.publish()
                     receipt = {"done": True, "seq": seq, "applied": False, "retired": True, "reason": reason}
+                    receipt.update(self.describe_step(rid, seq, observation, record, reason=reason))
                     self.receipts.complete(identity, receipt)
                     return receipt
                 if self.stop:
                     receipt = {"done": True, "seq": seq, "applied": False}
+                    receipt.update(self.describe_step(rid, seq, observation, record, reason="race stopped"))
                     self.receipts.complete(identity, receipt)
                     return receipt
                 command_seq = sum(bool(s["applied"]) for s in self.samples[rid])
@@ -307,6 +367,7 @@ class DemoBroker:
                 receipt = {"done": ack["observation"]["finished"] or ack["observation"]["status"] != "running",
                            "seq": seq, "applied": ack["applied"],
                            "step_ms": (time.monotonic_ns() - started) / 1e6}
+                receipt.update(self.describe_step(rid, seq, observation, record, ack=ack))
                 self.receipts.complete(identity, receipt)
                 return receipt
             except BaseException as error:

@@ -1,3 +1,45 @@
+# Current demo READY: descriptive regular Activity results, 29 October 2026
+
+User requested descriptive kart_step labels and model-experience results.
+demo_broker.py/demo_workflows.py now supply exact compact model_saw facts,
+model_chose native choices, model_response latency/status, game_acknowledgement
+state/progress/rescue and readable summary. Activity IDs/summaries, child
+summaries and Current Details identify driver/decision. Receipts are durable:
+cached replay returns the exact same values without another model request.
+No prompt, physics, model, native control or retirement-policy changes.
+
+Same UNRUN0089 manual entry mcpkart-aws-regular-stage-20261029; no paid setup call.
+Current release artifacts/aws-demo-ui-release-v1, Runtime8 (same adapter code/
+role/network/secret, authorization hash only), digest
+7e5eab612e7e2a6d6d3761ae5ee89f1e8bde8719944f1ad92fd4f83d21b9c297.
+Operator scripts/run_aws_demo.py stage points to new clock/interface and requires
+root descriptive_step_results review. Do not reuse superseded old releases.
+Ledger unchanged100603/$11.786845266002775/337074715tokens/74uncertainties,
+pendingempty; all caps/floors/midnight expiry unchanged.
+
+Fresh COMPLETE artifacts/aws-demo-ui-qualification-v3/clock passed4controls/
+12cleanfinishes/21pauseframes/170.1sneutral. Exact Cloud mock
+artifacts/aws-demo-ui-cloud-free-v1 passed all3finishes by124.77s,7487frames/
+800native/1600budget transitions,maxlate4.180ms. All803outer exchanges exact,
+0retries/missing. All800descriptive results matched native facts/choices and
+SQLite receipts; acknowledgement matched next raw observations when present.
+Max1158bytes/result. Root reviewed source/boot/server/Runtime8/ledger, passed.
+Docs:0089-temporal-step-details.md,0089-step-result-example.json,root audit.
+
+Four real Temporal tests passed plus10targetedLinux tests/5operator guards and
+Ruff. Initial test-cache RO lint failure preserved. V2 control0 passed, then
+MCP start reply lost with ReadError; accepted orphan reached its240sdeadline
+and full recording saved byv3. No command retried; no OOM/server exit observed.
+All failures/original source retained. Dedicated EC2/server stays alive.
+
+Separate chat "Enlarge karts and show model names" owns dirty static/duel.html,
+scripts/preview_spectator.py and its guide edits. Preserve that work. Viewer17774
+uses the existing read-only feed; remote frozen UI is intentionally unchanged.
+Freeze/audit on host; local working source differs only by that separate viewer.
+No delegation. Same single manual entry only; no new paid rehearsal/retry/race.
+
+# Historical regular-Activity preparation checkpoint
+
 # Current demo: REGULAR Activities / single manual 0089 entry, 29 October 2026
 
 User requested switching off Local Activities and seeing performance. Operator

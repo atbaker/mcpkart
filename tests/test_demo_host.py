@@ -110,7 +110,7 @@ def operator_fixture(tmp_path, monkeypatch, local):
         "entries": ["unrun-stage"], "agentcore_arn": "own-runtime", "activity_mode": "regular",
     }))
     (release / "qualification-review.json").write_text(json.dumps({
-        "passed": True, "regular_activities": True, "budget_unchanged": True,
+        "passed": True, "regular_activities": True, "budget_unchanged": True, "descriptive_step_results": True,
     }))
     interface = tmp_path / Path(operator.INTERFACE).parent
     interface.mkdir(parents=True)

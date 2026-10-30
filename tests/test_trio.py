@@ -109,6 +109,20 @@ async def test_local_activity_reexecution_returns_same_broker_receipt_without_ch
                               logical_id="mcpkart-replay-test", mock_delay=.01) as broker:
             await broker.start()
             results = await asyncio.gather(*(broker.step(r, 0) for r in TRIO_RACERS))
+            for rid, result in zip(TRIO_RACERS, results, strict=True):
+                query = json.loads((tmp_path / "trial" / rid / "query-00000.json").read_text())
+                model_facts = query["facts"]
+                assert result["model_saw"]["speed_m_s"] == model_facts["pedal_facts"]["kart"]["speed_m_s"]
+                assert result["model_saw"]["road_preview_15m_bearing_deg_left_positive"] == model_facts["wheel_facts"]["road"]["preview_15m_bearing_deg"]
+                assert result["model_saw"]["gates_passed"] == model_facts["pedal_facts"]["race"]["checkpoints_passed"]
+                record = broker.samples[rid][0]
+                assert result["model_chose"]["steering"] == record["component_choices"]["wheel"]
+                assert result["model_chose"]["pedal"] == record["component_choices"]["pedal"]
+                assert result["model_chose"]["held_input"] == record["action"]
+                assert result["game_acknowledgement"]["applied"] == result["applied"]
+                assert result["decision_number"] == 1 and len(json.dumps(result).encode()) < 2000
+                for private in [broker.initial["owner_token"], *(d["driver_token"] for d in broker.initial["drivers"].values())]:
+                    assert private not in json.dumps(result)
             before = broker.budget.summary()
             duplicate = await broker.step("green", 0)
             assert duplicate == results[2]
@@ -230,6 +244,10 @@ async def test_provider_dnf_stops_only_failed_racer_without_new_controls(tmp_pat
             await asyncio.gather(*(drive(r) for r in TRIO_RACERS))
             assert counts["green"] == 2 and counts["red"] > 2 and counts["blue"] > 2
             assert (await broker.step("green", 1))["retired"]  # Replayed marker never dispatches again.
+            retired = await broker.step("green", 1)
+            assert retired["model_chose"] is None and not retired["model_response"]["valid_decision"]
+            assert retired["game_acknowledgement"] == {"applied": False, "reason": "HTTP 429"}
+            assert "no replacement control" in retired["summary"]
             assert counts["green"] == 2
             receipt = await broker.finish()
             assert receipt["audit"]["provider_dnfs"] == ["green"]

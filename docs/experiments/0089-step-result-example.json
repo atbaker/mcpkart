@@ -1,0 +1,54 @@
+{
+  "source": "Actual scripted Cloud Activity result; zero model calls",
+  "activity_result": {
+    "applied": true,
+    "decision_number": 32,
+    "done": false,
+    "driver": "Jev",
+    "game_acknowledgement": {
+      "applied": true,
+      "applied_tick": 847,
+      "gates_since_observation": 0,
+      "reason": null,
+      "rescued_since_observation": false,
+      "state_when_acknowledged": {
+        "finished": false,
+        "gates_passed": 15,
+        "on_road": true,
+        "rescues": 0,
+        "simulation_time_s": 14.1167,
+        "speed_m_s": 12.0
+      }
+    },
+    "kart": "red",
+    "model": "typesafe/jev-1.14",
+    "model_chose": {
+      "held_input": "right_accelerate",
+      "pedal": "accelerate",
+      "steering": "right"
+    },
+    "model_response": {
+      "http_status": 200,
+      "latency_ms": 294.88,
+      "valid_decision": true
+    },
+    "model_saw": {
+      "gates_passed": 15,
+      "lap": 1,
+      "left_edge_clearance_m": 13.0443,
+      "next_gate_signed_plane_m": -5.0212,
+      "offset_m_left_positive": -2.044,
+      "on_road": true,
+      "rescues": 0,
+      "right_edge_clearance_m": 8.9557,
+      "road_preview_15m_bearing_deg_left_positive": -18.75,
+      "simulation_time_s": 13.7167,
+      "speed_m_s": 12.0,
+      "total_gates": 120,
+      "total_laps": 3
+    },
+    "seq": 31,
+    "step_ms": 326.214926,
+    "summary": "Jev: lap 1/3, 15/120 gates, 12.0 m/s; right + accelerate (applied)"
+  }
+}

@@ -14,9 +14,9 @@ from pathlib import Path
 from demo_host import clients
 
 ROOT = Path(__file__).resolve().parents[1]
-RELEASE = "artifacts/aws-demo-regular-release-v1"
-CLOCK = "artifacts/aws-demo-ec2-clock-v1/evidence/qualification.json"
-INTERFACE = "artifacts/aws-demo-ec2-regular-free-v2/trial/interface-proof.json"
+RELEASE = "artifacts/aws-demo-ui-release-v1"
+CLOCK = "artifacts/aws-demo-ui-qualification-v3/clock/qualification.json"
+INTERFACE = "artifacts/aws-demo-ui-cloud-free-v1/trial/interface-proof.json"
 
 
 def main():
@@ -34,7 +34,7 @@ def main():
     if interface_registration.get("local_activities") is not False:
         raise ValueError("The exact regular-Activity Cloud interface has not passed")
     review = json.loads((ROOT / RELEASE / "qualification-review.json").read_text())
-    if not (review.get("passed") and review.get("regular_activities") and review.get("budget_unchanged")):
+    if not (review.get("passed") and review.get("regular_activities") and review.get("budget_unchanged") and review.get("descriptive_step_results")):
         raise ValueError("Root must review the complete regular-Activity qualification")
     if plan.get("activity_mode") != "regular" or len(plan["entries"]) != 1:
         raise ValueError("Expected the single-entry regular-Activity release")
