@@ -1,5 +1,81 @@
 # Three kart Temporal and AgentCore demo
 
+The November 10 demo is complete. Its live release expired at 10pm Pacific
+that night. The commands below document the operator workflow; future live
+driving needs a newly authorized, qualified release. Saved replays remain
+usable. Credentials, deployment receipts and bulk recordings are kept in
+ignored local files, rather than published with the source.
+
+## Encore, 10 November 2026 (completed)
+
+The free qualifications and six manual live executions were audited. See
+[the readiness and closeout report](experiments/0091-encore-readiness.md) for
+timings, outcomes and the final accounting checkpoint.
+
+Open [the updated spectator](http://127.0.0.1:17774/) and click **Live**. Start each
+live race from the repository with:
+
+```bash
+.venv/bin/python scripts/run_aws_demo.py race
+```
+
+Saved races and **Open replay** show an **Opening replay…** spinner during
+download/file reading, then **Preparing the race…** while loading the recording.
+Playback starts automatically. **Clear view** or **Live** cancels the loading
+view; an unavailable or invalid recording clears it and shows an error.
+
+Live kart motion is animated between received snapshots at the browser's
+refresh rate. A small display buffer absorbs network jitter; late snapshots
+hold the latest known position, and rescues/finishes snap immediately. This
+changes the viewer only. Refresh the page and select **Live** to load UI updates.
+
+`stage` is an alias. Each invocation starts one fresh race, observes its AWS
+exit, reconciles cumulative accounting and audits the outcome. If the local
+watcher is interrupted, use `resume` to reattach without starting a race:
+
+```bash
+.venv/bin/python scripts/run_aws_demo.py resume
+```
+
+The dated session expired at 10pm Pacific on November 10. The event ended at
+9pm; the existing fifteen-minute admission floor applied. Existing budget caps are
+enforced. All October recordings and claims remain intact. This session uses
+regular Temporal Activities, real MCP, AgentCore and OpenRouter with the same
+three model routes, prompts, ghost physics and retirement policy.
+
+If the local services are closed, restore the SSM tunnel in one terminal. The
+watcher reopens it automatically after a disconnect and can watch an already
+running forward:
+
+```bash
+.venv/bin/python scripts/watch_demo_tunnel.py
+```
+
+Then run the read-only viewer in another:
+
+```bash
+.venv/bin/python scripts/preview_spectator.py
+```
+
+Keep both running through the demo. The remote game instance, container and
+server must remain alive. The sections below describe the original October
+setup and retain historical commands; their expired releases are not current
+authorization.
+
+An HTTP502 from both `/api/state` and `/api/replays` can indicate a dropped
+local forward while the remote race continues. The tunnel watcher reconnects;
+the Live view and replay list retry automatically. Refresh once to pick up UI
+updates. Recovering the spectator connection does not submit a race.
+
+The [offline fallback](http://127.0.0.1:17875/replay.html) serves the previously
+verified October rehearsal with embedded data. To restore it if closed:
+
+```bash
+.venv/bin/python -m http.server 17875 --bind 127.0.0.1 --directory artifacts/aws-demo-delivery-v3
+```
+
+## Original October setup
+
 The next manually invoked demo run uses **regular Temporal Activities**. The
 [activity-mode amendment and comparison](experiments/0088-regular-activity-amendment.md)
 records the user's requested switch and the complete zero-model-call Cloud
@@ -181,7 +257,26 @@ stage command. The saved rehearsal is available in the Saved race menu.
 Port forwarding is optional for the race itself. Keep the instance, container and server alive: restarting them
 invalidates the source/boot/server-bound clock evidence.
 
-After the regular-Activity qualification review, launch the single new run from this repo:
+For the updated larger kart icons and model-name labels, serve the current UI
+locally while keeping that same SSM forward and qualified server running:
+
+    .venv/bin/python scripts/preview_spectator.py
+
+Open [the updated spectator](http://127.0.0.1:17774/). Its read-only proxy uses
+the existing live feed and saved replays; it does not start a game worker or
+change the frozen remote release. Colors distinguish two seats using the same
+model. The viewer opens blank. Click Live before the manual stage launch; it
+waits for a running race and hides the previous completed race. Clear view
+returns to the blank screen without changing the race. Selecting a saved
+replay intentionally reveals that recording.
+
+The 0089 stage entry was consumed on 29 October at 5:18–5:22 PM Pacific.
+Its evidence is in artifacts/aws-demo-regular-live-stage-v1 and its release
+claim remains in artifacts/aws-demo-ui-release-v1. Preserve both. The launcher
+now reports that existing attempt without dispatching a second race. A further
+live race needs a newly authorized, reviewed entry after the outcome audit.
+
+The one-shot command used for that run was:
 
     .venv/bin/python scripts/run_aws_demo.py stage
 
@@ -252,3 +347,27 @@ Click Play. To recreate that server after closing its terminal:
 
 Keep the dedicated EC2 host and its server alive for the stage qualification.
 The local fallback server and SSM tunnel may be restarted independently.
+
+## Repeatable rehearsal and stage command (current)
+
+Open http://127.0.0.1:17774/ and click Live. From the repo, run this each time:
+
+    .venv/bin/python scripts/run_aws_demo.py race
+
+Each invocation starts one fresh three-model race with a separate identity and
+recording. Wait for the command to finish before invoking it again. Stage is an
+alias for the same repeatable command. Today’s user-authorized session does not
+enforce the old dollar/request/token ceilings; all accounting is still recorded.
+The session expires at midnight Pacific. The old single-entry limitation above
+is historical. The user waived an additional audit run; prior timing/interface
+evidence is reused on the unchanged physics and same live server.
+
+If Ctrl+C interrupts the local watcher, the already-submitted AWS race continues.
+Reconnect and recover accounting without starting a new race:
+
+    .venv/bin/python scripts/run_aws_demo.py resume
+
+The normal race command also recovers an interrupted predecessor first, then
+starts a fresh race. Recovery watches the original SSM command and is safe to
+repeat after an interruption during the ledger handoff. It never resubmits the
+old model requests or charges the saved results twice.

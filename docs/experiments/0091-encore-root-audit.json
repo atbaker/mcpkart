@@ -1,0 +1,52 @@
+{
+  "release_sha256": "f1c7b120d0aaafb6c7897e733467d93706d77b730b06d71f5b8766b121f03c65",
+  "observed_exit_and_audited": true,
+  "budget_after": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 110000,
+    "max_tokens": 500000000,
+    "requests": 104055,
+    "charged_usd": 12.738037908002774,
+    "charged_tokens": 347604959,
+    "reported_cost_usd": 12.657133716002734,
+    "uncertain_requests": 77,
+    "pending": {}
+  },
+  "only_provider_errors_or_none": true,
+  "wire_audit": {
+    "passed": true,
+    "outer_invocations": 672,
+    "native_calls": 669,
+    "native_statuses": {
+      "200": 669
+    },
+    "observed_sdk_retries": 0,
+    "missing_outer_responses": 0,
+    "exact_available_native_bytes": true
+  },
+  "exact_descriptive_receipts": 669,
+  "audit_authority": "User-authorized automatic review between manual demo starts",
+  "audit_environment": "qualified-linux-container",
+  "evidence_manifest_sha256": "cc57882772207af49f4f47511ae51f12f8f5ae30f9f0db2616891f8af2f77957",
+  "observed_ssm_command": "6cb7ce4f-341d-4ccf-b0ff-59481423b8e3",
+  "physics_audit": {
+    "passed": true,
+    "failure_evidence_only": false,
+    "physics_frames": 9270,
+    "exact_queries": 669,
+    "budget_transitions": 1338,
+    "peak_pending": 3,
+    "max_sample_lateness_ms": 4.617997666675365
+  },
+  "finish_times_s": {
+    "red": 115.08333333333333,
+    "blue": 137.2,
+    "green": 154.48333333333332
+  },
+  "rescues": {
+    "red": 3,
+    "blue": 8,
+    "green": 13
+  }
+}

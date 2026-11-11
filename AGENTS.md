@@ -1,4 +1,183 @@
-# Current demo READY: descriptive regular Activity results, 29 October 2026
+# Demo complete, 11 November 2026
+
+User reported that the encore worked great and authorized tidying, committing
+and pushing the project. Work remains on `codex/aws-temporal-demo`; main is not
+being merged or rewritten. No new paid driving is authorized by this cleanup.
+The November 10 release expired at 2026-11-11T06:00:00Z. Future live work needs
+a new prospective release and the applicable qualification checks.
+
+All six November manual runs have saved SSM Success/exit 0 and independent
+Linux outcome reviews; there is no pending recovery. Preserve every original
+recording, failed audit attempt, charge, uncertainty and release claim.
+Final ledger: 107748 requests / $13.71908846000279 / 356809871 charged tokens /
+78 uncertainties, pending empty. Caps remain $20 / 110000 / 500000000. The
+versioned budget snapshot matches the last reviewed cumulative ledger.
+See docs/experiments/0091-encore-closeout.json and 0091-encore-readiness.md.
+
+Full local verification passed 838 tests, with 16 skips; Ruff passed
+for src, tests and scripts. No model calls were made for cleanup. Credentials,
+private deployment material and bulk recordings remain under ignored local
+paths. Existing AWS infrastructure is preserved under the keep-alive rule.
+
+# Historical checkpoint: Encore READY, 10 November 2026
+
+Spectator connection recovery: primary SSM forward exited with a logged TCP
+broken pipe, leaving17773closed and both viewer endpoints502 while user race
+0005 remained InProgress onAWS. Reopened the same read-only forward:17773and
+17774state endpoints200/running,17774replays200/one entry. Added and started
+scripts/watch_demo_tunnel.py on17773; it watches the working external forward
+and reconnects after exit, never submitting races. Separate18773test recovered
+HTTP200 in3.06s after only its test tunnel process was terminated. Test watcher
+and17876catalog fixture stopped; primary forward/watcher/viewer remain running.
+Replay catalog now retries after transient errors and avoids duplicate options
+or overriding a newer viewing choice. Browser503-to-success catalog recovery
+passed without reload. Evidence artifacts/aws-demo-connection-recovery-20261110-v1.
+Do not rely on old ledger boundaries below; user is manually running races.
+
+Live spectator smoothing amendment: browser previously drew only after100ms
+polls. Local HTML now draws live karts on requestAnimationFrame, interpolating
+only between received snapshots with a small adaptive display buffer; never
+extrapolates, and rescues/finishes snap to authoritative positions. Canvas is
+resized only when dimensions change. Cards/events keep actual received values.
+Local recorded-feed QA with85ms response delay measured120draws/s,114–120distinct
+positions/s from8–10feed updates/s, p95draw0.5–0.9ms, one canvas-size change and
+no browser errors. Evidence artifacts/aws-demo-smooth-ui-20261110-v1. Temporary
+QA server stopped; no model calls/AWS changes. User had a manually launched
+live race during this edit: use actual ledger/receipts for the latest boundary,
+not the historical rehearsal boundary below. Their live page was not reloaded.
+
+Local spectator amendment: saved-race downloads and Open replay files now show
+an accessible spinner/Opening replay overlay, then Preparing the race before
+parsing. Loading ends on success, error, Clear view or Live; stale responses
+retain generation guards. Browser checked actual saved replay/full November
+race file, invalid local file, delayed/503/invalid HTTP fixtures and immediate
+Clear view cancellation; no production browser errors. Temporary QA server
+17876 was stopped. Screenshot/evidence artifacts/aws-demo-loading-ui-20261110-v1.
+Only local static/duel.html changed; frozen remote UI, physics, models and live
+qualification remain intact. No model calls or AWS modifications for this edit.
+Replay/speed dropdown chevrons also use a consistent inset SVG with reserved
+text padding. Verified long rehearsal label and native speed selection in the
+browser; screenshot artifacts/aws-demo-dropdown-ui-20261110-v1/dropdowns.png.
+
+User requested verifying the existing demo for tonight's encore: tech check
+16:00 Pacific, event ends21:00. Branch remains codex/aws-temporal-demo.
+Current release artifacts/aws-demo-encore-release-20261110-v1; Runtime11 READY;
+digest f1c7b120d0aaafb6c7897e733467d93706d77b730b06d71f5b8766b121f03c65.
+Only Runtime authorization/expiry changed, through22:00 Pacific tonight.
+Game/model source, prompts, native controls, regular Activities, real MCP and
+provider-failure retirement remain unchanged. Local dirty spectator HTML is
+still intentionally separate from frozen remote UI. Preserve other dirty work.
+
+Fresh complete free clock PASSED:4controls/12clean finishes,21pause frames,
+170.1s neutral; max derived lateness7.445ms. Exact regular-Activity Cloud mock
+PASSED:all3finished,1scripted rescue;714native/717outer exchanges,0retries or
+missing replies,714exact descriptive receipts. Independent root review passed.
+Temporal schedule-to-start p50/p95=11.16/13.26ms versus11.15/13.34ms October.
+
+One live qualification race mcpkart-demo-20261110-0001 completed and was fully
+root-audited in the qualified Linux container:9270frames/669native requests/
+1338budget transitions,672exact outer exchanges/allHTTP200/no retries/missing.
+Jev115.083s/3rescues;OpenAI137.2s/8rescues;Clef154.483s/13rescues. No provider
+failure/new uncertainty. Max sample lateness4.618ms. Live tails were slower for
+Jev/Clef than October; no speedup/model-ranking claim. See0091-encore-readiness.
+Observed SSM Success/exit0, command6cb7ce4f-341d-4ccf-b0ff-59481423b8e3.
+Local watcher initially failed on Mac/Linux exact-float differences; free Linux
+audit-v1 then exposed an auditor timestamp-format bug. Fixed auditor to derive
+the existing rounded native observation time; no engine/result changes. Free
+audit-v2 PASSED; original failures/evidence preserved. Race was never rerun.
+Resume confirmed no pending recovery. Full outcome reviews now run on the
+qualified Linux host, bound to every downloaded payload hash including SQLite.
+
+Latest authoritative local/remote ledger:104055requests/$12.738037908002774/
+347604959charged tokens/77uncertainties, pendingempty. Caps$20/110k/500m enforced;
+October's day-specific budget/audit waiver is NOT reused. Next fresh manual ID
+is mcpkart-demo-20261110-0002; finite release ends0010, subject to remaining caps.
+Command .venv/bin/python scripts/run_aws_demo.py race; stage alias. Each manual
+invocation starts one new race, observes exit, reconciles accounting and audits
+before admitting another. Resume never submits a race. No automatic race loop
+or retry/fallback controls. Preserve all October releases and all charges.
+
+Open http://127.0.0.1:17774/ and click Live. Forward17773 and viewer17774 restored;
+both HTTP200, live finish rendered with no browser errors. October offline
+fallback http://127.0.0.1:17875/replay.html restored/HTTP200, embedded data intact.
+Dedicated EC2 i-0ae1c7dce47ee05ae/container mcpkart-demo/server8771 stay alive.
+No other demos' resources changed. No delegation. No further automatic paid work.
+
+# Latest recovered manual race (historical)
+
+mcpkart-demo-20261029-0001 finished with observed SSM Success/exit0. Its local
+watcher had been interrupted by Ctrl+C; resume reattached to the same saved
+command, fetched all2454 files and reconciled the cumulative ledger. No race
+was resubmitted. Completion review exists; next fresh manual identity is0002.
+Latest authoritative ledger102205requests/$12.256593214002779/340986469tokens/
+74uncertainties, pendingempty. Old cap metadata preserved but not enforced for
+this explicitly authorized day-session. No independent extra audit was run.
+
+# Watcher recovery support
+
+scripts/run_aws_demo.py resume reconnects the saved SSM command, observes its
+terminal exit, fetches evidence and reconciles the entire cumulative ledger.
+It never submits a race. The normal race command automatically recovers an
+unfinished predecessor before allocating a fresh identity. Ledger handoff and
+completion review are idempotent across local KeyboardInterrupt; unknown SSM
+submissions without a saved receipt remain blocked from redispatch.
+
+# Current demo: repeatable manual race command, 29 October 2026
+
+User explicitly requested a fresh race on every manual invocation for rehearsal
+and stage, authorized exceeding the old budget ceilings today, and instructed
+us to skip a new audit run. This supersedes the historical single-entry and
+between-run root-audit restrictions for this manual demo session only.
+
+Command: .venv/bin/python scripts/run_aws_demo.py race (stage is an alias).
+Each invocation selects a fresh prospective identity from the day-session
+release, records separately, holds one writer, observes the SSM exit and
+reconciles the full ledger before allowing the next manual invocation.
+No automatic race loop or redispatch after an unknown submission. All previous
+charges, failures, uncertainties, claims and recordings remain preserved.
+
+Release artifacts/aws-demo-manual-release-v1; Runtime10 READY; digest
+0cf06a233f50459a2d43ee378df7d6e6f43ef63d9bae1887a0417e24b2843b85.
+Manual identities mcpkart-demo-20261029-0001 through -1000; expiry remains
+2026-10-30T07:00:00Z (midnight Pacific), with the existing 15-minute time floor.
+Budget.enforce_limits defaultsTrue; only this explicit manual release uses
+False. Historical cap values stay in the ledger for provenance, but dollar,
+request and token ceilings do not block this session. Accounting remains exact.
+
+Only Budget limit enforcement and demo admission changed. No physics, prompts,
+model routes or native controls changed. Per explicit user waiver, prior
+complete clock/interface evidence is REUSED on the same boot/server; no new
+successful timing measurement or Cloud mock run is claimed. Manifests, current
+source, server boot/start ticks and active Runtime/digest are still checked.
+The extra qualification job failed before any clock run due to an audit-helper
+status mismatch; its evidence remains. User then waived that extra audit.
+Manual setup SSM b88d1226-7880-49cc-bbfc-31d1926e0a67 observed Success/exit0;
+same qualified server/source and intact ledger verified. No paid setup race ran.
+
+Starting ledger stays101395/$12.028727472002787/339006808tokens/74uncertainties,
+pendingempty. Local branding viewer17774 remains separate from frozen remote UI.
+No delegation. Keep dedicated EC2/container/server alive.
+
+# Historical consumed single-entry checkpoint
+
+# Current demo: 0089 stage entry CONSUMED, 29 October 2026
+
+The registered mcpkart-aws-regular-stage-20261029 entry already ran. Its saved
+SSM receipt fd378b0d-2f0b-4416-9fa2-acb202966b47 records Success/exit 0 from
+2026-10-30 00:18:37 to 00:22:28 UTC (29 October, 5:18–5:22 PM Pacific).
+Evidence: artifacts/aws-demo-regular-live-stage-v1; release claim exists in
+artifacts/aws-demo-ui-release-v1. Both must be preserved. A later manual launch
+stopped at the existing-directory check before any new submission. The launcher
+now reports the existing attempt/claim clearly, including when its output
+directory is missing. Never rename/delete evidence to enable a repeat.
+
+Reconciled authoritative ledger: 101395 requests / $12.028727472002787 /
+339006808 charged tokens / 74 uncertainties, pending empty; caps unchanged.
+Full root outcome audit is still required; saved successful process exit alone
+does not establish a fully successful race. No further paid entry exists.
+The UNRUN/READY wording below is historical and does not authorize a new run.
+
+# Historical demo READY: descriptive regular Activity results, 29 October 2026
 
 User requested descriptive kart_step labels and model-experience results.
 demo_broker.py/demo_workflows.py now supply exact compact model_saw facts,

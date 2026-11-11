@@ -19,6 +19,25 @@ ACTIONS = {
     "straight_accelerate": {"description": "Steering zero; throttle one; brake zero."},
     "left_brake": {"description": "Steer left; throttle zero; brake one."},
 }
+
+
+def test_explicit_demo_budget_overrun_preserves_every_charge_and_uncertainty(tmp_path):
+    path = tmp_path / "budget.json"
+    ordinary = Budget(path, cap_usd=.01, max_requests=1, max_tokens=10)
+    first = ordinary.reserve(.01, 10, model="demo", provider="test")
+    ordinary.commit(first)
+    with pytest.raises(BudgetExceeded):
+        ordinary.reserve(.01, 10, model="demo", provider="test")
+    authorized = Budget(path, cap_usd=.01, max_requests=1, max_tokens=10, enforce_limits=False)
+    second = authorized.reserve(.02, 20, model="demo", provider="test")
+    authorized.commit(second)
+    state = json.loads(path.read_text())
+    assert state["charged_usd"] == .03 and state["charged_tokens"] == 30
+    assert state["requests"] == state["uncertain_requests"] == 2
+    assert state["cap_usd"] == .01 and state["max_requests"] == 1 and state["max_tokens"] == 10
+    assert state["pending"] == {}
+
+
 ROUTE = {
     "model": "typesafe/jev-1.14",
     "resolved_model": "typesafe/jev-1.14-20261014",

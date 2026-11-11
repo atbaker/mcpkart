@@ -312,7 +312,11 @@ class Budget:
         cap_usd: float = 10.0,
         max_requests: int | None = None,
         max_tokens: int = 250_000_000,
+        enforce_limits: bool = True,
     ) -> None:
+        if not isinstance(enforce_limits, bool):
+            raise TypeError("Budget limit enforcement must be explicit")
+        self.enforce_limits = enforce_limits
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.lock_path = self.path.with_suffix(self.path.suffix + ".lock")
@@ -391,11 +395,11 @@ class Budget:
             state = self._read()
             reserved_usd = sum(item["cost"] for item in state["pending"].values())
             reserved_tokens = sum(item["tokens"] for item in state["pending"].values())
-            if state["requests"] >= state["max_requests"]:
+            if self.enforce_limits and state["requests"] >= state["max_requests"]:
                 raise BudgetExceeded("Experiment request ceiling reached")
-            if state["charged_tokens"] + reserved_tokens + tokens > state["max_tokens"]:
+            if self.enforce_limits and state["charged_tokens"] + reserved_tokens + tokens > state["max_tokens"]:
                 raise BudgetExceeded("Experiment token ceiling would be exceeded")
-            if state["charged_usd"] + reserved_usd + cost > state["cap_usd"]:
+            if self.enforce_limits and state["charged_usd"] + reserved_usd + cost > state["cap_usd"]:
                 raise BudgetExceeded("Experiment spending cap would be exceeded by next reservation")
             reservation = uuid.uuid4().hex
             state["pending"][reservation] = {

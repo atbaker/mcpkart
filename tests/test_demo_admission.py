@@ -6,6 +6,28 @@ import pytest
 from mcpkart import demo_admission as admission
 
 
+def test_only_explicit_manual_session_may_exceed_saved_budget_limits(tmp_path, monkeypatch):
+    from mcpkart.decisions import Budget
+
+    ledger = tmp_path / "budget.json"
+    Budget(ledger, cap_usd=.01, max_requests=1, max_tokens=10)
+    plan = {"source_sha256": {}, "expires_utc": (datetime.now(UTC) + timedelta(hours=1)).isoformat(),
+            "entries": ["manual-1"], "manual_invocations_only": True, "budget_limits_enforced": False,
+            "budget_boundary": json.loads(ledger.read_text())}
+    path = tmp_path / "release.json"
+    path.write_text(json.dumps(plan))
+    monkeypatch.setattr(admission, "sources", dict)
+    guard = admission.Admission(path, ledger, "manual-1")
+    try:
+        assert guard.budget.enforce_limits is False
+    finally:
+        guard.close()
+    plan["manual_invocations_only"] = False
+    path.write_text(json.dumps(plan))
+    with pytest.raises(ValueError, match="admission floor"):
+        admission.Admission(path, ledger, "manual-1")
+
+
 def test_hot_admission_checks_manifest_identity_without_rehashing_archive(tmp_path, monkeypatch):
     plan = {"source_sha256": {"example.py": "frozen"},
             "expires_utc": (datetime.now(UTC) + timedelta(hours=1)).isoformat()}

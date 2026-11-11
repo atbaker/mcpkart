@@ -1,0 +1,261 @@
+{
+  "closed_date": "2026-11-11",
+  "user_report": "Demo is done and it worked great",
+  "release_sha256": "f1c7b120d0aaafb6c7897e733467d93706d77b730b06d71f5b8766b121f03c65",
+  "expired_utc": "2026-11-11T06:00:00+00:00",
+  "paid_races": 6,
+  "new_races_run_for_cleanup": 0,
+  "final_budget": {
+    "schema_version": 1,
+    "cap_usd": 20.0,
+    "max_requests": 110000,
+    "max_tokens": 500000000,
+    "requests": 107748,
+    "charged_usd": 13.71908846000279,
+    "charged_tokens": 356809871,
+    "reported_cost_usd": 13.634252108002752,
+    "uncertain_requests": 78,
+    "pending": {}
+  },
+  "session_requests": 4362,
+  "session_charged_usd": 1.1660926960000282,
+  "session_charged_tokens": 10846220,
+  "no_pending_recovery": true,
+  "runs": [
+    {
+      "identity": "mcpkart-demo-20261110-0001",
+      "ssm_command": "6cb7ce4f-341d-4ccf-b0ff-59481423b8e3",
+      "observed_exit": {
+        "status": "Success",
+        "response_code": 0,
+        "started": "2026-11-10T22:22:55.599Z",
+        "ended": "2026-11-10T22:26:16.599Z"
+      },
+      "finish_times_s": {
+        "red": 115.08333333333333,
+        "blue": 137.2,
+        "green": 154.48333333333332
+      },
+      "rescues": {
+        "red": 3,
+        "blue": 8,
+        "green": 13
+      },
+      "all_finished": true,
+      "provider_errors": [],
+      "native_requests": 669,
+      "physics_frames": 9270,
+      "budget_transitions": 1338,
+      "max_sample_lateness_ms": 4.617997666675365,
+      "wire_audit": {
+        "passed": true,
+        "outer_invocations": 672,
+        "native_calls": 669,
+        "native_statuses": {
+          "200": 669
+        },
+        "observed_sdk_retries": 0,
+        "missing_outer_responses": 0,
+        "exact_available_native_bytes": true
+      },
+      "independent_linux_audit": "qualified-linux-container"
+    },
+    {
+      "identity": "mcpkart-demo-20261110-0002",
+      "ssm_command": "a445fa10-6294-4530-992c-c86605c6e051",
+      "observed_exit": {
+        "status": "Success",
+        "response_code": 0,
+        "started": "2026-11-10T23:03:03.506Z",
+        "ended": "2026-11-10T23:06:32.506Z"
+      },
+      "finish_times_s": {
+        "red": 106.16666666666667,
+        "blue": 119.85,
+        "green": 162.33333333333334
+      },
+      "rescues": {
+        "red": 1,
+        "blue": 6,
+        "green": 13
+      },
+      "all_finished": true,
+      "provider_errors": [],
+      "native_requests": 673,
+      "physics_frames": 9741,
+      "budget_transitions": 1346,
+      "max_sample_lateness_ms": 3.2704496666701743,
+      "wire_audit": {
+        "passed": true,
+        "outer_invocations": 676,
+        "native_calls": 673,
+        "native_statuses": {
+          "200": 673
+        },
+        "observed_sdk_retries": 0,
+        "missing_outer_responses": 0,
+        "exact_available_native_bytes": true
+      },
+      "independent_linux_audit": "qualified-linux-container"
+    },
+    {
+      "identity": "mcpkart-demo-20261110-0003",
+      "ssm_command": "f74a63c6-5c72-40d1-b6de-aa50701e946f",
+      "observed_exit": {
+        "status": "Success",
+        "response_code": 0,
+        "started": "2026-11-10T23:10:11.811Z",
+        "ended": "2026-11-10T23:14:02.811Z"
+      },
+      "finish_times_s": {
+        "red": 102.6,
+        "blue": null,
+        "green": 158.78333333333333
+      },
+      "rescues": {
+        "red": 1,
+        "blue": 9,
+        "green": 12
+      },
+      "all_finished": false,
+      "provider_errors": [],
+      "native_requests": 754,
+      "physics_frames": 10801,
+      "budget_transitions": 1508,
+      "max_sample_lateness_ms": 6.20453933335375,
+      "wire_audit": {
+        "passed": true,
+        "outer_invocations": 757,
+        "native_calls": 754,
+        "native_statuses": {
+          "200": 754
+        },
+        "observed_sdk_retries": 0,
+        "missing_outer_responses": 0,
+        "exact_available_native_bytes": true
+      },
+      "independent_linux_audit": "qualified-linux-container"
+    },
+    {
+      "identity": "mcpkart-demo-20261110-0004",
+      "ssm_command": "5df723a4-fbba-4c50-92b7-426c431ba1fa",
+      "observed_exit": {
+        "status": "Success",
+        "response_code": 0,
+        "started": "2026-11-10T23:22:32.086Z",
+        "ended": "2026-11-10T23:26:24.086Z"
+      },
+      "finish_times_s": {
+        "red": 146.55,
+        "blue": 137.36666666666667,
+        "green": 179.25
+      },
+      "rescues": {
+        "red": 1,
+        "blue": 5,
+        "green": 18
+      },
+      "all_finished": true,
+      "provider_errors": [],
+      "native_requests": 818,
+      "physics_frames": 10756,
+      "budget_transitions": 1636,
+      "max_sample_lateness_ms": 9.7567186666638,
+      "wire_audit": {
+        "passed": true,
+        "outer_invocations": 821,
+        "native_calls": 818,
+        "native_statuses": {
+          "200": 818
+        },
+        "observed_sdk_retries": 0,
+        "missing_outer_responses": 0,
+        "exact_available_native_bytes": true
+      },
+      "independent_linux_audit": "qualified-linux-container"
+    },
+    {
+      "identity": "mcpkart-demo-20261110-0005",
+      "ssm_command": "c00b1207-b868-4b7a-b309-7d446c206354",
+      "observed_exit": {
+        "status": "Success",
+        "response_code": 0,
+        "started": "2026-11-11T00:59:22.905Z",
+        "ended": "2026-11-11T01:02:32.905Z"
+      },
+      "finish_times_s": {
+        "red": 100.1,
+        "blue": 145.93333333333334,
+        "green": null
+      },
+      "rescues": {
+        "red": 1,
+        "blue": 8,
+        "green": 7
+      },
+      "all_finished": false,
+      "provider_errors": [
+        {
+          "racer_id": "green",
+          "type": "provider_error",
+          "http_status": null
+        }
+      ],
+      "native_requests": 629,
+      "physics_frames": 8767,
+      "budget_transitions": 1258,
+      "max_sample_lateness_ms": 4.801015000000916,
+      "wire_audit": {
+        "passed": true,
+        "outer_invocations": 632,
+        "native_calls": 629,
+        "native_statuses": {
+          "200": 628,
+          "no_reply": 1
+        },
+        "observed_sdk_retries": 0,
+        "missing_outer_responses": 1,
+        "exact_available_native_bytes": true
+      },
+      "independent_linux_audit": "qualified-linux-container"
+    },
+    {
+      "identity": "mcpkart-demo-20261110-0006",
+      "ssm_command": "2d4697d2-4936-4c63-b1e2-08ca92f02da4",
+      "observed_exit": {
+        "status": "Success",
+        "response_code": 0,
+        "started": "2026-11-11T02:48:51.959Z",
+        "ended": "2026-11-11T02:52:44.959Z"
+      },
+      "finish_times_s": {
+        "red": 97.16666666666667,
+        "blue": null,
+        "green": null
+      },
+      "rescues": {
+        "red": 0,
+        "blue": 9,
+        "green": 16
+      },
+      "all_finished": false,
+      "provider_errors": [],
+      "native_requests": 819,
+      "physics_frames": 10801,
+      "budget_transitions": 1638,
+      "max_sample_lateness_ms": 4.72332433333213,
+      "wire_audit": {
+        "passed": true,
+        "outer_invocations": 822,
+        "native_calls": 819,
+        "native_statuses": {
+          "200": 819
+        },
+        "observed_sdk_retries": 0,
+        "missing_outer_responses": 0,
+        "exact_available_native_bytes": true
+      },
+      "independent_linux_audit": "qualified-linux-container"
+    }
+  ]
+}
